@@ -33,7 +33,7 @@ fi
 
 dmc.py --np $nprocs \
     -r $reps \
-    -o ../configs/prior/prior-*.cfg \
+    -o ../configs/prior-*.cfg \
     -p ../priors/pymsbayes-results/pymsbayes-output/prior-stats-summaries \
     -n $nprior \
     --prior-batch-size $batch_size \

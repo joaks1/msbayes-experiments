@@ -31,8 +31,8 @@ fi
 
 dmc.py --np $nprocs \
     -r 1 \
-    -o ../configs/prior/prior-dpp.cfg \
-    -p ../configs/prior/prior-dpp.cfg \
+    -o ../configs/prior-dpp.cfg \
+    -p ../configs/prior-dpp.cfg \
     -n $nprior \
     --prior-batch-size $batch_size \
     --num-standardizing-samples $nsums \
