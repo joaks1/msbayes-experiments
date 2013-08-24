@@ -1,0 +1,8 @@
+m1 = ../../../../configs/alt-m1.cfg
+m2 = ../../../../configs/alt-m2.cfg
+m3 = ../../../../configs/m3.cfg
+m4 = ../../../../configs/m4.cfg
+m5 = ../../../../configs/m5.cfg
+m6 = ../../../../configs/m6.cfg
+m7 = ../../../../configs/m7.cfg
+m8 = ../../../../configs/m8.cfg
