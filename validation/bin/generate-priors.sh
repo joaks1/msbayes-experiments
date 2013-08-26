@@ -37,6 +37,7 @@ dmc.py --np $nprocs \
     --num-standardizing-samples $nsums \
     --output-dir $output_dir \
     --staging-dir $staging_dir \
+    --temp-dir $staging_dir \
     --seed $seed \
     --generate-samples-only
 

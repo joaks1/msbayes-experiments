@@ -42,6 +42,7 @@ dmc.py --np $nprocs \
     -q $nquantiles \
     --output-dir $output_dir \
     --staging-dir $staging_dir \
+    --temp-dir $staging_dir \
     --seed $seed \
     --no-global-estimate \
     --compress
