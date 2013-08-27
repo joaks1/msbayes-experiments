@@ -16,7 +16,7 @@ fi
 
 staging_dir=$(mktemp -d /tmp/output.XXXXXXXXX)
 
-reps=100000
+reps=50000
 nprocs=8
 nprior=1000000
 batch_size=25000
@@ -25,7 +25,7 @@ npost=1000
 nquantiles=1000
 seed=37851841
 
-output_dir="../results"
+output_dir="../results/dpp"
 if [ ! -d "$output_dir" ]
 then
     mkdir -p $output_dir
