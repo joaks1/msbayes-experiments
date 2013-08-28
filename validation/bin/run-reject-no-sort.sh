@@ -17,7 +17,7 @@ fi
 staging_dir=$(mktemp -d /tmp/output.XXXXXXXXX)
 
 reps=50000
-nprocs=4
+nprocs=8
 nprior=1000000
 batch_size=25000
 nsums=100000
