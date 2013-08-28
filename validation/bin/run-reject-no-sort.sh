@@ -25,7 +25,7 @@ npost=1000
 nquantiles=1000
 seed=37851841
 
-output_dir="../results/no-sort"
+output_dir="../no-sort/results"
 if [ ! -d "$output_dir" ]
 then
     mkdir -p $output_dir
