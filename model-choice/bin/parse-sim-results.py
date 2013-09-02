@@ -13,7 +13,7 @@ import project_util
 _LOG = get_logger(__name__)
 SIM_INFO_PATH = os.path.join(project_util.RESULT_DIR, 'm1-01-sim',
         'pymsbayes-results', 'pymsbayes-info.txt')
-OUT_PATH = os.path.join(os.path.dirname(SIM_INFO_PATH), 'results-summary.txt')
+OUT_PATH = os.path.join(os.path.dirname(SIM_INFO_PATH), 'results.txt')
 NUM_SIMS = 1000
 
 def get_sublist_greater_than(values, threshold):
