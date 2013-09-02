@@ -63,10 +63,14 @@ def main_cli():
         assert len(v) == NUM_SIMS, '{0!r} has {1} values'.format(k, len(v))
     assert len([0 for x in excluded if len(x) > 0]) == ex_tally
     assert len([0 for x in excluded_glm if len(x) > 0]) == ex_tally_glm
-    sys.stdout.write('Proportion of simulations excluding truth: {0}'.format(
+    sys.stdout.write('Proportion of simulations excluding truth: {0}\n'.format(
             ex_tally / float(NUM_SIMS)))
     sys.stdout.write('Proportion of simulations excluding truth with GLM-'
-            'adjustment: {0}'.format(ex_tally_glm / float(NUM_SIMS)))
+            'adjustment: {0}\n'.format(ex_tally_glm / float(NUM_SIMS)))
+    sys.stdout.write('Average number of tau parameters excluded: {0}\n'.format(
+            sum(d['num_excluded']) / float(NUM_SIMS))
+    sys.stdout.write('Average number of tau parameters excluded with GLM: '
+            '{0}\n'.format(sum(d['num_excluded_glm']) / float(NUM_SIMS))
     with open(OUT_PATH, 'w') as out:
         for line in dict_line_iter(d):
             out.write(line)
