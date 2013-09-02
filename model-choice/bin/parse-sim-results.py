@@ -5,6 +5,7 @@ import sys
 
 from pymsbayes.utils.parsing import (DMCSimulationResults,
         parse_posterior_summary_file, dict_line_iter)
+from pymsbayes.config import MsBayesConfig
 from pymsbayes.utils.messaging import get_logger
 import project_util
 
@@ -18,15 +19,10 @@ def get_sublist_greater_than(values, threshold):
     return [v for v in values if v > threshold]
 
 def main_cli():
-    model_to_tau_max = {'m1-01': 0.01,
-            'm2': 1.0,
-            'm3': 5.0,
-            'm4': 10.0,
-            'm5': 20.0}
     sim_results = DMCSimulationResults(SIM_INFO_PATH)
-    index_to_model = {}
-    for k, v in sim_results.prior_config_to_index.iteritems():
-        index_to_model[v] = k
+    model_configs = {}
+    for k, v in sim_results.prior_configs.iteritems():
+        model_configs[k] = MsBayesConfig(v)
     excluded = []
     ex_tally = 0
     excluded_glm = []
@@ -45,8 +41,8 @@ def main_cli():
                 true_params, paths)
         model_index = results['model']['mode']
         model_index_glm = int(round(results['model']['mode_glm']))
-        tau_max = model_to_tau_max[index_to_model[model_index]] 
-        tau_max_glm = model_to_tau_max[index_to_model[model_index_glm]]
+        tau_max = model_configs[model_index].tau.maximum 
+        tau_max_glm = model_configs[model_index_glm].tau.maximum
         ex = get_sublist_greater_than(div_times, tau_max)
         if len(ex) > 0:
             ex_tally += 1
@@ -77,3 +73,4 @@ def main_cli():
 
 if __name__ == '__main__':
     main_cli()
+
