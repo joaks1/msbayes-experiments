@@ -68,9 +68,9 @@ def main_cli():
     sys.stdout.write('Proportion of simulations excluding truth with GLM-'
             'adjustment: {0}\n'.format(ex_tally_glm / float(NUM_SIMS)))
     sys.stdout.write('Average number of tau parameters excluded: {0}\n'.format(
-            sum(d['num_excluded']) / float(NUM_SIMS))
+            sum(d['num_excluded']) / float(NUM_SIMS)))
     sys.stdout.write('Average number of tau parameters excluded with GLM: '
-            '{0}\n'.format(sum(d['num_excluded_glm']) / float(NUM_SIMS))
+            '{0}\n'.format(sum(d['num_excluded_glm']) / float(NUM_SIMS)))
     with open(OUT_PATH, 'w') as out:
         for line in dict_line_iter(d):
             out.write(line)
