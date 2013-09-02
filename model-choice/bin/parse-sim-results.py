@@ -6,6 +6,7 @@ import sys
 from pymsbayes.utils.parsing import (DMCSimulationResults,
         parse_posterior_summary_file, dict_line_iter)
 from pymsbayes.config import MsBayesConfig
+from pymsbayes.utils.stats import mode_list
 from pymsbayes.utils.messaging import get_logger
 import project_util
 
@@ -71,6 +72,10 @@ def main_cli():
             sum(d['num_excluded']) / float(NUM_SIMS)))
     sys.stdout.write('Average number of tau parameters excluded with GLM: '
             '{0}\n'.format(sum(d['num_excluded_glm']) / float(NUM_SIMS)))
+    sys.stdout.write('Mode number of tau parameters excluded: {0}\n'.format(
+            mode_list(d['num_excluded'])))
+    sys.stdout.write('Mode number of tau parameters excluded with GLM: '
+            '{0}\n'.format(mode_list(d['num_excluded_glm'])))
     with open(OUT_PATH, 'w') as out:
         for line in dict_line_iter(d):
             out.write(line)
