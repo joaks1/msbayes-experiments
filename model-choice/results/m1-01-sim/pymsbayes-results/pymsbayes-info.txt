@@ -1,0 +1,27 @@
+[pymsbayes]
+	version = Version 0.1.0
+	output_directory = /share/work1/jamie/msbayes-experiments/model-choice/results/m1-01-sim/pymsbayes-results
+	temp_directory = /share/work1/jamie/msbayes-experiments/model-choice/results/m1-01-sim/pymsbayes-results/temp-files-CgZCDl
+	sort_index = 7
+	simulate_data = True
+	seed = 162592197
+	num_processors = 8
+	bandwidth = 0.002
+	posterior_quantiles = 1000
+	posterior_sample_size = 1000
+	num_standardizing_samples = 1000
+		stat_patterns = ^\s*pi\.\d+\s*$, ^\s*wattTheta\.\d+\s*$, ^\s*pi\.net\.\d+\s*$, ^\s*tajD\.denom\.\d+\s*$
+	[[observed_configs]]
+		1 = ../../../configs/obs.cfg
+	[[observed_paths]]
+		1 = observed-summary-stats/observed-1.txt
+	[[prior_configs]]
+		1 = ../../../configs/m1-01.cfg
+		2 = ../../../configs/m2.cfg
+		3 = ../../../configs/m3.cfg
+		4 = ../../../configs/m4.cfg
+		5 = ../../../configs/m5.cfg
+	[[run_stats]]
+		start_time = 2013-08-17 17:25:25.556485
+		stop_time = 2013-08-21 07:27:28.266087
+		total_duration = 3 days, 14:02:02.709602
