@@ -11,7 +11,7 @@ import project_util
 _LOG = get_logger(__name__)
 SIM_INFO_PATH = os.path.join(project_util.RESULT_DIR, 'm1-01-sim',
         'pymsbayes-results', 'pymsbayes-info.txt')
-OUT_PATH = os.path.join(os.path.dirname(SIM_INFO_PATH, 'results-summary.txt'))
+OUT_PATH = os.path.join(os.path.dirname(SIM_INFO_PATH), 'results-summary.txt')
 NUM_SIMS = 1000
 
 def get_sublist_greater_than(values, threshold):
@@ -25,9 +25,8 @@ def main_cli():
             'm5': 20.0}
     sim_results = DMCSimulationResults(SIM_INFO_PATH)
     index_to_model = {}
-    for k, v in sim_results.prior_configs.iteritems():
-        model_name = os.path.splitext(os.path.basename(v))[0]
-        index_to_model[v] = model_name
+    for k, v in sim_results.prior_config_to_index.iteritems():
+        index_to_model[v] = k
     excluded = []
     ex_tally = 0
     excluded_glm = []
@@ -37,10 +36,11 @@ def main_cli():
     for i in range(1, 23):
         d['tau_' + str(i)] = []
     for i, (true_params, paths) in enumerate(sim_results.result_path_iter(1,
-            'm12345-combined')):
-        div_times = sorted[float(true_params['PRI.t.' + str(i)]) for i in range(
-                1, 23)]
-        (d['tau_' + str(i)].append(t) for i, t in enumerate(div_times))
+            '12345-combined')):
+        div_times = sorted([float(true_params['PRI.t.' + str(i)]) for i in range(
+                1, 23)])
+        for i, t in enumerate(div_times):
+            d['tau_' + str(i + 1)].append(t)
         results = sim_results.get_results_from_params_and_result_paths(
                 true_params, paths)
         model_index = results['model']['mode']
@@ -63,8 +63,8 @@ def main_cli():
         d['num_excluded_glm'].append(len(ex_glm))
     assert len(excluded) == NUM_SIMS
     assert len(excluded_glm) == NUM_SIMS
-    for v in d.itervalues():
-        assert len(v) == NUM_SIMS
+    for k, v in d.iteritems():
+        assert len(v) == NUM_SIMS, '{0!r} has {1} values'.format(k, len(v))
     assert len([0 for x in excluded if len(x) > 0]) == ex_tally
     assert len([0 for x in excluded_glm if len(x) > 0]) == ex_tally_glm
     sys.stdout.write('Proportion of simulations excluding truth: {0}'.format(
