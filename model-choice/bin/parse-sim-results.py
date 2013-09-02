@@ -76,6 +76,10 @@ def main_cli():
             mode_list(d['num_excluded'])))
     sys.stdout.write('Mode number of tau parameters excluded with GLM: '
             '{0}\n'.format(mode_list(d['num_excluded_glm'])))
+    sys.stdout.write('Max number of tau parameters excluded: {0}\n'.format(
+            max(d['num_excluded'])))
+    sys.stdout.write('Max number of tau parameters excluded with GLM: '
+            '{0}\n'.format(max(d['num_excluded_glm'])))
     with open(OUT_PATH, 'w') as out:
         for line in dict_line_iter(d):
             out.write(line)
