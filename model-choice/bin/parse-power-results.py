@@ -3,11 +3,7 @@
 import os
 import sys
 
-from pymsbayes.utils.parsing import (DMCSimulationResults,
-        parse_posterior_summary_file, dict_line_iter)
-from pymsbayes.config import MsBayesConfig
-from pymsbayes.utils.stats import mode_list
-from pymsbayes.utils.fileio import process_file_arg
+from pymsbayes.utils.parsing import DMCSimulationResults
 from pymsbayes.utils.messaging import get_logger
 import project_util
 
