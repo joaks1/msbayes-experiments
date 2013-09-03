@@ -22,7 +22,7 @@ def get_sublist_greater_than(values, threshold):
 def main_cli():
     sim_results = DMCSimulationResults(SIM_INFO_PATH)
     model_configs = {}
-    for k, v in sim_results.prior_configs.iteritems():
+    for k, v in sim_results.prior_index_to_config.iteritems():
         model_configs[k] = MsBayesConfig(v)
     excluded = []
     ex_tally = 0
