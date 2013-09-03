@@ -16,8 +16,7 @@ def main_cli():
     _LOG.info('Parsing and writing results...')
     power_results = DMCSimulationResults(POWER_INFO_PATH)
     power_results.write_result_summaries(
-            prior_indices = [power_results.combined_prior_index],
-            compress = True)
+            prior_indices = [power_results.combined_prior_index])
 
 if __name__ == '__main__':
     main_cli()
