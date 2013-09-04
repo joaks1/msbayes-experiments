@@ -12,44 +12,34 @@ then
     source ~/.bash_profile
     cd /share/work1
     cd $SGE_O_WORKDIR
-    staging_dir=$(mktemp -d /tmp/output.XXXXXXXXX)
-else
-    staging_dir="../tmp"
-    if [ ! -d "$staging_dir" ]
-    then
-        mkdir $staging_dir
-    fi
 fi
 
-reps=500
+staging_dir=$(mktemp -d /tmp/output.XXXXXXXXX)
+
 nprocs=8
 nprior=1000000
 batch_size=25000
 nsums=100000
-npost=1000
-nquantiles=1000
 seed=402764215
 
-output_dir="../results/power-1"
+output_dir="../priors"
 if [ ! -d "$output_dir" ]
 then
     mkdir -p $output_dir
 fi
 
 dmc.py --np $nprocs \
-    -o ../configs/observed/*.cfg \
-    -p ../priors/pymsbayes-results/pymsbayes-output/prior-stats-summaries \
-    -r $reps \
+    -r 1 \
+    -o ../configs/m1.cfg \
+    -p ../configs/m[12345].cfg \
     -n $nprior \
     --prior-batch-size $batch_size \
-    --num-posterior-samples $npost \
     --num-standardizing-samples $nsums \
-    -q $nquantiles \
     --output-dir $output_dir \
     --staging-dir $staging_dir \
     --temp-dir $staging_dir \
-    --compress \
-    --seed $seed
+    --seed $seed \
+    --generate-samples-only
 
 echo "Here are the contents of the local temp directory '${staging_dir}':"
 ls -Fla $staging_dir

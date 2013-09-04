@@ -23,12 +23,12 @@ fi
 
 reps=1000
 nprocs=8
-nprior=2000000
+nprior=1000000
 batch_size=25000
-nsums=50000
+nsums=100000
 npost=1000
 nquantiles=1000
-seed=277214695
+seed=402764215
 
 output_dir="../results/m1-1-sim"
 if [ ! -d "$output_dir" ]
@@ -38,7 +38,7 @@ fi
 
 dmc.py --np $nprocs \
     -o ../configs/obs.cfg \
-    -p ../configs/m[12345].cfg \
+    -p ../priors/pymsbayes-results/pymsbayes-output/prior-stats-summaries \
     -r $reps \
     -n $nprior \
     --prior-batch-size $batch_size \
@@ -47,6 +47,7 @@ dmc.py --np $nprocs \
     -q $nquantiles \
     --output-dir $output_dir \
     --staging-dir $staging_dir \
+    --temp-dir $staging_dir \
     --compress \
     --seed $seed
 
