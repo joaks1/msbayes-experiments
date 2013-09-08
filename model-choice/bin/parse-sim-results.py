@@ -65,23 +65,24 @@ def parse_sim_results(info_path, num_sims, num_taxon_pairs):
         assert len(v) == num_sims, '{0!r} has {1} values'.format(k, len(v))
     assert len([0 for x in excluded if len(x) > 0]) == ex_tally
     assert len([0 for x in excluded_glm if len(x) > 0]) == ex_tally_glm
-    with open(summary_path, 'w') as summary_stream:
-        summary_stream.write('Proportion of simulations excluding truth: {0}\n'.format(
-                ex_tally / float(num_sims)))
-        summary_stream.write('Proportion of simulations excluding truth with GLM-'
-                'adjustment: {0}\n'.format(ex_tally_glm / float(num_sims)))
-        summary_stream.write('Average number of tau parameters excluded: {0}\n'.format(
-                sum(d['num_excluded']) / float(num_sims)))
-        summary_stream.write('Average number of tau parameters excluded with GLM: '
-                '{0}\n'.format(sum(d['num_excluded_glm']) / float(num_sims)))
-        summary_stream.write('Mode number of tau parameters excluded: {0}\n'.format(
-                mode_list(d['num_excluded'])))
-        summary_stream.write('Mode number of tau parameters excluded with GLM: '
-                '{0}\n'.format(mode_list(d['num_excluded_glm'])))
-        summary_stream.write('Max number of tau parameters excluded: {0}\n'.format(
-                max(d['num_excluded'])))
-        summary_stream.write('Max number of tau parameters excluded with GLM: '
-                '{0}\n'.format(max(d['num_excluded_glm'])))
+    summary_stream, close = process_file_arg(summary_path, 'w')
+    summary_stream.write('Proportion of simulations excluding truth: {0}\n'.format(
+            ex_tally / float(num_sims)))
+    summary_stream.write('Proportion of simulations excluding truth with GLM-'
+            'adjustment: {0}\n'.format(ex_tally_glm / float(num_sims)))
+    summary_stream.write('Average number of tau parameters excluded: {0}\n'.format(
+            sum(d['num_excluded']) / float(num_sims)))
+    summary_stream.write('Average number of tau parameters excluded with GLM: '
+            '{0}\n'.format(sum(d['num_excluded_glm']) / float(num_sims)))
+    summary_stream.write('Mode number of tau parameters excluded: {0}\n'.format(
+            mode_list(d['num_excluded'])))
+    summary_stream.write('Mode number of tau parameters excluded with GLM: '
+            '{0}\n'.format(mode_list(d['num_excluded_glm'])))
+    summary_stream.write('Max number of tau parameters excluded: {0}\n'.format(
+            max(d['num_excluded'])))
+    summary_stream.write('Max number of tau parameters excluded with GLM: '
+            '{0}\n'.format(max(d['num_excluded_glm'])))
+    summary_stream.close()
     results_stream, close = process_file_arg(results_path, 'w', compresslevel=9)
     for line in dict_line_iter(d):
         results_stream.write(line)
