@@ -20,7 +20,7 @@ def parse_sim_results(info_path, num_sims, num_taxon_pairs):
     sim_results = DMCSimulationResults(info_path)
     out_dir = os.path.join(os.path.dirname(info_path))
     summary_path = os.path.join(out_dir, 'results-summary.txt')
-    results_path = os.path.join(out_dir, 'results.txt')
+    results_path = os.path.join(out_dir, 'results.txt.gz')
     model_configs = {}
     for k, v in sim_results.prior_index_to_config.iteritems():
         model_configs[k] = MsBayesConfig(v)
