@@ -6,7 +6,7 @@ import sys
 from pymsbayes.utils.parsing import (DMCSimulationResults,
         parse_posterior_summary_file, dict_line_iter)
 from pymsbayes.config import MsBayesConfig
-from pymsbayes.fileio import process_file_arg
+from pymsbayes.fileio import process_file_arg, expand_path
 from pymsbayes.utils.stats import mode_list
 from pymsbayes.utils.messaging import get_logger
 import project_util
@@ -17,8 +17,9 @@ def get_sublist_greater_than(values, threshold):
     return [v for v in values if v > threshold]
 
 def parse_sim_results(info_path, num_sims, num_taxon_pairs):
+    info_path = expand_path(info_path)
     sim_results = DMCSimulationResults(info_path)
-    out_dir = os.path.join(os.path.dirname(info_path))
+    out_dir = os.path.dirname(info_path)
     summary_path = os.path.join(out_dir, 'results-summary.txt')
     results_path = os.path.join(out_dir, 'results.txt.gz')
     model_configs = {}
@@ -64,24 +65,23 @@ def parse_sim_results(info_path, num_sims, num_taxon_pairs):
         assert len(v) == num_sims, '{0!r} has {1} values'.format(k, len(v))
     assert len([0 for x in excluded if len(x) > 0]) == ex_tally
     assert len([0 for x in excluded_glm if len(x) > 0]) == ex_tally_glm
-    summary_stream, close = process_file_arg(summary_path, 'w')
-    summary_stream.write('Proportion of simulations excluding truth: {0}\n'.format(
-            ex_tally / float(num_sims)))
-    summary_stream.write('Proportion of simulations excluding truth with GLM-'
-            'adjustment: {0}\n'.format(ex_tally_glm / float(num_sims)))
-    summary_stream.write('Average number of tau parameters excluded: {0}\n'.format(
-            sum(d['num_excluded']) / float(num_sims)))
-    summary_stream.write('Average number of tau parameters excluded with GLM: '
-            '{0}\n'.format(sum(d['num_excluded_glm']) / float(num_sims)))
-    summary_stream.write('Mode number of tau parameters excluded: {0}\n'.format(
-            mode_list(d['num_excluded'])))
-    summary_stream.write('Mode number of tau parameters excluded with GLM: '
-            '{0}\n'.format(mode_list(d['num_excluded_glm'])))
-    summary_stream.write('Max number of tau parameters excluded: {0}\n'.format(
-            max(d['num_excluded'])))
-    summary_stream.write('Max number of tau parameters excluded with GLM: '
-            '{0}\n'.format(max(d['num_excluded_glm'])))
-    summary_stream.close()
+    with open(summary_path, 'w') as summary_stream:
+        summary_stream.write('Proportion of simulations excluding truth: {0}\n'.format(
+                ex_tally / float(num_sims)))
+        summary_stream.write('Proportion of simulations excluding truth with GLM-'
+                'adjustment: {0}\n'.format(ex_tally_glm / float(num_sims)))
+        summary_stream.write('Average number of tau parameters excluded: {0}\n'.format(
+                sum(d['num_excluded']) / float(num_sims)))
+        summary_stream.write('Average number of tau parameters excluded with GLM: '
+                '{0}\n'.format(sum(d['num_excluded_glm']) / float(num_sims)))
+        summary_stream.write('Mode number of tau parameters excluded: {0}\n'.format(
+                mode_list(d['num_excluded'])))
+        summary_stream.write('Mode number of tau parameters excluded with GLM: '
+                '{0}\n'.format(mode_list(d['num_excluded_glm'])))
+        summary_stream.write('Max number of tau parameters excluded: {0}\n'.format(
+                max(d['num_excluded'])))
+        summary_stream.write('Max number of tau parameters excluded with GLM: '
+                '{0}\n'.format(max(d['num_excluded_glm'])))
     results_stream, close = process_file_arg(results_path, 'w', compresslevel=9)
     for line in dict_line_iter(d):
         results_stream.write(line)
