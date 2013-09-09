@@ -6,3 +6,7 @@ Mode number of tau parameters excluded: [3]
 Mode number of tau parameters excluded with GLM: [3]
 Max number of tau parameters excluded: 18
 Max number of tau parameters excluded with GLM: 17
+Average probability of exclusion: 0.848476
+Average probability of exclusion with GLM: 0.890933153358
+Median probability of exclusion: 0.8915
+Median probability of exclusion with GLM: 0.999499246241
