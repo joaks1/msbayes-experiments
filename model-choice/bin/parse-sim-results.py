@@ -7,7 +7,7 @@ from pymsbayes.utils.parsing import (DMCSimulationResults,
         parse_posterior_summary_file, dict_line_iter)
 from pymsbayes.config import MsBayesConfig
 from pymsbayes.fileio import process_file_arg, expand_path
-from pymsbayes.utils.stats import mode_list
+from pymsbayes.utils.stats import mode_list, median
 from pymsbayes.utils.messaging import get_logger
 import project_util
 
@@ -30,9 +30,13 @@ def parse_sim_results(info_path, num_sims, num_taxon_pairs):
     excluded_glm = []
     ex_tally_glm = 0
     d = {'model_mode': [], 'model_mode_glm': [], 'tau_max': [],
-            'tau_max_glm': [], 'num_excluded': [], 'num_excluded_glm': []}
+            'tau_max_glm': [], 'num_excluded': [], 'num_excluded_glm': [],
+            'prob_of_exclusion': [], 'prob_of_exclusion_glm': []}
     for i in range(1, num_taxon_pairs + 1):
         d['tau_' + str(i)] = []
+    for i in model_configs.iterkeys():
+        d['model_{0}_prob'.format(i)] = []
+        d['model_{0}_prob_glm'.format(i)] = []
     for i, (true_params, paths) in enumerate(sim_results.result_path_iter(1,
             '12345-combined')):
         div_times = sorted([float(true_params['PRI.t.' + str(i)]) for i in range(
@@ -45,6 +49,17 @@ def parse_sim_results(info_path, num_sims, num_taxon_pairs):
         model_index_glm = int(round(results['model']['mode_glm']))
         tau_max = model_configs[model_index].tau.maximum 
         tau_max_glm = model_configs[model_index_glm].tau.maximum
+        prob_of_exclusion = 0.0
+        prob_of_exclusion_glm = 0.0
+        for i in model_configs.iterkeys():
+            if max(div_times) > model_configs[i].tau.maximum:
+                prob_of_exclusion += results['model']['probs'][i]['prob']
+                prob_of_exclusion_glm += results['model']['probs'][i][
+                        'prob_glm']
+            d['model_{0}_prob'.format(i)].append(results['model']['probs'][i][
+                    'prob'])
+            d['model_{0}_prob_glm'.format(i)].append(results['model']['probs'][
+                    i]['prob_glm'])
         ex = get_sublist_greater_than(div_times, tau_max)
         if len(ex) > 0:
             ex_tally += 1
@@ -53,6 +68,8 @@ def parse_sim_results(info_path, num_sims, num_taxon_pairs):
             ex_tally_glm += 1
         excluded.append(ex)
         excluded_glm.append(ex_glm)
+        d['prob_of_exclusion'].append(prob_of_exclusion)
+        d['prob_of_exclusion_glm'].append(prob_of_exclusion_glm)
         d['model_mode'].append(model_index)
         d['model_mode_glm'].append(model_index_glm)
         d['tau_max'].append(tau_max)
@@ -82,6 +99,14 @@ def parse_sim_results(info_path, num_sims, num_taxon_pairs):
             max(d['num_excluded'])))
     summary_stream.write('Max number of tau parameters excluded with GLM: '
             '{0}\n'.format(max(d['num_excluded_glm'])))
+    summary_stream.write('Average probability of exclusion: {0}\n'.format(
+            sum(d['prob_of_exclusion']) / float(num_sims)))
+    summary_stream.write('Average probability of exclusion with GLM: {0}\n'.format(
+            sum(d['prob_of_exclusion_glm']) / float(num_sims)))
+    summary_stream.write('Median probability of exclusion: {0}\n'.format(
+            median(d['prob_of_exclusion'])))
+    summary_stream.write('Median probability of exclusion with GLM: {0}\n'.format(
+            median(d['prob_of_exclusion_glm'])))
     summary_stream.close()
     results_stream, close = process_file_arg(results_path, 'w', compresslevel=9)
     for line in dict_line_iter(d):
