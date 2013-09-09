@@ -1,0 +1,8 @@
+Proportion of simulations excluding truth: 0.949
+Proportion of simulations excluding truth with GLM-adjustment: 0.898
+Average number of tau parameters excluded: 3.1
+Average number of tau parameters excluded with GLM: 2.828
+Mode number of tau parameters excluded: [3]
+Mode number of tau parameters excluded with GLM: [3]
+Max number of tau parameters excluded: 18
+Max number of tau parameters excluded with GLM: 17
