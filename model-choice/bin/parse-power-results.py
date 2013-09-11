@@ -20,7 +20,8 @@ def main_cli():
     for info_path in POWER_INFO_PATHS:
         power_results = DMCSimulationResults(info_path)
         power_results.write_result_summaries(
-                prior_indices = [power_results.combined_prior_index])
+                prior_indices = [power_results.combined_prior_index],
+                include_tau_exclusion_info = True)
 
 if __name__ == '__main__':
     main_cli()
