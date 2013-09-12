@@ -24,7 +24,7 @@ def summarize_sim_results(info_path):
     num_excluded_glm = [int(x) for x in d['num_excluded_glm']]
     prob_of_exclusion = [float(x) for x in d['prob_of_exclusion']]
     prob_of_exclusion_glm = [float(x) for x in d['prob_of_exclusion_glm']]
-    num_sims = sum_results.num_sim_reps
+    num_sims = sim_results.num_sim_reps
     assert len(num_excluded) == num_sims
     assert len(num_excluded_glm) == num_sims
     assert len(prob_of_exclusion) == num_sims
