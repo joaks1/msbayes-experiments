@@ -7,6 +7,7 @@ import math
 BIN_DIR = os.path.abspath(os.path.dirname(__file__))
 PROJECT_DIR = os.path.abspath(os.path.dirname(BIN_DIR))
 CONFIG_DIR = os.path.abspath(os.path.join(PROJECT_DIR, 'configs'))
+RESULT_DIR = os.path.abspath(os.path.join(PROJECT_DIR, 'results'))
 OBSERVED_CFG_DIR = os.path.abspath(os.path.join(CONFIG_DIR, 'observed'))
 PRIOR_CFG_DIR = os.path.abspath(os.path.join(CONFIG_DIR, 'prior'))
 
