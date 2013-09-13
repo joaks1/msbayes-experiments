@@ -1,0 +1,5 @@
+m1 = ../../../../priors/pymsbayes-results/pymsbayes-output/prior-stats-summaries/m1-prior-sample.txt
+m2 = ../../../../priors/pymsbayes-results/pymsbayes-output/prior-stats-summaries/m2-prior-sample.txt
+m3 = ../../../../priors/pymsbayes-results/pymsbayes-output/prior-stats-summaries/m3-prior-sample.txt
+m4 = ../../../../priors/pymsbayes-results/pymsbayes-output/prior-stats-summaries/m4-prior-sample.txt
+m5 = ../../../../priors/pymsbayes-results/pymsbayes-output/prior-stats-summaries/m5-prior-sample.txt

@@ -1,0 +1,39 @@
+[pymsbayes]
+	version = Version 0.1.0
+	output_directory = /share/work1/jamie/msbayes-experiments/model-choice/results/power/pymsbayes-results
+	temp_directory = /share/work1/jamie/msbayes-experiments/model-choice/results/power/pymsbayes-results/temp-files-bZASUo
+	sort_index = 7
+	simulation_reps = 500
+	seed = 162592197
+	num_processors = 8
+	num_prior_samples = 1000000
+	num_standardizing_samples = 1000
+	bandwidth = 0.002
+	posterior_quantiles = 1000
+	posterior_sample_size = 1000
+	stat_patterns = ^\s*pi\.\d+\s*$, ^\s*wattTheta\.\d+\s*$, ^\s*pi\.net\.\d+\s*$, ^\s*tajD\.denom\.\d+\s*$
+	num_taxon_pairs = 22
+	[[observed_configs]]
+		1 = ../../../configs/observed/observed-0.2.cfg
+		2 = ../../../configs/observed/observed-0.4.cfg
+		3 = ../../../configs/observed/observed-0.6.cfg
+		4 = ../../../configs/observed/observed-0.8.cfg
+		5 = ../../../configs/observed/observed-1.0.cfg
+		6 = ../../../configs/observed/observed-2.0.cfg
+	[[observed_paths]]
+		1 = observed-summary-stats/observed-1.txt
+		2 = observed-summary-stats/observed-2.txt
+		3 = observed-summary-stats/observed-3.txt
+		4 = observed-summary-stats/observed-4.txt
+		5 = observed-summary-stats/observed-5.txt
+		6 = observed-summary-stats/observed-6.txt
+	[[prior_configs]]
+		1 = ../../../configs/m1-01.cfg
+		2 = ../../../configs/m2.cfg
+		3 = ../../../configs/m3.cfg
+		4 = ../../../configs/m4.cfg
+		5 = ../../../configs/m5.cfg
+	[[run_stats]]
+		start_time = 2013-08-17 17:26:55.717384
+		stop_time = 2013-08-21 06:26:07.968150
+		total_duration = 3 days, 12:59:12.250766
