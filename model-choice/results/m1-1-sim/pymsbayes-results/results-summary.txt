@@ -1,12 +1,20 @@
-Proportion of simulations excluding truth: 0.949
-Proportion of simulations excluding truth with GLM-adjustment: 0.898
-Average number of tau parameters excluded: 3.1
-Average number of tau parameters excluded with GLM: 2.828
+Proportion of simulations excluding truth: 0.971
+Proportion of simulations excluding truth with GLM-adjustment: 0.897
+Average number of tau parameters excluded: 3.375
+Average number of tau parameters excluded with GLM: 2.758
 Mode number of tau parameters excluded: [3]
 Mode number of tau parameters excluded with GLM: [3]
-Max number of tau parameters excluded: 18
-Max number of tau parameters excluded with GLM: 17
+Max number of tau parameters excluded: 21
+Max number of tau parameters excluded with GLM: 18
 Average probability of exclusion: 0.848476
 Average probability of exclusion with GLM: 0.890933153358
 Median probability of exclusion: 0.8915
 Median probability of exclusion with GLM: 0.999499246241
+Average Bayes factor of exclusion: 13.6627211089
+Average Bayes factor of exclusion with GLM: 24872.0419568
+Median Bayes factor of exclusion: 12.3251783894
+Median Bayes factor of exclusion with GLM: 2993.98658706
+Max Bayes factor of exclusion: 77.4473684211
+Max Bayes factor of exclusion with GLM: 1769479.90049
+Estimated probability Bayes factor of exclusion > 10: 0.66
+Estimated probability Bayes factor of exclusion > 10 with GLM: 0.867

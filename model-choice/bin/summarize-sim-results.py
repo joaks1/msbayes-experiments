@@ -7,6 +7,7 @@ from pymsbayes.utils.parsing import (DMCSimulationResults,
         get_dict_from_spreadsheets)
 from pymsbayes.fileio import process_file_arg, expand_path
 from pymsbayes.utils.stats import mode_list, median
+from pymsbayes import plotting
 from pymsbayes.utils.messaging import get_logger
 import project_util
 
@@ -22,8 +23,13 @@ def summarize_sim_results(info_path):
     d = get_dict_from_spreadsheets([result_path])
     num_excluded = [int(x) for x in d['num_excluded']]
     num_excluded_glm = [int(x) for x in d['num_excluded_glm']]
+    bf_num_excluded = [int(x) for x in d['bf_num_excluded']]
+    bf_num_excluded_glm = [int(x) for x in d['bf_num_excluded_glm']]
     prob_of_exclusion = [float(x) for x in d['prob_of_exclusion']]
     prob_of_exclusion_glm = [float(x) for x in d['prob_of_exclusion_glm']]
+    prior_prob_of_exclusion = [float(x) for x in d['prior_prob_of_exclusion']]
+    bf_of_exclusion = [float(x) for x in d['bf_of_exclusion']]
+    bf_of_exclusion_glm = [float(x) for x in d['bf_of_exclusion_glm']]
     num_sims = sim_results.num_sim_reps
     assert len(num_excluded) == num_sims
     assert len(num_excluded_glm) == num_sims
@@ -32,23 +38,23 @@ def summarize_sim_results(info_path):
     summary_stream, close = process_file_arg(summary_path, 'w')
     summary_stream.write('Proportion of simulations excluding truth: {0}'
             '\n'.format(
-                len([1 for x in num_excluded if x > 0]) / float(num_sims)))
+                len([1 for x in bf_num_excluded if x > 0]) / float(num_sims)))
     summary_stream.write('Proportion of simulations excluding truth with GLM-'
             'adjustment: {0}\n'.format(
-                len([1 for x in num_excluded_glm if x > 0]) / float(num_sims)))
+                len([1 for x in bf_num_excluded_glm if x > 0]) / float(num_sims)))
     summary_stream.write('Average number of tau parameters excluded: {0}'
             '\n'.format(
-                sum(num_excluded) / float(num_sims)))
+                sum(bf_num_excluded) / float(num_sims)))
     summary_stream.write('Average number of tau parameters excluded with GLM: '
-            '{0}\n'.format(sum(num_excluded_glm) / float(num_sims)))
+            '{0}\n'.format(sum(bf_num_excluded_glm) / float(num_sims)))
     summary_stream.write('Mode number of tau parameters excluded: {0}\n'.format(
-            mode_list(num_excluded)))
+            mode_list(bf_num_excluded)))
     summary_stream.write('Mode number of tau parameters excluded with GLM: '
-            '{0}\n'.format(mode_list(num_excluded_glm)))
+            '{0}\n'.format(mode_list(bf_num_excluded_glm)))
     summary_stream.write('Max number of tau parameters excluded: {0}\n'.format(
-            max(num_excluded)))
+            max(bf_num_excluded)))
     summary_stream.write('Max number of tau parameters excluded with GLM: '
-            '{0}\n'.format(max(num_excluded_glm)))
+            '{0}\n'.format(max(bf_num_excluded_glm)))
     summary_stream.write('Average probability of exclusion: {0}\n'.format(
             sum(prob_of_exclusion) / float(num_sims)))
     summary_stream.write('Average probability of exclusion with GLM: {0}\n'.format(
@@ -57,7 +63,29 @@ def summarize_sim_results(info_path):
             median(prob_of_exclusion)))
     summary_stream.write('Median probability of exclusion with GLM: {0}\n'.format(
             median(prob_of_exclusion_glm)))
+    summary_stream.write('Average Bayes factor of exclusion: {0}\n'.format(
+            sum(bf_of_exclusion) / float(num_sims)))
+    summary_stream.write('Average Bayes factor of exclusion with GLM: {0}\n'.format(
+            sum(bf_of_exclusion_glm) / float(num_sims)))
+    summary_stream.write('Median Bayes factor of exclusion: {0}\n'.format(
+            median(bf_of_exclusion)))
+    summary_stream.write('Median Bayes factor of exclusion with GLM: {0}\n'.format(
+            median(bf_of_exclusion_glm)))
+    summary_stream.write('Max Bayes factor of exclusion: {0}\n'.format(
+            max(bf_of_exclusion)))
+    summary_stream.write('Max Bayes factor of exclusion with GLM: {0}\n'.format(
+            max(bf_of_exclusion_glm)))
+    summary_stream.write('Estimated probability Bayes factor of exclusion '
+            '> 10: {0}\n'.format(
+                    len([1 for x in bf_of_exclusion if x > 10.0]) /
+                    float(num_sims)))
+    summary_stream.write('Estimated probability Bayes factor of exclusion '
+            '> 10 with GLM: {0}\n'.format(
+                    len([1 for x in bf_of_exclusion_glm if x > 10.0]) /
+                    float(num_sims)))
     summary_stream.close()
+    if plotting.MATPLOTLIB_AVAILABLE:
+        approx_prior_exclusion = 0.39184
 
 def main_cli():
     for sim_dir in ['m1-01-sim', 'm1-1-sim']:
