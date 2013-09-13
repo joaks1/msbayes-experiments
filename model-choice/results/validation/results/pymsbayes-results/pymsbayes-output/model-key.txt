@@ -1,0 +1,5 @@
+m1 = ../../../../../configs/validation/m1.cfg
+m2 = ../../../../../configs/validation/m2.cfg
+m3 = ../../../../../configs/validation/m3.cfg
+m4 = ../../../../../configs/validation/m4.cfg
+m5 = ../../../../../configs/validation/m5.cfg

@@ -1,0 +1,38 @@
+[pymsbayes]
+	version = Version 0.1.0
+	output_directory = /Volumes/wdhd/Users/joaks1/projects/msbayes-experiments/model-choice/results/validation/results/pymsbayes-results-0
+	temp_directory = /tmp/output.QblhWoxJ2/temp-files-miHrBt
+	sort_index = 7
+	simulation_reps = 10000
+	seed = 91249821
+	num_processors = 8
+	num_prior_samples = 500000
+	num_standardizing_samples = 1000
+	bandwidth = 0.002
+	posterior_quantiles = 1000
+	posterior_sample_size = 1000
+	stat_patterns = ^\s*pi\.\d+\s*$, ^\s*wattTheta\.\d+\s*$, ^\s*pi\.net\.\d+\s*$, ^\s*tajD\.denom\.\d+\s*$
+	num_taxon_pairs = 8
+	dry_run = True
+	[[observed_configs]]
+		1 = ../../../../configs/validation/m1.cfg
+		2 = ../../../../configs/validation/m2.cfg
+		3 = ../../../../configs/validation/m3.cfg
+		4 = ../../../../configs/validation/m4.cfg
+		5 = ../../../../configs/validation/m5.cfg
+	[[observed_paths]]
+		1 = observed-summary-stats/observed-1.txt
+		2 = observed-summary-stats/observed-2.txt
+		3 = observed-summary-stats/observed-3.txt
+		4 = observed-summary-stats/observed-4.txt
+		5 = observed-summary-stats/observed-5.txt
+	[[prior_configs]]
+		1 = ../../../../configs/validation/m1.cfg
+		2 = ../../../../configs/validation/m2.cfg
+		3 = ../../../../configs/validation/m3.cfg
+		4 = ../../../../configs/validation/m4.cfg
+		5 = ../../../../configs/validation/m5.cfg
+	[[run_stats]]
+		start_time = 2013-09-09 11:51:25.850029
+		stop_time = 2013-09-09 11:51:25.850045
+		total_duration = 0:00:00.000016
