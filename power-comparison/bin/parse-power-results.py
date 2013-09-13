@@ -10,7 +10,7 @@ import project_util
 _LOG = get_logger(__name__)
 
 def main_cli():
-    power_info_path = os.path.join(project_util.RESULT_DIR,
+    info_path = os.path.join(project_util.RESULT_DIR,
                 'pymsbayes-results', 'pymsbayes-info.txt')
     _LOG.info('Parsing and writing results...')
     power_results = DMCSimulationResults(info_path)
