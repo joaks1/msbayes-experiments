@@ -8,6 +8,7 @@ from pymsbayes.utils.parsing import (DMCSimulationResults,
 from pymsbayes.fileio import process_file_arg, expand_path
 from pymsbayes.utils.stats import mode_list, median
 from pymsbayes import plotting
+from pymsbayes.config import MsBayesConfig
 from pymsbayes.utils.messaging import get_logger
 import project_util
 
@@ -75,17 +76,60 @@ def summarize_sim_results(info_path):
             max(bf_of_exclusion)))
     summary_stream.write('Max Bayes factor of exclusion with GLM: {0}\n'.format(
             max(bf_of_exclusion_glm)))
+    prob_of_bf_exclusion = (len([1 for x in bf_of_exclusion if x > 10.0]) /
+            float(num_sims))
+    prob_of_bf_exclusion_glm = (len([
+            1 for x in bf_of_exclusion_glm if x > 10.0]) /
+            float(num_sims))
     summary_stream.write('Estimated probability Bayes factor of exclusion '
-            '> 10: {0}\n'.format(
-                    len([1 for x in bf_of_exclusion if x > 10.0]) /
-                    float(num_sims)))
+            '> 10: {0}\n'.format(prob_of_bf_exclusion))
     summary_stream.write('Estimated probability Bayes factor of exclusion '
-            '> 10 with GLM: {0}\n'.format(
-                    len([1 for x in bf_of_exclusion_glm if x > 10.0]) /
-                    float(num_sims)))
+            '> 10 with GLM: {0}\n'.format(prob_of_bf_exclusion_glm))
     summary_stream.close()
     if plotting.MATPLOTLIB_AVAILABLE:
         approx_prior_exclusion = 0.39184
+        prior_odds = approx_prior_exclusion / (1.0 - approx_prior_exclusion)
+        post_odds = prior_odds * 10
+        post = post_odds / (1.0 + post_odds)
+        observed_config1 = MsBayesConfig(sim_results.observed_index_to_config[1])
+        observed_config2 = MsBayesConfig(sim_results.observed_index_to_config[1])
+        cfg_to_num_ex = {observed_config1: bf_num_excluded,
+                observed_config2: bf_num_excluded_glm}
+        cfg_to_prob_exclusion = {observed_config1: prob_of_exclusion,
+                observed_config2: prob_of_exclusion_glm}
+        cfg_to_prob_of_bf_exclusion = {observed_config1: prob_of_bf_exclusion,
+                observed_config2: prob_of_bf_exclusion_glm}
+        ex_prob_plot = plotting.ProbabilityPowerPlotGrid(
+                observed_config_to_estimates = cfg_to_prob_exclusion,
+                variable = 'tau_exclusion',
+                div_model_prior = 'psi',
+                bayes_factor = 10,
+                bayes_factor_prob = post,
+                cfg_to_prob_of_bf_exclusion = cfg_to_prob_of_bf_exclusion,
+                height = 3.7,
+                margin_left = 0.03,
+                margin_bottom = 0.06,
+                margin_right = 1,
+                margin_top = 0.96,
+                padding_between_horizontal = 0.5,
+                padding_between_vertical = 1.0,
+                num_columns = 2)
+        fig = ex_prob_plot.create_grid()
+        fig.savefig(os.path.join(out_dir, 'prob_of_exclusion.pdf'))
+        ex_plot = plotting.PowerPlotGrid(
+                observed_config_to_estimates = cfg_to_num_ex,
+                variable = 'tau_exclusion',
+                num_columns = 2,
+                height = 3.7,
+                margin_left = 0.03,
+                margin_bottom = 0.06,
+                margin_right = 1,
+                margin_top = 0.95,
+                padding_between_horizontal = 0.5,
+                padding_between_vertical = 1.0)
+        fig = ex_plot.create_grid()
+        fig.savefig(os.path.join(out_dir, 'num_tau_excluded.pdf'))
+
 
 def main_cli():
     for sim_dir in ['m1-01-sim', 'm1-1-sim']:
