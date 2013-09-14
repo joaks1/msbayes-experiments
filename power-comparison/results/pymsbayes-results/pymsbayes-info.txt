@@ -1,0 +1,63 @@
+[pymsbayes]
+	version = Version 0.1.0
+	output_directory = ../../results/pymsbayes-results
+	temp_directory = temp-files-NzaRp2
+	sort_index = 7
+	simulation_reps = 1000
+	seed = 44112330
+	num_processors = 8
+	num_prior_samples = 2000000
+	num_standardizing_samples = 1000
+	bandwidth = 0.002
+	posterior_quantiles = 1000
+	posterior_sample_size = 1000
+	stat_patterns = ^\s*pi\.\d+\s*$, ^\s*wattTheta\.\d+\s*$, ^\s*pi\.net\.\d+\s*$, ^\s*tajD\.denom\.\d+\s*$
+	num_taxon_pairs = 22
+	dry_run = True
+	[[observed_configs]]
+		1 = ../../configs/observed/exp-observed-0.2.cfg
+		2 = ../../configs/observed/exp-observed-0.4.cfg
+		3 = ../../configs/observed/exp-observed-0.6.cfg
+		4 = ../../configs/observed/exp-observed-0.8.cfg
+		5 = ../../configs/observed/observed-0.2.cfg
+		6 = ../../configs/observed/observed-0.4.cfg
+		7 = ../../configs/observed/observed-0.6.cfg
+		8 = ../../configs/observed/observed-0.8.cfg
+		9 = ../../configs/observed/old-observed-0.2.cfg
+		10 = ../../configs/observed/old-observed-0.4.cfg
+		11 = ../../configs/observed/old-observed-0.6.cfg
+		12 = ../../configs/observed/old-observed-0.8.cfg
+		13 = ../../configs/observed/exp-observed-1.0.cfg
+		14 = ../../configs/observed/exp-observed-2.0.cfg
+		15 = ../../configs/observed/observed-1.0.cfg
+		16 = ../../configs/observed/observed-2.0.cfg
+		17 = ../../configs/observed/old-observed-1.0.cfg
+		18 = ../../configs/observed/old-observed-2.0.cfg
+	[[observed_paths]]
+		1 = observed-summary-stats/observed-1.txt
+		2 = observed-summary-stats/observed-2.txt
+		3 = observed-summary-stats/observed-3.txt
+		4 = observed-summary-stats/observed-4.txt
+		5 = observed-summary-stats/observed-5.txt
+		6 = observed-summary-stats/observed-6.txt
+		7 = observed-summary-stats/observed-7.txt
+		8 = observed-summary-stats/observed-8.txt
+		9 = observed-summary-stats/observed-9.txt
+		10 = observed-summary-stats/observed-10.txt
+		11 = observed-summary-stats/observed-11.txt
+		12 = observed-summary-stats/observed-12.txt
+		13 = observed-summary-stats/observed-13.txt
+		14 = observed-summary-stats/observed-14.txt
+		15 = observed-summary-stats/observed-15.txt
+		16 = observed-summary-stats/observed-16.txt
+		17 = observed-summary-stats/observed-17.txt
+		18 = observed-summary-stats/observed-18.txt
+	[[prior_configs]]
+		1 = ../../configs/prior/prior-dpp.cfg
+		2 = ../../configs/prior/prior-old.cfg
+		3 = ../../configs/prior/prior-uniform.cfg
+		4 = ../../configs/prior/prior-u-shaped.cfg
+	[[run_stats]]
+		start_time = 2013-08-19 13:15:25.671465
+		stop_time = 2013-09-11 14:48:04.280389
+		total_duration = 23 days, 1:32:38.608924
