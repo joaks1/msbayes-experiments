@@ -1,0 +1,29 @@
+[pymsbayes]
+	version = Version 0.1.0
+	output_directory = /share/work1/jamie/msbayes-experiments/validation/results/dpp/pymsbayes-results
+	temp_directory = /tmp/output.HRWL11144/temp-files-eaQR6q
+	sort_index = 7
+	simulation_reps = 50000
+	seed = 37851841
+	num_processors = 8
+	num_prior_samples = 1000000
+	num_standardizing_samples = 1000
+	bandwidth = 0.002
+	posterior_quantiles = 1000
+	posterior_sample_size = 1000
+	stat_patterns = ^\s*pi\.\d+\s*$, ^\s*wattTheta\.\d+\s*$, ^\s*pi\.net\.\d+\s*$, ^\s*tajD\.denom\.\d+\s*$
+	num_taxon_pairs = 8
+	dry_run = True
+	[[observed_configs]]
+		1 = ../../../configs/prior-dpp.cfg
+	[[observed_paths]]
+		1 = observed-summary-stats/observed-1.txt
+	[[prior_configs]]
+		1 = ../../../configs/prior-dpp.cfg
+		2 = ../../../configs/prior-old.cfg
+		3 = ../../../configs/prior-uniform.cfg
+		4 = ../../../configs/prior-u-shaped.cfg
+	[[run_stats]]
+		start_time = 2013-09-01 15:24:41.470093
+		stop_time = 2013-09-12 00:06:30.113521
+		total_duration = 10 days, 8:41:48.643428
