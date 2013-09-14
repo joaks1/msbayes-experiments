@@ -39,18 +39,17 @@ class PowerResult(object):
             omega.prob_glm.append(float(d['omega_prob_less_glm']))
         return psi, omega
 
-def parse_results(info_path):
-    dmc_sim = DMCSimulationResults(info_path)
+def parse_results(dmc_sim):
     psi_results = {}
     omega_results = {}
     observed_index_to_name = {}
     observed_configs = {}
     for k, v in dmc_sim.observed_index_to_config.iteritems():
-        if os.path.basename(v).startwith('exp-'):
+        if os.path.basename(v).startswith('exp-'):
             observed_index_to_name[k] = 'exp'
-        elif os.path.basename(v).startwith('old-'):
+        elif os.path.basename(v).startswith('old-'):
             observed_index_to_name[k] = 'old'
-        elif os.path.basename(v).startwith('observed'):
+        elif os.path.basename(v).startswith('observed'):
             observed_index_to_name[k] = 'uniform'
         else:
             raise Exception('unrecognized observed config {0!r}'.format(v))
@@ -66,9 +65,9 @@ def parse_results(info_path):
     for observed_index, cfg in observed_configs.iteritems():
         observed_name = observed_index_to_name[observed_index]
         if not psi_results.has_key(observed_name):
-            psi_reults[observed_name] = {}
+            psi_results[observed_name] = {}
         if not omega_results.has_key(observed_name):
-            omega_reults[observed_name] = {}
+            omega_results[observed_name] = {}
         for prior_index in prior_index_to_name.iterkeys():
             if not psi_results[observed_name].has_key(prior_index):
                 psi_results[observed_name][prior_index] = {}
@@ -82,6 +81,10 @@ def parse_results(info_path):
     return psi_results, omega_results, prior_index_to_name
 
 def create_plots(info_path):
+    dmc_sim = DMCSimulationResults(info_path)
+    prior_configs = {}
+    for k, v in dmc_sim.prior_index_to_config.iteritems():
+        prior_configs[k] = MsBayesConfig(v)
     output_dir = os.path.join(os.path.dirname(info_path), 'plots')
     if not os.path.exists(output_dir):
         os.mkdir(output_dir)
@@ -90,14 +93,21 @@ def create_plots(info_path):
             2: 0.049283,
             3: 0.002171,
             4: 0.049191}
-    psi_res, omega_res, prior_index_to_name = parse_results(info_path)
+    psi_res, omega_res, prior_index_to_name = parse_results(dmc_sim)
     for observed_name in psi_res.iterkeys():
         for prior_index in psi_res[observed_name].iterkeys():
             prior_name = prior_index_to_name[prior_index]
+            div_model_prior = prior_name
+            if prior_name in ['old', 'u-shaped']:
+                div_model_prior = 'psi'
+            dpp_concentration_mean = None
+            if div_model_prior == 'dpp':
+                dpp_concentration_mean = prior_configs[
+                        prior_index].dpp_concentration.mean
             prior_prob_omega = prior_prob_omega_less_than[prior_index]
             psi_results = psi_res[observed_name][prior_index]
             omega_results = omega_res[observed_name][prior_index]
-            prefix = '_'.join(observed_name, prior_name)
+            prefix = '_'.join([observed_name, prior_name])
             cfg_to_psi = {}
             cfg_to_psi_prob = {}
             cfg_to_psi_glm = {}
@@ -140,7 +150,8 @@ def create_plots(info_path):
             psi_prob_plot = ProbabilityPowerPlotGrid(
                     observed_config_to_estimates = cfg_to_psi_prob,
                     variable = 'psi',
-                    div_model_prior = 'psi',
+                    div_model_prior = div_model_prior,
+                    dpp_concentration_mean = dpp_concentration_mean,
                     bayes_factor = 10,
                     num_columns = 2)
             fig = psi_prob_plot.create_grid()
@@ -150,7 +161,8 @@ def create_plots(info_path):
             psi_prob_plot_glm = ProbabilityPowerPlotGrid(
                     observed_config_to_estimates = cfg_to_psi_prob_glm,
                     variable = 'psi',
-                    div_model_prior = 'psi',
+                    div_model_prior = div_model_prior,
+                    dpp_concentration_mean = dpp_concentration_mean,
                     bayes_factor = 10,
                     num_columns = 2)
             fig = psi_prob_plot_glm.create_grid()
@@ -176,7 +188,8 @@ def create_plots(info_path):
             omega_prob_plot = ProbabilityPowerPlotGrid(
                     observed_config_to_estimates = cfg_to_omega_prob,
                     variable = 'omega',
-                    div_model_prior = 'psi',
+                    div_model_prior = div_model_prior,
+                    dpp_concentration_mean = dpp_concentration_mean,
                     bayes_factor = 10,
                     bayes_factor_prob = prior_prob_omega,
                     num_columns = 2)
@@ -187,7 +200,8 @@ def create_plots(info_path):
             omega_prob_plot_glm = ProbabilityPowerPlotGrid(
                     observed_config_to_estimates = cfg_to_omega_prob_glm,
                     variable = 'omega',
-                    div_model_prior = 'psi',
+                    div_model_prior = div_model_prior,
+                    dpp_concentration_mean = dpp_concentration_mean,
                     bayes_factor = 10,
                     bayes_factor_prob = prior_prob_omega,
                     num_columns = 2)
