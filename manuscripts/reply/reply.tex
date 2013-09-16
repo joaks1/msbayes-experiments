@@ -59,7 +59,29 @@
 }
 
 \newpage
-\noindent \ldots
+\noindent Both papers are largely in agreement.
+In fact, \citet{Hickerson2013} reiterate a lot of the discussion of
+\citet{Oaks2012} regarding the impact of broad uniform priors on Bayesian model
+choice.
+The main differences in their perspectives are centered around
+(1) the means by which broad uniform priors cause the poor behavior of \msb,
+and
+(2) how to potentially ameliorate this issue.
+
+\citet{Oaks2012} conclude the primary mechanism by which broad priors cause the
+poor behavior of the method is likely the low marginal likelihoods of
+parameter-rich models integrated over vast parameter space with low probability
+of producing the data, yet relatively high prior density \citep[this is often
+referred to as Lindley's paradox;][]{Lindley1957}.
+Note, this suggests the bias is extrinsic to \msb, and the numerical
+approximation machinery of the method could be sound.
+\citet{Hickerson2013} take a more pessimistic view of the bias, and suggest the
+bias is intrinsic to \msb, i.e., the method's rejection algorithm is
+inefficient and will be increasingly biased as the overall space of the model
+increases, either as a function of the number of taxon pairs or the width of
+the uniform priors on nuisance parameters.
+
+
 
 \section*{Acknowledgments}
 
