@@ -1,0 +1,4 @@
+m1 = ../../../../configs/prior-dpp.cfg
+m2 = ../../../../configs/prior-old.cfg
+m3 = ../../../../configs/prior-uniform.cfg
+m4 = ../../../../configs/prior-u-shaped.cfg
