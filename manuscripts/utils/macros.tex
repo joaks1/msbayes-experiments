@@ -1,0 +1,176 @@
+% \newcommand{\change}[1]{{\color{blue} #1}\xspace}
+\newcommand{\change}[1]{{\color{black} #1}\xspace}
+
+
+\newcommand{\citationNeeded}{\textcolor{magenta}{\textbf{[CITATION NEEDED!]}}\xspace}
+\newcommand{\tableNeeded}{\textcolor{magenta}{\textbf{[TABLE NEEDED!]}}\xspace}
+\newcommand{\figureNeeded}{\textcolor{magenta}{\textbf{[FIGURE NEEDED!]}}\xspace}
+\newcommand{\highLight}[1]{\textcolor{magenta}{\MakeUppercase{#1}}}
+
+\newcommand{\editorialNote}[1]{\textcolor{red}{[\textit{#1}]}}
+\newcommand{\ignore}[1]{}
+\newcommand{\addTail}[1]{\textit{#1}.---}
+\newcommand{\super}[1]{\ensuremath{^{\textrm{#1}}}}
+\newcommand{\sub}[1]{\ensuremath{_{\textrm{#1}}}}
+\newcommand{\dC}{\ensuremath{^\circ{\textrm{C}}}}
+
+\providecommand{\e}[1]{\ensuremath{\times 10^{#1}}}
+
+\newcommand{\mthnote}[2]{{\color{red} #2}}
+
+\newcommand{\ifTwoArgs}[3]{\ifthenelse{\equal{#1}{}\or\equal{#2}{}}{}{#3}\xspace}
+\newcommand{\ifArg}[2]{\ifthenelse{\equal{#1}{}}{}{#2}\xspace}
+
+\newcommand{\bayesfactor}[2]{\ensuremath{BF_{#1\protect\ifArg{#2}{,}#2}}}
+\newcommand{\given}{\ensuremath{\,|\,}\xspace}
+\newcommand{\msb}{\upshape\texttt{\MakeLowercase{ms\MakeUppercase{B}ayes}}\xspace}
+\newcommand{\hky}{HKY85\xspace}
+\newcommand{\uniformMin}[1]{\ensuremath{a_{#1}}\xspace}
+\newcommand{\uniformMax}[1]{\ensuremath{b_{#1}}\xspace}
+\newcommand{\locusRateHetShapeParameter}{\ensuremath{\alpha}\xspace}
+\newcommand{\ancestralThetaVector}{\ensuremath{\boldsymbol{\theta_{A}}}\xspace}
+\newcommand{\descendantThetaVector}[1]{\ensuremath{\boldsymbol{\theta_{D#1}}}\xspace}
+\newcommand{\divtscaledvector}{\ensuremath{\mathbf{{\divtscaled{}{}}}}\xspace}
+\newcommand{\divtvector}{\ensuremath{\boldsymbol{\divt{}}}\xspace}
+\newcommand{\divtuniquevector}{\ensuremath{\mathbf{\divtunique{}}}\xspace}
+\newcommand{\bottleTimeVector}{\ensuremath{\boldsymbol{\bottleTime{}}}\xspace}
+\newcommand{\bottleTime}[1]{\ensuremath{\divt{B\ifArg{#1}{,}#1}}\xspace}
+\newcommand{\bottleScalarVector}[1]{\ensuremath{\boldsymbol{\bottleScalar{#1}{}}}\xspace}
+\newcommand{\bottleScalar}[2]{\ensuremath{\zeta_{D#1\protect\ifArg{#2}{,}#2}}\xspace}
+\newcommand{\migrationRateVector}{\ensuremath{\mathbf{\migrationRate{}}}\xspace}
+\newcommand{\geneTreeVector}{\ensuremath{\mathbf{\geneTree{}{}}}\xspace}
+\newcommand{\alignmentVector}{\ensuremath{\mathbf{\alignment{}{}}}\xspace}
+\newcommand{\alignment}[2]{\ensuremath{X_{#1\protect\ifTwoArgs{#1}{#2}{,}#2}}\xspace}
+\newcommand{\geneTree}[2]{\ensuremath{G_{#1\protect\ifTwoArgs{#1}{#2}{,}#2}}\xspace}
+\newcommand{\migrationRate}[1]{\ensuremath{m_{#1}}\xspace}
+\newcommand{\recombinationRate}{\ensuremath{r}\xspace}
+\newcommand{\ploidyScalar}[2]{\ensuremath{\rho_{#1\protect\ifTwoArgs{#1}{#2}{,}#2}}\xspace}
+\newcommand{\ploidyScalarVector}{\ensuremath{\boldsymbol{\ploidyScalar{}{}}}\xspace}
+\newcommand{\descendantRelativeThetaVector}[1]{\ensuremath{\boldsymbol{\eta_{D#1}}}\xspace}
+\newcommand{\descendantRelativeTheta}[2]{\ensuremath{\eta_{D#1\protect\ifArg{#2}{,}#2}}\xspace}
+\newcommand{\mutationRateScalarConstant}[2]{\ensuremath{\nu_{#1\protect\ifTwoArgs{#1}{#2}{,}#2}}\xspace}
+\newcommand{\mutationRateScalarConstantVector}{\ensuremath{\boldsymbol{\mutationRateScalarConstant{}{}}}\xspace}
+\newcommand{\locusMutationRateScalar}[1]{\ensuremath{\upsilon_{#1}}\xspace}
+\newcommand{\locusMutationRateScalarVector}{\ensuremath{\boldsymbol{\upsilon}}\xspace}
+\newcommand{\hkyModel}[2]{\ensuremath{\phi_{#1\protect\ifTwoArgs{#1}{#2}{,}#2}}\xspace}
+\newcommand{\hkyModelVector}{\ensuremath{\boldsymbol{\hkyModel{}{}}}\xspace}
+\newcommand{\mutationRate}{\ensuremath{\mu}\xspace}
+\newcommand{\iid}{\textit{iid}\xspace}
+\newcommand{\model}[1]{\ensuremath{\Theta}\xspace}
+\newcommand{\npairs}[1]{\ensuremath{Y_{#1}}}
+\newcommand{\nloci}[1]{\ensuremath{k_{#1}}\xspace}
+\newcommand{\nlociTotal}{\ensuremath{K}\xspace}
+\newcommand{\myTheta}[1]{\ensuremath{\theta_{#1}}}
+\newcommand{\ancestralTheta}[1]{\ensuremath{\theta_{A\protect\ifArg{#1}{,}#1}}\xspace}
+\newcommand{\descendantTheta}[2]{\ensuremath{\theta_{D#1\protect\ifArg{#2}{,}#2}}\xspace}
+\newcommand{\meanDescendantTheta}[1]{\ensuremath{\descendantTheta{}{#1}}\xspace}
+\newcommand{\nucdiv}[1]{\ensuremath{\pi_{#1}}}
+
+\newcommand{\ssVector}[1]{\ensuremath{\mathbf{\alignmentSS{#1}{}}}\xspace}
+\newcommand{\ssVectorObs}{\ensuremath{\ssVector{}^*}\xspace}
+\newcommand{\ssSpace}{\ensuremath{\euclideanSpace{\ssVectorObs}}\xspace}
+\newcommand{\ssVectorObsPLS}{\ensuremath{\ssVectorObs_{PLS}}\xspace}
+\newcommand{\alignmentSS}[2]{\ensuremath{S_{#1\protect\ifTwoArgs{#1}{#2}{,}#2}}\xspace}
+\newcommand{\alignmentSSObs}[2]{\ensuremath{\alignmentSS{#1}{#2}^*}\xspace}
+\newcommand{\tol}{\ensuremath{\epsilon}\xspace}
+\newcommand{\euclideanSpace}[1]{\ensuremath{B_{\tol}(#1)}\xspace}
+\newcommand{\hpvector}[1]{\ensuremath{\Lambda_{#1}}}
+\newcommand{\divtscaled}[2]{\ensuremath{t_{#1\protect\ifTwoArgs{#1}{#2}{,}#2}}}
+\newcommand{\divt}[1]{\ensuremath{\tau_{#1}}}
+\newcommand{\divtunique}[1]{\ensuremath{T_{#1}}}
+\newcommand{\ssMatrix}{\ensuremath{\mathbb \alignmentSS{}{}}\xspace}
+\newcommand{\ssMatrixRaw}[1]{\ensuremath{{\ssMatrix}_{stats#1}}\xspace}
+\newcommand{\ssMatrixPLS}[1]{\ensuremath{{\ssMatrix}_{PLS#1}}\xspace}
+\newcommand{\hpmatrix}[1]{\ensuremath{\mathcal{P}_{#1}}}
+\newcommand{\meant}[2]{\ensuremath{E(\divt{#1})_{#2}}}
+\newcommand{\meantestimate}{\ensuremath{\hat{E(\divt{})}}\xspace}
+\newcommand{\vart}[2]{\ensuremath{Var(\divt{#1}{})_{#2}}}
+\newcommand{\vmratio}[1]{\ensuremath{\Omega_{#1}}}
+\newcommand{\numt}[1]{\ensuremath{\Psi_{#1}}}
+\newcommand{\probnumt}[2]{\ensuremath{p(\numt{#1} = {#2})}}
+\newcommand{\postprobnumt}[1]{\ensuremath{p(\numt{} = {#1}|\ssSpace)}}
+\newcommand{\postprobnumtnot}[1]{\ensuremath{p(\numt{} \neq {#1}|\ssSpace)}}
+\newcommand{\postprobomegasimult}{\ensuremath{p(\vmratio{} < 0.01 | \ssSpace)}\xspace}
+\newcommand{\modelprior}[1]{\ensuremath{f(\model{})}}
+\newcommand{\modelpost}[1]{\ensuremath{f(\model{}|\ssSpace)}}
+\newcommand{\npriorsamples}{\ensuremath{n}\xspace}
+\newcommand{\globalcoalunit}{\ensuremath{4\globalpopsize}\xspace}
+\newcommand{\globalpopsize}{\ensuremath{N_C}\xspace}
+\newcommand{\effectivePopSize}[1]{\ensuremath{N_e{#1}}\xspace}
+\newcommand{\coalunit}{\ensuremath{4\effectivePopSize{}}\xspace}
+\newcommand{\priorsample}[1]{\ensuremath{\hpmatrix{\modelprior{}}}}
+\newcommand{\truncprior}[1]{\ensuremath{\hpmatrix{\tol}}\xspace}
+\newcommand{\postsample}[1]{\ensuremath{\hpmatrix{\modelpost{}}}}
+\newcommand{\abcllr}[1]{ABC\sub{LLR}}
+\newcommand{\abcglm}[1]{ABC\sub{GLM}}
+\newcommand{\integerPartition}[1]{\ensuremath{a({#1})}}
+\newcommand{\uniqueModel}[2]{\ensuremath{M_{#1\protect\ifTwoArgs{#1}{#2}{,}#2}}}
+\newcommand{\taxonLocusVector}[1]{\ensuremath{\{#1{1}{1},\ldots,#1{\npairs{}}{\nloci{\npairs{}}}\}}\xspace}
+\newcommand{\taxonVector}[1]{\ensuremath{\{#1{1},\ldots,#1{\npairs{}}\}}\xspace}
+\newcommand{\locusVector}[1]{\ensuremath{\{#1{1},\ldots,#1{\nlociTotal}\}}\xspace}
+
+\newcommand{\simulationDescription}[2]{\change{Each plot represents #1
+    simulation replicates using the same $#2$ samples from the prior}}
+\newcommand{\simulationDistribution}{\ensuremath{\divt{} \sim U(0,
+    \divt{max})}\xspace}
+\newcommand{\estimateDescription}[2]{All estimates were obtained using #1 and #2}
+\newcommand{\estimateDescriptionUncorrected}[1]{All estimates based on
+    unadjusted posterior, \truncprior{}, obtained using #1}
+\newcommand{\priorDescription}[4]{Prior settings were \priorSettings{#1}{#2}{#3}{#4}}
+\newcommand{\priorSettings}[4]{$\divt{} \sim U(0, #1)$,
+    $\meanDescendantTheta{} \sim U(#2, #3)$, and
+    $\ancestralTheta{}{} \sim U(#2, #4)$}
+\newcommand{\priorDescriptionBug}[4]{Prior settings were
+    \priorSettingsBug{#1}{#2}{#3}{#4}}
+\newcommand{\priorSettingsBug}[4]{$\divt{} \sim U(0, #1)$,
+    $\meanDescendantTheta{} \sim U(#2, #3)$, and
+    $\ancestralTheta{}{} \sim U(0.01, #4)$}
+\newcommand{\simulationScheme}{simulations where \divt{} (in \globalcoalunit
+    generations) for 22 population pairs is drawn from a series of uniform
+    distributions, \simulationDistribution}
+\newcommand{\captionPowerOmega}{Histograms of the estimated dispersion index
+    of divergence times ($\hat{\vmratio{}}$) from \simulationScheme.
+    The threshold for one divergence event \citep{Hickerson2006} is indicated
+    by the dashed line, and the estimated probability of inferring one
+    divergence event, $p(\hat{\vmratio{}}\le 0.01)$, is given for each
+    \divt{max}}
+\newcommand{\captionPowerPsiMode}{Histograms of the estimated number of
+    divergence events ($\hat{\numt{}}$) from \simulationScheme.
+    The estimated probability of inferring one divergence event,
+    $p(\hat{\numt{}} = 1)$, is given for each \divt{max}}
+\newcommand{\captionPowerPsi}{Histograms of the estimated posterior
+    probability of one divergence event, \postprobnumt{1}, from
+    \simulationScheme.
+    The estimated probability of inferring one divergence event with a
+    Bayes factor greater than 10 (dashed black line),
+    $p(\bayesfactor{\numt{}=1}{\numt{} \ne 1} > 10)$, is given for each \divt{max}.
+    The red line indicates $\postprobnumt{1} = 0.95$, and the estimated
+    probability of inferring a posterior probability greater than 0.95 is given
+    to the right of the line.}
+\newcommand{\captionAccuracy}[1]{Accuracy and precision of #1 estimates from
+    \simulationScheme.
+    The proportion of estimates less than the true value ($p(\hat{#1}<#1)$) is
+    given for each \divt{max}}
+\newcommand{\samplingErrorTableNote}{An estimate of 1.0 for a posterior probability
+    is an artifact of sampling error}
+
+
+\newcommand{\refAccuracyALL}[1]{\labelcref{fig_acc_t_ss_llr_bug,fig_acc_t_ss_glm_bug,fig_acc_t_pls_llr_bug,fig_acc_t_pls_glm_bug,fig_acc_o_ss_llr_bug,fig_acc_o_ss_glm_bug,fig_acc_o_pls_llr_bug,fig_acc_o_pls_glm_bug}}
+\newcommand{\refAccuracySS}[1]{\labelcref{fig_acc_t_ss_llr_bug,fig_acc_t_ss_glm_bug,fig_acc_o_ss_llr_bug,fig_acc_o_ss_glm_bug}}
+\newcommand{\refAccuracySSfull}[1]{\labelcref{fig_acc_t_ssfull_llr_bug,fig_acc_t_ssfull_glm_bug,fig_acc_o_ssfull_llr_bug,fig_acc_o_ssfull_glm_bug}}
+\newcommand{\refSSfull}[1]{\labelcref{fig_acc_t_ssfull_llr_bug,fig_acc_t_ssfull_glm_bug,fig_acc_o_ssfull_llr_bug,fig_acc_o_ssfull_glm_bug,fig_pow_o_ssfull_llr_bug,fig_pow_o_ssfull_glm_bug,fig_pow_psi_modes_ssfull_glm_bug}}
+\newcommand{\refSS}[1]{\labelcref{fig_acc_t_ss_llr_bug,fig_acc_t_ss_glm_bug,fig_acc_o_ss_llr_bug,fig_acc_o_ss_glm_bug,fig_pow_o_ss_llr_bug,fig_pow_o_ss_glm_bug,fig_pow_psi_ss}}
+\newcommand{\refAccuracyPLS}[1]{\labelcref{fig_acc_t_pls_llr_bug,fig_acc_t_pls_glm_bug,fig_acc_o_pls_llr_bug,fig_acc_o_pls_glm_bug}}
+\newcommand{\refAccuracySScorrected}[1]{\labelcref{fig_acc_t_ss_llr_bug,fig_acc_t_ss_glm_bug,fig_acc_o_ss_llr_bug,fig_acc_o_ss_glm_bug}}
+\newcommand{\refAccuracyPLScorrected}[1]{\labelcref{fig_acc_t_pls_llr_bug,fig_acc_t_pls_glm_bug,fig_acc_o_pls_llr_bug,fig_acc_o_pls_glm_bug}}
+\newcommand{\refAccuracyUncorrected}[1]{\labelcref{fig_acc_t_ss_unc,fig_acc_t_pls_unc,fig_acc_o_ss_unc,fig_acc_o_pls_unc}}
+\newcommand{\refAccuracyCorrected}[1]{\labelcref{fig_acc_t_ss_llr_bug,fig_acc_t_ss_glm_bug,fig_acc_t_pls_llr_bug,fig_acc_t_pls_glm_bug,fig_acc_o_ss_llr_bug,fig_acc_o_ss_glm_bug,fig_acc_o_pls_llr_bug,fig_acc_o_pls_glm_bug}}
+\newcommand{\refAccuracyGLM}[1]{\labelcref{fig_acc_t_ss_glm_bug,fig_acc_t_pls_glm_bug,fig_acc_o_ss_glm_bug,fig_acc_o_pls_glm_bug}}
+\newcommand{\refAccuracyLLR}[1]{\labelcref{fig_acc_t_ss_llr_bug,fig_acc_t_pls_llr_bug,fig_acc_o_ss_llr_bug,fig_acc_o_pls_llr_bug}}
+\newcommand{\refAccuracyOmega}[1]{\labelcref{fig_acc_o_ss_llr_bug,fig_acc_o_ss_glm_bug,fig_acc_o_pls_llr_bug,fig_acc_o_pls_glm_bug}}
+\newcommand{\refAccuracyOmegaUncorrected}[1]{\labelcref{fig_acc_o_ss_unc,fig_acc_o_pls_unc}}
+\newcommand{\refAccuracyOmegaCorrected}[1]{\labelcref{fig_acc_o_ss_llr_bug,fig_acc_o_ss_glm_bug,fig_acc_o_pls_llr_bug,fig_acc_o_pls_glm_bug}}
+\newcommand{\refAccuracyTime}[1]{\labelcref{fig_acc_t_ss_llr_bug,fig_acc_t_ss_glm_bug,fig_acc_t_pls_llr_bug,fig_acc_t_pls_glm_bug}}
+
+\newcommand{\tn}{\tabularnewline}
+

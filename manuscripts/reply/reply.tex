@@ -1,0 +1,132 @@
+%&<latex>
+\documentclass[letterpaper,12pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% preamble %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../utils/preamble.tex}
+\input{../utils/macros.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\doublespacing
+\raggedright
+\setlength{\parindent}{0.5in}
+\begin{linenumbers}
+
+\begin{titlepage}
+    \begin{flushleft}
+        \sffamily
+
+        \MakeUppercase{\large\bfseries Title}
+
+        \vspace{12pt}
+        \textbf{Running head:} \MakeUppercase{Running head}
+
+        \vspace{12pt}
+        Jamie R. Oaks$^{1,2,5}$, Jeet Sukumaran$^{1,2}$, Jacob A.
+        Esselstyn$^{3}$, Charles W. Linkem$^{1,2}$, Cameron D.
+        Siler$^{4}$, Mark T. Holder$^{2}$ and Rafe M. Brown$^{1,2}$
+
+        \bigskip
+        $^1$\emph{Biodiversity Institute\\
+            $^2$Department of Ecology and Evolutionary Biology\\ 
+            University of Kansas\\
+            %1345 Jayhawk Blvd\\
+            Lawrence, KS 66045\\
+            USA}\\[.1in]
+        $^3$\emph{Biology Department\\
+            McMaster University\\
+            % Life Sciences Building Rm 328\\
+            Hamilton, Ontario L8S4K1\\
+            Canada}\\[.1in]
+        $^4$\emph{Department of Biology\\
+            University of South Dakota\\
+            Vermillion, SD 57069\\
+            USA}\\[.1in]
+        $^5$\emph{Corresponding author} (\href{mailto:joaks1@ku.edu}{\tt
+        joaks1@ku.edu})\\
+
+    \end{flushleft}
+\end{titlepage}
+
+{\sffamily
+    \noindent\textbf{ABSTRACT} \\
+    \noindent Abstract here \ldots
+
+    \vspace{12pt}
+    \noindent\textbf{KEY WORDS: } 
+}
+
+\newpage
+\noindent \ldots
+
+\section*{Acknowledgments}
+
+\bibliography{../bib/references}
+
+%% LIST OF FIGURES %%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\singlespacing
+
+\renewcommand\listfigurename{Figure Captions}
+\cftsetindents{fig}{0cm}{2.2cm}
+\renewcommand\cftdotsep{\cftnodots}
+\setlength\cftbeforefigskip{10pt}
+\cftpagenumbersoff{fig}
+\listoffigures
+
+
+\end{linenumbers}
+
+%% TABLES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\singlespacing
+
+
+\clearpage
+
+%% FIGURES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+%:FIGURE-accuracy omega SS GLM
+\begin{figure}[hbtp]
+    \captionsetup{listformat=figList}
+    \centering
+    \includegraphics[width=1.0\textwidth]{../../saturation/saturation-plot.pdf}
+    \caption{
+        Saturation plot \ldots
+    }
+    \label{fig_saturation_plot}
+\end{figure}
+
+\clearpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SUPPORTING INFO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\setcounter{page}{1}
+
+\singlespacing
+
+\renewcommand{\refname}{\noindent\MakeUppercase{\LARGE\sffamily\upshape supporting information}}
+
+% PUT MAIN TEXT CITATION HERE
+% \begin{thebibliography}{1}
+% \providecommand{\natexlab}[1]{#1}
+% \providecommand{\url}[1]{\texttt{#1}}
+% \providecommand{\urlprefix}{URL }
+
+% \bibitem
+
+% \end{thebibliography}
+
+
+%% SUPPL TABLES %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\setcounter{table}{0}
+
+
+\end{document}
+
