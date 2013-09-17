@@ -108,8 +108,9 @@ accuracy, and robustness of the method given a dataset, and recommend any
 application of \msb should be accompanied by such procedures, especially
 if any biological conclusions are going to drawn from the results.
 \citet{Hickerson2013} present an approximate Bayesian model-averaging approach
-for accommodating uncertainty in prior selection, and champion the method
-as a means of avoiding the pitfalls raised by \citet{Oaks2012}.
+for accommodating uncertainty in selecting among empirically guided priors, and
+champion the method as a means of avoiding the pitfalls raised by
+\citet{Oaks2012}.
 Unfortunately, we show that fundamental errors in this approach render some of
 their results invalid and leave the remaining results difficult to interpret.
 Furthermore, we follow the advice of \citet{Oaks2012} and present
@@ -118,14 +119,93 @@ approach.
 Our results demonstrate that the method is biased and dangerous.
 The approach merely provides another means by which the model can ``escape''
 large parameter space, and the bias towards models with smaller space still
-remaines.
+remains.
+This bias can be dangerous and often excludes the true parameter space due to
+the use of uniform priors.
+Furthermore we discuss the potential theoretical and practical problems of
+empirical Bayesian model choice.
 
+\section*{Their power analysis}
+\citet{Hickerson2013} present a power analysis in which they demonstrate that
+\msb has the power to infer multiple divergence events when divergence times
+are random over hundreds of thousands of generations (rather than millions
+as demonstrated by \citet{Oaks2012}.
+It is not surprising to find that within certain parameter space the method
+has increased power to detect temporal variation in divergences over narrower
+time windows than millions of generations.
+However, what is important to consider is whether those conditions are relevant
+to real world applications of the method.
+\citet{Oaks2012} explore the behavior of the method under three divergence time
+priors as narrow as 0--5 coalescent units, which is quite narrow considering
+that this expresses the prior belief that all 22 taxon pairs diverged within
+this window.
+\citet{Hickerson2013} limit their power analysis to a single prior of 0--1
+coalescent unit.
+It seems that being 100\% certain a priori that all taxa under comparison
+diverged within the last coalescent unit is not generally applicable to most
+empirical systems.
+Furthermore, even when such extensive prior information is available to only be
+able to detect multiple divergences on the scale of hundreds of thousands of
+generations does not seem very ``powerful.''
+
+Also, \citet{Hickerson2013} present information only on the extreme case of a
+single divergence event.
+As discussed in \citet{Oaks2012}, it seems dubious to consider the estimation
+of two divergence events as a success when divergence is random over hundreds
+of thousands of generations.
+Unlike the results of \citet{Oaks2012} it is impossible to assess the
+performance of \msb based on the results presented by \cite{Hickerson2013}
+other than to know whether or not it inferred the worst possible scenario of a
+single event.
+In an empirical system such as the Philippines, where island fragmentation
+has occurred at least X times over the past several millions of years, an
+estimate where 22 taxa share even a handful of divergence events would be
+of biogeographic interest.
+\citet{Hickerson2013} seem to suggest in their response that \msb should only
+be used as a binary estimator; i.e., was there one event or more?
+This is not consistent with how \msb has been presented, used, and interpreted
+in the past.
+
+
+\section*{Differing utilities of \numt{} and \vmratio{} in \msb}
+We preface this section with a clarification of an issue that has
+been confused throughout the \msb literature.
+The mean (\meant{}), variance (\vart{}), and dispersion index
+($\vart{}/\meant{} = \vmratio{}$) of divergence times are \emph{not} parameters
+of the model implemented in \msb.
+Rather they are statistics that summarize parameters of the model.
+This is in contrast to \numt{}, which is a parameter of the model.
+
+\citet{Hickerson2013} strongly argue that \vmratio{} is a better estimator than
+\numt{}, but the logic behind the argument is dubious.
+They present a plot of \numt{} against \vmratio{} (Fig.~S1) which is simply a
+plot of sample size versus variance.
+After showing that \vmratio{} has essentially no information about the
+number of divergences, they conclude it is more informative and biogeographically
+relevant.
+We struggle to follow this logic.
+Certainly the maximum information is contained within the divergence time
+vector that \vmratio{} is summarizing.
+The temporal information contained in this vector coupled with its cardinality
+(\numt{}) is certainly more informative than its summary.
+The dispersion index is not a sufficient statistic for this vector.
+
+They also argue that ``\msb can estimate \vmratio{} much better than \numt{}.''
+However, the primary objective of \msb is to estimate the posterior probability
+of divergence models.
+\citet{Oaks2012} demonstrate that even when all assumptions of the model are
+met, \vmratio is a terrible model-choice estimator (see plots B, D \& F of
+Figure 4), whereas \numt{} performs better.
+Furthermore, \vmratio{} is limited to estimating the probability of only a
+single divergence model (the one divergence model), and thus its utility for
+model choice is extremely limited.
 
 
 
 \section*{Acknowledgments}
 
-\bibliography{../bib/references}
+% \bibliography{../bib/references}
+\bibliography{references}
 
 %% LIST OF FIGURES %%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
@@ -151,19 +231,57 @@ remaines.
 %% FIGURES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 
-%:FIGURE-accuracy omega SS GLM
-\begin{figure}[hbtp]
-    \captionsetup{listformat=figList}
-    \centering
-    \includegraphics[width=1.0\textwidth]{../../saturation/saturation-plot.pdf}
-    \caption{
-        Saturation plot \ldots
-    }
-    \label{fig_saturation_plot}
-\end{figure}
+%:FIGURE-saturation plot
+\mFigure{../../saturation/saturation-plot.pdf}{
+    Saturation plot \ldots
+}{figSaturationPlot}
 
-\clearpage
+\mFigure{../../response-redux/results/hickerson/pymsbayes-results/mean_by_dispersion.pdf}{
+    Results of reanalysis.
+}{figJointPosterior}
 
+\mFigure{../../response-redux/results/sampling-error/pymsbayes-results/omega_over_sampling.pdf}{
+    Sampling error \ldots
+}{figSamplingError}
+
+%% Exclusion simulation results
+\mFigure{../../model-choice/results/m1-1-sim/pymsbayes-results/num_tau_excluded.pdf}{
+    Histogram of the number of \divt{} parameters excluded.
+}{figExclusionSimTau}
+
+\mFigure{../../model-choice/results/m1-1-sim/pymsbayes-results/prob_of_exclusion.pdf}{
+    Histogram of the posterior probability of excluding the truth.
+}{figExclusionSimProb}
+
+%% Power results
+\mFigure{../../model-choice/results/power-1/pymsbayes-results/plots/power_accuracy_omega_median.pdf}{
+    Histograms of the posterior probability that $\vmratio{} < 0.01$.
+}{figPowerAccOmegaMedian}
+
+\mFigure{../../model-choice/results/power-1/pymsbayes-results/plots/power_accuracy_omega_mode_glm.pdf}{
+    Histograms of the posterior probability that $\vmratio{} < 0.01$.
+}{figPowerAccOmegaModeGLM}
+
+\mFigure{../../model-choice/results/power-1/pymsbayes-results/plots/power_psi_mode.pdf}{
+    Histograms of \numt{} estimates.
+}{figPowerPsiMode}
+
+\mFigure{../../model-choice/results/power-1/pymsbayes-results/plots/power_omega_prob.pdf}{
+    Histograms of the posterior probability that $\vmratio{} < 0.01$.
+}{figPowerOmegaProb}
+
+\mFigure{../../model-choice/results/power-1/pymsbayes-results/plots/power_prob_exclusion.pdf}{
+    Histograms of the posterior probability of excluding the truth.
+}{figPowerProbExclusion}
+
+\mFigure{../../model-choice/results/power-1/pymsbayes-results/plots/power_num_excluded.pdf}{
+    Histograms of the number of true \divt{} parameters excluded.
+}{figPowerNumExcluded}
+
+%% Validation results
+\mFigure{../../model-choice/results/validation/results/pymsbayes-results/plots/mc_behavior.pdf}{
+    True versus estimated probability of a single divergence event.
+}{figValidationMCBehvior}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% SUPPORTING INFO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
