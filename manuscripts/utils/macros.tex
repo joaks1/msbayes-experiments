@@ -174,3 +174,24 @@
 
 \newcommand{\tn}{\tabularnewline}
 
+\newcommand{\widthFigure}[5]{\begin{figure}[htbp]
+\begin{center}
+    \includegraphics[width=#1\textwidth]{#2}
+    \captionsetup{#3}
+    \caption{#4}
+    \label{#5}
+    \end{center}
+    \end{figure}}
+
+\newcommand{\heightFigure}[5]{\begin{figure}[htbp]
+\begin{center}
+    \includegraphics[height=#1]{#2}
+    \captionsetup{#3}
+    \caption{#4}
+    \label{#5}
+    \end{center}
+    \end{figure}}
+
+\newcommand{\mFigure}[3]{\widthFigure{1.0}{#1}{listformat=figList}{#2}{#3}\clearpage}
+\newcommand{\siFigure}[3]{\widthFigure{1.0}{#1}{name=Figure S, labelformat=noSpace, listformat=sFigList}{#2}{#3}\clearpage}
+
