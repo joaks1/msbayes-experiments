@@ -1,0 +1,12 @@
+*.swp
+*.pyc
+*.bbl
+*.aux
+*.bbl
+*.blg
+*latexmk
+*.fls
+*.lof
+*.log
+*.out
+
