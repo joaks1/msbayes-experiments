@@ -125,6 +125,10 @@ the use of uniform priors.
 Furthermore we discuss the potential theoretical and practical problems of
 empirical Bayesian model choice.
 
+\section*{EB}
+\citet{Hickerson2013} repeatedly refer the prior distributions used by
+\citet{Oaks2012} as ``poorly selected''.
+
 \section*{Their power analysis}
 \citet{Hickerson2013} present a power analysis in which they demonstrate that
 \msb has the power to infer multiple divergence events when divergence times
@@ -166,6 +170,8 @@ be used as a binary estimator; i.e., was there one event or more?
 This is not consistent with how \msb has been presented, used, and interpreted
 in the past.
 
+\section*{Our power analysis}
+
 
 \section*{Differing utilities of \numt{} and \vmratio{} in \msb}
 We preface this section with a clarification of an issue that has
@@ -199,7 +205,136 @@ Figure 4), whereas \numt{} performs better.
 Furthermore, \vmratio{} is limited to estimating the probability of only a
 single divergence model (the one divergence model), and thus its utility for
 model choice is extremely limited.
+The model-choice utility of \vmratio{} is limited to the probability that
+this continuous statistic, which can range from zero to infinity, is at its lower
+limit of zero. In theory, this point density will always be zero, thus an
+arbitrary threshold (0.01 is used throughout the \msb literature) must 
+be chosen to make the probability estimable.
+However, it is still not surprising to see that it is numerically difficult to
+obtain reliable estimate of the probability that the continuous \vmratio{}
+statistic is ``near'' its limit of zero.
+It is much easier, less subjective, and more interpretable to estimate
+the probability of the discrete parameter of the model, \numt{}, is
+at its lower limit of one.
+Thus, it is not surprising to see this estimator of model probability
+perform better.
 
+\section*{General thoughts}
+It is not too surprising that the model-averaging approach proposed by
+\citet{Hickerson2013} behaves so poorly.
+While this approach is trivial to implement, it is not a trivial change
+to the the basic \msb model.
+To better understand why this is, it might help to step back and get a
+sense of the scale of the \msb model.
+To do this, we will use the dataset of 22 vertebrate taxon pairs of
+\citet{Oaks2012} as an example.
+
+Following the model description and notation of \citet{Oaks2012}, we
+will tally up all of the free parameters in the \msb model.
+
+Under the simplest model in \msb (i.e., assuming no migration and
+no intra-locus recombination), the number of parameters for each
+taxon pair include:
+The population sizes of the ancestral and descendant populations
+(\ancestralTheta{}, \descendantTheta{1}{}, \descendantTheta{2}{}),
+The magnitude of population contraction in each of the descendant
+populations (\bottleScalar{1}{} and \bottleScalar{2}{}) and the
+timing of these contractions (\bottleTime{}), and the $N-1$ node heights
+(coalescent times) of the gene tree that gives rise to the $N$ gene
+copies sampled from both populations of the pair.
+
+Because we only have a single locus for each taxon, there are no locus-specific
+\myTheta{}-scaling parameters (\locusMutationRateScalar{}) or
+\locusRateHetShapeParameter shape parameter for the gamma prior distribution on
+\locusMutationRateScalar{}.
+Lastly, there are between one and 22 divergence time parameters \divt{} in
+the vector \divtvector.
+Thus for our Philippines data and under the simplest model in \msb, there are
+581--602 free parameters.
+Under this rich model, the method is sampling over 1002 divergence models
+\citep[i.e., the number of integer partitions of $Y=22$][]{Oaks2012}.
+
+This is a very tall order, and the method only uses four summary statistics
+calculated from the sequence alignment of each taxon pair:
+$\pi$ \citep{Tajima1983}, $\theta_W$
+\citep{Watterson1975}, $\pi_{net}$ \citep{Takahata1985}, and
+$SD(\pi-\theta_W)$ \citep{Tajima1989}.
+That gives us a total of 88 summarys statistics (four for each of the 22 taxon
+pairs), which contain minimal information about many of the $\approx 600$
+parameters in the model.
+More summary statistics can be used in \msb, but most are highly correlated
+with these four statistics (which are even highly correlated among themselves),
+and thus contribute little additional information about the data.
+
+This very large number of parameters and divergence models relative to 
+summary statistics is undoubtedly the reason the method is so sensitive
+to the prior distributions.
+It also likely contributes to the methods lack of robustness.
+We use robustness here as a measure of a methods insensitivity to model
+violations.
+Robustness is an extremely important characteristic of a method to gauge its
+applicability to empirical data, because we know the model and priors will be
+wrong to some degree.
+
+The approach of \citet{Hickerson2013} adds an additional dimension of model
+choice to the model. They expand the model to sample over eight prior models.
+This extends the original model to having 582-603 free parameters and, more
+importantly, sampling over 8016 unique model states across both divergence
+models and prior models.
+This certainly is a non-trivial extension of the model, and given the methods
+very large number of parameters and models relative to the information
+used from the data, likely plays a major role in the poor behavior of this
+approach.
+
+In theory, the approach of \citet{Hickerson2013} is very appealing.  It sums
+over multiple candidate prior models to produce a posterior estimate
+marginalized over the uncertainty in prior choice.
+In general, Bayesian model-averaging is a powerful approach that leverages a
+great strengths of Bayesian statistical procedures, namely the ability to
+obtain marginalized estimates that incorporate uncertainty in nuisance
+parameters.
+However, given the basic \msb model is already struggling to estimate
+a huge number of parameters and model probabilities with scant information
+from the data, it is not surprising that adding an additional layer of
+model choice to the method causes problems.
+
+The recommendations of \citet{Oaks2012} for mitigating the lack of robustness
+and biases of \msb are actually similar to those of \citet{Hickerson2013},
+but avoid the need for imposing additional model choice.
+\citet{Oaks2012} suggest that uniform priors are inappropriate for parameters,
+and recommend the use of more cogent probability distributions from the
+exponential family.
+If we look at the prior distribution on the divergence time parameter \divt{}
+imposed by the model-averaging prior approach of \citet{Hickerson2013} we see
+it is a mixture of overlapping uniforms with lower limits of zero
+(Figure~\ref{figMCTauPrior}).
+This looks very much like an exponential distribution.
+Thus would be much more natural and easier to simply place a gamma prior (the
+exponential being a special case of the gamma) on divergence times.
+This would allow the investigator to much better capture their prior
+uncertainty in model parameters while avoiding awkward broad uniform
+distributions, and without the need of costly model-averaging.
+This seems like a much more natural solution to the problems of Lindley's
+paradox and sampling error, which are both certainly exacerbated by the fact
+that uniform distributions are inappropriately the only choice of prior for
+many of the parameters of the \msb model \citep[\divt{}, \ancestralTheta{},
+\descendantTheta{1}{}, \descendantTheta{2}{}, \bottleTime{},
+\bottleScalar{1}{}, \bottleScalar{2}{}, \locusMutationRateScalar,
+\migrationRate{}, \recombinationRate;][]{Oaks2012}.
+There is no cost whatsoever to this strategy.
+Given that ABC methods merely have to draw random values from prior
+distributions, hence there are no difficult proposal probability ratios to
+calculate, etc., there is no excuse for not using the most appropriate
+distributions on parameters with conjugacy in mind.
+Also, this approach reduces the ``need'' for empirically guided priors.
+The investigator can place the majority of the prior density in regions
+of parameters space the believe, a priori, are most plausible, but still
+capture uncertainty in the tails of distributions with low density.
+As discussed in \citet{Oaks2012} the use of inflexible and unforgiving uniform
+priors necessitated the need to use broad priors to avoid excluding the truth a
+priori.
+Thus, to avoid the   behavior of the method under these priors, cheating
+and using the data was a very tempting alternative.
 
 
 \section*{Acknowledgments}
@@ -282,6 +417,11 @@ model choice is extremely limited.
 \mFigure{../../model-choice/results/validation/results/pymsbayes-results/plots/mc_behavior.pdf}{
     True versus estimated probability of a single divergence event.
 }{figValidationMCBehvior}
+
+%% Model-choice tau prior
+\mFigure{../../model-choice/tau-prior/tau_prior.pdf}{
+    The prior distribution on divergence times imposed by the model-averaging prior.
+}{figMCTauPrior}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% SUPPORTING INFO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
