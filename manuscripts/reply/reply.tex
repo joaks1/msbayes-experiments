@@ -18,10 +18,13 @@
     \begin{flushleft}
         \sffamily
 
-        \MakeUppercase{\large\bfseries Title}
+        \MakeUppercase{\large\bfseries Why you should not fix a biased
+        model-choice method by adding an additional dimension of model choice:
+        A reply to Hickerson et al.}
 
         \vspace{12pt}
-        \textbf{Running head:} \MakeUppercase{Running head}
+        \textbf{Running head:} \MakeUppercase{Approximate Bayesian model
+        choice}
 
         \vspace{12pt}
         Jamie R. Oaks$^{1,2,5}$, Jeet Sukumaran$^{1,2}$, Jacob A.
@@ -59,7 +62,16 @@
 }
 
 \newpage
-\noindent Both papers are largely in agreement.
+\noindent Recently, this journal has served as a venue for discussion of the
+potential pitfalls of approximate Bayesian methods of comparative
+phylogeographical model choice.
+\citet{Oaks2012} published their findings that the method \msb can often be
+biased towards inferring models of temporally clustered divergence times
+among taxon pairs.
+\citet{Hickerson2013} has published a response to this paper where they
+present a model-averaging approach that they conclude circumvents the poor
+behavior of the method revealved by \citet{Oaks2012}.
+Both of these papers are largely in agreement.
 In fact, \citet{Hickerson2013} reiterate a lot of the discussion of
 \citet{Oaks2012} regarding the impact of broad uniform priors on Bayesian model
 choice.
@@ -75,11 +87,39 @@ of producing the data, yet relatively high prior density \citep[this is often
 referred to as Lindley's paradox;][]{Lindley1957}.
 Note, this suggests the bias is extrinsic to \msb, and the numerical
 approximation machinery of the method could be sound.
-\citet{Hickerson2013} take a more pessimistic view of the bias, and suggest the
-bias is intrinsic to \msb, i.e., the method's rejection algorithm is
+\citet{Hickerson2013} take a more pessimistic view of the bias, and suggest it
+is intrinsic to \msb, i.e., the method's rejection algorithm is
 inefficient and will be increasingly biased as the overall space of the model
 increases, either as a function of the number of taxon pairs or the width of
 the uniform priors on nuisance parameters.
+They support their position by giving a probabilistic argument that focuses on
+only one of the three prior models used by \citet{Oaks2012}.
+We show that this argument is based on dubious assumptions, and does not
+explain the bias of the method found in several analyses of \citet{Oaks2012}.
+We reiterate several of the findings of \citet{Oaks2012} as well as present
+results of additional analyses, which strongly suggest that Lindley's paradox
+is playing a larger role in the poor behavior of the method.
+
+\citet{Oaks2012} suggest that more cogent prior probability distributions on
+divergence models and nuisance parameters could mitigate the effect of
+Lindley's paradox.
+They also layout a set of simulation-based procedures for determining power,
+accuracy, and robustness of the method given a dataset, and recommend any
+application of \msb should be accompanied by such procedures, especially
+if any biological conclusions are going to drawn from the results.
+\citet{Hickerson2013} present an approximate Bayesian model-averaging approach
+for accommodating uncertainty in prior selection, and champion the method
+as a means of avoiding the pitfalls raised by \citet{Oaks2012}.
+Unfortunately, we show that fundamental errors in this approach render some of
+their results invalid and leave the remaining results difficult to interpret.
+Furthermore, we follow the advice of \citet{Oaks2012} and present
+simulation-based assessments of Hickerson et al.'s \citeyear{Hickerson2013}
+approach.
+Our results demonstrate that the method is biased and dangerous.
+The approach merely provides another means by which the model can ``escape''
+large parameter space, and the bias towards models with smaller space still
+remaines.
+
 
 
 
