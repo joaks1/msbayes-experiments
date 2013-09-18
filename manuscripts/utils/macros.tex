@@ -21,6 +21,8 @@
 \newcommand{\ifTwoArgs}[3]{\ifthenelse{\equal{#1}{}\or\equal{#2}{}}{}{#3}\xspace}
 \newcommand{\ifArg}[2]{\ifthenelse{\equal{#1}{}}{}{#2}\xspace}
 
+\newcommand{\allDatasets}{\ensuremath{\mathcal{\alignment{}{}}}\xspace}
+\newcommand{\allParameterValues}{\ensuremath{\boldsymbol{\Theta}}\xspace}
 \newcommand{\bayesfactor}[2]{\ensuremath{BF_{#1\protect\ifArg{#2}{,}#2}}}
 \newcommand{\given}{\ensuremath{\,|\,}\xspace}
 \newcommand{\msb}{\upshape\texttt{\MakeLowercase{ms\MakeUppercase{B}ayes}}\xspace}
