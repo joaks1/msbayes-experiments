@@ -162,11 +162,14 @@ After collecting a new dataset \alignment{i}{}, we can use Bayes' rule to
 calculate the posterior distribution
 \begin{equation}
     p(\myTheta{} \given \alignment{i}{}) = \frac{p(\alignment{i}{} \given 
-        \myTheta{})p(\myTheta{})}{p(\alignment{i}{}},
+    \myTheta{})p(\myTheta{})}{p(\alignment{i}{})},
     \label{eq:bayesrule}
 \end{equation}
-where $p(\alignment{i}{}) = \int{\myTheta{}} p(\alignment{i}{} \given
-\myTheta{})p(\myTheta{}) d\myTheta{}$.
+where
+\begin{equation}
+    p(\alignment{i}{}) = \int_{\myTheta{}} p(\alignment{i}{} \given
+    \myTheta{})p(\myTheta{}) d\myTheta{}.
+\end{equation}
 The posterior distribution is a measure of our beliefs after seeing the new
 information.
 \end{linenomath}
@@ -186,7 +189,7 @@ Quite the contrary.
 Empirical Bayes is a well studied branch of Bayesian statistics that
 has given rise to a many powerful inference methods.
 It is true that empirical Bayes methods have an uncertain theoretical basis and
-do not yield a valid posterior distribution from Bayes' rule \citp[e.g.,
+do not yield a valid posterior distribution from Bayes' rule \citep[e.g.,
 empirical Bayesian estimates of the posterior are often too narrow, off-center,
 and misshapen;][]{Morris1983,Laird1987,Carlin1990,Efron2013}.
 Nevertheless, empirical Bayes methods are often a powerful means of parameter
@@ -206,6 +209,71 @@ entire posterior distribution.
 Thus, given that empirical Bayesian posterior distributions are not accurate,
 there is no guarantee regarding the accuracy of probabilities summarized from
 them.
+
+This can be demonstrated with a simple, albeit contrived, example.
+Let us say that principal investigator Mary and her new postdoc Will are
+interested in the hypothesis that the mass of George Washington's periwig
+renders the United States' quarter dollar unfair.
+That is to say that our null hypothesis is that the probability of a US quarter
+landing heads when tossed is less than 0.5 ($\theta < 0.5$).
+They can certainly evaluate this hypothesis, they can have undergraduate
+worker, Joe, flip the coin for them while the tabulate the results.
+But being Bayesians, before they call Joe into the lab, they agree on a
+prior probability to place on the set of all possible probabilities that
+the quarter will land heads when it is flipped.
+Given their prior knowledge that Joe moonlights as a magician, and is notorious
+for performing coin and card tricks in the lab, they suspect there is a good
+chance that Joe will use his slight-of-hand skills to replace their quarter
+with one of his two-headed or two-tailed coins he has up his sleeve at all
+times.
+So, knowing that the beta distribution is the conjugate prior for a binomial
+likelihood, they decide to use a $beta(a=0.5, b=0.5)$ prior distribution
+(Figure~\ref{figCoinFlip}).
+
+Mary calls Joe into the lab, and hands him a regular-issue US quarter minted in
+1992.
+After five tosses, four of which was heads, Joe decides that academics are
+crazy and leaves the lab to pursue a major in theatre.  Mary and Will, both
+being computational biologists, are satisfied with their
+empirical dataset of $y = 4$ heads out of $N = 5$ trials.
+They know from the conjugacy of the beta prior, that the posterior distribution
+has the nice analytical form $\theta|y,N \sim beta(a + y, b + N - y)$, which
+in this case is simply $beta(4.5, 1.5)$; this is the true posterior distribution
+of $\theta$ given their prior belief and data (Figure~\ref{figCoinFlip}).
+This allows them to plug these values into the beta cumulative distribution
+function to determine that the posterior probability of their hypothesis is
+$p(\theta < 0.5 | y=1, N=5) = 0.088$.
+Given their prior belief and dataset, this indeed is the correct posterior
+probability of the hypothesis, and Mary and Will should now update their
+posterior belief accordingly.
+
+However, upon reflecting on the results of their experiment
+(Figure~\ref{figCoinFlip}), Mary and Will regret not trusting Joe to refrain
+from turning their experiment into a magic trick.
+Their prior looks very ``poorly selected,'' and if they had only
+had more faith in Joe's integrity, they would have selected a much better
+prior. Clearly form their results, they should have used a prior centered
+around 0.2; their data suggest a prior of $beta(4.5, 1.5)$ would have been
+much more appropriate.
+Rather than resort to flipping the coin five more times, Mary and Will decide
+to redo their analysis using the much better ``prior'' of $p(\theta) \sim
+beta(4.5, 1.5)$.
+This gives a ``posterior'' of $\theta|y,N \sim beta(8.5, 2.5)$, and a
+probability of their hypothesis of $p(\theta < 0.5 | y=1, N=5) = 0.026$.
+Now convinced that the mass of President Washington's head renders the US
+Quarter unfair, Will begins composing an e-mail of complaint for the U.S.\
+Mint.
+
+If Joe's flips were a representative sample, Mary and Will's empirical Bayes
+estimate might very well be a better estimator for the parameter \myTheta{}.
+However, their empirical Bayes estimate of the probability of their hypothesis
+is incorrect and biased.
+This simple example shows how parameter estimation is fundamentally different
+from estimating the probability of a model.
+While empirical informed priors can be used to obtain well-behaved parameter
+estimators, using them for model choice is much less certain.
+
+
 
 
 
@@ -264,8 +332,8 @@ in the past.
 \section*{Differing utilities of \numt{} and \vmratio{} in \msb}
 We preface this section with a clarification of an issue that has
 been confused throughout the \msb literature.
-The mean (\meant{}), variance (\vart{}), and dispersion index
-($\vart{}/\meant{} = \vmratio{}$) of divergence times are \emph{not} parameters
+The mean (\meant{}{}), variance (\vart{}{}), and dispersion index
+($\vart{}{}/\meant{}{} = \vmratio{}$) of divergence times are \emph{not} parameters
 of the model implemented in \msb.
 Rather they are statistics that summarize parameters of the model.
 This is in contrast to \numt{}, which is a parameter of the model.
@@ -510,6 +578,11 @@ and using the data was a very tempting alternative.
 \mFigure{../../model-choice/tau-prior/tau_prior.pdf}{
     The prior distribution on divergence times imposed by the model-averaging prior.
 }{figMCTauPrior}
+
+\mFigure{../images/coin_flip.pdf}{
+    A plot of three beta density functions meant to represent a prior
+    (black), true posterior (blue), and empirical Bayes density (red).
+}{figCoinFlip}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% SUPPORTING INFO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
