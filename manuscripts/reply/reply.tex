@@ -324,7 +324,40 @@ While we suspect the prior of $\divt{} \sim U(0, 0.1)$ used by
 at least some of the 22 taxa, we are nearly certain that these
 narrower priors are incorrect and exclude the truth.
 
+Our results show that the model-averaging approach of \citet{Hickerson2013}
+does not reduce the methods bias towards models with smaller parameter space,
+but rather allow it to manifest in a very dangerous way.
+The method strongly prefers the prior model with the narrowest distribution on
+divergence times across all three of our analyses, even when this model is
+almost certainly incorrect and excludes the true divergence times of the
+Philippine taxa.
+Given that the results of \citet{Hickerson2013} strongly prefer the models with
+the narrowest prior on divergence times, it seems quite likely that their
+model-averaged results are dominated by models that exclude at least some of
+the 22 true divergence times, making their results difficult to interpret.
 
+To better quantify the propensity of Hickerson et al.'s
+\citeyear{Hickerson2013} approach to exclude the truth, we simulated
+1000 pseudo-observed datasets in which the divergence times for the
+22 population pairs are drawn randomly from an exponential distribution
+with a mean of 0.5 ($\divt{} \sim Exp(2)$). All other parameters were
+identically distributed as in the $M_1$--$M_5$ models.
+We then repeated the analysis described above, using $5\e6$ prior samples from
+$M_1$, $M_2$, $M_3$, $M_4$, and $M_5$, and retaining 1,000 posterior samples
+for each of the 1,000 pseudo-observed datasets.
+
+Our results show that the model-averaging approach of \citet{Hickerson2013}
+excludes the true values of parameters in 97\% of the replicates (90\% with
+GLM-regression adjustment), excluding upto 21 of the 22 true divergence times
+(Figure~\ref{figExclusionSimTau}.
+Furthermore, the posterior probability of excluding at least one true parameter
+value is very high in nearly all of the replicates
+(Figure~\ref{figExclusionSimProb}).
+We used a Bayes factor (comparing models that exclude the truth to those that
+do not) calculated for each replicate of greater than 10 as strong support for
+excluding the truth.
+With that criterion, 66\% of the replicats (87\% with GLM-regression adjustment)
+strongly support the exclusion of true values (Figure~\ref{figExclusionSimProb}).
 
 
 
