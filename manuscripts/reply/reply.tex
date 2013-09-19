@@ -125,6 +125,14 @@ the use of uniform priors.
 Furthermore we discuss the potential theoretical and practical problems of
 empirical Bayesian model choice.
 
+
+
+
+\section*{Hickerson et al.'s re-analysis of the Philippines data}
+
+
+
+
 \section*{EB}
 \citet{Hickerson2013} repeatedly refer the prior distributions used by
 \citet{Oaks2012} as ``poorly selected''.
@@ -369,10 +377,141 @@ the danger of using narrow, empirically guided priors in a Bayesian
 model-averaging framework \ldots
 
 \subsection*{Final thought on EB}
-Given all of this, it is quite clear why one should use caution before
-overly criticizing ones choice of priors after having seen the posterior.
-This really is a strawman argument.
-They were not there before the data were seen.
+Given all of the theoretical and practical issues with empirical Bayes
+approaches to Bayesian model choice discussed in the proceeding sections, it is
+quite clear why one should use caution before overly criticizing an
+investigators choice of priors after having seen the posterior.
+In a strictly Bayesian world, this is cheating.
+As discussed by \citet{Oaks2012}, prior to analysing the data, there was a large
+amount of uncertainty regarding the divergence times of the 22 population pairs
+under study.
+Two the these pairs represent distinct species, and the taxonomy of many groups
+in the Philippines has repeatedly been shown to mask deeply divergent lineages
+\citep{RafeDiesmosAlcala2008,Linkem2010,Siler2010,Welton2010,Siler2011HerpMonographs,
+Siler2011,Siler2012,RafeStuart2012}.
+\highLight{Any new stuff to add to this list of citations?}.
+\citet{Oaks2012} also discuss how the sole use of uniform priors in \msb makes
+it very difficult for investigators to express their prior uncertainty without
+putting a lot of prior density in regions of improbable parameter space.
+The alternative, as shown above, is to risk excluding the truth before even
+conducting the analysis.
+
+
+
+
+
+
+\section*{Our power analysis}
+\citet{Hickerson2013} did present a power analysis in their response, however,
+they did not follow the recommendations and conduct a power analysis to
+accompany their inference of clustered divergences using the Philippines data
+and their empirical Bayesian model-averaging approach.
+We present such an analysis here.
+
+Following \citet{Oaks2012}, we simulated 1000 pseudo-replicate datasets with
+\divt{} for each of the 22 population pairs randomly drawn from a uniform
+distribution, $U(0, \divt{max})$, where \divt{max} was set to: 0.2, 0.4, 0.6,
+0.8, 1.0, and 2.0, in \globalcoalunit generations.
+All other parameters were identically distributed as the prior.
+Following \citet{Hickerson2013} (but avoiding mixing time units), we used five
+priors, all of which had priors on population sizes of $\meanDescendantTheta{}
+\sim U(0.0001, 0.1)$ and $\ancestralTheta{} \sim U(0.0001, 0.05)$.
+Each of these priors had the following priors on divergence time parameters:
+$M_1$, $\divt{} \sim U(0, 0.1)$;
+$M_2$, $\divt{} \sim U(0, 1)$;
+$M_3$, $\divt{} \sim U(0, 5)$;
+$M_4$, $\divt{} \sim U(0, 10)$; and
+$M_5$, $\divt{} \sim U(0, 20)$.
+For our prior, we simulated $1\e6$ random samples from each of the models
+for a total sample of $5\e6$.
+For each pseudo-replicate dataset, we retained the 1000 samples from each prior
+model with the smallest Euclidean distance from the replicates' summary
+statistics, standardizing the statistics using the prior means and standard
+deviations of the given model.
+Then, for each replicate, we retained the 1000 samples with the smallest
+Euclidean distance from the pseudo-observed summary statistics, this time
+standardizing the statistics using the prior means and standard deviations
+across all five models.
+In total, we analyzed 6000 replicate datasets, retaining 1000 model-averaged
+posterior samples from each of them.
+
+We find that the approach of \citet{Hickerson2013} to estimate the dispersion
+index of divergence times (\vmratio{}) across most of the \divt{max} we
+simulated, whether evaluating the unadjusted
+(Figure~\ref{figPowerAccOmegaMedian}) or GLM-adjusted
+(Figure~\ref{figPowerAccOmegaModeGLM}) posterior estimates.
+The method only estimates \vmratio{} relatively well when the simulated
+distribution of divergence times is identical to one of the prior models
+(Figures~\ref{figPowerAccOmegaMedian}E \& \ref{figPowerAccOmegaModeGLM}E).
+This is consistent with the conclusion of \citet{Oaks2012} that \msb lacks
+robustness and is highly sensitive to the prior distribution deviating from the
+true, underlying distribution of the data.
+
+Furthermore, our results demonstrate that the approach of \citet{Hickerson2013}
+consistently infers highly clustered divergences across all the \divt{max} we
+simulated (Figure~\ref{figPowerNumExcluded}).
+The method is most likely to infer the extreme case of a single divergence event
+when populations diverge randomly over the past \globalcoalunit generations.
+Even when divergences are random over the past $8\globalpopsize$ generations,
+the most likely inference is only two divergence events, and a single 
+divergence is still estimated in more than 10\% of the replicates.
+It is very interesting to note that as \divt{max} increases, but before the
+mode inference is finally pulled away from $\numt{} = 1$, the distribution of
+\numt{} estimates closely mirrors the odd U-shaped prior on divergence models
+used by \msb (see Figure~\ref{figPowerNumExcluded}E and Oaks et al.'s
+\citeyear{Oaks2012} Figure 5B).
+This supports the conclusions of \citet{Oaks2012} that this U-shaped
+prior coupled with the poor marginal likelihoods of models with many
+\divt{} parameters, is a major cause of the method's bias toward
+clustered divergence models.
+
+Looking at our simulation results in terms of the posterior probability of the
+divergence-time dispersion index supporting the extreme case of one divergence
+event (i.e., $p(\vmratio{} < 0.01 \given \ssSpace)$), we find the method
+strongly supports one divergence in greater than 27\%
+of the replicates across all the \divt{max} we simulated
+(Figure~\ref{figPowerOmegaProb}).
+Following \citet{Hickerson2013}, We use a Bayes factor of greater than 10 as
+the criterion for incorrect inference of a single divergence event.
+There is strong support for a single divergence event in more than 90\% of the
+replicates when divergences are random over the past $2.4\globalpopsize$
+generations, and more than 60\% when over the past $3.2\globalpopsize$
+generations or less (Figure~\ref{figPowerOmegaProb}).
+
+Contrary to Hickerson et al.'s \citeyear{Hickerson2013} claim that their
+model-averaging approach ``can discriminate complex multispecies histories and
+correctly reject synchronous divergence, even when discrete divergence times
+differ by much less than \ldots millions of generations,'' our results show
+that method is biased toward strongly supporting the extreme case of a single
+divergence event when populations diverged random over the last
+$8\globalpopsize$ generations.
+To roughly put that on the scale for a vertebrate mitochondrial locus, assuming
+a mutation rate of $2\e{-8}$ per site per generation, this translates to 5
+million generations.
+Assuming a mutation rate consistent with nuclear loci of $1\e{-9}$, this is 100
+million generations.
+
+The results of our power analysis further demonstrate the
+propensity of Hickerson et al.'s \citeyear{Hickerson2013} approach
+to exclude true parameter values.
+Across all but one of the \divt{max} we simulated, the method excludes the
+truth in large proportion of replicates, and across many of the \divt{max} it
+will exclude a large proportion of the true divergence time values
+(Figure~\ref{figPowerNumExcluded}.
+The posterior probability of excluding at least on true divergence value is
+also quite high across many of the \divt{max}
+(Figure~\ref{figPowerProbExclusion}).
+Only when the data are identically distributed as one the prior models does
+the method avoid excluding the truth more than 5\% of the time
+(Figure~\ref{figPowerNumExcluded}E).
+
+Given our results, we conclude that not only does is the approach of
+\citet{Hickerson2013} dangerous in terms of excluding regions of parameter
+space containing the true, but still lacks power to detect random variation in
+divergence times over the scale of $8\globalpopsize$ generations or more.
+This translates to millions of generations for mitochondrial loci, and hundreds
+of millions of generations for nuclear loci.
+
 
 
 \section*{Their power analysis}
@@ -416,7 +555,25 @@ be used as a binary estimator; i.e., was there one event or more?
 This is not consistent with how \msb has been presented, used, and interpreted
 in the past.
 
-\section*{Our power analysis}
+\citet{Hickerson2013} translate their results from units of
+\globalcoalunit generations to generations assuming a mutation rate of
+$1.92\e{-8}$ mutations per site per generation.
+If we tranlate there results to a scale more consistant with rates of mutation
+of nuclear loci ($1\e{-9}$), even under the very optimistic prior settings used
+by \citet{Hickerson2013} the method can only reliably reject the extreme case
+of one divergence event when divergences are random over a period of more than
+3 million generations.
+Again, considering \citet{Hickerson2013} are assuming prior knowledge that
+all population pairs diverged within the past coalescent unit, this
+does not seem particularly powerful.
+
+
+
+
+\section*{Lindley's paradox versus sampling error}
+
+\subsection*{The probabilistic argument for sampling error}
+
 
 
 \section*{Differing utilities of \numt{} and \vmratio{} in \msb}
@@ -583,6 +740,14 @@ Thus, to avoid the   behavior of the method under these priors, cheating
 and using the data was a very tempting alternative.
 
 
+
+\section*{Other clarifications}
+\begin{itemize}
+    \item saturation plot
+    \item different vocabulary (``simultaneous'', etc)
+    \item we did not conclude any inference of $\numt{} > 1$ is robust
+\end{itemize}
+
 \section*{Acknowledgments}
 
 % \bibliography{../bib/references}
@@ -657,6 +822,10 @@ and using the data was a very tempting alternative.
 \mFigure{../../response-redux/results/hickerson/pymsbayes-results/mean_by_dispersion.pdf}{
     Results of reanalysis.
 }{figJointPosterior}
+
+\mFigure{../../response-redux/hickerson-et-al-posterior/mean_by_dispersion.pdf}{
+    Hickerson et al.'s \citeyear{Hickerson2013} joint posterior.
+}{figJointPosteriorHickerson}
 
 \mFigure{../../response-redux/results/sampling-error/pymsbayes-results/omega_over_sampling.pdf}{
     Sampling error \ldots
