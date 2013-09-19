@@ -310,7 +310,7 @@ $M_5$, $\divt{} \sim U(0, 20)$.
 For our prior, we simulated $1\e6$ random samples from each of the models
 for a total sample of $5\e6$.
 For each model, we retained the 10,000 samples with the smallest Euclidean
-distance from the observed summary statistics, standardizing the statitics
+distance from the observed summary statistics, standardizing the statistics
 using the prior means and standard deviations of the given model.
 We then retained the 10,000 samples with the smallest Euclidean distance from
 the observed summary statistics, this time standardizing the statistics using
@@ -331,6 +331,10 @@ The method strongly prefers the prior model with the narrowest distribution on
 divergence times across all three of our analyses, even when this model is
 almost certainly incorrect and excludes the true divergence times of the
 Philippine taxa.
+Unfortunately, ``checking'' the priors by plotting the summary statistics from
+1000 random samples of each prior model along the first two orthogonal axes of
+a principle component analysis, as recommended by \citet{Hickerson2013},
+provides no warning of a problem (Figure~\ref{figPCA}.
 Given that the results of \citet{Hickerson2013} strongly prefer the models with
 the narrowest prior on divergence times, it seems quite likely that their
 model-averaged results are dominated by models that exclude at least some of
@@ -346,9 +350,10 @@ We then repeated the analysis described above, using $5\e6$ prior samples from
 $M_1$, $M_2$, $M_3$, $M_4$, and $M_5$, and retaining 1,000 posterior samples
 for each of the 1,000 pseudo-observed datasets.
 
+\highLight{Add how we determined exclusion.}
 Our results show that the model-averaging approach of \citet{Hickerson2013}
 excludes the true values of parameters in 97\% of the replicates (90\% with
-GLM-regression adjustment), excluding upto 21 of the 22 true divergence times
+GLM-regression adjustment), excluding up to 21 of the 22 true divergence times
 (Figure~\ref{figExclusionSimTau}.
 Furthermore, the posterior probability of excluding at least one true parameter
 value is very high in nearly all of the replicates
@@ -359,10 +364,11 @@ excluding the truth.
 With that criterion, 66\% of the replicats (87\% with GLM-regression adjustment)
 strongly support the exclusion of true values (Figure~\ref{figExclusionSimProb}).
 
+The results of our empirical and simulation-based analyses clearly demonstrate
+the danger of using narrow, empirically guided priors in a Bayesian
+model-averaging framework \ldots
 
-
-
-
+\subsection*{Final thought on EB}
 Given all of this, it is quite clear why one should use caution before
 overly criticizing ones choice of priors after having seen the posterior.
 This really is a strawman argument.
@@ -704,6 +710,18 @@ and using the data was a very tempting alternative.
     A plot of three beta density functions meant to represent a prior
     (black), true posterior (blue), and empirical Bayes density (red).
 }{figCoinFlip}
+
+\mFigure{../../model-choice/priors-for-pc-plot/pc-plots.pdf}{
+    The graphical checks recommended by \citet{Hickerson2013} for three prior
+    models: (A) $M_1$ ($\divt{} \sim U(0, 0.1)$), (B) $M_{1A}$ ($\divt{} \sim
+    U(0, 0.01)$), and (C) $M_{1B}$ ($\divt{} \sim U(0, 0.001)$).
+    The plots project the summary statistics from 1000 random samples from each
+    model onto the first two orthogonal axes of a principle component analysis,
+    with the blue dot representing the observed summary statistics from the 22
+    population pairs of Philippine vertebrates.
+}{figPCA}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% SUPPORTING INFO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
