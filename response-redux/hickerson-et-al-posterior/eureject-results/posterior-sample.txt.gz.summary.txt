@@ -1,0 +1,8 @@
+
+Results for '/home/jamie/projects/msbayes-experiments/response-redux/hickerson-et-al-posterior/eureject-results/posterior-sample.txt.gz':
+psi_mode = [1]
+psi_probs = {1: 0.1456, 2: 0.1021, 3: 0.068, 4: 0.0533, 5: 0.0452, 6: 0.0377, 7: 0.0403, 8: 0.0367, 9: 0.0384, 10: 0.0337, 11: 0.0332, 12: 0.0342, 13: 0.0356, 14: 0.0317, 15: 0.0296, 16: 0.0342, 17: 0.031, 18: 0.0346, 19: 0.0315, 20: 0.0331, 21: 0.0348, 22: 0.0355}
+omega_mode = [(0.0, 0.0021061275991073195)]
+omega_median = 0.0130728285562
+omega_prob_less_than = 0.3612
+model_probs = {1: 0.3763, 2: 0.3885, 3: 0.0885, 4: 0.0108, 5: 0.1069, 6: 0.0239, 7: 0.0044, 8: 0.0007}
