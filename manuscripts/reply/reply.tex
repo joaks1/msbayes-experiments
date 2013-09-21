@@ -132,16 +132,54 @@ empirical Bayesian model choice.
 
 
 \section*{Hickerson et al.'s re-analysis of the Philippines data}
+\citet{Hickerson2013} re-analyze the dataset of \citet{Oaks2012} using a
+model-averaging approach, where they place a discrete uniform prior over eight
+different prior models (see Table 1 of \citet{Hickerson2013}).
+In our initial attempts to explore the behavior of this approach, we found
+a fundamental error in the methodology of \citet{Hickerson2013}:
+their model mixes different time units.
 
-\subsection*{Error of units}
+Each of the eight prior models used in the re-analysis by \citet{Hickerson2013}
+has one of two priors on the mean population size of the descendant populations
+of each taxon pair:
+$\meanDescendantTheta{} \sim U(0.0001, 0.1)$ or
+$\meanDescendantTheta{} \sim U(0.0005, 0.04)$ or
+As described in \citet{Oaks2012}, the divergence time parameters of the model
+implemented in \msb are scaled relative to a constant reference population
+size, \myTheta{C}.
+This reference population size is defined in terms of the upper limit on the
+uniform prior on the mean population size of the descendant populations,
+\meanDescendantTheta{}, such that for the prior $\meanDescendantTheta{} \sim
+U(\uniformMin{\meanDescendantTheta{}},\uniformMax{\meanDescendantTheta{}})$,
+$\myTheta{C} = \uniformMax{\meanDescendantTheta{}}/2$.
+Thus, the model used by \citet{Hickerson2013} mixes two different units of
+time.
+In other words, some of their prior and posterior samples are in units of
+$0.05/\mutationRate$ generations, whereas other are in units of
+$0.02/\mutationRate$ generations.
 
-\subsection*{Not repeatable}
+The fact that their posterior samples are in different units makes the results
+of \citet{Hickerson2013} difficult to interpret, and renders their
+regression-adjusted results invalid; a fundamental assumption of regression is
+that all of the values of the response variable are in the same units.
+Thus, the results in section ``Improved Sampling Efficiency by Prior Weighting
+Supports Asynchronous and Recent Divergence for the Philippines Vertebrate
+Data'' and presented in Figure 2 of \citet{Hickerson2013} should be
+disregarded.
+The error is easily illustrated by re-plotting their results with the different
+time units indicated (Figure~\ref{figJointPosteriorHickerson}.
+
+% In addition to this error, we were not able to reproduce the results of
+% \citet{Hickerson2013}.
+% We followed their methods, generating $5\e6$ prior samples for each of the
+% eight models in their Table 1.
+% We retained the 10,000 samples from each model with the smallest Euclidean
+% distance to the observed summary statistics, and subsequently retained 10,000
+% samples from the remaining 80,000.
 
 
-
-
-\section*{EB}
-\citet{Hickerson2013} repeatedly refer the prior distributions used by
+\section*{The dangers of empirical Bayesian model choice}
+\citet{Hickerson2013} repeatedly refer to the prior distributions used by
 \citet{Oaks2012} as ``poorly selected''.
 However, this is bit misleading, as \citet{Oaks2012} discuss in detail how they
 selected their priors (see their section ``Specifying and simulating the joint
@@ -151,12 +189,13 @@ awkward broad priors to avoid excluding the truth, a priori.
 What \citet{Hickerson2013} really mean by ``poorly selected'' is that
 \citet{Oaks2012} did not use their data to inform their initial prior
 distributions (i.e., they did not use an empirical Bayesian approach).
-\citet{Oaks2012} did also use empirically informed priors when assessing
+\citet{Oaks2012} did use empirically informed priors when assessing
 both the prior sensitivity of the method and determining the power of \msb
 under the ``best'' possible real-world conditions.
 \citet{Oaks2012} discuss the potential dangers of taking an empirical Bayesian
 model choice (see last paragraph of ``Assessing prior sensitivity of \msb''),
-and we expand on this here.
+and we expand on this here by exploring the theoretical and practical
+implications of using an empirical Bayes approach to model choice.
 
 \subsection*{Theoretical implications of empirical priors for Bayesian model
 choice}
@@ -313,8 +352,16 @@ truth.
 The empirically guided, narrowest prior of \citet{Hickerson2013} ($\divt{} \sim
 U(0,0.1)$) likely excludes the true values for at least some of the Philippine
 taxa.
-The prior matches posterior of \emph{mean} divergence time and is much
-narrower than posterior under two of three priors.
+They set this prior to match the 95\% highest posterior density (HPD) interval for
+the mean divergence time estimated under one of the priors used by
+\citet{Oaks2012} (see Table 2 and 3 of \citet{Oaks2012}).
+Given this interval estimate is for the \emph{mean} divergence time across all
+22 taxa, it seems odd to set this as the prior, as many of the taxon pairs
+likely diverged at times older than the upper limit.
+Furthermore, the prior is \emph{excluded} from the 95\% HPD interval estimates
+of the mean divergence time under the other two prior analyses (under these
+priors the 95\% HPD is approximately 0.3--0.6; see Table~6 of
+\citet{Oaks2012}).
 
 For our re-analysis of the Philippines dataset we used the model-averaging
 approach of \citet{Hickerson2013}, but with different prior models to avoid
@@ -571,7 +618,7 @@ in the past.
 \citet{Hickerson2013} translate their results from units of
 \globalcoalunit generations to generations assuming a mutation rate of
 $1.92\e{-8}$ mutations per site per generation.
-If we tranlate there results to a scale more consistant with rates of mutation
+If we tranlate there results to a scale more consistent with rates of mutation
 of nuclear loci ($1\e{-9}$), even under the very optimistic prior settings used
 by \citet{Hickerson2013} the method can only reliably reject the extreme case
 of one divergence event when divergences are random over a period of more than
@@ -584,8 +631,108 @@ does not seem particularly powerful.
 
 
 \section*{Lindley's paradox versus sampling error}
+One of the points of disagreement between \citet{Hickerson2013} and
+\citet{Oaks2012} is the underlying mechanism causing the bias toward models
+with clustered divergences (i.e., models with few divergence events).
+\citet{Oaks2012} present simulations based analyses that suggest the broad
+uniform prior on divergence time parameters hinder the marginal likelihoods of
+models with more divergence time parameters, whereas \citet{Hickerson2013}
+argue that the bias is inherent to the inefficient rejection algorithm
+implemented in \msb.
 
-\subsection*{The probabilistic argument for sampling error}
+\citet{Hickerson2013} present an interesting probabilistic argument in an
+attempt to show that insufficient prior sampling is to blame for the bias.
+They argue the widest of the three priors used by \citet{Oaks2012} was very
+unlikely to produce any prior samples with high numbers of divergence times
+that were consistent with the Philippine data.
+There are a few issues with their argument.
+First, the probabilities they present assume the gene divergence times
+estimated by \citet{Oaks2012} are correct.
+The sole purpose of the estimates of ultrametric gene trees presented by
+\citet{Oaks2012} was to provide a very rough comparison of the gene divergence
+times across the 22 taxa.  These analyses assumed an arbitrary strict clock of
+$2\e{-8}$ for all taxa, and are, of course, subject to estimation error.
+Furthermore, the units of the gene trees are in millions of year, whereas the
+divergence time prior of \msb is in generations, thus the logic of
+\citet{Hickerson2013} requires the additional assumption that all 22 Philippine
+taxa have a generation time of one year.
+Thus, the argument of \citet{Hickerson2013} that divergence time estimates of
+\citet{Oaks2012} ``should set an upper bound on their prior for \divt{}'' seems
+dangerous, especially given our findings presented above.
+
+Finally, even \emph{if} we make all of these assumptions and assume the
+gene divergence times are without error, the probabilistic argument only
+applies to one of the three different priors used by \citet{Oaks2012}.
+The narrowest prior on divergence times used by \citet{Oaks2012} closely mirrors
+the range of gene divergence time estimates, and applying Hickerson et al.'s
+\citeyear{Hickerson2013} probability equations demonstrates that the prior
+is densely populated with samples with large number of divergence parameters
+that are consistent with the gene divergence estimates
+Thus, according to the argument of \citet{Hickerson2013}, if insufficient prior
+sampling is to blame for the bias, it should be much reduced under the narrow
+prior on \divt{}.
+However, the magnitude of the bias is very similar across all three priors
+\citet{Oaks2012}.
+\citet{Hickerson2013} point out a case where the narrow prior performs
+slightly better (panel L of Figures S32, S37, and S38 of \citet{Oaks2012}).
+However, it is important to note that these results suffered from a bug
+in \msb, and there are many cases after \citet{Oaks2012} corrected the 
+bug where the narrow prior performs slightly worse (see panels D--J of
+Figures 3 and S12).
+
+To disentangle whether Lindely's paradox or insufficient prior sampling is
+to blame for the biases revealed by \citet{Oaks2012}, we must look at
+the different predictions made by these two phenomena.
+One examples, as discussed by \citet{Oaks2012} is that insufficient
+prior sampling should create higher variance in posterior estimates,
+and thus the analyses should be sensitive to the number of samples
+drawn from the prior.
+\citet{Oaks2012} do not see such sensitivity when they compare prior sample
+sizes of $2\e6$, $5\e6$, and $10\e7$.
+
+To explore this prediction further, we repeat the analysis of the Philippines
+dataset under the intermediate prior used by \citet{Oaks2012} ($\divt \sim U(0,
+10)$, $\meanDescendantTheta{} \sim (0.0005, 0.04)$, $\ancestralTheta{} \sim
+(0.0005, 0.02)$), using a very large prior sample size of $10\e8$.
+When we look at the trace of the estimates of the dispersion index of
+divergence times (\vmratio{}) as the prior samples accumulate
+(Figure~\ref{figSamplingError}) we see no trend in either the unadjusted or GLM
+regression adjusted estimates.
+This strongly suggests that insufficient prior sampling did not play a large
+role in the bias found by \citet{Oaks2012}.
+
+Our results presented above that demonstrate the bias of the model-averaging
+approach of \citet{Hickerson2013} both toward models with narrower \divt{}
+priors (Table~\ref{tabModelChoiceEmpirical} and
+Figs.~\labelcref{figExclusionSimTau,figExclusionSimProb,figPowerNumExcluded,figPowerProbExclusion})
+and models with fewer \divt{} parameters (Figs.~\ref{figPowerPsiMode} \&
+\ref{figPowerOmegaProb}) strongly implicate Lindley's paradox as a primary
+cause.
+In all of our model-averaging analyses, all prior models have the same number
+of samples.
+Thus, it is difficult to explain the method's propensity towards the model with
+the smallest parameter space with insufficient sampling.
+While analyses that sample each model proportional to their relative parameter
+space could be explored, it seems very likely that the broad uniform priors
+are simply inhibiting the marginal likelihoods of spacious models.
+
+As discussed by \citet{Oaks2012}, a straightforward prediction of Lindley's
+paradox is that it should disappear as the model generating the data converges
+to the prior.
+\citet{Oaks2012} test this prediction by performing 100,000 simulations to
+assess the model-choice behavior of \msb when the prior model is correct.
+They find that the bias actually switches direction (at least for the
+regression-adjusted estimates) and the method tends to underestimate the
+probability of the model with one divergence event (see Figure 4 of
+\citet{Oaks2012}).
+The same prediction is not as straightforward for the insufficient-sampling
+hypothesis.
+Even when the prior is correct, due to the discrete uniform prior on
+\numt{} implemented in \msb, models with larger numbers of divergence
+events (and thus greater parameter space) will still be less densely
+sampled than those with fewer divergence events \citep{Oaks2012}.
+
+
 
 
 
@@ -755,8 +902,20 @@ and using the data was a very tempting alternative.
 
 
 \section*{Other clarifications}
+
+\subsection*{saturation plot}
+\citet{Hickerson2013} claim that our priors ``cause much of the explored
+parameter space to be beyond the threshold of saturation in most mtDNA genes.''
+To explore this possibility, we simply plotted the summary statistics used
+over divergence times to look for the point when the statistics begin to
+saturate (Figure~\ref{figSaturationPlot}).
+Clearly, the priors with upper limits on \divt{} of 5 and 10 did not
+suffer from saturation.
+Even as far out as divergence times as 20 coalescent units, while 
+there is some saturation, there is still clearly signal in the
+summary statistics used by \msb.
+
 \begin{itemize}
-    \item saturation plot
     \item different vocabulary (``simultaneous'', etc)
     \item we did not conclude any inference of $\numt{} > 1$ is robust
 \end{itemize}
@@ -784,10 +943,46 @@ and using the data was a very tempting alternative.
 \newpage
 \singlespacing
 
+%:TABLE-re-analysis
+% \begin{table}[htbp]
+%     \sffamily
+%     \footnotesize
+%     \addtolength{\tabcolsep}{-0.08cm}
+%     \rowcolors{2}{}{myGray}
+%     %\captionsetup{font=footnotesize}
+%     \caption{Results of the model-averaging approach of \citet{Hickerson2013}
+%         applied to the Philippines dataset of \citet{Oaks2012} using eight
+%         prior models (see \citet{Hickerson2013} Table 1).  The results of (1)
+%         \citet{Hickerson2013}, (2) our full re-analysis, and of (3) repeating
+%         the final rejection step of \citet{Hickerson2013} using the prior means and
+%         standard deviations to normalize the summary statistics, are all compared.}
+%     \centering
+%     \begin{tabular}{ l l l l }
+%         \toprule
+%          & Hickerson et al. (2013) & Re-analysis & blah \\
+%         $\hat{\numt{}}$ & 2 & 1 & 1 \\
+%         $p(\numt{} = 1 | \ssSpace)$ & 0.062 & 0.206 & 0.146 \\
+%         $BF_{\numt{} = 1, \numt{} \neq 1}$ 1.39 & 5.45 & 3.59 \\
+%         $p(\vmratio{} < 0.01 | \ssSpace)$ & 0.298 & 0.416 & 0.361 \\
+%         $BF_{\vmratio{} < 0.01, \vmratio{} \geq 0.01}$ 6.65 & 11.16 & 8.85 \\
+%         $\hat{M}$ & 1 & 2 & 2 \\
+%         $p(M_1 | \ssSpace)$ & 0.513 & 0.358 & 0.376 \\
+%         $p(M_2 | \ssSpace)$ & 0.286 & 0.369 & 0.389 \\
+%         $p(M_3 | \ssSpace)$ & 0.036 & 0.086 & 0.089 \\
+%         $p(M_4 | \ssSpace)$ & 0.002 & 0.012 & 0.011 \\
+%         $p(M_5 | \ssSpace)$ & 0.142 & 0.129 & 0.107 \\
+%         $p(M_6 | \ssSpace)$ & 0.020 & 0.043 & 0.024 \\
+%         $p(M_7 | \ssSpace)$ & 0.001 & 0.003 & 0.004 \\
+%         $p(M_8 | \ssSpace)$ & 0.000 & 0.000 & 0.001 \\
+%         \bottomrule
+%     \end{tabular}
+%     \label{tabModelChoiceEmpirical}
+% \end{table}
+
 %:TABLE-model-choice-empirical
 \begin{table}[htbp]
     \sffamily
-    \footnotesize
+    % \footnotesize
     \addtolength{\tabcolsep}{-0.08cm}
     \rowcolors{2}{}{myGray}
     %\captionsetup{font=footnotesize}
@@ -821,7 +1016,6 @@ and using the data was a very tempting alternative.
     \label{tabModelChoiceEmpirical}
 \end{table}
 
-
 \clearpage
 
 %% FIGURES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -832,16 +1026,21 @@ and using the data was a very tempting alternative.
     Saturation plot \ldots
 }{figSaturationPlot}
 
-\mFigure{../../response-redux/results/hickerson/pymsbayes-results/mean_by_dispersion.pdf}{
-    Results of reanalysis.
-}{figJointPosterior}
+% \mFigure{../../response-redux/results/hickerson/pymsbayes-results/pymsbayes-output/d1/m12345678-combined/mean_by_dispersion.pdf}{
+%     Results of reanalysis.
+% }{figJointPosterior}
 
 \mFigure{../../response-redux/hickerson-et-al-posterior/hickerson-posterior-1k/mean_by_dispersion.pdf}{
     Hickerson et al.'s \citeyear{Hickerson2013} joint posterior.
 }{figJointPosteriorHickerson}
 
 \mFigure{../../response-redux/results/sampling-error/pymsbayes-results/omega_over_sampling.pdf}{
-    Sampling error \ldots
+    Traces of the estimated lower and upper limits of the 95\% highest posterior density (HPD)
+    interval of \vmratio{} (the dispersion index of divergence times) as 100 million prior
+    samples are accumulated. Each pair of points is based on 1000 posterior samples retained
+    from the prior. Both (A) unadjusted and (b) GLM-regression-adjusted estimates are shown.
+    Prior settings were $\divt{} \sim U(0,10)$, $\meanDescendantTheta{} \sim U(0.0005, 0.04)$,
+    and $\ancestralTheta{} \sim U(0.0005, 0.02)$.
 }{figSamplingError}
 
 %% Exclusion simulation results
