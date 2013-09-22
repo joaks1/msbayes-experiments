@@ -67,45 +67,46 @@ potential pitfalls of approximate Bayesian methods of comparative
 phylogeographical model choice.
 The discussion is centered around the approximate Bayesian model choice method,
 \msb, which estimates the temporal distribution of divergences among
-co-distributed pairs of taxa.
+co-distributed pairs of taxa \citep{Huang2011}.
 \citet{Oaks2012} published their findings that the method \msb can often be
-biased towards inferring models of temporally clustered divergence times
-among taxon pairs.
+biased towards inferring models of temporally clustered divergence times among
+taxon pairs.
 \citet{Hickerson2013} has published a response to this paper where they
 present a model-averaging approach that they conclude circumvents the poor
-behavior of the method revealved by \citet{Oaks2012}.
+behavior of the method revealed by \citet{Oaks2012}.
 Both of these papers are largely in agreement.
 In fact, \citet{Hickerson2013} reiterate a lot of the discussion of
 \citet{Oaks2012} regarding the impact of broad uniform priors on Bayesian model
 choice.
 The main differences in their perspectives are centered around
-(1) the means by which broad uniform priors cause the poor behavior of \msb,
-and
+(1) the mechanism by which broad uniform priors cause the poor behavior of
+\msb, and
 (2) how to potentially ameliorate this issue.
 
-\citet{Oaks2012} conclude the primary mechanism by which broad priors cause the
-poor behavior of the method is likely the low marginal likelihoods of
-parameter-rich models integrated over vast parameter space with low probability
-of producing the data, yet relatively high prior density \citep[this is often
-referred to as Lindley's paradox;][]{Lindley1957}.
+Regarding the mechanism behind the poor behavior of the method,
+\citet{Oaks2012} suggest the primary cause is likely the low marginal
+likelihoods of parameter-rich models integrated over vast parameter space with
+low probability of producing the data, yet relatively high prior density
+\citep[this is often referred to as Lindley's paradox;][]{Lindley1957}.
 Note, this suggests the bias is extrinsic to \msb, and the numerical
 approximation machinery of the method could be sound.
 \citet{Hickerson2013} take a more pessimistic view of the bias, and suggest it
-is intrinsic to \msb, i.e., the method's rejection algorithm is
-inefficient and will be increasingly biased as the overall space of the model
-increases, either as a function of the number of taxon pairs or the width of
-the uniform priors on nuisance parameters.
+is intrinsic to \msb.
+They conclude the method's rejection algorithm is inefficient and will be
+increasingly biased as the overall space of the model increases, either as a
+function of the number of taxon pairs or the width of the uniform priors on
+nuisance parameters.
 They support their position by giving a probabilistic argument that focuses on
 only one of the three prior models used by \citet{Oaks2012}.
 We show that this argument is based on dubious assumptions, and does not
 explain the bias of the method found in several analyses of \citet{Oaks2012}.
-We reiterate several of the findings of \citet{Oaks2012} as well as present
-results of additional analyses, which strongly suggest that Lindley's paradox
-is playing a large role in the poor behavior of the method.
+Furthermore, we reiterate several of the findings of \citet{Oaks2012} as well
+as present results of additional analyses, which strongly suggest that
+Lindley's paradox is playing a large role in the poor behavior of the method.
 
-\citet{Oaks2012} suggest that more cogent prior probability distributions on
-divergence models and nuisance parameters could mitigate the effect of
-Lindley's paradox.
+As for how to mitigate the bias, \citet{Oaks2012} suggest that more cogent
+prior probability distributions on divergence models and nuisance parameters
+could reduce the effect of Lindley's paradox.
 They also layout a set of simulation-based procedures for determining power,
 accuracy, and robustness of the method given a dataset, and recommend any
 application of \msb should be accompanied by such procedures, especially
@@ -119,14 +120,15 @@ their results invalid and leave the remaining results difficult to interpret.
 Furthermore, we follow the advice of \citet{Oaks2012} and present
 simulation-based assessments of Hickerson et al.'s \citeyear{Hickerson2013}
 approach.
-Our results demonstrate that the method is biased and dangerous.
-The approach merely provides another means by which the model can ``escape''
-large parameter space, and the bias towards models with smaller space still
-remains.
-This bias can be dangerous and often excludes the true parameter space due to
-the use of uniform priors.
+Our results demonstrate that the method is biased and dangerous.  The approach
+merely provides another means by which the model can ``escape'' large parameter
+space, and bias towards smaller models remains.
+This manifestation of the bias can be dangerous and often excludes the true
+parameter space due to the use of uniform priors.
 Furthermore we discuss the potential theoretical and practical problems of
-empirical Bayesian model choice.
+empirical Bayesian model choice, which is encouraged by \citet{Hickerson2013}
+without any mention of its potential complications.
+
 
 
 
@@ -154,17 +156,18 @@ $\myTheta{C} = \uniformMax{\meanDescendantTheta{}}/2$.
 Thus, the model used by \citet{Hickerson2013} mixes two different units of
 time.
 In other words, some of their prior and posterior samples are in units of
-$0.05/\mutationRate$ generations, whereas other are in units of
+$0.05/\mutationRate$ generations, whereas others are in units of
 $0.02/\mutationRate$ generations.
 
 The fact that their posterior samples are in different units makes the results
 of \citet{Hickerson2013} difficult to interpret, and renders their
 regression-adjusted results invalid; a fundamental assumption of regression is
 that all of the values of the response variable are in the same units.
-Thus, the results in section ``Improved Sampling Efficiency by Prior Weighting
-Supports Asynchronous and Recent Divergence for the Philippines Vertebrate
-Data'' and presented in Figure 2 of \citet{Hickerson2013} should be
-disregarded.
+Thus, the results in sections ``Using ABC Model Comparison to Weight
+Alternative Priors for the Philippine Vertebrate Data'' and ``Improved Sampling
+Efficiency by Prior Weighting Supports Asynchronous and Recent Divergence for
+the Philippines Vertebrate Data'' and presented in Figure 2 of
+\citet{Hickerson2013} should be disregarded.
 The error is easily illustrated by re-plotting their results with the different
 time units indicated (Figure~\ref{figJointPosteriorHickerson}.
 
@@ -183,18 +186,19 @@ time units indicated (Figure~\ref{figJointPosteriorHickerson}.
 However, this is bit misleading, as \citet{Oaks2012} discuss in detail how they
 selected their priors (see their section ``Specifying and simulating the joint
 prior'').
-They detail how the being limited to uniform prior distributions necessitates
-awkward broad priors to avoid excluding the truth, a priori.
+They detail how being limited to uniform prior distributions in \msb
+necessitates awkward broad priors to avoid excluding the truth, a priori.
 What \citet{Hickerson2013} really mean by ``poorly selected'' is that
 \citet{Oaks2012} did not use their data to inform their initial prior
 distributions (i.e., they did not use an empirical Bayesian approach).
 \citet{Oaks2012} did use empirically informed priors when assessing
 both the prior sensitivity of the method and determining the power of \msb
-under the ``best'' possible real-world conditions.
+under real-world conditions with highly informative priors.
 \citet{Oaks2012} discuss the potential dangers of taking an empirical Bayesian
-model choice (see last paragraph of ``Assessing prior sensitivity of \msb''),
-and we expand on this here by exploring the theoretical and practical
-implications of using an empirical Bayes approach to model choice.
+approach to model choice (see last paragraph of ``Assessing prior sensitivity
+of \msb''), and we expand on this here by exploring both the theoretical and
+practical implications of using empirically informed priors for Bayesian
+model choice.
 
 \subsection*{Theoretical implications of empirical priors for Bayesian model
 choice}
@@ -229,15 +233,15 @@ information.
 
 This is an elegant method of updating our beliefs as data are accumulated.
 However, this all hinges on the fact that the prior ($p(\myTheta{})$) is
-defined for all possible parameters independently of the new data being
+defined for all possible parameter values independently of the new data being
 analyzed.
 Any other datasets or external information can safely be used to inform our
 beliefs about $p(\myTheta{})$.
-However, if the data are used to both inform the prior and calculate the
+However, if the same data are used to both inform the prior and calculate the
 posterior, the prior becomes conditional on the data, and Bayes' rule breaks
 down.
 
-Now, this is not to say that empirical Bayesian approaches not useful.
+This is not to say that empirical Bayesian approaches not useful.
 Quite the contrary.
 Empirical Bayes is a well studied branch of Bayesian statistics that
 has given rise to a many powerful inference methods.
@@ -245,18 +249,18 @@ It is true that empirical Bayes methods have an uncertain theoretical basis and
 do not yield a valid posterior distribution from Bayes' rule \citep[e.g.,
 empirical Bayesian estimates of the posterior are often too narrow, off-center,
 and misshapen;][]{Morris1983,Laird1987,Carlin1990,Efron2013}.
-Nevertheless, empirical Bayes methods are often a powerful means of parameter
-estimation that display favorable frequentist properties.
+Nevertheless, empirical Bayes methods can provide a powerful means of parameter
+estimation.
 Furthermore, many post-hoc correction methods have been developed for
 estimating confidence-intervals from empirical Bayes estimates of posterior
-distributions that often display good frequentist coverage behavior
+distributions that often exhibit good frequentist properties
 \citep{Morris1983,Laird1987,Laird1989, Carlin1990,Hwang2009}.
 
 Whereas empirical Bayes approaches can provide powerful methods for parameter
 estimation, a theoretical justification for empirical Bayes approaches to model
-choice is much more dubious.
-In Bayesian model choice, the goal is usually not to estimate parameters, but
-to estimate the relative probabilities of candidate models.
+choice is much more uncertain.
+In Bayesian model choice, the goal is not to estimate parameters, but to
+estimate the relative probabilities of candidate models.
 Unlike parameter estimates, posterior probabilities represent a summary of the
 entire posterior distribution.
 Thus, given that empirical Bayesian posterior distributions are not accurate,
@@ -266,9 +270,9 @@ them.
 This can be demonstrated with a simple, albeit contrived, example.
 Let us say that principal investigator Mary and her new postdoc Will are
 interested in the hypothesis that the mass of George Washington's periwig
-renders the United States' quarter dollar unfair.
-That is to say that our null hypothesis is that the probability of a US quarter
-landing heads when tossed is less than 0.5 ($\theta < 0.5$).
+renders the quarter dollar of the United States unfair.
+That is to say that their null hypothesis is that the probability of a US
+quarter landing heads when tossed is less than 0.5 ($\theta < 0.5$).
 They can certainly evaluate this hypothesis, they can have undergraduate
 worker, Joe, flip the coin for them while the tabulate the results.
 But being Bayesians, before they call Joe into the lab, they agree on a
@@ -318,7 +322,8 @@ Quarter unfair, Will begins composing an e-mail of complaint for the U.S.\
 Mint.
 
 If Joe's flips were a representative sample, Mary and Will's empirical Bayes
-estimate might very well be a better estimator for the parameter \myTheta{}.
+estimate might very well be a better point estimate for the parameter
+\myTheta{}.
 However, their empirical Bayes estimate of the probability of their hypothesis
 is incorrect and biased.
 This simple example shows how parameter estimation is fundamentally different
@@ -327,46 +332,55 @@ While empirical informed priors can be used to obtain well-behaved parameter
 estimators, using them for model choice is much less certain.
 
 
+
 \subsection*{Practical dangers of narrow uniform priors for Bayesian model
 choice}
-Given that \msb can be biased toward models with smaller parameter space, and
-Hickerson et al.'s \citeyear{Hickerson2013} use of narrow, empirically informed
-uniform priors on divergence times, we sought to determine whether such an
-approach will often exclude the truth (i.e., the model-averaged posterior will
-be dominated by models that excude the true values of parameters of the model).
-We explored this possiblity in two ways.
-First, we reanalyzed the Philippines dataset using the model-averaging approach
+We were alarmed when we saw the results of the model-averaging results
+presented in \citet{Hickerson2013}.
+Their results strongly favored the models with the narrowest, empirically
+informed prior on divergence time, and thus their model-averaged posterior
+estimates are dominated by models $M_1$ and $M_2$ (see Table 1 of
+\citet{Hickerson2013}).
+This concerned us because the narrowest prior of \citet{Hickerson2013}
+($\divt{} \sim U(0,0.1)$) likely excludes the true divergence times for at
+least some of the Philippine taxa.
+They set this prior to match the 95\% highest posterior density (HPD) interval for
+the mean divergence time estimated under one of the priors used by
+\citet{Oaks2012} (see Table 2 and 3 of \citet{Oaks2012}).
+Given this interval estimate is for the \emph{mean} divergence time across all
+22 taxa, it seems odd to set this as the prior, because many of the taxon pairs
+are expected to have diverged at times older than the upper limit.
+Furthermore, this prior is \emph{excluded} from the 95\% HPD interval estimates
+of the mean divergence time under the other two priors explored by
+\citet{Oaks2012} (under these priors the 95\% HPD is approximately 0.3--0.6;
+see Table~6 of \citet{Oaks2012}).
+Thus, when we saw the results of \citet{Hickerson2013} we suspected that
+Lindley's paradox was again biasing the method toward models with smaller
+parameter space, and as a consequence was biasing the method toward models
+that exclude the truth (i.e., the model-averaged posterior will
+be dominated by models that exclude the true values of parameters of the model).
+
+We explored the propensity of the model-averaging approach of
+\citet{Hickerson2013} to exclude the truth in two ways.
+First, we re-analyzed the Philippines dataset using the model-averaging approach
 of \citet{Hickerson2013}, but set one of prior models with a uniform prior on
 divergence times that is unrealistically narrow, and almost certainly excludes
-the truth.
+most, if not all, of the true divergence times of the 22 taxon pairs.
 If Lindley's paradox causes the method to prefer models with less parameter
 space, we expect \msb will preferentially sample from this incorrect model
-yielding a marginal posterior that is invalid (i.e., the model-averaged
+yielding a marginal posterior that is incorrect (i.e., the model-averaged
 posterior will be dominated by an incorrect model that excludes the truth).
 Second, we generated simulated datasets for which the divergence times are
 drawn form an exponential distribution and applied the approach of
 \citet{Hickerson2013} to each of them to see how often the method excludes the
 truth.
 
-The empirically guided, narrowest prior of \citet{Hickerson2013} ($\divt{} \sim
-U(0,0.1)$) likely excludes the true values for at least some of the Philippine
-taxa.
-They set this prior to match the 95\% highest posterior density (HPD) interval for
-the mean divergence time estimated under one of the priors used by
-\citet{Oaks2012} (see Table 2 and 3 of \citet{Oaks2012}).
-Given this interval estimate is for the \emph{mean} divergence time across all
-22 taxa, it seems odd to set this as the prior, as many of the taxon pairs
-likely diverged at times older than the upper limit.
-Furthermore, the prior is \emph{excluded} from the 95\% HPD interval estimates
-of the mean divergence time under the other two prior analyses (under these
-priors the 95\% HPD is approximately 0.3--0.6; see Table~6 of
-\citet{Oaks2012}).
-
 For our re-analysis of the Philippines dataset we used the model-averaging
 approach of \citet{Hickerson2013}, but with different prior models to avoid
-mixing time units. We used five priors, all of which had priors on population
-sizes of $\meanDescendantTheta{} \sim U(0.0001, 0.1)$ and
-$\ancestralTheta{} \sim U(0.0001, 0.05)$.
+their error of mixing time units.
+We used five priors, all of which had priors on population sizes of
+$\meanDescendantTheta{} \sim U(0.0001, 0.1)$ and $\ancestralTheta{} \sim
+U(0.0001, 0.05)$.
 Following \citet{Hickerson2013}, each of these priors had the following
 priors on divergence time parameters:
 $M_1$, $\divt{} \sim U(0, 0.1)$;
@@ -379,21 +393,23 @@ for a total sample of $5\e6$.
 For each model, we retained the 10,000 samples with the smallest Euclidean
 distance from the observed summary statistics, standardizing the statistics
 using the prior means and standard deviations of the given model.
-We then retained the 10,000 samples with the smallest Euclidean distance from
-the observed summary statistics, this time standardizing the statistics using
-the prior means and standard deviations across all five models.
+From the remaining 50,000 samples, we then retained the 10,000 samples with the
+smallest Euclidean distance from the observed summary statistics, this time
+standardizing the statistics using the prior means and standard deviations
+across all five models.
 We then repeated this analysis twice, replacing the $M_1$ with
 $M_1A$ and $M_1B$, which differ only by having priors on divergence
 times of $\divt{} \sim U(0, 0.01)$ and $\divt{} \sim U(0, 0.001)$,
 respectively.
 While we suspect the prior of $\divt{} \sim U(0, 0.1)$ used by
-\citet{Hickerson2013} likely excludes the true divergence times of
-at least some of the 22 taxa, we are nearly certain that these
-narrower priors are incorrect and exclude the truth.
+\citet{Hickerson2013} likely excludes the true divergence times of at least
+some of the 22 taxa, we are nearly certain that these narrower priors are
+incorrect and exclude most, if not all, of the divergence times of the
+Philippine taxa.
 
 Our results show that the model-averaging approach of \citet{Hickerson2013}
 does not reduce the methods bias towards models with smaller parameter space,
-but rather allow it to manifest in a very dangerous way.
+but rather allows it to manifest in a very dangerous way.
 The method strongly prefers the prior model with the narrowest distribution on
 divergence times across all three of our analyses, even when this model is
 almost certainly incorrect and excludes the true divergence times of the
@@ -405,17 +421,18 @@ provides no warning of a problem (Figure~\ref{figPCA}.
 Given that the results of \citet{Hickerson2013} strongly prefer the models with
 the narrowest prior on divergence times, it seems quite likely that their
 model-averaged results are dominated by models that exclude at least some of
-the 22 true divergence times, making their results difficult to interpret.
+the 22 true divergence times, making their results difficult to interpret
+(in addition to the error of time units).
 
 To better quantify the propensity of Hickerson et al.'s
 \citeyear{Hickerson2013} approach to exclude the truth, we simulated
 1000 pseudo-observed datasets in which the divergence times for the
 22 population pairs are drawn randomly from an exponential distribution
 with a mean of 0.5 ($\divt{} \sim Exp(2)$). All other parameters were
-identically distributed as in the $M_1$--$M_5$ models.
+identically distributed as the $M_1$--$M_5$ models.
 We then repeated the analysis described above, using $5\e6$ prior samples from
-$M_1$, $M_2$, $M_3$, $M_4$, and $M_5$, and retaining 1,000 posterior samples
-for each of the 1,000 pseudo-observed datasets.
+$M_1$, $M_2$, $M_3$, $M_4$, and $M_5$, and retaining 1000 posterior samples
+for each of the 1000 pseudo-observed datasets.
 
 \highLight{Add how we determined exclusion.}
 Our results show that the model-averaging approach of \citet{Hickerson2013}
@@ -428,18 +445,24 @@ value is very high in nearly all of the replicates
 We used a Bayes factor (comparing models that exclude the truth to those that
 do not) calculated for each replicate of greater than 10 as strong support for
 excluding the truth.
-With that criterion, 66\% of the replicats (87\% with GLM-regression adjustment)
+With this criterion, 66\% of the replicates (87\% with GLM-regression adjustment)
 strongly support the exclusion of true values (Figure~\ref{figExclusionSimProb}).
 
 The results of our empirical and simulation-based analyses clearly demonstrate
-the danger of using narrow, empirically guided priors in a Bayesian
-model-averaging framework \ldots
+the danger of using narrow, empirically guided uniform priors in a Bayesian
+model-averaging framework.
+This is especially dangerous \msb, which has already been demonstrated to be
+biased away from models with more parameter space.
+The consequence of this approach is a high risk of obtaining a model-averaged
+posterior estimate that is heavily weighted toward incorrect models that
+exclude true values of model parameters.
 
-\subsection*{Final thought on EB}
+
+\subsection*{Final thoughts on empirical priors in Bayesian model choice}
 Given all of the theoretical and practical issues with empirical Bayes
 approaches to Bayesian model choice discussed in the proceeding sections, it is
 quite clear why one should use caution before overly criticizing an
-investigators choice of priors after having seen the posterior.
+investigator's choice of priors after having seen the resulting posterior.
 In a strictly Bayesian world, this is cheating.
 As discussed by \citet{Oaks2012}, prior to analysing the data, there was a large
 amount of uncertainty regarding the divergence times of the 22 population pairs
@@ -452,21 +475,22 @@ Siler2011,Siler2012,RafeStuart2012}.
 \citet{Oaks2012} also discuss how the sole use of uniform priors in \msb makes
 it very difficult for investigators to express their prior uncertainty without
 putting a lot of prior density in regions of improbable parameter space.
-The alternative, as shown above, is to risk excluding the truth before even
-conducting the analysis.
+The alternative, as shown above, is to risk excluding the truth before
+performing the analysis.
 
 
 
 
 
 
-\section*{Our power analysis}
+\section*{Assessing the power of the model-averaging approach of
+    \citet{Hickerson2013}}
 \citet{Hickerson2013} did not conduct a power analysis to accompany their
 inference of clustered divergences from the Philippines data (as recommended by
 \citet{Oaks2012}).
-Thus, we perform perform simulation-based power analyses to explore the
-power of the approximate Bayesian model-averaging approach championed
-by \citet{Hickerson2013}.
+Thus, we perform simulation-based power analyses to explore the power of the
+approximate Bayesian model-averaging approach championed by
+\citet{Hickerson2013}.
 
 Following \citet{Oaks2012}, we simulated 1000 pseudo-replicate datasets with
 \divt{} for each of the 22 population pairs randomly drawn from a uniform
@@ -485,7 +509,7 @@ $M_5$, $\divt{} \sim U(0, 20)$.
 For our prior, we simulated $1\e6$ random samples from each of the models
 for a total sample of $5\e6$.
 For each pseudo-replicate dataset, we retained the 1000 samples from each prior
-model with the smallest Euclidean distance from the replicates' summary
+model with the smallest Euclidean distance from the pseudo-observed summary
 statistics, standardizing the statistics using the prior means and standard
 deviations of the given model.
 Then, for each replicate, we retained the 1000 samples with the smallest
@@ -493,11 +517,11 @@ Euclidean distance from the pseudo-observed summary statistics, this time
 standardizing the statistics using the prior means and standard deviations
 across all five models.
 In total, we analyzed 6000 replicate datasets, retaining 1000 model-averaged
-posterior samples from each of them.
+posterior samples for each of them.
 
-We find that the approach of \citet{Hickerson2013} to estimate the dispersion
-index of divergence times (\vmratio{}) across most of the \divt{max} we
-simulated, whether evaluating the unadjusted
+We find that the approach of \citet{Hickerson2013} struggles to estimate the
+dispersion index of divergence times (\vmratio{}) across most of the \divt{max}
+we simulated, whether evaluating the unadjusted
 (Figure~\ref{figPowerAccOmegaMedian}) or GLM-adjusted
 (Figure~\ref{figPowerAccOmegaModeGLM}) posterior estimates.
 The method only estimates \vmratio{} relatively well when the simulated
@@ -516,8 +540,8 @@ Even when divergences are random over the past $8\globalpopsize$ generations,
 the most likely inference is only two divergence events, and a single 
 divergence is still estimated in more than 10\% of the replicates.
 It is very interesting to note that as \divt{max} increases, but before the
-mode inference is finally pulled away from $\numt{} = 1$, the distribution of
-\numt{} estimates closely mirrors the odd U-shaped prior on divergence models
+estimates are finally pulled away from $\numt{} = 1$, the distribution of
+\numt{} estimates closely mirror the odd U-shaped prior on divergence models
 used by \msb (see Figure~\ref{figPowerNumExcluded}E and Oaks et al.'s
 \citeyear{Oaks2012} Figure 5B).
 This supports the conclusions of \citet{Oaks2012} that this U-shaped
@@ -526,12 +550,11 @@ prior coupled with the poor marginal likelihoods of models with many
 clustered divergence models.
 
 Looking at our simulation results in terms of the posterior probability of the
-divergence-time dispersion index supporting the extreme case of one divergence
-event (i.e., $p(\vmratio{} < 0.01 \given \ssSpace)$), we find the method
-strongly supports one divergence in greater than 27\%
-of the replicates across all the \divt{max} we simulated
-(Figure~\ref{figPowerOmegaProb}).
-Following \citet{Hickerson2013}, We use a Bayes factor of greater than 10 as
+dispersion index of divergence times supporting the extreme case of one
+divergence event (i.e., $p(\vmratio{} < 0.01 \given \ssSpace)$), we find the
+method strongly supports one divergence in greater than 27\% of the replicates
+across all the \divt{max} we simulated (Figure~\ref{figPowerOmegaProb}).
+Following \citet{Hickerson2013}, we use a Bayes factor of greater than 10 as
 the criterion for incorrect inference of a single divergence event.
 There is strong support for a single divergence event in more than 90\% of the
 replicates when divergences are random over the past $2.4\globalpopsize$
@@ -542,30 +565,31 @@ Contrary to Hickerson et al.'s \citeyear{Hickerson2013} claim that their
 model-averaging approach ``can discriminate complex multispecies histories and
 correctly reject synchronous divergence, even when discrete divergence times
 differ by much less than \ldots millions of generations,'' our results show
-that method is biased toward strongly supporting the extreme case of a single
+that method is biased toward supporting the extreme case of a single
 divergence event when populations diverged random over the last
 $8\globalpopsize$ generations.
-To roughly put that on the scale for a vertebrate mitochondrial locus, assuming
-a mutation rate of $2\e{-8}$ per site per generation, this translates to 5
-million generations.
+To put this on the scale roughly consistent with a vertebrate mitochondrial
+locus, assuming a mutation rate of $2\e{-8}$ per site per generation, this
+translates to 5 million generations.
 Assuming a mutation rate consistent with nuclear loci of $1\e{-9}$, this is 100
 million generations.
 
-The results of our power analysis further demonstrate the
-propensity of Hickerson et al.'s \citeyear{Hickerson2013} approach
-to exclude true parameter values.
+The results of our power analysis further demonstrate the propensity of
+Hickerson et al.'s \citeyear{Hickerson2013} approach to exclude true parameter
+values.
 Across all but one of the \divt{max} we simulated, the method excludes the
 truth in large proportion of replicates, and across many of the \divt{max} it
 will exclude a large proportion of the true divergence time values
-(Figure~\ref{figPowerNumExcluded}.
+(Figure~\ref{figPowerNumExcluded}).
 The posterior probability of excluding at least on true divergence value is
 also quite high across many of the \divt{max}
 (Figure~\ref{figPowerProbExclusion}).
 Only when the data are identically distributed as one the prior models does
 the method avoid excluding the truth more than 5\% of the time
 (Figure~\ref{figPowerNumExcluded}E).
+Again, this demonstrates the method's lack of robustness.
 
-Given our results, we conclude that not only does is the approach of
+Given our results, we conclude that not only is the approach of
 \citet{Hickerson2013} dangerous in terms of excluding regions of parameter
 space containing the true, but still lacks power to detect random variation in
 divergence times over the scale of $8\globalpopsize$ generations or more.
@@ -574,70 +598,70 @@ of millions of generations for nuclear loci.
 
 
 
-\section*{Their power analysis}
-\citet{Hickerson2013} present a power analysis in which they demonstrate that
+\section*{The power analysis of \citet{Hickerson2013}}
+\citet{Hickerson2013} present a power analysis in which they find that
 \msb has the power to infer multiple divergence events when divergence times
-are random over hundreds of thousands of generations (rather than millions
-as demonstrated by \citet{Oaks2012}.
-It is not surprising to find that within certain parameter space the method
-has increased power to detect temporal variation in divergences over narrower
-time windows than millions of generations.
+are random over hundreds of thousands of generations (rather than millions as
+demonstrated by \citet{Oaks2012}.
+It is not surprising that under limited parameter space the method has
+increased power to detect temporal variation in divergences over narrower time
+windows than millions of generations.
 However, what is important to consider is whether those conditions are relevant
 to real world applications of the method.
 \citet{Oaks2012} explore the behavior of the method under three divergence time
-priors as narrow as 0--5 coalescent units, which is quite narrow considering
+priors, as narrow as 0--5 coalescent units. This is quite narrow considering
 that this expresses the prior belief that all 22 taxon pairs diverged within
 this window.
 \citet{Hickerson2013} limit their power analysis to a single prior of 0--1
 coalescent unit.
-It seems that being 100\% certain a priori that all taxa under comparison
-diverged within the last coalescent unit is not generally applicable to most
-empirical systems.
+This prior setting assumes that there is enough a priori information to
+be 100\% certain that all taxa (18 for their simulations) diverged within
+the last $\globalpopsize$ generations.
+This does not seem applicable to most empirical systems.
 Furthermore, even when such extensive prior information is available to only be
 able to detect multiple divergences on the scale of hundreds of thousands of
-generations does not seem very ``powerful.''
+generations does not seem very powerful.
 
 Also, \citet{Hickerson2013} present information only on the extreme case of a
 single divergence event.
-As discussed in \citet{Oaks2012}, it seems dubious to consider the estimation
+As discussed in \citet{Oaks2012}, it seems odd to consider the estimation
 of two divergence events as a success when divergence is random over hundreds
-of thousands of generations.
-Unlike the results of \citet{Oaks2012} it is impossible to assess the
-performance of \msb based on the results presented by \cite{Hickerson2013}
-other than to know whether or not it inferred the worst possible scenario of a
-single event.
-In an empirical system such as the Philippines, where island fragmentation
-has occurred at least X times over the past several millions of years, an
-estimate where 22 taxa share even a handful of divergence events would be
-of biogeographic interest.
-\citet{Hickerson2013} seem to suggest in their response that \msb should only
-be used as a binary estimator; i.e., was there one event or more?
-This is not consistent with how \msb has been presented, used, and interpreted
-in the past.
+of thousands (or millions) of generations.
+In an empirical system such as the Philippines, where island fragmentation has
+occurred at least \highLight{XX} times over the past several millions of years,
+an estimate where 22 taxa share even a handful of divergence events would be of
+biogeographic interest.
 
-\citet{Hickerson2013} translate their results from units of
+Lastly, \citet{Hickerson2013} translate their results from units of
 \globalcoalunit generations to generations assuming a mutation rate of
 $1.92\e{-8}$ mutations per site per generation.
-If we tranlate there results to a scale more consistent with rates of mutation
+If we translate there results to a scale more consistent with rates of mutation
 of nuclear loci ($1\e{-9}$), even under the very optimistic prior settings used
 by \citet{Hickerson2013} the method can only reliably reject the extreme case
 of one divergence event when divergences are random over a period of more than
 3 million generations.
 Again, considering \citet{Hickerson2013} are assuming prior knowledge that
-all population pairs diverged within the past coalescent unit, this
+all population pairs diverged within the last coalescent unit, this
 does not seem particularly powerful.
 
 
 
 \section{Validation analyses}
+\highLight{Not sure where to put this}.
+The main contribution of this analysis is to show that the unadjusted posterior
+is a better model-choice estimator than the regression-corrected estimates
+(Figure~\ref{figValidationMCBehavior}).
+This justifies our presenting the unadjusted results in this paper.
+\highLight{Is it worth including just for this purpose?}
 
 
 
-\section*{Lindley's paradox versus sampling error}
+
+\section*{Lindley's paradox versus insufficient prior sampling}
 One of the points of disagreement between \citet{Hickerson2013} and
 \citet{Oaks2012} is the underlying mechanism causing the bias toward models
 with clustered divergences (i.e., models with few divergence events).
-\citet{Oaks2012} present simulations based analyses that suggest the broad
+\citet{Oaks2012} present simulation-based analyses that suggest the broad
 uniform prior on divergence time parameters hinder the marginal likelihoods of
 models with more divergence time parameters, whereas \citet{Hickerson2013}
 argue that the bias is inherent to the inefficient rejection algorithm
@@ -646,7 +670,7 @@ implemented in \msb.
 \citet{Hickerson2013} present an interesting probabilistic argument in an
 attempt to show that insufficient prior sampling is to blame for the bias.
 They argue the widest of the three priors used by \citet{Oaks2012} was very
-unlikely to produce any prior samples with high numbers of divergence times
+unlikely to produce any prior samples with large numbers of divergence times
 that were consistent with the Philippine data.
 There are a few issues with their argument.
 First, the probabilities they present assume the gene divergence times
@@ -655,27 +679,28 @@ The sole purpose of the estimates of ultrametric gene trees presented by
 \citet{Oaks2012} was to provide a very rough comparison of the gene divergence
 times across the 22 taxa.  These analyses assumed an arbitrary strict clock of
 $2\e{-8}$ for all taxa, and are, of course, subject to estimation error.
-Furthermore, the units of the gene trees are in millions of year, whereas the
-divergence time prior of \msb is in generations, thus the logic of
-\citet{Hickerson2013} requires the additional assumption that all 22 Philippine
-taxa have a generation time of one year.
+Furthermore, the branch-length units of the gene trees are in millions of
+years, whereas the divergence time prior of \msb is in generations, thus the
+logic of \citet{Hickerson2013} requires the additional assumption that all 22
+Philippine taxa have a generation time of one year.
 Thus, the argument of \citet{Hickerson2013} that divergence time estimates of
 \citet{Oaks2012} ``should set an upper bound on their prior for \divt{}'' seems
-dangerous, especially given our findings presented above.
+dangerous, especially given our findings on the behavior of empirically
+informed priors presented above.
 
-Finally, even \emph{if} we make all of these assumptions and assume the
-gene divergence times are without error, the probabilistic argument only
+Finally, even \emph{if} we make all of these assumptions and assume the gene
+divergence times are estimated without error, the probabilistic argument only
 applies to one of the three different priors used by \citet{Oaks2012}.
 The narrowest prior on divergence times used by \citet{Oaks2012} closely mirrors
 the range of gene divergence time estimates, and applying Hickerson et al.'s
 \citeyear{Hickerson2013} probability equations demonstrates that the prior
-is densely populated with samples with large number of divergence parameters
-that are consistent with the gene divergence estimates
+is densely populated with samples with large numbers of divergence parameters
+that are consistent with the gene divergence estimates.
 Thus, according to the argument of \citet{Hickerson2013}, if insufficient prior
 sampling is to blame for the bias, it should be much reduced under the narrow
 prior on \divt{}.
 However, the magnitude of the bias is very similar across all three priors
-\citet{Oaks2012}.
+explored by \citet{Oaks2012}.
 \citet{Hickerson2013} point out a case where the narrow prior performs
 slightly better (panel L of Figures S32, S37, and S38 of \citet{Oaks2012}).
 However, it is important to note that these results suffered from a bug
@@ -686,10 +711,10 @@ Figures 3 and S12).
 To disentangle whether Lindely's paradox or insufficient prior sampling is
 to blame for the biases revealed by \citet{Oaks2012}, we must look at
 the different predictions made by these two phenomena.
-One examples, as discussed by \citet{Oaks2012} is that insufficient
-prior sampling should create higher variance in posterior estimates,
-and thus the analyses should be sensitive to the number of samples
-drawn from the prior.
+One example, as discussed by \citet{Oaks2012}, is that insufficient prior
+sampling should create higher variance in posterior estimates, and thus it
+should cause analyses to be sensitive to the number of samples drawn from the
+prior.
 \citet{Oaks2012} do not see such sensitivity when they compare prior sample
 sizes of $2\e6$, $5\e6$, and $10\e7$.
 
@@ -699,9 +724,9 @@ dataset under the intermediate prior used by \citet{Oaks2012} ($\divt \sim U(0,
 (0.0005, 0.02)$), using a very large prior sample size of $10\e8$.
 When we look at the trace of the estimates of the dispersion index of
 divergence times (\vmratio{}) as the prior samples accumulate
-(Figure~\ref{figSamplingError}) we see no trend in either the unadjusted or GLM
-regression adjusted estimates.
-This strongly suggests that insufficient prior sampling did not play a large
+(Figure~\ref{figSamplingError}) we see no trend in either the unadjusted or
+GLM-regression-adjusted estimates.
+This suggests that insufficient prior sampling did not play a large
 role in the bias found by \citet{Oaks2012}.
 
 Our results presented above that demonstrate the bias of the model-averaging
@@ -714,10 +739,10 @@ cause.
 In all of our model-averaging analyses, all prior models have the same number
 of samples.
 Thus, it is difficult to explain the method's propensity towards the model with
-the smallest parameter space with insufficient sampling.
+the smallest parameter space via insufficient prior sampling.
 While analyses that sample each model proportional to their relative parameter
-space could be explored, it seems very likely that the broad uniform priors
-are simply inhibiting the marginal likelihoods of spacious models.
+space could be explored, it seems much more likely that the broad uniform
+priors are simply inhibiting the marginal likelihoods of spacious models.
 
 As discussed by \citet{Oaks2012}, a straightforward prediction of Lindley's
 paradox is that it should disappear as the model generating the data converges
@@ -734,50 +759,56 @@ Even when the prior is correct, due to the discrete uniform prior on
 \numt{} implemented in \msb, models with larger numbers of divergence
 events (and thus greater parameter space) will still be less densely
 sampled than those with fewer divergence events \citep{Oaks2012}.
+Thus, the results of the simulations of \citet{Oaks2012} are more consistent
+with Lindley's paradox causing the bias toward models with fewer divergence
+time parameters.
 
+Taken together, the results presented here and in \citet{Oaks2012} support
+Lindley's paradox as the primary mechanism by with broad uniform priors
+cause biases of \msb.
 
 
 
 
 \section*{Differing utilities of \numt{} and \vmratio{} in \msb}
-We preface this section with a clarification of an issue that has
-been confused throughout the \msb literature.
-The mean (\meant{}{}), variance (\vart{}{}), and dispersion index
-($\vart{}{}/\meant{}{} = \vmratio{}$) of divergence times are \emph{not} parameters
-of the model implemented in \msb.
-Rather they are statistics that summarize parameters of the model.
-This is in contrast to \numt{}, which is a parameter of the model.
-
-\citet{Hickerson2013} strongly argue that \vmratio{} is a better estimator than
-\numt{}, but the logic behind the argument is dubious.
-They present a plot of \numt{} against \vmratio{} (Fig.~S1) which is simply a
-plot of sample size versus variance.
-After showing that \vmratio{} has essentially no information about the
-number of divergences, they conclude it is more informative and biogeographically
-relevant.
+The primary parameter of the \msb model is the vector of divergence
+times for each of the taxon pairs,
+$\divtvector = \{\divt{1}, \ldots, \divt{Y}\}$
+\citep{Oaks2012}.
+\citet{Hickerson2013} argue that the dispersion index of this vector,
+\vmratio{}, is a better model-choice estimator than the vector's cardinality,
+\numt{}.
+They present a plot of \numt{} against \vmratio{} (Fig.~S1 of
+\citet{Hickerson2013}), which is simply a plot of sample size versus variance.
+This plot shows, not surprisingly, that \vmratio{} has essentially no
+information about the number of divergences among taxa.
+Nonetheless, \citet{Hickerson2013} conclude \vmratio{} more informative and
+biogeographically relevant than \numt{}.
 We struggle to follow this logic.
 Certainly the maximum information is contained within the divergence time
 vector that \vmratio{} is summarizing.
 The temporal information contained in this vector coupled with its cardinality
-(\numt{}) is certainly more informative than its summary.
-The dispersion index is not a sufficient statistic for this vector.
+(\numt{}) is certainly more informative than its variance (i.e., the dispersion
+index is not a sufficient statistic for \divtvector).
 
-They also argue that ``\msb can estimate \vmratio{} much better than \numt{}.''
-However, the primary objective of \msb is to estimate the posterior probability
-of divergence models.
+\citet{Hickerson2013} also argue that ``\msb can estimate \vmratio{} much
+better than \numt{}.''
+However, \msb is a model-choice estimate, and hence the goal is to estimate the
+posterior probability of divergence models.
 \citet{Oaks2012} demonstrate that even when all assumptions of the model are
-met, \vmratio is a terrible model-choice estimator (see plots B, D \& F of
-Figure 4), whereas \numt{} performs better.
+met, \vmratio is a poor model-choice estimator (see plots B, D \& F of Figure
+4), whereas \numt{} performs better.
 Furthermore, \vmratio{} is limited to estimating the probability of only a
 single divergence model (the one divergence model), and thus its utility for
 model choice is extremely limited.
+
 The model-choice utility of \vmratio{} is limited to the probability that
 this continuous statistic, which can range from zero to infinity, is at its lower
 limit of zero. In theory, this point density will always be zero, thus an
 arbitrary threshold (0.01 is used throughout the \msb literature) must 
 be chosen to make the probability estimable.
 However, it is still not surprising to see that it is numerically difficult to
-obtain reliable estimate of the probability that the continuous \vmratio{}
+obtain reliable estimates of the probability that the continuous \vmratio{}
 statistic is ``near'' its limit of zero.
 It is much easier, less subjective, and more interpretable to estimate
 the probability of the discrete parameter of the model, \numt{}, is
@@ -785,7 +816,8 @@ at its lower limit of one.
 Thus, it is not surprising to see this estimator of model probability
 perform better.
 
-\section*{General thoughts}
+
+\section*{Some general thoughts on the model of \msb}
 It is not too surprising that the model-averaging approach proposed by
 \citet{Hickerson2013} behaves so poorly.
 While this approach is trivial to implement, it is not a trivial change
@@ -796,8 +828,7 @@ To do this, we will use the dataset of 22 vertebrate taxon pairs of
 \citet{Oaks2012} as an example.
 
 Following the model description and notation of \citet{Oaks2012}, we
-will tally up all of the free parameters in the \msb model.
-
+take the time to tally up all of the free parameters in the \msb model.
 Under the simplest model in \msb (i.e., assuming no migration and
 no intra-locus recombination), the number of parameters for each
 taxon pair include:
@@ -839,7 +870,7 @@ It also likely contributes to the methods lack of robustness.
 We use robustness here as a measure of a methods insensitivity to model
 violations.
 Robustness is an extremely important characteristic of a method to gauge its
-applicability to empirical data, because we know the model and priors will be
+applicability to real-world data, because we know the model and priors will be
 wrong to some degree.
 
 The approach of \citet{Hickerson2013} adds an additional dimension of model
@@ -850,15 +881,14 @@ models and prior models.
 This certainly is a non-trivial extension of the model, and given the method's
 very large number of parameters and models relative to the information used
 from the data, likely plays a major role in the poor behavior of this approach.
-Certainly, such a large modification of the model demands simulation-based
-assessments of the behavior of the new model, as we provide here.
-
+% Certainly, such a large modification of the model demands simulation-based
+% assessments of the behavior of the new model, as we provide here.
 
 In theory, the approach of \citet{Hickerson2013} is very appealing.  It sums
 over multiple candidate prior models to produce a posterior estimate
 marginalized over the uncertainty in prior choice.
 In general, Bayesian model-averaging is a powerful approach that leverages a
-great strengths of Bayesian statistical procedures, namely the ability to
+great strength of Bayesian statistical procedures, namely the ability to
 obtain marginalized estimates that incorporate uncertainty in nuisance
 parameters.
 However, given the basic \msb model is already struggling to estimate
@@ -869,20 +899,20 @@ model choice to the method causes problems.
 The recommendations of \citet{Oaks2012} for mitigating the lack of robustness
 and biases of \msb are actually similar to those of \citet{Hickerson2013},
 but avoid the need for imposing additional model choice.
-\citet{Oaks2012} suggest that uniform priors are inappropriate for parameters,
-and recommend the use of more cogent probability distributions from the
-exponential family.
+\citet{Oaks2012} suggest that uniform priors are inappropriate for many
+parameters of the \msb model, and recommend the use of more cogent probability
+distributions from the exponential family.
 If we look at the prior distribution on the divergence time parameter \divt{}
 imposed by the model-averaging prior approach of \citet{Hickerson2013} we see
 it is a mixture of overlapping uniforms with lower limits of zero
 (Figure~\ref{figMCTauPrior}).
 This looks very much like an exponential distribution.
-Thus would be much more natural and easier to simply place a gamma prior (the
-exponential being a special case of the gamma) on divergence times.
+Thus, it would be much more natural and easier to simply place a gamma prior
+(the exponential being a special case of the gamma) on divergence times.
 This would allow the investigator to much better capture their prior
 uncertainty in model parameters while avoiding awkward broad uniform
 distributions, and without the need of costly model-averaging.
-This seems like a much more natural solution to the problems of Lindley's
+This seems like a much more natural solution to the problem of Lindley's
 paradox and sampling error, which are both certainly exacerbated by the fact
 that uniform distributions are inappropriately the only choice of prior for
 many of the parameters of the \msb model \citep[\divt{}, \ancestralTheta{},
@@ -896,13 +926,13 @@ calculate, etc., there is no excuse for not using the most appropriate
 distributions on parameters with conjugacy in mind.
 Also, this approach reduces the ``need'' for empirically guided priors.
 The investigator can place the majority of the prior density in regions
-of parameters space the believe, a priori, are most plausible, but still
+of parameters space they believe, a priori, are most plausible, but still
 capture uncertainty in the tails of distributions with low density.
 As discussed in \citet{Oaks2012} the use of inflexible and unforgiving uniform
-priors necessitated the need to use broad priors to avoid excluding the truth a
+priors necessitate the need to use broad priors to avoid excluding the truth a
 priori.
-Thus, to avoid the   behavior of the method under these priors, cheating
-and using the data was a very tempting alternative.
+Thus, to avoid the behavior of the method under these priors, cheating
+and using the data is a very tempting alternative.
 
 
 
@@ -936,6 +966,10 @@ Clearly, the priors used by \citet{Oaks2012} with upper limits on \divt{} of 5
 and 10 did not suffered from little to no effect from saturation.  Even at
 divergence times of 20 coalescent units, there is still signal in the summary
 statistics used by \msb (Figure~\ref{figSaturationPlot}).
+
+
+
+\section*{Conclusions}
 
 
 
@@ -1215,7 +1249,7 @@ Biodiversity Institute.
     The estimated posterior probability of each bin is plotted against the
     proportion of replicates in that bin with a true value consistent with
     one divergence event (i.e., $\numt{}=1$ or $\vmratio{} < 0.01)$.
-}{figValidationMCBehvior}
+}{figValidationMCBehavior}
 
 %% Model-choice tau prior
 \mFigure{../../model-choice/tau-prior/tau_prior.pdf}{
