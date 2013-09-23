@@ -24,17 +24,15 @@
         \textbf{Running head:} \MakeUppercase{Running head}
 
         \vspace{12pt}
-        Jamie R.\ Oaks$^{1,2,3}$ and Mark T.\ Holder$^{2}$
+        Jamie R.\ Oaks$^{1,2}$ and Mark T.\ Holder$^{1}$
 
         \bigskip
-        $^1$\emph{Biodiversity Institute\\
-            $^2$Department of Ecology and Evolutionary Biology\\ 
-            University of Kansas\\
-            %1345 Jayhawk Blvd\\
-            Lawrence, KS 66045\\
-            USA}\\[.1in]
-        $^3$\emph{Corresponding author} (\href{mailto:joaks1@ku.edu}{\tt
-        joaks1@ku.edu})\\
+        $^1$\emph{Department of Ecology and Evolutionary Biology,
+            % Biodiversity Institute,
+            University of Kansas,
+            Lawrence, Kansas 66045}\\[.1in]
+        $^2$\emph{Corresponding author} (\href{mailto:joaks1@gmail.com}{\tt
+        joaks1@gmail.com})\\
 
     \end{flushleft}
 \end{titlepage}
@@ -49,6 +47,114 @@
 
 \newpage
 \noindent \ldots
+
+\section*{Methods}
+
+\subsection*{The model}
+We follow much of the notation of \citet{Oaks2012}, but modify it to
+accommodate the new model \ldots
+
+\begin{linenomath}
+    Let \npairs{} be the number of pairs of populations, \nloci{i} be the
+    number of loci sampled for population pair $i$,
+    and \nlociTotal be the total number of unique loci sampled across the
+    \npairs{} pairs of populations.
+    We use \alignment{i}{j} to represent the multiple sequence alignment of
+    locus $j$ for population pair $i$.
+    $\alignmentVector = \taxonLocusVector{\alignment}$ is the full dataset,
+    i.e., a vector of sequence alignments for all pairs and loci.
+    The joint posterior distribution of our model is given by
+\begin{equation}
+    f(\model{} \given \alignmentVector, \hkyModelVector, \ploidyScalarVector,
+    \mutationRateScalarConstantVector) =
+    \frac{f(\alignmentVector \given \model{}) f(\model{})}{
+        f(\alignmentVector)}
+    \label{eq:fullModelShort}
+    % \begin{split}
+    % & f(\geneTreeVector,
+    % \numt{},
+    % \divtvector, \ancestralThetaVector,
+    % \descendantThetaVector{1}, \descendantThetaVector{2},
+    % \locusRateHetShapeParameter,
+    % \locusMutationRateScalarVector,
+    % \bottleTimeVector, \bottleScalarVector{1},
+    % \bottleScalarVector{2},
+    % \migrationRateVector \given
+    % \alignmentVector, \hkyModelVector, \ploidyScalarVector,
+    % \mutationRateScalarConstantVector) \\
+    % & = \frac{1}{f(\alignmentVector)}
+    % f(\numt{}) f(\divtvector \given \numt{})
+    % f(\locusRateHetShapeParameter)
+    % \Bigg[
+    % \prod_{i=1}^{\npairs{}}
+    % f(\ancestralTheta{i})
+    % f(\descendantTheta{1}{i}, \descendantTheta{2}{i})
+    % f(\bottleTime{i})
+    % f(\bottleScalar{1}{i}) f(\bottleScalar{2}{i})
+    % f(\migrationRate{i}) \\
+    % &
+    % \prod_{j=1}^{\nloci{i}}
+    % f(\alignment{i}{j} \given
+    % \geneTree{i}{j}, \hkyModel{i}{j})
+    % f(\geneTree{i}{j} \given
+    % \divt{i},
+    % \ancestralTheta{i}, \descendantTheta{1}{i}, \descendantTheta{2}{i},
+    % \ploidyScalar{i}{j}, \mutationRateScalarConstant{i}{j},
+    % \locusMutationRateScalar{j},
+    % \bottleTime{i}, \bottleScalar{1}{i}, \bottleScalar{2}{i},
+    % \migrationRate{i})
+    % \Bigg]
+    % \Bigg[
+    % \prod_{j=1}^{\nlociTotal}
+    % f(\locusMutationRateScalar{j} \given \locusRateHetShapeParameter)
+    % \Bigg],
+    % \label{eq:fullmodel}
+    % \end{split}
+\end{equation}
+where \hkyModelVector, \ploidyScalarVector, and \mutationRateScalarConstantVector
+are vectors of fixed parameters specified by the user.
+More specifically $\hkyModelVector = \taxonLocusVector{\hkyModelVector}$ is a
+vector of fixed \hky model parameters for each alignment.
+% where $\geneTreeVector = \taxonLocusVector{\geneTree}$ are the gene trees upon
+% which each \alignment{i}{j} evolved according to the \hky substitution model
+% parameters \hkyModel{i}{j}.
+% The \hky model parameters for each alignment reside in vector 
+% $\hkyModelVector = \taxonLocusVector{\hkyModel}$,
+% and are fixed constants provided by the user.
+% \divtvector is the vector of times, in coalescent units, when the populations
+% of each pair diverged, \taxonVector{\divt}.
+% \numt{} is the hyper-parameter controlling the number of unique \divt{} within
+% \divtvector.
+% $\ancestralThetaVector = \taxonVector{\ancestralTheta}$ is the vector of
+% \myTheta{} parameters for the ancestral population of each population pair.
+% $\descendantThetaVector{1} = \taxonVector{\descendantTheta{1}}$ is the vector of
+% \myTheta{} parameters for the $1^{st}$ descendant population of each
+% pair;
+% $\descendantThetaVector{2} = \taxonVector{\descendantTheta{2}}$ is the same for
+% the $2^{nd}$ descendant population of each pair.
+% $\ploidyScalarVector = \taxonLocusVector{\ploidyScalar}$ and
+% $\mutationRateScalarConstantVector = \taxonLocusVector{\mutationRateScalarConstant}$
+% are vectors of \myTheta{}-scaling constants provided by the user
+% (Table~\ref{tab:notation}).
+% Furthermore, there are locus-specific \myTheta{}-scaling
+% parameters in the vector $\locusMutationRateScalarVector =
+% \locusVector{\locusMutationRateScalar}$.
+% \locusRateHetShapeParameter is the shape parameter of the gamma prior
+% distribution on each \locusMutationRateScalar{}.
+% $\bottleScalarVector{1} = \taxonVector{\bottleScalar{1}}$ is the vector of
+% \myTheta{}-scaling parameters that determine the magnitude of the bottleneck in
+% the $1^{st}$ descendant population of each population pair,
+% whereas $\bottleScalarVector{2} = \taxonVector{\bottleScalar{2}}$ is the same
+% for the $2^{nd}$ descendant population of each pair;
+% for both descendants of each population pair, the bottleneck begins immediately
+% after divergence in forward-time.
+% $\bottleTimeVector = \taxonVector{\bottleTime}$ is the vector of the
+% proportions of time between present and \divt{} when the bottleneck ends for
+% both populations in each pair; after which the populations grow exponentially to
+% present.
+% $\migrationRateVector = \taxonVector{\migrationRate}$ is the vector of
+% symmetric migration rates between the descendant populations of each pair.
+\end{linenomath}
 
 \section*{Acknowledgments}
 
