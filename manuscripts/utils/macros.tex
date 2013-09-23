@@ -22,6 +22,18 @@
 \newcommand{\ifTwoArgs}[3]{\ifthenelse{\equal{#1}{}\or\equal{#2}{}}{}{#3}\xspace}
 \newcommand{\ifArg}[2]{\ifthenelse{\equal{#1}{}}{}{#2}\xspace}
 
+%% New notation for divergence times
+\newcommand{\divTime}[1]{\ensuremath{\tau_{#1}}\xspace}
+\newcommand{\divTimeVector}{\ensuremath{\boldsymbol{\divTime{}}}\xspace}
+\newcommand{\divTimeIndex}[1]{\ensuremath{t_{#1}}\xspace}
+\newcommand{\divTimeIndexVector}{\ensuremath{\mathbf{\divTimeIndex{}}}\xspace}
+\newcommand{\divTimeMap}[1]{\ensuremath{T_{#1}}\xspace}
+\newcommand{\divTimeMapVector}{\ensuremath{\mathbf{\divTimeMap{}}}\xspace}
+\newcommand{\divTimeMean}{\ensuremath{\bar{\divTimeMap{}}}\xspace}
+\newcommand{\divTimeVar}{\ensuremath{s^{2}_{\divTimeMap{}}}\xspace}
+\newcommand{\divTimeDispersion}{\ensuremath{D_{\divTimeMap{}}}\xspace}
+\newcommand{\divTimeNum}{\ensuremath{\lvert \divTimeVector \rvert}\xspace}
+
 \newcommand{\allDatasets}{\ensuremath{\mathcal{\alignment{}{}}}\xspace}
 \newcommand{\allParameterValues}{\ensuremath{\boldsymbol{\Theta}}\xspace}
 \newcommand{\bayesfactor}[2]{\ensuremath{BF_{#1\protect\ifArg{#2}{,}#2}}}
