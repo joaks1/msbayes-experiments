@@ -307,8 +307,6 @@ to each population pair $i$, such that
 $\divTimeMapVector = (\divTimeMap{1} = f(\divTimeVector, \divTimeIndexVector,
 1), \ldots, \divTimeMap{\npairs{}} = f(\divTimeVector, \divTimeIndexVector,
 \npairs{}))$.
-Each \divTime{} within \divTimeVector is \iid as
-$\divTime{} \sim Gamma(\gammaShape{\divTime{}}, \gammaScale{\divTime{}})$.
 \end{linenomath}
 
 Biologically speaking, \divTimeVector contains the times of divergence events,
@@ -321,6 +319,9 @@ this time (i.e., \divTimeIndexVector would contain the index 1 repeated
 repeated \npairs{} times), whereas if it contains \npairs{} divergence time
 parameters, the model is fully generalized to allow all of the pairs to diverge
 at unique times.
+Regardless of the number of divergence time parameters (\divTimeNum), each
+\divTime{} within \divTimeVector is \iid as $\divTime{} \sim
+Gamma(\gammaShape{\divTime{}}, \gammaScale{\divTime{}})$.
 
 \begin{linenomath}
 The total sample space of ordered realizations of \divTimeMapVector is all the
@@ -336,8 +337,163 @@ the second kind over all possible number of categories \divTimeNum
 which is the Bell Number \citep{Bell1934}.
 The original \msb model only samples over the unordered realizations of
 \divTimeIndexVector, such that the sample space is reduced to all the possible
-integer partitions of \npairs{} \citep{Oaks2012,OeisPartitionNumber,
+integer partitions of \npairs{} \citep{Oaks2012,Huang2011,OeisPartitionNumber,
     OeisPartitionTriangle,Malenfant2011}.
+We denote the set of all possible integer partitions of \npairs{} as
+\integerPartitionSet{\npairs{}} and the length of that set as
+\integerPartitionNum{\npairs{}}.
+The advantages, disadvantages, and justification of ignoring the order
+of \divTimeIndexVector is discussed in detail below.
+\end{linenomath}
+
+\begin{linenomath}
+We implement two prior probability distributions over the space
+of all possible discrete divergence models (\divTimeIndexVector).
+The first simply gives all possible unordered partitions of \npairs{} elements
+equal probability
+\begin{equation}
+    p(\divTimeIndexVector) = frac{1}{\integerPartitionNum{\npairs{}}},
+    \label{eq:divModelPriorUniform}
+\end{equation}
+i.e., a discrete uniform prior over all the integer partitions of \npairs{}
+(discrete divergence models).
+We denote this prior as
+$\divTimeIndexVector \sim DU(\integerPartitionSet{\npairs{}})$.
+\end{linenomath}
+
+The second prior we implement is based on the Dirichlet-process, which is a
+stochastic process that groups elements into an unknown number of discrete
+parameter classes \citep{Ferguson1973,Antoniak1974}.
+The process is controlled by the concentration parameter \concentrationParam,
+which determines how clustered the process will be.
+We use the Dirichlet process to place a prior over all possible ordered
+partitions of \npairs{} elements, which we denote as $\divTimeIndexVector \sim
+DP(\concentrationParam)$.
+We use a hierarchical Bayesian approach and place a second-order prior
+probability distribution (i.e., hyperprior) on \concentrationParam.  More
+specifically, we use a gamma-distributed prior $\concentrationParam =
+Gamma(\gammaShape{\concentrationParam}, \gammaScale{\concentrationParam})$,
+where \gammaShape{\concentrationParam} and \gammaScale{\concentrationParam} are
+specified by the user.
+
+\begin{linenomath}
+This provides a great deal of flexibility for specifying the prior uncertainty
+regarding divergence models.
+The \concentrationParam determines the prior probability that any two
+pairs of populations $i$ and $j$ will be assigned to the same divergence time
+parameter
+\begin{equation}
+    p(\divTimeIndex{i} = \divTimeIndex{j}) = frac{1}{1 + \concentrationParam},
+    \label{eq:dppPriorSameClass}
+\end{equation}
+and also the prior probability of the number of divergence time parameters
+\begin{equation}
+    p(\divTimeNum \given \concentrationParam, \npairs{}) = 
+    \frac{\stirlingFirst{\npairs{}}{\divTimeNum} \concentrationParam^{\divTimeNum}}
+    {\prod_{i=1}^{\npairs{}}(\concentrationParam + i - 1)},
+    \label{eq:dppPriorNumClasses}
+\end{equation}
+where \stirlingFirst{\cdot,\cdot} are the unsigned Stirling numbers of the
+first kind.
+Equations \ref{eq:dppPriorSameClass} and \ref{eq:dppPriorNumClasses} show that
+smaller values of \concentrationParam will favor fewer divergence time
+parameters, and thus more clustered models of divergence, whereas larger values
+will favor more divergence time parameters, and thus less clustered models of
+divergence.
+\end{linenomath}
+
+\subsection*{Differences between our model and the original \msb model}
+\subsubsection*{The prior on divergence models}
+One of the key differences between our model and that of \msb \citep{Huang2011}
+is the prior distribution placed on divergence models.
+As discussed in \citet{Oaks2012}, in \msb the only prior used for
+\divTimeIndexVector is a combination of a discrete uniform prior over the
+possible number of divergence events \divTimeNum from 1 to \npairs{} with a
+multinomial distribution on the number of times each index of \divTimeVector
+appears in \divTimeIndexVector, with the constraint that all \divTime
+parameters are represented at least once (see Equation 2 of \citet{Oaks2012}).
+\citet{Oaks2012} discuss how placing a uniform prior over the number of
+divergence parameters (\divTimeNum here; \numt{} in \citet{Huang2011}) imposes
+an odd U-shaped prior over discrete divergence models (\divTimeIndexVector; see
+Figure 5B of \citet{Oaks2012}).
+To avoid this, we place priors directly on the sample space of divergence
+models, thus eliminating the parameter \numt{} from the model.
+We introduce two priors on divergence models:
+(1) a prior that is uniform over all unordered divergence models, and
+(2) a Dirichlet-process prior on all ordered divergence models.
+The latter provides the user with a great deal of flexibility in
+expressing their prior beliefs about models of divergence.
+
+\subsubsection*{The priors on nuisance parameters}
+Following the recommendations of \citet{Oaks2012}, we have replaced the use of
+inappropriate, continuous uniform distributions for priors on many of the
+model's parameters (\divTime{}, \ancestralTheta{}, \descendantTheta{1}{},
+\descendantTheta{2}{}, \bottleScalar{1}{}, \bottleScalar{2}{},
+\recombinationRate, \migrationRate{}) with more flexible parametric
+distributions from the exponential family.
+We introduce gamma-distributed priors for rate parameters that have a sample
+space of all positive real numbers (\divTime{}, \ancestralTheta{},
+\descendantTheta{1}{}, \descendantTheta{2}{}, \recombinationRate,
+\migrationRate{}), and beta-distributed priors for parameters that are
+proportions bounded by zero and one (\bottleScalar{1}{} and
+\bottleScalar{2}{}).
+Not only do these priors have nice conjugacy properties, but they also provide
+the user with much greater flexibility in expressing the prior uncertainty
+regarding the parameters of the model.
+
+Another distinction between our model and that of \msb, is the prior on the
+sizes of the descendant populations of each pair.
+As described by \citet{Oaks2012}, \msb uses the joint prior
+\begin{equation}
+    \descendantTheta{1}{}, \descendantTheta{2}{} \sim
+    Dirichlet(1,1) \times 2 \times U(\uniformMin{\myTheta{}},
+    \uniformMax{\descendantTheta{}{}}),
+    \label{eq:jointThetaPrior}
+\end{equation}
+such that the user-specified uniform prior on descendant population
+size is a prior on the \emph{mean} size of the two descendant
+populations of each pair.
+Under our model, the sizes of the descendant populations of each
+pair are \iid as
+$\descendantTheta{1}{} \sim Gamma(\gammaShape{\descendantTheta{}{}},
+\gammaScale{\descendantTheta{}{}})$
+and
+$\descendantTheta{2}{} \sim Gamma(\gammaShape{\descendantTheta{}{}},
+\gammaScale{\descendantTheta{}{}})$.
+This relaxes the assumption that the sizes of the two descendant populations
+are interdependent and negatively correlated.
+
+\subsubsection*{Flexibility in parameterizing the model}
+We also provide the user with the ability to control the richness of
+the model.
+For the \myTheta{} parameters, the model can be fully generalized to
+allow each population pair to have three parameters:
+\ancestralTheta{}, \descendantTheta{1}{}, and \descendantTheta{2}{}.
+Furthermore, any model of \myTheta{} parameters nested within this
+general model can also be specified, including the most restricted model
+where the ancestral and descendant populations of each pair share
+a single \myTheta{} parameter.
+We also allow the user to eliminate the parameters associated with
+the post-divergence bottlenecks in the descendant populations of
+each pair
+(\bottleTime{}, \bottleScalar{1}{}, and \bottleScalar{2}{}),
+which constrains the descendant populations to be of
+constant size from present back to the divergence event.
+This allows the user to specify a model that has as many as
+seven parameters per population pair
+(\ancestralTheta{}, \descendantTheta{1}{}, \descendantTheta{2}{},
+\bottleTime{}, \bottleScalar{1}{}, \bottleScalar{2}{}, and
+\migrationRate{})
+or as few as
+1 parameters per pair
+(\myTheta{}),
+in addition to the $\popSampleSize{i}{} - 1$ coalescence times.
+
+\subsection*{The ABC implementation of the model}
+
+
+
+
 This has the advantage of reducing the sample space of the number of
 divergence models, but has two disadvantages.
 First, additional information about the data is lost.
@@ -360,13 +516,6 @@ The alignments and summary statitics are not identically distributed because of
 taxon- and locus-specific parameters \hkyModel{}{},
 \mutationRateScalarConstant{}{}, and \ploidyScalar{}{}
 Second, the identity of the pairs of populations is lost.
-\end{linenomath}
-
-We implement two prior probability distributions over the joint space of
-\divTimeVector, \divTimeIndexVector.
-One simply places a uniform prior over all possible integer paritions of
-\npairs{}.
-
 
 \section*{Acknowledgments}
 We thank the National Science Foundation for supporting this work (DEB
