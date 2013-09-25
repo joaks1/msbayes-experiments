@@ -352,7 +352,7 @@ of all possible discrete divergence models (\divTimeIndexVector).
 The first simply gives all possible unordered partitions of \npairs{} elements
 equal probability
 \begin{equation}
-    p(\divTimeIndexVector) = frac{1}{\integerPartitionNum{\npairs{}}},
+    p(\divTimeIndexVector) = \frac{1}{\integerPartitionNum{\npairs{}}},
     \label{eq:divModelPriorUniform}
 \end{equation}
 i.e., a discrete uniform prior over all the integer partitions of \npairs{}
@@ -383,7 +383,7 @@ The \concentrationParam determines the prior probability that any two
 pairs of populations $i$ and $j$ will be assigned to the same divergence time
 parameter
 \begin{equation}
-    p(\divTimeIndex{i} = \divTimeIndex{j}) = frac{1}{1 + \concentrationParam},
+    p(\divTimeIndex{i} = \divTimeIndex{j}) = \frac{1}{1 + \concentrationParam},
     \label{eq:dppPriorSameClass}
 \end{equation}
 and also the prior probability of the number of divergence time parameters
@@ -393,7 +393,7 @@ and also the prior probability of the number of divergence time parameters
     {\prod_{i=1}^{\npairs{}}(\concentrationParam + i - 1)},
     \label{eq:dppPriorNumClasses}
 \end{equation}
-where \stirlingFirst{\cdot,\cdot} are the unsigned Stirling numbers of the
+where \stirlingFirst{\cdot}{\cdot} are the unsigned Stirling numbers of the
 first kind.
 Equations \ref{eq:dppPriorSameClass} and \ref{eq:dppPriorNumClasses} show that
 smaller values of \concentrationParam will favor fewer divergence time
@@ -485,7 +485,7 @@ seven parameters per population pair
 \bottleTime{}, \bottleScalar{1}{}, \bottleScalar{2}{}, and
 \migrationRate{})
 or as few as
-1 parameters per pair
+one parameter per pair
 (\myTheta{}),
 in addition to the $\popSampleSize{i}{} - 1$ coalescence times.
 
@@ -498,13 +498,13 @@ This has the advantage of reducing the sample space of the number of
 divergence models, but has two disadvantages.
 First, additional information about the data is lost.
 By throwing away the identity of the \npairs{} pairs of populations, all
-information regarding the amount of data (e.g., the number gene copies
+information associating each pair with its amount of data (e.g., the number gene copies
 collected from each of the populations [\popSampleSize{1}{} and
-\popSampleSize{2}{}], the number of loci, and the length of the loci), the
+\popSampleSize{2}{}], the number of loci, and the length of the loci),
 information content in the data (i.e., the amount of sequence variation), as
-well as the taxon- and locus-specific parameters (\hkyModel{}{},
+well as its taxon- and locus-specific parameters (\hkyModel{}{},
 \mutationRateScalarConstant{}{}, \ploidyScalar{}{}, and
-\locusMutationRateScalar{}) for each pair is lost.
+\locusMutationRateScalar{}) is lost.
 The original descriptions of the \msb model claim that the independence
 between the sample sizes \popSampleSize{1}{}, \popSampleSize{2}{} and
 the summary statistic $\pi_b$ calculated from the alignment for each
