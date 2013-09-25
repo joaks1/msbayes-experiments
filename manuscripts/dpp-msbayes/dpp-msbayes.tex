@@ -119,8 +119,10 @@ $\locusMutationRateScalarVector = (\locusMutationRateScalar{1}, \ldots
 \locusMutationRateScalar{\nlociTotal})$
 is a vector of locus-specific mutation-rate scaling parameters for each of the
 \nlociTotal loci,
-and \locusRateHetShapeParameter is the shape parameter of a gamma-distributed
-prior on \locusMutationRateScalar{}.
+\locusRateHetShapeParameter is the shape parameter of a gamma-distributed
+prior on \locusMutationRateScalar{}, and
+$p(\alignmentVector)$ is the probability of the data (or the marginal
+likelihood of the model).
 \end{linenomath}
 
 \begin{linenomath}
@@ -224,8 +226,6 @@ Following divergence, the descendant populations of pair $i$ exchange migrants a
 \migrationRate{i}.
 \end{linenomath}
 
-\highLight{Need to discuss units of time and how they are scaled from units
-    proportional to time to units proportional to mutations.}
 
 \subsubsection*{Prior terms of Equation \ref{eq:fullModelCompact}}
 \begin{linenomath}
@@ -322,12 +322,66 @@ this time (i.e., \divTimeIndexVector would contain the index 1 repeated
 repeated \npairs{} times), whereas if it contains \npairs{} divergence time
 parameters, the model is fully generalized to allow all of the pairs to diverge
 at unique times.
-Regardless of the number of divergence time parameters (\divTimeNum), each
-\divTime{} within \divTimeVector is \iid as $\divTime{} \sim
-Gamma(\gammaShape{\divTime{}}, \gammaScale{\divTime{}})$.
 
 \begin{linenomath}
-The total sample space of ordered realizations of \divTimeMapVector is all the
+Each \divTime{} within \divTimeVector is \iid as $\divTime{} \sim
+Gamma(\gammaShape{\divTime{}}, \gammaScale{\divTime{}})$.
+Thus, given the number of unique divergence time classes in
+\divTimeIndexVector, this determines the probability of prior term
+$p(\divTimeVector \given \divTimeIndexVector)$
+The divergence time parameters are in coalescent units relative to the size of
+a constant reference population, which we denote \myTheta{C}, that is equal to
+the expectation of the prior on the size of the descendant populations
+\begin{equation}
+    \myTheta{C} = E(\descendantTheta{}{}).
+    \label{eq:thetaC}
+\end{equation}
+Given the size of the descendant populations are \iid as
+$\descendantTheta{}{} \sim Gamma(\gammaShape{\descendantTheta{}{}},
+\gammaScale{\descendantTheta{}{}})$,
+this becomes
+\begin{equation}
+    \myTheta{C} = \gammaShape{\descendantTheta{}{}}\gammaScale{\descendantTheta{}{}}.
+    \label{eq:thetaCGamma}
+\end{equation}
+The \divTime parameters are then in units $\myTheta{C}/\mutationRate$
+generations, which we denote as \globalcoalunit generations.
+Thus, each \divTime within \divTimeVector is proportional to time and
+can be converted to the number of generations of the reference population,
+which we denote \divTime{G_C}, by assuming a mutation rate multiplying by
+the effective size of the reference population
+\begin{equation}
+    \divTime{G_C} = \divTime \times \frac{
+        \gammaShape{\descendantTheta{}{}}\gammaScale{\descendantTheta{}{}}}
+        {\mutationRate}.
+    \label{eq:divTimeGenerations}
+\end{equation}
+Thus, for each of the divergence times in \divTimeVector to be on the same
+scale, and thus comparable, the relative mutation rates among the pairs of
+populations are assumed to be fixed and known according the user-provided
+values in \mutationRateScalarConstantVector.
+\end{linenomath}
+
+\begin{linenomath}
+As described by \citet{Oaks2012}, to get the divergence times in units
+proportional to the expected number of mutations, \divTimeScaled{}{}, we must
+scale them by the realized population size for locus $j$ of population-pair $i$ 
+\begin{equation}
+    \divTimeScaled{i}{j} = \divTime{i} \times \frac{\myTheta{C}}{
+        \descendantThetaMean{i} \ploidyScalar{i}{j}},
+    \label{eq:divTimeScaled}
+\end{equation}
+where \descendantThetaMean{i} is the mean of \descendantTheta{1}{} and
+\descendantTheta{2}{} for pair $i$.
+This gives us the vector of scaled divergence times
+$\divTimeScaledVector = (\divTimeScaled{1}{1}, \ldots,
+\divTimeScaled{\npairs{}}{\nloci{\npairs{}}})$.
+\end{linenomath}
+
+
+\begin{linenomath}
+As for the prior term $p(\divTimeMapVector)$,
+the total sample space of ordered realizations of \divTimeMapVector is all the
 possible partitions of \npairs{} elements into 1 to \npairs{} categories.
 The total number of possible partitions is a sum of the Stirling numbers of
 the second kind over all possible number of categories \divTimeNum
@@ -491,6 +545,14 @@ or as few as
 one parameter per pair
 (\myTheta{}),
 in addition to the $\popSampleSize{i}{} - 1$ coalescence times.
+
+\subsubsection*{Time scale}
+As described above, in our model divergence times are in units of
+$\myTheta{C}/\mutationRate$ generations, where \myTheta{C} is the expectation
+of the prior on descendant-population size.
+As described by \citet{Oaks2012}, in \msb, \myTheta{C} is half of the upper
+limit of the continuous uniform prior on the mean of the descendant-population
+sizes.
 
 \subsection*{The ABC implementation of the model}
 To estimate the approximate posterior of Equation \ref{eq:approxModelCompact},
