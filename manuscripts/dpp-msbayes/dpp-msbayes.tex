@@ -123,6 +123,42 @@ and \locusRateHetShapeParameter is the shape parameter of a gamma-distributed
 prior on \locusMutationRateScalar{}.
 \end{linenomath}
 
+\begin{linenomath}
+To avoid calculating the likelihood terms of Equation \ref{eq:fullModelCompact},
+we distill each sequence alignment \alignment{}{} into a vector of insufficient
+summary statistics \alignmentSS{}{}, thus replacing the full dataset
+$\alignmentVector = (\alignment{1}{1}, \ldots,
+    \alignment{\npairs{}}{\nloci{\npairs{}}})$
+with vectors of summary statistics for each alignment
+$\ssVector{} = (\alignmentSS{1}{1}, \ldots,
+    \alignmentSS{\npairs{}}{\nloci{\npairs{}}})$.
+This allows us to estimate the approximate joint posterior distribution
+{\small
+\begin{equation}
+    p(\geneTreeVector, \divTimeMapVector, \demographicParamVector, 
+    \locusMutationRateScalarVector, \locusRateHetShapeParameter \given
+    \ssSpace, \hkyModelVector, \ploidyScalarVector,
+    \mutationRateScalarConstantVector) =
+    \frac{p(\ssSpace \given \geneTreeVector, \hkyModelVector)
+        p(\geneTreeVector \given \divTimeMapVector, \demographicParamVector,
+        \locusMutationRateScalarVector, \ploidyScalarVector,
+        \mutationRateScalarConstantVector)
+        p(\locusMutationRateScalarVector \given \locusRateHetShapeParameter)
+        p(\locusRateHetShapeParameter)
+        p(\divTimeMapVector)
+        p(\demographicParamVector)}{
+        p(\ssSpace)},
+    \label{eq:approxModelCompact}
+\end{equation}
+}
+where \ssSpace is the multidimensional Euclidean space around the vector of
+summary statistics, the radius of which is the tolerance \tol.
+The approximation of this posterior is caused by the insufficiency of the
+statistics and the \tol being greater than zero.
+We describe the full model in detail before delving into the numerical
+method of estimating the approximate model.
+\end{linenomath}
+
 \subsubsection*{Likelihood terms of Equation \ref{eq:fullModelCompact}}
 \begin{linenomath}
 The likelihood terms of Equation \ref{eq:fullModelCompact} can
@@ -317,6 +353,12 @@ The original descriptions of the \msb model claim that the independence
 between the sample sizes \popSampleSize{1}{}, \popSampleSize{2}{} and
 the summary statistic $\pi_b$ calculated from the alignment for each
 population pair allows exchangeability.
+This is incorrect.
+The other summary statistics, and the alignments they are based on are
+not independent of the sample sizes.
+The alignments and summary statitics are not identically distributed because of
+taxon- and locus-specific parameters \hkyModel{}{},
+\mutationRateScalarConstant{}{}, and \ploidyScalar{}{}
 Second, the identity of the pairs of populations is lost.
 \end{linenomath}
 
