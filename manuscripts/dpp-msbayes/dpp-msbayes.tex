@@ -24,17 +24,15 @@
         \textbf{Running head:} \MakeUppercase{Running head}
 
         \vspace{12pt}
-        Jamie R.\ Oaks$^{1,2,3}$ and Mark T.\ Holder$^{2}$
+        Jamie R.\ Oaks$^{1,2}$ and Mark T.\ Holder$^{1}$
 
         \bigskip
-        $^1$\emph{Biodiversity Institute\\
-            $^2$Department of Ecology and Evolutionary Biology\\ 
-            University of Kansas\\
-            %1345 Jayhawk Blvd\\
-            Lawrence, KS 66045\\
-            USA}\\[.1in]
-        $^3$\emph{Corresponding author} (\href{mailto:joaks1@ku.edu}{\tt
-        joaks1@ku.edu})\\
+        $^1$\emph{Department of Ecology and Evolutionary Biology,
+            % Biodiversity Institute,
+            University of Kansas,
+            Lawrence, Kansas 66045}\\[.1in]
+        $^2$\emph{Corresponding author} (\href{mailto:joaks1@gmail.com}{\tt
+        joaks1@gmail.com})\\
 
     \end{flushleft}
 \end{titlepage}
@@ -50,7 +48,585 @@
 \newpage
 \noindent \ldots
 
+\section*{Methods}
+
+\subsection*{The model}
+We follow much of the notation of \citet{Oaks2012}, but modify it to
+accommodate the new model \ldots
+
+We assume an investigator is interested in inferring the distribution
+of divergence times among \npairs{} pairs of populations.
+For each pair $i$, \popSampleSize{i}{} genome copies have been sampled, with
+\popSampleSize{1}{i} copies sampled from population 1, and \popSampleSize{2}{i}
+sampled from population 2.
+From these genomes, let \nloci{i} be the number of DNA sequence loci collected
+for population pair $i$, and \nlociTotal be the total number of unique loci
+sampled across the \npairs{} pairs of populations.
+We use \alignment{i}{j} to represent the multiple sequence alignment of
+locus $j$ for population pair $i$.
+$\alignmentVector = (\alignment{1}{1}, \ldots,
+    \alignment{\npairs{}}{\nloci{\npairs{}}})$
+is the full dataset,
+i.e., a vector of sequence alignments for all pairs and loci.
+We let \geneTree{i}{j} represent the gene tree upon which \alignment{i}{j}
+evolved according to fixed \hky substitution model parameters \hkyModel{i}{j}.
+The investigtor must specify the parameters of all
+$\hkyModelVector = (\hkyModel{1}{1}, \ldots,
+\hkyModel{\npairs{}}{\nloci{\npairs{}}})$
+substitution models by which the alignments evolved along the
+$\geneTreeVector = (\geneTree{1}{1}, \ldots,
+\geneTree{\npairs{}}{\nloci{\npairs{}}})$
+gene trees.
+Furthermore, the investigator must specify a vector of fixed contants
+$\ploidyScalarVector = (\ploidyScalar{1}{1}, \ldots,
+\ploidyScalar{\npairs{}}{\nloci{\npairs{}}})$
+that scale the population size parameters for known differences in ploidy among
+loci and/or differences in generation times among population pairs.
+Lastly, the investigator must also specify a vector of fixed constants
+$\mutationRateScalarConstantVector = (\mutationRateScalarConstant{1}{1},
+\ldots, \mutationRateScalarConstant{\npairs{}}{\nloci{\npairs{}}})$
+that scale the population size parameters for known differences in
+mutation rates among loci and/or among taxa.
+
+\begin{linenomath}
+With \alignmentVector, \hkyModelVector, \ploidyScalarVector, and
+\mutationRateScalarConstantVector in hand, the joint posterior distribution
+of our model is given by
+\begin{equation}
+    p(\geneTreeVector, \divTimeMapVector, \demographicParamVector, 
+    \locusMutationRateScalarVector, \locusRateHetShapeParameter \given
+    \alignmentVector, \hkyModelVector, \ploidyScalarVector,
+    \mutationRateScalarConstantVector) =
+    \frac{p(\alignmentVector \given \geneTreeVector, \hkyModelVector)
+        p(\geneTreeVector \given \divTimeMapVector, \demographicParamVector,
+        \locusMutationRateScalarVector, \ploidyScalarVector,
+        \mutationRateScalarConstantVector)
+        p(\locusMutationRateScalarVector \given \locusRateHetShapeParameter)
+        p(\locusRateHetShapeParameter)
+        p(\divTimeMapVector)
+        p(\demographicParamVector)}{
+        p(\alignmentVector)},
+    \label{eq:fullModelCompact}
+\end{equation}
+where
+$\divTimeMapVector = (\divTimeMap{1}, \ldots, \divTimeMap{\npairs{}})$
+is a vector of population divergence times for each of \npairs{} pairs,
+$\demographicParamVector = (\demographicParams{1}, \ldots,
+\demographicParams{\npairs{}})$
+is a vector of the demographic parameters for each of the \npairs{} population
+pairs,
+$\locusMutationRateScalarVector = (\locusMutationRateScalar{1}, \ldots
+\locusMutationRateScalar{\nlociTotal})$
+is a vector of locus-specific mutation-rate scaling parameters for each of the
+\nlociTotal loci,
+\locusRateHetShapeParameter is the shape parameter of a gamma-distributed
+prior on \locusMutationRateScalar{}, and
+$p(\alignmentVector)$ is the probability of the data (or the marginal
+likelihood of the model).
+\end{linenomath}
+
+\begin{linenomath}
+To avoid calculating the likelihood terms of Equation \ref{eq:fullModelCompact},
+we distill each sequence alignment \alignment{}{} into a vector of insufficient
+summary statistics \alignmentSS{}{}, thus replacing the full dataset
+$\alignmentVector = (\alignment{1}{1}, \ldots,
+    \alignment{\npairs{}}{\nloci{\npairs{}}})$
+with vectors of summary statistics for each alignment
+$\ssVectorObs = (\alignmentSSObs{1}{1}, \ldots,
+    \alignmentSSObs{\npairs{}}{\nloci{\npairs{}}})$.
+For each populationn pair, the means of the summary statistics are calculated
+across the \nloci{} loci, reducing the vector to
+$\ssVectorObs = (\alignmentSSObs{1}{}, \ldots,
+    \alignmentSSObs{\npairs{}}{})$.
+This allows us to estimate the approximate joint posterior distribution
+{\small
+\begin{equation}
+    p(\geneTreeVector, \divTimeMapVector, \demographicParamVector, 
+    \locusMutationRateScalarVector, \locusRateHetShapeParameter \given
+    \ssSpace, \hkyModelVector, \ploidyScalarVector,
+    \mutationRateScalarConstantVector) =
+    \frac{p(\ssSpace \given \geneTreeVector, \hkyModelVector)
+        p(\geneTreeVector \given \divTimeMapVector, \demographicParamVector,
+        \locusMutationRateScalarVector, \ploidyScalarVector,
+        \mutationRateScalarConstantVector)
+        p(\locusMutationRateScalarVector \given \locusRateHetShapeParameter)
+        p(\locusRateHetShapeParameter)
+        p(\divTimeMapVector)
+        p(\demographicParamVector)}{
+        p(\ssSpace)},
+    \label{eq:approxModelCompact}
+\end{equation}
+}
+where \ssSpace is the multidimensional Euclidean space around the vector of
+summary statistics, the radius of which is the tolerance \tol.
+The approximation of this posterior is caused by the insufficiency of the
+statistics and the \tol being greater than zero.
+We describe the full model in detail before delving into the numerical
+method of estimating the approximate model.
+\end{linenomath}
+
+\subsubsection*{Likelihood terms of Equation \ref{eq:fullModelCompact}}
+\begin{linenomath}
+The likelihood terms of Equation \ref{eq:fullModelCompact} can
+be expanded out as a product over population pairs and loci
+\begin{equation}
+    p(\alignmentVector \given \geneTreeVector, \hkyModelVector)
+    p(\geneTreeVector \given \divTimeMapVector, \demographicParamVector,
+    \locusMutationRateScalarVector, \ploidyScalarVector,
+    \mutationRateScalarConstantVector) = 
+    \prod_{i=1}^{\npairs{}}
+    \prod_{j=1}^{\nloci{i}}
+    p(\alignment{i}{j} \given \geneTree{i}{j}, \hkyModel{i}{j})
+    p(\geneTree{i}{j} \given \divTimeMap{i}, \demographicParams{i},
+    \locusMutationRateScalar{j}, \ploidyScalar{i}{j},
+    \mutationRateScalarConstant{i}{j}).
+    \label{eq:modelLikelihoodExpanded}
+\end{equation}
+The first term,
+$p(\alignment{i}{j} \given \geneTree{i}{j}, \hkyModel{i}{j})$,
+is the probability of the sequence alignment of locus $j$ for population pair
+$i$ given the gene tree and \hky substitution model paramters \citep[i.e., the
+``Felsenstein likelhood'';][]{Felsenstein1981}.
+The model allows for an intra-locus recombination rate \recombinationRate,
+which, for simplicity, is assumed to be zero in Equation
+\ref{eq:fullModelCompact}.
+If \recombinationRate is non-zero, this term requires an additional product
+over the columns (sites) of each sequence alignment to allow sites to have
+different genealogies.
+The second term,
+p(\geneTree{i}{j} \given \divTimeMap{i}, \demographicParams{i},
+\locusMutationRateScalar{j}, \ploidyScalar{i}{j},
+\mutationRateScalarConstant{i}{j}),
+is the probability of the gene tree under a multi-population coalescent model
+(i.e., species tree) where the ancestral population of pair $i$ diverges
+and gives rise to the two sampled descendant populations.
+Each \demographicParams contains the following demographic parameters:
+The mutation-scaled sizes of the ancestral, \ancestralTheta{}, and descendant
+populations, \descendantTheta{1}{} and \descendantTheta{2}{};
+the proportion of the first, \bottleScalar{1}{}, and second population,
+\bottleScalar{2}{}, that persists during bottlenecks that begin immmediately
+after divergence in forward-time;
+the proportion of time between present and divergence when the bottlenecks
+end for both populations, \bottleTime{};
+and the symmetric migration rate between the descendant populations,
+\migrationRate{}.
+Thus, the probability of the $\popSampleSize{i}{}-1$ coalescence times (node
+heights) of gene tree \geneTree{i}{j} is given by a multi-population
+Kingman-coalescent model \citep{Kingman1982} where the ancestral population of
+size
+$\ancestralTheta{i}\ploidyScalar{i}{j}\mutationRateScalarConstant{i}{j}\locusMutationRateScalar{j}$
+diverges at time \divTimeMap{i} into two descendant populations of constant
+size
+$\descendantTheta{1}{i}\ploidyScalar{i}{j}\mutationRateScalarConstant{i}{j}\locusMutationRateScalar{j}\bottleScalar{1}{i}$
+and
+$\descendantTheta{2}{i}\ploidyScalar{i}{j}\mutationRateScalarConstant{i}{j}\locusMutationRateScalar{j}\bottleScalar{2}{i}$,
+which, after time $\divTimeMap{i}\bottleTime{i}$, grow exponentially to their
+present size 
+$\descendantTheta{1}{i}\ploidyScalar{i}{j}\mutationRateScalarConstant{i}{j}\locusMutationRateScalar{j}$
+and
+$\descendantTheta{2}{i}\ploidyScalar{i}{j}\mutationRateScalarConstant{i}{j}\locusMutationRateScalar{j}$,
+respectively.
+Following divergence, the descendant populations of pair $i$ exchange migrants at a symmetric rate of
+\migrationRate{i}.
+\end{linenomath}
+
+
+\subsubsection*{Prior terms of Equation \ref{eq:fullModelCompact}}
+\begin{linenomath}
+The term $p(\locusRateHetShapeParameter)$ is the prior density
+function for the shape-parameter for the gamma-distributed prior on
+rate heterogeneity among loci.
+This prior is $\locusRateHetShapeParameter \sim U(1, 20)$.
+The prior probability of the vector of locus-specific mutation-rate scaling parameters
+given \locusRateHetShapeParameter then expands out as a product over
+the loci
+\begin{equation}
+    p(\locusMutationRateScalarVector \given \locusRateHetShapeParameter) =
+    \prod_{j=1}^{\nlociTotal}
+    p(\locusMutationRateScalar{j} \given \locusRateHetShapeParameter),
+    \label{eq:locusRateHetPrior}
+\end{equation}
+where each \locusMutationRateScalar{} is independently and identicially
+distributed (\iid) as
+$\locusMutationRateScalar{} \sim Gamma(\locusRateHetShapeParameter,
+1/\locusRateHetShapeParameter)$.
+If the recombination rate \recombinationRate is allowed to be
+non-zero, the prior term $p(\recombinationRate)$ would be added
+to Equation \ref{eq:fullModelCompact}, and the prior would be
+$\recombinationRate \sim Gamma(\gammaShape{\recombinationRate},
+\gammaScale{\recombinationRate})$.
+\end{linenomath}
+
+\begin{linenomath}
+The prior term for the demographic parameters, $p(\demographicParamVector)$,
+expands out into its components and as a product over the \npairs{}
+pairs of populations
+\begin{equation}
+    p(\demographicParamVector) =
+    \prod_{i=1}^{\npairs{}}
+    p(\ancestralTheta{i})
+    p(\descendantTheta{1}{i})
+    p(\descendantTheta{2}{i})
+    p(\bottleScalar{1}{i})
+    p(\bottleScalar{2}{i})
+    p(\bottleTime{i})
+    p(\migrationRate{i}).
+    \label{eq:demographicPrior}
+\end{equation}
+The priors for the demographic parameters are:
+$\ancestralTheta{} \sim Gamma(\gammaShape{\ancestralTheta{}},
+\gammaScale{\ancestralTheta{}})$,
+$\descendantTheta{1}{} \sim Gamma(\gammaShape{\descendantTheta{}{}},
+\gammaScale{\descendantTheta{}{}})$,
+$\descendantTheta{2}{} \sim Gamma(\gammaShape{\descendantTheta{}{}},
+\gammaScale{\descendantTheta{}{}})$,
+$\bottleScalar{1}{} \sim Beta(\betaA{\bottleScalar{}{}},
+\betaB{\bottleScalar{}{}})$,
+$\bottleScalar{2}{} \sim Beta(\betaA{\bottleScalar{}{}},
+\betaB{\bottleScalar{}{}})$,
+$\bottleTime{} \sim U(0, 1)$,
+and
+$\migrationRate{} \sim Gamma(\gammaShape{\migrationRate{}},
+\gammaScale{\migrationRate{}})$.
+\end{linenomath}
+
+\subsubsection*{Priors on divergence models}
+\begin{linenomath}
+The prior term for the vector of divergence times for each of
+the \npairs{} pairs of populations can be expanded as
+\begin{equation}
+    p(\divTimeMapVector) = p(\divTimeIndexVector)p(\divTimeVector \given \divTimeIndexVector),
+    \label{eq:divModelPrior}
+\end{equation}
+where \divTimeVector is an ordered set of unique divergence time parameters
+$\{\divTime{1}, \ldots, \divTime{\divTimeNum}\}$ whose length
+\divTimeNum can range from 1 to \npairs{},
+and \divTimeIndexVector is vector of indices of divergence time parameters 
+$(\divTimeIndex{1}, \ldots, \divTimeIndex{\npairs{}})$
+that map the divergence time in \divTimeVector to each of the \npairs{}
+pairs of populations.
+Thus, \divTimeMapVector is the result of applying the mapping function
+\begin{equation}
+    f(\divTimeVector, \divTimeIndexVector, i) = \divTime{\divTimeIndex{i}}
+    \label{eq:divTimeMapFunction}
+\end{equation}
+to each population pair $i$, such that
+$\divTimeMapVector = (\divTimeMap{1} = f(\divTimeVector, \divTimeIndexVector,
+1), \ldots, \divTimeMap{\npairs{}} = f(\divTimeVector, \divTimeIndexVector,
+\npairs{}))$.
+\end{linenomath}
+
+Biologically speaking, \divTimeVector contains the times of divergence events,
+the length of which \divTimeNum is the number of divergence events shared across
+the \npairs{} pairs of populations.
+For example, if \divTimeVector contains a single divergence time parameter
+\divTime{1}, all \npairs{} pairs of populations are constrained to diverge at
+this time (i.e., \divTimeIndexVector would contain the index 1 repeated
+\npairs{} times, and \divTimeMapVector would contain the value \divTime{1}
+repeated \npairs{} times), whereas if it contains \npairs{} divergence time
+parameters, the model is fully generalized to allow all of the pairs to diverge
+at unique times.
+
+\begin{linenomath}
+Each \divTime{} within \divTimeVector is \iid as $\divTime{} \sim
+Gamma(\gammaShape{\divTime{}}, \gammaScale{\divTime{}})$.
+Thus, given the number of unique divergence time classes in
+\divTimeIndexVector, this determines the probability of prior term
+$p(\divTimeVector \given \divTimeIndexVector)$
+The divergence time parameters are in coalescent units relative to the size of
+a constant reference population, which we denote \myTheta{C}, that is equal to
+the expectation of the prior on the size of the descendant populations
+\begin{equation}
+    \myTheta{C} = E(\descendantTheta{}{}).
+    \label{eq:thetaC}
+\end{equation}
+Given the size of the descendant populations are \iid as
+$\descendantTheta{}{} \sim Gamma(\gammaShape{\descendantTheta{}{}},
+\gammaScale{\descendantTheta{}{}})$,
+this becomes
+\begin{equation}
+    \myTheta{C} = \gammaShape{\descendantTheta{}{}}\gammaScale{\descendantTheta{}{}}.
+    \label{eq:thetaCGamma}
+\end{equation}
+The \divTime parameters are then in units $\myTheta{C}/\mutationRate$
+generations, which we denote as \globalcoalunit generations.
+Thus, each \divTime within \divTimeVector is proportional to time and
+can be converted to the number of generations of the reference population,
+which we denote \divTime{G_C}, by assuming a mutation rate multiplying by
+the effective size of the reference population
+\begin{equation}
+    \divTime{G_C} = \divTime \times \frac{
+        \gammaShape{\descendantTheta{}{}}\gammaScale{\descendantTheta{}{}}}
+        {\mutationRate}.
+    \label{eq:divTimeGenerations}
+\end{equation}
+Thus, for each of the divergence times in \divTimeVector to be on the same
+scale, and thus comparable, the relative mutation rates among the pairs of
+populations are assumed to be fixed and known according the user-provided
+values in \mutationRateScalarConstantVector.
+\end{linenomath}
+
+\begin{linenomath}
+As described by \citet{Oaks2012}, to get the divergence times in units
+proportional to the expected number of mutations, \divTimeScaled{}{}, we must
+scale them by the realized population size for locus $j$ of population-pair $i$ 
+\begin{equation}
+    \divTimeScaled{i}{j} = \divTime{i} \times \frac{\myTheta{C}}{
+        \descendantThetaMean{i} \ploidyScalar{i}{j}},
+    \label{eq:divTimeScaled}
+\end{equation}
+where \descendantThetaMean{i} is the mean of \descendantTheta{1}{} and
+\descendantTheta{2}{} for pair $i$.
+This gives us the vector of scaled divergence times
+$\divTimeScaledVector = (\divTimeScaled{1}{1}, \ldots,
+\divTimeScaled{\npairs{}}{\nloci{\npairs{}}})$.
+\end{linenomath}
+
+
+\begin{linenomath}
+As for the prior term $p(\divTimeMapVector)$,
+the total sample space of ordered realizations of \divTimeMapVector is all the
+possible partitions of \npairs{} elements into 1 to \npairs{} categories.
+The total number of possible partitions is a sum of the Stirling numbers of
+the second kind over all possible number of categories \divTimeNum
+\begin{equation}
+    B_{\npairs{}}=\sum_{\divTimeNum=1}^{\npairs{}} \left[
+    \frac{1}{\divTimeNum!} \sum_{j=0}^{\divTimeNum-1} (-1)^{j}
+    \binom{\divTimeNum}{j} (\divTimeNum-j)^{\npairs{}} \right],
+    \label{eq:bell}
+\end{equation}
+which is the Bell Number \citep{Bell1934}.
+The original \msb model only samples over the unordered realizations of
+\divTimeIndexVector, such that the sample space is reduced to all the possible
+integer partitions of \npairs{} \citep{Oaks2012,Huang2011,OeisPartitionNumber,
+    OeisPartitionTriangle,Malenfant2011}.
+We denote the set of all possible integer partitions of \npairs{} as
+\integerPartitionSet{\npairs{}} and the length of that set as
+\integerPartitionNum{\npairs{}}.
+The advantages, disadvantages, and justification of ignoring the order
+of \divTimeIndexVector is discussed in detail below.
+\end{linenomath}
+
+\begin{linenomath}
+We implement two prior probability distributions over the space
+of all possible discrete divergence models (\divTimeIndexVector).
+The first simply gives all possible unordered partitions of \npairs{} elements
+equal probability
+\begin{equation}
+    p(\divTimeIndexVector) = \frac{1}{\integerPartitionNum{\npairs{}}},
+    \label{eq:divModelPriorUniform}
+\end{equation}
+i.e., a discrete uniform prior over all the integer partitions of \npairs{}
+(discrete divergence models).
+We denote this prior as
+$\divTimeIndexVector \sim DU(\integerPartitionSet{\npairs{}})$.
+\end{linenomath}
+
+The second prior we implement is based on the Dirichlet-process, which is a
+stochastic process that groups elements into an unknown number of discrete
+parameter classes \citep{Ferguson1973,Antoniak1974}.
+The process is controlled by the concentration parameter \concentrationParam,
+which determines how clustered the process will be.
+We use the Dirichlet process to place a prior over all possible ordered
+partitions of \npairs{} elements, which we denote as $\divTimeIndexVector \sim
+DP(\concentrationParam)$.
+We use a hierarchical Bayesian approach and place a second-order prior
+probability distribution (i.e., hyperprior) on \concentrationParam.  More
+specifically, we use a gamma-distributed prior $\concentrationParam =
+Gamma(\gammaShape{\concentrationParam}, \gammaScale{\concentrationParam})$,
+where \gammaShape{\concentrationParam} and \gammaScale{\concentrationParam} are
+specified by the user.
+
+\begin{linenomath}
+This provides a great deal of flexibility for specifying the prior uncertainty
+regarding divergence models.
+The \concentrationParam determines the prior probability that any two
+pairs of populations $i$ and $j$ will be assigned to the same divergence time
+parameter
+\begin{equation}
+    p(\divTimeIndex{i} = \divTimeIndex{j}) = \frac{1}{1 + \concentrationParam},
+    \label{eq:dppPriorSameClass}
+\end{equation}
+and also the prior probability of the number of divergence time parameters
+\begin{equation}
+    p(\divTimeNum \given \concentrationParam, \npairs{}) = 
+    \frac{\stirlingFirst{\npairs{}}{\divTimeNum} \concentrationParam^{\divTimeNum}}
+    {\prod_{i=1}^{\npairs{}}(\concentrationParam + i - 1)},
+    \label{eq:dppPriorNumClasses}
+\end{equation}
+where \stirlingFirst{\cdot}{\cdot} are the unsigned Stirling numbers of the
+first kind.
+Equations \ref{eq:dppPriorSameClass} and \ref{eq:dppPriorNumClasses} show that
+smaller values of \concentrationParam will favor fewer divergence time
+parameters, and thus more clustered models of divergence, whereas larger values
+will favor more divergence time parameters, and thus less clustered models of
+divergence.
+\end{linenomath}
+
+\subsection*{Differences between our model and the original \msb model}
+\subsubsection*{The prior on divergence models}
+One of the key differences between our model and that of \msb \citep{Huang2011}
+is the prior distribution placed on divergence models.
+As discussed in \citet{Oaks2012}, in \msb the only prior used for
+\divTimeIndexVector is a combination of a discrete uniform prior over the
+possible number of divergence events \divTimeNum from 1 to \npairs{} with a
+multinomial distribution on the number of times each index of \divTimeVector
+appears in \divTimeIndexVector, with the constraint that all \divTime
+parameters are represented at least once (see Equation 2 of \citet{Oaks2012}).
+\citet{Oaks2012} discuss how placing a uniform prior over the number of
+divergence parameters (\divTimeNum here; \numt{} in \citet{Huang2011}) imposes
+an odd U-shaped prior over discrete divergence models (\divTimeIndexVector; see
+Figure 5B of \citet{Oaks2012}).
+To avoid this, we place priors directly on the sample space of divergence
+models, thus eliminating the parameter \numt{} from the model.
+We introduce two priors on divergence models:
+(1) a prior that is uniform over all unordered divergence models, and
+(2) a Dirichlet-process prior on all ordered divergence models.
+The latter provides the user with a great deal of flexibility in
+expressing their prior beliefs about models of divergence.
+
+\subsubsection*{The priors on nuisance parameters}
+Following the recommendations of \citet{Oaks2012}, we have replaced the use of
+inappropriate, continuous uniform distributions for priors on many of the
+model's parameters (\divTime{}, \ancestralTheta{}, \descendantTheta{1}{},
+\descendantTheta{2}{}, \bottleScalar{1}{}, \bottleScalar{2}{},
+\recombinationRate, \migrationRate{}) with more flexible parametric
+distributions from the exponential family.
+We introduce gamma-distributed priors for rate parameters that have a sample
+space of all positive real numbers (\divTime{}, \ancestralTheta{},
+\descendantTheta{1}{}, \descendantTheta{2}{}, \recombinationRate,
+\migrationRate{}), and beta-distributed priors for parameters that are
+proportions bounded by zero and one (\bottleScalar{1}{} and
+\bottleScalar{2}{}).
+Not only do these priors have nice conjugacy properties, but they also provide
+the user with much greater flexibility in expressing the prior uncertainty
+regarding the parameters of the model.
+
+Another distinction between our model and that of \msb, is the prior on the
+sizes of the descendant populations of each pair.
+As described by \citet{Oaks2012}, \msb uses the joint prior
+\begin{equation}
+    \descendantTheta{1}{}, \descendantTheta{2}{} \sim
+    Dirichlet(1,1) \times 2 \times U(\uniformMin{\myTheta{}},
+    \uniformMax{\descendantTheta{}{}}),
+    \label{eq:jointThetaPrior}
+\end{equation}
+such that the user-specified uniform prior on descendant population
+size is a prior on the \emph{mean} size of the two descendant
+populations of each pair.
+Under our model, the sizes of the descendant populations of each
+pair are \iid as
+$\descendantTheta{1}{} \sim Gamma(\gammaShape{\descendantTheta{}{}},
+\gammaScale{\descendantTheta{}{}})$
+and
+$\descendantTheta{2}{} \sim Gamma(\gammaShape{\descendantTheta{}{}},
+\gammaScale{\descendantTheta{}{}})$.
+This relaxes the assumption that the sizes of the two descendant populations
+are interdependent and negatively correlated.
+
+\subsubsection*{Flexibility in parameterizing the model}
+We also provide the user with the ability to control the richness of
+the model.
+For the \myTheta{} parameters, the model can be fully generalized to
+allow each population pair to have three parameters:
+\ancestralTheta{}, \descendantTheta{1}{}, and \descendantTheta{2}{}.
+Furthermore, any model of \myTheta{} parameters nested within this
+general model can also be specified, including the most restricted model
+where the ancestral and descendant populations of each pair share
+a single \myTheta{} parameter.
+We also allow the user to eliminate the parameters associated with
+the post-divergence bottlenecks in the descendant populations of
+each pair
+(\bottleTime{}, \bottleScalar{1}{}, and \bottleScalar{2}{}),
+which constrains the descendant populations to be of
+constant size from present back to the divergence event.
+This allows the user to specify a model that has as many as
+seven parameters per population pair
+(\ancestralTheta{}, \descendantTheta{1}{}, \descendantTheta{2}{},
+\bottleTime{}, \bottleScalar{1}{}, \bottleScalar{2}{}, and
+\migrationRate{})
+or as few as
+one parameter per pair
+(\myTheta{}),
+in addition to the $\popSampleSize{i}{} - 1$ coalescence times.
+
+\subsubsection*{Time scale}
+As described above, in our model divergence times are in units of
+$\myTheta{C}/\mutationRate$ generations, where \myTheta{C} is the expectation
+of the prior on descendant-population size.
+As described by \citet{Oaks2012}, in \msb, \myTheta{C} is half of the upper
+limit of the continuous uniform prior on the mean of the descendant-population
+sizes.
+
+\subsection*{ABC estimation of the posterior}
+To estimate the approximate posterior of Equation \ref{eq:approxModelCompact},
+we use an ABC rejection algorithm.
+The first step of this algorithm entails collecting a random sample of
+parameters values from the joint prior and their associated summary
+statistics.
+Each sample is generated by
+(1) drawing values of all the model's parameters, which we denote \hpvector{}, from their respective
+prior distributions;
+(2) rescaling the divergence times
+$\divTimeMapVector = (\divTimeMap{1}, \ldots, \divTimeMap{\npairs{}})$
+from units proportional to time to units proportional to the expected number
+of mutations via Equation \ref{eq:divTimeScaled} to get 
+$\divTimeScaledVector = (\divTimeScaled{1}{1}, \ldots, \divTimeScaled{\npairs{}}{\nloci{\npairs{}}})$;
+(3) simulating gene trees $\geneTreeVector = (\geneTree{1}{1}, \ldots, 
+\geneTree{\npairs{}}{\nloci{\npairs{}}})$
+for each locus of each population pair by drawing coalescent times from
+a multi-population Kingman-coalescent model given the demographic parameters;
+(4) simulating sequences alignments 
+$\alignmentVector = (\alignment{1}{1}, \ldots, \alignment{\npairs{}}{\nloci{\npairs{}}})$
+along the gene trees under the
+\hky substitution parameters
+$\hkyModelVector = (\hkyModel{1}{1}, \ldots, \hkyModel{\npairs{}}{\nloci{\npairs{}}})$
+that have the same number of sequences and sequence lengths as the observed
+dataset;
+(5) calculating population genetic summary statistics
+$\ssVector{} = (\alignmentSS{1}{1}, \ldots, \alignmentSS{\npairs{}}{\nloci{\npairs{}}})$
+from the simulated sequence alignments (these are the same statistics calculated from the observed
+alignments, \ssVectorObs{});
+and (6) reducing the summary statistics to the means across loci for each
+population pair to get
+$\ssVector{} = (\alignmentSS{1}{}, \ldots, \alignmentSS{\npairs{}}{})$, which is
+the same summary statstic vector estimated from the observed data \ssVectorObs.
+After repeating this procedure \numPriorSamples times, we obtain a random sample
+of parameters
+from the model prior and there associated summary statistics
+.
+
+
+This has the advantage of reducing the sample space of the number of
+divergence models, but has two disadvantages.
+First, additional information about the data is lost.
+By throwing away the identity of the \npairs{} pairs of populations, all
+information associating each pair with its amount of data (e.g., the number gene copies
+collected from each of the populations [\popSampleSize{1}{} and
+\popSampleSize{2}{}], the number of loci, and the length of the loci),
+information content in the data (i.e., the amount of sequence variation), as
+well as its taxon- and locus-specific parameters (\hkyModel{}{},
+\mutationRateScalarConstant{}{}, \ploidyScalar{}{}, and
+\locusMutationRateScalar{}) is lost.
+The original descriptions of the \msb model claim that the independence
+between the sample sizes \popSampleSize{1}{}, \popSampleSize{2}{} and
+the summary statistic $\pi_b$ calculated from the alignment for each
+population pair allows exchangeability.
+This is incorrect.
+The other summary statistics, and the alignments they are based on are
+not independent of the sample sizes.
+The alignments and summary statitics are not identically distributed because of
+taxon- and locus-specific parameters \hkyModel{}{},
+\mutationRateScalarConstant{}{}, and \ploidyScalar{}{}
+Second, the identity of the pairs of populations is lost.
+
 \section*{Acknowledgments}
+We thank the National Science Foundation for supporting this work (DEB
+1011423).
+J.\ Oaks was also supported by the University of Kansas (KU) Office of Graduate
+Studies, Society of Systematic Biologists, Sigma Xi Scientific Research
+Society, KU Department of Ecology and Evolutionary Biology, and the KU
+Biodiversity Institute.
 
 \bibliography{../bib/references}
 
