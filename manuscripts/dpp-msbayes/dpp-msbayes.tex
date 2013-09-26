@@ -371,7 +371,7 @@ As described by \citet{Oaks2012}, to get the divergence times in units
 proportional to the expected number of mutations, \divTimeScaled{}{}, we must
 scale them by the realized population size for locus $j$ of population-pair $i$ 
 \begin{equation}
-    \divTimeScaled{i}{j} = \divTime{i} \times \frac{\myTheta{C}}{
+    \divTimeScaled{i}{j} = \divTimeMap{i} \times \frac{\myTheta{C}}{
         \descendantThetaMean{i} \ploidyScalar{i}{j}},
     \label{eq:divTimeScaled}
 \end{equation}
@@ -419,7 +419,7 @@ equal probability
 i.e., a discrete uniform prior over all the integer partitions of \npairs{}
 (discrete divergence models).
 We denote this prior as
-$\divTimeIndexVector \sim DU(\integerPartitionSet{\npairs{}})$.
+$\divTimeIndexVector \sim \priorUniform$.
 \end{linenomath}
 
 The second prior we implement is based on the Dirichlet-process, which is a
@@ -429,7 +429,7 @@ The process is controlled by the concentration parameter \concentrationParam,
 which determines how clustered the process will be.
 We use the Dirichlet process to place a prior over all possible ordered
 partitions of \npairs{} elements, which we denote as $\divTimeIndexVector \sim
-DP(\concentrationParam)$.
+\priorDPP{}$.
 We use a hierarchical Bayesian approach and place a second-order prior
 probability distribution (i.e., hyperprior) on \concentrationParam.  More
 specifically, we use a gamma-distributed prior $\concentrationParam =
@@ -473,6 +473,7 @@ possible number of divergence events \divTimeNum from 1 to \npairs{} with a
 multinomial distribution on the number of times each index of \divTimeVector
 appears in \divTimeIndexVector, with the constraint that all \divTime
 parameters are represented at least once (see Equation 2 of \citet{Oaks2012}).
+We denote this prior used by \msb as $\divTimeIndexVector \sim \priorOld$.
 \citet{Oaks2012} discuss how placing a uniform prior over the number of
 divergence parameters (\divTimeNum here; \numt{} in \citet{Huang2011}) imposes
 an odd U-shaped prior over discrete divergence models (\divTimeIndexVector; see
@@ -544,21 +545,25 @@ Furthermore, any model of \myTheta{} parameters nested within this
 general model can also be specified, including the most restricted model
 where the ancestral and descendant populations of each pair share
 a single \myTheta{} parameter.
+
 We also allow the user to eliminate the parameters associated with
 the post-divergence bottlenecks in the descendant populations of
 each pair
 (\bottleTime{}, \bottleScalar{1}{}, and \bottleScalar{2}{}),
 which constrains the descendant populations to be of
 constant size from present back to the divergence event.
-This allows the user to specify a model that has as many as
-seven parameters per population pair
+Also, rather than eliminate the bottleneck parameters, the user
+can constrain \bottleScalar{1}{} and \bottleScalar{2}{} to be
+equal to remove one free parameter from the model.
+
+Overall, our implementation allows the user to specify a model that has as many
+as seven parameters per population pair
 (\ancestralTheta{}, \descendantTheta{1}{}, \descendantTheta{2}{},
 \bottleTime{}, \bottleScalar{1}{}, \bottleScalar{2}{}, and
 \migrationRate{})
-or as few as
-one parameter per pair
+or as few as one parameter per pair
 (\myTheta{}),
-in addition to the $\popSampleSize{i}{} - 1$ coalescence times.
+in addition to the $\popSampleSize{i}{} - 1$ coalescence-time parameters.
 
 \subsubsection*{Time scale}
 As described above, in our model divergence times are in units of
@@ -673,7 +678,7 @@ This allows the estimation of ordered divergence models.
 
 \subsubsection*{Obtaining an approximate posterior from the prior samples}
 We use a rejection algorithm to retain an approximate posterior sample of
-\paramSampleVector{} from the from the prior sample
+\paramSampleVector{} from the prior sample
 $\paramSampleMatrix = (\paramSampleVector{1}, \ldots, \paramSampleVector{\numPriorSamples})$.
 First, the observed summary statistics \ssVectorObs, and the summary statistics
 of the prior samples 
@@ -689,9 +694,102 @@ The range of tolerance is determined by specifying the number of desired
 posterior samples to be retained.
 Post-hoc adjustment of the posterior sample can also be performed with a number
 of regression techniques \citep{Beaumont2002,Blum2009,Leuenberger2010}.
+For our analyses, we use the general linear model (GLM) regression adjustment
+\citet{Leuenberger2010}, which \citet{Oaks2012} showed performed very
+similarly to weighted local-linear regression and multinomial logistic
+regression adjustments \citep{Beaumont2002} for \msb posteriors.
 
 
-\subsection*{Simulation-based validation of the model}
+\subsection*{Assessing model-choice behavior and robustness}
+Following the simulation-based approach of \citet{Oaks2012}, we characterize
+the behavior of several models under the ideal conditions where the
+data are generated from parameters drawn from the same prior distributions used
+for analysis (i.e., the prior is correct).
+We selected four model priors for these analyses (Table~\ref{tabPriors}):
+(1) A model to represent the original \msb model, \modelOld, with
+priors
+$\divTimeIndexVector \sim \priorOld$,
+$\divTime{} \sim U(0,10)$,
+$\ancestralTheta{} \sim U(0, 0.05)$,
+and
+$\descendantThetaMean{} \sim U(0, 0.05)$;
+(2) a Dirichlet-process prior model, \modelDPP, with priors
+$\divTimeIndexVector \sim \priorDPP{\sim Gamma(2,2)}$,
+$\divTime{} \sim Exp(0.3464)$,
+$\ancestralTheta{} \sim Exp(40)$,
+and
+$\descendantTheta{}{} \sim Exp(40)$;
+(3) a model with uniform prior probability over unordered divergence models,
+\modelUniform, with priors
+$\divTimeIndexVector \sim \priorUniform$,
+$\divTime{} \sim Exp(0.3464)$,
+$\ancestralTheta{} \sim Exp(40)$,
+and
+$\descendantTheta{}{} \sim Exp(40)$;
+and
+(4) a model with the \msb prior on unordered divergence models, but with
+exponential priors on nuisance parameters,
+\modelUshaped, with priors
+$\divTimeIndexVector \sim \priorOld$,
+$\divTime{} \sim Exp(0.3464)$,
+$\ancestralTheta{} \sim Exp(40)$,
+and
+$\descendantTheta{}{} \sim Exp(40)$.
+The exponential prior on divergence time used in models \modelDPP,
+\modelUniform, and \modelUshaped was selected to have the same variance as the
+uniform prior in model \modelOld.
+The exponential prior on population size used in models \modelDPP,
+\modelUniform, and \modelUniform was selected to have the same mean as the
+uniform prior in model \modelOld.
+All of the models were the same in other respects, with three free \myTheta{}
+parameters for each population pair, two uniformly distributed ($beta(1,1)$)
+\bottleScalar{}{} parameters per pair, no migration, no recombination,
+and unordered divergence models.
+For all of our simulations, we used a simulated data structure of eight
+population pairs, with a single 1000 base-pair locus sampled from 10
+individuals from each population.
+
+For each of the four models, we generated $1\e6$ samples from the prior, and
+simulated 50,000 pseudo-replicate datasets, also drawn from the prior.
+We then analyzed each of the replicate datasets using the, retaining a
+posterior sample from its respective prior.
+A GLM-regression adjusted posterior was also estimated from each of the
+posterior samples.
+To assess the robustness of each of the four models, we also analyzed the
+pseudo-replicate datasets simulated under the other three models.
+Overall, for each model, we produced 200,000 posterior estimates,
+50,000 from the replicate datasets simulated under that model,
+and 150,000 estimated from the replicate datasets simulated under the
+other three models.
+
+For each set of 50,000 simulated datasets, we used the posterior estimates
+assess each model's model-choice behavior.
+We did this by assigning the 50,000 estimates of the posterior probability
+of one divergence event to 20 bins of width 0.05, and plotted
+the estimated posterior probability of each bin against the proportion of
+replicates in that bin with a true value consistent with one divergence
+event \cite{Huelsenbeck2004,Oaks2012}.
+We did this using two criteria for the one divergence model:
+(1) the number of divergence time parameters ($\divTimeNum = 1$) and
+(2) the dispersion index of divergence times ($\divTimeDispersion < 0.01$).
+We used the one-divergence model to assess model-choice behavior, because
+it is often of biogeographic interest and is easily comparable among
+the three different priors used on divergence models.
+
+In addition to the four models above, we also assessed the behavior of a model
+with ordered divergence models (i.e., the order of the taxon-specific summary
+statistic vectors were maintained for the observed and simulated datasets).
+For this, we used a model with identical priors as \modelDPP, but that samples
+over ordered divergence models.
+We denote this model as \modelDPPOrdered.
+We generated $1\e6$ prior samples and 50,000 pseudo-replicate datasets, and
+analyzed them as above.
+We were not able to analyze the replicate datasets of the other models under
+the ordered model, because the identity of the population pairs is not
+contained in the simulations of the other models.
+
+\subsection*{Assessing power}
+
 
 
 \section*{Acknowledgments}
@@ -722,6 +820,40 @@ Biodiversity Institute.
 \newpage
 \singlespacing
 
+\begin{table}[htbp]
+    \sffamily
+    % \footnotesize
+    \addtolength{\tabcolsep}{-0.08cm}
+    \rowcolors{2}{}{myGray}
+    %\captionsetup{font=footnotesize}
+    \caption{The model priors evaluated in our simulation-based analyses.}
+    \centering
+    \begin{tabular}{ l l l l l }
+        \toprule
+        & \multicolumn{4}{c}{Priors} \\
+        \cmidrule(){2-5}
+        Model & \divTimeIndexVector & \divTime{} & \ancestralTheta{} & \descendantTheta{}{} \\
+        \midrule
+            \modelOld & $\divTimeIndexVector \sim \priorOld$
+                      & $\divTime{} \sim U(0,10)$
+                      & $\ancestralTheta{} \sim U(0, 0.05)$
+                      & $\descendantThetaMean{} \sim U(0, 0.05)$ \\
+            \modelDPP & $\divTimeIndexVector \sim \priorDPP{\sim Gamma(2,2)}$
+                      & $\divTime{} \sim Exp(0.3464)$
+                      & $\ancestralTheta{} \sim Exp(40)$
+                      & $\descendantTheta{}{} \sim Exp(40)$ \\
+            \modelUniform & $\divTimeIndexVector \sim \priorUniform$
+                          & $\divTime{} \sim Exp(0.3464)$
+                          & $\ancestralTheta{} \sim Exp(40)$
+                          & $\descendantTheta{}{} \sim Exp(40)$ \\
+            \modelUshaped & $\divTimeIndexVector \sim \priorOld$
+                          & $\divTime{} \sim Exp(0.3464)$
+                          & $\ancestralTheta{} \sim Exp(40)$
+                          & $\descendantTheta{}{} \sim Exp(40)$ \\
+        \bottomrule
+    \end{tabular}
+    \label{tabPriors}
+\end{table}
 
 \clearpage
 
