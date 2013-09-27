@@ -735,12 +735,13 @@ $\divTime{} \sim Exp(0.3464)$,
 $\ancestralTheta{} \sim Exp(40)$,
 and
 $\descendantTheta{}{} \sim Exp(40)$.
-The exponential prior on divergence time used in models \modelDPP,
-\modelUniform, and \modelUshaped was selected to have the same variance as the
+We selected the exponential prior on divergence time used in models \modelDPP,
+\modelUniform, and \modelUshaped to have the same variance as the
 uniform prior in model \modelOld.
-The exponential prior on population size used in models \modelDPP,
-\modelUniform, and \modelUniform was selected to have the same mean as the
-uniform prior in model \modelOld.
+We selected the exponential prior on population size used in models \modelDPP,
+\modelUniform, and \modelUniform to have the same mean as the uniform prior in
+model \modelOld, so that all four models have the same \myTheta{C} and thus the
+same units of time.
 All of the models were the same in other respects, with three free \myTheta{}
 parameters for each population pair, two uniformly distributed ($beta(1,1)$)
 \bottleScalar{}{} parameters per pair, no migration, no recombination,
@@ -754,7 +755,7 @@ simulated 50,000 pseudo-replicate datasets, also drawn from the prior.
 We then analyzed each of the replicate datasets using the, retaining a
 posterior sample from its respective prior.
 A GLM-regression adjusted posterior was also estimated from each of the
-posterior samples.
+posterior samples \citep{Leuenberger2010}.
 To assess the robustness of each of the four models, we also analyzed the
 pseudo-replicate datasets simulated under the other three models.
 Overall, for each model, we produced 200,000 posterior estimates,
@@ -789,7 +790,38 @@ the ordered model, because the identity of the population pairs is not
 contained in the simulations of the other models.
 
 \subsection*{Assessing power}
+We evaluated the power of the same four models (Table~\ref{tabPriors}) to
+detect random variation in divergence times using methods similar to
+\citet{Oaks2012}.
+For all of our power simulations, we used a simulated data structure identical
+to that of the empirical dataset of Philippine vertebrates analyzed by
+\citet{Oaks2012}, which consists of 22 pairs of populations.
+For each of the four models, we generated $2\e6$ samples from the prior.
+We then generated pseudo-observed datasets from three series of models.
+One series of models, which we denote \powerSeriesOld, is identically
+distributed as \modelOld except that the divergence times for each of the 22
+pairs of populations are randomly drawn from a series of uniform distributions,
+$U(0, \divt{max})$, where \divt{max} was set to: 0.2, 0.4, 0.6, 0.8, 1.0, and
+2.0, in \globalcoalunit generations.
+A second series of models, \powerSeriesUniform, are identically distributed as
+\modelUniform except that the 22 divergence times are randomly drawn from the
+same series of uniform priors as above.
+The third series of models, \powerSeriesUniformExp, is also identically
+distributed as \modelUniform except that the 22 divergence times are randomly
+drawn from a series of of exponential distributions: $Exp(17.3205)$,
+$Exp(8.6603)$, $Exp(5.7735)$, $Exp(4.33013)$, $Exp(3.4641)$, and $Exp(1.7321)$.
+These exponential distributions have the same variance as their uniform
+counterparts in the first two series of models.
 
+For each of the six models in each of the three series of models, we simulated
+1000 pseudo-replicate datasets (18,000 datasets in total).
+We then analyzed each replicate dataset under all four prior models
+(Table~\ref{tabPriors}), producing 72,000 posterior estimates, each with 1000
+samples.
+We also estimated a GLM-regression adjusted posterior from each of the
+posterior samples \citep{Leuenberger2010}.
+
+\section*{Results}
 
 
 \section*{Acknowledgments}
