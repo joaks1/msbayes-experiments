@@ -152,6 +152,15 @@
 \newcommand{\taxonVector}[1]{\ensuremath{\{#1{1},\ldots,#1{\npairs{}}\}}\xspace}
 \newcommand{\locusVector}[1]{\ensuremath{\{#1{1},\ldots,#1{\nlociTotal}\}}\xspace}
 
+\newcommand{\validationAccuracyCaption}[2]{Estimation accuracy for model
+    #1 when analyzing data generated under #2.
+    A random sample of 5000 posterior estimates (from 50,000) are plotted,
+    including both (A, B, \& C) unadjusted and (D, E, \&
+    F) GLM-regression-adjusted estimates.
+    Normal random variates ($N(0, 0.005)$) have been added to the estimates and
+    true values of \divTimeNum (A \& D) to reduce overlap of plot symbols.
+    The root mean square error (RMSE) calculated from the 5000 estimates is
+    provided.}
 \newcommand{\simulationDescription}[2]{\change{Each plot represents #1
     simulation replicates using the same $#2$ samples from the prior}}
 \newcommand{\simulationDistribution}{\ensuremath{\divt{} \sim U(0,
