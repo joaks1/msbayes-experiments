@@ -170,6 +170,49 @@
     $\divTimeNum = 1$ or $\divTimeDispersion < 0.01$.
     Results based on the (A \& B) unadjusted and (C \& D) GLM-adjusted
     posterior estimates are shown.}
+\newcommand{\powerAccuracyCaption}[2]{Estimation accuracy for model
+    #2 when analyzing data generated under the series of models #1.
+    The true versus estimated value of the dispersion index of divergence
+    times (\divTimeDispersion) is plotted for 1000 datasets simulated
+    under each of the #1 models, and the proportion of estimates less
+    than the truth, $p(\hat{\divTimeDispersion} < \divTimeDispersion)$,
+    is shown for each data model.}
+\newcommand{\powerPsiCaption}[2]{
+    The power of model #2 to detect random variation in divergence times as
+    simulated under the series of models #1.
+    The plots illustrate the estimated number of divergence events
+    ($\hat{\divTimeNum}$) from analyses of 1000 datasets simulated under each
+    of the #1 models, with the the estimated probability of the model inferring
+    one divergence event, $p(\hat{\divTimeNum} = 1)$, given for each data
+    model.}
+\newcommand{\powerDispersionCaption}[2]{
+    The power of model #2 to detect random variation in divergence times as
+    simulated under the series of models #1.
+    The plots illustrate the estimated dispersion index of divergence times
+    ($\hat{\divTimeDispersion}$) from analyses of 1000 datasets simulated under
+    each of the #1 models, with the the estimated probability of the model
+    inferring one divergence event, $p(\hat{\divTimeDispersion} < 0.01)$, given
+    for each data model.}
+\newcommand{\powerPsiProbCaption}[2]{
+    The tendency of model #2 to support one divergence event when there is
+    random variation in divergence times as simulated under the series of
+    models #1.
+    The plots illustrate histograms of the estimated posterior probability of
+    the one divergence model, $p(\divTimeNum = 1 | \ssSpace)$, from analyses of
+    1000 datasets simulated under each of the #1 models, with the the estimated
+    probability of the model strongly supporting one divergence event,
+    $p(BF_{\divTimeNum = 1, \divTimeNum \neq 1} > 10)$, given for each data
+    model.}
+\newcommand{\powerDispersionProbCaption}[2]{
+    The tendency of model #2 to support one divergence event when there is
+    random variation in divergence times as simulated under the series of
+    models #1.
+    The plots illustrate histograms of the estimated posterior probability of
+    the one divergence model, $p(\divTimeDispersion < 0.01 | \ssSpace)$, from
+    analyses of 1000 datasets simulated under each of the #1 models, with the
+    the estimated probability of the model strongly supporting one divergence
+    event, $p(BF_{\divTimeDispersion < 0.01, \divTimeDispersion \geq 0.01} >
+    10)$, given for each data model.}
 \newcommand{\simulationDescription}[2]{\change{Each plot represents #1
     simulation replicates using the same $#2$ samples from the prior}}
 \newcommand{\simulationDistribution}{\ensuremath{\divt{} \sim U(0,
