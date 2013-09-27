@@ -153,7 +153,7 @@
 \newcommand{\locusVector}[1]{\ensuremath{\{#1{1},\ldots,#1{\nlociTotal}\}}\xspace}
 
 \newcommand{\validationAccuracyCaption}[2]{Estimation accuracy for model
-    #1 when analyzing data generated under #2.
+    #2 when analyzing data generated under #1.
     A random sample of 5000 posterior estimates (from 50,000) are plotted,
     including both (A, B, \& C) unadjusted and (D, E, \&
     F) GLM-regression-adjusted estimates.
@@ -161,6 +161,15 @@
     true values of \divTimeNum (A \& D) to reduce overlap of plot symbols.
     The root mean square error (RMSE) calculated from the 5000 estimates is
     provided.}
+\newcommand{\validationModelChoiceCaption}[2]{Model-choice accuracy for model
+    #2 when analyzing data generated under #1.
+    The estimated posterior probability of a single divergence event, based on
+    (A \& C) $\divTimeNum = 1$ and (B \& D) $\divTimeDispersion < 0.01$, from
+    50,000 posterior estimates are assigned to bins of width 0.05 and plotted
+    against the proportion of replicates in each bin where the truth is
+    $\divTimeNum = 1$ or $\divTimeDispersion < 0.01$.
+    Results based on the (A \& B) unadjusted and (C \& D) GLM-adjusted
+    posterior estimates are shown.}
 \newcommand{\simulationDescription}[2]{\change{Each plot represents #1
     simulation replicates using the same $#2$ samples from the prior}}
 \newcommand{\simulationDistribution}{\ensuremath{\divt{} \sim U(0,
