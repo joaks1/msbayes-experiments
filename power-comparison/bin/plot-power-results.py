@@ -134,7 +134,9 @@ def create_plots(info_path):
             psi_plot = PowerPlotGrid(
                     observed_config_to_estimates = cfg_to_psi,
                     variable = 'psi',
-                    num_columns = 2)
+                    variable_symbol = r'|\mathbf{\tau}|',
+                    num_columns = 2,
+                    margin_top = 0.975)
             fig = psi_plot.create_grid()
             fig.savefig(os.path.join(output_dir,
                     prefix + '_power_psi_mode.pdf'))
@@ -142,7 +144,9 @@ def create_plots(info_path):
             psi_plot_glm = PowerPlotGrid(
                     observed_config_to_estimates = cfg_to_psi_glm,
                     variable = 'psi',
-                    num_columns = 2)
+                    variable_symbol = r'|\mathbf{\tau}|',
+                    num_columns = 2,
+                    margin_top = 0.975)
             fig = psi_plot_glm.create_grid()
             fig.savefig(os.path.join(output_dir,
                     prefix + '_power_psi_mode_glm.pdf'))
@@ -150,6 +154,7 @@ def create_plots(info_path):
             psi_prob_plot = ProbabilityPowerPlotGrid(
                     observed_config_to_estimates = cfg_to_psi_prob,
                     variable = 'psi',
+                    variable_symbol = r'|\mathbf{\tau}|',
                     div_model_prior = div_model_prior,
                     dpp_concentration_mean = dpp_concentration_mean,
                     bayes_factor = 10,
@@ -161,6 +166,7 @@ def create_plots(info_path):
             psi_prob_plot_glm = ProbabilityPowerPlotGrid(
                     observed_config_to_estimates = cfg_to_psi_prob_glm,
                     variable = 'psi',
+                    variable_symbol = r'|\mathbf{\tau}|',
                     div_model_prior = div_model_prior,
                     dpp_concentration_mean = dpp_concentration_mean,
                     bayes_factor = 10,
@@ -172,6 +178,7 @@ def create_plots(info_path):
             omega_plot = PowerPlotGrid(
                     observed_config_to_estimates = cfg_to_omega,
                     variable = 'omega',
+                    variable_symbol = r'D_T',
                     num_columns = 2)
             fig = omega_plot.create_grid()
             fig.savefig(os.path.join(output_dir,
@@ -180,6 +187,7 @@ def create_plots(info_path):
             omega_plot_glm = PowerPlotGrid(
                     observed_config_to_estimates = cfg_to_omega_glm,
                     variable = 'omega',
+                    variable_symbol = r'D_T',
                     num_columns = 2)
             fig = omega_plot_glm.create_grid()
             fig.savefig(os.path.join(output_dir,
@@ -188,11 +196,13 @@ def create_plots(info_path):
             omega_prob_plot = ProbabilityPowerPlotGrid(
                     observed_config_to_estimates = cfg_to_omega_prob,
                     variable = 'omega',
+                    variable_symbol = r'D_T',
                     div_model_prior = div_model_prior,
                     dpp_concentration_mean = dpp_concentration_mean,
                     bayes_factor = 10,
                     bayes_factor_prob = prior_prob_omega,
-                    num_columns = 2)
+                    num_columns = 2,
+                    text_size = 10.0)
             fig = omega_prob_plot.create_grid()
             fig.savefig(os.path.join(output_dir,
                     prefix + '_power_omega_prob.pdf'))
@@ -200,25 +210,35 @@ def create_plots(info_path):
             omega_prob_plot_glm = ProbabilityPowerPlotGrid(
                     observed_config_to_estimates = cfg_to_omega_prob_glm,
                     variable = 'omega',
+                    variable_symbol = r'D_T',
                     div_model_prior = div_model_prior,
                     dpp_concentration_mean = dpp_concentration_mean,
                     bayes_factor = 10,
                     bayes_factor_prob = prior_prob_omega,
-                    num_columns = 2)
+                    num_columns = 2,
+                    text_size = 10.0)
             fig = omega_prob_plot_glm.create_grid()
             fig.savefig(os.path.join(output_dir,
                     prefix + '_power_omega_prob_glm.pdf'))
             
             omega_accuracy_plot = AccuracyPowerPlotGrid(
                     observed_config_to_estimates = cfg_to_omega_true_ests,
-                    num_columns = 2)
+                    variable_symbol = r'D_T',
+                    num_columns = 2,
+                    padding_between_vertical = 2.0,
+                    margin_left = 0.04,
+                    margin_bottom = 0.03)
             fig = omega_accuracy_plot.create_grid()
             fig.savefig(os.path.join(output_dir,
                     prefix + '_power_accuracy_omega_median.pdf'))
 
             omega_accuracy_plot_glm = AccuracyPowerPlotGrid(
                     observed_config_to_estimates = cfg_to_omega_true_ests_glm,
-                    num_columns = 2)
+                    variable_symbol = r'D_T',
+                    num_columns = 2,
+                    padding_between_vertical = 2.0,
+                    margin_left = 0.04,
+                    margin_bottom = 0.03)
             fig = omega_accuracy_plot_glm.create_grid()
             fig.savefig(os.path.join(output_dir,
                     prefix + '_power_accuracy_omega_mode_glm.pdf'))
