@@ -912,6 +912,41 @@ Our results show that the model estimating ordered models of divergence
 unordered models \modelDPP when the prior is correct (Figs.\
 \labelcref{figValidationAccuracyDPPOrderedDPPOrdered,figValidationModelChoiceDPPOrderedDPPOrdered}).
 
+\subsection*{Power analyses: Estimation accuracy}
+All of the models we evaluated (Table \ref{tabPriors}) struggled to estimate
+the dispersion index of divergence times \divTimeDispersion regardless of which
+of the three series of models (Table \ref{tabPowerModels}) the data were
+generated under (Figs.\
+\labelcref{figPowerAccuracyExpDPP,figPowerAccuracyExpUniform,figPowerAccuracyExpOld,figPowerAccuracyExpUshaped,figPowerAccuracyUniformDPP,figPowerAccuracyUniformUniform,figPowerAccuracyUniformOld,figPowerAccuracyUniformUshaped,figPowerAccuracyOldDPP,figPowerAccuracyOldUniform,figPowerAccuracyOldOld,figPowerAccuracyOldUshaped}).
+When the divergence times of the 22 population pairs are randomly drawn from a
+series of exponential priors (\powerSeriesExp), the \modelDPP model is the
+best estimator of \divTimeDispersion, followed by \modelUshaped (figs.\
+\labelcref{figPowerAccuracyExpDPP,figPowerAccuracyExpUniform}
+The \modelOld model is strongly biased toward underestimating
+\divTimeDispersion, estimating values of zero for most of the replicates across
+all the data models of \powerSeriesExp (Figure \ref{figPowerAccuracyExpOld}).
+The results of the \modelUshaped model are intermediate between those of
+\modelOld and the better performing models \modelDPP and \modelUniform
+(Figure \ref{figPowerAccuracyExpUshaped}).
+
+When the true divergence times are randomly drawn from a series of uniform
+priors (\powerSeriesUniform), all of the models poorly estimate
+\divTimeDispersion (Figs.\
+\labelcref{figPowerAccuracyUniformDPP,figPowerAccuracyUniformUniform,figPowerAccuracyUniformOld,figPowerAccuracyUniformUshaped}).
+The \modelDPP and \modelUniform models tend to over-estimate the variance in
+divergence times (Figs.\
+\labelcref{figPowerAccuracyUniformDPP,figPowerAccuracyUniformUniform}), whereas
+the \modelOld model, again, underestimates \divTimeDispersion, estimating
+values of zero for most replicates across all the data models of
+\powerSeriesUniform (Figure \ref{figPowerAccuracyUniformOld}).
+Again, the performance of the \modelUshaped model is intermediate between the
+\modelOld and \modelDPP/\modelUniform models (Figure
+\ref{figPowerAccuracyUniformUshaped}).
+This pattern of results across the four models is very similar when applied
+to data simulated under the series of models of \powerSeriesOld (Figs.\
+\labelcref{figPowerAccuracyOldDPP,figPowerAccuracyOldUniform,figPowerAccuracyOldOld,figPowerAccuracyOldUshaped}).
+
+\subsection*{Power analyses: model-choice}
 
 \section*{Acknowledgments}
 We thank the National Science Foundation for supporting this work (DEB
