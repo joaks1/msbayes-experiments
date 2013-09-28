@@ -695,7 +695,8 @@ posterior samples to be retained.
 Post-hoc adjustment of the posterior sample can also be performed with a number
 of regression techniques \citep{Beaumont2002,Blum2009,Leuenberger2010}.
 For our analyses, we use the general linear model (GLM) regression adjustment
-\citet{Leuenberger2010}, which \citet{Oaks2012} showed performed very
+\citet{Leuenberger2010} as implemented in \abctoolbox
+\citep[v1.1;][]{ABCtoolbox}, which \citet{Oaks2012} showed performed very
 similarly to weighted local-linear regression and multinomial logistic
 regression adjustments \citep{Beaumont2002} for \msb posteriors.
 
@@ -806,7 +807,7 @@ $U(0, \divt{max})$, where \divt{max} was set to: 0.2, 0.4, 0.6, 0.8, 1.0, and
 A second series of models, \powerSeriesUniform, are identically distributed as
 \modelUniform except that the 22 divergence times are randomly drawn from the
 same series of uniform priors as above.
-The third series of models, \powerSeriesUniformExp, is also identically
+The third series of models, \powerSeriesExp, is also identically
 distributed as \modelUniform except that the 22 divergence times are randomly
 drawn from a series of of exponential distributions: $Exp(17.3205)$,
 $Exp(8.6603)$, $Exp(5.7735)$, $Exp(4.33013)$, $Exp(3.4641)$, and $Exp(1.7321)$.
@@ -822,7 +823,56 @@ We also estimated a GLM-regression adjusted posterior from each of the
 posterior samples \citep{Leuenberger2010}.
 
 \section*{Results}
+\subsection*{Validation analyses: Estimation accuracy}
+In terms of estimating summary statistics of model parameters (\divTimeNum,
+\divTimeDispersion, and \divTimeMean), the \modelDPP performs similarly when
+applied to datasets generated under all four models of Table \ref{tabPriors}
+(Figs.\
+\labelcref{figValidationAccuracyDPPDPP,figValidationAccuracyUniformDPP,figValidationAccuracyOldDPP,figValidationAccuracyUshapedDPP}).
+The same is true for models \modelUniform (Figs.\
+\labelcref{figValidationAccuracyDPPUniform,figValidationAccuracyUniformUniform,figValidationAccuracyOldUniform,figValidationAccuracyUshapedUniform})
+and \modelUshaped (Figs.\
+\labelcref{figValidationAccuracyDPPUshaped,figValidationAccuracyUniformUshaped,figValidationAccuracyOldUshaped,figValidationAccuracyUshapedUshaped}).
+All three of the models with exponential priors on nuisance parameters
+(\modelDPP, \modelUniform, and \modelUshaped) perform well when applied
+to the data generated under the original \msb model, \modelOld (Figs.\
+\labelcref{figValidationAccuracyOldDPP,figValidationAccuracyOldUniform,figValidationAccuracyOldUshaped}).
+The \modelOld model also performed well on its own datasets (Figure
+\ref{figValidationAccuracyOldOld}), but performed poorly when applied to the
+data generated under the other three models (Figs.\
+\labelcref{figValidationAccuracyDPPOld,figValidationAccuracyUniformOld,figValidationAccuracyUshapedOld}).
+Thus, the newly implemented models display greater robustness than
+the original model.
 
+Posterior adjustment with GLM regression does improve the estimation
+accuracy for the continuous variables \divTimeDispersion and \divTimeMean,
+however, this is not always true for estimating the discrete variable
+\divTimeNum (Figs.\
+\labelcref{figValidationAccuracyDPPDPP,figValidationAccuracyUniformDPP,figValidationAccuracyOldDPP,figValidationAccuracyUshapedDPP,figValidationAccuracyDPPUniform,figValidationAccuracyUniformUniform,figValidationAccuracyOldUniform,figValidationAccuracyUshapedUniform,figValidationAccuracyDPPUshaped,figValidationAccuracyUniformUshaped,figValidationAccuracyOldUshaped,figValidationAccuracyUshapedUshaped,figValidationAccuracyDPPOld,figValidationAccuracyUniformOld,figValidationAccuracyUshapedOld,figValidationAccuracyOldOld}).
+
+\subsection*{Validation analyses: Model-choice accuracy}
+The \msb model, and our modifications of it, is a model-choice method
+with the primary purpose of estimating the probabilities of models
+of divergence across taxa.
+Thus, it is critical to assess the method's ability to accurately
+estimate the posterior probabilities of divergence models.
+Our results demonstrate that the unadjusted estimates of
+divergence models are generally more accurate than the regression
+adjusted estimates, especially when using $\divTimeDispersion < 0.01$
+to assess the probability of the one divergence model (Figs.\
+\labelcref{figValidationModelChoiceDPPDPP,figValidationModelChoiceUniformDPP,figValidationModelChoiceOldDPP,figValidationModelChoiceUshapedDPP,figValidationModelChoiceDPPUniform,figValidationModelChoiceUniformUniform,figValidationModelChoiceOldUniform,figValidationModelChoiceUshapedUniform,figValidationModelChoiceDPPUshaped,figValidationModelChoiceUniformUshaped,figValidationModelChoiceOldUshaped,figValidationModelChoiceUshapedUshaped,figValidationModelChoiceDPPOld,figValidationModelChoiceUniformOld,figValidationModelChoiceUshapedOld,figValidationModelChoiceOldOld}).
+Thus, we will focus our discussion of the results on the unadjusted estimates.
+
+The model-choice behavior of the \modelDPP is relatively accurate when applied
+to datasets generated under models \modelDPP, \modelUniform, and \modelOld
+(Figs.\
+\labelcref{figValidationModelChoiceDPPDPP,figValidationModelChoiceUniformDPP,figValidationModelChoiceOldDPP}).
+It is less accurate and tends to underestimate the probability of the
+one-divergence model when applied to the data generated under \modelUshaped
+(Figure \ref{figValidationModelChoiceUshapedDPP}).
+The \modelUniform model performs almost identically as \modelDPP in
+terms of model-choice accuracy (Figs.\
+\labelcref{figValidationModelChoiceDPPUniform,figValidationModelChoiceUniformUniform,figValidationModelChoiceOldUniform,figValidationModelChoiceUshapedUniform}).
 
 \section*{Acknowledgments}
 We thank the National Science Foundation for supporting this work (DEB
@@ -885,6 +935,102 @@ Biodiversity Institute.
         \bottomrule
     \end{tabular}
     \label{tabPriors}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp]
+    \sffamily
+    % \footnotesize
+    % \addtolength{\tabcolsep}{-0.08cm}
+    \rowcolors{2}{}{myGray}
+    %\captionsetup{font=footnotesize}
+    \caption{The models we used to simulate pseudo-replicate datasets for
+        assessing the power of the models in Table \ref{tabPriors}.}
+    \centering
+    \begin{tabular}{ l l l l l }
+        \toprule
+        & \multicolumn{4}{c}{Priors} \\
+        \cmidrule(){2-5}
+        Model series & \divTimeIndexVector & \divTime{} & \ancestralTheta{} & \descendantTheta{}{} \\
+        \midrule
+            \powerSeriesOld & $\divTimeNum = 22$
+                            & $\divTime{} \sim U(0,0.2)$
+                            & $\ancestralTheta{} \sim U(0, 0.05)$
+                            & $\descendantThetaMean{} \sim U(0, 0.05)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim U(0,0.4)$
+                            & $\ancestralTheta{} \sim U(0, 0.05)$
+                            & $\descendantThetaMean{} \sim U(0, 0.05)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim U(0,0.6)$
+                            & $\ancestralTheta{} \sim U(0, 0.05)$
+                            & $\descendantThetaMean{} \sim U(0, 0.05)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim U(0,0.8)$
+                            & $\ancestralTheta{} \sim U(0, 0.05)$
+                            & $\descendantThetaMean{} \sim U(0, 0.05)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim U(0,1.0)$
+                            & $\ancestralTheta{} \sim U(0, 0.05)$
+                            & $\descendantThetaMean{} \sim U(0, 0.05)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim U(0,2.0)$
+                            & $\ancestralTheta{} \sim U(0, 0.05)$
+                            & $\descendantThetaMean{} \sim U(0, 0.05)$ \\
+        \midrule
+            \powerSeriesUniform & $\divTimeNum = 22$
+                            & $\divTime{} \sim U(0,0.2)$
+                            & $\ancestralTheta{} \sim Exp(40)$
+                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim U(0,0.4)$
+                            & $\ancestralTheta{} \sim Exp(40)$
+                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim U(0,0.6)$
+                            & $\ancestralTheta{} \sim Exp(40)$
+                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim U(0,0.8)$
+                            & $\ancestralTheta{} \sim Exp(40)$
+                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim U(0,1.0)$
+                            & $\ancestralTheta{} \sim Exp(40)$
+                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim U(0,2.0)$
+                            & $\ancestralTheta{} \sim Exp(40)$
+                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+        \midrule
+            \powerSeriesExp & $\divTimeNum = 22$
+                            & $\divTime{} \sim Exp(17.3205)$
+                            & $\ancestralTheta{} \sim Exp(40)$
+                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim Exp(8.6603)$
+                            & $\ancestralTheta{} \sim Exp(40)$
+                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim Exp(5.7735)$
+                            & $\ancestralTheta{} \sim Exp(40)$
+                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim Exp(4.3301)$
+                            & $\ancestralTheta{} \sim Exp(40)$
+                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim Exp(3.4641)$
+                            & $\ancestralTheta{} \sim Exp(40)$
+                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim Exp(1.7321)$
+                            & $\ancestralTheta{} \sim Exp(40)$
+                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+        \bottomrule
+    \end{tabular}
+    \label{tabPowerModels}
 \end{table}
 
 \clearpage
@@ -1045,20 +1191,20 @@ Biodiversity Institute.
 
 %% Power accuracy results
 \mFigure{../../power-comparison/results/pymsbayes-results/plots/exp_dpp_power_accuracy_omega_median.pdf}{
-    \powerAccuracyCaption{\powerSeriesUniformExp}{\modelDPP}
-}{figPowerAccuracyUniformExpDPP}
+    \powerAccuracyCaption{\powerSeriesExp}{\modelDPP}
+}{figPowerAccuracyExpDPP}
 
 \mFigure{../../power-comparison/results/pymsbayes-results/plots/exp_uniform_power_accuracy_omega_median.pdf}{
-    \powerAccuracyCaption{\powerSeriesUniformExp}{\modelUniform}
-}{figPowerAccuracyUniformExpUniform}
+    \powerAccuracyCaption{\powerSeriesExp}{\modelUniform}
+}{figPowerAccuracyExpUniform}
 
 \mFigure{../../power-comparison/results/pymsbayes-results/plots/exp_old_power_accuracy_omega_median.pdf}{
-    \powerAccuracyCaption{\powerSeriesUniformExp}{\modelOld}
-}{figPowerAccuracyUniformExpOld}
+    \powerAccuracyCaption{\powerSeriesExp}{\modelOld}
+}{figPowerAccuracyExpOld}
 
 \mFigure{../../power-comparison/results/pymsbayes-results/plots/exp_u-shaped_power_accuracy_omega_median.pdf}{
-    \powerAccuracyCaption{\powerSeriesUniformExp}{\modelUshaped}
-}{figPowerAccuracyUniformExpUshaped}
+    \powerAccuracyCaption{\powerSeriesExp}{\modelUshaped}
+}{figPowerAccuracyExpUshaped}
 
 
 \mFigure{../../power-comparison/results/pymsbayes-results/plots/uniform_dpp_power_accuracy_omega_median.pdf}{
@@ -1098,20 +1244,20 @@ Biodiversity Institute.
 
 %% Power psi results
 \mFigure{../../power-comparison/results/pymsbayes-results/plots/exp_dpp_power_psi_mode.pdf}{
-    \powerPsiCaption{\powerSeriesUniformExp}{\modelDPP}
-}{figPowerPsiUniformExpDPP}
+    \powerPsiCaption{\powerSeriesExp}{\modelDPP}
+}{figPowerPsiExpDPP}
 
 \mFigure{../../power-comparison/results/pymsbayes-results/plots/exp_uniform_power_psi_mode.pdf}{
-    \powerPsiCaption{\powerSeriesUniformExp}{\modelUniform}
-}{figPowerPsiUniformExpUniform}
+    \powerPsiCaption{\powerSeriesExp}{\modelUniform}
+}{figPowerPsiExpUniform}
 
 \mFigure{../../power-comparison/results/pymsbayes-results/plots/exp_old_power_psi_mode.pdf}{
-    \powerPsiCaption{\powerSeriesUniformExp}{\modelOld}
-}{figPowerPsiUniformExpOld}
+    \powerPsiCaption{\powerSeriesExp}{\modelOld}
+}{figPowerPsiExpOld}
 
 \mFigure{../../power-comparison/results/pymsbayes-results/plots/exp_u-shaped_power_psi_mode.pdf}{
-    \powerPsiCaption{\powerSeriesUniformExp}{\modelUshaped}
-}{figPowerPsiUniformExpUshaped}
+    \powerPsiCaption{\powerSeriesExp}{\modelUshaped}
+}{figPowerPsiExpUshaped}
 
 
 \mFigure{../../power-comparison/results/pymsbayes-results/plots/uniform_dpp_power_psi_mode.pdf}{
@@ -1151,20 +1297,20 @@ Biodiversity Institute.
 
 %% Power dispersion results
 \mFigure{../../power-comparison/results/pymsbayes-results/plots/exp_dpp_power_omega_median.pdf}{
-    \powerDispersionCaption{\powerSeriesUniformExp}{\modelDPP}
-}{figPowerDispersionUniformExpDPP}
+    \powerDispersionCaption{\powerSeriesExp}{\modelDPP}
+}{figPowerDispersionExpDPP}
 
 \mFigure{../../power-comparison/results/pymsbayes-results/plots/exp_uniform_power_omega_median.pdf}{
-    \powerDispersionCaption{\powerSeriesUniformExp}{\modelUniform}
-}{figPowerDispersionUniformExpUniform}
+    \powerDispersionCaption{\powerSeriesExp}{\modelUniform}
+}{figPowerDispersionExpUniform}
 
 \mFigure{../../power-comparison/results/pymsbayes-results/plots/exp_old_power_omega_median.pdf}{
-    \powerDispersionCaption{\powerSeriesUniformExp}{\modelOld}
-}{figPowerDispersionUniformExpOld}
+    \powerDispersionCaption{\powerSeriesExp}{\modelOld}
+}{figPowerDispersionExpOld}
 
 \mFigure{../../power-comparison/results/pymsbayes-results/plots/exp_u-shaped_power_omega_median.pdf}{
-    \powerDispersionCaption{\powerSeriesUniformExp}{\modelUshaped}
-}{figPowerDispersionUniformExpUshaped}
+    \powerDispersionCaption{\powerSeriesExp}{\modelUshaped}
+}{figPowerDispersionExpUshaped}
 
 
 \mFigure{../../power-comparison/results/pymsbayes-results/plots/uniform_dpp_power_omega_median.pdf}{
@@ -1204,20 +1350,20 @@ Biodiversity Institute.
 
 %% Power psi probability results
 \mFigure{../../power-comparison/results/pymsbayes-results/plots/exp_dpp_power_psi_prob.pdf}{
-    \powerPsiProbCaption{\powerSeriesUniformExp}{\modelDPP}
-}{figPowerPsiProbUniformExpDPP}
+    \powerPsiProbCaption{\powerSeriesExp}{\modelDPP}
+}{figPowerPsiProbExpDPP}
 
 \mFigure{../../power-comparison/results/pymsbayes-results/plots/exp_uniform_power_psi_prob.pdf}{
-    \powerPsiProbCaption{\powerSeriesUniformExp}{\modelUniform}
-}{figPowerPsiProbUniformExpUniform}
+    \powerPsiProbCaption{\powerSeriesExp}{\modelUniform}
+}{figPowerPsiProbExpUniform}
 
 \mFigure{../../power-comparison/results/pymsbayes-results/plots/exp_old_power_psi_prob.pdf}{
-    \powerPsiProbCaption{\powerSeriesUniformExp}{\modelOld}
-}{figPowerPsiProbUniformExpOld}
+    \powerPsiProbCaption{\powerSeriesExp}{\modelOld}
+}{figPowerPsiProbExpOld}
 
 \mFigure{../../power-comparison/results/pymsbayes-results/plots/exp_u-shaped_power_psi_prob.pdf}{
-    \powerPsiProbCaption{\powerSeriesUniformExp}{\modelUshaped}
-}{figPowerPsiProbUniformExpUshaped}
+    \powerPsiProbCaption{\powerSeriesExp}{\modelUshaped}
+}{figPowerPsiProbExpUshaped}
 
 
 \mFigure{../../power-comparison/results/pymsbayes-results/plots/uniform_dpp_power_psi_prob.pdf}{
@@ -1257,20 +1403,20 @@ Biodiversity Institute.
 
 %% Power dispersion prob results
 \mFigure{../../power-comparison/results/pymsbayes-results/plots/exp_dpp_power_omega_prob.pdf}{
-    \powerDispersionProbCaption{\powerSeriesUniformExp}{\modelDPP}
-}{figPowerDispersionProbUniformExpDPP}
+    \powerDispersionProbCaption{\powerSeriesExp}{\modelDPP}
+}{figPowerDispersionProbExpDPP}
 
 \mFigure{../../power-comparison/results/pymsbayes-results/plots/exp_uniform_power_omega_prob.pdf}{
-    \powerDispersionProbCaption{\powerSeriesUniformExp}{\modelUniform}
-}{figPowerDispersionProbUniformExpUniform}
+    \powerDispersionProbCaption{\powerSeriesExp}{\modelUniform}
+}{figPowerDispersionProbExpUniform}
 
 \mFigure{../../power-comparison/results/pymsbayes-results/plots/exp_old_power_omega_prob.pdf}{
-    \powerDispersionProbCaption{\powerSeriesUniformExp}{\modelOld}
-}{figPowerDispersionProbUniformExpOld}
+    \powerDispersionProbCaption{\powerSeriesExp}{\modelOld}
+}{figPowerDispersionProbExpOld}
 
 \mFigure{../../power-comparison/results/pymsbayes-results/plots/exp_u-shaped_power_omega_prob.pdf}{
-    \powerDispersionProbCaption{\powerSeriesUniformExp}{\modelUshaped}
-}{figPowerDispersionProbUniformExpUshaped}
+    \powerDispersionProbCaption{\powerSeriesExp}{\modelUshaped}
+}{figPowerDispersionProbExpUshaped}
 
 
 \mFigure{../../power-comparison/results/pymsbayes-results/plots/uniform_dpp_power_omega_prob.pdf}{
