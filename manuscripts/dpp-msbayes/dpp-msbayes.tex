@@ -947,6 +947,85 @@ to data simulated under the series of models of \powerSeriesOld (Figs.\
 \labelcref{figPowerAccuracyOldDPP,figPowerAccuracyOldUniform,figPowerAccuracyOldOld,figPowerAccuracyOldUshaped}).
 
 \subsection*{Power analyses: model-choice}
+There is a large amount of heterogeneity in estimating the number of divergence
+events (\divTimeNum) both among the prior models, and across the different
+series of data models (Table \ref{tabPowerModels}) (Figs.\
+\labelcref{figPowerPsiExpDPP,figPowerPsiExpUniform,figPowerPsiExpOld,figPowerPsiExpUshaped,figPowerPsiUniformDPP,figPowerPsiUniformUniform,figPowerPsiUniformOld,figPowerPsiUniformUshaped,figPowerPsiOldDPP,figPowerPsiOldUniform,figPowerPsiOldOld,figPowerPsiOldUshaped}).
+The \modelDPP model tends to infer highly clustered divergence models across
+all three series of data models when the divergences are recent, but performs
+the best of the four prior models  when divergences are random over a timescale
+of about one to two coalescent units (Figs.\
+\labelcref{figPowerPsiExpDPP,figPowerPsiUniformDPP,figPowerPsiOldDPP,}).
+The \modelUniform model performs the best when divergences are random
+over the most recent timescales, but tends to only infer a tight
+cluster of \divTimeNum values even when divergences are random
+over longer periods (Figs.\
+\labelcref{figPowerPsiExpUniform,figPowerPsiUniformUniform,figPowerPsiOldUniform,}).
+The \modelOld model performs the worst of the four prior models across
+all three series of data models, inferring a single divergence event across
+most of the 18,000 simulations (Figs.\
+\labelcref{figPowerPsiExpOld,figPowerPsiUniformOld,figPowerPsiOldOld,}).
+Even when the simulated data are identically distributed as the \modelOld model
+except for the divergence times, the \modelOld is still strongly biased towards
+a single event, whereas the \modelDPP model is the least likely to infer a
+single event when applied to these data.
+Using exponential priors on nuisance parameters does increase the power
+of the \modelUshaped model compared \modelOld across all three series
+of data models, but the U-shaped prior still prevents the model
+from performing as well as the \modelDPP and \modelUniform models (Figs.\
+\labelcref{figPowerPsiExpUshaped,figPowerPsiUniformUshaped,figPowerPsiOldUshaped,}).
+
+The improved power of the new models are even more pronounced when looking at
+estimates of the dispersion index of divergence times (\divTimeDispersion)
+across the simulations (Figs.\
+\labelcref{figPowerDispersionExpDPP,figPowerDispersionExpUniform,figPowerDispersionExpOld,figPowerDispersionExpUshaped,figPowerDispersionUniformDPP,figPowerDispersionUniformUniform,figPowerDispersionUniformOld,figPowerDispersionUniformUshaped,figPowerDispersionOldDPP,figPowerDispersionOldUniform,figPowerDispersionOldOld,figPowerDispersionOldUshaped}).
+The \modelDPP and \modelUniform models perform similarly across all three
+series of data models, inferring values of \divTimeDispersion consistent with
+one divergence event ($\divTimeDispersion < 0.01)$ in almost none of the
+replicates across all the simulations (Figs.\
+\labelcref{figPowerDispersionExpDPP,figPowerDispersionExpUniform,figPowerDispersionUniformDPP,figPowerDispersionUniformUniform,figPowerDispersionOldDPP,figPowerDispersionOldUniform}).
+The \modelOld model infers values consistent with a single divergence event in
+most of the replicates across all the simulations (Figs.\
+\labelcref{figPowerDispersionExpOld,figPowerDispersionUniformOld,figPowerDispersionOldOld}).
+Using exponential priors on nuisance parameters greatly increases the power
+of the \modelUshaped model relative to \modelOld, but it still has
+less power than the models with DPP or uniform priors across
+divergence models (Figs.\
+\labelcref{figPowerDispersionExpUshaped,figPowerDispersionUniformUshaped,figPowerDispersionOldUshaped}).
+
+When looking at the estimated posterior probability of the single-divergence
+model across the power analyses, we also see the increased power of the
+new models (Figs.\
+\labelcref{figPowerPsiProbExpDPP,figPowerPsiProbExpUniform,figPowerPsiProbExpOld,figPowerPsiProbExpUshaped,figPowerPsiProbUniformDPP,figPowerPsiProbUniformUniform,figPowerPsiProbUniformOld,figPowerPsiProbUniformUshaped,figPowerPsiProbOldDPP,figPowerPsiProbOldUniform,figPowerPsiProbOldOld,figPowerPsiProbOldUshaped}).
+The \modelDPP model estimates low posterior probability of
+$\divTimeNum = 1$ across all of the simulations (Figs.\
+\labelcref{figPowerPsiProbExpDPP,figPowerPsiProbUniformDPP,figPowerPsiProbOldDPP}).
+The \modelDPP does infer strong support for one divergence as gauged by a Bayes
+factor of greater than 10.
+However, this is not that unexpected given the low prior probability of a
+single divergence under this model.
+Also, the Bayes factor calculations for the \modelDPP replicates are only
+approximate; they are calculated base on the prior mean of the concentration
+parameter \concentrationParam.
+
+The \modelUniform model infers very low posterior probabilities for the
+one-divergence model across all the simulations (Figs.\
+\labelcref{figPowerPsiProbExpUniform,figPowerPsiProbUniformUniform,figPowerPsiProbOldUniform}).
+The\modelOld model infers high posterior probabilities of a single divergence
+for most replicates across all simulations (Figs.\
+\labelcref{figPowerPsiProbExpOld,figPowerPsiProbUniformOld,figPowerPsiProbOldOld}).
+Again, we see that the exponential priors on nuisance parameters greatly
+increase power and result in lower estimates of the probability of
+one divergence when comparing \modelUshaped to \modelOld (Figs.\
+\labelcref{figPowerPsiProbExpUshaped,figPowerPsiProbUniformUshaped,figPowerPsiProbOldUshaped}).
+
+Lastly, when we look at the estimated posterior probability of
+\divTimeDispersion being consistent with one divergence parameter
+($p(\divTimeDispersion < 0.01 | \ssSpace)$), we see the same pattern of model
+behavior, with \modelDPP and \modelUniform inferring low probabilities across
+all simulations, \modelOld inferring high probabilities, and \modelUshaped
+inferring intermediate values (Figs.\
+\labelcref{figPowerDispersionProbExpDPP,figPowerDispersionProbExpUniform,figPowerDispersionProbExpOld,figPowerDispersionProbExpUshaped,figPowerDispersionProbUniformDPP,figPowerDispersionProbUniformUniform,figPowerDispersionProbUniformOld,figPowerDispersionProbUniformUshaped,figPowerDispersionProbOldDPP,figPowerDispersionProbOldUniform,figPowerDispersionProbOldOld,figPowerDispersionProbOldUshaped}).
 
 \section*{Acknowledgments}
 We thank the National Science Foundation for supporting this work (DEB
