@@ -874,6 +874,45 @@ The \modelUniform model performs almost identically as \modelDPP in
 terms of model-choice accuracy (Figs.\
 \labelcref{figValidationModelChoiceDPPUniform,figValidationModelChoiceUniformUniform,figValidationModelChoiceOldUniform,figValidationModelChoiceUshapedUniform}).
 
+The original \msb model \modelOld performs reasonably well when applied
+to its own datasets (Figure \ref{figValidationModelChoiceOldOld}), but
+it performs poorly when applied to data generated under any of the other
+models (Figs.\
+\labelcref{figValidationModelChoiceDPPOld,figValidationModelChoiceUniformOld,figValidationModelChoiceUshapedOld}).
+In these cases the \modelOld model is strongly biased towards over-estimating
+the posterior probability of the one-divergence model, especially when the
+divergence models are not distributed under its U-shaped prior (Figs.\
+\labelcref{figValidationModelChoiceDPPOld,figValidationModelChoiceUniformOld}).
+The other model with the U-shaped prior on divergence models, but exponential
+priors on nuisance parameters (\modelUshaped), performs similarly to \modelOld
+in that it performs well when applied to its own data, but overestimates
+the probability of the one-divergence model when applied to data generated
+by the other models (Figs.\
+\labelcref{figValidationModelChoiceDPPUshaped,figValidationModelChoiceUniformUshaped,figValidationModelChoiceUshapedUshaped,figValidationModelChoiceUshapedUshaped}).
+However, the bias toward over-estimating the probability of the one-divergence
+model is stronger in the \modelOld model than \modelUshaped.
+
+Overall, the result suggest that the \modelDPP and \modelUniform models are
+relatively robust in terms of model-choice accuracy, and when model violations
+do cause them to be biased, they tend to under-estimate the probability of
+the biogeographically interesting model of a single divergence event.
+In contrast, the \modelOld model is very sensitive to model violations,
+and strongly over-estimates the one-divergence model whenever the model
+is misspecified.
+Furthermore, the results suggest that using exponentially distributed priors on
+nuisance parameters rather than uniform priors helps the \modelUshaped model
+perform better than \modelOld, but it is still hindered by the Ushaped prior on
+divergence models and tends to over-estimate the probability of the
+one-divergence model whenever there are violations of the mode.
+
+
+\subsection*{Validation analyses: Ordered divergence models}
+Our results show that the model estimating ordered models of divergence
+\modelDPPOrdered performs similarly to its counterpart sampling over
+unordered models \modelDPP when the prior is correct (Figs.\
+\labelcref{figValidationAccuracyDPPOrderedDPPOrdered,figValidationModelChoiceDPPOrderedDPPOrdered}).
+
+
 \section*{Acknowledgments}
 We thank the National Science Foundation for supporting this work (DEB
 1011423).
