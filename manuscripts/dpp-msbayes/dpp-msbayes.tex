@@ -22,7 +22,7 @@
             Model-choice Method for Estimating Shared Evolutionary History}
 
         \vspace{12pt}
-        \textbf{Running head:} \MakeUppercase{Running head}
+        \textbf{Running head:} \MakeUppercase{Improved Estimation of Shared Evolutionary History}
 
         \vspace{12pt}
         Jamie R.\ Oaks$^{1,2}$ and Mark T.\ Holder$^{1}$
@@ -40,14 +40,32 @@
 
 {\sffamily
     \noindent\textbf{ABSTRACT} \\
-    \noindent Abstract here \ldots
+    \noindent To understand the processes that generate biodiversity, it is
+    important to account for large-scale processes that effect the evolutionary
+    history of groups of co-distributed populations of organisms.
+    Such events predict temporally clustered divergences times, a pattern
+    that can be estimated from genetic data from co-distributed species.
+    We introduce a new approximate-Bayesian model for comparative
+    phylogeographical model-choice that estimates the temporal distribution of
+    divergences across taxa from multi-locus DNA sequence data.
+    Our model is an extension of the model implemented in \msb.
+    By reparameterizing the model, and using more flexible priors on divergence
+    models and nuisance parameters, we improve the robustness, accuracy, and power
+    of the method for estimating the posterior probabilities of models
+    of divergence across taxa.
+    Our results demonstrate that the bias of the \msb model toward inferring
+    models of clustered divergences is caused by a combination of (1) uniform
+    priors on nuisance parameters hindering the marginal likelihoods of models
+    with more divergence time parameters, and (2) a prior on divergence models
+    that disfavors models with intermediate numbers of divergence time
+    parameters.
 
     \vspace{12pt}
-    \noindent\textbf{KEY WORDS: } 
+    \noindent\textbf{KEY WORDS: Dirichlet-process prior; approximate Bayesian
+    computation; model choice; phylogeography; biogeography} 
 }
 
 \newpage
-\noindent \ldots
 
 \section*{Introduction}
 Understanding the processes that generate biodiversity and regulate
@@ -56,9 +74,9 @@ Given the dynamic nature of our planet, a major component of this goal is
 understanding how geological and climatic processes can effect the
 evolutionary history of whole groups of co-distributed species and their
 associated microbiota, including pathogens.
-Such large-scale processes predict patterns of shared evolutionary history,
-e.g., temporally clustered divergences, across effected populations of
-organisms.
+Such large-scale processes predict patterns of shared evolutionary history
+across effected populations of organisms, e.g., temporally clustered
+divergences across co-distributed species.
 At recent timescales, such events should leave a signature in the genetic
 variation within and among the effected lineages.
 Thus, being able to accurately estimate models of shared evolutionary
@@ -76,28 +94,27 @@ data.
 An appealing approach would be a comparative, Bayesian model-choice method for
 inferring the probability of competing divergence histories while integrating
 over uncertainty in mutational and ancestral processes via models of nucleotide
-substitution and coalescence.
+substitution and lineage coalescence.
 
-Such a method has been developed in an approximate-Bayesian model-choice
-framework and is implemented in the software package \msb
-\citep{Hickerson2006,Huang2011}.
-Recently, however, \citet{Oaks2012} found the method can be strongly biased
+The software package \msb implements such an approach in an
+approximate-Bayesian model-choice framework \citep{Hickerson2006,Huang2011}.
+Recently, however, \citet{Oaks2012} found that \msb can be strongly biased
 toward spuriously estimating biogeographically interesting models of highly
 clustered divergence times across taxa.
 The results of their simulation-based assessment of the method suggest that a
 combination of broad, uniformly distributed priors on nuisance parameters and a
 U-shaped prior on divergence models were causing the bias.
 The model implemented in \msb uses a discrete uniform prior over the number of
-possible divergence events, which \citet{Oaks2012} show imposes a prior on
+possible divergence parameters, which \citet{Oaks2012} show imposes a prior on
 divergence models that puts most of the prior mass on models with either very
 few or very many divergence times shared across the taxa.
-Furthermore, the uniform priors on most of the model's nuisance parameters
+Furthermore, uniform priors used for most of the model's nuisance parameters
 likely hinder the marginal likelihoods of parameter-rich models, i.e., models
 with many divergence time parameters \citep[this is often referred to as
 Lindley's paradox;][]{Lindley1957}.
 Thus, together, the priors on divergence models and nuisance parameters used in
 \msb could create a strong bias toward models with very few divergence time
-parameters.
+parameters \citep{Oaks2012}.
 
 Following the recommendations of \citet{Oaks2012} we modify the \msb model to
 test whether alternative parameterizations and priors will improve the behavior
@@ -108,7 +125,7 @@ many of the model's parameters.
 Our simulation-based analyses show that the new implementation has improved
 robustness, accuracy, and power compared to the original model.
 Also, our results show that both the uniform priors on nuisance parameters and
-the U-shaped prior on divergence model contribute to the biases of \msb.
+the U-shaped prior on divergence models contribute to the biases of \msb.
 
 
 \section*{Methods}
