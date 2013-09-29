@@ -18,7 +18,8 @@
     \begin{flushleft}
         \sffamily
 
-        \MakeUppercase{\large\bfseries Title}
+        \MakeUppercase{\large\bfseries An Improved Approximate-Bayesian
+            Model-choice Method for Estimating Shared Evolutionary History}
 
         \vspace{12pt}
         \textbf{Running head:} \MakeUppercase{Running head}
@@ -49,14 +50,66 @@
 \noindent \ldots
 
 \section*{Introduction}
-Being able to accurately infer the temporal distribution of divergences
-across co-distributed taxa
+Understanding the processes that generate biodiversity and regulate
+community assembly is a major goal of Evolutionary Biology.
+Given the dynamic nature of our planet, a major component of this goal is
+understanding how geological and climatic processes can effect the
+evolutionary history of whole groups of co-distributed species and their
+associated microbiota, including pathogens.
+Such large-scale processes predict patterns of shared evolutionary history,
+e.g., temporally clustered divergences, across effected populations of
+organisms.
+At recent timescales, such events should leave a signature in the genetic
+variation within and among the effected lineages.
+Thus, being able to accurately estimate models of shared evolutionary
+histories across co-distributed taxa would provide an important
+tool for better understanding how regional and global biogeographic
+processes affect biodiversity.
 
-Understanding evolutionary history is super cool.
-Adding a comparative framework extra super cool.
-Shared evolutionary history across taxa is often of interest:
-processes of diversification and community assembly,
-host-symbiont dynamics
+This inference problem is challenging due to the stochastic nature by which
+mutations occur in populations and how they are inherited over generations
+\citep{Hudson1990,WakeleyCoalescent}.
+Thus, a method for estimating historical patterns of divergences across taxa
+should explicitly model the stochastic mutational and ancestral processes that
+generate and filter the genetic variation we observe in present-day genetic
+data.
+An appealing approach would be a comparative, Bayesian model-choice method for
+inferring the probability of competing divergence histories while integrating
+over uncertainty in mutational and ancestral processes via models of nucleotide
+substitution and coalescence.
+
+Such a method has been developed in an approximate-Bayesian model-choice
+framework and is implemented in the software package \msb
+\citep{Hickerson2006,Huang2011}.
+Recently, however, \citet{Oaks2012} found the method can be strongly biased
+toward spuriously estimating biogeographically interesting models of highly
+clustered divergence times across taxa.
+The results of their simulation-based assessment of the method suggest that a
+combination of broad, uniformly distributed priors on nuisance parameters and a
+U-shaped prior on divergence models were causing the bias.
+The model implemented in \msb uses a discrete uniform prior over the number of
+possible divergence events, which \citet{Oaks2012} show imposes a prior on
+divergence models that puts most of the prior mass on models with either very
+few or very many divergence times shared across the taxa.
+Furthermore, the uniform priors on most of the model's nuisance parameters
+likely hinder the marginal likelihoods of parameter-rich models, i.e., models
+with many divergence time parameters \citep[this is often referred to as
+Lindley's paradox;][]{Lindley1957}.
+Thus, together, the priors on divergence models and nuisance parameters used in
+\msb could create a strong bias toward models with very few divergence time
+parameters.
+
+Following the recommendations of \citet{Oaks2012} we modify the \msb model to
+test whether alternative parameterizations and priors will improve the behavior
+of the approximate Bayesian model-choice approach.
+We implement a Dirichlet-process prior over all possible models of divergence,
+and use gamma and beta probability distributions in place of uniform priors on
+many of the model's parameters.
+Our simulation-based analyses show that the new implementation has improved
+robustness, accuracy, and power compared to the original model.
+Also, our results show that both the uniform priors on nuisance parameters and
+the U-shaped prior on divergence model contribute to the biases of \msb.
+
 
 \section*{Methods}
 
@@ -1178,6 +1231,71 @@ Biodiversity Institute.
 %% TABLES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \singlespacing
+
+%:TABLE-notation descriptions
+\begin{table}[htbp]
+    \sffamily
+    \scriptsize
+    \rowcolors{2}{}{myGray}
+    \addtolength{\tabcolsep}{-0.1cm}
+\caption{Summary of the notation used throughout this work; modified from \citet{Oaks2012}.}
+    \centering
+    \begin{tabular}{ l >{\raggedright\hangindent=0.5cm}m{14cm} }
+        \toprule
+        \textbf{Symbol} & \textbf{Description} \tn
+        \midrule
+        \npairs{} & Number of population pairs. \tn
+        \popSampleSize{i}{} & The number of genome copies sampled from population pair $i$, with \popSampleSize{1}{i} sampled from population 1, and \popSampleSize{2}{i} from population 2. \tn
+        \nloci{i} & Number of loci sampled from population pair $i$. \tn
+        \nlociTotal & Total number of unique loci sampled. \tn
+        \alignment{i}{j} & Sequence alignment of locus $j$ sampled from population pair $i$. \tn
+        \alignmentSSObs{i}{j} & Population genetic summary statistics calculated from \alignment{i}{j}. \tn
+        \alignmentVector & Vector containing the sequence alignments of each locus from each population pair: $(\alignment{1}{1},\ldots,\alignment{\npairs{}}{\nloci{\npairs{}}})$. \tn
+        \ssVectorObs & Vector containing the summary statistics of each locus from each population pair: $(\alignmentSSObs{1}{1},\ldots,\alignmentSSObs{\npairs{}}{\nloci{\npairs{}}})$. \tn
+        \ssSpace & Multi-dimensional Euclidean space around the observed summary statistics, \ssVectorObs. \tn
+        \tol & Radius of \ssSpace, i.e., the tolerance of the ABC estimation. \tn
+        \geneTree{i}{j} & Gene tree of the sequences in \alignment{i}{j}. \tn
+        \geneTreeVector & Vector containing the gene trees of each locus from each population pair: $(\geneTree{1}{1},\ldots,\geneTree{\npairs{}}{\nloci{\npairs{}}})$. \tn
+        \divTimeNum & Number of unique population divergence times among the \npairs{} population pairs. \tn
+        \divTime{} & One of the \divTimeNum \iid divergence time paramters in \globalcoalunit generations. \tn
+        \divTimeVector & Ordered set of divergence time parameters: $\{\divTime{1},\ldots,\divTime{\divTimeNum}\}$. \tn
+        \divTimeIndex{i} & The index of the divergence time parameter in \divTimeVector that is mapped to population pair $i$. \tn
+        \divTimeIndexVector & Vector of divergence time parameter indices: $(\divTimeIndex{1},\ldots,\divTimeIndex{\npairs{}})$. \tn
+        \divTimeMap{i} & Time of divergence in \globalcoalunit generations between the populations of pair $i$. \tn
+        \divTimeMapVector & Vector of divergence times for each of the population pairs: $(\divTimeMap{1},\ldots,\divTimeMap{\npairs{}})$. \tn
+        \divTimeScaled{i}{j} & Scaled time of divergence between the populations of pair $i$ for locus $j$. \tn
+        \divTimeScaledVector & Vector containing the scaled divergence times of each locus from each population pair: $(\divTimeScaled{1}{1},\ldots,\divTimeScaled{\npairs{}}{\nloci{\npairs{}}})$. \tn
+        \descendantTheta{1}{i}, \descendantTheta{2}{i} & \myTheta{} of the $1^{st}$ and $2^{nd}$ descendent population, respectively, of pair $i$. \tn
+        \ancestralTheta{i} & \myTheta{} of the population ancestral to pair $i$. \tn
+        \descendantThetaVector{1}, \descendantThetaVector{2} & Vectors $(\descendantTheta{1}{1},\ldots,\descendantTheta{1}{\npairs{}})$ and $(\descendantTheta{2}{1},\ldots,\descendantTheta{2}{\npairs{}})$, respectively. \tn
+        \ancestralThetaVector & Vector containing the \ancestralTheta{} parameters for each population pair: $(\ancestralTheta{1},\ldots,\ancestralTheta{\npairs{}})$. \tn
+        \locusMutationRateScalar{j} & mutation-rate scaling parameter for locus $j$. \tn
+        \locusMutationRateScalarVector & Vector containing the locus-specific mutation-rate parameters: $(\locusMutationRateScalar{1},\ldots,\locusMutationRateScalar{\nlociTotal})$. \tn
+        \locusRateHetShapeParameter & Hyper-parameter for the shape of the gamma prior distribution on each \locusMutationRateScalar{}. \tn
+        \bottleScalar{1}{i}, \bottleScalar{2}{i} & \myTheta{}-scaling parameters that determine the magnitude of the population bottleneck in the $1^{st}$ and $2^{nd}$ descendant population of pair $i$, respectively. The bottleneck in each descendant population begins immediately after divergence. \tn
+        \bottleScalarVector{1}, \bottleScalarVector{2} & Vectors $(\bottleScalar{1}{1},\ldots,\bottleScalar{1}{\npairs{}})$ and $(\bottleScalar{2}{1},\ldots,\bottleScalar{2}{\npairs{}})$, respectively. \tn
+        \bottleTime{i} & Proportion of time between present and \divt{i} when the bottleneck ends for the descendant populations of pair $i$. \tn
+        \bottleTimeVector & Vector containing the \bottleTime{} parameters for each population pair: $(\bottleTime{1},\ldots,\bottleTime{\npairs{}})$. \tn
+        \migrationRate{i} & Symmetric migration rate between the descendant populations of pair $i$. \tn
+        \migrationRateVector & Vector containing the migration rates for each population pair: $(\migrationRate{1},\ldots,\migrationRate{\npairs{}})$. \tn
+        \ploidyScalar{i}{j} & \myTheta{}-scaling constant provided by the user for locus $j$ of pair $i$. This constant is intended to allow the user to scale \myTheta{} for differences in ploidy among loci or differences in generation times among taxa. \tn
+        \mutationRateScalarConstant{i}{j} & \myTheta{}-scaling constant provided by the user for locus $j$ of pair $i$. This constant is intended to allow the user to scale \myTheta{} for differences in mutation rates among loci or among taxa. \tn
+        \ploidyScalarVector & Vector of ploidy and/or generation-time scaling constants: $(\ploidyScalar{1}{1},\ldots,\ploidyScalar{\npairs{}}{\nloci{\npairs{}}})$. \tn
+        \mutationRateScalarConstantVector & Vector of mutation-rate scaling constants: $(\mutationRateScalarConstant{1}{1},\ldots,\mutationRateScalarConstant{\npairs{}}{\nloci{\npairs{}}})$. \tn
+        \divTimeMean  & Mean of \divTimeMapVector. \tn
+        \divTimeVar  & Variance of \divTimeMapVector. \tn
+        \divTimeDispersion  & Dispersion index of \divTimeMapVector ($\divTimeVar/\divTimeMean$). \tn
+        \numPriorSamples & Number of samples from the joint prior. \tn
+        \paramSampleVector{} & Vector of parameter values drawn from the joint prior. \tn
+        \ssVector{} & Vector containing the summary statistics calculated from data simulated under parameter values drawn from the prior (\hpvector{}). \tn
+        \paramSampleMatrix{} & Random sample of $\paramSampleVector{1}, \ldots, \paramSampleVector{\numPriorSamples}$ drawn form the prior. \tn
+        \ssMatrix & Summary statistic vectors $\ssVector{1}, \ldots, \ssVector{\numPriorSamples}$ for each $\hpvector{1}, \ldots, \hpvector{\numPriorSamples}$ drawn from the prior. \tn
+        \bottomrule
+    \end{tabular}
+    \label{tabNotation}
+\end{table}
+
+\clearpage
 
 \begin{table}[htbp]
     \sffamily
