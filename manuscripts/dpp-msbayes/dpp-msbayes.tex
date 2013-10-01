@@ -41,7 +41,7 @@
 {\sffamily
     \noindent\textbf{ABSTRACT} \\
     \noindent To understand the processes that generate biodiversity, it is
-    important to account for large-scale processes that effect the evolutionary
+    important to account for large-scale processes that affect the evolutionary
     history of groups of co-distributed populations of organisms.
     Such events predict temporally clustered divergences times, a pattern
     that can be estimated from genetic data from co-distributed species.
@@ -69,16 +69,16 @@
 
 \section*{Introduction}
 Understanding the processes that generate biodiversity and regulate
-community assembly is a major goal of Evolutionary Biology.
+community assembly is a major goal of evolutionary biology.
 Given the dynamic nature of our planet, a major component of this goal is
-understanding how geological and climatic processes can effect the
+understanding how geological and climatic processes can affect the
 evolutionary history of whole groups of co-distributed species and their
 associated microbiota, including pathogens.
 Such large-scale processes predict patterns of shared evolutionary history
 across effected populations of organisms, e.g., temporally clustered
 divergences across co-distributed species.
 At recent timescales, such events should leave a signature in the genetic
-variation within and among the effected lineages.
+variation within and among the affected lineages.
 Thus, being able to accurately estimate models of shared evolutionary
 histories across co-distributed taxa would provide an important
 tool for better understanding how regional and global biogeographic
@@ -166,7 +166,7 @@ is the full dataset,
 i.e., a vector of sequence alignments for all pairs and loci.
 We let \geneTree{i}{j} represent the gene tree upon which \alignment{i}{j}
 evolved according to fixed \hky substitution model parameters \hkyModel{i}{j}.
-The investigtor must specify the parameters of all
+The investigator must specify the parameters of all
 $\hkyModelVector = (\hkyModel{1}{1}, \ldots,
 \hkyModel{\npairs{}}{\nloci{\npairs{}}})$
 substitution models by which the alignments evolved along the
@@ -283,7 +283,7 @@ The first term,
 $p(\alignment{i}{j} \given \geneTree{i}{j}, \hkyModel{i}{j})$,
 is the probability of the sequence alignment of locus $j$ for population pair
 $i$ given the gene tree and \hky substitution model parameters \citep[i.e., the
-``Felsenstein likelhood'';][]{Felsenstein1981}.
+``Felsenstein likelihood'';][]{Felsenstein1981}.
 The model allows for an intra-locus recombination rate \recombinationRate,
 which, for simplicity, is assumed to be zero in Equation
 \ref{eq:fullModelCompact}.
@@ -297,11 +297,11 @@ p(\geneTree{i}{j} \given \divTimeMap{i}, \demographicParams{i},
 is the probability of the gene tree under a multi-population coalescent model
 (i.e., species tree) where the ancestral population of pair $i$ diverges
 and gives rise to the two sampled descendant populations.
-Each \demographicParams contains the following demographic parameters:
+Each \demographicParams{} contains the following demographic parameters:
 The mutation-scaled sizes of the ancestral, \ancestralTheta{}, and descendant
 populations, \descendantTheta{1}{} and \descendantTheta{2}{};
 the proportion of the first, \bottleScalar{1}{}, and second population,
-\bottleScalar{2}{}, that persists during bottlenecks that begin immmediately
+\bottleScalar{2}{}, that persist during bottlenecks that begin immediately
 after divergence in forward-time;
 the proportion of time between present and divergence when the bottlenecks
 end for both populations, \bottleTime{};
@@ -434,7 +434,7 @@ The divergence time parameters are in coalescent units relative to the size of
 a constant reference population, which we denote \myTheta{C}, that is equal to
 the expectation of the prior on the size of the descendant populations
 \begin{equation}
-    \myTheta{C} = E(\descendantTheta{}{}).
+    \myTheta{C} = \mathbb{E}(\descendantTheta{}{}).
     \label{eq:thetaC}
 \end{equation}
 Given the size of the descendant populations are \iid as
@@ -445,7 +445,7 @@ this becomes
     \myTheta{C} = \gammaShape{\descendantTheta{}{}}\gammaScale{\descendantTheta{}{}}.
     \label{eq:thetaCGamma}
 \end{equation}
-The \divTime{} parameters are then in units $\myTheta{C}/\mutationRate$
+The \divTime{} parameters are in units $\myTheta{C}/\mutationRate$
 generations, which we denote as \globalcoalunit generations.
 Thus, each \divTime{} within \divTimeVector is proportional to time and can be
 converted to the number of generations of the reference population, which we
@@ -458,9 +458,9 @@ effective size of the reference population
     \label{eq:divTimeGenerations}
 \end{equation}
 Thus, for each of the divergence times in \divTimeVector to be on the same
-scale, and thus comparable, the relative mutation rates among the pairs of
-populations are assumed to be fixed and known according the user-provided
-values in \mutationRateScalarConstantVector.
+scale, the relative mutation rates among the pairs of populations are assumed
+to be fixed and known according the user-provided values in
+\mutationRateScalarConstantVector.
 \end{linenomath}
 
 \begin{linenomath}
@@ -527,7 +527,7 @@ which determines how clustered the process will be.
 We use the Dirichlet process to place a prior over all possible ordered
 partitions of \npairs{} elements, which we denote as $\divTimeIndexVector \sim
 \priorDPP{}$.
-We take a hierarchical approach and use a second-order prior probability
+We take a hierarchical approach and use a prior probability
 distribution (i.e., hyperprior) for \concentrationParam.
 More specifically, we use a gamma-distributed prior $\concentrationParam =
 Gamma(\gammaShape{\concentrationParam}, \gammaScale{\concentrationParam})$,
@@ -546,7 +546,7 @@ parameter
 \end{equation}
 and also the prior probability of the number of divergence time parameters
 \begin{equation}
-    p(\divTimeNum \given \concentrationParam, \npairs{}) = 
+    p(\divTimeNum \boldsymbol{\mid} \concentrationParam, \npairs{}) = 
     \frac{\stirlingFirst{\npairs{}}{\divTimeNum} \concentrationParam^{\divTimeNum}}
     {\prod_{i=1}^{\npairs{}}(\concentrationParam + i - 1)},
     \label{eq:dppPriorNumClasses}
@@ -573,7 +573,7 @@ parameters are represented at least once (see Equation 2 of \citet{Oaks2012}).
 We denote this prior used by \msb as $\divTimeIndexVector \sim \priorOld$.
 \citet{Oaks2012} discuss how placing a uniform prior over the number of
 divergence parameters (denoted \divTimeNum here, and as \numt{} in
-\citet{Huang2011}) imposes an odd U-shaped prior over discrete divergence
+\citet{Huang2011}) imposes an U-shaped prior over discrete divergence
 models (\divTimeIndexVector; see
 Figure 5B of \citet{Oaks2012}).
 To avoid this, we place priors directly on the sample space of divergence
@@ -616,7 +616,7 @@ sizes of the descendant populations of each pair.
 As described by \citet{Oaks2012}, \msb uses the joint prior
 \begin{equation}
     \descendantTheta{1}{}, \descendantTheta{2}{} \sim
-    Dirichlet(1,1) \times 2 \times U(\uniformMin{\myTheta{}},
+    Beta(1,1) \times 2 \times U(\uniformMin{\myTheta{}},
     \uniformMax{\descendantTheta{}{}}),
     \label{eq:jointThetaPrior}
 \end{equation}
