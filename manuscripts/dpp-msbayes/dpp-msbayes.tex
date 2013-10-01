@@ -193,6 +193,24 @@ of our model is given by
     \locusMutationRateScalarVector, \locusRateHetShapeParameter \given
     \alignmentVector, \hkyModelVector, \ploidyScalarVector,
     \mutationRateScalarConstantVector) =
+    \frac{p(\alignmentVector \given \geneTreeVector, \divTimeMapVector,
+        \demographicParamVector, \locusMutationRateScalarVector,
+        \locusRateHetShapeParameter, \hkyModelVector, \ploidyScalarVector,
+        \mutationRateScalarConstantVector)
+        p(\geneTreeVector, \divTimeMapVector, \demographicParamVector,
+        \locusMutationRateScalarVector, \locusRateHetShapeParameter \given
+        \hkyModelVector, \ploidyScalarVector,
+        \mutationRateScalarConstantVector)}{
+        p(\alignmentVector)},
+    \label{eq:fullModelCompactJoint}
+\end{equation}
+which can be expanded out into components that are assumed to be independent
+to get
+\begin{equation}
+    p(\geneTreeVector, \divTimeMapVector, \demographicParamVector, 
+    \locusMutationRateScalarVector, \locusRateHetShapeParameter \given
+    \alignmentVector, \hkyModelVector, \ploidyScalarVector,
+    \mutationRateScalarConstantVector) =
     \frac{p(\alignmentVector \given \geneTreeVector, \hkyModelVector)
         p(\geneTreeVector \given \divTimeMapVector, \demographicParamVector,
         \locusMutationRateScalarVector, \ploidyScalarVector,
@@ -634,8 +652,8 @@ This relaxes the assumption that the sizes of the two descendant populations
 are interdependent and negatively correlated.
 
 \subsubsection*{Flexibility in parameterizing the model}
-We also provide the user with the ability to control the richness of
-the model.
+In our implementation, we provide the ability to control the richness of the
+model.
 For the \myTheta{} parameters, the model can be fully generalized to
 allow each population pair to have three parameters:
 \ancestralTheta{}, \descendantTheta{1}{}, and \descendantTheta{2}{}.
@@ -644,19 +662,18 @@ general model can also be specified, including the most restricted model
 where the ancestral and descendant populations of each pair share
 a single \myTheta{} parameter.
 
-We also allow the user to eliminate the parameters associated with
-the post-divergence bottlenecks in the descendant populations of
-each pair
+We also provide the option of eliminating the parameters associated with the
+post-divergence bottlenecks in the descendant populations of each pair
 (\bottleTime{}, \bottleScalar{1}{}, and \bottleScalar{2}{}),
 which constrains the descendant populations to be of
 constant size from present back to the divergence event.
-Also, rather than eliminate the bottleneck parameters, the user
-can constrain \bottleScalar{1}{} and \bottleScalar{2}{} to be
-equal to remove one free parameter from the model for each of
-the population pairs.
+Also, rather than eliminate the bottleneck parameters,
+we allow \bottleScalar{1}{} and \bottleScalar{2}{} to be constrained to be
+equal, which removes one free parameter from the model for each of the
+population pairs.
 
-Overall, our implementation allows the user to specify a model that has as many
-as seven parameters per population pair
+Overall, our implementation allows an investigator to specify a model that has
+as many as seven parameters per population pair
 (\ancestralTheta{}, \descendantTheta{1}{}, \descendantTheta{2}{},
 \bottleTime{}, \bottleScalar{1}{}, \bottleScalar{2}{}, and
 \migrationRate{})
@@ -729,11 +746,11 @@ posterior expectations, and to indicate that \vmratio{} is not a parameter of
 the model and \numt{} is no longer a parameter in the new implementation.
 
 \subsubsection*{Ordering of taxon-specific summary statistics}
-As eluded to in the model description, \msb does not maintain the order of the
+As alluded to in the model description, \msb does not maintain the order of the
 taxon-specific summary statistics \alignmentSS{}{} within each \ssVector{}.
-Rather, they, along with the observed summary statistics, are re-ordered by
-descending values of average pairwise differences between the descendant
-populations \citep[$\pi_b$;][]{NeiLi1979,Huang2011}.
+Rather, the summary statistics are re-ordered by descending values of average
+pairwise differences between the descendant populations
+\citep[$\pi_b$;][]{NeiLi1979,Huang2011}.
 This has the advantage of reducing the sample space of the number of discrete
 divergence models \divTimeMapVector, but there are at least two disadvantages.
 First, additional information in the data is lost.
@@ -777,12 +794,12 @@ One can imagine situations in which the sampling intensity (i.e., the
 number of gene copies, loci, and locus length) is highly skewed across
 pairs and/or there is large heterogeneity in mutational processes
 (e.g., \hkyModel{}{}, \mutationRateScalarConstant{}{}) among the pairs.
-In such cases it seems possible that discarding this information could
+In such cases, it seems possible that discarding this information could
 cause bias.
-Furthermore, given that part of the motivation for re-ordering by $\pi_b$ is to
-minimize Euclidean distances between simulated datasets in which the true model
-has a single divergence event, and this reordering increases the model's
-tendency to infer a single divergence event \citep{Huang2011}, it seems
+Furthermore, given that (1) part of the motivation for re-ordering by $\pi_b$
+is to minimize Euclidean distances between simulated datasets in which the true
+model has a single divergence event, and (2) the reordering increases the
+model's tendency to infer a single divergence event \citep{Huang2011}, it seems
 possible that this approach could be biasing the method \citep{Oaks2012}.
 
 To maintain compatibility and comparability with \msb we maintain
@@ -1022,10 +1039,13 @@ one-divergence model whenever there are violations of the model.
 
 
 \subsection*{Validation analyses: Ordered divergence models}
-Our results show that the model estimating ordered models of divergence
-\modelDPPOrdered performs similarly to its counterpart sampling over
-unordered models (\modelDPP) when the prior is correct (Figs.\
+Our results show that the ordered models of divergence, \modelDPPOrdered,
+perform similarly to sampling over unordered models (\modelDPP) when the prior
+is correct (Figs.\
 \labelcref{figValidationAccuracyDPPOrderedDPPOrdered,figValidationModelChoiceDPPOrderedDPPOrdered}).
+This suggests that the method is not adversely affected by the large increase
+in possible discrete models (from 22 unordered to 4140 ordered models) when
+there are 8 pairs of populations.
 
 \subsection*{Power analyses: Estimation accuracy}
 All of the models we evaluated (Table \ref{tabPriors}) struggle to estimate the
