@@ -75,7 +75,7 @@ understanding how geological and climatic processes can affect the
 evolutionary history of whole groups of co-distributed species and their
 associated microbiota, including pathogens.
 Such large-scale processes predict patterns of shared evolutionary history
-across effected populations of organisms, e.g., temporally clustered
+across affected populations of organisms, e.g., temporally clustered
 divergences across co-distributed species.
 At recent timescales, such events should leave a signature in the genetic
 variation within and among the affected lineages.
@@ -103,22 +103,21 @@ toward spuriously estimating biogeographically interesting models of highly
 clustered divergence times across taxa.
 The results of their simulation-based assessment of the method suggest that a
 combination of broad, uniformly distributed priors on nuisance parameters and a
-U-shaped prior on divergence models were causing the bias.
+U-shaped prior on divergence models are causing the bias.
 The model implemented in \msb uses a discrete uniform prior over the number of
 possible divergence parameters, which \citet{Oaks2012} show imposes a prior on
 divergence models that puts most of the prior mass on models with either very
 few or very many divergence times shared across the taxa.
 Furthermore, uniform priors used for most of the model's nuisance parameters
 likely hinder the marginal likelihoods of parameter-rich models, i.e., models
-with many divergence time parameters \citep[this is often referred to as
-Lindley's paradox;][]{Lindley1957}.
+with many divergence time parameters \citep{Lindley1957}.
 Thus, together, the priors on divergence models and nuisance parameters used in
 \msb could create a strong bias toward models with very few divergence time
 parameters \citep{Oaks2012}.
 
-Following the recommendations of \citet{Oaks2012} we modify the \msb model to
+Following the recommendations of \citet{Oaks2012}, we modify the \msb model to
 test whether alternative parameterizations and priors will improve the behavior
-of the approximate Bayesian model-choice approach.
+of the approximate-Bayesian model-choice approach.
 We implement a Dirichlet-process prior over all possible models of divergence,
 and use gamma and beta probability distributions in place of uniform priors on
 many of the model's parameters.
@@ -173,15 +172,15 @@ substitution models by which the alignments evolved along the
 $\geneTreeVector = (\geneTree{1}{1}, \ldots,
 \geneTree{\npairs{}}{\nloci{\npairs{}}})$
 gene trees.
-Furthermore, the investigator must specify a vector of fixed contants
+Furthermore, the investigator must specify a vector of fixed constants
 $\ploidyScalarVector = (\ploidyScalar{1}{1}, \ldots,
 \ploidyScalar{\npairs{}}{\nloci{\npairs{}}})$
-that scale the population size parameters for known differences in ploidy among
-loci and/or differences in generation times among population pairs.
-Lastly, the investigator must also specify a vector of fixed constants
+that scale the population-size parameters for known differences in ploidy among
+loci and/or differences in generation times among population pairs.  Lastly,
+the investigator must also specify a vector of fixed constants
 $\mutationRateScalarConstantVector = (\mutationRateScalarConstant{1}{1},
 \ldots, \mutationRateScalarConstant{\npairs{}}{\nloci{\npairs{}}})$
-that scale the population size parameters for known differences in
+that scale the population-size parameters for known differences in
 mutation rates among loci and/or among taxa.
 
 \begin{linenomath}
@@ -361,7 +360,7 @@ the loci
     p(\locusMutationRateScalar{j} \given \locusRateHetShapeParameter),
     \label{eq:locusRateHetPrior}
 \end{equation}
-where each \locusMutationRateScalar{} is independently and identicially
+where each \locusMutationRateScalar{} is independently and identically
 distributed (\iid) as
 $\locusMutationRateScalar{} \sim Gamma(\locusRateHetShapeParameter,
 1/\locusRateHetShapeParameter)$.
@@ -463,7 +462,7 @@ this becomes
     \myTheta{C} = \gammaShape{\descendantTheta{}{}}\gammaScale{\descendantTheta{}{}}.
     \label{eq:thetaCGamma}
 \end{equation}
-The \divTime{} parameters are in units $\myTheta{C}/\mutationRate$
+The \divTime{} parameters are in units of $\myTheta{C}/\mutationRate$
 generations, which we denote as \globalcoalunit generations.
 Thus, each \divTime{} within \divTimeVector is proportional to time and can be
 converted to the number of generations of the reference population, which we
@@ -477,7 +476,7 @@ effective size of the reference population
 \end{equation}
 Thus, for each of the divergence times in \divTimeVector to be on the same
 scale, the relative mutation rates among the pairs of populations are assumed
-to be fixed and known according the user-provided values in
+to be fixed and known according to the user-provided values in
 \mutationRateScalarConstantVector.
 \end{linenomath}
 
@@ -547,7 +546,7 @@ partitions of \npairs{} elements, which we denote as $\divTimeIndexVector \sim
 \priorDPP{}$.
 We take a hierarchical approach and use a prior probability
 distribution (i.e., hyperprior) for \concentrationParam.
-More specifically, we use a gamma-distributed prior $\concentrationParam =
+More specifically, we use a gamma-distributed prior $\concentrationParam \sim
 Gamma(\gammaShape{\concentrationParam}, \gammaScale{\concentrationParam})$,
 where \gammaShape{\concentrationParam} and \gammaScale{\concentrationParam} are
 specified by the user.
@@ -582,7 +581,7 @@ divergence.
 \subsubsection*{The prior on divergence models}
 One of the key differences between our model and that of \msb \citep{Huang2011}
 is the prior distribution on divergence models.
-As discussed in \citet{Oaks2012}, in \msb the only prior used for
+As discussed in \citet{Oaks2012}, in \msb the prior used for
 \divTimeIndexVector is a combination of a discrete uniform prior over the
 possible number of divergence events \divTimeNum from 1 to \npairs{} with a
 multinomial distribution on the number of times each index of \divTimeVector
@@ -625,9 +624,8 @@ space of all positive real numbers (\divTime{}, \ancestralTheta{},
 \migrationRate{}), and beta-distributed priors for parameters that are
 proportions bounded by zero and one (\bottleScalar{1}{} and
 \bottleScalar{2}{}).
-Not only do these priors have nice conjugacy properties, but they also provide
-the user with much greater flexibility in expressing prior uncertainty
-regarding the parameters of the model.
+These priors provide the user with much greater flexibility in expressing prior
+uncertainty regarding the parameters of the model.
 
 Another distinction between our model and that of \msb, is the prior on the
 sizes of the descendant populations of each pair.
@@ -694,7 +692,7 @@ sizes.
 To estimate the approximate posterior of Equation \ref{eq:approxModelCompact},
 we use an ABC rejection algorithm.
 The first step of this algorithm entails collecting a random sample of
-parameters values from the joint prior and their associated summary
+parameter values from the joint prior and their associated summary
 statistics.
 Each sample is generated by
 (1) drawing values of all the model's parameters, which we denote \hpvector{},
@@ -718,8 +716,9 @@ that have the same number of sequences and sequence lengths as the observed
 dataset;
 (5) calculating population genetic summary statistics
 $\ssVector{} = (\alignmentSS{1}{1}, \ldots, \alignmentSS{\npairs{}}{\nloci{\npairs{}}})$
-from the simulated sequence alignments (these are the same statistics
-calculated from the observed alignments, \ssVectorObs{});
+from the simulated sequence alignments;
+% (these are the same statistics
+% calculated from the observed alignments, \ssVectorObs{});
 and (6) reducing the summary statistics to the means across loci for each
 population pair to get
 $\ssVector{} = (\alignmentSS{1}{}, \ldots, \alignmentSS{\npairs{}}{})$, which is
@@ -815,8 +814,8 @@ First, the observed summary statistics \ssVectorObs, and the summary statistics
 of the prior samples 
 $\ssMatrix = (\ssVector{1}, \ldots, \ssVector{\numPriorSamples})$,
 are standardized using the means and standard deviations of the statistics from
-the prior sample (i.e., the prior mean is subtracted from each statistic, and then
-it is divided by the prior standard deviation).
+the prior sample (i.e., the prior mean is subtracted from each statistic, and the
+difference is divided by the prior standard deviation).
 After all statistics are standardized, the Euclidean distance between
 \ssVectorObs and each \ssVector{} within \ssMatrix is calculated.
 The samples that fall within a range of tolerance \tol around \ssVectorObs
@@ -942,7 +941,7 @@ same series of uniform priors as above.
 The third series of models, \powerSeriesExp, is also identically
 distributed as \modelUniform except that the 22 divergence times are randomly
 drawn from a series of of exponential distributions: $Exp(17.3205)$,
-$Exp(8.6603)$, $Exp(5.7735)$, $Exp(4.33013)$, $Exp(3.4641)$, and $Exp(1.7321)$.
+$Exp(8.6603)$, $Exp(5.7735)$, $Exp(4.3301)$, $Exp(3.4641)$, and $Exp(1.7321)$.
 These exponential distributions have the same variance as their uniform
 counterparts in the first two series of models.
 
@@ -1044,8 +1043,8 @@ perform similarly to sampling over unordered models (\modelDPP) when the prior
 is correct (Figs.\
 \labelcref{figValidationAccuracyDPPOrderedDPPOrdered,figValidationModelChoiceDPPOrderedDPPOrdered}).
 This suggests that the method is not adversely affected by the large increase
-in possible discrete models (from 22 unordered to 4140 ordered models) when
-there are 8 pairs of populations.
+in the number of possible discrete models (from 22 unordered to 4140 ordered
+models) when there are eight pairs of populations.
 
 \subsection*{Power analyses: Estimation accuracy}
 All of the models we evaluated (Table \ref{tabPriors}) struggle to estimate the
@@ -1077,8 +1076,9 @@ values of zero for most replicates across all the data models of
 Again, the performance of the \modelUshaped model is intermediate between the
 \modelOld and \modelDPP/\modelUniform models (Figure
 \ref{figPowerAccuracyUniformUshaped}).
-This pattern of results across the four models is very similar when applied
-to data simulated under the series of models of \powerSeriesOld (Figs.\
+This pattern of results across the four models is very similar to their
+behavior when applied to data simulated under the series of models of
+\powerSeriesOld (Figs.\
 \labelcref{figPowerAccuracyOldDPP,figPowerAccuracyOldUniform,figPowerAccuracyOldOld,figPowerAccuracyOldUshaped}).
 
 \subsection*{Power analyses: Model choice}
@@ -1130,8 +1130,8 @@ divergence models (Figs.\
 \labelcref{figPowerDispersionExpUshaped,figPowerDispersionUniformUshaped,figPowerDispersionOldUshaped}).
 
 When looking at the estimated posterior probability of the single-divergence
-model across the power analyses, we also see the increased power of the
-new models (Figs.\
+model across the power analyses, we also see increased power of the new models
+(Figs.\
 \labelcref{figPowerPsiProbExpDPP,figPowerPsiProbExpUniform,figPowerPsiProbExpOld,figPowerPsiProbExpUshaped,figPowerPsiProbUniformDPP,figPowerPsiProbUniformUniform,figPowerPsiProbUniformOld,figPowerPsiProbUniformUshaped,figPowerPsiProbOldDPP,figPowerPsiProbOldUniform,figPowerPsiProbOldOld,figPowerPsiProbOldUshaped}).
 The \modelDPP model estimates low posterior probability of
 $\divTimeNum = 1$ across all of the simulations (Figs.\
@@ -1166,9 +1166,8 @@ inferring intermediate values (Figs.\
 \section*{Discussion}
 Our results demonstrate that using alternative priors on nuisance parameters
 and divergence models improved the behavior of the \msb model.
-The model-choice estimation of our implementation is more accurate and,
-perhaps more importantly, shows greater robustness to model
-violations (Figs.\
+In our implementation, model-choice estimation is more accurate and shows
+greater robustness to model violations (Figs.\
 \labelcref{figValidationModelChoiceDPPDPP,figValidationModelChoiceUniformDPP,figValidationModelChoiceOldDPP,figValidationModelChoiceUshapedDPP,figValidationModelChoiceDPPUniform,figValidationModelChoiceUniformUniform,figValidationModelChoiceOldUniform,figValidationModelChoiceUshapedUniform,figValidationModelChoiceDPPUshaped,figValidationModelChoiceUniformUshaped,figValidationModelChoiceOldUshaped,figValidationModelChoiceUshapedUshaped,figValidationModelChoiceDPPOld,figValidationModelChoiceUniformOld,figValidationModelChoiceUshapedOld,figValidationModelChoiceOldOld}).
 The original model is very sensitive to model violations and, when present,
 strongly over-estimates the probability of one divergence event shared
@@ -1180,7 +1179,7 @@ the model is less sensitive to violations (Figs.\
 \labelcref{figValidationModelChoiceUniformDPP,figValidationModelChoiceOldDPP,figValidationModelChoiceUshapedDPP,figValidationModelChoiceDPPUniform,figValidationModelChoiceOldUniform,figValidationModelChoiceUshapedUniform}),
 and, when they do cause bias, the method is conservative and tends to
 under-estimate the probability of biogeographically interesting models of
-temporally clustered divergences 
+temporally clustered divergences (Figs.\
 \labelcref{figValidationModelChoiceUshapedDPP,figValidationModelChoiceUshapedUniform}).
 
 Furthermore, the modifications to the model also improve the method's power to
@@ -1189,10 +1188,10 @@ estimating clustered divergences (Figs.\
 \labelcref{figPowerPsiExpDPP,figPowerPsiExpUniform,figPowerPsiExpOld,figPowerPsiExpUshaped,figPowerPsiUniformDPP,figPowerPsiUniformUniform,figPowerPsiUniformOld,figPowerPsiUniformUshaped,figPowerPsiOldDPP,figPowerPsiOldUniform,figPowerPsiOldOld,figPowerPsiOldUshaped,figPowerDispersionExpDPP,figPowerDispersionExpUniform,figPowerDispersionExpOld,figPowerDispersionExpUshaped,figPowerDispersionUniformDPP,figPowerDispersionUniformUniform,figPowerDispersionUniformOld,figPowerDispersionUniformUshaped,figPowerDispersionOldDPP,figPowerDispersionOldUniform,figPowerDispersionOldOld,figPowerDispersionOldUshaped,figPowerPsiProbExpDPP,figPowerPsiProbExpUniform,figPowerPsiProbExpOld,figPowerPsiProbExpUshaped,figPowerPsiProbUniformDPP,figPowerPsiProbUniformUniform,figPowerPsiProbUniformOld,figPowerPsiProbUniformUshaped,figPowerPsiProbOldDPP,figPowerPsiProbOldUniform,figPowerPsiProbOldOld,figPowerPsiProbOldUshaped,figPowerDispersionProbExpDPP,figPowerDispersionProbExpUniform,figPowerDispersionProbExpOld,figPowerDispersionProbExpUshaped,figPowerDispersionProbUniformDPP,figPowerDispersionProbUniformUniform,figPowerDispersionProbUniformOld,figPowerDispersionProbUniformUshaped,figPowerDispersionProbOldDPP,figPowerDispersionProbOldUniform,figPowerDispersionProbOldOld,figPowerDispersionProbOldUshaped}).
 Our results are similar to those of \citet{Oaks2012} in that we also find
 the \msb model to infer strong support for clustered divergences when
-divergences are random over quite broad timescales.
+divergences are random over quite broad timescales (Figs.\
 \labelcref{figPowerPsiProbExpOld,figPowerPsiProbUniformOld,figPowerPsiProbOldOld,figPowerDispersionProbExpOld,figPowerDispersionProbUniformOld,figPowerDispersionProbOldOld}).
 Our results expand on this by showing that this behavior is consistent
-across of range conditions underlying the data.
+across a range conditions underlying the data.
 When using the new priors, the method is less prone to spurious inference of
 clustered divergence models, and much less likely to incorrectly infer such
 models with strong support.
@@ -1204,9 +1203,9 @@ Across all of our analyses, the results show that using better priors on
 nuisance parameters alone does improve the performance of the method.
 The magnitude of the bias toward inferring support for the one-divergence
 model when there are model violations is reduced when the exponential
-priors are used in place of the uniform priors.
+priors are used in place of the uniform priors (Figs.\
 \labelcref{figValidationModelChoiceDPPOld,figValidationModelChoiceUniformOld,figValidationModelChoiceUshapedOld,figValidationModelChoiceDPPUshaped,figValidationModelChoiceUniformUshaped,figValidationModelChoiceOldUshaped}).
-Furthermore, better priors on on nuisance parameters improves the method's
+Furthermore, better priors on nuisance parameters improves the method's
 power to detect temporally random divergences.
 Throughout our analyses, the intermediate model (\modelUshaped) performs
 better than the \msb model, but not as well as the models with alternative
@@ -1221,17 +1220,17 @@ with intermediate numbers of divergence parameters.
 While our modifications improve the behavior of the model, we urge
 caution when using the method and interpreting its results.
 The method attempts to approximate the posterior of a very parameter rich model
-using little information from the data.
+using relatively little information from the data.
 For example, when applied to the dataset of Philippine vertebrates analyzed by
 \citet{Oaks2012} the model can have as many as 604--625 free parameters
 (depending on \divTimeNum), and samples over 1002 divergence models.
 Our modifications allow this model to be simplified to 471--492 free
 parameters.
-Sampling over hundreds of parameters and more than a thousand models is asking
-a lot from a few summary statistics calculated from the sequence alignments of
-each taxon pair.
-These simple summary statistics contain little information about many
-of the free parameters in the model.
+Sampling over hundreds of parameters and more than a thousand models is a
+difficult inference problem, especially when only using a small number of
+summary statistics calculated from the sequence alignments of each taxon pair.
+The population-genetic summary statistics used by our method contain little
+information about many of the free parameters in the model.
 Thus, we expect the improved method will still be sensitive to priors, and the
 power, while improved, may still be low.
 Furthermore, ABC methods in general have been shown to be biased
@@ -1239,16 +1238,16 @@ Furthermore, ABC methods in general have been shown to be biased
 As recommended by \citet{Oaks2012}, any results from the method should be
 accompanied by assessments of prior sensitivity and power.
 We encourage investigators to view this method and its predecessor as a means
-of exploring their data rather than as rigorous means of evaluating hypotheses.
+of exploring their data rather than a rigorous means of evaluating hypotheses.
 
 Given the difficulty of this estimation problem, we anticipate that
 full-likelihood methods that can leverage all of the information present in the
-sequence data will become increasingly important in robustly estimating the
+sequence data will become increasingly important for robustly estimating the
 temporal history of divergences across taxa \citep{JeetDiss}.
 With improving numerical methods for sampling over models of differing
 dimensionality \citep{Green1995,Lemey2009} and increasing efficiency of
 likelihood calculations \citep{Ayres2012}, analyzing rich comparative
-phylogeograpical models in full-likelihood Bayesian framework is becoming
+phylogeograpical models in a full-likelihood Bayesian framework is becoming
 computationally practical, especially when considering that the computational
 load of simulating millions of random datasets from the prior under the ABC
 approach is nontrivial.
