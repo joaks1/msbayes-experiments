@@ -9,4 +9,9 @@
 *.lof
 *.log
 *.out
+*-blx.bib
+*.nav
+*.run.xml
+*.snm
+*.toc
 
