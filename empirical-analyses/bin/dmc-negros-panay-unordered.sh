@@ -27,7 +27,7 @@ reporting_freq=10
 sort_index=7
 seed=845225390
 
-output_dir="../results/negros-panay/dpp-ordered"
+output_dir="../results/negros-panay/dpp-unordered"
 if [ ! -d "$output_dir" ]
 then
     mkdir -p $output_dir
