@@ -925,9 +925,18 @@ contained in the simulations of the other models.
 We evaluated the power of the same four models (Table~\ref{tabPriors}) to
 detect random variation in divergence times using methods similar to
 \citet{Oaks2012}.
-For all of our power simulations, we used a simulated data structure identical
-to that of the empirical dataset of Philippine vertebrates analyzed by
-\citet{Oaks2012}, which consists of 22 pairs of populations.
+The only difference from the prior models used in the validation analyses above
+is the prior on the concentration parameter \concentrationParam for the
+\modelDPP model.
+Rather than the prior
+$\divTimeIndexVector \sim \priorDPP{\sim Gamma(2,2)}$,
+we use the prior
+$\divTimeIndexVector \sim \priorDPP{\sim Gamma(1.5,18.1)}$
+over the discrete divergence models for the model \modelDPP.
+The reason for this difference is because for all of our power simulations, we
+used a simulated data structure identical to that of the empirical dataset of
+Philippine vertebrates analyzed by \citet{Oaks2012}, which consists of 22 pairs
+of populations.
 For each of the four models, we generated $2\e6$ samples from the prior.
 We then generated pseudo-observed datasets from three series of models.
 One series of models, which we denote \powerSeriesOld, is identically
@@ -1352,7 +1361,11 @@ Biodiversity Institute.
     \addtolength{\tabcolsep}{-0.08cm}
     \rowcolors{2}{}{myGray}
     %\captionsetup{font=footnotesize}
-    \caption{The model priors evaluated in our simulation-based analyses.}
+    \caption{The model priors evaluated in our simulation-based analyses.  For
+        the \modelDPP model, the prior on the concentration parameter,
+        $\concentrationParam \sim Gamma(\cdot,\cdot)$, was set to $Gamma(2,2)$
+        for the validation analyses and $Gamma(1.5,18.1)$ for the power
+        analyses.}
     \centering
     \begin{tabular}{ l l l l l }
         \toprule
@@ -1364,7 +1377,7 @@ Biodiversity Institute.
                       & $\divTime{} \sim U(0,10)$
                       & $\ancestralTheta{} \sim U(0, 0.05)$
                       & $\descendantThetaMean{} \sim U(0, 0.05)$ \\
-            \modelDPP & $\divTimeIndexVector \sim \priorDPP{\sim Gamma(2,2)}$
+            \modelDPP & $\divTimeIndexVector \sim \priorDPP{\sim Gamma(\cdot,\cdot)}$
                       & $\divTime{} \sim Exp(0.3464)$
                       & $\ancestralTheta{} \sim Exp(40)$
                       & $\descendantTheta{}{} \sim Exp(40)$ \\
