@@ -7,12 +7,13 @@ import matplotlib
 import numpy
 from matplotlib import pyplot as plt
 from matplotlib import cm
+from scipy.stats import gamma
 
-def get_bivariate_normal_and_uniform_densities(maximum = 20.0,
-        mean = (2.0, 3.0),
-        variance = (0.2, 0.2),
+def get_bivariate_normal_and_uniform_densities(maximum = 1.0,
+        mean = (0.15, 0.247),
+        variance = (0.039, 0.026),
         covariance = 0.0,
-        npoints = 50):
+        npoints = 100):
     a = numpy.linspace(0, maximum, npoints)
     b = numpy.linspace(0, maximum, npoints)
     X, Y = numpy.meshgrid(a, b)
@@ -66,11 +67,89 @@ def get_marginal_likelihood_constrained(x, y, z):
         w += prior
     return l/w
 
-def get_marginal_plot(maximum = 20.0,
-        mean = (2.0, 3.0),
-        variance = (0.2, 0.2),
+def get_marginal_plot_2d(maximum = 1.0,
+        likelihood_shape = 50.0,
+        likelihood_scale = 0.002,
+        prior_shape = 3.0,
+        prior_scale = 0.06,
+        npoints = 500,
+        include_uniform_prior = True,
+        include_gamma_prior = True,
+        linewidth = 2.0,
+        prior_label_x = 0.5):
+    x = numpy.linspace(0.0000001, maximum, npoints)
+    likelihood = gamma(likelihood_shape, scale = likelihood_scale)
+    y = [likelihood.pdf(i) for i in x]
+    fig = plt.figure()
+    ax = fig.add_subplot(1,1,1)
+    likelihood_line = ax.plot(x, y)
+    plt.setp(likelihood_line,
+            color = '0.3',
+            linestyle = '-',
+            linewidth = linewidth,
+            marker = '',
+            zorder = 200)
+    max_idx = y.index(max(y)) + int(round(0.01 * npoints))
+    label_target = (x[max_idx], y[max_idx])
+    label_position = (label_target[0] + (0.08 * maximum), label_target[1])
+    plt.annotate(r'$p(X \mid \, \theta)$',
+            xy = label_target,
+            arrowprops = dict(arrowstyle = '->'),
+            xytext = label_position,
+            size = 18.0)
+    prior_x = prior_label_x * maximum
+    u_density = 1.0 / maximum
+    ymax = max(ax.get_ylim())
+    prior_label_position = (prior_x, u_density + (0.1 * ymax))
+    if include_uniform_prior:
+        u = [u_density for i in range(len(x))]
+        u_line = ax.plot(x, u)
+        plt.setp(u_line,
+                color = 'r',
+                linestyle = '-',
+                linewidth = linewidth,
+                marker = '',
+                zorder = 0)
+        u_label_target = (prior_x + (0.04 * maximum), u_density)
+        plt.annotate(r'$p(\theta)$',
+                xy = u_label_target,
+                arrowprops = dict(arrowstyle = '->'),
+                xytext = prior_label_position,
+                size = 18.0)
+                # verticalalignment = 'bottom',
+                # horizontalalignment = 'center')
+    if include_gamma_prior:
+        g_prior = gamma(prior_shape, scale = prior_scale)
+        g = [g_prior.pdf(i) for i in x]
+        g_line = ax.plot(x, g)
+        plt.setp(g_line,
+                color = 'b',
+                linestyle = '-',
+                linewidth = linewidth,
+                marker = '',
+                zorder = 100)
+        idx = g.index(max(g)) + int(round(0.1 * npoints))
+        g_label_target = (x[idx], g[idx])
+        plt.annotate('',
+                xy = g_label_target,
+                arrowprops = dict(arrowstyle = '->'),
+                xytext = prior_label_position,
+                size = 18.0)
+                # verticalalignment = 'center',
+                # horizontalalignment = 'center')
+    ax.set_xlabel(r'$\theta$', size=18.0)
+    ax.set_ylabel(r'Density', size=18.0)
+    rect = [0, 0, 1, 1]
+    fig.tight_layout(pad = 0.25, rect = rect)
+    return ax, fig
+
+def get_marginal_plot_3d(maximum = 1.0,
+        mean = (0.15, 0.247),
+        variance = (0.039, 0.026),
         covariance = 0.0,
-        npoints = 50):
+        npoints = 100,
+        include_prior = True,
+        include_constrained_density = True):
     X, Y, Z1, Z2 = get_bivariate_normal_and_uniform_densities(maximum = maximum,
             mean = mean,
             variance = variance,
@@ -83,46 +162,110 @@ def get_marginal_plot(maximum = 20.0,
     fig = plt.figure()
     ax = fig.add_subplot(111, projection = '3d')
     ax.plot_surface(X, Y, Z1, rstride=1, cstride=1, linewidth=0.0, antialiased=False, shade=True, cmap=cm.coolwarm, zorder=200)
-    a, b, c = [], [], []
-    for i in range(len(X)):
-        a.append(X[i][i])
-        b.append(Y[i][i])
-        c.append(Z1[i][i])
-    xmin, xmax = ax.get_xlim()
-    ymin, ymax = ax.get_ylim()
-    prior_d = 1.0 / (xmax * ymax)
-    prior_d *= 2.0
-    x_back_line = ax.plot([xmin, xmax], [ymax, ymax], [prior_d, prior_d])
-    x_front_line = ax.plot([xmin, xmax], [ymin, ymin], [prior_d, prior_d], zorder=200)
-    y_back_line = ax.plot([xmin, xmin], [ymin, ymax], [prior_d, prior_d], zorder=-10)
-    y_front_line = ax.plot([xmax, xmax], [ymin, ymax], [prior_d, prior_d], zorder=200)
-    plt.setp([x_back_line, y_back_line, x_front_line, y_front_line],
-            color = 'r',
-            linestyle = '--',
-            linewidth = 1.0,
-            marker = '')
-    identity_line = ax.plot(a, b, c)
-    plt.setp(identity_line,
-            color = 'w',
-            linestyle = '-',
-            linewidth = 0.75,
-            marker = '',
-            zorder = 100)
+    if include_prior:
+        xmin, xmax = ax.get_xlim()
+        ymin, ymax = ax.get_ylim()
+        prior_d = 1.0 / (xmax * ymax)
+        prior_d *= 2.0
+        x_back_line = ax.plot([xmin, xmax], [ymax, ymax], [prior_d, prior_d])
+        x_front_line = ax.plot([xmin, xmax], [ymin, ymin], [prior_d, prior_d], zorder=200)
+        y_back_line = ax.plot([xmin, xmin], [ymin, ymax], [prior_d, prior_d], zorder=-10)
+        y_front_line = ax.plot([xmax, xmax], [ymin, ymax], [prior_d, prior_d], zorder=200)
+        plt.setp([x_back_line, y_back_line, x_front_line, y_front_line],
+                color = 'r',
+                linestyle = '--',
+                linewidth = 1.0,
+                marker = '')
+    if include_constrained_density:
+        a, b, c = [], [], []
+        for i in range(len(X)):
+            a.append(X[i][i])
+            b.append(Y[i][i])
+            c.append(Z1[i][i])
+        identity_line = ax.plot(a, b, c)
+        plt.setp(identity_line,
+                color = 'w',
+                linestyle = '-',
+                linewidth = 0.75,
+                marker = '',
+                zorder = 100)
     ax.set_xlabel(r'$T_1$', size=14.0)
     ax.set_ylabel(r'$T_2$', size=14.0)
     ax.set_zlabel('Density', size=14.0)
-    rect = [-0.12, 0, 1, 1.02]
+    rect = [-0.12, 0, 1, 1.07]
     fig.tight_layout(pad = 0.25, rect = rect)
     return ax, fig
 
 def main_cli():
     maximum = 1.0
-    ax, fig = get_marginal_plot(maximum = maximum,
+    ax, fig = get_marginal_plot_3d(maximum = maximum,
             mean = (0.15, 0.247),
             variance = (0.039, 0.026),
             covariance=0.0,
-            npoints = 100)
+            npoints = 100,
+            include_prior = True,
+            include_constrained_density = True)
     fig.savefig('../images/marginal-plot-3d.pdf')
+
+    ax, fig = get_marginal_plot_3d(maximum = maximum,
+            mean = (0.15, 0.247),
+            variance = (0.039, 0.026),
+            covariance=0.0,
+            npoints = 100,
+            include_prior = False,
+            include_constrained_density = False)
+    fig.savefig('../images/marginal-plot-3d-bare.pdf')
+
+    ax, fig = get_marginal_plot_3d(maximum = maximum,
+            mean = (0.15, 0.247),
+            variance = (0.039, 0.026),
+            covariance=0.0,
+            npoints = 100,
+            include_prior = True,
+            include_constrained_density = False)
+    fig.savefig('../images/marginal-plot-3d-prior.pdf')
+
+    ax, fig = get_marginal_plot_3d(maximum = maximum,
+            mean = (0.15, 0.247),
+            variance = (0.039, 0.026),
+            covariance=0.0,
+            npoints = 100,
+            include_prior = False,
+            include_constrained_density = False)
+    fig.savefig('../images/marginal-plot-3d-bare.pdf')
+
+    ax, fig = get_marginal_plot_2d(maximum = maximum,
+        likelihood_shape = 50.0,
+        likelihood_scale = 0.002,
+        prior_shape = 3.0,
+        prior_scale = 0.06,
+        npoints = 500,
+        include_uniform_prior = True,
+        include_gamma_prior = True,
+        linewidth = 2.0)
+    fig.savefig('../images/marginal-plot-2d.pdf')
+
+    ax, fig = get_marginal_plot_2d(maximum = maximum,
+        likelihood_shape = 50.0,
+        likelihood_scale = 0.002,
+        prior_shape = 3.0,
+        prior_scale = 0.06,
+        npoints = 500,
+        include_uniform_prior = False,
+        include_gamma_prior = False,
+        linewidth = 2.0)
+    fig.savefig('../images/marginal-plot-2d-no-priors.pdf')
+
+    ax, fig = get_marginal_plot_2d(maximum = maximum,
+        likelihood_shape = 50.0,
+        likelihood_scale = 0.002,
+        prior_shape = 3.0,
+        prior_scale = 0.06,
+        npoints = 500,
+        include_uniform_prior = True,
+        include_gamma_prior = False,
+        linewidth = 2.0)
+    fig.savefig('../images/marginal-plot-2d-uniform-prior.pdf')
 
 
 if __name__ ==  '__main__':

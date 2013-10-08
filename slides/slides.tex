@@ -475,21 +475,22 @@
     \frametitle{Causes of bias}
     Potential causes of the bias:
     \begin{enumerate}
-        \item Uniform priors on parameters and Lindley's paradox
+        \item Uniform priors on parameters and model marginal likelihoods
         \item The prior on divergence models
         \item Theoretical limits of ABC model choice
     \end{enumerate}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Causes of bias: Lindley's paradox}
+    \frametitle{Causes of bias: Marginal likelihoods}
     Models with more divergence events have lower marginal likelihoods \\
     \bigskip
-    \begin{displaybox}[7.5cm]
+    \begin{displaybox}[5.5cm]
+        \small
         \[
-            f(\alignmentVector \given M_i) = \int_{\Theta_i} f(\alignmentVector
-            \given \Theta_i, M_i) f(\Theta_i \given M_i) \mathrm{d}\Theta_i
-        \]\vspace{0mm}
+            p(X) = \int_{\theta} p(X
+            \given \theta) p(\theta) \mathrm{d}\theta
+        \]%\vspace{0mm}
     \end{displaybox}
     \bigskip
     Broad uniform priors on nuisance parameters can hinder marginal likelihoods
@@ -497,21 +498,40 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Causes of bias: Lindley's paradox}
-    \begin{displaybox}[7.5cm]
+    \frametitle{Causes of bias: Marginal likelihoods}
+    \begin{displaybox}[5.5cm]
+        \small
         \[
-            f(\alignmentVector \given M_i) = \int_{\Theta_i} f(\alignmentVector
-            \given \Theta_i, M_i) f(\Theta_i \given M_i) \mathrm{d}\Theta_i
-        \]\vspace{0mm}
+            p(X) = \int_{\theta} p(X
+            \given \theta) p(\theta) \mathrm{d}\theta
+        \]%\vspace{0mm}
     \end{displaybox}
     \smallskip
     \centerline{
-    \includegraphics[height=5.5cm]{images/likelihood-vs-prior-example.pdf}}
+        \includegraphics<1>[height=6.5cm]{images/marginal-plot-2d-no-priors.pdf}
+        \includegraphics<2>[height=6.5cm]{images/marginal-plot-2d-uniform-prior.pdf}
+        \includegraphics<3>[height=6.5cm]{images/marginal-plot-2d.pdf}}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Causes of bias: Lindley's paradox}
-    Testing Lindley's paradox \\
+    \frametitle{Causes of bias: Marginal likelihoods}
+    % \begin{displaybox}[5.5cm]
+    %     \small
+    %     \[
+    %         p(X) = \int_{\theta} p(X
+    %         \given \theta) p(\theta) \mathrm{d}\theta
+    %     \]%\vspace{0mm}
+    % \end{displaybox}
+    % \smallskip
+    \centerline{
+        \includegraphics<1>[height=8.0cm]{images/marginal-plot-3d-bare.pdf}
+        \includegraphics<2>[height=8.0cm]{images/marginal-plot-3d-prior.pdf}
+        \includegraphics<3>[height=8.0cm]{images/marginal-plot-3d.pdf}}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Causes of bias: Marginal likelihoods}
+    Testing prior sensitivity \\
     \begin{enumerate}
         \item Assess behavior when priors are correct
         \item Assess behavior under ideal real-world priors
@@ -519,13 +539,13 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Causes of bias: Lindley's paradox}
+    \frametitle{Causes of bias: Marginal likelihoods}
     \centerline{
     \includegraphics[height=8cm]{images/posterior_vs_true_prob.pdf}}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Causes of bias: Lindley's paradox}
+    \frametitle{Causes of bias: Marginal likelihoods}
     \begin{center}
         \includegraphics[height=6cm]{images/SS_accuracy_omega_modes_GLM_inform10.pdf} \quad
         \includegraphics[height=6cm]{images/SS_power_psi_modes_GLM_inform10.pdf}
@@ -533,8 +553,8 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Causes of bias: Lindley's paradox}
-    Lindley's paradox is at least partially responsible for bias\\
+    \frametitle{Causes of bias: Marginal likelihoods}
+    Marginal likelihoods are at least partially responsible for bias\\
     \bigskip
     However, when uniform priors are narrower than possible in a real-world
     setting, the bias remains
@@ -545,7 +565,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Causes of bias: Lindley's paradox}
+    \frametitle{Causes of bias: Marginal likelihoods}
     \begin{block}{\it Potential solution:}
         Use more flexible parametric distributions on nuisance parameters (e.g., gamma)
     \end{block}
