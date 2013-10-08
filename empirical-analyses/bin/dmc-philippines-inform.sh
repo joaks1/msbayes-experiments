@@ -18,12 +18,12 @@ staging_dir=$(mktemp -d /tmp/output.XXXXXXXXX)
 
 
 nprocs=8
-nprior=10000000
+nprior=20000000
 batch_size=25000
 nsums=200000
 npost=10000
 nquantiles=10000
-reporting_freq=10
+reporting_freq=20
 sort_index=7
 seed=33741111
 
