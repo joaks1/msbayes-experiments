@@ -82,28 +82,46 @@ def get_marginal_plot(maximum = 20.0,
     sys.stdout.write('marginal likelihood of 1-parameter model: {0}\n'.format(ml_1p))
     fig = plt.figure()
     ax = fig.add_subplot(111, projection = '3d')
-    ax.plot_surface(X, Y, Z1, rstride=1, cstride=1)#, cmap=cm.YlGnBu_r)
+    ax.plot_surface(X, Y, Z1, rstride=1, cstride=1, linewidth=0.0, antialiased=False, shade=True, cmap=cm.coolwarm, zorder=200)
     a, b, c = [], [], []
     for i in range(len(X)):
         a.append(X[i][i])
         b.append(Y[i][i])
         c.append(Z1[i][i])
+    xmin, xmax = ax.get_xlim()
+    ymin, ymax = ax.get_ylim()
+    prior_d = 1.0 / (xmax * ymax)
+    prior_d *= 2.0
+    x_back_line = ax.plot([xmin, xmax], [ymax, ymax], [prior_d, prior_d])
+    x_front_line = ax.plot([xmin, xmax], [ymin, ymin], [prior_d, prior_d], zorder=200)
+    y_back_line = ax.plot([xmin, xmin], [ymin, ymax], [prior_d, prior_d], zorder=-10)
+    y_front_line = ax.plot([xmax, xmax], [ymin, ymax], [prior_d, prior_d], zorder=200)
+    plt.setp([x_back_line, y_back_line, x_front_line, y_front_line],
+            color = 'r',
+            linestyle = '--',
+            linewidth = 1.0,
+            marker = '')
     identity_line = ax.plot(a, b, c)
     plt.setp(identity_line,
-            color = 'r',
+            color = 'w',
             linestyle = '-',
-            linewidth = 1.0,
+            linewidth = 0.75,
             marker = '',
             zorder = 100)
+    ax.set_xlabel(r'$T_1$', size=14.0)
+    ax.set_ylabel(r'$T_2$', size=14.0)
+    ax.set_zlabel('Density', size=14.0)
+    rect = [-0.12, 0, 1, 1.02]
+    fig.tight_layout(pad = 0.25, rect = rect)
     return ax, fig
 
 def main_cli():
-    maximum = 20.0
+    maximum = 1.0
     ax, fig = get_marginal_plot(maximum = maximum,
-            mean = (10.0, 11.0),
-            variance = (0.3, 0.3),
+            mean = (0.15, 0.247),
+            variance = (0.039, 0.026),
             covariance=0.0,
-            npoints = 50)
+            npoints = 100)
     fig.savefig('../images/marginal-plot-3d.pdf')
 
 
