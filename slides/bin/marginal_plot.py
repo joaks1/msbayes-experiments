@@ -149,7 +149,8 @@ def get_marginal_plot_3d(maximum = 1.0,
         covariance = 0.0,
         npoints = 100,
         include_prior = True,
-        include_constrained_density = True):
+        include_constrained_density = True,
+        linewidth = 0.1):
     X, Y, Z1, Z2 = get_bivariate_normal_and_uniform_densities(maximum = maximum,
             mean = mean,
             variance = variance,
@@ -161,7 +162,7 @@ def get_marginal_plot_3d(maximum = 1.0,
     sys.stdout.write('marginal likelihood of 1-parameter model: {0}\n'.format(ml_1p))
     fig = plt.figure()
     ax = fig.add_subplot(111, projection = '3d')
-    ax.plot_surface(X, Y, Z1, rstride=1, cstride=1, linewidth=0.0, antialiased=False, shade=True, cmap=cm.coolwarm, zorder=200)
+    ax.plot_surface(X, Y, Z1, rstride=1, cstride=1, linewidth=linewidth, antialiased=False, shade=True, cmap=cm.coolwarm, zorder=200)
     if include_prior:
         xmin, xmax = ax.get_xlim()
         ymin, ymax = ax.get_ylim()
@@ -204,8 +205,9 @@ def main_cli():
             covariance=0.0,
             npoints = 100,
             include_prior = True,
-            include_constrained_density = True)
-    fig.savefig('../images/marginal-plot-3d.pdf')
+            include_constrained_density = True,
+            linewidth=0.1)
+    fig.savefig('../images/marginal-plot-3d.png', dpi=300)
 
     ax, fig = get_marginal_plot_3d(maximum = maximum,
             mean = (0.15, 0.247),
@@ -214,7 +216,7 @@ def main_cli():
             npoints = 100,
             include_prior = False,
             include_constrained_density = False)
-    fig.savefig('../images/marginal-plot-3d-bare.pdf')
+    fig.savefig('../images/marginal-plot-3d-bare.png', dpi=300)
 
     ax, fig = get_marginal_plot_3d(maximum = maximum,
             mean = (0.15, 0.247),
@@ -223,16 +225,7 @@ def main_cli():
             npoints = 100,
             include_prior = True,
             include_constrained_density = False)
-    fig.savefig('../images/marginal-plot-3d-prior.pdf')
-
-    ax, fig = get_marginal_plot_3d(maximum = maximum,
-            mean = (0.15, 0.247),
-            variance = (0.039, 0.026),
-            covariance=0.0,
-            npoints = 100,
-            include_prior = False,
-            include_constrained_density = False)
-    fig.savefig('../images/marginal-plot-3d-bare.pdf')
+    fig.savefig('../images/marginal-plot-3d-prior.png', dpi=300)
 
     ax, fig = get_marginal_plot_2d(maximum = maximum,
         likelihood_shape = 50.0,
