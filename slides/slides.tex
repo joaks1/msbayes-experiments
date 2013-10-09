@@ -291,29 +291,25 @@
 \begin{frame}
     \frametitle{The method: \msb}
         Now we have genetic data for $\npairs{}=22$ taxon pairs, and we need to
-        infer the distribution of their relative divergence times (\divt{})
+        infer the distribution of their relative divergence times
         \[
-            \divtvector = \{\divt{1},\divt{2},\ldots,\divt{\npairs{}}\}
+            \divTimeMapVector = (\divTimeMap{1},\divTimeMap{2},\ldots,\divTimeMap{\npairs{}})
         \]
-        where \numt{} is the number of \emph{unique} divergence times
-        within \divtvector
-        % \begin{center}
-        %     {\bf -OR-}
-        % \end{center}
-        % \[
-        %     \divtuniquevector = \{\divtunique{1},\divtunique{2},\ldots,\divtunique{\npairs{}}\}
-        % \]
-        % where $\divtunique{i} \in \{ 1,2,\ldots,\numt{} \}$ and
-        % $\mathbf{t}  = \{t_1, t_2,\ldots,t_{\numt{}}\}$ \\
+        where
+        \[
+            \divTimeVector = \{\divTime{1},\ldots,\divTime{\divTimeNum}\}
+        \]
+        are the divergence time parameters shared among the taxon pairs, and
+        \divTimeNum is the number of divergence time parameters.
 
         \begin{myitemize}
-            \item We want to infer \numt{} and \divtvector from our data.
+            \item We want to infer \divTimeMapVector from our data
             \item This is a problem of model choice.
-            \begin{myitemize}
-                \item Bayesian framework is an attractive approach
-                \item \msb uses an approximate Bayesian approach to estimate the
-                    posterior probability of competing divergence models
-            \end{myitemize}
+            % \begin{myitemize}
+            %     \item Bayesian framework is an attractive approach
+            %     \item \msb uses an approximate Bayesian approach to estimate the
+            %         posterior probability of competing divergence models
+            % \end{myitemize}
         \end{myitemize}
 \end{frame}
 
@@ -321,17 +317,20 @@
     \frametitle{Bayesian framework}
     Given sequence alignments \alignmentVector and: \\
         \begin{mydescription}
-            \item[\divtvector] The vector of divergence times for each pair of populations
-            \item[\numt{}] The number of unique divergence times within \divtvector
-            \item[\model{}] The demographic and mutational parameters
+            \item[\divTimeMapVector] The vector of divergence times for each pair of populations
+            \item[\geneTreeVector] The gene trees along which the sequences evolved
+            \item[\demographicParamVector, \hkyModelVector] The demographic and mutational parameters
         \end{mydescription}
     % \smallskip
-    \begin{displaybox}[7.5cm]
+    \begin{displaybox}[8.5cm]
     \[
-        f(\numt{}, \divtvector, \model{} \given \alignmentVector) = 
-        \frac{f(\alignmentVector \given \numt{}, \divtvector, \model{})
-        f(\numt{}, \divtvector, \model{})}
-        {f(\alignmentVector)}
+        p(\geneTreeVector, \divTimeMapVector, \demographicParamVector
+        \given
+        \alignmentVector, \hkyModelVector) =
+        \frac{p(\alignmentVector \given \geneTreeVector, \divTimeMapVector,
+        \demographicParamVector, \hkyModelVector)
+        p(\geneTreeVector, \divTimeMapVector, \demographicParamVector \given \hkyModelVector)}{
+        p(\alignmentVector)}
     \]\vspace{0mm}
     \end{displaybox}
     \smallskip
@@ -339,59 +338,64 @@
     % \smallskip
     \begin{displaybox}[9.5cm]
     \[
-        f(\numt{}, \divtvector, \model{} \given \euclideanSpace{\ssVectorObs}) = 
-        \frac{f(\euclideanSpace{\ssVectorObs} \given \numt{}, \divtvector, \model{})
-        f(\numt{}, \divtvector, \model{})}
-        {f(\euclideanSpace{\ssVectorObs})}
+        p(\geneTreeVector, \divTimeMapVector, \demographicParamVector
+        \given
+        \ssSpace, \hkyModelVector) =
+        \frac{p(\alignmentVector \given \geneTreeVector, \divTimeMapVector,
+        \demographicParamVector, \hkyModelVector)
+        p(\geneTreeVector, \divTimeMapVector, \demographicParamVector \given \hkyModelVector)}{
+        p(\ssSpace)}
     \]\vspace{0mm}
     \end{displaybox}
 
 \end{frame}
 
-\begin{frame}[b]
+\begin{frame}[t]
     \frametitle{The \msb model}
-    \only<3>{
-        \begin{mydescription}
-            \item[\divtvector] The vector of divergence times for each pair of populations
-            \item[\numt{}] The number of unique divergence times within \divtvector
-            \item[\vmratio{}] The variance of \divtvector
-        \end{mydescription}
-        \vspace{1cm}
-            % \divtvector The vector of divergence times for each pair of populations \\
-            % \numt{} The number of unique divergence times withing \divtvector
-    }
-    \begin{onlyenv}<1-2>
+    \begin{displaybox}[8.5cm]
+    \[
+        p(\geneTreeVector, \divTimeMapVector, \demographicParamVector
+        \given
+        \alignmentVector, \hkyModelVector) =
+        \frac{p(\alignmentVector \given \geneTreeVector, \divTimeMapVector,
+        \demographicParamVector, \hkyModelVector)
+        p(\geneTreeVector, \divTimeMapVector, \demographicParamVector \given \hkyModelVector)}{
+        p(\alignmentVector)}
+    \]\vspace{0mm}
+    \end{displaybox}
+    \smallskip
+    \begin{onlyenv}<2>
     \begin{block}{\it Full Model:}
     {\tiny
     \begin{equation*}
         \begin{split}
-        & f(\geneTreeVector,
-        \numt{},
-        \divtvector, \ancestralThetaVector,
+        & p(\geneTreeVector,
+        \divTimeMapVector,
+        \ancestralThetaVector,
         \descendantThetaVector{1}, \descendantThetaVector{2},
-        \locusRateHetShapeParameter,
-        \locusMutationRateScalarVector,
         \bottleTimeVector, \bottleScalarVector{1},
         \bottleScalarVector{2},
-        \migrationRateVector \given
+        \migrationRateVector,
+        \locusRateHetShapeParameter,
+        \locusMutationRateScalarVector \given
         \alignmentVector, \hkyModelVector, \ploidyScalarVector,
         \mutationRateScalarConstantVector) \\
-        & = \frac{1}{f(\alignmentVector)}
-        f(\numt{}) f(\divtvector \given \numt{})
+        & = \frac{1}{p(\alignmentVector)}
+        p(\divTimeMapVector)
         f(\locusRateHetShapeParameter)
         \Bigg[
         \prod_{i=1}^{\npairs{}}
-        f(\ancestralTheta{i})
-        f(\descendantTheta{1}{i}, \descendantTheta{2}{i})
-        f(\bottleTime{i})
-        f(\bottleScalar{1}{i}) f(\bottleScalar{2}{i})
-        f(\migrationRate{i}) \\
+        p(\ancestralTheta{i})
+        p(\descendantTheta{1}{i}, \descendantTheta{2}{i})
+        p(\bottleTime{i})
+        p(\bottleScalar{1}{i}) f(\bottleScalar{2}{i})
+        p(\migrationRate{i}) \\
         &
         \prod_{j=1}^{\nloci{i}}
-        f(\alignment{i}{j} \given
+        p(\alignment{i}{j} \given
         \geneTree{i}{j}, \hkyModel{i}{j})
-        f(\geneTree{i}{j} \given
-        \divt{i},
+        p(\geneTree{i}{j} \given
+        \divTimeMap{i},
         \ancestralTheta{i}, \descendantTheta{1}{i}, \descendantTheta{2}{i},
         \ploidyScalar{i}{j}, \mutationRateScalarConstant{i}{j},
         \locusMutationRateScalar{j},
@@ -408,54 +412,14 @@
     }
     \end{block}
     \end{onlyenv}
-    % \pause
-    % \vspace{1mm}
-    \begin{block}<2->{\it Approximate Model:}
-    {\tiny
-    \begin{equation*}
-        \begin{split}
-        & f(\geneTreeVector,
-        \numt{},
-        \divtvector, \ancestralThetaVector,
-        \descendantThetaVector{1}, \descendantThetaVector{2},
-        \locusRateHetShapeParameter,
-        \locusMutationRateScalarVector,
-        \bottleTimeVector, \bottleScalarVector{1},
-        \bottleScalarVector{2},
-        \migrationRateVector \given
-        \euclideanSpace{\ssVectorObs}, \hkyModelVector, \ploidyScalarVector,
-        \mutationRateScalarConstantVector) \\
-        & = \frac{1}{f(\euclideanSpace{\ssVectorObs})}
-        f(\numt{}) f(\divtvector{} \given \numt{})
-        f(\locusRateHetShapeParameter)
-        \Bigg[
-        \prod_{i=1}^{\npairs{}}
-        f(\ancestralTheta{i})
-        f(\descendantTheta{1}{i}, \descendantTheta{2}{i})
-        f(\bottleTime{i})
-        f(\bottleScalar{1}{i}) f(\bottleScalar{2}{i})
-        f(\migrationRate{i}) \\
-        &
-        \prod_{j=1}^{\nloci{i}}
-        f(\euclideanSpace{\alignmentSSObs{i}{j}} \given
-        \geneTree{i}{j}, \hkyModel{i}{j})
-        f(\geneTree{i}{j} \given
-        \divt{i},
-        \ancestralTheta{i}, \descendantTheta{1}{i}, \descendantTheta{2}{i},
-        \ploidyScalar{i}{j}, \mutationRateScalarConstant{i}{j},
-        \locusMutationRateScalar{j},
-        \bottleTime{i}, \bottleScalar{1}{i}, \bottleScalar{2}{i},
-        \migrationRate{i})
-        \Bigg]
-        \Bigg[
-        \prod_{j=1}^{\nlociTotal}
-        f(\locusMutationRateScalar{j} \given \locusRateHetShapeParameter)
-        \Bigg]
-        \label{eq:approxmodel}
-        \end{split}
-    \end{equation*}
+    \only<3>{
+        \begin{mydescription}
+            \item[\divTimeMapVector] The vector of divergence times for each pair of populations
+            \item[\divTimeNum] The number of unique divergence times within \divTimeVector
+            \item[\divTimeDispersion] The variance of \divTimeVector
+        \end{mydescription}
+        \vspace{1cm}
     }
-    \end{block}
 \end{frame}
 
 \section{Empirical results}
@@ -494,17 +458,16 @@
     \begin{myitemize}
         \item Draw divergence times from $U(0, \divt{max})$
         \item \divt{max} was set to:
-            0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3,
-            1.4, 1.5, 2.0, and 3.0
+            0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 2.0, and 3.0
         \item Units are \globalcoalunit generations
     \end{myitemize}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Simulation results: Accuracy}
-    \centerline{
-    \includegraphics[height=8cm]{images/SS_accuracy_omega_modes_GLM.pdf}}
-\end{frame}
+% \begin{frame}
+%     \frametitle{Simulation results: Accuracy}
+%     \centerline{
+%     \includegraphics[height=8cm]{images/SS_accuracy_omega_modes_GLM.pdf}}
+% \end{frame}
 
 \begin{frame}
     \frametitle{Simulation results: Power}
