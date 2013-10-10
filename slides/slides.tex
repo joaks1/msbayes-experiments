@@ -23,7 +23,7 @@
 }
 \institute[University of Kansas]{
     \inst{1}%
-        University of Kansas
+        Department of Ecology and Evolutionary Biology, University of Kansas
     % \and
     % \inst{2}%
     %     Duke University
@@ -91,9 +91,11 @@
                     Aggregate Island Complexes (PAICs)
                 \item Prominent paradigm for explaining Philippine biodiversity
                 \item Proposed as model of diversification
-                \begin{myitemize}
-                    \item Limited testing
-                \end{myitemize}
+                \item Some predictions of the model have been tested
+                % \begin{myitemize}
+                %     \item Monophyly
+                %     \item Does the model explain a large proportion of the diversity?
+                % \end{myitemize}
             \end{myitemize}
         \column{.5\textwidth}
             \includegraphics[width=\textwidth]{images/maps/Philippines.png}
@@ -120,8 +122,9 @@
                 \end{myitemize}
             \end{myitemize}
 
-            All of these approaches are really asking if PAIC cycles were
-            responsible for a large proportion of diversity in the Philippines.
+            These approaches are really testing the prediction:
+            {\bf The PAIC cycles generated a large proportion of the species
+            diversity in the Philippines.}
         \column{.5\textwidth}
             \includegraphics[width=\textwidth]{images/maps/Philippines.png}
     \end{columns}
@@ -415,8 +418,8 @@
     \only<3>{
         \begin{mydescription}
             \item[\divTimeMapVector] The vector of divergence times for each pair of populations
-            \item[\divTimeNum] The number of unique divergence times within \divTimeVector
-            \item[\divTimeDispersion] The variance of \divTimeVector
+            \item[\divTimeNum] The number of unique divergence times within \divTimeMapVector
+            \item[\divTimeDispersion] The variance of \divTimeMapVector
         \end{mydescription}
         \vspace{1cm}
     }
@@ -471,8 +474,12 @@
 
 \begin{frame}
     \frametitle{Simulation results: Power}
-    \centerline{
-    \includegraphics[height=8cm]{images/SS_power_psi_modes_GLM.pdf}}
+    \begin{columns}[c]
+        \column{.5\textwidth}
+            \includegraphics[height=6.8cm]{images/SS_power_psi_modes.pdf}
+        \column{.5\textwidth}
+            \includegraphics[height=6.8cm]{images/SS_power_psi_probs.pdf}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
@@ -570,10 +577,12 @@
 
 \begin{frame}
     \frametitle{Causes of bias: Marginal likelihoods}
-    \begin{center}
-        \includegraphics[height=6cm]{images/SS_accuracy_omega_modes_GLM_inform10.pdf} \quad
-        \includegraphics[height=6cm]{images/SS_power_psi_modes_GLM_inform10.pdf}
-    \end{center}
+    \begin{columns}[c]
+        \column{.5\textwidth}
+            \includegraphics[height=6.8cm]{images/SS_power_psi_modes_inform10.pdf}
+        \column{.5\textwidth}
+            \includegraphics[height=6.8cm]{images/SS_power_psi_probs_inform10.pdf}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
