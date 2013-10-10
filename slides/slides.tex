@@ -506,29 +506,100 @@
     \frametitle{Causes of bias}
     Potential causes of the bias:
     \begin{enumerate}
-        \item Uniform priors on parameters and model marginal likelihoods
         \item The prior on divergence models
-        \item Theoretical limits of ABC model choice
+        \item Broad uniform priors on many of the model's parameters, including
+            divergence times
+            \begin{enumerate}
+                \item Small marginal likelihoods of rich models
+                \item Insufficient sampling of rich models
+            \end{enumerate}
+        \item Theoretical limitations of ABC model choice
     \end{enumerate}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Causes of bias: Marginal likelihoods}
-    Models with more divergence events have lower marginal likelihoods \\
-    \bigskip
-    \begin{displaybox}[5.5cm]
-        \small
-        \[
-            p(X) = \int_{\theta} p(X
-            \given \theta) p(\theta) \mathrm{d}\theta
-        \]%\vspace{0mm}
-    \end{displaybox}
-    \bigskip
-    Broad uniform priors on nuisance parameters can hinder marginal likelihoods
-    of rich models \\
+    \frametitle{Causes of bias: Prior on divergence models}
+    \begin{itemize}
+        \item \msb uses a discrete uniform prior on the \emph{number} of
+            divergence events, \divTimeNum
+    % \vspace{0.1cm}
+        \item Each class of \divTimeNum represents a different number of
+            divergence models, i.e., the number of integer partitions
+            \divTimeNum into \npairs{}
+    % \vspace{0.1cm}
+        \item This creates a U-shaped prior on divergence models that disfavors
+            models with intermediate numbers of events
+    \end{itemize}
+    % \smallskip
+    \centerline{
+    \includegraphics[width=\textwidth]{images/partition_numbers.pdf}}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Causes of bias: Priors on nuisance parameters}
+    % \begin{displaybox}[5.5cm]
+    %     \small
+    %     \[
+    %         p(X) = \int_{\theta} p(X
+    %         \given \theta) p(\theta) \mathrm{d}\theta
+    %     \]%\vspace{0mm}
+    % \end{displaybox}
+    \begin{itemize}
+        \item \msb uses uniform priors on most model parameters, including
+            divergence times
+        \item This requires the use of broad priors
+        \item Models with more divergence-time parameters have much greater
+            parameter space, much of it with low likelihood
+        \item This vast space can cause numerical and theoretical problems
+        \begin{enumerate}
+            \item Insufficient sampling
+            \item Reduced marginal likelihoods
+        \end{enumerate}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
+    \frametitle{Causes of bias: Insufficient sampling}
+    \begin{itemize}
+        \item Models with more parameter space are less densely sampled
+        \item Could explain bias toward small models in extreme cases
+        \item {\bf Predicts large variance in posterior estimates}
+        \begin{itemize}
+            \item We explored empirical and simulation-based analyses with
+                2, 5, and 10 million prior samples, and estimates were
+                very similar
+        \end{itemize}
+    \end{itemize}
+    \smallskip
+    \centerline{
+    \includegraphics[width=\textwidth]{images/omega_over_sampling.pdf}}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Causes of bias: Priors on nuisance parameters}
+    % \begin{displaybox}[5.5cm]
+    %     \small
+    %     \[
+    %         p(X) = \int_{\theta} p(X
+    %         \given \theta) p(\theta) \mathrm{d}\theta
+    %     \]%\vspace{0mm}
+    % \end{displaybox}
+    \begin{itemize}
+        \item \msb uses uniform priors on most model parameters, including
+            divergence times
+        \item This requires the use of broad priors
+        \item Models with more divergence-time parameters have much greater
+            parameter space, much of it with low likelihood
+        \item This vast space can cause numerical and theoretical problems
+        \begin{enumerate}
+            \item Insufficient sampling
+            \item Reduced marginal likelihoods
+        \end{enumerate}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[t]
     \frametitle{Causes of bias: Marginal likelihoods}
     \begin{displaybox}[5.5cm]
         \small
@@ -539,9 +610,10 @@
     \end{displaybox}
     \smallskip
     \centerline{
-        \includegraphics<1>[height=6.5cm]{images/marginal-plot-2d-no-priors.pdf}
-        \includegraphics<2>[height=6.5cm]{images/marginal-plot-2d-uniform-prior.pdf}
-        \includegraphics<3>[height=6.5cm]{images/marginal-plot-2d.pdf}}
+        \includegraphics<2>[height=6.5cm]{images/marginal-plot-2d-no-priors.pdf}
+        \includegraphics<3>[height=6.5cm]{images/marginal-plot-2d-uniform-prior.pdf}
+        % \includegraphics<3>[height=6.5cm]{images/marginal-plot-2d.pdf}
+    }
 \end{frame}
 
 \begin{frame}
@@ -562,10 +634,20 @@
 
 \begin{frame}
     \frametitle{Causes of bias: Marginal likelihoods}
-    Testing prior sensitivity \\
+    Predictions:\\
+    \begin{itemize}
+        \item Posterior estimates should be sensitive to priors
+        \item As prior converges to distribution underlying the data, the
+            bias should disappear
+    \end{itemize}
+    Testing prior sensitivity: \\
     \begin{enumerate}
-        \item Assess behavior when priors are correct
-        \item Assess behavior under ideal real-world priors
+        \item Analyze empirical data under several different prior settings
+            \begin{itemize}
+                \item Results are very sensitive
+            \end{itemize}
+        \item Use simulations to assess behavior when priors are correct
+        \item Use simulations to assess behavior under ``ideal'' real-world priors
     \end{enumerate}
 \end{frame}
 
@@ -606,18 +688,6 @@
     \centerline{
         \includegraphics<1>[height=6.0cm]{images/marginal-plot-2d-uniform-prior.pdf}
         \includegraphics<2>[height=6.0cm]{images/marginal-plot-2d.pdf}}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Causes of bias: Hyper-prior on models}
-    \msb uses discrete uniform prior on the number of divergence events
-    (\numt{})\\
-    \bigskip
-    This creates prior on divergence models that disfavors models with
-    intermediate number of events\\
-    \bigskip
-    \centerline{
-    \includegraphics[width=\textwidth]{images/partition_numbers.pdf}}
 \end{frame}
 
 \begin{frame}
