@@ -1,0 +1,26 @@
+[pymsbayes]
+	version = Version 0.1.0
+	output_directory = /share/work1/jamie/msbayes-experiments/empirical-analyses/results/philippines/dpp-inform/pymsbayes-results
+	temp_directory = /tmp/output.zUfU22193/temp-files-0ckrC6
+	sort_index = 7
+	simulation_reps = 0
+	seed = 33741111
+	num_processors = 8
+	num_prior_samples = 20000000
+	num_standardizing_samples = 10000
+	bandwidth = 0.0002
+	posterior_quantiles = 10000
+	posterior_sample_size = 10000
+	stat_patterns = ^\s*pi\.\d+\s*$, ^\s*wattTheta\.\d+\s*$, ^\s*pi\.net\.\d+\s*$, ^\s*tajD\.denom\.\d+\s*$
+	num_taxon_pairs = 22
+	dry_run = False
+	[[observed_configs]]
+		1 = ../../../../configs/philippines-dpp-inform.cfg
+	[[observed_paths]]
+		1 = observed-summary-stats/observed-1.txt
+	[[prior_configs]]
+		1 = ../../../../configs/philippines-dpp-inform.cfg
+	[[run_stats]]
+		start_time = 2013-10-08 17:40:25.513980
+		stop_time = 2013-10-10 13:30:14.017147
+		total_duration = 1 day, 19:49:48.503167

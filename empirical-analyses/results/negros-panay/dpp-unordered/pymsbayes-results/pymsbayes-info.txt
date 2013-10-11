@@ -1,0 +1,26 @@
+[pymsbayes]
+	version = Version 0.1.0
+	output_directory = /share/work1/jamie/msbayes-experiments/empirical-analyses/results/negros-panay/dpp-unordered/pymsbayes-results
+	temp_directory = /tmp/output.HTAC19904/temp-files-YCgIiP
+	sort_index = 7
+	simulation_reps = 0
+	seed = 845225390
+	num_processors = 8
+	num_prior_samples = 50000000
+	num_standardizing_samples = 10000
+	bandwidth = 0.0002
+	posterior_quantiles = 10000
+	posterior_sample_size = 10000
+	stat_patterns = ^\s*pi\.\d+\s*$, ^\s*wattTheta\.\d+\s*$, ^\s*pi\.net\.\d+\s*$, ^\s*tajD\.denom\.\d+\s*$
+	num_taxon_pairs = 9
+	dry_run = False
+	[[observed_configs]]
+		1 = ../../../../configs/negros-panay.cfg
+	[[observed_paths]]
+		1 = observed-summary-stats/observed-1.txt
+	[[prior_configs]]
+		1 = ../../../../configs/negros-panay.cfg
+	[[run_stats]]
+		start_time = 2013-10-08 17:39:10.383661
+		stop_time = 2013-10-10 15:17:17.830867
+		total_duration = 1 day, 21:38:07.447206
