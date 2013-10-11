@@ -654,7 +654,7 @@
 \begin{frame}
     \frametitle{Causes of bias: Marginal likelihoods}
     \centerline{
-    \includegraphics[height=8cm]{images/posterior_vs_true_prob.pdf}}
+    \includegraphics[width=\textwidth]{images/prior-old_prior-old_mc_behavior.pdf}}
 \end{frame}
 
 \begin{frame}
@@ -675,28 +675,111 @@
     setting, the bias remains
     \bigskip
     \begin{block}<2>{\it Potential solution:}
-        Use more flexible parametric distributions on nuisance parameters (e.g., gamma)
+        Use more flexible parametric distributions on nuisance parameters
+        (e.g., gamma and beta)
     \end{block}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{Causes of bias: Marginal likelihoods}
     \begin{block}{\it Potential solution:}
-        Use more flexible parametric distributions on nuisance parameters (e.g., gamma)
+        Use more flexible parametric distributions on nuisance parameters
+        (e.g., gamma and beta)
     \end{block}
     \smallskip
     \centerline{
         \includegraphics<1>[height=6.0cm]{images/marginal-plot-2d-uniform-prior.pdf}
-        \includegraphics<2>[height=6.0cm]{images/marginal-plot-2d.pdf}}
+        \includegraphics<2>[height=6.0cm]{images/marginal-plot-2d.pdf}
+        \includegraphics<3>[width=\textwidth]{images/partition_numbers.pdf}}
+    \begin{block}<4>{\it Potential solution:}
+        Use alternative prior over divergence models
+        (e.g., uniform or Dirichlet process)
+    \end{block}
+\end{frame}
+
+% \begin{frame}
+%     \frametitle{Causes of bias: Theoretical limits of ABC}
+%     When summary statistics are insufficient for discriminating among models,
+%     ABC is inconsistent estimator of model posterior probabilities
+%     \footlessfullcite{Robert2011}\\
+%     \bigskip
+%     True even if statistics are sufficient for each model\\
+% \end{frame}
+
+\begin{frame}
+    \frametitle{New method: \dppmsbayes}
+    \begin{itemize}
+        \item Explain modifications: reparameterization, new prirors on nuisance parameters\ldots
+        \item Uniform and DPP priors over divergence models
+        \item Introduce DPP?
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Causes of bias: Theoretical limits of ABC}
-    When summary statistics are insufficient for discriminating among models,
-    ABC is inconsistent estimator of model posterior probabilities
-    \footlessfullcite{Robert2011}\\
-    \bigskip
-    True even if statistics are sufficient for each model\\
+    \frametitle{\dppmsbayes: Model-choice results}
+    \centerline{
+        \includegraphics[width=0.8\textwidth]{images/prior-old_prior-old_mc_behavior.pdf}}
+    \centerline{
+        \includegraphics[width=0.8\textwidth]{images/prior-old_prior-dpp_mc_behavior.pdf}}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\dppmsbayes: Model-choice results}
+    \centerline{
+        \includegraphics[width=0.8\textwidth]{images/prior-dpp_prior-old_mc_behavior.pdf}}
+    \centerline{
+        \includegraphics[width=0.8\textwidth]{images/prior-dpp_prior-dpp_mc_behavior.pdf}}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\dppmsbayes: Power results}
+    \begin{columns}[c]
+        \column{.5\textwidth}
+            \centerline{\modelOld}
+            \includegraphics[height=6.5cm]{../power-comparison/results/pymsbayes-results/plots/old_old_power_psi_mode.pdf}
+        \column{.5\textwidth}
+            \centerline{\modelDPP}
+            \includegraphics[height=6.5cm]{../power-comparison/results/pymsbayes-results/plots/old_dpp_power_psi_mode.pdf}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\dppmsbayes: Power results}
+    \begin{columns}[c]
+        \column{.5\textwidth}
+            \centerline{\modelOld}
+            \includegraphics[height=6.5cm]{../power-comparison/results/pymsbayes-results/plots/old_old_power_psi_prob.pdf}
+        \column{.5\textwidth}
+            \centerline{\modelDPP}
+            \includegraphics[height=6.5cm]{../power-comparison/results/pymsbayes-results/plots/old_dpp_power_psi_prob.pdf}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\dppmsbayes: Power results}
+    \begin{columns}[c]
+        \column{.5\textwidth}
+            \centerline{\modelOld}
+            \includegraphics[height=6.5cm]{../power-comparison/results/pymsbayes-results/plots/old_old_power_omega_median.pdf}
+        \column{.5\textwidth}
+            \centerline{\modelDPP}
+            \includegraphics[height=6.5cm]{../power-comparison/results/pymsbayes-results/plots/old_dpp_power_omega_median.pdf}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\dppmsbayes: Power results}
+    \begin{columns}[c]
+        \column{.33\textwidth}
+            \centerline{\modelOld}
+            \includegraphics[height=4.5cm]{../power-comparison/results/pymsbayes-results/plots/old_old_power_omega_median.pdf}
+        \column{.33\textwidth}
+            \centerline{\modelUshaped}
+            \includegraphics[height=4.5cm]{../power-comparison/results/pymsbayes-results/plots/old_u-shaped_power_omega_median.pdf}
+        \column{.33\textwidth}
+            \centerline{\modelDPP}
+            \includegraphics[height=4.5cm]{../power-comparison/results/pymsbayes-results/plots/old_dpp_power_omega_median.pdf}
+    \end{columns}
 \end{frame}
 
 \section{Conclusions}
