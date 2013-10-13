@@ -51,6 +51,29 @@ def main_cli():
             sub_plots['dpp']['old'],
             sub_plots['dpp']['dpp'],
             ]
+    
+    pg = plotting.PlotGrid(subplots = sub_plot_list[:1],
+            num_columns = 1,
+            share_x = True,
+            share_y = True,
+            title = 'Posterior probability of one divergence',
+            title_size = 12.0,
+            title_top = False,
+            y_title = 'True probability of one divergence',
+            y_title_position = 0.001,
+            y_title_size = 12.0,
+            width = 5.2,
+            height = 4.0,
+            auto_height = False)
+    pg.label_schema = None
+    pg.auto_adjust_margins = False
+    pg.margin_bottom = 0.05
+    pg.margin_left = 0.04
+    pg.margin_top = 1
+    pg.margin_right = 1
+    pg.reset_figure()
+
+    pg.savefig('../images/validation-model-choice-old.pdf')
 
     pg = plotting.PlotGrid(subplots = sub_plot_list,
             num_columns = 2,
