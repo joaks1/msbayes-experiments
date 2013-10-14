@@ -166,8 +166,23 @@ def create_plots(info_path,
             margin_top = 0.83
             margin_bottom = 0.085
             margin_left = 0.017
+            margin_right = 0.95
             column_label_size = 22.0
             title_size = 18.0
+            row_labels = []
+            if prior_name == 'old':
+                row_labels.append(r'$M_{msBayes}$')
+            elif prior_name == 'u-shaped':
+                row_labels.append(r'$M_{Ushaped}$')
+            elif prior_name == 'uniform':
+                row_labels.append(r'$M_{Uniform}$')
+            elif prior_name == 'dpp':
+                row_labels.append(r'$M_{DPP}$')
+            else:
+                row_labels.append('')
+            row_label_size = 28.0
+            row_label_offset = 0.08
+
 
             psi_plot = PowerPlotGrid(
                     observed_config_to_estimates = cfg_to_psi,
@@ -187,9 +202,13 @@ def create_plots(info_path,
             pg.margin_bottom = margin_bottom
             pg.margin_top = margin_top
             pg.margin_left = margin_left
+            pg.margin_right = margin_right
             pg.column_label_offset = column_label_offset
             pg.column_label_size = column_label_size
             pg.title_size = title_size
+            pg.row_labels = row_labels
+            pg.row_label_size = row_label_size
+            pg.row_label_offset = row_label_offset
             pg.reset_figure()
             pg.savefig(os.path.join(output_dir,
                     prefix + '_power_psi_mode.pdf'))
@@ -231,9 +250,13 @@ def create_plots(info_path,
             pg.margin_bottom = margin_bottom
             pg.margin_top = margin_top
             pg.margin_left = margin_left
+            pg.margin_right = margin_right
             pg.column_label_offset = column_label_offset
             pg.column_label_size = column_label_size
             pg.title_size = title_size
+            pg.row_labels = row_labels
+            pg.row_label_size = row_label_size
+            pg.row_label_offset = row_label_offset
             pg.reset_figure()
             pg.savefig(os.path.join(output_dir,
                     prefix + '_power_psi_prob.pdf'))
@@ -272,9 +295,13 @@ def create_plots(info_path,
             pg.margin_bottom = margin_bottom
             pg.margin_top = margin_top
             pg.margin_left = margin_left
+            pg.margin_right = margin_right
             pg.column_label_offset = column_label_offset
             pg.column_label_size = column_label_size
             pg.title_size = title_size
+            pg.row_labels = row_labels
+            pg.row_label_size = row_label_size
+            pg.row_label_offset = row_label_offset
             pg.reset_figure()
             pg.savefig(os.path.join(output_dir,
                     prefix + '_power_omega_median.pdf'))
@@ -354,7 +381,7 @@ def main_cli():
     info_path = sys.argv[1]
     observed_prefixes_to_include = ['old']
     observed_suffixes_to_include = ['0.2', '0.6', '1.0', '2.0']
-    prior_suffixes_to_include = ['dpp', 'old']
+    prior_suffixes_to_include = ['dpp', 'old', 'u-shaped']
     create_plots(info_path,
             observed_prefixes_to_include = observed_prefixes_to_include,
             observed_suffixes_to_include = observed_suffixes_to_include,

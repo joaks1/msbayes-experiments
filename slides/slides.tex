@@ -472,14 +472,14 @@
 %     \includegraphics[height=8cm]{images/SS_accuracy_omega_modes_GLM.pdf}}
 % \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{Simulation results: Power}
-    \begin{columns}[c]
-        \column{.5\textwidth}
-            \includegraphics[height=6.8cm]{images/SS_power_psi_modes.pdf}
-        \column{.5\textwidth}
-            \includegraphics[height=6.8cm]{images/SS_power_psi_probs.pdf}
-    \end{columns}
+    \vspace{1cm}
+        \centerline{
+        \includegraphics[width=\textwidth]{images/old-sims_power_psi_mode.pdf}}
+        \vspace{0mm}
+        \centerline{
+        \includegraphics<2>[width=\textwidth]{images/old-sims_power_psi_prob_headless.pdf}}
 \end{frame}
 
 \begin{frame}
@@ -654,17 +654,27 @@
 \begin{frame}
     \frametitle{Causes of bias: Marginal likelihoods}
     \centerline{
-    \includegraphics[width=\textwidth]{images/prior-old_prior-old_mc_behavior.pdf}}
+    \includegraphics[height=7.0cm]{images/validation-model-choice-old.pdf}}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{Causes of bias: Marginal likelihoods}
-    \begin{columns}[c]
-        \column{.5\textwidth}
-            \includegraphics[height=6.8cm]{images/SS_power_psi_modes_inform10.pdf}
-        \column{.5\textwidth}
-            \includegraphics[height=6.8cm]{images/SS_power_psi_probs_inform10.pdf}
-    \end{columns}
+    \vspace{1cm}
+        \centerline{
+        \includegraphics[width=\textwidth]{images/old-sims_power_psi_mode.pdf}}
+        \vspace{0mm}
+        \centerline{
+        \includegraphics[width=\textwidth]{images/old-sims-inform10_power_psi_mode_headless.pdf}}
+\end{frame}
+
+\begin{frame}[t]
+    \frametitle{Causes of bias: Marginal likelihoods}
+    \vspace{1cm}
+        \centerline{
+        \includegraphics[width=\textwidth]{images/old-sims_power_psi_prob.pdf}}
+        \vspace{0mm}
+        \centerline{
+        \includegraphics[width=\textwidth]{images/old-sims-inform10_power_psi_prob_headless.pdf}}
 \end{frame}
 
 \begin{frame}
@@ -718,68 +728,56 @@
 \begin{frame}
     \frametitle{\dppmsbayes: Model-choice results}
     \centerline{
-        \includegraphics[width=0.8\textwidth]{images/prior-old_prior-old_mc_behavior.pdf}}
-    \centerline{
-        \includegraphics[width=0.8\textwidth]{images/prior-old_prior-dpp_mc_behavior.pdf}}
+        \includegraphics[height=7.0cm]{images/validation-model-choice-old-dpp.pdf}}
 \end{frame}
 
 \begin{frame}
     \frametitle{\dppmsbayes: Model-choice results}
     \centerline{
-        \includegraphics[width=0.8\textwidth]{images/prior-dpp_prior-old_mc_behavior.pdf}}
-    \centerline{
-        \includegraphics[width=0.8\textwidth]{images/prior-dpp_prior-dpp_mc_behavior.pdf}}
+        \includegraphics[width=1.13\textwidth]{images/validation-model-choice-old-dpp-full.pdf}}
+\end{frame}
+
+\begin{frame}[t]
+    \frametitle{\dppmsbayes: Power results}
+    \vspace{1cm}
+        \centerline{
+        \includegraphics[width=1.13\textwidth]{images/old_old_power_psi_mode.pdf}}
+        \vspace{0mm}
+        \centerline{
+        \includegraphics[width=1.13\textwidth]{images/old_dpp_power_psi_mode_headless.pdf}}
+\end{frame}
+
+\begin{frame}[t]
+    \frametitle{\dppmsbayes: Power results}
+    \vspace{1cm}
+        \centerline{
+        \includegraphics[width=1.13\textwidth]{images/old_old_power_psi_prob.pdf}}
+        \vspace{0mm}
+        \centerline{
+        \includegraphics[width=1.13\textwidth]{images/old_dpp_power_psi_prob_headless.pdf}}
+\end{frame}
+
+\begin{frame}[t]
+    \frametitle{\dppmsbayes: Power results}
+    \vspace{1cm}
+        \centerline{
+        \includegraphics[width=1.13\textwidth]{images/old_old_power_omega_median.pdf}}
+        \vspace{0mm}
+        \centerline{
+        \includegraphics[width=1.13\textwidth]{images/old_dpp_power_omega_median_headless.pdf}}
 \end{frame}
 
 \begin{frame}
     \frametitle{\dppmsbayes: Power results}
-    \begin{columns}[c]
-        \column{.5\textwidth}
-            \centerline{\modelOld}
-            \includegraphics[height=6.5cm]{../power-comparison/results/pymsbayes-results/plots/old_old_power_psi_mode.pdf}
-        \column{.5\textwidth}
-            \centerline{\modelDPP}
-            \includegraphics[height=6.5cm]{../power-comparison/results/pymsbayes-results/plots/old_dpp_power_psi_mode.pdf}
-    \end{columns}
-\end{frame}
-
-\begin{frame}
-    \frametitle{\dppmsbayes: Power results}
-    \begin{columns}[c]
-        \column{.5\textwidth}
-            \centerline{\modelOld}
-            \includegraphics[height=6.5cm]{../power-comparison/results/pymsbayes-results/plots/old_old_power_psi_prob.pdf}
-        \column{.5\textwidth}
-            \centerline{\modelDPP}
-            \includegraphics[height=6.5cm]{../power-comparison/results/pymsbayes-results/plots/old_dpp_power_psi_prob.pdf}
-    \end{columns}
-\end{frame}
-
-\begin{frame}
-    \frametitle{\dppmsbayes: Power results}
-    \begin{columns}[c]
-        \column{.5\textwidth}
-            \centerline{\modelOld}
-            \includegraphics[height=6.5cm]{../power-comparison/results/pymsbayes-results/plots/old_old_power_omega_median.pdf}
-        \column{.5\textwidth}
-            \centerline{\modelDPP}
-            \includegraphics[height=6.5cm]{../power-comparison/results/pymsbayes-results/plots/old_dpp_power_omega_median.pdf}
-    \end{columns}
-\end{frame}
-
-\begin{frame}
-    \frametitle{\dppmsbayes: Power results}
-    \begin{columns}[c]
-        \column{.33\textwidth}
-            \centerline{\modelOld}
-            \includegraphics[height=4.5cm]{../power-comparison/results/pymsbayes-results/plots/old_old_power_omega_median.pdf}
-        \column{.33\textwidth}
-            \centerline{\modelUshaped}
-            \includegraphics[height=4.5cm]{../power-comparison/results/pymsbayes-results/plots/old_u-shaped_power_omega_median.pdf}
-        \column{.33\textwidth}
-            \centerline{\modelDPP}
-            \includegraphics[height=4.5cm]{../power-comparison/results/pymsbayes-results/plots/old_dpp_power_omega_median.pdf}
-    \end{columns}
+    % \vspace{1cm}
+        \centerline{
+        \includegraphics[width=\textwidth]{images/old_old_power_omega_median.pdf}}
+        \vspace{0mm}
+        \centerline{
+        \includegraphics[width=\textwidth]{images/old_u-shaped_power_omega_median_headless.pdf}}
+        \vspace{0mm}
+        \centerline{
+        \includegraphics[width=\textwidth]{images/old_dpp_power_omega_median_headless.pdf}}
 \end{frame}
 
 \section{Conclusions}
