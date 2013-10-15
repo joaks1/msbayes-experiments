@@ -233,100 +233,143 @@
                 }
             \end{displaybox}
             \end{onlyenv}
+            \begin{onlyenv}<6>
+            \begin{displaybox}[4.5cm]
+                \[
+                    \divTimeVector = \{\divTime{1},\divTime{2}\}
+                \]\vspace{0mm}
+                \[
+                    \divTimeIndexVector = (\divTimeIndex{1},\divTimeIndex{2},\divTimeIndex{3},\divTimeIndex{4},\divTimeIndex{5})
+                \]\vspace{0mm}
+                {\small
+                \[
+                    \divTimeMapVector = (\divTimeMap{1},\divTimeMap{2},\divTimeMap{3},\divTimeMap{4},\divTimeMap{5})
+                \]\vspace{0mm}
+                }
+            \end{displaybox}
+            \end{onlyenv}
+            \begin{onlyenv}<7-10>
+            \begin{displaybox}[4.5cm]
+                \[
+                    \divTimeVector = \{\divTime{1},\ldots,\divTime{\divTimeNum}\}
+                \]\vspace{0mm}
+                \[
+                    \divTimeIndexVector = (\divTimeIndex{1},\divTimeIndex{2},\ldots,\divTimeIndex{\npairs{}})
+                \]\vspace{0mm}
+                {\small
+                \[
+                    \divTimeMapVector = (\divTimeMap{1},\divTimeMap{2},\ldots,\divTimeMap{\npairs{}})
+                \]\vspace{0mm}
+                }
+            \end{displaybox}
+            \end{onlyenv}
         \column{.6\textwidth}
             \includegraphics<1-3>[height=6.8cm]{images/sea-level-prediction-trees-labels-compact.pdf}
             \includegraphics<4>[height=6.8cm]{images/sea-level-prediction-trees-labels-compact-alt1.pdf}
-            \includegraphics<5>[height=6.8cm]{images/sea-level-prediction-trees-labels-compact-alt2.pdf}
+            \includegraphics<5-7>[height=6.8cm]{images/sea-level-prediction-trees-labels-compact-alt2.pdf}
+            \begin{onlyenv}<8-10>
+                \begin{itemize}
+                \item<8-10> We want to infer \divTimeMapVector given DNA sequence alignments \alignmentVector
+                \item<9-10>
+                \[
+                    p(\divTimeMapVector \given \alignmentVector) =
+                    \frac{p(\alignmentVector \given
+                    \divTimeMapVector)p(\divTimeMapVector)}{p(\alignmentVector)}
+                \]
+                \item<10> Not that simple
+            \end{itemize}
+            \end{onlyenv}
     \end{columns}
-    
-\end{frame}
-
-
-\subsection{The method---approximate Bayesian model choice}
-
-\begin{frame}
-\frametitle{Outline}
-\tableofcontents[currentsection,currentsubsection]
 \end{frame}
 
 \begin{frame}
     \frametitle{The method: \msb}
-        Now we have genetic data for $\npairs{}=22$ taxon pairs, and we need to
-        infer the distribution of their relative divergence times
-        \[
-            \divTimeMapVector = (\divTimeMap{1},\divTimeMap{2},\ldots,\divTimeMap{\npairs{}})
-        \]
-        where
-        \[
-            \divTimeVector = \{\divTime{1},\ldots,\divTime{\divTimeNum}\}
-        \]
-        are the divergence time parameters shared among the taxon pairs, and
-        \divTimeNum is the number of divergence time parameters.
-
-        \begin{myitemize}
-            \item We want to infer \divTimeMapVector from our data
-            \item This is a problem of model choice.
-            % \begin{myitemize}
-            %     \item Bayesian framework is an attractive approach
-            %     \item \msb uses an approximate Bayesian approach to estimate the
-            %         posterior probability of competing divergence models
-            % \end{myitemize}
-        \end{myitemize}
+    \centerline{
+        \includegraphics<1>[width=\textwidth]{images/sea-level-prediction-trees-labels.pdf}
+        \includegraphics<2>[width=\textwidth]{images/sea-level-species-trees-islands.pdf}
+        \includegraphics<3>[width=\textwidth]{images/sea-level-species-trees-gene-trees-islands.pdf}
+        \includegraphics<4>[width=\textwidth]{images/sea-level-species-trees-gene-trees-demog-islands.pdf}
+        \includegraphics<5>[width=\textwidth]{images/sea-level-msbayes-model-islands.pdf}
+        \includegraphics<6>[width=\textwidth]{images/sea-level-msbayes-model-labels-islands.pdf}
+    }
 \end{frame}
 
 \begin{frame}
-    \frametitle{Bayesian framework}
-    Given sequence alignments \alignmentVector and: \\
-        \begin{mydescription}
-            \item[\divTimeMapVector] The vector of divergence times for each pair of populations
-            \item[\geneTreeVector] The gene trees along which the sequences evolved
-            \item[\demographicParamVector, \hkyModelVector] The demographic and mutational parameters
-        \end{mydescription}
-    % \smallskip
-    \begin{displaybox}[8.5cm]
-    \[
-        p(\geneTreeVector, \divTimeMapVector, \demographicParamVector
-        \given
-        \alignmentVector, \hkyModelVector) =
-        \frac{p(\alignmentVector \given \geneTreeVector, \divTimeMapVector,
-        \demographicParamVector, \hkyModelVector)
-        p(\geneTreeVector, \divTimeMapVector, \demographicParamVector \given \hkyModelVector)}{
-        p(\alignmentVector)}
-    \]\vspace{0mm}
-    \end{displaybox}
-    \smallskip
-    \[ \alignmentVector \to \ssVectorObs \]
-    % \smallskip
-    \begin{displaybox}[9.5cm]
-    \[
-        p(\geneTreeVector, \divTimeMapVector, \demographicParamVector
-        \given
-        \ssSpace, \hkyModelVector) =
-        \frac{p(\alignmentVector \given \geneTreeVector, \divTimeMapVector,
-        \demographicParamVector, \hkyModelVector)
-        p(\geneTreeVector, \divTimeMapVector, \demographicParamVector \given \hkyModelVector)}{
-        p(\ssSpace)}
-    \]\vspace{0mm}
-    \end{displaybox}
-
+    \frametitle{The method: \msb}
+    \begin{columns}[c]
+        \column{.4\textwidth}
+            \begin{mydescription}
+                \item<2->[\alignmentVector] Sequence alignments
+                \item<3->[\geneTreeVector] Gene trees
+                \item<4->[\hkyModelVector] Substitution parameters
+                \item<5->[\divTimeMapVector] Divergence times
+                \item<6->[\demographicParamVector] Demographic parameters
+            \end{mydescription}
+        \column{.6\textwidth}
+            \includegraphics[height=6.1cm]{images/sea-level-msbayes-model-labels.pdf}
+    \end{columns}
 \end{frame}
 
+\subsection{The method---approximate Bayesian model choice}
+
+% \begin{frame}
+% \frametitle{Outline}
+% \tableofcontents[currentsection,currentsubsection]
+% \end{frame}
+
+% \begin{frame}
+%     \frametitle{The method: \msb}
+%         Now we have genetic data for $\npairs{}=22$ taxon pairs, and we need to
+%         infer the distribution of their relative divergence times
+%         \[
+%             \divTimeMapVector = (\divTimeMap{1},\divTimeMap{2},\ldots,\divTimeMap{\npairs{}})
+%         \]
+%         where
+%         \[
+%             \divTimeVector = \{\divTime{1},\ldots,\divTime{\divTimeNum}\}
+%         \]
+%         are the divergence time parameters shared among the taxon pairs, and
+%         \divTimeNum is the number of divergence time parameters.
+
+%         \begin{myitemize}
+%             \item We want to infer \divTimeMapVector from our data
+%             \item This is a problem of model choice.
+%             % \begin{myitemize}
+%             %     \item Bayesian framework is an attractive approach
+%             %     \item \msb uses an approximate Bayesian approach to estimate the
+%             %         posterior probability of competing divergence models
+%             % \end{myitemize}
+%         \end{myitemize}
+% \end{frame}
+
 \begin{frame}[t]
-    \frametitle{The \msb model}
-    \begin{displaybox}[8.5cm]
-    \[
-        p(\geneTreeVector, \divTimeMapVector, \demographicParamVector
-        \given
-        \alignmentVector, \hkyModelVector) =
-        \frac{p(\alignmentVector \given \geneTreeVector, \divTimeMapVector,
-        \demographicParamVector, \hkyModelVector)
-        p(\geneTreeVector, \divTimeMapVector, \demographicParamVector \given \hkyModelVector)}{
-        p(\alignmentVector)}
-    \]\vspace{0mm}
-    \end{displaybox}
-    \smallskip
-    \begin{onlyenv}<2>
-    \begin{block}{\it Full Model:}
+    \frametitle{Bayesian framework}
+        \uncover<2->{
+        \begin{block}{\it Full Model:}
+        \[
+            p(\geneTreeVector, \divTimeMapVector, \demographicParamVector
+            \given
+            \alignmentVector, \hkyModelVector) =
+            \frac{p(\alignmentVector \given \geneTreeVector, \divTimeMapVector,
+            \demographicParamVector, \hkyModelVector)
+            p(\geneTreeVector, \divTimeMapVector, \demographicParamVector \given \hkyModelVector)}{
+            p(\alignmentVector)}
+        \]\vspace{0mm}
+        \end{block}
+        }
+        \begin{onlyenv}<1-2>
+        \smallskip
+        \begin{mydescription}
+            \item[\alignmentVector] Sequence alignments
+            \item[\geneTreeVector] Gene trees
+            \item[\hkyModelVector] Substitution parameters
+            \item[\divTimeMapVector] Divergence times
+            \item[\demographicParamVector] Demographic parameters
+        \end{mydescription}
+        \end{onlyenv}
+    \begin{onlyenv}<3>
+    \bigskip
+    \begin{displaybox}
     {\tiny
     \begin{equation*}
         \begin{split}
@@ -371,12 +414,30 @@
         \end{split}
     \end{equation*}
     }
+    \end{displaybox}
+    \end{onlyenv}
+    \begin{onlyenv}<4-5>
+    \smallskip
+        \[ \alignmentVector \, \to \, \ssVectorObs \, \to \, \ssSpace\]
+    \end{onlyenv}
+    \begin{onlyenv}<5>
+    \begin{block}{\it Approximate Model:}
+    \[
+        p(\geneTreeVector, \divTimeMapVector, \demographicParamVector
+        \given
+        \ssSpace, \hkyModelVector) =
+        \frac{p(\alignmentVector \given \geneTreeVector, \divTimeMapVector,
+        \demographicParamVector, \hkyModelVector)
+        p(\geneTreeVector, \divTimeMapVector, \demographicParamVector \given \hkyModelVector)}{
+        p(\ssSpace)}
+    \]\vspace{0mm}
     \end{block}
     \end{onlyenv}
-    \only<3>{
+    \only<6>{
+        \bigskip
         \begin{mydescription}
-            \item[\divTimeMapVector] The vector of divergence times for each pair of populations
-            \item[\divTimeNum] The number of unique divergence times within \divTimeMapVector
+            \item[\divTimeMapVector] Vector of divergence times across pairs of populations
+            \item[\divTimeNum] Number of divergence parameters
             \item[\divTimeDispersion] The variance of \divTimeMapVector
         \end{mydescription}
         \vspace{1cm}
@@ -637,23 +698,6 @@
             \item Reduced marginal likelihoods
         \end{enumerate}
     \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Causes of bias: Insufficient sampling}
-    \begin{itemize}
-        \item Models with more parameter space are less densely sampled
-        \item Could explain bias toward small models in extreme cases
-        \item {\bf Predicts large variance in posterior estimates}
-        \begin{itemize}
-            \item We explored empirical and simulation-based analyses with
-                2, 5, and 10 million prior samples, and estimates were
-                very similar
-        \end{itemize}
-    \end{itemize}
-    \smallskip
-    \centerline{
-    \includegraphics[width=\textwidth]{images/omega_over_sampling.pdf}}
 \end{frame}
 
 \begin{frame}
@@ -991,15 +1035,32 @@
 % Extra slides
 
 \begin{frame}[noframenumbering]
-    \frametitle{Geological history}
-    \includegraphics[width=\textwidth]{images/maps/arees-fig3.png}
-\end{frame}
-    
-\begin{frame}[noframenumbering]
     \frametitle{Gene tree divergences}
     \centerline{
     \includegraphics[height=8cm]{images/gene_splits.pdf}}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Causes of bias: Insufficient sampling}
+    \begin{itemize}
+        \item Models with more parameter space are less densely sampled
+        \item Could explain bias toward small models in extreme cases
+        \item {\bf Predicts large variance in posterior estimates}
+        \begin{itemize}
+            \item We explored empirical and simulation-based analyses with
+                2, 5, and 10 million prior samples, and estimates were
+                very similar
+        \end{itemize}
+    \end{itemize}
+    \smallskip
+    \centerline{
+    \includegraphics[width=\textwidth]{images/omega_over_sampling.pdf}}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+    \frametitle{Geological history}
+    \includegraphics[width=\textwidth]{images/maps/arees-fig3.png}
+\end{frame}
+    
 \end{document}
 
