@@ -83,14 +83,15 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{PAIC model}
+    \frametitle{Climate-driven diversification model}
     \begin{columns}[c]
         \column{.5\textwidth}
             \begin{myitemize}
-                \item Repeated coalescence and fragmentation of Pleistocene
-                    Aggregate Island Complexes (PAICs)
-                \item Prominent paradigm for explaining Philippine biodiversity
-                \item Proposed as model of diversification
+                \item<1-> Repeated coalescence and fragmentation of island complexes
+                % \item Prominent paradigm for explaining Philippine biodiversity
+                \item<2-> Proposed as model of diversification
+                \item<3-> Model predicts temporally clustered divergences across
+                    populations co-distributed across an island complex
                 % \item Some predictions of the model have been tested
                 % \begin{myitemize}
                 %     \item Monophyly
@@ -130,35 +131,35 @@
 %     \end{columns}
 % \end{frame}
 
-\begin{frame}
-    \frametitle{PAIC model: A new approach}
-    % \begin{columns}[c]
-    %     \column{.5\textwidth}
-            \begin{mydescription}
-                \item[$H_0$] Repeated island fragmentation promoted diversification
-                    among island populations
-                    \begin{mydescription}
-                        \item[Prediction] Temporal distribution of divergences
-                            between inter-island populations within PAICs
-                            should be temporally clustered and correspond with
-                            interglacial rises in sea level
-                    \end{mydescription}
-                \item[$H_1$] Island fragmentation did not promote diversification
-                    \begin{mydescription}
-                        \item[Prediction] Inter-island diversification was
-                            dispersal mediated; no temporal clustering
-                    \end{mydescription}
-            \end{mydescription}
+% \begin{frame}
+%     \frametitle{PAIC model: A new approach}
+%     % \begin{columns}[c]
+%     %     \column{.5\textwidth}
+%             \begin{mydescription}
+%                 \item[$H_0$] Repeated island fragmentation promoted diversification
+%                     among island populations
+%                     \begin{mydescription}
+%                         \item[Prediction] Temporal distribution of divergences
+%                             between inter-island populations within PAICs
+%                             should be temporally clustered and correspond with
+%                             interglacial rises in sea level
+%                     \end{mydescription}
+%                 \item[$H_1$] Island fragmentation did not promote diversification
+%                     \begin{mydescription}
+%                         \item[Prediction] Inter-island diversification was
+%                             dispersal mediated; no temporal clustering
+%                     \end{mydescription}
+%             \end{mydescription}
             
-            {\bf Key pattern:} The temporal distribution of divergences
-                    among species distributed across PAIC islands
-        % \column{.5\textwidth}
-        %     \includegraphics[width=\textwidth]{images/maps/Philippines.png}
-    % \end{columns}
-\end{frame}
+%             {\bf Key pattern:} The temporal distribution of divergences
+%                     among species distributed across PAIC islands
+%         % \column{.5\textwidth}
+%         %     \includegraphics[width=\textwidth]{images/maps/Philippines.png}
+%     % \end{columns}
+% \end{frame}
 
 \begin{frame}
-    \frametitle{PAIC model: predictions}
+    \frametitle{Climate-driven model: Predictions}
     \centerline{
     \includegraphics<1>[width=\textwidth]{images/sea-level-prediction-bare.pdf}
     \includegraphics<2>[width=\textwidth]{images/sea-level-prediction-trees.pdf}
@@ -167,7 +168,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{The method: \msb}
+    \frametitle{Climate-driven model: Predictions}
     \begin{columns}[c]
         \column{.4\textwidth}
             \begin{onlyenv}<2>
@@ -283,7 +284,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{The method: \msb}
+    \frametitle{Divergence model choice}
     \centerline{
         \includegraphics<1>[width=\textwidth]{images/sea-level-prediction-trees-labels.pdf}
         \includegraphics<2>[width=\textwidth]{images/sea-level-species-trees-islands.pdf}
@@ -295,7 +296,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{The method: \msb}
+    \frametitle{Divergence model choice}
     \begin{columns}[c]
         \column{.4\textwidth}
             \begin{mydescription}
@@ -343,7 +344,7 @@
 % \end{frame}
 
 \begin{frame}[t]
-    \frametitle{Bayesian framework}
+    \frametitle{Bayesian model choice: \msb}
         \uncover<2->{
         \begin{block}{\it Full Model:}
         \[
@@ -606,10 +607,23 @@
     \frametitle{Simulation-based power analyses}
     What is ``simultaneous''?
     \begin{myitemize}
-        \item Draw divergence times from $U(0, \divt{max})$
-        \item \divt{max} was set to:
-            0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 2.0, and 3.0
-        \item Units are \globalcoalunit generations
+        \item<2-> Simulate datasets in which all 22 divergence times are random
+        \uncover<3->{
+            \smallskip
+            \begin{myitemize}
+                \item $\divTime{} \sim U(0, \,0.5 \,MGA)$
+                \smallskip
+                \item $\divTime{} \sim U(0, \,1.5 \,MGA)$
+                \smallskip
+                \item $\divTime{} \sim U(0, \,2.5 \,MGA)$
+                \smallskip
+                \item $\divTime{} \sim U(0, \,5.0 \,MGA)$
+                \smallskip
+            \end{myitemize}
+        \item<3-> $MGA$ = Millions of Generations Ago
+        }
+        \item<4-> Simulate 1000 datasets for each \divTime{} distribution
+        \item<4-> Analyze all 4000 datasets as we did the empirical data
     \end{myitemize}
 \end{frame}
 
@@ -624,16 +638,11 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Simulation results: Summary}
-    Estimates of highly clustered divergences when divergence times are random
-    over the past 7.5 million generations \\
+    \frametitle{Simulation results: Power}
+    Strong support for highly clustered divergences when divergence times
+    are random over 5 million generations \\
     \bigskip
-    More than 5\% of replicates estimate strong support (BF $>$ 10) for
-    extreme case of one divergence when divergences are random over past 3
-    million generations \\
-    \bigskip
-    More than 5\% of replicates estimate extreme case of one divergence based
-    on \vmratio{} when divergences are random over past 2 million generations
+    Our empirical results are likely spurious
 \end{frame}
 
 \subsection{Why the odd behavior?}
@@ -644,18 +653,43 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Causes of bias}
+    \frametitle{\msb: Causes of bias}
     Potential causes of the bias:
     \begin{enumerate}
         \item The prior on divergence models
         \item Broad uniform priors on many of the model's parameters, including
             divergence times
-            \begin{enumerate}
-                \item Small marginal likelihoods of rich models
-                \item Insufficient sampling of rich models
-            \end{enumerate}
-        \item Theoretical limitations of ABC model choice
+            % \begin{enumerate}
+            %     \item Small marginal likelihoods of rich models
+            %     \item Insufficient sampling of rich models
+            % \end{enumerate}
+        % \item Theoretical limitations of ABC model choice
     \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Causes of bias: Prior on divergence models}
+    \begin{columns}[c]
+        \column{.4\textwidth}
+            \begin{displaybox}[4.5cm]
+                {\small
+                \vspace{0.7mm}
+                \[
+                    \divTimeVector = \{125,330,375\}
+                \]\vspace{0mm}
+                }
+                \[
+                    \divTimeIndexVector = (3,2,1,2,1)
+                \]\vspace{0mm}
+                {\small
+                \[
+                    \divTimeMapVector = (375,330,125,330,125)
+                \]\vspace{0mm}
+                }
+            \end{displaybox}
+        \column{.6\textwidth}
+            \includegraphics[height=6.8cm]{images/sea-level-prediction-trees-labels-compact-alt2.pdf}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
@@ -676,51 +710,68 @@
     \includegraphics[width=\textwidth]{images/partition_numbers.pdf}}
 \end{frame}
 
-
 \begin{frame}
-    \frametitle{Causes of bias: Priors on nuisance parameters}
-    % \begin{displaybox}[5.5cm]
-    %     \small
-    %     \[
-    %         p(X) = \int_{\theta} p(X
-    %         \given \theta) p(\theta) \mathrm{d}\theta
-    %     \]%\vspace{0mm}
-    % \end{displaybox}
+    \frametitle{Causes of bias: Priors on continuous parameters}
     \begin{itemize}
-        \item \msb uses uniform priors on most model parameters, including
+        \item<1-> \msb uses uniform priors on most model parameters, including
             divergence times
-        \item This requires the use of broad priors
-        \item Models with more divergence-time parameters have much greater
+        \item<2-> This requires the use of broad priors
+        \item<3-> Models with more divergence-time parameters have much greater
             parameter space, much of it with low likelihood
-        \item This vast space can cause numerical and theoretical problems
-        \begin{enumerate}
-            \item Insufficient sampling
+        \uncover<4->{
+        \item This vast space can cause statistical problems
+        \begin{itemize}
             \item Reduced marginal likelihoods
-        \end{enumerate}
+        \end{itemize}
+        }
     \end{itemize}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Causes of bias: Priors on nuisance parameters}
-    % \begin{displaybox}[5.5cm]
-    %     \small
-    %     \[
-    %         p(X) = \int_{\theta} p(X
-    %         \given \theta) p(\theta) \mathrm{d}\theta
-    %     \]%\vspace{0mm}
-    % \end{displaybox}
-    \begin{itemize}
-        \item \msb uses uniform priors on most model parameters, including
-            divergence times
-        \item This requires the use of broad priors
-        \item Models with more divergence-time parameters have much greater
-            parameter space, much of it with low likelihood
-        \item This vast space can cause numerical and theoretical problems
-        \begin{enumerate}
-            \item Insufficient sampling
-            \item Reduced marginal likelihoods
-        \end{enumerate}
-    \end{itemize}
+\begin{frame}[t]
+    \frametitle{Causes of bias: Marginal likelihoods}
+    \bigskip
+    \only<1>{
+    \begin{displaybox}[5.5cm]
+        \small
+        \[
+            p(\theta \given X) = \frac{p(X \given \theta)p(\theta)}{p(X)}
+        \]%\vspace{0mm}
+    \end{displaybox}
+    \bigskip
+    \begin{displaybox}[5.5cm]
+        \small
+        \[
+            p(X) = \int_{\theta} p(X
+            \given \theta) p(\theta) \mathrm{d}\theta
+        \]%\vspace{0mm}
+    \end{displaybox}
+    }
+    \only<2->{
+    \begin{displaybox}[7.5cm]
+        \small
+        \[
+            p(\theta_1 \given X, M_1) = \frac{p(X \given \theta_1, M_1)p(\theta_1 \given M_1)}{p(X \given M_1)}
+        \]%\vspace{0mm}
+    \end{displaybox}
+    \bigskip
+    \begin{displaybox}[7.5cm]
+        \small
+        \vspace{-3.5mm}
+        \[
+            p(X \given M_1) = \int_{\theta_1} p(X
+            \given \theta_1, M_1) p(\theta \given M_1) \mathrm{d}\theta_1
+        \]%\vspace{0mm}
+    \end{displaybox}
+    }
+    \only<3->{
+    \bigskip
+    \begin{displaybox}[8.5cm]
+        \small
+        \[
+            p(M_1 \given X) = \frac{p(X \given M_1)p(M_1)}{p(X \given M_1)p(M_1) + p(X \given M_2)p(M_2)}
+        \]%\vspace{0mm}
+    \end{displaybox}
+    }
 \end{frame}
 
 \begin{frame}[t]
@@ -758,20 +809,24 @@
 
 \begin{frame}
     \frametitle{Causes of bias: Marginal likelihoods}
+    \uncover<1->{
     Predictions:\\
     \begin{itemize}
         \item Posterior estimates should be sensitive to priors
         \item As prior converges to distribution underlying the data, the
             bias should disappear
     \end{itemize}
+    }
+    \uncover<2->{
     Testing prior sensitivity: \\
+    }
     \begin{enumerate}
-        \item Analyze empirical data under several different prior settings
+        \item<3-> Analyze empirical data under several different prior settings
             \begin{itemize}
-                \item Results are very sensitive
+                \item<3-> Results are very sensitive
             \end{itemize}
-        \item Use simulations to assess behavior when priors are correct
-        \item Use simulations to assess behavior under ``ideal'' real-world priors
+        \item<4-> Use simulations to assess behavior when priors are correct
+        \item<5-> Use simulations to assess behavior under ``ideal'' real-world priors
     \end{enumerate}
 \end{frame}
 
@@ -803,22 +858,20 @@
 
 \begin{frame}
     \frametitle{Causes of bias: Marginal likelihoods}
-    Marginal likelihoods are at least partially responsible for bias\\
+    Broad uniform priors are reducing marginal likelihoods of models with more
+    divergence events\\
     \bigskip
-    However, when uniform priors are narrower than possible in a real-world
-    setting, the bias remains
+    Even when uniform priors are informed by the data the bias remains\\
     \bigskip
     \begin{block}<2>{\it Potential solution:}
-        Use more flexible parametric distributions on nuisance parameters
-        (e.g., gamma and beta)
+        More flexible parametric distributions on parameters
     \end{block}
 \end{frame}
 
 \begin{frame}[t]
     \frametitle{Causes of bias: Marginal likelihoods}
     \begin{block}{\it Potential solution:}
-        Use more flexible parametric distributions on nuisance parameters
-        (e.g., gamma and beta)
+        More flexible parametric distributions on parameters
     \end{block}
     \smallskip
     \centerline{
@@ -826,7 +879,7 @@
         \includegraphics<2>[height=6.0cm]{images/marginal-plot-2d.pdf}
         \includegraphics<3>[width=\textwidth]{images/partition_numbers.pdf}}
     \begin{block}<4>{\it Potential solution:}
-        Use alternative prior over divergence models
+        Alternative prior over divergence models
         (e.g., uniform or Dirichlet process)
     \end{block}
 \end{frame}
@@ -843,26 +896,87 @@
 \begin{frame}
     \frametitle{New method: \dppmsbayes}
     \begin{itemize}
-        \item Explain modifications: reparameterization, new prirors on nuisance parameters\ldots
-        \item Uniform and DPP priors over divergence models
-        \item Introduce DPP?
+        \item<1-> Reparameterized the model implemented in \msb
+        \item<2-> Replaced uniform priors on continuous parameters with gamma and
+            beta distributions
+        \item<3-> Dirichlet process prior (DPP) over all possible discrete divergence
+            models
+        \item<4-> Uniform prior over divergence models
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{\dppmsbayes: Model-choice results}
+    \frametitle{\dppmsbayes: Simulation-based assessment}
+        Simulate 50,000 datasets under four models\\
+        \smallskip
+        \begin{description}
+            \item[$M_{msBayes}$]
+                \begin{itemize}
+                    \item U-shaped prior on divergence models
+                    \item Uniform priors on continuous parameters
+                \end{itemize}
+            \smallskip
+            \item[$M_{DPP}$]
+                \begin{itemize}
+                    \item DPP prior on divergence models
+                    \item Gamma priors on continuous parameters
+                \end{itemize}
+            \smallskip
+            \item[$M_{Uniform}$]
+                \begin{itemize}
+                    \item Uniform prior on divergence models
+                    \item Gamma priors on continuous parameters
+                \end{itemize}
+            \smallskip
+            \item[$M_{Ushaped}$]
+                \begin{itemize}
+                    \item U-shaped prior on divergence models
+                    \item Gamma priors on continuous parameters
+                \end{itemize}
+        \end{description}
+        \smallskip
+        Analyze all datasets under each of the models
+\end{frame}
+
+\begin{frame}
+    \frametitle{\dppmsbayes: Simulation-based assessment}
+    Assess power \\
+    \smallskip
+    \begin{myitemize}
+        \item Simulate datasets in which all 22 divergence times are random
+        \uncover{
+            \smallskip
+            \begin{myitemize}
+                \item $\divTime{} \sim U(0, \,0.5 \,MGA)$
+                \smallskip
+                \item $\divTime{} \sim U(0, \,1.5 \,MGA)$
+                \smallskip
+                \item $\divTime{} \sim U(0, \,2.5 \,MGA)$
+                \smallskip
+                \item $\divTime{} \sim U(0, \,5.0 \,MGA)$
+                \smallskip
+            \end{myitemize}
+        \item $MGA$ = Millions of Generations Ago
+        }
+        \item Simulate 1000 datasets for each \divTime{} distribution
+        \item Analyze all 4000 datasets as we did the empirical data
+    \end{myitemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\dppmsbayes: Simulation results}
     \centerline{
         \includegraphics[height=7.0cm]{images/validation-model-choice-old-dpp.pdf}}
 \end{frame}
 
 \begin{frame}
-    \frametitle{\dppmsbayes: Model-choice results}
+    \frametitle{\dppmsbayes: Simulation results}
     \centerline{
         \includegraphics[width=1.13\textwidth]{images/validation-model-choice-old-dpp-full.pdf}}
 \end{frame}
 
 \begin{frame}[t]
-    \frametitle{\dppmsbayes: Power results}
+    \frametitle{\dppmsbayes: Simulation results}
     \vspace{1cm}
         \centerline{
         \includegraphics[width=1.13\textwidth]{images/old_old_power_psi_mode.pdf}}
@@ -872,7 +986,7 @@
 \end{frame}
 
 \begin{frame}[t]
-    \frametitle{\dppmsbayes: Power results}
+    \frametitle{\dppmsbayes: Simulation results}
     \vspace{1cm}
         \centerline{
         \includegraphics[width=1.13\textwidth]{images/old_old_power_psi_prob.pdf}}
@@ -882,7 +996,7 @@
 \end{frame}
 
 \begin{frame}[t]
-    \frametitle{\dppmsbayes: Power results}
+    \frametitle{\dppmsbayes: Simulation results}
     \vspace{1cm}
         \centerline{
         \includegraphics[width=1.13\textwidth]{images/old_old_power_omega_median.pdf}}
@@ -892,7 +1006,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{\dppmsbayes: Power results}
+    \frametitle{\dppmsbayes: Simulation results}
     % \vspace{1cm}
         \centerline{
         \includegraphics[width=\textwidth]{images/old_old_power_omega_median.pdf}}
@@ -902,6 +1016,20 @@
         \vspace{0mm}
         \centerline{
         \includegraphics[width=\textwidth]{images/old_dpp_power_omega_median_headless.pdf}}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\dppmsbayes: Simulation results}
+    \begin{itemize}
+        \item Improved accuracy
+        \item Improved robustness
+        \item Improved power
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\dppmsbayes: Philippines data}
+    \includegraphics[width=\textwidth]{../empirical-analyses/plots/philippines-dpp-psi-posterior.pdf}
 \end{frame}
 
 \section{Conclusions}
