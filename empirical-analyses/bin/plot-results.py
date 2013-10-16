@@ -3,6 +3,8 @@
 import os
 import sys
 
+import matplotlib
+
 from pymsbayes.utils.parsing import DMCSimulationResults, spreadsheet_iter
 from pymsbayes.config import MsBayesConfig
 from pymsbayes.plotting import (Ticks, HistData, ScatterPlot, PlotGrid)
@@ -12,6 +14,8 @@ import project_util
 _LOG = get_logger(__name__)
 
 def create_plots(info_path, out_dir):
+    matplotlib.rc('text',**{'usetex': True})
+    old = ([1] * 992) + ([2] * 8)
     if not os.path.exists(out_dir):
         os.mkdir(out_dir)
     dmc_sim = DMCSimulationResults(info_path)
@@ -29,6 +33,13 @@ def create_plots(info_path, out_dir):
             align = 'mid',
             orientation = 'vertical',
             zorder = 0)
+    hd_old= HistData(x = old,
+            normed = True,
+            bins = bins,
+            histtype = 'bar',
+            align = 'mid',
+            orientation = 'vertical',
+            zorder = 0)
     tick_labels = []
     for x in bins[0:-1]:
         if x % 2:
@@ -40,7 +51,15 @@ def create_plots(info_path, out_dir):
             horizontalalignment = 'left')
     hist = ScatterPlot(hist_data_list = [hd],
             x_label = 'Number of divergence events',
-            y_label = 'Posterior probability')
+            y_label = 'Posterior probability',
+            xticks_obj = xticks_obj)
+    hist_old = ScatterPlot(hist_data_list = [hd_old],
+            x_label = 'Number of divergence events',
+            y_label = 'Posterior probability',
+            xticks_obj = xticks_obj)
+    hist.set_xlim(left = bins[0], right = bins[-1])
+    hist_old.set_xlim(left = bins[0], right = bins[-1])
+    hist.set_ylim(bottom = 0.0, top = 0.1)
     pg = PlotGrid(subplots = [hist],
             num_columns = 1,
             height = 4.0,
@@ -51,6 +70,25 @@ def create_plots(info_path, out_dir):
     pg.margin_top = 1
     pg.reset_figure()
     pg.savefig(os.path.join(out_dir, 'philippines-dpp-psi-posterior.pdf'))
+
+    hist.set_ylim(bottom = 0.0, top = 1.0)
+    hist.set_ylabel('')
+    hist_old.set_ylim(bottom = 0.0, top = 1.0)
+    pg = PlotGrid(subplots = [hist_old, hist],
+            num_columns = 2,
+            height = 3.5,
+            width = 8.0,
+            share_x = True,
+            share_y = True,
+            label_schema = None,
+            auto_height = False,
+            column_labels = [r'\texttt{msBayes}', r'\texttt{dpp-msbayes}'],
+            column_label_size = 18.0)
+    pg.auto_adjust_margins = False
+    pg.margin_top = 0.92
+    pg.padding_between_horizontal = 1.0
+    pg.reset_figure()
+    pg.savefig(os.path.join(out_dir, 'philippines-dpp-psi-posterior-old-vs-dpp.pdf'))
 
 
 def main_cli():
