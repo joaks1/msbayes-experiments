@@ -14,7 +14,7 @@ import project_util
 _LOG = get_logger(__name__)
 
 def create_plots(info_path, out_dir):
-    matplotlib.rc('text',**{'usetex': True})
+    # matplotlib.rc('text',**{'usetex': True})
     old = ([1] * 992) + ([2] * 8)
     if not os.path.exists(out_dir):
         os.mkdir(out_dir)
@@ -82,7 +82,8 @@ def create_plots(info_path, out_dir):
             share_y = True,
             label_schema = None,
             auto_height = False,
-            column_labels = [r'\texttt{msBayes}', r'\texttt{dpp-msbayes}'],
+            # column_labels = [r'\texttt{msBayes}', r'\texttt{dpp-msbayes}'],
+            column_labels = [r'msBayes', r'dpp-msbayes'],
             column_label_size = 18.0)
     pg.auto_adjust_margins = False
     pg.margin_top = 0.92
