@@ -807,52 +807,52 @@
         \includegraphics<3>[height=8.0cm]{images/marginal-plot-3d.png}}
 \end{frame}
 
-% \begin{frame}[t]
-%     \frametitle{Causes of bias: Marginal likelihoods}
-%     \bigskip
-%     \only<1>{
-%     \begin{displaybox}[5.5cm]
-%         \small
-%         \[
-%             p(\theta \given X) = \frac{p(X \given \theta)p(\theta)}{p(X)}
-%         \]%\vspace{0mm}
-%     \end{displaybox}
-%     \bigskip
-%     \begin{displaybox}[5.5cm]
-%         \small
-%         \[
-%             p(X) = \int_{\theta} p(X
-%             \given \theta) p(\theta) \mathrm{d}\theta
-%         \]%\vspace{0mm}
-%     \end{displaybox}
-%     }
-%     \only<2->{
-%     \begin{displaybox}[7.5cm]
-%         \small
-%         \[
-%             p(\theta_1 \given X, M_1) = \frac{p(X \given \theta_1, M_1)p(\theta_1 \given M_1)}{p(X \given M_1)}
-%         \]%\vspace{0mm}
-%     \end{displaybox}
-%     \bigskip
-%     \begin{displaybox}[7.5cm]
-%         \small
-%         \vspace{-3.5mm}
-%         \[
-%             p(X \given M_1) = \int_{\theta_1} p(X
-%             \given \theta_1, M_1) p(\theta \given M_1) \mathrm{d}\theta_1
-%         \]%\vspace{0mm}
-%     \end{displaybox}
-%     }
-%     \only<3->{
-%     \bigskip
-%     \begin{displaybox}[8.5cm]
-%         \small
-%         \[
-%             p(M_1 \given X) = \frac{p(X \given M_1)p(M_1)}{p(X \given M_1)p(M_1) + p(X \given M_2)p(M_2)}
-%         \]%\vspace{0mm}
-%     \end{displaybox}
-%     }
-% \end{frame}
+\begin{frame}[t]
+    \frametitle{Causes of bias: Marginal likelihoods}
+    \bigskip
+    \only<1>{
+    \begin{displaybox}[5.5cm]
+        \small
+        \[
+            p(\theta \given X) = \frac{p(X \given \theta)p(\theta)}{p(X)}
+        \]%\vspace{0mm}
+    \end{displaybox}
+    \bigskip
+    \begin{displaybox}[5.5cm]
+        \small
+        \[
+            p(X) = \int_{\theta} p(X
+            \given \theta) p(\theta) \mathrm{d}\theta
+        \]%\vspace{0mm}
+    \end{displaybox}
+    }
+    \only<2->{
+    \begin{displaybox}[7.5cm]
+        \small
+        \[
+            p(\theta_1 \given X, M_1) = \frac{p(X \given \theta_1, M_1)p(\theta_1 \given M_1)}{p(X \given M_1)}
+        \]%\vspace{0mm}
+    \end{displaybox}
+    \bigskip
+    \begin{displaybox}[7.5cm]
+        \small
+        \vspace{-3.5mm}
+        \[
+            p(X \given M_1) = \int_{\theta_1} p(X
+            \given \theta_1, M_1) p(\theta \given M_1) \mathrm{d}\theta_1
+        \]%\vspace{0mm}
+    \end{displaybox}
+    }
+    \only<3->{
+    \bigskip
+    \begin{displaybox}[8.5cm]
+        \small
+        \[
+            p(M_1 \given X) = \frac{p(X \given M_1)p(M_1)}{p(X \given M_1)p(M_1) + p(X \given M_2)p(M_2)}
+        \]%\vspace{0mm}
+    \end{displaybox}
+    }
+\end{frame}
 
 
 \begin{frame}
