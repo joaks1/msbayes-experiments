@@ -8,10 +8,22 @@ import matplotlib
 from pymsbayes.utils.parsing import DMCSimulationResults, spreadsheet_iter
 from pymsbayes.config import MsBayesConfig
 from pymsbayes.plotting import (Ticks, HistData, ScatterPlot, PlotGrid)
+from pymsbayes.utils.stats import Partition
+from pymsbayes.utils.probability import GammaDistribution
 from pymsbayes.utils.messaging import get_logger
 import project_util
 
 _LOG = get_logger(__name__)
+
+def get_dpp_psi_values(num_elements, shape, scale, num_sims = 100000):
+    conc = GammaDistribution(shape, scale)
+    p = Partition([1] * num_elements)
+    psis = []
+    for i in range(num_sims):
+        a = conc.draw()
+        x = p.dirichlet_process_draw(a)
+        psis.append(len(set(x)))
+    return psis
 
 def create_plots(info_path, out_dir):
     # matplotlib.rc('text',**{'usetex': True})
@@ -90,6 +102,38 @@ def create_plots(info_path, out_dir):
     pg.padding_between_horizontal = 1.0
     pg.reset_figure()
     pg.savefig(os.path.join(out_dir, 'philippines-dpp-psi-posterior-old-vs-dpp.pdf'))
+
+    prior_psis = get_dpp_psi_values(dmc_sim.num_taxon_pairs, 1.5, 18.099702, num_sims = 100000)
+    prior_hd = HistData(x = prior_psis,
+            normed = True,
+            bins = bins,
+            histtype = 'bar',
+            align = 'mid',
+            orientation = 'vertical',
+            zorder = 0)
+    prior_hist = ScatterPlot(hist_data_list = [prior_hd],
+            x_label = 'Number of divergence events',
+            y_label = 'Probability',
+            xticks_obj = xticks_obj)
+    prior_hist.set_xlim(left = bins[0], right = bins[-1])
+    prior_hist.set_ylim(bottom = 0.0, top = 0.12)
+    hist.set_ylim(bottom = 0.0, top = 0.12)
+    pg = PlotGrid(subplots = [prior_hist, hist],
+            num_columns = 2,
+            height = 3.5,
+            width = 8.0,
+            share_x = True,
+            share_y = True,
+            label_schema = None,
+            auto_height = False,
+            # column_labels = [r'\texttt{msBayes}', r'\texttt{dpp-msbayes}'],
+            column_labels = [r'Prior', r'Posterior'],
+            column_label_size = 18.0)
+    pg.auto_adjust_margins = False
+    pg.margin_top = 0.92
+    pg.padding_between_horizontal = 1.0
+    pg.reset_figure()
+    pg.savefig(os.path.join(out_dir, 'philippines-dpp-psi-posterior-prior.pdf'))
 
 
 def main_cli():

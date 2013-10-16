@@ -88,16 +88,35 @@
         \column{.5\textwidth}
             \begin{myitemize}
                 \item<1-> Repeated coalescence and fragmentation of island complexes
-                % \item Prominent paradigm for explaining Philippine biodiversity
-                \item<2-> Proposed as model of diversification
-                \item<3-> Model predicts temporally clustered divergences across
-                    populations co-distributed across an island complex
+                \item<2-> Prominent paradigm for explaining Philippine biodiversity
+                \item<3-> Proposed as model of diversification
+                % \item<3-> Model predicts temporally clustered divergences across
+                %     populations co-distributed across an island complex
                 % \item Some predictions of the model have been tested
                 % \begin{myitemize}
                 %     \item Monophyly
                 %     \item Does the model explain a large proportion of the diversity?
                 % \end{myitemize}
             \end{myitemize}
+        \column{.5\textwidth}
+            \includegraphics[width=\textwidth]{images/maps/Philippines.png}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Testing climate-driven diversification}
+    \begin{columns}[c]
+        \column{.5\textwidth}
+    \textbf{Did repeated fragmentation of islands during inter-glacial rises in sea level
+    promote diversification?}\\
+    \bigskip
+    \uncover<2->{
+    Model has testable prediction:\\
+    \begin{itemize}
+        \item Temporally clustered divergences among taxa
+            co-distributed across fragmented islands
+    \end{itemize}
+    }
         \column{.5\textwidth}
             \includegraphics[width=\textwidth]{images/maps/Philippines.png}
     \end{columns}
@@ -173,95 +192,113 @@
         \column{.4\textwidth}
             \begin{onlyenv}<2>
             \begin{displaybox}[4.5cm]
-                \[
-                    \divTimeVector = \{\divTime{1},\divTime{2}\}
-                \]\vspace{0mm}
-                \[
-                    \divTimeIndexVector = (\divTimeIndex{1},\divTimeIndex{2},\divTimeIndex{3},\divTimeIndex{4},\divTimeIndex{5})
-                \]\vspace{0mm}
                 {\small
                 \[
                     \divTimeMapVector = (\divTimeMap{1},\divTimeMap{2},\divTimeMap{3},\divTimeMap{4},\divTimeMap{5})
                 \]\vspace{0mm}
                 }
+                \[
+                    \divTimeVector = \{\divTime{1},\divTime{2}\}
+                \]\vspace{0mm}
+                \[
+                    \divTimeNum = 2
+                \]\vspace{0mm}
+                % \[
+                %     \divTimeIndexVector = (\divTimeIndex{1},\divTimeIndex{2},\divTimeIndex{3},\divTimeIndex{4},\divTimeIndex{5})
+                % \]\vspace{0mm}
             \end{displaybox}
             \end{onlyenv}
             \begin{onlyenv}<3>
             \begin{displaybox}[4.5cm]
-                \[
-                    \divTimeVector = \{125,330\}
-                \]\vspace{0mm}
-                \[
-                    \divTimeIndexVector = (2,2,1,1,1)
-                \]\vspace{0mm}
                 {\small
                 \[
                     \divTimeMapVector = (330,330,125,125,125)
                 \]\vspace{0mm}
                 }
-            \end{displaybox}
-            \end{onlyenv}
-            \begin{onlyenv}<4>
-            \begin{displaybox}[4.5cm]
                 \[
                     \divTimeVector = \{125,330\}
                 \]\vspace{0mm}
                 \[
-                    \divTimeIndexVector = (2,2,1,2,1)
+                    \divTimeNum = 2
                 \]\vspace{0mm}
+                % \[
+                %     \divTimeIndexVector = (2,2,1,1,1)
+                % \]\vspace{0mm}
+            \end{displaybox}
+            \end{onlyenv}
+            \begin{onlyenv}<4>
+            \begin{displaybox}[4.5cm]
                 {\small
                 \[
                     \divTimeMapVector = (330,330,125,330,125)
                 \]\vspace{0mm}
                 }
+                \[
+                    \divTimeVector = \{125,330\}
+                \]\vspace{0mm}
+                \[
+                    \divTimeNum = 2
+                \]\vspace{0mm}
+                % \[
+                %     \divTimeIndexVector = (2,2,1,2,1)
+                % \]\vspace{0mm}
             \end{displaybox}
             \end{onlyenv}
             \begin{onlyenv}<5>
             \begin{displaybox}[4.5cm]
                 {\small
-                \vspace{0.7mm}
-                \[
-                    \divTimeVector = \{125,330,375\}
-                \]\vspace{0mm}
-                }
-                \[
-                    \divTimeIndexVector = (3,2,1,2,1)
-                \]\vspace{0mm}
-                {\small
                 \[
                     \divTimeMapVector = (375,330,125,330,125)
                 \]\vspace{0mm}
                 }
+                % {\small
+                % \vspace{0.7mm}
+                \[
+                    \divTimeVector = \{125,330,375\}
+                \]\vspace{0mm}
+                % }
+                \[
+                    \divTimeNum = 3
+                \]\vspace{0mm}
+                % \[
+                %     \divTimeIndexVector = (3,2,1,2,1)
+                % \]\vspace{0mm}
             \end{displaybox}
             \end{onlyenv}
             \begin{onlyenv}<6>
             \begin{displaybox}[4.5cm]
-                \[
-                    \divTimeVector = \{\divTime{1},\divTime{2}\}
-                \]\vspace{0mm}
-                \[
-                    \divTimeIndexVector = (\divTimeIndex{1},\divTimeIndex{2},\divTimeIndex{3},\divTimeIndex{4},\divTimeIndex{5})
-                \]\vspace{0mm}
                 {\small
                 \[
                     \divTimeMapVector = (\divTimeMap{1},\divTimeMap{2},\divTimeMap{3},\divTimeMap{4},\divTimeMap{5})
                 \]\vspace{0mm}
                 }
+                \[
+                    \divTimeVector = \{\divTime{1},\divTime{2}\}
+                \]\vspace{0mm}
+                \[
+                    \divTimeNum = 2
+                \]\vspace{0mm}
+                % \[
+                %     \divTimeIndexVector = (\divTimeIndex{1},\divTimeIndex{2},\divTimeIndex{3},\divTimeIndex{4},\divTimeIndex{5})
+                % \]\vspace{0mm}
             \end{displaybox}
             \end{onlyenv}
             \begin{onlyenv}<7-10>
             \begin{displaybox}[4.5cm]
-                \[
-                    \divTimeVector = \{\divTime{1},\ldots,\divTime{\divTimeNum}\}
-                \]\vspace{0mm}
-                \[
-                    \divTimeIndexVector = (\divTimeIndex{1},\divTimeIndex{2},\ldots,\divTimeIndex{\npairs{}})
-                \]\vspace{0mm}
                 {\small
                 \[
                     \divTimeMapVector = (\divTimeMap{1},\divTimeMap{2},\ldots,\divTimeMap{\npairs{}})
                 \]\vspace{0mm}
                 }
+                \[
+                    \divTimeVector = \{\divTime{1},\ldots,\divTime{\divTimeNum}\}
+                \]\vspace{0mm}
+                \[
+                    \divTimeNum
+                \]\vspace{0mm}
+                % \[
+                %     \divTimeIndexVector = (\divTimeIndex{1},\divTimeIndex{2},\ldots,\divTimeIndex{\npairs{}})
+                % \]\vspace{0mm}
             \end{displaybox}
             \end{onlyenv}
         \column{.6\textwidth}
@@ -289,9 +326,9 @@
         \includegraphics<1>[width=\textwidth]{images/sea-level-prediction-trees-labels.pdf}
         \includegraphics<2>[width=\textwidth]{images/sea-level-species-trees-islands.pdf}
         \includegraphics<3>[width=\textwidth]{images/sea-level-species-trees-gene-trees-islands.pdf}
-        \includegraphics<4>[width=\textwidth]{images/sea-level-species-trees-gene-trees-demog-islands.pdf}
-        \includegraphics<5>[width=\textwidth]{images/sea-level-msbayes-model-islands.pdf}
-        \includegraphics<6>[width=\textwidth]{images/sea-level-msbayes-model-labels-islands.pdf}
+        % \includegraphics<4>[width=\textwidth]{images/sea-level-species-trees-gene-trees-demog-islands.pdf}
+        % \includegraphics<5>[width=\textwidth]{images/sea-level-msbayes-model-islands.pdf}
+        % \includegraphics<6>[width=\textwidth]{images/sea-level-msbayes-model-labels-islands.pdf}
     }
 \end{frame}
 
@@ -301,13 +338,13 @@
         \column{.4\textwidth}
             \begin{mydescription}
                 \item<2->[\alignmentVector] Sequence alignments
-                \item<3->[\geneTreeVector] Gene trees
-                \item<4->[\hkyModelVector] Substitution parameters
-                \item<5->[\divTimeMapVector] Divergence times
-                \item<6->[\demographicParamVector] Demographic parameters
+                \item<2->[\geneTreeVector] Gene trees
+                % \item<2->[\hkyModelVector] Substitution parameters
+                \item<2->[\divTimeMapVector] Divergence times
+                \item<2->[\demographicParamVector] Demographic parameters
             \end{mydescription}
         \column{.6\textwidth}
-            \includegraphics[height=6.1cm]{images/sea-level-msbayes-model-labels.pdf}
+            \includegraphics[width=\textwidth]{images/sea-level-species-trees-gene-trees.pdf}
     \end{columns}
 \end{frame}
 
@@ -350,10 +387,10 @@
         \[
             p(\geneTreeVector, \divTimeMapVector, \demographicParamVector
             \given
-            \alignmentVector, \hkyModelVector) =
+            \alignmentVector) =
             \frac{p(\alignmentVector \given \geneTreeVector, \divTimeMapVector,
-            \demographicParamVector, \hkyModelVector)
-            p(\geneTreeVector, \divTimeMapVector, \demographicParamVector \given \hkyModelVector)}{
+            \demographicParamVector)
+            p(\geneTreeVector, \divTimeMapVector, \demographicParamVector)}{
             p(\alignmentVector)}
         \]\vspace{0mm}
         \end{block}
@@ -363,7 +400,7 @@
         \begin{mydescription}
             \item[\alignmentVector] Sequence alignments
             \item[\geneTreeVector] Gene trees
-            \item[\hkyModelVector] Substitution parameters
+            % \item[\hkyModelVector] Substitution parameters
             \item[\divTimeMapVector] Divergence times
             \item[\demographicParamVector] Demographic parameters
         \end{mydescription}
@@ -426,10 +463,10 @@
     \[
         p(\geneTreeVector, \divTimeMapVector, \demographicParamVector
         \given
-        \ssSpace, \hkyModelVector) =
+        \ssSpace) =
         \frac{p(\alignmentVector \given \geneTreeVector, \divTimeMapVector,
-        \demographicParamVector, \hkyModelVector)
-        p(\geneTreeVector, \divTimeMapVector, \demographicParamVector \given \hkyModelVector)}{
+        \demographicParamVector)
+        p(\geneTreeVector, \divTimeMapVector, \demographicParamVector)}{
         p(\ssSpace)}
     \]\vspace{0mm}
     \end{block}
@@ -598,10 +635,10 @@
 
 \section{Simulation-based assessment of method}
 
-\begin{frame}
-\frametitle{Outline}
-\tableofcontents[currentsection,currentsubsection]
-\end{frame}
+% \begin{frame}
+% \frametitle{Outline}
+% \tableofcontents[currentsection,currentsubsection]
+% \end{frame}
 
 \begin{frame}
     \frametitle{Simulation-based power analyses}
@@ -673,19 +710,22 @@
         \column{.4\textwidth}
             \begin{displaybox}[4.5cm]
                 {\small
-                \vspace{0.7mm}
-                \[
-                    \divTimeVector = \{125,330,375\}
-                \]\vspace{0mm}
-                }
-                \[
-                    \divTimeIndexVector = (3,2,1,2,1)
-                \]\vspace{0mm}
-                {\small
                 \[
                     \divTimeMapVector = (375,330,125,330,125)
                 \]\vspace{0mm}
                 }
+                % {\small
+                % \vspace{0.7mm}
+                \[
+                    \divTimeVector = \{125,330,375\}
+                \]\vspace{0mm}
+                % }
+                \[
+                    \divTimeNum = 3
+                \]\vspace{0mm}
+                % \[
+                %     \divTimeIndexVector = (3,2,1,2,1)
+                % \]\vspace{0mm}
             \end{displaybox}
         \column{.6\textwidth}
             \includegraphics[height=6.8cm]{images/sea-level-prediction-trees-labels-compact-alt2.pdf}
@@ -698,12 +738,12 @@
         \item \msb uses a discrete uniform prior on the \emph{number} of
             divergence events, \divTimeNum
     % \vspace{0.1cm}
-        \item Each class of \divTimeNum represents a different number of
-            divergence models, i.e., the number of integer partitions
-            \divTimeNum into \npairs{}
-    % \vspace{0.1cm}
-        \item This creates a U-shaped prior on divergence models that disfavors
-            models with intermediate numbers of events
+        % \item Each class of \divTimeNum represents a different number of
+        %     divergence models, i.e., the number of integer partitions
+        %     \divTimeNum into \npairs{}
+    % % \vspace{0.1cm}
+        % \item This creates a U-shaped prior on divergence models that disfavors
+        %     models with intermediate numbers of events
     \end{itemize}
     % \smallskip
     \centerline{
@@ -719,59 +759,12 @@
         \item<3-> Models with more divergence-time parameters have much greater
             parameter space, much of it with low likelihood
         \uncover<4->{
-        \item This vast space can cause statistical problems
+        \item This vast space can cause problems with Bayesian model choice
         \begin{itemize}
             \item Reduced marginal likelihoods
         \end{itemize}
         }
     \end{itemize}
-\end{frame}
-
-\begin{frame}[t]
-    \frametitle{Causes of bias: Marginal likelihoods}
-    \bigskip
-    \only<1>{
-    \begin{displaybox}[5.5cm]
-        \small
-        \[
-            p(\theta \given X) = \frac{p(X \given \theta)p(\theta)}{p(X)}
-        \]%\vspace{0mm}
-    \end{displaybox}
-    \bigskip
-    \begin{displaybox}[5.5cm]
-        \small
-        \[
-            p(X) = \int_{\theta} p(X
-            \given \theta) p(\theta) \mathrm{d}\theta
-        \]%\vspace{0mm}
-    \end{displaybox}
-    }
-    \only<2->{
-    \begin{displaybox}[7.5cm]
-        \small
-        \[
-            p(\theta_1 \given X, M_1) = \frac{p(X \given \theta_1, M_1)p(\theta_1 \given M_1)}{p(X \given M_1)}
-        \]%\vspace{0mm}
-    \end{displaybox}
-    \bigskip
-    \begin{displaybox}[7.5cm]
-        \small
-        \vspace{-3.5mm}
-        \[
-            p(X \given M_1) = \int_{\theta_1} p(X
-            \given \theta_1, M_1) p(\theta \given M_1) \mathrm{d}\theta_1
-        \]%\vspace{0mm}
-    \end{displaybox}
-    }
-    \only<3->{
-    \bigskip
-    \begin{displaybox}[8.5cm]
-        \small
-        \[
-            p(M_1 \given X) = \frac{p(X \given M_1)p(M_1)}{p(X \given M_1)p(M_1) + p(X \given M_2)p(M_2)}
-        \]%\vspace{0mm}
-    \end{displaybox}
-    }
 \end{frame}
 
 \begin{frame}[t]
@@ -807,6 +800,54 @@
         \includegraphics<3>[height=8.0cm]{images/marginal-plot-3d.png}}
 \end{frame}
 
+% \begin{frame}[t]
+%     \frametitle{Causes of bias: Marginal likelihoods}
+%     \bigskip
+%     \only<1>{
+%     \begin{displaybox}[5.5cm]
+%         \small
+%         \[
+%             p(\theta \given X) = \frac{p(X \given \theta)p(\theta)}{p(X)}
+%         \]%\vspace{0mm}
+%     \end{displaybox}
+%     \bigskip
+%     \begin{displaybox}[5.5cm]
+%         \small
+%         \[
+%             p(X) = \int_{\theta} p(X
+%             \given \theta) p(\theta) \mathrm{d}\theta
+%         \]%\vspace{0mm}
+%     \end{displaybox}
+%     }
+%     \only<2->{
+%     \begin{displaybox}[7.5cm]
+%         \small
+%         \[
+%             p(\theta_1 \given X, M_1) = \frac{p(X \given \theta_1, M_1)p(\theta_1 \given M_1)}{p(X \given M_1)}
+%         \]%\vspace{0mm}
+%     \end{displaybox}
+%     \bigskip
+%     \begin{displaybox}[7.5cm]
+%         \small
+%         \vspace{-3.5mm}
+%         \[
+%             p(X \given M_1) = \int_{\theta_1} p(X
+%             \given \theta_1, M_1) p(\theta \given M_1) \mathrm{d}\theta_1
+%         \]%\vspace{0mm}
+%     \end{displaybox}
+%     }
+%     \only<3->{
+%     \bigskip
+%     \begin{displaybox}[8.5cm]
+%         \small
+%         \[
+%             p(M_1 \given X) = \frac{p(X \given M_1)p(M_1)}{p(X \given M_1)p(M_1) + p(X \given M_2)p(M_2)}
+%         \]%\vspace{0mm}
+%     \end{displaybox}
+%     }
+% \end{frame}
+
+
 \begin{frame}
     \frametitle{Causes of bias: Marginal likelihoods}
     \uncover<1->{
@@ -826,7 +867,7 @@
                 \item<3-> Results are very sensitive
             \end{itemize}
         \item<4-> Use simulations to assess behavior when priors are correct
-        \item<5-> Use simulations to assess behavior under ``ideal'' real-world priors
+        % \item<5-> Use simulations to assess behavior under ``ideal'' real-world priors
     \end{enumerate}
 \end{frame}
 
@@ -834,6 +875,25 @@
     \frametitle{Causes of bias: Marginal likelihoods}
     \centerline{
     \includegraphics[height=7.0cm]{images/validation-model-choice-old.pdf}}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Causes of bias: Marginal likelihoods}
+    Predictions:\\
+    \begin{itemize}
+        \item Posterior estimates should be sensitive to priors
+        \item As prior converges to distribution underlying the data, the
+            bias should disappear
+    \end{itemize}
+    Testing prior sensitivity: \\
+    \begin{enumerate}
+        \item Analyze empirical data under several different prior settings
+            \begin{itemize}
+                \item Results are very sensitive
+            \end{itemize}
+        \item Use simulations to assess behavior when priors are correct
+        \item<2-> Use simulations to assess behavior under ``ideal'' real-world priors
+    \end{enumerate}
 \end{frame}
 
 \begin{frame}[t]
@@ -864,14 +924,14 @@
     Even when uniform priors are informed by the data the bias remains\\
     \bigskip
     \begin{block}<2>{\it Potential solution:}
-        More flexible parametric distributions on parameters
+        More flexible priors
     \end{block}
 \end{frame}
 
 \begin{frame}[t]
     \frametitle{Causes of bias: Marginal likelihoods}
     \begin{block}{\it Potential solution:}
-        More flexible parametric distributions on parameters
+        More flexible priors
     \end{block}
     \smallskip
     \centerline{
@@ -1028,8 +1088,89 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{\dppmsbayes: Philippines data}
-    \includegraphics[width=\textwidth]{../empirical-analyses/plots/philippines-dpp-psi-posterior.pdf}
+    \frametitle{Testing climate-driven diversification}
+    \begin{columns}[c]
+        \column{.5\textwidth}
+    \textbf{Did repeated fragmentation of islands during inter-glacial rises in sea level
+    promote diversification?}\\
+        \column{.5\textwidth}
+            \includegraphics[width=\textwidth]{images/maps/Philippines.png}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{columns}[c]
+    \column{.5\textwidth}
+        \begin{table}%[htbp]
+            \scriptsize
+            \addtolength{\tabcolsep}{-0.09cm}
+            \centering
+            \begin{tabular}{ l c c }
+                % \toprule
+                \textbf{Species} & {\boldmath $n_1$} & {\boldmath $n_2$} \\
+                \hline
+                \textbf{\textsc{Mammals}} & & \\
+                \emph{Crocidura beatus}             & 12 & 11 \\
+                \emph{Crocidura negrina-panayensis} & 12 & 6  \\
+                \emph{Hipposideros obscurus}        & 19 & 9  \\
+                \emph{Hipposideros pygmaeus}        & 3  & 12 \\
+                \emph{Cynopterus brachyotis}        & 20 & 8  \\
+                \emph{Cynopterus brachyotis}        & 8  & 14 \\
+                \emph{Haplonycteris fischeri}       & 29 & 8  \\
+                \emph{Haplonycteris fischeri}       & 9  & 21 \\
+                \emph{Macroglossus minimus}         & 19 & 4  \\
+                \emph{Macroglossus minimus}         & 8  & 10 \\
+                \emph{Ptenochirus jagori}           & 4  & 7  \\
+                \emph{Ptenochirus jagori}           & 8  & 8  \\
+                \emph{Ptenochirus minor}            & 30 & 9  \\
+                \textbf{\textsc{Squamates}} & & \\
+                \emph{Cyrtodactylus gubaot-sumuroi} & 29 & 6  \\
+                \emph{Cyrtodactylus annulatus}      & 14 & 3  \\
+                \emph{Cyrtodactylus philippinicus}  & 6  & 14 \\
+                \emph{Gekko mindorensis}            & 8  & 11 \\
+                \emph{Insulasaurus arborens}        & 22 & 10 \\
+                \emph{Pinoyscincus jagori}          & 8  & 8  \\
+                \emph{Dendrelaphis marenae}         & 6  & 6  \\
+                \textbf{\textsc{Anurans}}  & & \\
+                \emph{Limnonectes leytensis}        & 4  & 2  \\
+                \emph{Limnonectes magnus}           & 2  & 3  \\
+                \hline
+            \end{tabular}
+        \end{table}
+    \column{.5\textwidth}
+        \centerline{
+        \includegraphics<1>[height=1.5cm]{images/photos/crocidura-negrina-JAEsselstyn.jpg}}
+        % \vspace{0.5mm}
+        \centerline{
+        \includegraphics<1>[height=1.5cm]{images/photos/hipposideros-obscurus-MRMDuya.jpg}
+        \hspace{0.3mm}
+        \includegraphics<1>[height=1.5cm]{images/photos/haplonycteris-fischeri-JHolden.jpg}}
+        % \vspace{0.5mm}
+        \centerline{
+        \includegraphics<1>[height=1.5cm]{images/photos/gekko-mindorensis.jpg}
+        \hspace{0.3mm}
+        \includegraphics<1>[height=1.5cm]{images/photos/sphenomorphus-arborens-rmb.jpg}}
+        % \vspace{0.5mm}
+        \centerline{
+        \includegraphics<1>[height=1.5cm]{images/photos/dendrelaphis-pictus-cds.jpg}}
+        % \vspace{0.5mm}
+        \centerline{
+        \includegraphics<1>[height=1.5cm]{images/photos/limnonectes-leytensis-rmb.jpg}}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\dppmsbayes: Philippine diversification}
+    \includegraphics[width=\textwidth]{../empirical-analyses/plots/philippines-dpp-psi-posterior-old-vs-dpp.pdf}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\dppmsbayes: Philippine diversification}
+    \centerline{
+    \includegraphics[height=5cm]{../empirical-analyses/plots/philippines-dpp-psi-posterior.pdf}}
+    \smallskip
+    \centerline{
+    \includegraphics[height=2cm]{images/sea-level-only.pdf}}
 \end{frame}
 
 \section{Conclusions}
@@ -1056,6 +1197,12 @@
             \item More uniform prior over models (e.g., Dirichlet process)
         \end{enumerate}
     \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Future directions}
+    \includegraphics<1>[height=6.8cm]{images/sea-level-prediction-trees-labels-compact-alt2.pdf}
+    \includegraphics<2>[width=\textwidth]{images/sea-level-prediction-phylo.pdf}
 \end{frame}
 
 \begin{frame}
@@ -1156,6 +1303,14 @@
             \begin{myitemize}
                 \item KU ITTC
                 \item KU Computing Center
+            \end{myitemize}
+            {\bf Photo credits:}
+            \begin{myitemize}
+                \item Rafe Brown, Cam Siler, \& Jake Esselstyn
+                \item FMNH Philippine Mammal Website:
+                    \begin{myitemize}
+                        \item D.S.\ Balete, M.R.M.\ Duya, \& J.\ Holden
+                    \end{myitemize}
             \end{myitemize}
     \end{columns}
 \end{frame}
