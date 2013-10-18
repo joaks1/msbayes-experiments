@@ -1,6 +1,6 @@
-Recently, this journal has served as a medium for a
-discussion of the potential pitfalls of approximate Bayesian methods of
-comparative phylogeographical model choice and prior selection.
+Recently, the journal \emph{Evolution} has served as a medium for a discussion
+of the potential pitfalls of approximate Bayesian methods of comparative
+phylogeographical model choice and prior selection.
 The discussion has centered around the approximate Bayesian model choice method,
 \msb, which estimates the temporal distribution of divergences among
 co-distributed pairs of taxa \citep{Huang2011} by sampling over all
@@ -8,9 +8,9 @@ unordered models of divergence.
 \citet{Oaks2012} published results of simulation-based power analyses
 showing that \msb can often be biased toward inferring models of temporally
 clustered divergence times across taxon pairs.
-\citet{Hickerson2013} published a response to this paper where they present
-an empirical Bayes model-averaging approach that they conclude circumvents the
-poor behavior of the method revealed by \citet{Oaks2012}.
+\citet{Hickerson2013} published a response to \citet{Oaks2012} where they
+present an empirical Bayes model-averaging approach that they conclude
+circumvents the poor behavior of the method revealed by \citet{Oaks2012}.
 These papers are largely in agreement, with \citet{Hickerson2013} reiterating
 much of the discussion of \citet{Oaks2012} regarding the impact of broad
 uniform priors on Bayesian model choice.
@@ -37,7 +37,7 @@ many of the analyses of \citet{Oaks2012}.
 Furthermore, we present results of additional analyses that, when combined with
 the results of \citet{Oaks2012}, strongly suggest small marginal likelihoods of
 models with more parameter space is a primary mechanism by which uniform priors
-are causing the poor behavior of \msb.
+are causing the bias of \msb.
 
 %This paragraph seems too aggressive. It also seems to repeat some of the previous points. I removed it for now.
 
@@ -56,7 +56,7 @@ and leave the remaining results difficult to interpret.
 Furthermore, we follow the recommendations of \citet{Oaks2012} and present
 simulation-based assessments of Hickerson et al.'s (\citeyear{Hickerson2013})
 approach.
-Our results demonstrate that the model-averaging approach of
+Our results demonstrate that the empirical Bayesian approach of
 \citet{Hickerson2013} is biased toward clustered divergence models and
 predisposed to excluding true parameter space.
 The model-averaging approach provides another means by which the model can
@@ -159,9 +159,8 @@ model choice.
 \subsection*{Theoretical implications of empirical priors for Bayesian model
 choice}
 \begin{linenomath}
-Bayesian inference is a rational method of inductive learning in which Bayes'
-rule is used to update our beliefs about a model as new information becomes
-available.
+Bayesian inference is a method of inductive learning in which Bayes' rule is
+used to update our beliefs about a model as new information becomes available.
 If we let \allParameterValues represent the set of all possible parameter
 values, we can define a prior distribution for all $\theta \in
 \allParameterValues$ such that $p(\theta)$ describes our belief that any given
@@ -203,7 +202,7 @@ has given rise to many powerful inference methods.
 However, empirical Bayes methods have an uncertain theoretical basis and
 do not yield a valid posterior distribution from Bayes' rule \citep[e.g.,
 empirical Bayesian estimates of the posterior are often too narrow, off-center,
-and misshapen;][]{Morris1983,Laird1987,Carlin1990,Efron2013}.
+and incorrectly shaped;][]{Morris1983,Laird1987,Carlin1990,Efron2013}.
 Nevertheless, empirical Bayes methods can provide a powerful means of parameter
 estimation that often exhibit favorable frequentist properties.
 Furthermore, many post-hoc correction methods have been developed for
@@ -440,8 +439,8 @@ exclusion of true values (Figure~\ref{figExclusionSimProb}).
 The results of our empirical and simulation-based analyses clearly demonstrate
 the danger of using narrow, empirically guided uniform priors in a Bayesian
 model-averaging framework.
-This is especially concerning in \msb, which has already been demonstrated to
-be biased away from models with more parameter space \citep{Oaks2012}.
+% This is especially concerning in \msb, which has already been demonstrated to
+% be biased away from models with more parameter space \citep{Oaks2012}.
 The consequence of this approach is a high risk of obtaining a model-averaged
 posterior estimate that is heavily weighted toward incorrect models that
 exclude true values of model parameters.
@@ -462,7 +461,7 @@ in the Philippines has repeatedly been shown to mask deeply divergent lineages
     Siler2011,Siler2012,RafeStuart2012,LinkemBrown2013}.
 \citet{Oaks2012} also discuss how the sole use of uniform priors in \msb makes
 it very difficult for investigators to express their prior uncertainty without
-putting a lot of prior density in regions of improbable parameter space.
+putting high prior density in regions of improbable parameter space.
 The alternative, as shown above, is to risk excluding the truth before
 performing the analysis.
 
@@ -603,7 +602,7 @@ Furthermore, even when such extensive prior information is available, to only
 be able to detect multiple divergences on the scale of hundreds of thousands of
 generations does not seem very powerful.
 
-Also, \citet{Hickerson2013} present information only on the extreme case of a
+\citet{Hickerson2013} present information only on the extreme case of a
 single divergence event.
 As discussed in \citet{Oaks2012}, it seems odd to consider the estimation
 of two divergence events as a success when divergence is random over hundreds
@@ -622,8 +621,8 @@ by \citet{Hickerson2013} the method can only reliably reject the extreme case
 of one divergence event when divergences are random over a period of more than
 3 million generations.
 Again, considering \citet{Hickerson2013} are assuming prior knowledge that
-all population pairs diverged within the last coalescent unit, this
-does not seem particularly powerful.
+all population pairs diverged within the last coalescent unit, the
+method has low power to detect random variation in divergence times.
 
 
 
@@ -710,8 +709,8 @@ and models with fewer \divt{} parameters (Figs.~\ref{figPowerPsiMode} \&
 priors reducing the marginal likelihoods of large models.
 In all of our model-averaging analyses, all prior models have the same number
 of samples.
-Thus, it is difficult to explain the method's propensity toward the model with
-the smallest parameter space via insufficient prior sampling.
+% Thus, it is difficult to explain the method's propensity toward the model with
+% the smallest parameter space via insufficient prior sampling.
 While analyses that sample each model proportional to their relative parameter
 space could be explored, it seems much more likely that the broad uniform
 priors are simply inhibiting the marginal likelihoods of spacious models.
@@ -899,7 +898,7 @@ obtain marginalized estimates that incorporate uncertainty in nuisance
 parameters.
 However, given the basic \msb model is already struggling to estimate
 a huge number of parameters and model probabilities with scant information
-from the data, it is not surprising that adding an additional layer of
+from the data, it is not surprising that adding another dimension of
 model choice to the method causes problems.
 
 The recommendations of \citet{Oaks2012} for mitigating the bias and lack of
@@ -928,7 +927,7 @@ parameters of the \msb model \citep[\divt{}, \ancestralTheta{},
 \bottleScalar{1}{}, \bottleScalar{2}{}, \locusRateHetShapeParameter,
 \migrationRate{}, \recombinationRate;][]{Oaks2012}.
 
-Importantly, there is no cost to this strategy.
+% Importantly, this strategy is easy to implement.
 Given that ABC methods only need to draw random values from prior distributions
 (hence there are no difficult prior and proposal ratios to calculate, etc.) it
 is easy to use the most appropriate distributions on parameters.
