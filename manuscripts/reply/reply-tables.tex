@@ -1,0 +1,72 @@
+%:TABLE-re-analysis
+% \begin{table}[htbp]
+%     \sffamily
+%     \footnotesize
+%     \addtolength{\tabcolsep}{-0.08cm}
+%     \rowcolors{2}{}{myGray}
+%     %\captionsetup{font=footnotesize}
+%     \caption{Results of the model-averaging approach of \citet{Hickerson2013}
+%         applied to the Philippines dataset of \citet{Oaks2012} using eight
+%         prior models (see \citet{Hickerson2013} Table 1).  The results of (1)
+%         \citet{Hickerson2013}, (2) our full re-analysis, and of (3) repeating
+%         the final rejection step of \citet{Hickerson2013} using the prior means and
+%         standard deviations to normalize the summary statistics, are all compared.}
+%     \centering
+%     \begin{tabular}{ l l l l }
+%         \toprule
+%          & Hickerson et al. (2013) & Re-analysis & blah \\
+%         $\hat{\numt{}}$ & 2 & 1 & 1 \\
+%         $p(\numt{} = 1 | \ssSpace)$ & 0.062 & 0.206 & 0.146 \\
+%         $BF_{\numt{} = 1, \numt{} \neq 1}$ 1.39 & 5.45 & 3.59 \\
+%         $p(\vmratio{} < 0.01 | \ssSpace)$ & 0.298 & 0.416 & 0.361 \\
+%         $BF_{\vmratio{} < 0.01, \vmratio{} \geq 0.01}$ 6.65 & 11.16 & 8.85 \\
+%         $\hat{M}$ & 1 & 2 & 2 \\
+%         $p(M_1 | \ssSpace)$ & 0.513 & 0.358 & 0.376 \\
+%         $p(M_2 | \ssSpace)$ & 0.286 & 0.369 & 0.389 \\
+%         $p(M_3 | \ssSpace)$ & 0.036 & 0.086 & 0.089 \\
+%         $p(M_4 | \ssSpace)$ & 0.002 & 0.012 & 0.011 \\
+%         $p(M_5 | \ssSpace)$ & 0.142 & 0.129 & 0.107 \\
+%         $p(M_6 | \ssSpace)$ & 0.020 & 0.043 & 0.024 \\
+%         $p(M_7 | \ssSpace)$ & 0.001 & 0.003 & 0.004 \\
+%         $p(M_8 | \ssSpace)$ & 0.000 & 0.000 & 0.001 \\
+%         \bottomrule
+%     \end{tabular}
+%     \label{tabModelChoiceEmpirical}
+% \end{table}
+
+%:TABLE-model-choice-empirical
+\begin{table}[htbp]
+    \sffamily
+    % \footnotesize
+    \addtolength{\tabcolsep}{-0.08cm}
+    \rowcolors{2}{}{myGray}
+    %\captionsetup{font=footnotesize}
+    \caption{Results of the model-averaging approach of \citet{Hickerson2013}
+        applied to the Philippines dataset of \citet{Oaks2012} using three sets
+        of prior models. All models used priors on population size of
+        $\meanDescendantTheta{} \sim U(0.0001,0.1)$ and $\ancestralTheta{} \sim
+        U(0.0001, 0.05)$, and differ only in their prior on divergence time
+        (\divt{}) parameters.  Each set of five models differ only in the
+        divergence time prior used for the model with the narrowest prior:
+        $M_1$ ($\divt{} \sim U(0, 0.1)$), $M_{1A}$ ($\divt{} \sim U(0, 0.01)$),
+        or $M_{1B}$ ($\divt{} \sim U(0, 0.001)$). The approximate posterior
+        probability of each model ($p(M_i \given \ssSpace)$) is given for each
+        of the three analyses.  The posterior estimates are based on 10,000
+        samples retained from $1\e6$ prior samples
+    from each model.}
+    \centering
+    \begin{tabular}{ l l l l l }
+        \toprule
+        & & \multicolumn{3}{c}{$p(M_i \given \ssSpace)$} \\
+        \cmidrule(){3-5}
+        Model & \divt{} prior & $M_{*}=M_1$ & $M_{*}=M_{1A}$ & $M_{*}=M_{1B}$ \\
+        \midrule
+        $M_*$ & --        & 0.899 & 0.821 & 0.673 \\
+        $M_2$ & $U(0,1)$  & 0.079 & 0.136 & 0.251 \\
+        $M_3$ & $U(0,5)$  & 0.013 & 0.026 & 0.044 \\
+        $M_4$ & $U(0,10)$ & 0.006 & 0.012 & 0.022 \\
+        $M_5$ & $U(0,20)$ & 0.003 & 0.005 & 0.010 \\
+        \bottomrule
+    \end{tabular}
+    \label{tabModelChoiceEmpirical}
+\end{table}
