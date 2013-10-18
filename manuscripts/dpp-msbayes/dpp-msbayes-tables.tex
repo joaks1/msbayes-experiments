@@ -1,0 +1,200 @@
+%:TABLE-notation descriptions
+\begin{table}[htbp]
+    \sffamily
+    \scriptsize
+    \rowcolors{2}{}{myGray}
+    \addtolength{\tabcolsep}{-0.1cm}
+\caption{Summary of the notation used throughout this work; modified from \citet{Oaks2012}.}
+    \centering
+    \begin{tabular}{ l >{\raggedright\hangindent=0.5cm}m{14cm} }
+        \toprule
+        \textbf{Symbol} & \textbf{Description} \tn
+        \midrule
+        \npairs{} & Number of population pairs. \tn
+        \popSampleSize{i}{} & The number of genome copies sampled from population pair $i$, with \popSampleSize{1}{i} sampled from population 1, and \popSampleSize{2}{i} from population 2. \tn
+        \nloci{i} & Number of loci sampled from population pair $i$. \tn
+        \nlociTotal & Total number of unique loci sampled. \tn
+        \alignment{i}{j} & Sequence alignment of locus $j$ sampled from population pair $i$. \tn
+        \alignmentSSObs{i}{j} & Population genetic summary statistics calculated from \alignment{i}{j}. \tn
+        \alignmentVector & Vector containing the sequence alignments of each locus from each population pair: $(\alignment{1}{1},\ldots,\alignment{\npairs{}}{\nloci{\npairs{}}})$. \tn
+        \ssVectorObs & Vector containing the summary statistics of each locus from each population pair: $(\alignmentSSObs{1}{1},\ldots,\alignmentSSObs{\npairs{}}{\nloci{\npairs{}}})$. \tn
+        \ssSpace & Multi-dimensional Euclidean space around the observed summary statistics, \ssVectorObs. \tn
+        \tol & Radius of \ssSpace, i.e., the tolerance of the ABC estimation. \tn
+        \geneTree{i}{j} & Gene tree of the sequences in \alignment{i}{j}. \tn
+        \geneTreeVector & Vector containing the gene trees of each locus from each population pair: $(\geneTree{1}{1},\ldots,\geneTree{\npairs{}}{\nloci{\npairs{}}})$. \tn
+        \divTimeNum & Number of unique population divergence times among the \npairs{} population pairs. \tn
+        \divTime{} & One of the \divTimeNum \iid divergence time paramters in \globalcoalunit generations. \tn
+        \divTimeVector & Ordered set of divergence time parameters: $\{\divTime{1},\ldots,\divTime{\divTimeNum}\}$. \tn
+        \divTimeIndex{i} & The index of the divergence time parameter in \divTimeVector that is mapped to population pair $i$. \tn
+        \divTimeIndexVector & Vector of divergence time parameter indices: $(\divTimeIndex{1},\ldots,\divTimeIndex{\npairs{}})$. \tn
+        \divTimeMap{i} & Time of divergence in \globalcoalunit generations between the populations of pair $i$. \tn
+        \divTimeMapVector & Vector of divergence times for each of the population pairs: $(\divTimeMap{1},\ldots,\divTimeMap{\npairs{}})$. \tn
+        \divTimeScaled{i}{j} & Scaled time of divergence between the populations of pair $i$ for locus $j$. \tn
+        \divTimeScaledVector & Vector containing the scaled divergence times of each locus from each population pair: $(\divTimeScaled{1}{1},\ldots,\divTimeScaled{\npairs{}}{\nloci{\npairs{}}})$. \tn
+        \descendantTheta{1}{i}, \descendantTheta{2}{i} & \myTheta{} of the $1^{st}$ and $2^{nd}$ descendent population, respectively, of pair $i$. \tn
+        \ancestralTheta{i} & \myTheta{} of the population ancestral to pair $i$. \tn
+        \descendantThetaVector{1}, \descendantThetaVector{2} & Vectors $(\descendantTheta{1}{1},\ldots,\descendantTheta{1}{\npairs{}})$ and $(\descendantTheta{2}{1},\ldots,\descendantTheta{2}{\npairs{}})$, respectively. \tn
+        \ancestralThetaVector & Vector containing the \ancestralTheta{} parameters for each population pair: $(\ancestralTheta{1},\ldots,\ancestralTheta{\npairs{}})$. \tn
+        \locusMutationRateScalar{j} & mutation-rate scaling parameter for locus $j$. \tn
+        \locusMutationRateScalarVector & Vector containing the locus-specific mutation-rate parameters: $(\locusMutationRateScalar{1},\ldots,\locusMutationRateScalar{\nlociTotal})$. \tn
+        \locusRateHetShapeParameter & Hyper-parameter for the shape of the gamma prior distribution on each \locusMutationRateScalar{}. \tn
+        \bottleScalar{1}{i}, \bottleScalar{2}{i} & \myTheta{}-scaling parameters that determine the magnitude of the population bottleneck in the $1^{st}$ and $2^{nd}$ descendant population of pair $i$, respectively. The bottleneck in each descendant population begins immediately after divergence. \tn
+        \bottleScalarVector{1}, \bottleScalarVector{2} & Vectors $(\bottleScalar{1}{1},\ldots,\bottleScalar{1}{\npairs{}})$ and $(\bottleScalar{2}{1},\ldots,\bottleScalar{2}{\npairs{}})$, respectively. \tn
+        \bottleTime{i} & Proportion of time between present and \divt{i} when the bottleneck ends for the descendant populations of pair $i$. \tn
+        \bottleTimeVector & Vector containing the \bottleTime{} parameters for each population pair: $(\bottleTime{1},\ldots,\bottleTime{\npairs{}})$. \tn
+        \migrationRate{i} & Symmetric migration rate between the descendant populations of pair $i$. \tn
+        \migrationRateVector & Vector containing the migration rates for each population pair: $(\migrationRate{1},\ldots,\migrationRate{\npairs{}})$. \tn
+        \ploidyScalar{i}{j} & \myTheta{}-scaling constant provided by the user for locus $j$ of pair $i$. This constant is intended to allow the user to scale \myTheta{} for differences in ploidy among loci or differences in generation times among taxa. \tn
+        \mutationRateScalarConstant{i}{j} & \myTheta{}-scaling constant provided by the user for locus $j$ of pair $i$. This constant is intended to allow the user to scale \myTheta{} for differences in mutation rates among loci or among taxa. \tn
+        \ploidyScalarVector & Vector of ploidy and/or generation-time scaling constants: $(\ploidyScalar{1}{1},\ldots,\ploidyScalar{\npairs{}}{\nloci{\npairs{}}})$. \tn
+        \mutationRateScalarConstantVector & Vector of mutation-rate scaling constants: $(\mutationRateScalarConstant{1}{1},\ldots,\mutationRateScalarConstant{\npairs{}}{\nloci{\npairs{}}})$. \tn
+        \divTimeMean  & Mean of \divTimeMapVector. \tn
+        \divTimeVar  & Variance of \divTimeMapVector. \tn
+        \divTimeDispersion  & Dispersion index of \divTimeMapVector ($\divTimeVar/\divTimeMean$). \tn
+        \numPriorSamples & Number of samples from the joint prior. \tn
+        \paramSampleVector{} & Vector of parameter values drawn from the joint prior. \tn
+        \ssVector{} & Vector containing the summary statistics calculated from data simulated under parameter values drawn from the prior (\hpvector{}). \tn
+        \paramSampleMatrix{} & Random sample of $\paramSampleVector{1}, \ldots, \paramSampleVector{\numPriorSamples}$ drawn form the prior. \tn
+        \ssMatrix & Summary statistic vectors $\ssVector{1}, \ldots, \ssVector{\numPriorSamples}$ for each $\hpvector{1}, \ldots, \hpvector{\numPriorSamples}$ drawn from the prior. \tn
+        \bottomrule
+    \end{tabular}
+    \label{tabNotation}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp]
+    \sffamily
+    % \footnotesize
+    \addtolength{\tabcolsep}{-0.08cm}
+    \rowcolors{2}{}{myGray}
+    %\captionsetup{font=footnotesize}
+    \caption{The model priors evaluated in our simulation-based analyses.  For
+        the \modelDPP model, the prior on the concentration parameter,
+        $\concentrationParam \sim Gamma(\cdot,\cdot)$, was set to $Gamma(2,2)$
+        for the validation analyses and $Gamma(1.5,18.1)$ for the power
+        analyses.}
+    \centering
+    \begin{tabular}{ l l l l l }
+        \toprule
+        & \multicolumn{4}{c}{Priors} \\
+        \cmidrule(){2-5}
+        Model & \divTimeIndexVector & \divTime{} & \ancestralTheta{} & \descendantTheta{}{} \\
+        \midrule
+            \modelOld & $\divTimeIndexVector \sim \priorOld$
+                      & $\divTime{} \sim U(0,10)$
+                      & $\ancestralTheta{} \sim U(0, 0.05)$
+                      & $\descendantThetaMean{} \sim U(0, 0.05)$ \\
+            \modelDPP & $\divTimeIndexVector \sim \priorDPP{\sim Gamma(\cdot,\cdot)}$
+                      & $\divTime{} \sim Exp(0.3464)$
+                      & $\ancestralTheta{} \sim Exp(40)$
+                      & $\descendantTheta{}{} \sim Exp(40)$ \\
+            \modelUniform & $\divTimeIndexVector \sim \priorUniform$
+                          & $\divTime{} \sim Exp(0.3464)$
+                          & $\ancestralTheta{} \sim Exp(40)$
+                          & $\descendantTheta{}{} \sim Exp(40)$ \\
+            \modelUshaped & $\divTimeIndexVector \sim \priorOld$
+                          & $\divTime{} \sim Exp(0.3464)$
+                          & $\ancestralTheta{} \sim Exp(40)$
+                          & $\descendantTheta{}{} \sim Exp(40)$ \\
+        \bottomrule
+    \end{tabular}
+    \label{tabPriors}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp]
+    \sffamily
+    % \footnotesize
+    % \addtolength{\tabcolsep}{-0.08cm}
+    \rowcolors{2}{}{myGray}
+    %\captionsetup{font=footnotesize}
+    \caption{The models we used to simulate pseudo-replicate datasets for
+        assessing the power of the models in Table \ref{tabPriors}.}
+    \centering
+    \begin{tabular}{ l l l l l }
+        \toprule
+        & \multicolumn{4}{c}{Priors} \\
+        \cmidrule(){2-5}
+        Model series & \divTimeIndexVector & \divTime{} & \ancestralTheta{} & \descendantTheta{}{} \\
+        \midrule
+            \powerSeriesOld & $\divTimeNum = 22$
+                            & $\divTime{} \sim U(0,0.2)$
+                            & $\ancestralTheta{} \sim U(0, 0.05)$
+                            & $\descendantThetaMean{} \sim U(0, 0.05)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim U(0,0.4)$
+                            & $\ancestralTheta{} \sim U(0, 0.05)$
+                            & $\descendantThetaMean{} \sim U(0, 0.05)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim U(0,0.6)$
+                            & $\ancestralTheta{} \sim U(0, 0.05)$
+                            & $\descendantThetaMean{} \sim U(0, 0.05)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim U(0,0.8)$
+                            & $\ancestralTheta{} \sim U(0, 0.05)$
+                            & $\descendantThetaMean{} \sim U(0, 0.05)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim U(0,1.0)$
+                            & $\ancestralTheta{} \sim U(0, 0.05)$
+                            & $\descendantThetaMean{} \sim U(0, 0.05)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim U(0,2.0)$
+                            & $\ancestralTheta{} \sim U(0, 0.05)$
+                            & $\descendantThetaMean{} \sim U(0, 0.05)$ \\
+        \midrule
+            \powerSeriesUniform & $\divTimeNum = 22$
+                            & $\divTime{} \sim U(0,0.2)$
+                            & $\ancestralTheta{} \sim Exp(40)$
+                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim U(0,0.4)$
+                            & $\ancestralTheta{} \sim Exp(40)$
+                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim U(0,0.6)$
+                            & $\ancestralTheta{} \sim Exp(40)$
+                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim U(0,0.8)$
+                            & $\ancestralTheta{} \sim Exp(40)$
+                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim U(0,1.0)$
+                            & $\ancestralTheta{} \sim Exp(40)$
+                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim U(0,2.0)$
+                            & $\ancestralTheta{} \sim Exp(40)$
+                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+        \midrule
+            \powerSeriesExp & $\divTimeNum = 22$
+                            & $\divTime{} \sim Exp(17.3205)$
+                            & $\ancestralTheta{} \sim Exp(40)$
+                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim Exp(8.6603)$
+                            & $\ancestralTheta{} \sim Exp(40)$
+                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim Exp(5.7735)$
+                            & $\ancestralTheta{} \sim Exp(40)$
+                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim Exp(4.3301)$
+                            & $\ancestralTheta{} \sim Exp(40)$
+                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim Exp(3.4641)$
+                            & $\ancestralTheta{} \sim Exp(40)$
+                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTimeNum = 22$
+                            & $\divTime{} \sim Exp(1.7321)$
+                            & $\ancestralTheta{} \sim Exp(40)$
+                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+        \bottomrule
+    \end{tabular}
+    \label{tabPowerModels}
+\end{table}
+
