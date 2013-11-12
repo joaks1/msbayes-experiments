@@ -131,7 +131,8 @@ of our model is given by
         \locusMutationRateScalarVector, \locusRateHetShapeParameter \given
         \hkyModelVector, \ploidyScalarVector,
         \mutationRateScalarConstantVector)}{
-        p(\alignmentVector)},
+        p(\alignmentVector \given \hkyModelVector, \ploidyScalarVector,
+        \mutationRateScalarConstantVector)},
     \label{eq:fullModelCompactJoint}
 \end{equation}
 which can be expanded out into components that are assumed to be independent
@@ -149,7 +150,8 @@ to get
         p(\locusRateHetShapeParameter)
         p(\divTimeMapVector)
         p(\demographicParamVector)}{
-        p(\alignmentVector)},
+        p(\alignmentVector \given \hkyModelVector, \ploidyScalarVector,
+        \mutationRateScalarConstantVector)},
     \label{eq:fullModelCompact}
 \end{equation}
 where
@@ -198,7 +200,8 @@ This allows us to estimate the approximate joint posterior distribution
         p(\locusRateHetShapeParameter)
         p(\divTimeMapVector)
         p(\demographicParamVector)}{
-        p(\ssSpace)},
+        p(\ssSpace \given \hkyModelVector, \ploidyScalarVector,
+        \mutationRateScalarConstantVector)},
     \label{eq:approxModelCompact}
 \end{equation}
 }
