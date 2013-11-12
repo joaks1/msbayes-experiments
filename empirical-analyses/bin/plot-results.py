@@ -25,18 +25,23 @@ def get_dpp_psi_values(num_elements, shape, scale, num_sims = 100000):
         psis.append(len(set(x)))
     return psis
 
-def create_plots(info_path, out_dir):
+def create_plots(dpp_info_path, old_info_path, out_dir):
     # matplotlib.rc('text',**{'usetex': True})
-    old = ([1] * 992) + ([2] * 8)
+    # old = ([1] * 992) + ([2] * 8)
     if not os.path.exists(out_dir):
         os.mkdir(out_dir)
-    dmc_sim = DMCSimulationResults(info_path)
-    result_prefix = dmc_sim.get_result_path_prefix(1, 1, 1) + '99-'
-    psi_path = result_prefix + 'psi-results.txt'
+    dmc_sim = DMCSimulationResults(dpp_info_path)
+    dmc_sim_old = DMCSimulationResults(old_info_path)
+    psi_path = dmc_sim.get_result_path_prefix(1, 1, 1) + '99-psi-results.txt'
+    psi_path_old = dmc_sim_old.get_result_path_prefix(1, 1, 1) + '99-psi-results.txt'
     psis = []
     for d in spreadsheet_iter([psi_path]):
         n = int(round(10000 * float(d['estimated_prob'])))
         psis.extend([int(d['num_of_div_events'])] * n)
+    psis_old = []
+    for d in spreadsheet_iter([psi_path_old]):
+        n = int(round(10000 * float(d['estimated_prob'])))
+        psis_old.extend([int(d['num_of_div_events'])] * n)
     bins = range(1, dmc_sim.num_taxon_pairs + 2)
     hd = HistData(x = psis,
             normed = True,
@@ -45,7 +50,8 @@ def create_plots(info_path, out_dir):
             align = 'mid',
             orientation = 'vertical',
             zorder = 0)
-    hd_old= HistData(x = old,
+    # hd_old= HistData(x = old,
+    hd_old= HistData(x = psis_old,
             normed = True,
             bins = bins,
             histtype = 'bar',
@@ -83,9 +89,11 @@ def create_plots(info_path, out_dir):
     pg.reset_figure()
     pg.savefig(os.path.join(out_dir, 'philippines-dpp-psi-posterior.pdf'))
 
-    hist.set_ylim(bottom = 0.0, top = 1.0)
+    # hist.set_ylim(bottom = 0.0, top = 1.0)
+    hist.set_ylim(bottom = 0.0, top = 0.5)
     hist.set_ylabel('')
-    hist_old.set_ylim(bottom = 0.0, top = 1.0)
+    # hist_old.set_ylim(bottom = 0.0, top = 1.0)
+    hist_old.set_ylim(bottom = 0.0, top = 0.5)
     pg = PlotGrid(subplots = [hist_old, hist],
             num_columns = 2,
             height = 3.5,
@@ -102,6 +110,9 @@ def create_plots(info_path, out_dir):
     pg.padding_between_horizontal = 1.0
     pg.reset_figure()
     pg.savefig(os.path.join(out_dir, 'philippines-dpp-psi-posterior-old-vs-dpp.pdf'))
+    pg.label_schema = 'uppercase'
+    pg.reset_figure()
+    pg.savefig(os.path.join(out_dir, 'philippines-dpp-psi-posterior-old-vs-dpp-labels.pdf'))
 
     prior_psis = get_dpp_psi_values(dmc_sim.num_taxon_pairs, 1.5, 18.099702, num_sims = 100000)
     prior_hd = HistData(x = prior_psis,
@@ -134,10 +145,15 @@ def create_plots(info_path, out_dir):
     pg.padding_between_horizontal = 1.0
     pg.reset_figure()
     pg.savefig(os.path.join(out_dir, 'philippines-dpp-psi-posterior-prior.pdf'))
+    pg.label_schema = 'uppercase'
+    pg.reset_figure()
+    pg.savefig(os.path.join(out_dir, 'philippines-dpp-psi-posterior-prior-lablels.pdf'))
 
 
 def main_cli():
-    create_plots(project_util.PHILIPPINES_DPP_INFO, project_util.PLOT_DIR)
+    create_plots(project_util.PHILIPPINES_DPP_INFO, 
+            project_util.PHILIPPINES_OLD_INFO,
+            project_util.PLOT_DIR)
 
 if __name__ == '__main__':
     main_cli()

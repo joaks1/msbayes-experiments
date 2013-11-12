@@ -11,7 +11,9 @@ CONFIG_DIR = os.path.abspath(os.path.join(PROJECT_DIR, 'configs'))
 RESULTS_DIR = os.path.abspath(os.path.join(PROJECT_DIR, 'results'))
 PHILIPPINES_DIR = os.path.abspath(os.path.join(RESULTS_DIR, 'philippines'))
 PHILIPPINES_DPP_DIR = os.path.abspath(os.path.join(PHILIPPINES_DIR, 'dpp'))
+PHILIPPINES_OLD_DIR = os.path.abspath(os.path.join(PHILIPPINES_DIR, 'old'))
 PHILIPPINES_DPP_INFO = os.path.join(PHILIPPINES_DPP_DIR, 'pymsbayes-results', 'pymsbayes-info.txt')
+PHILIPPINES_OLD_INFO = os.path.join(PHILIPPINES_OLD_DIR, 'pymsbayes-results', 'pymsbayes-info.txt')
 
 
 def main():
