@@ -138,17 +138,18 @@ model's parameters.
 \citet{Hickerson2013} repeatedly refer to the prior distributions used by
 \citet{Oaks2012} as ``poorly selected.''
 However, this is misleading, as \citet{Oaks2012} discuss in detail how they
-selected their priors (see their section ``Specifying and simulating the joint
+selected their priors to reflect the large amount of uncertainty about the
+model's parameters (see their section ``Specifying and simulating the joint
 prior'').
-They mention how the use of uniform prior distributions in \msb for many of the
-model's parameters necessitates awkward broad priors to avoid excluding the
-truth, \textit{a priori}.
+\citet{Oaks2012} further discuss how the use of uniform prior distributions in
+\msb for many of the model's parameters necessitates awkward broad priors to
+avoid excluding the truth, \textit{a priori}.
 What \citet{Hickerson2013} mean by ``poorly selected'' is that
 \citet{Oaks2012} did not use their data to inform their initial prior
 distributions (i.e., they did not use an empirical Bayesian approach).
 \citet{Oaks2012} did use empirically informed priors when assessing both the
 prior sensitivity of the method and determining the power of \msb under
-real-world conditions with highly informative priors.  
+real-world situations when a large amount of prior information is available. 
 \citet{Oaks2012} discuss
 the potential dangers of taking an empirical Bayesian approach to model choice
 (see the last paragraph of ``Assessing prior sensitivity of \msb'' in
@@ -339,8 +340,8 @@ model).
 
 %CWL:This should be in the section on model-averaging, not empirical Bayes
 %limitations
-We explored the propensity of the model-averaging approach of
-\citet{Hickerson2013} to exclude the truth in two ways.
+We explored the propensity of the empirically informed model-averaging approach
+of \citet{Hickerson2013} to exclude the truth in two ways.
 First, we re-analyzed the Philippines dataset using the model-averaging approach
 of \citet{Hickerson2013}, but set one of prior models with a uniform prior on
 divergence times that is unrealistically narrow, and almost certainly excludes
@@ -746,36 +747,6 @@ the biases revealed herein and by \citet{Oaks2012}.
 
 
 
-
-%CWL: This seems to specific, not sure about including
-\section*{Validation analyses}
-% \highLight{Not sure where to put this section}.
-% \highLight{This justifies presenting the unadjusted results in this paper.}
-% \highLight{Is it worth including just for this purpose?}
-Following \citet{Oaks2012}, we characterize the model-choice behavior of the
-model-averaging approach of \citet{Hickerson2013} under the ideal conditions
-where the prior is correct (i.e., the data are generated from parameters drawn
-from the same prior distributions used in the analysis).
-We used the same prior models as above ($M_1$--$M_5$;
-Table~\ref{tabModelChoiceEmpirical}), and generated 50,000 pseudo-replicate
-datasets under this prior (10,000 from each model).
-We used a simulated data structure of eight population pairs, with a single
-1000 base-pair locus sampled from 10 individuals from each population.
-We then analyzed each of these replicate datasets using the same prior,
-retaining 1000 posterior samples.
-Our results are very similar to \citet{Oaks2012}, but we note that they
-are not directly comparable as our simulations contained eight population
-pairs rather than 10 (Figure~\ref{figValidationMCBehavior}).
-We find that the approach of \citet{Hickerson2013} estimates the posterior
-probability of divergence models reasonably well when all assumptions of the
-method are met (i.e., the prior is correct) and the unadjusted posterior
-estimates are used.
-Similar to \cite{Oaks2012}, we find that the regression-adjusted estimates of
-the model probabilities are biased.
-
-
-
-
 \section*{Differing utilities of \numt{} and \vmratio{} in \msb}
 The main parameter of the \msb model is the vector of divergence
 times for each of the taxon pairs,
@@ -946,45 +917,32 @@ More appropriate prior distributions would alleviate this issue.
 %CWL: This seems to nit-picky. Probably not worth including it
 \section*{Other clarifications}
 
-\subsection*{Graphical checks of priors}
+\subsection*{Graphical prior comparisons}
 \citet{Hickerson2013} advocate the use of what they call graphical checks of
 prior models.
-This entails generating a small number of random samples from the prior (1000)
+This entails generating a small number (1000) of random samples from the prior
 and plotting the resulting summary statistics in comparison to the observed
 statistics to see if they coincide (see Figure 1 of \citet{Hickerson2013}).
-As we show above, this is a risky strategy, because the resulting plots of this
-approach have little correlation with the appropriateness of priors.
+As we show above, this strategy can be misleading, because the resulting plots
+of this approach have little correlation with the appropriateness of priors.
 Given the richness of the \msb model ($\approx 600$ parameters for the Philippine
 dataset analyzed by \citet{Hickerson2013}), we do not expect that 1000
 \emph{random} draws from the vast prior parameter space will yield data and
 summary statistics consistent with the observed data.
-In fact, when the random draws are tightly clustered around the observed
+In fact, when such random draws are tightly clustered around the observed
 statistics, this can be an indication that the prior is over-fit, as we show
 above (Table~\ref{tabModelChoiceEmpirical} and Figure~\ref{figPCA}).
-Thus, interpreting such plots should be avoided, and the use of posterior
-predictive analyses would be much more informative about the overall fit of
-models.
-
-\subsection*{The validity of \msb estimates}
-\citet{Hickerson2013} claim that \citet{Oaks2012} ``assume that all previous
-\msb results are invalid.''
-With the exception of \citet{Hickerson2013}, we do not claim any previous
-results of \msb are invalid.
-Rather, we conservatively recommend that the common inference of temporally
-clustered divergences
-\citep{Barber2010, Bell2012, Carnaval2009, Chan2011, Daza2010, Hickerson2006,
-    Huang2011, Lawson2010, Leache2007, Plouviez2009, Stone2012, Voje2009},
-when not accompanied with the necessary simulation-based analyses to guide the
-interpretation of such results, should be treated with caution, because the
-method has been shown to spuriously infer clustered divergences over a range of
-prior conditions.
+Thus, using such plots to select priors should be avoided, and the use of
+posterior predictive analyses would be much more informative about the overall
+fit of models.
 
 \subsection*{Saturation of summary statistics}
-\citet{Hickerson2013} claim that our priors ``cause much of the explored
-parameter space to be beyond the threshold of saturation in most mtDNA genes.''
-To explore this possibility, we simulated datasets under prior settings that
-match two of the three priors used by \citet{Oaks2012}: $\meanDescendantTheta{}
-\sim U(0.0005, 0.04)$ and $\ancestralTheta{} \sim U(0.0005, 0.02)$.
+\citet{Hickerson2013} claim the priors used by \citet{Oaks2012} ``cause much of
+the explored parameter space to be beyond the threshold of saturation in most
+mtDNA genes.'' To explore this possibility, we simulated datasets under prior
+settings that match two of the three priors used by \citet{Oaks2012}:
+$\meanDescendantTheta{} \sim U(0.0005, 0.04)$ and $\ancestralTheta{} \sim
+U(0.0005, 0.02)$.
 Under this prior, we draw divergence time parameters from a uniform
 distribution of $U(0, 20)$, simulate datasets, and plot the \divt{} values
 against the summary statistics calculated from the resulting datasets
@@ -1002,11 +960,11 @@ explain the bias they found.
 \section*{Conclusions}
 We demonstrate how the approximate Bayesian model choice method implemented in
 \msb can be strongly biased away from models with greater parameter space.
-As suggested by \citet{Oaks2012}, this is likely caused by the inappropriate
-use of uniform priors on most of the model's parameters.
-These priors necessitate the use of broad priors that place high prior density
-in unlikely regions of parameter space, less the risk of excluding the truth
-\emph{a priori}.
+As suggested by \citet{Oaks2012}, this is likely caused by the use of uniform
+priors on most of the model's parameters.
+Uniform distributions necessitate the use of broad priors that place high prior
+density in unlikely regions of parameter space, less the risk of excluding the
+truth \emph{a priori}.
 This likely reduces the marginal likelihoods of models with greater parameter
 space, either due to more divergence time parameters or broader prior
 distributions on those parameters.
@@ -1018,9 +976,23 @@ Exploring alternative prior probability distributions on most of the model's
 parameters, in addition to different priors over divergence models, should
 help mitigate the method's biases.
 
+Based on our results, we discourage the use of empirically informed uniform
+priors in Bayesian model choice, especially when combined with model-averaging
+\ldots
+
+We do not ``assumed that all previous \msb results are invalid,'' as suggested
+by \citet{Hickerson2013}.
+Rather, we conservatively recommend that the common inference of temporally
+clustered divergences \citep{Barber2010, Bell2012, Carnaval2009, Chan2011,
+Daza2010, Hickerson2006, Huang2011, Lawson2010, Leache2007, Plouviez2009,
+Stone2012, Voje2009}, when not accompanied with the necessary simulation-based
+analyses to guide the interpretation of such results, should be treated with
+caution, because the method has been shown to spuriously infer clustered
+divergences over a range of prior conditions.
+
 The work presented herein follows the principles of Open Notebook Science.
 All aspects of the work were recorded in real-time via version-control
 software and are publicly available at
 \href{https://github.com/joaks1/msbayes-experiments}{https://github.com/joaks1/msbayes-experiments}.
-All information necessary to reproduce our results are provided there.
+All information necessary to reproduce our results is provided there.
 

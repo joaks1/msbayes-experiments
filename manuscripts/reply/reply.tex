@@ -5,6 +5,10 @@
 %% preamble %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{../utils/preamble.tex}
 \input{../utils/macros.tex}
+
+\newcommand{\msTitle}{Why you should not fix a biased model-choice method by
+adding an additional dimension of model choice: A reply to Hickerson et al.
+\xspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -18,9 +22,7 @@
     \begin{flushleft}
         \sffamily
 
-        \MakeUppercase{\large\bfseries Why you should not fix a biased
-        model-choice method by adding an additional dimension of model choice:
-        A reply to Hickerson et al.}
+        \MakeUppercase{\large\bfseries \msTitle}
 
         \vspace{12pt}
         \textbf{Running head:} \MakeUppercase{Approximate Bayesian model
@@ -29,7 +31,7 @@
         \vspace{12pt}
         Jamie R.\ Oaks$^{1,2}$, Jeet Sukumaran$^{3}$, Jacob A.\
         Esselstyn$^{4}$, Charles W.\ Linkem$^{5}$, Cameron D.\
-        Siler$^{6}$, Mark T.\ Holder$^{1}$ and Rafe M.\ Brown$^{1}$
+        Siler$^{6}$, Rafe M.\ Brown$^{1}$ and Mark T.\ Holder$^{1}$
 
         \bigskip
         $^1$\emph{Department of Ecology and Evolutionary Biology,
@@ -163,22 +165,27 @@ Biodiversity Institute.
 
 \singlespacing
 
-\renewcommand{\refname}{\noindent\MakeUppercase{\LARGE\sffamily\upshape supporting information}}
-
 % PUT MAIN TEXT CITATION HERE
-% \begin{thebibliography}{1}
-% \providecommand{\natexlab}[1]{#1}
-% \providecommand{\url}[1]{\texttt{#1}}
-% \providecommand{\urlprefix}{URL }
+{
+\renewcommand{\refname}{\noindent\MakeUppercase{\LARGE\sffamily\upshape supporting information}}
+\begin{thebibliography}{1}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
 
-% \bibitem
+\bibitem[{Oaks et~al.(2014)Oaks, Sukumaran, Esselstyn, Linkem, Siler, Brown,
+  and Holder}]{Oaks2013reply}
+Oaks, J.~R., J.~Sukumaran, J.~A.\ Esselstyn, C.~W.\ Linkem, C.~D.\ Siler,
+    R.~M.\ Brown, and M.~T.\ Holder,
+  % 2013.
+\newblock \msTitle
+% \newblock Evolution 67:991--1010.
 
-% \end{thebibliography}
+\end{thebibliography}
+}
 
-
-%% SUPPL TABLES %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\setcounter{table}{0}
-
+\doublespacing
+\input{reply-si-main.tex}
 
 \end{document}
 

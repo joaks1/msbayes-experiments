@@ -1,0 +1,72 @@
+%CWL:
+%It may be important to point out the error made in their paper, but it can
+%also be nit-picky, it depends on how the error impacts the overall message of
+%our response.  We should strive to keep the response short and directed at the
+%big picture items. If there is a way to still point out the error, then maybe
+%some of this section should be used
+\section*{An error in Hickerson et al.'s re-analysis of the Philippines data}
+\citet{Hickerson2013} re-analyzed the dataset of \citet{Oaks2012} using a
+model-averaging approach, where they placed a discrete uniform prior over eight
+different prior models (see Table 1 of \citet{Hickerson2013}).
+However, there is a fundamental error in the methodology of
+\citet{Hickerson2013}: their model mixes different time units.
+
+Each of the eight prior models used in the re-analysis by \citet{Hickerson2013}
+has one of two priors on the mean size of the descendant populations of each
+taxon pair:
+$\meanDescendantTheta{} \sim U(0.0001, 0.1)$ or
+$\meanDescendantTheta{} \sim U(0.0005, 0.04)$.
+As described in \citet{Oaks2012}, the divergence time parameters of the model
+implemented in \msb are scaled relative to a constant reference population
+size, \myTheta{C}.
+This reference population size is defined in terms of the upper limit of the
+uniform prior on the mean size of the descendant populations,
+\meanDescendantTheta{}, such that for the prior $\meanDescendantTheta{} \sim
+U(\uniformMin{\meanDescendantTheta{}},\uniformMax{\meanDescendantTheta{}})$,
+$\myTheta{C} = \uniformMax{\meanDescendantTheta{}}/2$.
+Thus, the model used by \citet{Hickerson2013} mixes two different units of
+time.
+In other words, some of their prior and posterior samples are in units of
+$0.05/\mutationRate$ generations, whereas others are in units of
+$0.02/\mutationRate$ generations.
+
+The fact that their posterior samples are in different units makes the results
+of \citet{Hickerson2013} difficult to interpret, and renders their
+regression-adjusted results invalid.
+A fundamental assumption of regression is that all of the values of the
+response variable are in the same units.
+Thus, the results in sections ``Using ABC Model Comparison to Weight
+Alternative Priors for the Philippine Vertebrate Data'' and ``Improved Sampling
+Efficiency by Prior Weighting Supports Asynchronous and Recent Divergence for
+the Philippines Vertebrate Data'' and presented in Figure 2 of
+\citet{Hickerson2013} should be disregarded.
+The error is easily illustrated by re-plotting their results with the different
+time units indicated (Figure~\ref{figJointPosteriorHickerson}).
+
+%CWL: This seems to specific, not sure about including
+\section*{Validation analyses}
+% \highLight{Not sure where to put this section}.
+% \highLight{This justifies presenting the unadjusted results in this paper.}
+% \highLight{Is it worth including just for this purpose?}
+Following \citet{Oaks2012}, we characterize the model-choice behavior of the
+model-averaging approach of \citet{Hickerson2013} under the ideal conditions
+where the prior is correct (i.e., the data are generated from parameters drawn
+from the same prior distributions used in the analysis).
+We used the same prior models as above ($M_1$--$M_5$;
+Table~\ref{tabModelChoiceEmpirical}), and generated 50,000 pseudo-replicate
+datasets under this prior (10,000 from each model).
+We used a simulated data structure of eight population pairs, with a single
+1000 base-pair locus sampled from 10 individuals from each population.
+We then analyzed each of these replicate datasets using the same prior,
+retaining 1000 posterior samples.
+Our results are very similar to \citet{Oaks2012}, but we note that they
+are not directly comparable as our simulations contained eight population
+pairs rather than 10 (Figure~\ref{figValidationMCBehavior}).
+We find that the approach of \citet{Hickerson2013} estimates the posterior
+probability of divergence models reasonably well when all assumptions of the
+method are met (i.e., the prior is correct) and the unadjusted posterior
+estimates are used.
+Similar to \cite{Oaks2012}, we find that the regression-adjusted estimates of
+the model probabilities are biased.
+
+
