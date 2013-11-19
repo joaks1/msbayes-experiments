@@ -70,3 +70,50 @@ Similar to \cite{Oaks2012}, we find that the regression-adjusted estimates of
 the model probabilities are biased.
 
 
+\section*{Differing utilities of \numt{} and \vmratio{} in \msb}
+The main parameter of the \msb model is the vector of divergence
+times for each of the taxon pairs,
+$\divtvector = \{\divt{1}, \ldots, \divt{Y}\}$
+\citep{Oaks2012}.
+\citet{Hickerson2013} argue that the dispersion index of this vector,
+\vmratio{}, is a better model-choice estimator than the number of 
+divergence time parameters within the vector,
+\numt{}.
+They present a plot of \numt{} against \vmratio{} (Fig.~S1 of
+\citet{Hickerson2013}), which is simply a plot of sample size versus variance.
+This plot shows, not surprisingly, that \vmratio{} has very little information
+about the number of divergences among taxa.
+Nonetheless, \citet{Hickerson2013} conclude \vmratio{} more informative and
+biogeographically relevant than \numt{}.
+% We struggle to follow this logic.
+Certainly the maximum information is contained within the divergence time
+vector that \vmratio{} is summarizing.
+Clearly, the number of divergence time parameters within the vector and their
+values is more informative than its variance (i.e., the dispersion index is not
+a sufficient statistic for \divtvector).
+
+\citet{Hickerson2013} also argue that ``\msb can estimate \vmratio{} much
+better than \numt{}.''
+However, \msb is a model-choice estimator, and hence the goal is to estimate the
+posterior probability of divergence models.
+\citet{Oaks2012} demonstrate that even when all assumptions of the model are
+met, \vmratio is a poor model-choice estimator (see plots B, D \& F of Figure
+4), whereas \numt{} performs better.
+Furthermore, \vmratio{} is limited to estimating the probability of only a
+single divergence model (the one divergence model), and thus its utility for
+model choice is extremely limited.
+
+The model-choice utility of \vmratio{} is limited to the probability that
+this continuous statistic, which can range from zero to infinity, is at its lower
+limit of zero. In theory, this point density will always be zero, thus an
+arbitrary threshold (0.01 is used throughout the \msb literature) must 
+be chosen to make the probability estimable.
+However, it is still not surprising to see that it is numerically difficult to
+obtain reliable estimates of the probability that the continuous \vmratio{}
+statistic is ``near'' its limit of zero.
+It is much easier, less subjective, and more interpretable to estimate
+the probability of the discrete parameter of the model, \numt{}, is
+at its lower limit of one.
+Thus, it is not surprising that \citet{Oaks2012} find that \numt{} is a better
+estimator of model probability than \vmratio{}.
+
