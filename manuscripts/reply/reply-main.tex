@@ -1,5 +1,5 @@
 Recently, the journal \emph{Evolution} has served as a medium for a discussion
-of potential promises and pitfalls of approximate Bayesian methods of
+of potential promises and pitfalls of approximate-Bayesian methods of
 comparative phylogeographical model choice and prior selection.
 The discussion has centered around the model-choice method, \msb
 \citep{Huang2011}, which uses approximate Bayesian computation (ABC) to
@@ -20,7 +20,7 @@ These papers are largely in agreement, with \citet{Hickerson2013} reiterating
 much of the discussion of \citet{Oaks2012} regarding the impact of broad
 uniform priors on Bayesian model choice.
 Both papers agree that when broad uniform priors are used to reflect \emph{a
-prior} uncertainty about the divergence times of all pairs of taxa under study,
+prior} uncertainty about divergence times of all pairs of taxa under study,
 the method can be biased toward inferring biogeographically interesting
 scenarios of temporally clustered divergences among taxa (i.e. models with few
 divergence-time parameters).
@@ -37,10 +37,11 @@ divergence models;
 % models with few divergence-time parameters, and
 % (2) how to potentially mitigate this issue.
 
-\citet{Oaks2012} suggest the primary cause of the poor behavior of the method
-is likely the low marginal likelihoods of parameter-rich models integrated over
-vast parameter space with low probability of producing the data, yet relatively
-high prior density \citep{Lindley1957}.
+\citet{Oaks2012} suggest the primary cause of the bias of \msb is the low
+marginal likelihoods of parameter-rich models integrated over vast parameter
+space with low probability of producing the data, yet relatively high prior
+density \citep{Lindley1957} imposed by the uniformly distributed prior on
+divergence times.
 Note, this suggests the bias is extrinsic to \msb, and the numerical
 approximation machinery of \msb could be sound.
 \citet{Hickerson2013} suggest the bias is intrinsic to \msb, concluding the
@@ -60,8 +61,8 @@ are causing the bias of \msb.
 % questionable assumptions, and does not explain the bias of the method found in
 % many of the analyses of \citet{Oaks2012}. 
 
-There is also some disagreement between the papers also regarding potential
-solutions to the bias.
+There are also differences between the papers regarding potential solutions to
+the bias.
 \citet{Oaks2012} suggest alternative prior probability distributions on
 divergence-times and other nuisance parameters could increase the marginal
 likelihoods of models with more divergence-time parameters and thus reduce the
@@ -69,13 +70,19 @@ bias.
 Alternatively, \citet{Hickerson2013} present an approach that uses empirically
 informed priors and Bayesian model-averaging in an attempt to accommodate
 uncertainty in selecting priors.
-\citet{Hickerson2013} champion this strategy as a means of avoiding the
-pitfalls raised by \citet{Oaks2012}.
+% \citet{Hickerson2013} champion this strategy as a means of avoiding the
+% pitfalls raised by \citet{Oaks2012}.
 In general, we agree with the use of Bayesian model averaging to obtain a
 posterior estimate marginalized over uncertainty in prior choice.
 However, we question whether adding an additional dimension of model choice
 that samples over empirically informed uniform priors is a fruitful solution
 for an already biased model-choice method.
+
+In this paper, we discuss the potential theoretical and practical problems of
+using empirically informed priors for Bayesian model choice.
+Furthermore, we evaluate the empirical Bayesian model averaging approach of
+\citet{Hickerson2013} as a potential solution to the biases revealed by
+\citet{Oaks2012}.
 In their re-analysis of the dataset of \citet{Oaks2012}, \citet{Hickerson2013}
 made an error by mixing different time units, which makes the results presented
 in their response difficult to interpret (see Supporting Information for
@@ -84,12 +91,11 @@ However, here we show that even when that error is avoided, the empirical
 Bayesian model-averaging approach of \citet{Hickerson2013} remains biased
 toward clustered divergence models, and is predisposed to excluding true
 parameter space.
-Their approach provides another means by which the model can ``escape'' large
-parameter space, and the method's bias toward smaller models remains.
+The approach provides another means by which the method can ``escape'' models
+with large parameter space, and the method's bias toward smaller models
+remains.
 Importantly, this bias can manifest by preferring narrow, empirically informed
 priors that exclude true parameter space.
-Furthermore we discuss the potential theoretical and practical problems of
-empirical Bayesian model choice.
 
 % We discuss errors in this approach that render some of their results invalid
 % and leave the remaining results difficult to interpret.
@@ -101,13 +107,13 @@ empirical Bayesian model choice.
 
 % \cwlnote{}{This part seems important, but not related to the error in units
 % discussed above}
-Another important characteristic of the approach used by \citet{Hickerson2013}
-that makes their results difficult to interpret is their use of narrow,
-empirically guided uniform priors in an approximate-Bayesian model-choice
-framework.
-We discuss the risks associated with this approach in the next section, and
-show how the results of \citet{Hickerson2013} likely exclude true values of the
-model's parameters.
+% Another important characteristic of the approach used by \citet{Hickerson2013}
+% that makes their results difficult to interpret is their use of narrow,
+% empirically guided uniform priors in an approximate-Bayesian model-choice
+% framework.
+% We discuss the risks associated with this approach in the next section, and
+% show how the results of \citet{Hickerson2013} likely exclude true values of the
+% model's parameters.
 
 % In addition to this error, we were not able to reproduce the results of
 % \citet{Hickerson2013}.
@@ -123,8 +129,8 @@ model's parameters.
 \citet{Oaks2012} as ``poorly selected.''
 However, this is misleading, as \citet{Oaks2012} discuss in detail how they
 selected their priors to reflect the large amount of uncertainty about the
-model's parameters for their study system (see their section ``Specifying and
-simulating the joint prior'').
+model's parameters for their study system (see section ``Specifying and
+simulating the joint prior'' of \citet{Oaks2012}).
 \citet{Oaks2012} further discuss how the use of uniform prior distributions in
 \msb for many of the model's parameters requires investigators to select broad
 priors to avoid excluding the truth \textit{a priori}, and how these broad
@@ -135,12 +141,11 @@ distributions (i.e., they did not use an empirical Bayesian approach).
 \citet{Oaks2012} did use empirically informed priors when assessing both the
 prior sensitivity of the method and the power of \msb under real-world
 situations when a large amount of prior information is available. 
-In doing so, \citet{Oaks2012} discuss
-the potential dangers of taking an empirical Bayesian approach to model choice
-(see the last paragraph of ``Assessing prior sensitivity of \msb'' in
-\citet{Oaks2012}), and we expand on this here by exploring both the theoretical
-and practical implications of using empirically informed priors for Bayesian
-model choice.
+In doing so, \citet{Oaks2012} discuss the potential dangers of taking an
+empirical Bayesian approach to model choice (see the last paragraph of
+``Assessing prior sensitivity of \msb'' in \citet{Oaks2012}), and we expand on
+this here by exploring both the theoretical and practical implications of using
+empirically informed priors for Bayesian model choice.
 
 \subsection*{Theoretical implications of empirical priors for Bayesian model
 choice}
@@ -191,7 +196,7 @@ empirical Bayesian estimates of the posterior are often too narrow, off-center,
 and incorrectly shaped;][]{Morris1983,Laird1987,Carlin1990,Efron2013}.
 This is not to say that empirical Bayesian approaches are not useful.
 Empirical Bayes is a well-studied branch of Bayesian statistics that has given
-rise to many powerful inference methods that provide powerful means of
+rise to many inference methods that provide means of
 parameter estimation that often exhibit favorable frequentist properties.
 Furthermore, many post-hoc correction methods have been developed for
 estimating confidence-intervals from empirical Bayes estimates of posterior
@@ -204,9 +209,9 @@ estimation, a theoretical justification for empirical Bayes approaches to model
 choice is questionable.
 In Bayesian model choice, the primary goal is not to estimate parameters, but
 to estimate the relative probabilities of candidate models.
-In a simple example of Bayesian model choice where two candidate models, $M_1$
-and $M_2$, are being compared, the goal is to estimate the posterior
-probabilities of these two models.
+In a simple example where two candidate models, $M_1$ and $M_2$, are being
+compared, the goal is to estimate the posterior probabilities of these two
+models.
 Again, we can use Bayes' rule to calculate this as
 \begin{equation}
     p(M_1 \given \alignment{i}{}) = \frac{p(\alignment{i}{} \given
@@ -215,57 +220,93 @@ Again, we can use Bayes' rule to calculate this as
     \label{eq:bayesmodelchoice}
 \end{equation}
 By comparing Equations \ref{eq:bayesrule} and \ref{eq:bayesmodelchoice}, we
-can see the fundamental differences between Bayesian parameter estimation and
+see fundamental differences between Bayesian parameter estimation and
 model choice.
-In Equation \ref{eq:bayesrule}, we can see that the posterior density of any
+In Equation \ref{eq:bayesrule}, we see that the posterior density of any
 state $\myTheta{}$ of the model, is the prior density updated by the
-probabiliity of the data given the state $\myTheta{}$ (the likelihood of
+probability of the data given the state $\myTheta{}$ (the likelihood of
 $\myTheta{}$).
 The integral over the entire parameter space of the model, which is defined by
 the priors, only appears as a normalizing constant in the denominator.
-Thus, as long as the joint prior distribution contains the values of $\myTheta{}$
-that maximize the probability of the data (i.e., the maximum likelihood) and the
-data are strongly informative relative to the prior, the modes of the parameter
-estimates will be relatively robust to prior choice, even if the shape of the
-posterior is incorrect due to using the data to inform the priors.
+Thus, as long as the joint prior distribution contains the values of
+$\myTheta{}$ that maximize the probability of the data (i.e., the maximum
+likelihood) and the data are strongly informative relative to the prior, the
+modes of the estimated posterior distributions of parameters will be relatively
+robust to prior choice, even if the shape of the posterior is incorrect due to
+using the data to inform the priors.
 This is why empirical Bayes can work well for estimating the values of model
 parameters.
 
+% Unlike parameter estimates, posterior probabilities represent a summary of the
+% entire posterior distribution.
+% Thus, given that empirical Bayesian posterior distributions are not accurate,
+% there is no guarantee regarding the accuracy of probabilities summarized from
+% them.
+
 However, if we look at Equation~\ref{eq:bayesmodelchoice}, we see that in
-Bayesian model choice it is now the \emph{marginal} likelihood of a model
-the updates the prior probability of that model to yield posterior
-probability.
+Bayesian model choice it is now the \emph{marginal} likelihood of a model the
+updates the prior to yield the model's posterior probability.
 Thus the integral over the entire parameter space of the likelihood weighted by
 the prior probability density is no longer a normalizing constant, but rather
 is what informs the posterior probability of that model from the data.
 As a result, Bayesian model choice tends to be much more sensitive to priors
 than Bayesian parameter estimation.
-Another important difference of Bayesian model choice that is illustrated by
-Equations~\ref{eq:bayesmodelchoice} is that the value of interest, the
-posterior probability of a model, is not a parameter of the model, but rather a
-single value that is a summary of the entire posterior distribution.
-This further complicates the meaning of model posterior probabilities when
-Bayes' rule is violated by empirically informing model priors.
-Model posterior probabilities are inherently measures of our belief in
-the models after our prior beliefs are updated by the data being analyzed.
-Unlike model parameters, there are no true values for model probabilities,
-and there are no measures of uncertainty in the posterior estimates. 
-For empirical Bayesian parameter estimation, the hope is that by giving the
+
+Another important difference of Bayesian model choice illustrated by
+Equation~\ref{eq:bayesmodelchoice} is that the value of interest, the
+posterior probability of a model, is not a function of \myTheta{}, because
+it is integrated out of the marginal likelihoods of the candidate models.
+Thus, unlike parameter estimates, the estimated posterior probability of a
+model is a single value (rather than a distribution) lacking a measure of
+posterior uncertainty, and in most cases has no true value.
+In most empirical applications, we know all candidate models are incorrect, but
+our goal is to summarize the relative probabilities that they could produce the
+observed data.
+Model posterior probabilities are inherently measures of our belief in the
+models after our prior beliefs are updated by the data being analyzed.
+
+This complicates the meaning of model posterior probabilities when Bayes' rule
+is violated by empirically informing priors.
+For empirical Bayesian parameter estimation, the objective is that by giving the
 data more weight relative to the prior, the posterior distribution will be
 peaked near the true value(s) of the model's parameter(s).
 There is no such justification for empirical Bayesian model choice, because
-there are no true model probabilities that we are trying to estimate.
-Rather using the data twice will simply mislead our posterior
-beliefs in the models being compared.
+there are no true values for the model probabilities being estimated.
+Using the data twice will simply mislead our posterior beliefs in the models
+being compared.
 
 These distinctions between Bayesian parameter estimation and model choice can
 be illustrated with a simple example.
-Let us say we are interested in the probability of a particular coin
-being weighted toward landing heads.
-We already have data from flipping a different coin 20 times
-that landed both heads and tails 10 times, and so we decide to use
-these data in specifying a beta prior on fairness of the new coin of
-$beta(a=10, b=10)$ (Figure~\ref{figCoinFlip}).
+Let us say we are interested in the probability of a particular coin being
+weighted toward landing heads (i.e., $p(p(heads) > 0.5)$).
+We already have data from flipping a different coin 20 times that landed both
+heads and tails 10 times, and so we decide to use these data in specifying a
+beta prior on fairness of the new coin of $beta(a=10, b=10)$
+(Figure~\ref{figCoinFlip}).
+We collect data by flipping the coin $N=10$ times, $y=3$ of which land heads.
+Given the beta distribution is a conjugate prior for a binomial likelihood, the
+posterior distribution has the nice analytical form $\theta \given y,N \sim
+beta(a + y, b + N - y)$, which for the new dataset is simply $beta(13, 17)$;
+this is the true posterior distribution of $\theta$ given our prior information
+and data (Figure~\ref{figCoinFlip}).
+Thus, the posterior mode estimate of the probability of heads is 0.429, and the
+posterior probability of our hypothesis is then $p(p(heads) > 0.5 \given
+heads=3, N=10) = 0.23$.
+To give the data more weight relative to the prior, we could use it twice, and
+calculate an empirical Bayes estimate using a prior of $beta(13,17)$.  This
+results in a distribution of $beta(16, 24)$ (Figure~\ref{figCoinFlip}), with a
+mode of 0.395, and the $p(p(heads) > 0.5 \given heads=3, N=10) = 0.10$.
+Whereas the estimate of the parameter $p(heads)$ is a distribution, the mode of
+which changed only 8\% under the empirically informed prior, the posterior
+probability of our model of interest ($p(p(heads) > 0.5)$) is a single value,
+which changed by 56\% under the empirical prior.
+From this example, we can see how Bayesian model choice is more sensitive
+to priors, and how using the data twice can mislead the posterior
+probability of a model in light of new data.
+
+In addition to these theoretical concerns there are practical problems with
+using narrow, empirical, uniform priors for a method that has already been
+shown to be biased toward models with less parameter space.
 
 % Let us say that principal investigator Mary and her new postdoc Will are
 % interested in the hypothesis that the mass of George Washington's periwig
@@ -330,35 +371,8 @@ $beta(a=10, b=10)$ (Figure~\ref{figCoinFlip}).
 % estimators, using them for model choice is much less certain.
 
 
-Unlike parameter estimates, posterior probabilities represent a summary of the
-entire posterior distribution.
-Thus, given that empirical Bayesian posterior distributions are not accurate,
-there is no guarantee regarding the accuracy of probabilities summarized from
-them.
-
-Equation~\ref{eq:bayesrule} above shows Bayes rule for calculating the
-posterior distributions of the parameter(s) of some model $M$, and thus
-represents Bayesian parameter estimation given model $M$
-We can add the implicit notation for the model $M$ being used to
-the marginal likelihood in Equation~\ref{eq:marginallikelhiood} to get
-\begin{equation}
-    p(\alignment{i}{} \given M) = \int_{\myTheta{}} p(\alignment{i}{} \given
-    \myTheta{}, M)p(\myTheta{} \given M) d\myTheta{}.
-    \label{eq:marginallikelhioodexpanded}
-\end{equation}
-In a simple example of Bayesian model choice where two candidate models, $M_1$
-and $M_2$, are being compared, the posterior probability of $M_1$ is
-\begin{equation}
-    p(M_1 \given \alignment{i}{}) = \frac{p(\alignment{i}{} \given
-    M_1)p(M_1)}{p(\alignment{i}{} \given M_1)p(M_1) + p(\alignment{i}{} \given
-    M_2)p(M_2)}.
-    \label{eq:bayesmodelchoice}
-\end{equation}
 
 
-In addition to these theoretical concerns there are practical dangers to using
-narrow, empirical, uniform priors for a method that has already been shown to
-be biased toward models with less parameter space.
 % %CWL:
 % %I like the example, but it may be too cute. It is also too long. I think a
 % %contrived example is good, but if there could be an example that is more
