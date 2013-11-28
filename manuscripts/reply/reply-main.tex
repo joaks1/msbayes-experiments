@@ -166,7 +166,7 @@ After collecting a new dataset \alignment{i}{}, we can use Bayes' rule to
 calculate the posterior distribution
 \begin{equation}
     p(\myTheta{} \given \alignment{i}{}, M) = \frac{p(\alignment{i}{} \given
-    \myTheta{}, M)p(\myTheta{}, M)}{p(\alignment{i}{} \given M)},
+    \myTheta{}, M)p(\myTheta{} \given M)}{p(\alignment{i}{} \given M)},
     \label{eq:bayesrule}
 \end{equation}
 where
@@ -244,13 +244,18 @@ parameters.
 % them.
 
 However, if we look at Equation~\ref{eq:bayesmodelchoice}, we see that in
-Bayesian model choice it is now the \emph{marginal} likelihood of a model the
+Bayesian model choice it is now the \emph{marginal} likelihood of a model that
 updates the prior to yield the model's posterior probability.
 Thus the integral over the entire parameter space of the likelihood weighted by
 the prior probability density is no longer a normalizing constant, but rather
 is what informs the posterior probability of that model from the data.
 As a result, Bayesian model choice tends to be much more sensitive to priors
 than Bayesian parameter estimation.
+In other words, the Bayesian model choice is much more sensitive to the marginal
+likelihood of models than parameter estimation.
+Whereas parameter estimation will tend to succeed if the topography of the
+likelihood surface is captured regardless of scale, model choice must compare
+the average height of this surface between models.
 
 Another important difference of Bayesian model choice illustrated by
 Equation~\ref{eq:bayesmodelchoice} is that the value of interest, the
@@ -258,11 +263,13 @@ posterior probability of a model, is not a function of \myTheta{}, because
 it is integrated out of the marginal likelihoods of the candidate models.
 Thus, unlike parameter estimates, the estimated posterior probability of a
 model is a single value (rather than a distribution) lacking a measure of
-posterior uncertainty, and in most cases has no true value.
-In most empirical applications, we know all candidate models are incorrect, but
-our goal is to summarize the relative probabilities that they could produce the
-observed data.
-Model posterior probabilities are inherently measures of our belief in the
+posterior uncertainty.
+Also, unlike model parameters, the posterior probabilities of candidate
+models have no clear true values.
+In most applications, we know all candidate models are incorrect, but our goal
+is to summarize the relative probabilities that they could produce the observed
+data.
+Thus, model posterior probabilities are inherently measures of our belief in the
 models after our prior beliefs are updated by the data being analyzed.
 
 This complicates the meaning of model posterior probabilities when Bayes' rule
@@ -272,13 +279,20 @@ data more weight relative to the prior, the posterior distribution will be
 peaked near the true value(s) of the model's parameter(s).
 There is no such justification for empirical Bayesian model choice, because
 there are no true values for the model probabilities being estimated.
-Using the data twice will simply mislead our posterior beliefs in the models
-being compared.
+By using the data twice, we fail to account for prior uncertainty and mislead
+our posterior beliefs in the models being compared; we will be over confident
+in some models and under confident in others.
 
 These distinctions between Bayesian parameter estimation and model choice can
 be illustrated with a simple example.
-Let us say we are interested in the probability of a particular coin being
-weighted toward landing heads (i.e., $p(p(heads) > 0.5)$).
+Let us say we are interested in the fairness of a particular coin, and we
+denote the probability of landing heads as \myTheta{}.
+More specifically, we are interested in the probability of two models, $M_1$
+and $M_2$.
+In both models the outcomes of flipping the coin are assumed to be binomially
+distributed, but under $M_1$ the coin is weighted toward landing heads (i.e.,
+$\myTheta{} > 0.5)$), where as under $M_2$, the coin is weighted toward landing
+tails (i.e., $\myTheta{} < 0.5$).
 We already have data from flipping a different coin 20 times that landed both
 heads and tails 10 times, and so we decide to use these data in specifying a
 beta prior on fairness of the new coin of $beta(a=10, b=10)$
@@ -286,23 +300,53 @@ beta prior on fairness of the new coin of $beta(a=10, b=10)$
 We collect data by flipping the coin $N=10$ times, $y=3$ of which land heads.
 Given the beta distribution is a conjugate prior for a binomial likelihood, the
 posterior distribution has the nice analytical form $\theta \given y,N \sim
-beta(a + y, b + N - y)$, which for the new dataset is simply $beta(13, 17)$;
-this is the true posterior distribution of $\theta$ given our prior information
-and data (Figure~\ref{figCoinFlip}).
-Thus, the posterior mode estimate of the probability of heads is 0.429, and the
-posterior probability of our hypothesis is then $p(p(heads) > 0.5 \given
-heads=3, N=10) = 0.23$.
+beta(a + y, b + N - y)$, which for the new dataset is simply $beta(13, 17)$
+(Figure~\ref{figCoinFlip}).
+The posterior mode estimate of the probability of heads is 0.429, and following
+Equation~\ref{eq:marginallikelhiood} the marginal likelihoods of our models of
+interest are
+\begin{equation}
+    p(y=3, N=10 \given M_1) = \int_{0.5}^{1} p(y=3, N=10 \given
+    \myTheta{}, M_1)p(\myTheta{} \given M_1) d\myTheta{} \approx 0.029,
+\end{equation}
+and
+\begin{equation}
+    p(y=3, N=10 \given M_2) = \int_{0}^{0.5} p(y=3, N=10 \given
+    \myTheta{}, M_2)p(\myTheta{} \given M_2) d\myTheta{} \approx 0.097.
+\end{equation}
+Given the models have equal probability under our prior, and following
+Equation~\ref{eq:bayesmodelchoice}, we can calculate the posterior
+probability of Model 1 as
+\begin{equation}
+    p(M_1 \given y=3, N=10) = \frac{p(y=3, N=10 \given M_1)}{p(y=3, N=10 \given
+    M_1) + p(y=3, N=10 \given M_2)} \approx 0.23.
+\end{equation}
+This is the true posterior probability of Model 1 given our prior information
+and data.
+
 To give the data more weight relative to the prior, we could use it twice, and
 calculate an empirical Bayes estimate using a prior of $beta(13,17)$.  This
 results in a distribution of $beta(16, 24)$ (Figure~\ref{figCoinFlip}), with a
-mode of 0.395, and the $p(p(heads) > 0.5 \given heads=3, N=10) = 0.10$.
+mode of 0.395, and $p(M_1 \given y=3, N=10) = 0.10$.
 Whereas the estimate of the parameter $p(heads)$ is a distribution, the mode of
 which changed only 8\% under the empirically informed prior, the posterior
-probability of our model of interest ($p(p(heads) > 0.5)$) is a single value,
-which changed by 56\% under the empirical prior.
-From this example, we can see how Bayesian model choice is more sensitive
-to priors, and how using the data twice can mislead the posterior
-probability of a model in light of new data.
+probability of Model 1 is a single value, which changed by 56\% under the
+empirical prior.
+This demonstrates how Bayesian model choice is more sensitive to priors than
+parameter estimation.
+Also, we can see how using the empirically informed prior ignores our prior
+uncertainty, leading to an underestimate of our posterior uncertainty
+(Figure~\ref{figCoinFlip}), and ultimately misleads us toward overconfidence in
+Model 2.
+Our mode estimate of \myTheta{} under the empirical prior might be closer
+to the true value than our posterior mode.
+Let us assume the truth of the matter is that the coin under study has a broad
+flat edge, and as a result lands on its edge at a certain frequency.
+Hence, both of our models are incorrect (i.e., the outcomes of flipping the
+coin are not binomially distributed).
+From this example, we can see how Bayesian model choice is more sensitive to
+priors, and how using the data twice can mislead the posterior probability of a
+model in light of new data.
 
 In addition to these theoretical concerns there are practical problems with
 using narrow, empirical, uniform priors for a method that has already been
