@@ -1,0 +1,196 @@
+%&<latex>
+\documentclass[letterpaper,12pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% preamble %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../utils/preamble.tex}
+\input{../utils/macros.tex}
+
+\newcommand{\msTitle}{Why you should not fix a biased model-choice method by
+adding an additional dimension of model choice: A reply to Hickerson et al.
+\xspace}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\doublespacing
+\raggedright
+\setlength{\parindent}{0.5in}
+\begin{linenumbers}
+
+\begin{titlepage}
+    \begin{flushleft}
+        \sffamily
+
+        \MakeUppercase{\large\bfseries \msTitle}
+
+        \vspace{12pt}
+        \textbf{Running head:} \MakeUppercase{Approximate Bayesian model
+        choice}
+
+        \vspace{12pt}
+        Jamie R.\ Oaks$^{1,2}$, Jeet Sukumaran$^{3}$, Jacob A.\
+        Esselstyn$^{4}$, Charles W.\ Linkem$^{5}$, Cameron D.\
+        Siler$^{6}$, and Rafe M.\ Brown$^{1}$
+
+        \bigskip
+        $^1$\emph{Department of Ecology and Evolutionary Biology,
+            Biodiversity Institute,
+            University of Kansas,
+            Lawrence, Kansas 66045}\\[.1in]
+        $^3$\emph{Department of Biology,
+            Duke University,
+            Durham, North Carolina 27708} \\[.1in]
+        $^4$\emph{Museum of Natural Science,
+            Louisiana State University,
+            119 Foster Hall,
+            Baton Rouge, Louisiana 70803}\\[.1in]
+        $^5$\emph{Department of Biology,
+            University of Washington,
+            Seattle, Washington 98195}\\[.1in]
+        $^6$\emph{Sam Noble Museum,
+            Department of Biology,
+            University of Oklahoma,
+            Norman, Oklahoma 73072}\\[.1in]
+        $^2$\emph{Corresponding author} (\href{mailto:joaks1@gmail.com}{\tt
+        joaks1@gmail.com})\\
+
+    \end{flushleft}
+\end{titlepage}
+
+{\sffamily
+    \noindent\textbf{ABSTRACT} \\
+    \noindent Recently, \citet{Oaks2012} presented a simulation-based
+    assessment of the approximate Bayesian phylogeographical model choice
+    method implemented in \msb, and found the method to lack robustness and
+    power to detect temporal variation in divergences that are randomly
+    distributed over relatively broad periods of evolutionary history.
+    They conclude that a likely mechanism behind the bias toward models with
+    few divergence events is the small marginal likelihoods of models with more
+    divergence time parameters due to the integration over vast parameter space
+    with low likeihood and high prior density that is imposed by broad uniform
+    priors.
+    \citet{Hickerson2013} have responded to this work, questioning the priors
+    used by \citet{Oaks2012} and presenting an approximate Bayesian
+    model-averaging approach that uses narrow, empirically informed uniform
+    priors.
+    \citet{Hickerson2013} use this method to re-analyze the empirical dataset
+    of \citet{Oaks2012} comprised of 22 pairs of vertebrate populations from
+    the Philippines, and conclude the model-averaging approach circumvents the
+    issues revealed by \citet{Oaks2012} and yields robust inference of
+    divergence models.
+    Furthermore, they argue that the biases revealed by \citet{Oaks2012} are
+    inherent to the inefficient rejection algorithm implemented in \msb, rather
+    than a result of low marginal likelihoods of parameter-rich models.
+    Here we discuss an error in the methodology of \citet{Hickerson2013} that
+    renders some of their results invalid and the remainder difficult to
+    interpret.
+    Furthermore, we demonstrate that the approach of \citet{Hickerson2013} is
+    biased toward models with less parameter space, which manifests in a strong
+    tendency to sample predominantly from models that exclude the true values
+    of the model's parameters.
+    Our results suggest that their model-averaged results are dominated by
+    models that likely exclude at least some of the true divergence times
+    across the 22 pairs of Philippine vertebrates, which adds to the
+    difficulty in interpreting their results.
+    We also show the approach of \citet{Hickerson2013} is still biased toward
+    inferring simultaneous divergences even when the true divergences are
+    randomly distributed over millions of generations.
+    Our results, coupled with those of \citet{Oaks2012}, strongly suggest that
+    low marginal likelihoods of complex models is a primary cause of the bias
+    of \msb toward models with less parameter space.
+    We discuss ways to mitigate this bias without resorting to adding an
+    additional dimension of model choice to the model or using questionable
+    empirically informed uniform priors.
+
+    \vspace{12pt}
+    \noindent\textbf{KEY WORDS: Approximate Bayesian computation; Bayesian
+        model choice; empirical Bayes} 
+
+}
+
+\newpage
+
+%CWL:
+% \highLight{The goal of this paper needs to be to highlight the major
+%     differences of opinion on how ABC can be used in comparative phylogeography
+%     and how these changes to msbayes can be made that will improve the
+%     inference in the future. We should avoid nit-picking the Hickerson paper
+%     and try to stay positive.}
+\input{reply-main.tex}
+
+\section*{Acknowledgments}
+We thank the National Science Foundation for supporting this work (DEB
+1011423).
+J.\ Oaks was also supported by the University of Kansas (KU) Office of Graduate
+Studies, Society of Systematic Biologists, Sigma Xi Scientific Research
+Society, KU Department of Ecology and Evolutionary Biology, and the KU
+Biodiversity Institute.
+
+\bibliography{../bib/references}
+% \bibliography{references}
+
+%% LIST OF FIGURES %%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\singlespacing
+
+\renewcommand\listfigurename{Figure Captions}
+\cftsetindents{fig}{0cm}{2.2cm}
+\renewcommand\cftdotsep{\cftnodots}
+\setlength\cftbeforefigskip{10pt}
+\cftpagenumbersoff{fig}
+\listoffigures
+
+
+\end{linenumbers}
+
+%% TABLES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\singlespacing
+
+\input{reply-tables.tex}
+
+\clearpage
+
+%% FIGURES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+\input{reply-figures.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SUPPORTING INFO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\setcounter{page}{1}
+
+\singlespacing
+
+% PUT MAIN TEXT CITATION HERE
+{
+\renewcommand{\refname}{\noindent\MakeUppercase{\LARGE\sffamily\upshape supporting information}}
+\begin{thebibliography}{1}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+
+\bibitem[{Oaks et~al.(2014)Oaks, Sukumaran, Esselstyn, Linkem, Siler, Brown,
+  and Holder}]{Oaks2013reply}
+Oaks, J.~R., J.~Sukumaran, J.~A.\ Esselstyn, C.~W.\ Linkem, C.~D.\ Siler,
+    R.~M.\ Brown, and M.~T.\ Holder,
+  % 2013.
+\newblock \msTitle
+% \newblock Evolution 67:991--1010.
+
+\end{thebibliography}
+}
+
+\doublespacing
+\input{reply-si-main.tex}
+
+\newpage
+\singlespacing
+
+\input{reply-si-figures.tex}
+
+\end{document}
+
