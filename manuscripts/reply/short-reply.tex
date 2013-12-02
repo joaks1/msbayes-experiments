@@ -108,45 +108,30 @@
 }
 
 \newpage
-\citet{}
-
 \msb
 \citep{Huang2011} uses approximate Bayesian computation (ABC) to
-estimate the temporal distribution of divergences among co-distributed pairs of
-taxa by sampling over models of divergence that range from a single
-divergence-time parameter (i.e., all pairs of taxa diverged at the same time)
-to the fully generalized model in which each pair is assigned a divergence-time
-parameter.
+estimate the distribution of divergence times among co-distributed pairs of
+taxa.
+It approximates a posterior probability over models that range from a single
+divergence-time parameter (i.e., simultaneous divergence of all pairs of taxa)
+to the fully generalized model in which each pair of taxa diverged at a
+unique time.
 A full description of the model is given in \citet{Oaks2012}.
+Frequently, the exact value of the divergence times are hard 
+to determine because researchers typically lack precise knowledge 
+of the rate at which substitutions occur.
+So the exact divergence time is often viewed as a nuisance parameter, and
+researchers focus on the number of divergence events.
+The papers of \citet{Oaks2012} and \citet{Hickerson2013} are in agreement
+on the fundamental methodological point about the model selection performed in \msb:
+\begin{itemize}
+   \item the use of vague priors on the divergence time parameters can 
+    lead to support models with few divergence time events. Thus, the 
+    primary inference enabled by the approach is very sensitive to the
+    priors on divergence times.
+\end{itemize}
 
-\citet{Oaks2012} published results of simulation-based power analyses showing
-that \msb is biased toward inferring models of temporally clustered divergence
-times across taxon pairs.
-\citet{Hickerson2013} published a response to \citet{Oaks2012} where they
-present an empirical Bayesian model-averaging approach that they conclude
-circumvents the problems revealed by \citet{Oaks2012}.
-These papers are largely in agreement, with \citet{Hickerson2013} reiterating
-much of the discussion of \citet{Oaks2012} regarding the impact of broad
-uniform priors on Bayesian model choice.
-Both papers agree that when broad uniform priors are used to reflect \emph{a
-prior} uncertainty about divergence times of all pairs of taxa under study,
-the method can be biased toward inferring biogeographically interesting
-scenarios of temporally clustered divergences among taxa (i.e. models with few
-divergence-time parameters).
-Both papers also agree that this bias toward models with few divergence-time
-parameters is due to the much greater parameter space of models with more
-divergence-time parameters.
-However, the papers disgree about the primary mechanism by which the greater
-parameter space of parameter-rich models causes the bias toward clustered
-divergence models;
-\citet{Oaks2012} suggest a statistical issue is the cause, whereas
-\citep{Hickerson2013} prefer a numerical explanation.
-% The main areas of disagreement between the papers are centered around
-% (1) the mechanism by which broad uniform priors cause the bias of \msb toward
-% models with few divergence-time parameters, and
-% (2) how to potentially mitigate this issue.
-
-\citet{Oaks2012} suggest the primary cause of the bias of \msb is the low
+\citet{Oaks2012} suggest that primary cause of the bias of \msb is the low
 marginal likelihoods of parameter-rich models integrated over vast parameter
 space with low probability of producing the data, yet relatively high prior
 density \citep{Lindley1957} imposed by the uniformly distributed prior on
