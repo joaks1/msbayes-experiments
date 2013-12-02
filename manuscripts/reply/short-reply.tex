@@ -7,8 +7,7 @@
 \input{../utils/preamble.tex}
 \input{../utils/macros.tex}
 
-\newcommand{\msTitle}{Why you should not fix a biased model-choice method by
-adding an additional dimension of model choice: A reply to Hickerson et al.
+\newcommand{\msTitle}{Nuh uh: A reply to Hickerson et al.
 \xspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -61,49 +60,47 @@ adding an additional dimension of model choice: A reply to Hickerson et al.
 
 {\sffamily
     \noindent\textbf{ABSTRACT} \\
-    \noindent Recently, \citet{Oaks2012} presented a simulation-based
-    assessment of the approximate Bayesian phylogeographical model choice
-    method implemented in \msb, and found the method to lack robustness and
-    power to detect temporal variation in divergences that are randomly
-    distributed over relatively broad periods of evolutionary history.
-    They conclude that a likely mechanism behind the bias toward models with
-    few divergence events is the small marginal likelihoods of models with more
-    divergence time parameters due to the integration over vast parameter space
-    with low likeihood and high prior density that is imposed by broad uniform
+    \noindent Biogeographers frequently seek to explain population and species
+    differentiation on geographical phenomena.
+    Establishing that a set of population splitting events occurred
+    at the same time can be a potentially persuasive argument that a set of taxa
+    are affected by the same geographic events.
+    Unfortunately, estimating divergence times precisely when one lacks
+    precise information about the rate of molecular evolution is a notoriously
+    difficult problem in evolutionary biology.
+    \citep{Huang2011} introduced an approximate Bayesian approach which
+    can be used to estimate the probability of a model in which multiple
+    sets of taxa diverge at the same time. 
+    This method (implemented in the software \msb) does not require
+    a common set of character data that links all of 
+    the taxa under investigation.
+    Recently, \citet{Oaks2012} used this model choice framework to 
+    study 22 pairs of vertebrate lineages which are distributed across
+    the Philippines; they also studied the behavior of the \msb approach
+    using computer simulations.
+    \citet{Oaks2012} found that the model was very sensitive to the 
+    prior that is chosen and that the inference method had low power
+    to detect variation in divergences times.
+    These results were not surprising, in light a rich statistical literature
+    that shows that the marginal likelihood of a model is quite sensitive to the
+    use of vague priors.
+    Because this sensitivity to prior assumptions affects the crucial insights 
+    that a researcher who employs \msb seeks to gain, \citet{Oaks2012} recommended
+    that users of the approach should carefully assess the robustness of their 
+    conclusions to different priors.
+    According to \citet{Hickerson2013}, the lack of robustness in \msb analyses
+    was due to excessively broad prior on divergence times leading to 
+    inadequate numbers of simulation replicates.
+    They proposed a new model-averaging approach that uses narrow, empirically informed uniform
     priors.
-    \citet{Hickerson2013} have responded to this work, questioning the priors
-    used by \citet{Oaks2012} and presenting an approximate Bayesian
-    model-averaging approach that uses narrow, empirically informed uniform
-    priors.
-    \citet{Hickerson2013} use this method to re-analyze the empirical dataset
-    of \citet{Oaks2012} comprised of 22 pairs of vertebrate populations from
-    the Philippines, and conclude the model-averaging approach circumvents the
-    issues revealed by \citet{Oaks2012} and yields robust inference of
-    divergence models.
-    Furthermore, they argue that the biases revealed by \citet{Oaks2012} are
-    inherent to the inefficient rejection algorithm implemented in \msb, rather
-    than a result of low marginal likelihoods of parameter-rich models.
-    Here we discuss an error in the methodology of \citet{Hickerson2013} that
-    renders some of their results invalid and the remainder difficult to
-    interpret.
-    Furthermore, we demonstrate that the approach of \citet{Hickerson2013} is
-    biased toward models with less parameter space, which manifests in a strong
-    tendency to sample predominantly from models that exclude the true values
-    of the model's parameters.
-    Our results suggest that their model-averaged results are dominated by
-    models that likely exclude at least some of the true divergence times
-    across the 22 pairs of Philippine vertebrates, which adds to the
-    difficulty in interpreting their results.
-    We also show the approach of \citet{Hickerson2013} is still biased toward
-    inferring simultaneous divergences even when the true divergences are
-    randomly distributed over millions of generations.
-    Our results, coupled with those of \citet{Oaks2012}, strongly suggest that
-    low marginal likelihoods of complex models is a primary cause of the bias
-    of \msb toward models with less parameter space.
-    We discuss ways to mitigate this bias without resorting to adding an
-    additional dimension of model choice to the model or using questionable
-    empirically informed uniform priors.
-
+    Here we demonstrate that the approach of \citet{Hickerson2013} is
+    dangerous in the sense that the empirically-derived priors often
+    exclude from consideration the true values of the models' parameters.
+    On a more fundamental level, we question the value of adopting an 
+    empirical Bayesian stance for this model choice problem.
+    The robust Bayesian approach of conducting analyses under a variety
+    of priors can reveal prior sensitivity and communicate which assumptions
+    underlie model inference.
     \vspace{12pt}
     \noindent\textbf{KEY WORDS: Approximate Bayesian computation; Bayesian
         model choice; empirical Bayes} 
@@ -111,12 +108,10 @@ adding an additional dimension of model choice: A reply to Hickerson et al.
 }
 
 \newpage
+\citet{}
 
-Recently, the journal \emph{Evolution} has served as a medium for a discussion
-of potential promises and pitfalls of approximate-Bayesian methods of
-comparative phylogeographical model choice and prior selection.
-The discussion has centered around the model-choice method, \msb
-\citep{Huang2011}, which uses approximate Bayesian computation (ABC) to
+\msb
+\citep{Huang2011} uses approximate Bayesian computation (ABC) to
 estimate the temporal distribution of divergences among co-distributed pairs of
 taxa by sampling over models of divergence that range from a single
 divergence-time parameter (i.e., all pairs of taxa diverged at the same time)
