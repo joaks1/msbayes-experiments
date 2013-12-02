@@ -31,7 +31,7 @@ fi
 dmc.py --np $nprocs \
     -r 1 \
     -o ../configs/m1.cfg \
-    -p ../configs/m1*.cfg \
+    -p ../configs/m1*.cfg ../configs/m[345].cfg\
     -n $nprior \
     --prior-batch-size $batch_size \
     --num-standardizing-samples $nsums \
