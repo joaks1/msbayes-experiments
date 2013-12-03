@@ -1,4 +1,4 @@
-\mFigure{../../response-redux/hickerson-et-al-posterior/hickerson-posterior-1k/mean_by_dispersion.pdf}{
+\siFigure{../../response-redux/hickerson-et-al-posterior/hickerson-posterior-1k/mean_by_dispersion.pdf}{
     The joint posterior of the mean (\meant{}{}) and dispersion index ($\vmratio{} = 
     \vart{}{}/\meant{}{}$) of divergence times for 22 vertebrate taxon pairs as
     estimated by \citet{Hickerson2013} (see Figure 2B of \citet{Hickerson2013}).
@@ -7,4 +7,23 @@
     grey = $0.05/\mutationRate$ generations and
     black = $0.02/\mutationRate$ generations.
 }{figJointPosteriorHickerson}
+
+\siFigure{../../model-choice/priors-for-pc-plot/pc-plots.pdf}{
+    The prior predictive graphical checks recommended by \citet{Hickerson2013}
+    for six prior models:
+    (A) $M_1$ ($\divt{} \sim U(0, 0.1)$),
+    (B) $M_{1A}$ ($\divt{} \sim U(0, 0.01)$),
+    (C) $M_{1B}$ ($\divt{} \sim U(0, 0.001)$), 
+    (D) $M_3$ ($\divt{} \sim U(0, 5)$),
+    (E) $M_4$ ($\divt{} \sim U(0, 10)$), and
+    (F) $M_5$ ($\divt{} \sim U(0, 20)$).
+    The three models that likely exclude true values of some divergence times
+    of the 22 pairs of Philippine vertebrate taxa (A--C) appear to have a
+    better ``fit'' than the priors that likely cover the true divergence times
+    (D--F).
+    The plots project the summary statistics from 1000 random samples from each
+    model onto the first two orthogonal axes of a principle component analysis,
+    with the blue dot representing the observed summary statistics from the 22
+    population pairs of Philippine vertebrates.
+}{figPCA}
 
