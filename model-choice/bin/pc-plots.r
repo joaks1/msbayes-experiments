@@ -1,9 +1,10 @@
 rm(list=ls(all=TRUE))
 
-plot_pca = function(pca_obj, predict_obj, xlim, ylim) {
+plot_pca = function(pca_obj, predict_obj, xlim, ylim,
+                    xlab = 'PC1', ylab = 'PC2') {
     plot(pca_obj$scores[,1], pca_obj$scores[,2],
-         xlab = 'PC1',
-         ylab = 'PC2',
+         xlab = xlab,
+         ylab = ylab,
          xlim = xlim,
          ylim = ylim)
     points(predict_obj[1], predict_obj[2],
@@ -52,7 +53,7 @@ observed_m4 = predict(m4_pca, observed)
 observed_m5 = predict(m5_pca, observed)
 plot_letters = LETTERS[1:6]
 
-pdf(plot_path, width=7.087, height=5.0)
+pdf(plot_path, width=7.087, height=4.0)
     par(yaxs = "i", xaxs = "i")
     par(cex.axis=0.7)
     par(mgp = c(1.5,0.6,0)) # mgp adjusts space of axis labels
@@ -62,31 +63,31 @@ pdf(plot_path, width=7.087, height=5.0)
 
     xlim = c(-0.4, 0.4)
     ylim = c(-0.2, 0.2)
-    plot_pca(m1_pca, observed_m1, xlim, ylim)
+    plot_pca(m1_pca, observed_m1, xlim, ylim, xlab = '')
     mtext(plot_letters[[1]], side=3, adj=0, line=0, cex=0.75, font=2)
 	mtext(bquote(italic(M)[1]), side=3, adj=0.5, line=0, cex=0.75)
 
-    plot_pca(m1a_pca, observed_m1a, xlim, ylim)
+    plot_pca(m1a_pca, observed_m1a, xlim, ylim, xlab = '', ylab = '')
     mtext(plot_letters[[2]], side=3, adj=0, line=0, cex=0.75, font=2)
 	mtext(bquote(italic(M)['1A']), side=3, adj=0.5, line=0, cex=0.75)
 
-    plot_pca(m1b_pca, observed_m1b, xlim, ylim)
+    plot_pca(m1b_pca, observed_m1b, xlim, ylim, xlab = '', ylab = '')
     mtext(plot_letters[[3]], side=3, adj=0, line=0, cex=0.75, font=2)
 	mtext(bquote(italic(M)['1B']), side=3, adj=0.5, line=0, cex=0.75)
 
-    xlim = c(-0.5, 1.0)
-    ylim = c(-0.4, 0.4)
+    xlim = c(-1.0, 1.5)
+    ylim = c(-0.8, 0.8)
     plot_pca(m3_pca, observed_m3, xlim, ylim)
     mtext(plot_letters[[4]], side=3, adj=0, line=0, cex=0.75, font=2)
 	mtext(bquote(italic(M)[3]), side=3, adj=0.5, line=0, cex=0.75)
 
-    plot_pca(m4_pca, observed_m4, xlim, ylim)
+    plot_pca(m4_pca, observed_m4, xlim, ylim, ylab = '')
     mtext(plot_letters[[5]], side=3, adj=0, line=0, cex=0.75, font=2)
 	mtext(bquote(italic(M)[4]), side=3, adj=0.5, line=0, cex=0.75)
 
-    xlim = c(-1.0, 1.0)
-    ylim = c(-1.0, 2.0)
-    plot_pca(m5_pca, observed_m5, xlim, ylim)
+    xlim = c(-1.0, 2.0)
+    ylim = c(-1.2, 1.2)
+    plot_pca(m5_pca, observed_m5, xlim, ylim, ylab = '')
     mtext(plot_letters[[6]], side=3, adj=0, line=0, cex=0.75, font=2)
 	mtext(bquote(italic(M)[5]), side=3, adj=0.5, line=0, cex=0.75)
 dev.off()
