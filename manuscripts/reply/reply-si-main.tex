@@ -117,3 +117,42 @@ at its lower limit of one.
 Thus, it is not surprising that \citet{Oaks2012} find that \numt{} is a better
 estimator of model probability than \vmratio{}.
 
+\section*{Other clarifications}
+
+\subsection*{Graphical prior comparisons}
+\citet{Hickerson2013} advocate the use of what they call graphical checks of
+prior models.
+This entails generating a small number (1000) of random samples from the prior
+and plotting the resulting summary statistics in comparison to the observed
+statistics to see if they coincide (see Figure 1 of \citet{Hickerson2013}).
+As we show above, this strategy can be misleading, because the resulting plots
+of this approach have little correlation with the appropriateness of priors.
+Given the richness of the \msb model ($\approx 600$ parameters for the Philippine
+dataset analyzed by \citet{Hickerson2013}), we do not expect that 1000
+\emph{random} draws from the vast prior parameter space will yield data and
+summary statistics consistent with the observed data.
+In fact, when such random draws are tightly clustered around the observed
+statistics, this can be an indication that the prior is over-fit, as we show
+above (Table~\ref{tabModelChoiceEmpirical} and Figure~\ref{figPCA}).
+Thus, using such plots to select priors should be avoided, and the use of
+posterior predictive analyses would be much more informative about the overall
+fit of models.
+
+\subsection*{Saturation of summary statistics}
+\citet{Hickerson2013} claim the priors used by \citet{Oaks2012} ``cause much of
+the explored parameter space to be beyond the threshold of saturation in most
+mtDNA genes.'' To explore this possibility, we simulated datasets under prior
+settings that match two of the three priors used by \citet{Oaks2012}:
+$\meanDescendantTheta{} \sim U(0.0005, 0.04)$ and $\ancestralTheta{} \sim
+U(0.0005, 0.02)$.
+Under this prior, we draw divergence time parameters from a uniform
+distribution of $U(0, 20)$, simulate datasets, and plot the \divt{} values
+against the summary statistics calculated from the resulting datasets
+(Figure~\ref{figSaturationPlot}).
+Clearly, the priors used by \citet{Oaks2012} with upper limits on \divt{} of five
+and 10 suffered from little to no effect from saturation.
+Even at divergence times of 20 coalescent units, there is still signal in the
+summary statistics used by \msb (Figure~\ref{figSaturationPlot}).
+Thus, the assertion of \citet{Hickerson2013} does not apply to at least
+two of the priors used by \citet{Oaks2012} and, as a result, does not
+explain the bias they found.
