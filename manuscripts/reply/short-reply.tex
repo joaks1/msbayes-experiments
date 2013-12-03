@@ -243,10 +243,12 @@ The results of \citet{Oaks2012} and \citet{Hickerson2013} showed the method is
 highly sensitive to the prior on divergence times.
 Furthermore, \citet{Oaks2012} found the method remained biased toward clustered
 divergences even under the informed priors.
-The main argument of \citet{Hickerson2013} is that \citet{Oaks2012} did not
-go far enough, and suggest a very narrow, highly informed uniform prior
-on divergence times is necessary to avoid the method's preference for
-models with few divergence-time parameters.
+
+The main argument of \citet{Hickerson2013} is that the priors used by
+\citet{Oaks2012} were not informative enough.
+They suggest a very narrow, highly informed uniform prior on divergence times
+is necessary to avoid the method's preference for models with few
+divergence-time parameters.
 Such an empirical Bayesian approach to model selection raises some theoretical
 and practical concerns, some of which were discussed by \citet{Oaks2012} (see
 the last paragraph of ``Assessing prior sensitivity of \msb'' in
@@ -644,9 +646,12 @@ drawn from an exponential distribution and applied the approach of
 \citet{Hickerson2013} to each of them to see how often the method excludes the
 truth.
 
-For our re-analysis of the Philippines dataset we used the model-averaging
+There was an error in the methods of \citet{Hickerson2013} resulting in
+an erroneous model that mixes different units of time (see SI for
+details).
+For our re-analysis of the Philippines dataset we followed the model-averaging
 approach of \citet{Hickerson2013}, but with a reduced set of prior models to
-avoid mixing time units.
+avoid the error.
 We used five prior models, all of which had priors on population sizes of
 $\meanDescendantTheta{} \sim U(0.0001, 0.1)$ and $\ancestralTheta{} \sim
 U(0.0001, 0.05)$.
@@ -683,15 +688,26 @@ The method strongly prefers the prior model with the narrowest distribution on
 divergence times across all three of our analyses, even when this model is
 almost certainly incorrect and excludes the true divergence times of the
 Philippine taxa (Table~\ref{tabModelChoiceEmpirical}).
-Unfortunately, ``checking'' the priors by plotting the summary statistics from
-1000 random samples of each prior model along the first two orthogonal axes of
-a principle component analysis, as recommended by \citet{Hickerson2013},
-provides no warning of a problem (Figure~\ref{figPCA}).
+
+\citet{Hickerson2013} vetted the priors used in their model-averaging approach
+via ``graphical checks,'' in which the summary statistics from 1000 random
+samples of each prior model are plotted along the first two orthogonal axes of
+a principle component analysis (see Figure 1 of \citet{Hickerson2013}).
+To determine if such prior predictive analyses would indicate the $M_{1A}$ and
+$M_{1B}$ are are problematic, we performed these graphical checks on our prior
+models.
+Unfortunately, these prior predictive checks provide no warning that these
+priors are too narrow (Figure~\ref{figPCA}).
+Rather, they suggest these incorrect priors are ``better fit''
+(Figure~\ref{figPCA}A--C) than the valid priors used by \citet{Oaks2012}
+(Figure~\ref{figPCA}D--F).
+
 Given that the results of \citet{Hickerson2013} strongly prefer the models with
 the narrowest prior on divergence times, it seems quite likely that their
 model-averaged results are dominated by models that exclude at least some of
 the 22 true divergence times, making their results difficult to interpret
 (in addition to the error of time units).
+
 
 To better quantify the propensity of Hickerson et al.'s
 (\citeyear{Hickerson2013}) approach to exclude the truth, we simulated 1000
