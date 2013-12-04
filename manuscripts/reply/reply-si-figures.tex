@@ -27,3 +27,68 @@
     population pairs of Philippine vertebrates.
 }{figPCA}
 
+\siFigure{../../model-choice/results/power-1/pymsbayes-results/plots/power_accuracy_omega_median.pdf}{
+    The accuracy of the model-averaging approach of \citet{Hickerson2013} to
+    estimate the dispersion index of divergence times (\vmratio{}) from
+    analyses of simulated datasets where \divt{} for 22 pairs of populations is
+    drawn from a series of uniform distributions, $\divt{} \sim U(0,
+    \divt{max})$.
+    The proportion of estimates less than the true value of,
+    $p(\hat{\vmratio{}} < \vmratio{})$, is given for each \divt{max}.
+    Each plot represents unadjusted median estimates from 500 simulation
+    replicates analyzed using $5\e6$ samples from the prior.
+}{figPowerAccOmegaMedian}
+
+\siFigure{../../model-choice/results/power-1/pymsbayes-results/plots/power_accuracy_omega_mode_glm.pdf}{
+    The accuracy of the model-averaging approach of \citet{Hickerson2013} to
+    estimate the dispersion index of divergence times (\vmratio{}) from
+    analyses of simulated datasets where \divt{} for 22 pairs of populations is
+    drawn from a series of uniform distributions, $\divt{} \sim U(0,
+    \divt{max})$.
+    The proportion of estimates less than the true value of,
+    $p(\hat{\vmratio{}} < \vmratio{})$, is given for each \divt{max}.
+    Each plot represents GLM-regression-adjusted mode estimates from 500
+    simulation replicates analyzed using $5\e6$ samples from the prior.
+}{figPowerAccOmegaModeGLM}
+
+%% Validation results
+\siFigure{../../model-choice/results/validation/results/pymsbayes-results/plots/mc_behavior.pdf}{
+    An assessment of the approximate Bayesian model-averageing approach of
+    \citet{Hickerson2013} under the ideal conditions when the prior model
+    is correct (i.e., the pseudo-replicate datasets are simulated from
+    parameters drawn from the same prior distributions used in the
+    analysis).
+    The plots show the relationship between the estimated posterior and true
+    probability of (A \& C) $\numt{}=1$ and (B \& D) $\vmratio{} < 0.01$, based
+    on 50,000 simulations.
+    The results summarize the (A \& B) unadjusted and (C \& D) GLM-adjusted
+    posterior estimate from each simulation replicate.
+    The prior settings for all replicates included five prior models with
+    $\meanDescendantTheta{} \sim U(0.0001, 0.1)$ and $\ancestralTheta{} \sim
+    U(0.0001, 0.05)$ for all five models, and
+    $M_1: \divt{} \sim U(0, 0.1)$,
+    $M_2: \divt{} \sim U(0, 1)$,
+    $M_3: \divt{} \sim U(0, 5)$,
+    $M_4: \divt{} \sim U(0, 10)$, and
+    $M_5: \divt{} \sim U(0, 20)$.
+    The number of samples from the prior was $2.5\e6$.
+    The simulated data structure was 8 population pairs, with a single 1000
+    bp locus sampled from 10 individuals from each population.  The 50,000
+    estimates of the posterior probability of one divergence event were
+    assigned to 20 bins of width 0.05.
+    The estimated posterior probability of each bin is plotted against the
+    proportion of replicates in that bin with a true value consistent with
+    one divergence event (i.e., $\numt{}=1$ or $\vmratio{} < 0.01)$.
+}{figValidationMCBehavior}
+
+%:FIGURE-saturation plot
+\siFigure{../../saturation/saturation-plot.pdf}{
+    The summary statistics $\pi$ \citep{Tajima1983} and $\pi_{net}$
+    \citep{Takahata1985} as a function of divergence time between populations.
+    Each plot represents 1100 pairs of parameter draws and summary statistics
+    calculated from the simulated data.
+    Prior settings for the simulations were $\divt{} \sim U(0, 20)$,
+    $\meanDescendantTheta{} \sim U(0.0005, 0.04)$, and $\ancestralTheta{} \sim
+    U(0.0005, 0.02)$.
+}{figSaturationPlot}
+
