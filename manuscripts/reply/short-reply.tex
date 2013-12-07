@@ -925,7 +925,7 @@ The results confirm the prediction as \msb actually tends to underestimate
 the probability of the one-divergence model (see Figure 4 of
 \citet{Oaks2012}).
 We confirmed this same behavior for the model-averaging approach used by
-\citet{Hickerson2013} (see SI text and Figure~\ref{figValidationMCBehavior}).
+\citet{Hickerson2013} (see SI text and Figure~S\ref{figValidationMCBehavior}).
 These results are not clearly predicted if insufficient sampling was causing
 the bias.
 Even when the prior is correct, due to the discrete uniform prior on
@@ -1051,8 +1051,8 @@ It also would allow an investigator to place the majority of the prior density
 in regions of parameter space they believe, \emph{a priori}, are most
 plausible, but still capture uncertainty in the tails of distributions with low
 density.
-Most importantly, we have found the use of more flexible prior distributions in
-place of uniforms improves the power of the method to detect temporal variation
+Most importantly, we have found the use of more flexible distributions in place
+of uniform priors improves the power of the method to detect temporal variation
 in divergences and reduces the bias toward models of clustered divergences
 \citep{Oaks2014dpp}.
 % This seems like a natural solution to the problem of skewed marginal
@@ -1082,16 +1082,15 @@ in divergences and reduces the bias toward models of clustered divergences
 
 
 \section*{Conclusions}
-We demonstrate how the approximate Bayesian model choice method implemented in
+We demonstrate how the approximate Bayesian model-choice method implemented in
 \msb can be strongly biased away from models with greater parameter space.
 As suggested by \citet{Oaks2012}, this is likely caused by the use of uniform
 priors on most of the model's parameters.
 Uniform distributions necessitate the use of broad priors that place high prior
 density in unlikely regions of parameter space, less the risk of excluding the
 truth \emph{a priori}.
-These broad priors reduce the marginal likelihoods of models with greater parameter
-space, either due to more divergence time parameters or broader prior
-distributions on those parameters.
+These broad priors reduce the marginal likelihoods of models with more
+divergence-time parameters or broader prior distributions on those parameters.
 We show that the empirical Bayesian model-averaging approach of
 \citet{Hickerson2013} does not mitigate this bias, but rather causes it to
 manifest by sampling predominantly from models that may exclude the true values

@@ -1,15 +1,9 @@
-%CWL:
-%It may be important to point out the error made in their paper, but it can
-%also be nit-picky, it depends on how the error impacts the overall message of
-%our response.  We should strive to keep the response short and directed at the
-%big picture items. If there is a way to still point out the error, then maybe
-%some of this section should be used
 \section*{An error in Hickerson et al.'s re-analysis of the Philippines data}
 \citet{Hickerson2013} re-analyzed the dataset of \citet{Oaks2012} using a
 model-averaging approach, where they placed a discrete uniform prior over eight
 different prior models (see Table 1 of \citet{Hickerson2013}).
-However, there is a fundamental error in the methodology of
-\citet{Hickerson2013}: their model mixes different time units.
+However, there was an error in their methodology; their model mixes different
+units of time.
 
 Each of the eight prior models used in the re-analysis by \citet{Hickerson2013}
 has one of two priors on the mean size of the descendant populations of each
@@ -69,8 +63,48 @@ estimates are used.
 Similar to \cite{Oaks2012}, we find that the regression-adjusted estimates of
 the model probabilities are biased.
 
+\section*{Additional clarifications from \citet{Hickerson2013}}
 
-\section*{Differing utilities of \numt{} and \vmratio{} in \msb}
+\subsection*{Saturation of summary statistics}
+\citet{Hickerson2013} claim the priors used by \citet{Oaks2012} ``cause much of
+the explored parameter space to be beyond the threshold of saturation in most
+mtDNA genes.'' To explore this possibility, we simulated datasets under prior
+settings that match two of the three priors used by \citet{Oaks2012}:
+$\meanDescendantTheta{} \sim U(0.0005, 0.04)$ and $\ancestralTheta{} \sim
+U(0.0005, 0.02)$.
+Under this prior, we draw divergence time parameters from a uniform
+distribution of $U(0, 20)$ coalescent units, simulate datasets, and plot the
+\divt{} values against the summary statistics calculated from the resulting
+datasets (Figure~\ref{figSaturationPlot}).
+Clearly, the priors used by \citet{Oaks2012} with upper limits on \divt{} of five
+and 10 coalescent units suffered from little affect from saturation.
+Even at divergence times of 20 coalescent units, there is still signal in the
+summary statistics used by \msb (Figure~\ref{figSaturationPlot}).
+Thus, the assertion of \citet{Hickerson2013} does not apply to at least
+two of the priors used by \citet{Oaks2012} and, as a result, does not
+explain the bias they found.
+
+\subsection*{Graphical prior comparisons}
+\citet{Hickerson2013} advocate the use of what they call graphical checks of
+prior models.
+This prior-predictive approach generating a small number (1000) of random
+samples from the prior and plotting the resulting summary statistics in
+comparison to the observed statistics to see if they coincide (see Figure 1 of
+\citet{Hickerson2013}).
+% As we show above, this strategy can be misleading, because the resulting plots
+% of this approach have little correlation with the appropriateness of priors.
+Given the richness of the \msb model ($\approx 600$ parameters for the Philippine
+dataset analyzed by \citet{Hickerson2013}), we do not expect that 1000
+\emph{random} draws from the vast prior parameter space will yield data and
+summary statistics consistent with the observed data.
+In fact, when such random draws are tightly clustered around the observed
+statistics, this can be an indication that the prior is over-fit, as we show in
+the main text (Table~\ref{tabModelChoiceEmpirical} and Figure~S\ref{figPCA}).
+Thus, using such plots to select priors should be avoided, and the use of
+posterior-predictive analyses would be much more informative about the overall
+fit of models.
+
+\subsection*{Differing utilities of \numt{} and \vmratio{} in \msb}
 The main parameter of the \msb model is the vector of divergence
 times for each of the taxon pairs,
 $\divtvector = \{\divt{1}, \ldots, \divt{Y}\}$
@@ -80,7 +114,8 @@ $\divtvector = \{\divt{1}, \ldots, \divt{Y}\}$
 divergence time parameters within the vector,
 \numt{}.
 They present a plot of \numt{} against \vmratio{} (Fig.~S1 of
-\citet{Hickerson2013}), which is simply a plot of sample size versus variance.
+\citet{Hickerson2013}), which is essentially a plot of sample size versus
+variance.
 This plot shows, not surprisingly, that \vmratio{} has very little information
 about the number of divergences among taxa.
 Nonetheless, \citet{Hickerson2013} conclude \vmratio{} more informative and
@@ -94,13 +129,11 @@ a sufficient statistic for \divtvector).
 
 \citet{Hickerson2013} also argue that ``\msb can estimate \vmratio{} much
 better than \numt{}.''
-However, \msb is a model-choice estimator, and hence the goal is to estimate the
-posterior probability of divergence models.
-\citet{Oaks2012} demonstrate that even when all assumptions of the model are
-met, \vmratio is a poor model-choice estimator (see plots B, D \& F of Figure
-4), whereas \numt{} performs better.
+However, \citet{Oaks2012} demonstrate that even when all assumptions of the
+model are met, \vmratio is a poor model-choice estimator (see plots B, D \& F
+of Figure 4), whereas \numt{} performs better.
 Furthermore, \vmratio{} is limited to estimating the probability of only a
-single divergence model (the one divergence model), and thus its utility for
+single model (the one-divergence model), and thus its utility for
 model choice is extremely limited.
 
 The model-choice utility of \vmratio{} is limited to the probability that
@@ -117,42 +150,3 @@ at its lower limit of one.
 Thus, it is not surprising that \citet{Oaks2012} find that \numt{} is a better
 estimator of model probability than \vmratio{}.
 
-\section*{Other clarifications}
-
-\subsection*{Graphical prior comparisons}
-\citet{Hickerson2013} advocate the use of what they call graphical checks of
-prior models.
-This entails generating a small number (1000) of random samples from the prior
-and plotting the resulting summary statistics in comparison to the observed
-statistics to see if they coincide (see Figure 1 of \citet{Hickerson2013}).
-As we show above, this strategy can be misleading, because the resulting plots
-of this approach have little correlation with the appropriateness of priors.
-Given the richness of the \msb model ($\approx 600$ parameters for the Philippine
-dataset analyzed by \citet{Hickerson2013}), we do not expect that 1000
-\emph{random} draws from the vast prior parameter space will yield data and
-summary statistics consistent with the observed data.
-In fact, when such random draws are tightly clustered around the observed
-statistics, this can be an indication that the prior is over-fit, as we show
-above (Table~\ref{tabModelChoiceEmpirical} and Figure~\ref{figPCA}).
-Thus, using such plots to select priors should be avoided, and the use of
-posterior predictive analyses would be much more informative about the overall
-fit of models.
-
-\subsection*{Saturation of summary statistics}
-\citet{Hickerson2013} claim the priors used by \citet{Oaks2012} ``cause much of
-the explored parameter space to be beyond the threshold of saturation in most
-mtDNA genes.'' To explore this possibility, we simulated datasets under prior
-settings that match two of the three priors used by \citet{Oaks2012}:
-$\meanDescendantTheta{} \sim U(0.0005, 0.04)$ and $\ancestralTheta{} \sim
-U(0.0005, 0.02)$.
-Under this prior, we draw divergence time parameters from a uniform
-distribution of $U(0, 20)$, simulate datasets, and plot the \divt{} values
-against the summary statistics calculated from the resulting datasets
-(Figure~\ref{figSaturationPlot}).
-Clearly, the priors used by \citet{Oaks2012} with upper limits on \divt{} of five
-and 10 suffered from little to no effect from saturation.
-Even at divergence times of 20 coalescent units, there is still signal in the
-summary statistics used by \msb (Figure~\ref{figSaturationPlot}).
-Thus, the assertion of \citet{Hickerson2013} does not apply to at least
-two of the priors used by \citet{Oaks2012} and, as a result, does not
-explain the bias they found.
