@@ -9,6 +9,9 @@ PROJECT_DIR = os.path.abspath(os.path.dirname(BIN_DIR))
 CONFIG_DIR = os.path.abspath(os.path.join(PROJECT_DIR, 'configs'))
 RESULT_DIR = os.path.abspath(os.path.join(PROJECT_DIR, 'results'))
 NO_SORT_DIR = os.path.abspath(os.path.join(PROJECT_DIR, 'no-sort'))
+IMAGE_DIR = os.path.abspath(os.path.join(PROJECT_DIR, 'images'))
+if not os.path.exists(IMAGE_DIR):
+    os.mkdir(IMAGE_DIR)
 
 def main():
     sys.stdout.write("%s" % PROJECT_DIR)
