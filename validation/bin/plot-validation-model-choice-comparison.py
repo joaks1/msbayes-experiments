@@ -37,13 +37,13 @@ def main_cli():
                     raise Exception('Unexpected duplicate validation result')
 
     sub_plot_map = {
-            0: ('psi', (r'Posterior probability of one divergence---'
+            0: ('psi', (r'Posterior probability of one divergence, '
                 r'$p(|\mathbf{\tau}| = 1 \, | \, B_{{\epsilon}}(S*))$')),
-            2: ('psi-glm', (r'GLM-adjusted posterior probability of one divergence---'
+            2: ('psi-glm', (r'GLM-adjusted posterior probability of one divergence, '
                 r'$p(|\mathbf{\tau}| = 1 \, | \, B_{{\epsilon}}(S*))$')),
-            1: ('omega', (r'Posterior probability of one divergence---'
+            1: ('omega', (r'Posterior probability of one divergence, '
                 r'$p(D_T < 0.01 \, | \, B_{{\epsilon}}(S*))$')),
-            3: ('omega-glm', (r'GLM-adjusted posterior probability of one divergence---'
+            3: ('omega-glm', (r'GLM-adjusted posterior probability of one divergence, '
                 r'$p(D_T < 0.01 \, | \, B_{{\epsilon}}(S*))$')),
                 }
     for idx, (variable, x_label) in sub_plot_map.iteritems():
@@ -99,7 +99,7 @@ def main_cli():
                 column_label_offset = 0.05,
                 row_label_offset = 0.05,
                 super_title = r'\textbf{Data model}',
-                super_y_title = r'\textbf{Analysis model}',
+                super_y_title = r'\textbf{Inference model}',
                 super_title_size = 20.0,
                 super_y_title_size = 20.0,
                 super_y_title_right = True)
