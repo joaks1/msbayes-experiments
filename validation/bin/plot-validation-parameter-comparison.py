@@ -7,6 +7,8 @@ from pymsbayes import plotting
 import project_util
 
 def main_cli():
+    if not os.path.exists(project_util.IMAGE_DIR):
+        os.mkdir(project_util.IMAGE_DIR)
     results = {}
     for d in ['dpp', 'old', 'uniform', 'u-shaped']:
         info_path = os.path.join(project_util.RESULT_DIR, d,
@@ -127,7 +129,8 @@ def main_cli():
         pg.set_shared_y_limits()
         pg.reset_figure()
 
-        pg.savefig('../images/validation-accuracy-summary-' + variable + '.pdf')
+        pg.savefig(os.path.join(project_util.IMAGE_DIR,
+                'validation-accuracy-summary-' + variable + '.pdf'))
 
 if __name__ == '__main__':
     main_cli()

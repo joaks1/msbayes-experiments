@@ -10,6 +10,7 @@ CONFIG_DIR = os.path.abspath(os.path.join(PROJECT_DIR, 'configs'))
 RESULT_DIR = os.path.abspath(os.path.join(PROJECT_DIR, 'results'))
 OBSERVED_CFG_DIR = os.path.abspath(os.path.join(CONFIG_DIR, 'observed'))
 PRIOR_CFG_DIR = os.path.abspath(os.path.join(CONFIG_DIR, 'prior'))
+IMAGE_DIR = os.path.abspath(os.path.join(PROJECT_DIR, 'images'))
 
 def get_exp_with_same_variance(uniform_max):
     uni_variance = (1/float(12)) * (float(uniform_max)**2)
