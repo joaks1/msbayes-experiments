@@ -130,7 +130,7 @@ def main_cli():
         pg.reset_figure()
 
         pg.savefig(os.path.join(project_util.IMAGE_DIR,
-                'validation-accuracy-summary-' + variable + '.pdf'))
+                'validation-accuracy-' + variable + '.pdf'))
 
 if __name__ == '__main__':
     main_cli()
