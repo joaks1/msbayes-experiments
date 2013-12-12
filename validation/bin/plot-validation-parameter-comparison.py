@@ -44,19 +44,19 @@ def main_cli():
                 r'Estimated number of divergence events, $\hat{|\mathbf{\tau}|}$ (mode)'),
             1: ('omega',
                 r'True variance of divergence times, $D_T$',
-                r'Estimated variance of divergence events, $\hat{D_T}$ (median)'),
+                r'Estimated variance of divergence times, $\hat{D_T}$ (median)'),
             2: ('time',
                 r'True mean of divergence times, $\bar{T}$',
-                r'Estimated mean of divergence events, $\hat{\bar{T}}$ (median)'),
+                r'Estimated mean of divergence times, $\hat{\bar{T}}$ (median)'),
             3: ('psi-glm',
                 r'True number of divergence events, $|\mathbf{\tau}|$',
                 r'GLM-adjusted number of divergence events, $\hat{|\mathbf{\tau}|}$ (mode)'),
             4: ('omega-glm',
                 r'True variance of divergence times, $D_T$',
-                r'GLM-adjusted variance of divergence events, $\hat{D_T}$ (median)'),
+                r'GLM-adjusted variance of divergence times, $\hat{D_T}$ (median)'),
             5: ('time-glm',
                 r'True mean of divergence times, $\bar{T}$',
-                r'GLM-adjusted mean of divergence events, $\hat{\bar{T}}$ (median)'),
+                r'GLM-adjusted mean of divergence times, $\hat{\bar{T}}$ (median)'),
                 }
     for idx, (variable, x_label, y_label) in sub_plot_map.iteritems():
         sub_plots = {}
