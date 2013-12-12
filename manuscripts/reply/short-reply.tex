@@ -79,26 +79,28 @@
     study 22 pairs of vertebrate lineages which are distributed across
     the Philippines; they also studied the behavior of the \msb approach
     using computer simulations.
-    \citet{Oaks2012} found that the model was very sensitive to the 
-    prior that is chosen and that the inference method had low power
-    to detect variation in divergences times.
+    \citet{Oaks2012} found that the model was very sensitive to the prior and
+    that the inference method had low power to detect variation in divergences
+    times.
     These results were not surprising, in light of a rich statistical literature
-    that shows that the marginal likelihood of a model is quite sensitive to the
+    showing that the marginal likelihood of a model is sensitive to the
     use of vague priors.
     Because this sensitivity to prior assumptions affects the crucial insights 
     that a researcher who employs \msb seeks to gain, \citet{Oaks2012} recommended
     that users of the approach should carefully assess the robustness of their 
     conclusions to different priors.
     According to \citet{Hickerson2013}, the lack of robustness in \msb analyses
-    was due to excessively broad priors on divergence times leading to 
+    was due to excessively broad priors on divergence times, leading to 
     inadequate numbers of simulation replicates.
-    They proposed a new model-averaging approach that uses narrow, empirically informed uniform
-    priors.
+    They proposed a new model-averaging approach that uses narrow, empirically
+    informed uniform priors.
     Here we demonstrate that the approach of \citet{Hickerson2013} is
     dangerous in the sense that the empirically-derived priors often
     exclude from consideration the true values of the models' parameters.
-    On a more fundamental level, we question the value of adopting an 
-    empirical Bayesian stance for this model-choice problem.
+    On a more fundamental level, we question the value of adopting an empirical
+    Bayesian stance for this model-choice problem, because it can mislead model
+    posterior probabilities, which are inherently measures of belief in the
+    models after prior knowledge is updated by the data.
     The robust Bayesian approach of conducting analyses under a variety
     of priors can reveal prior sensitivity and communicate which assumptions
     underlie model inference.
@@ -123,8 +125,8 @@ A full description of the model is given in \citet{Oaks2012}.
 Frequently, the exact values of the divergence times are hard 
 to determine because researchers typically lack precise knowledge 
 of the rate at which substitutions occur.
-So the exact divergence time is often viewed as a nuisance parameter, and
-researchers focus on the number of divergence events.
+The exact divergence time is therefore often viewed as a nuisance parameter,
+and researchers focus on the number of divergence events.
 The papers of \citet{Oaks2012} and \citet{Hickerson2013} are in agreement
 on the fundamental methodological point about the model selection performed in \msb:
 \begin{itemize}
@@ -138,15 +140,15 @@ This is not surprising given the rich statistical literature that shows that
 model marginal likelihoods are quite sensitive to the priors used in Bayesian
 model selection
 \citep[e.g.,][]{Jeffreys1935,Lindley1957}.
-Accordingly, \citet{Oaks2012} suggest the primary cause of the spurious support
+Accordingly, \citet{Oaks2012} suggest the primary cause of spurious support
 for models with few divergence parameters is the greater marginal likelihoods
 of these models under vague uniform priors, relative to more parameter-rich
 models.
 Models with more divergence-time parameters integrate over \emph{much} greater
 parameter space with low probability of producing the data, yet relatively high
 prior density imposed by the uniformly distributed prior on divergence times.
-Note, this is a statistical issue, extrinsic to \msb, and the numerical
-approximation machinery of \msb could be sound.
+Note, this is a statistical issue, extrinsic to \msb, and does not question the
+soundness of the numerical approximation machinery of \msb.
 
 \citet{Hickerson2013} suggest the bias is the result of a numerical issue
 intrinsic to \msb, concluding the method's rejection algorithm is inefficient
@@ -156,7 +158,7 @@ with more divergence-time parameters.
 We agree that sampling error is present in all numerical Bayesian estimation
 methods, however, we show here that it is not a major contributer to the
 biases found by \citet{Oaks2012}.
-We present results of additional analyses that, when combined with the results
+We present results here of analyses that, when combined with the results
 of \citet{Oaks2012}, strongly suggest that \msb prefers models with few
 divergence-time parameters, because they have greater likelihoods when
 averaged over broad uniform priors on divergences times.
@@ -232,7 +234,7 @@ of models with few divergence-time parameters.
 The results of \citet{Oaks2012} and \citet{Hickerson2013} show the method is
 highly sensitive to the prior on divergence times.
 Furthermore, \citet{Oaks2012} found the method remained biased toward clustered
-divergences under the informed priors.
+divergences under the empirically informed priors.
 
 The main argument of \citet{Hickerson2013} is that the priors used by
 \citet{Oaks2012} were not informative enough.
@@ -384,8 +386,8 @@ distributed, but under $M_1$ the coin is weighted toward landing heads (i.e.,
 $\myTheta{} > 0.5)$), whereas under $M_2$, the coin is weighted toward landing
 tails (i.e., $\myTheta{} < 0.5$).
 We already have data from flipping a different coin 20 times that landed both
-heads and tails 10 times, and so we decide to use these data in specifying a
-beta prior on fairness of the new coin of $beta(a=10, b=10)$
+heads and tails 10 times each, and so we decide to use these data in specifying
+a beta prior on fairness of the new coin of $beta(a=10, b=10)$
 (Figure~\ref{figCoinFlip}).
 We collect data by flipping the coin of interest $N=10$ times, $y=3$ of which
 land heads.
@@ -542,10 +544,11 @@ their approach is biased toward models with less parameter space, and as a
 consequence, is biased toward estimating model-averaged posteriors dominated by
 models that exclude true values of parameters of the model.
 We explored this possibility in two ways.
-First, we re-analyzed the Philippines dataset using the model-averaging approach
-of \citet{Hickerson2013}, but set one of prior models with a uniform prior on
-divergence times that is unrealistically narrow, and almost certainly excludes
-most, if not all, of the true divergence times of the 22 taxon pairs.
+First, we re-analyzed the Philippines dataset using the model-averaging
+approach of \citet{Hickerson2013}, but set one of the prior models with a
+uniform prior on divergence times that is unrealistically narrow, and almost
+certainly excludes most, if not all, of the true divergence times of the 22
+taxon pairs.
 If small likelihoods of large models cause the method to prefer models with
 less parameter space, we expect \msb will preferentially sample from this
 incorrect model yielding a posterior that is incorrect (i.e., the
@@ -672,8 +675,8 @@ weight yet low likelihood.
 
 Given the theoretical and practical issues with empirical Bayes approaches to
 Bayesian model choice, it is clear why one should use caution before overly
-criticizing an investigator's choice of priors after having seen the resulting
-posterior.
+criticizing an investigator's choice of priors \emph{after} having seen the
+resulting posterior.
 %In a strictly Bayesian world, this is cheating.
 As discussed by \citet{Oaks2012}, prior to analyzing the data, there was a
 large amount of uncertainty regarding the divergence times of the 22 population
@@ -782,8 +785,8 @@ Across all but one of the \divt{max} we simulated, in a large proportion of
 replicates the method favors a model that excludes the truth, and across many
 of the \divt{max} the preferred model will exclude a large proportion of the
 true divergence-time values (Figure~\ref{figPowerNumExcluded}).
-Importantly, the posterior probability of excluding at least on true divergence
-value is also quite high across many of the \divt{max}
+Importantly, the posterior probability of excluding at least one true
+divergence value is also quite high across many of the \divt{max}
 (Figure~\ref{figPowerProbExclusion}).
 Only when the data are identically distributed as one of the prior models does
 the method avoid excluding the truth more than 5\% of the time
@@ -827,9 +830,9 @@ shared across all taxa does not confirm the method is working well when
 analyzing data generated under random temporal variation in divergences (e.g.,
 an inference of two divergence events could be biogeographically interesting
 yet spurious).
-Thus, it is important that investigators not limit their assessment of method's
-power to only differentiating inferences of one event or more (i.e. $\numt{} =
-1$ versus $\numt{} > 1$).
+Thus, it is important that investigators not limit their assessment of the
+method's power to only differentiating inferences of one event or more (i.e.
+$\numt{} = 1$ versus $\numt{} > 1$).
 Rather, looking at the distribution of estimates, as in \citet{Oaks2012},
 provides much more information about the behavior of the method.
 
@@ -901,7 +904,7 @@ from the prior.
 Furthermore, if sampling error is biased toward models with less
 parameter space, as suggested by \citet{Hickerson2013}, we expect to see
 support for these models decrease as sampling increases.
-\citet{Oaks2012} do not see such sensitivity when they compare prior sample
+\citet{Oaks2012} did not see such sensitivity when they compared prior sample
 sizes of $2\e6$, $5\e6$, and $10^7$.
 
 To explore this prediction further, we repeat the analysis of the Philippines
@@ -973,10 +976,10 @@ include:
 The population sizes of the ancestral and descendant populations
 (\ancestralTheta{}, \descendantTheta{1}{}, \descendantTheta{2}{}),
 the magnitude of population contraction in each of the descendant
-populations (\bottleScalar{1}{} and \bottleScalar{2}{}) and the
+populations (\bottleScalar{1}{} and \bottleScalar{2}{}), the
 timing of these contractions (\bottleTime{}), and the $N-1$ node heights
 (coalescent times) of the gene tree that gave rise to the $N$ gene
-copies sampled from both populations of the pair.
+copies sampled from both populations.
 % Because we only have a single locus for each taxon, there are no locus-specific
 % \myTheta{}-scaling parameters (\locusMutationRateScalar{}) or
 % \locusRateHetShapeParameter shape parameter for the gamma prior distribution on
