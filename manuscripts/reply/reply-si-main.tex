@@ -10,7 +10,7 @@ has one of two priors on the mean size of the descendant populations of each
 taxon pair:
 $\meanDescendantTheta{} \sim U(0.0001, 0.1)$ or
 $\meanDescendantTheta{} \sim U(0.0005, 0.04)$.
-As described in \citet{Oaks2012}, the divergence time parameters of the model
+As described in \citet{Oaks2012}, the divergence-time parameters of the model
 implemented in \msb are scaled relative to a constant reference population
 size, \myTheta{C}.
 This reference population size is defined in terms of the upper limit of the
@@ -47,12 +47,13 @@ model-averaging approach of \citet{Hickerson2013} under the ideal conditions
 where the prior is correct (i.e., the data are generated from parameters drawn
 from the same prior distributions used in the analysis).
 We used the same prior models as above ($M_1$--$M_5$;
-Table~\ref{tabModelChoiceEmpirical}), and generated 50,000 pseudo-replicate
-datasets under this prior (10,000 from each model).
+Table~\ref{tabModelChoiceEmpirical}), and simulated 50,000 datasets under this
+prior (10,000 from each model).
 We used a simulated data structure of eight population pairs, with a single
 1000 base-pair locus sampled from 10 individuals from each population.
-We then analyzed each of these replicate datasets using the same prior,
-retaining 1000 posterior samples.
+We then analyzed each of these replicate datasets using the same prior with 2.5
+million samples (500,000 from each of the five prior models), retaining 1000
+posterior samples.
 Our results are very similar to \citet{Oaks2012}, but we note that they
 are not directly comparable as our simulations contained eight population
 pairs rather than 10 (Figure~\ref{figValidationMCBehavior}).
@@ -72,12 +73,12 @@ mtDNA genes.'' To explore this possibility, we simulated datasets under prior
 settings that match two of the three priors used by \citet{Oaks2012}:
 $\meanDescendantTheta{} \sim U(0.0005, 0.04)$ and $\ancestralTheta{} \sim
 U(0.0005, 0.02)$.
-Under this prior, we draw divergence time parameters from a uniform
+Under this prior, we randomly sample divergence-time parameters from a uniform
 distribution of $U(0, 20)$ coalescent units, simulate datasets, and plot the
 \divt{} values against the summary statistics calculated from the resulting
 datasets (Figure~\ref{figSaturationPlot}).
 Clearly, the priors used by \citet{Oaks2012} with upper limits on \divt{} of five
-and 10 coalescent units suffered from little affect from saturation.
+and 10 coalescent units suffered little to no effect from saturation.
 Even at divergence times of 20 coalescent units, there is still signal in the
 summary statistics used by \msb (Figure~\ref{figSaturationPlot}).
 Thus, the assertion of \citet{Hickerson2013} does not apply to at least
@@ -87,8 +88,8 @@ explain the bias they found.
 \subsection*{Graphical prior comparisons}
 \citet{Hickerson2013} advocate the use of what they call graphical checks of
 prior models.
-This prior-predictive approach generating a small number (1000) of random
-samples from the prior and plotting the resulting summary statistics in
+This prior-predictive approach entails generating a small number (1000) of
+random samples from the prior and plotting the resulting summary statistics in
 comparison to the observed statistics to see if they coincide (see Figure 1 of
 \citet{Hickerson2013}).
 % As we show above, this strategy can be misleading, because the resulting plots
@@ -105,48 +106,51 @@ posterior-predictive analyses would be much more informative about the overall
 fit of models.
 
 \subsection*{Differing utilities of \numt{} and \vmratio{} in \msb}
-The main parameter of the \msb model is the vector of divergence
+The primary component of the \msb model is the vector of divergence
 times for each of the taxon pairs,
 $\divtvector = \{\divt{1}, \ldots, \divt{Y}\}$
 \citep{Oaks2012}.
 \citet{Hickerson2013} argue that the dispersion index of this vector,
 \vmratio{}, is a better model-choice estimator than the number of 
-divergence time parameters within the vector,
+divergence-time parameters within the vector,
 \numt{}.
 They present a plot of \numt{} against \vmratio{} (Fig.~S1 of
 \citet{Hickerson2013}), which is essentially a plot of sample size versus
 variance.
 This plot shows, not surprisingly, that \vmratio{} has very little information
 about the number of divergences among taxa.
-Nonetheless, \citet{Hickerson2013} conclude \vmratio{} more informative and
+Nonetheless, \citet{Hickerson2013} conclude \vmratio{} is more informative and
 biogeographically relevant than \numt{}.
 % We struggle to follow this logic.
-Certainly the maximum information is contained within the divergence time
-vector that \vmratio{} is summarizing.
+However, all of the information about the temporal distribution of divergences
+is contained within the divergence-time vector that \vmratio{} is summarizing.
 Clearly, the number of divergence time parameters within the vector and their
 values is more informative than its variance (i.e., the dispersion index is not
 a sufficient statistic for \divtvector).
-
 \citet{Hickerson2013} also argue that ``\msb can estimate \vmratio{} much
 better than \numt{}.''
 However, \citet{Oaks2012} demonstrate that even when all assumptions of the
-model are met, \vmratio is a poor model-choice estimator (see plots B, D \& F
-of Figure 4), whereas \numt{} performs better.
-Furthermore, \vmratio{} is limited to estimating the probability of only a
-single model (the one-divergence model), and thus its utility for
-model choice is extremely limited.
+model are met, \vmratio{} is a poor model-choice estimator (see plots B, D \& F
+of Figure 4 in \citet{Oaks2012}), whereas \numt{} performs better.
 
-The model-choice utility of \vmratio{} is limited to the probability that
-this continuous statistic, which can range from zero to infinity, is at its lower
-limit of zero. In theory, this point density will always be zero, thus an
-arbitrary threshold (0.01 is used throughout the \msb literature) must 
-be chosen to make the probability estimable.
-However, it is still not surprising to see that it is numerically difficult to
-obtain reliable estimates of the probability that the continuous \vmratio{}
-statistic is ``near'' its limit of zero.
-It is much easier, less subjective, and more interpretable to estimate
-the probability of the discrete parameter of the model, \numt{}, is
-at its lower limit of one.
+Importantly, \vmratio{} is limited to estimating the probability of only a
+single model (the one-divergence model), and thus its utility for model-choice
+is very limited.
+I.e., it can only be informative about the probability of whether there is one
+divergence shared among the taxa ($\vmratio{} = 0.0$) or there is greater than
+one divergence ($\vmratio{} > 0.0$).
+As a result, not only is its model-choice utility limited, but it is also
+very difficult to estimate.
+\vmratio{} can range from zero to infinity, and the point density that it is
+at its lower limit of zero will always be zero.
+Thus, an arbitrary threshold (0.01 is used throughout the \msb literature) must
+be chosen to make the probability of ``simultaneous'' divergence estimable.
+Even with this arbitrary threshold, it is still not surprising to see that it
+is numerically difficult to obtain reliable estimates of the probability that
+\vmratio{} is ``near'' its lower limit of zero.
+It is easier, less subjective, and more interpretable to estimate the
+probability of the discrete parameter of the model, \numt{}, is at its lower
+limit of one.
 Thus, it is not surprising that \citet{Oaks2012} find that \numt{} is a better
 estimator of model probability than \vmratio{}.
 
