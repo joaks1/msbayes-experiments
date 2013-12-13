@@ -720,18 +720,18 @@ posterior samples for each of them.
 We find that the approach of \citet{Hickerson2013} struggles to estimate the
 variance of divergence times (\vmratio{}) across most of the \divt{max}
 we simulated, whether evaluating the unadjusted
-(Figure~S\ref{figPowerAccOmegaMedian}) or GLM-adjusted
-(Figure~S\ref{figPowerAccOmegaModeGLM}) posterior estimates.
+(Figure~S\ref{figPowerAccuracy}A--F) or GLM-adjusted
+(Figure~S\ref{figPowerAccuracy}G--L) posterior estimates.
 The method only estimates \vmratio{} relatively well when the simulated
 distribution of divergence times is identical to one of the prior models
-(Figures~S\ref{figPowerAccOmegaMedian}E \& S\ref{figPowerAccOmegaModeGLM}E).
+(Figures~S\ref{figPowerAccuracy}E\&K).
 This is consistent with the findings of \citet{Oaks2012}  and
 \citet{Hickerson2013} that \msb is highly sensitive to the prior distribution
 deviating from the true, underlying distribution of the data.
 
 Furthermore, our results demonstrate that the approach of \citet{Hickerson2013}
 consistently infers highly clustered divergences across all the \divt{max} we
-simulated (Figure~\ref{figPowerNumExcluded}).
+simulated (Figure~\ref{figPower4}A--D \& S\ref{figPower6}A--F).
 The method is most likely to infer the extreme case of a single divergence
 event shared across 22 taxa when populations diverged randomly over the past
 \globalcoalunit generations.
@@ -741,7 +741,7 @@ divergence is still estimated in more than 10\% of the replicates.
 It is interesting to note that as \divt{max} increases, but before the
 estimates are finally pulled away from $\numt{} = 1$, the distribution of
 \numt{} estimates closely mirror the U-shaped prior on divergence models
-used by \msb (see Figure~\ref{figPowerNumExcluded}E and Oaks et al.'s
+used by \msb (see Figure~\ref{figPower4}E and Oaks et al.'s
 (\citeyear{Oaks2012}) Figure 5B).
 This suggests this U-shaped prior coupled with the small marginal likelihoods
 of models with many divergence parameters, is a major cause of the method's
@@ -752,13 +752,15 @@ Looking at our simulation results in terms of the posterior probability of the
 dispersion index of divergence times supporting the extreme case of one
 divergence event (i.e., $p(\vmratio{} < 0.01 \given \ssSpace)$), we find the
 method strongly supports one divergence in greater than 27\% of the replicates
-across all the \divt{max} we simulated (Figure~\ref{figPowerOmegaProb});
+across all the \divt{max} we simulated (Figure~\ref{figPower4}E--H \&
+S\ref{figPower6}G--L);
 following \citet{Hickerson2013}, we use a Bayes factor of greater than 10 as
 the criterion for incorrect inference of a single divergence event.
 Furthermore, there is strong support for a single divergence event in
 more than 90\% of the replicates when divergences are random over the past
 $2.4\globalpopsize$ generations, and more than 60\% when over the past
-$3.2\globalpopsize$ generations (Figure~\ref{figPowerOmegaProb}).
+$3.2\globalpopsize$ generations (Figure~\ref{figPower4}E--H \&
+S\ref{figPower6}G--L).
 
 Our results show that the empirical Bayesian model-averaging approach leads to
 spuriously strong support for the extreme case of a single divergence event
@@ -779,13 +781,14 @@ parameter values.
 Across all but one of the \divt{max} we simulated, in a large proportion of
 replicates the method favors a model that excludes the truth, and across many
 of the \divt{max} the preferred model will exclude a large proportion of the
-true divergence-time values (Figure~\ref{figPowerNumExcluded}).
+true divergence-time values (Figure~\ref{figPowerExclusion4}A--D \&
+S\ref{figPowerExclusion6}A--F).
 Importantly, the posterior probability of excluding at least one true
 divergence value is also quite high across many of the \divt{max}
-(Figure~\ref{figPowerProbExclusion}).
+(Figure~\ref{figPowerExclusion4}E--H \& S\ref{figPowerExclusion6}G--L).
 Only when the data are identically distributed as one of the prior models does
 the method avoid excluding the truth more than 5\% of the time
-(Figure~\ref{figPowerNumExcluded}E).
+(Figure~\ref{figPowerExclusion4}C).
 Again, this demonstrates the method's sensitivity to priors.
 
 
@@ -936,9 +939,8 @@ with the fundamental sensitivity of marginal likelihoods to priors.
 This is further demonstrated by the results presented herein that show the
 model-averaging approach of \citet{Hickerson2013} prefers models with narrower
 \divt{} priors (Table~\ref{tabModelChoiceEmpirical} and
-Figs.~\labelcref{figExclusionSimTau,figExclusionSimProb,figPowerNumExcluded,figPowerProbExclusion})
-and models with fewer \divt{} parameters (Figs.~\ref{figPowerPsiMode} \&
-\ref{figPowerOmegaProb}).
+Figs.~\labelcref{figExclusionSimTau,figExclusionSimProb,figPowerExclusion4})
+and models with fewer \divt{} parameters (Figure~\ref{figPower4}).
 In all of these analyses, each of the prior models have the same number of
 samples.
 Thus, while sampling error will always be present in any numerical Bayesian
@@ -953,9 +955,9 @@ divergence-time dimensions.
 
 
 \section*{General thoughts on the model of \msb}
-Our findings are not very surprising in light of difficult inference problem
-\msb seeks to tackle.
-To get a sense of the challenge \msb is faced with, we tally up all the free
+Our findings are not surprising in light of the difficult inference problem
+with which \msb is faced.
+To get a sense of the difficulty of this problem, we tally up all the free
 parameters of the \msb model as applied to the dataset of \citet{Oaks2012}.
 % While this approach is trivial to implement, it is not a trivial change
 % to the \msb model.
@@ -999,9 +1001,9 @@ parameters in the model.
 More summary statistics can be used in \msb, but most are highly correlated
 with the four default statistics, and thus contribute little additional
 information about the parameters from the sequence data.
-The large number of parameters and divergence models relative to summary
-statistics is undoubtedly a key reason the method lacks robustness to prior
-conditions.
+The large number of parameters and divergence models relative to the amount of
+information in the data is undoubtedly a key reason the method lacks robustness
+to prior conditions.
 Robustness is an important characteristic of a method to gauge its
 applicability to real-world data, because we know the model and priors will be
 wrong to some degree.
@@ -1025,7 +1027,7 @@ nuisance parameters.
 However, when averaging over both narrow-empirical and diffuse uniform priors
 for a parameter that is expected to have a very non-uniform likelihood density,
 and in the context of a model-choice method that is highly sensitive to priors,
-it is not too surprising to find the approach struggles.
+it is not too surprising that the approach struggles.
 
 The recommendations of \citet{Oaks2012} for mitigating the lack of robustness
 of \msb are similar to those of \citet{Hickerson2013}, but avoid the

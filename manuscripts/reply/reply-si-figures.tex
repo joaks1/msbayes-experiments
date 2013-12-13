@@ -27,37 +27,46 @@
     population pairs of Philippine vertebrates.
 }{figPCA}
 
-\siFigure{../../model-choice/results/power-1/pymsbayes-results/plots/power_accuracy_omega_median.pdf}{
-    The accuracy of the model-averaging approach of \citet{Hickerson2013} to
-    estimate the dispersion index of divergence times (\vmratio{}) from
-    analyses of simulated datasets where \divt{} for 22 pairs of populations is
-    drawn from a series of uniform distributions, $\divt{} \sim U(0,
-    \divt{max})$.
-    The proportion of estimates less than the true value of,
-    $p(\hat{\vmratio{}} < \vmratio{})$, is given for each \divt{max}.
-    Each plot represents unadjusted median estimates from 500 simulation
-    replicates analyzed using $5\e6$ samples from the prior.
-}{figPowerAccOmegaMedian}
+\siSidewaysFigure{../../model-choice/results/power-1/pymsbayes-results/plots/power-accuracy-6.pdf}{
+    The accuracy of (A--F) unadjusted and (G--L) GLM-adjusted estimates of
+    dispersion index of divergence times (\vmratio{}) when the empirically
+    informed model-averaging approach of \citet{Hickerson2013} is applied to
+    simlated datasets in which divergence times are randomly drawn from the
+    uniform distributions $\divt{} \sim U(0, \divt{max})$ indicated at the top
+    of each column of plots (divergence-time distributions are given in units
+    of millions of generations ago (MGA) assuming a per-site rate of 1\e{-8}
+    mutations per generation).
+}{figPowerAccuracy}
 
-\siFigure{../../model-choice/results/power-1/pymsbayes-results/plots/power_accuracy_omega_mode_glm.pdf}{
-    The accuracy of the model-averaging approach of \citet{Hickerson2013} to
-    estimate the dispersion index of divergence times (\vmratio{}) from
-    analyses of simulated datasets where \divt{} for 22 pairs of populations is
-    drawn from a series of uniform distributions, $\divt{} \sim U(0,
-    \divt{max})$.
-    The proportion of estimates less than the true value of,
-    $p(\hat{\vmratio{}} < \vmratio{})$, is given for each \divt{max}.
-    Each plot represents GLM-regression-adjusted mode estimates from 500
-    simulation replicates analyzed using $5\e6$ samples from the prior.
-}{figPowerAccOmegaModeGLM}
+\siSidewaysFigure{../../model-choice/results/power-1/pymsbayes-results/plots/power-6.pdf}{
+    The tendency of the empirically informed model-averaging approach of
+    \citet{Hickerson2013} to (A--F) infer clustered divergences and (G--L)
+    support the extreme model of one divergence when applied to simulated
+    datasets in which the divergence times are randomly drawn from the uniform
+    distributions $\divt{} \sim U(0, \divt{max})$ indicated at the top of each
+    column of plots (divergence-time distributions are given in units of
+    millions of generations ago (MGA) assuming a per-site rate of 1\e{-8}
+    mutations per generation).
+}{figPower6}
+
+\siSidewaysFigure{../../model-choice/results/power-1/pymsbayes-results/plots/power-exclusion-6.pdf}{
+    Histograms of the (A--F) number of true divergence-time parameters excluded
+    from the preferred model and the (G--L) posterior probability of excluding
+    at least one divergence-time parameter when the empirically informed
+    model-averaging approach of \citet{Hickerson2013} is applied to simlated
+    datasets in which divergence times are randomly drawn from the uniform
+    distributions $\divt{} \sim U(0, \divt{max})$ indicated at the top of each
+    column of plots (divergence-time distributions are given in units of
+    millions of generations ago (MGA) assuming a per-site rate of 1\e{-8}
+    mutations per generation).
+}{figPowerExclusion6}
 
 %% Validation results
 \siFigure{../../model-choice/results/validation/results/pymsbayes-results/plots/mc_behavior.pdf}{
     An assessment of the approximate Bayesian model-averageing approach of
     \citet{Hickerson2013} under the ideal conditions when the prior model
-    is correct (i.e., the pseudo-replicate datasets are simulated from
-    parameters drawn from the same prior distributions used in the
-    analysis).
+    is correct (i.e., the datasets are simulated from parameters drawn from the
+    same prior distributions used in the analysis).
     The plots show the relationship between the estimated posterior and true
     probability of (A \& C) $\numt{}=1$ and (B \& D) $\vmratio{} < 0.01$, based
     on 50,000 simulations.

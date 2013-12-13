@@ -1,31 +1,30 @@
 \mFigure{../images/coin_flip.pdf}{
     A plot of three beta probability density functions that represent a prior
-    (black; $beta(10, 10)$), true posterior (blue; $beta(13, 17)$), and
-    empirical Bayes density (red; $beta(16, 24)$) for a dataset of 10 Bernoulli
-    trials, three of which are successes.
+    (black; $beta(10, 10)$), posterior (blue; $beta(13, 17)$), and empirical
+    Bayes density (red; $beta(16, 24)$) for a dataset of 10 coin flips, three
+    of which are successes.
 }{figCoinFlip}
 
 %% Exclusion simulation results
 \mFigure{../../model-choice/results/m1-1-sim/pymsbayes-results/num_tau_excluded.pdf}{
-    The propensity of the model-averaging approach of \citet{Hickerson2013} to
-    exclude the truth.
-    The plots illustrate the number of true \divt{} parameters excluded from analyses of
-    simulated datasets where \divt{} for 22 pairs of populations is drawn from an
-    exponential distribution, $\divt{} \sim Exp(2)$.
+    Histograms of the number of true divergence times excluded from the model
+    preferred by the empirically informed model-averaging approach of
+    \citet{Hickerson2013} when applied to simulated datasets in which divergence
+    times for 22 pairs of populations is drawn from an exponential
+    distribution, $\divt{} \sim Exp(2)$.
     The plots represent (A) unadjusted and (B) GLM-adjusted estimates from 1000
     simulation replicates analyzed using $5\e6$ samples from the prior.
     The proportion of simulation replicates in which at least one true
-    parameter value is excluded from the model preferred by a Bayes factor
-    ($p(\divt{} \notin \hat{M})$) is also given.
+    parameter value is excluded from the preferred model ($p(\divt{} \notin
+    \hat{M})$) is also given.
 }{figExclusionSimTau}
 
 \mFigure{../../model-choice/results/m1-1-sim/pymsbayes-results/prob_of_exclusion.pdf}{
-    The propensity of the model-averaging approach of \citet{Hickerson2013} to
-    exclude the truth.
-    The plots illustrate the estimated probability of excluding at least one
-    true \divt{} value from analyses of simulated datasets where \divt{} for 22
-    pairs of populations is drawn from an exponential distribution, $\divt{}
-    \sim Exp(2)$.
+    Histograms of the support (estimated posterior probabilities) for excluding
+    at least one true divergence time when the empirically informed
+    model-averaging approach of \citet{Hickerson2013} is applied to simulated
+    datasets in which divergence times for 22 pairs of populations is drawn
+    from an exponential distribution, $\divt{} \sim Exp(2)$.
     The plots represent (A) unadjusted and (B) GLM-adjusted estimates from 1000
     simulation replicates analyzed using $5\e6$ samples from the prior.
     The proportion of simulation replicates in which there is strong support
@@ -35,61 +34,35 @@
 
 %% Power results
 
-\mFigure{../../model-choice/results/power-1/pymsbayes-results/plots/power_psi_mode.pdf}{
-    The bias of the model-averaging approach of \citet{Hickerson2013} to infer
-    clustered divergences in our simulation-based power analyses.
-    The plots illustrate the estimated number of divergence events ($\hat{\numt{}}$)
-    from analyses of simulated datasets where \divt{} for 22 pairs of populations is drawn from a series of
-    uniform distributions, $\divt{} \sim U(0, \divt{max})$.
-    The estimated probability of the method inferring one divergence event, $p(\hat{\numt{}} = 1)$,
-    is given for each \divt{max}.
-    Each plot represents 500 simulation replicates analyzed using $5\e6$
-    samples from the prior.
-}{figPowerPsiMode}
+\mFigure{../../model-choice/results/power-1/pymsbayes-results/plots/power-4.pdf}{
+    The tendency of the empirically informed model-averaging approach of
+    \citet{Hickerson2013} to (A--D) infer clustered divergences and (E--H)
+    support the extreme model of one divergence when applied to simulated
+    datasets in which the divergence times are randomly drawn from the uniform
+    distributions $\divt{} \sim U(0, \divt{max})$ indicated at the top of each
+    column of plots (divergence-time distributions are given in units of
+    millions of generations ago (MGA) assuming a per-site rate of 1\e{-8}
+    mutations per generation).
+    Four of the six \divt{max} we simulated are provided; please see
+    Figure~S\ref{figPower6} for a summary of all of the results.
+}{figPower4}
 
-\mFigure{../../model-choice/results/power-1/pymsbayes-results/plots/power_omega_prob.pdf}{
-    The bias of the model-averaging approach of \citet{Hickerson2013} to
-    support one divergence event in our simulation-based power analyses.
-    The plots illustrate histograms of the estimated posterior probability that
-    the dispersion index of divergence times is less than 0.01 ($p(\vmratio{} <
-    0.01 | \ssSpace)$) from analyses of simulated datasets where \divt{} for 22
-    pairs of populations is drawn from a series of uniform distributions,
-    $\divt{} \sim U(0, \divt{max})$.
-    The proportion of simulation replicates that strongly support one
-    divergence event, $p(BF_{\vmratio{} < 0.01, \vmratio{} \geq 0.01} > 10)$,
-    is given for each \divt{max}.
-    Each plot represents 500 simulation replicates analyzed using $5\e6$
-    samples from the prior.
-}{figPowerOmegaProb}
-
-\mFigure{../../model-choice/results/power-1/pymsbayes-results/plots/power_num_excluded.pdf}{
-    The propensity of the model-averaging approach of \citet{Hickerson2013} to exclude
-    the truth in our simulation-based power analyses.
-    The plots illustrate the number of true \divt{} parameters excluded from analyses of
-    simulated datasets where \divt{} for 22 pairs of populations is drawn from a series of
-    uniform distributions, $\divt{} \sim U(0, \divt{max})$. The proportion
-    of simulation replicates in which at least one true parameter value is excluded from
-    the model preferred by a Bayes factor ($p(\divt{} \notin \hat{M})$) is
-    given for each \divt{max}.
-    Each plot represents 500 simulation replicates analyzed using $5\e6$
-    samples from the prior.
-}{figPowerNumExcluded}
-
-\mFigure{../../model-choice/results/power-1/pymsbayes-results/plots/power_prob_exclusion.pdf}{
-    The propensity of the model-averaging approach of \citet{Hickerson2013} to
-    exclude the truth in our simulatoin-based power analyses.  The plots
-    illustrate the estimated posterior probability of excluding at least one
-    true \divt{} value from analyses of simulated datasets where \divt{} for 22
-    pairs of populations is drawn from a series of uniform distributions,
-    $\divt{} \sim U(0, \divt{max})$. The proportion of simulation replicates in
-    which there is strong support for at least one true parameter value being
-    excluded from the model ($p(BF_{\divt{} \notin M, \divt{} \in M} > 10)$) is
-    given for each \divt{max}.
-    Each plot represents 500 simulation replicates analyzed using $5\e6$
-    samples from the prior.
-}{figPowerProbExclusion}
+\mFigure{../../model-choice/results/power-1/pymsbayes-results/plots/power-exclusion-4.pdf}{
+    Histograms of the (A--D) number of true divergence-time parameters excluded
+    from the preferred model and the (E--H) posterior probability of excluding
+    at least one divergence-time parameter when the empirically informed
+    model-averaging approach of \citet{Hickerson2013} is applied to simlated
+    datasets in which divergence times are randomly drawn from the uniform
+    distributions $\divt{} \sim U(0, \divt{max})$ indicated at the top of each
+    column of plots (divergence-time distributions are given in units of
+    millions of generations ago (MGA) assuming a per-site rate of 1\e{-8}
+    mutations per generation).
+    Four of the six \divt{max} we simulated are provided; please see
+    Figure~S\ref{figPowerExclusion6} for a summary of all of the results.
+}{figPowerExclusion4}
 
 
+%% Sampling error
 \mFigure{../../response-redux/results/sampling-error/pymsbayes-results/omega_over_sampling.pdf}{
     Traces of the estimated lower and upper limits of the 95\% highest posterior density (HPD)
     interval of \vmratio{} (the dispersion index of divergence times) as 100 million prior
@@ -107,8 +80,4 @@
     ($\divt{} \sim U(0, 5)$), $M_4$ ($\divt{} \sim U(0, 10)$), $M_5$ ($\divt{}
     \sim U(0, 20)$).
 }{figMCTauPrior}
-
-% \mFigure{../../response-redux/results/hickerson/pymsbayes-results/pymsbayes-output/d1/m12345678-combined/mean_by_dispersion.pdf}{
-%     Results of reanalysis.
-% }{figJointPosterior}
 
