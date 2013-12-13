@@ -212,6 +212,33 @@ def create_plots(info_path):
             share_x = True,
             share_y = True)
     fig.savefig(os.path.join(output_dir, 'power-omega-prob-4.pdf'))
+    omega_prob_plot.label_offset = 6
+    omega_prob_plot.width = 14.0
+    fig = omega_prob_plot.create_column_grid(
+            subplot_indices_to_exclude = [],
+            x_title_size = 14.0,
+            y_title_size = 14.0,
+            add_column_labels = False,
+            column_label_size = 16.0,
+            column_label_offset = 0.14,
+            x_tick_label_size = 10.0,
+            share_x = True,
+            share_y = True)
+    fig.savefig(os.path.join(output_dir, 'power-omega-prob-6-panel.pdf'))
+    omega_prob_plot.label_offset = 4
+    omega_prob_plot.width = 10.0
+    fig = omega_prob_plot.create_column_grid(
+            subplot_indices_to_exclude = [1,3],
+            x_title_size = 14.0,
+            y_title_size = 14.0,
+            add_column_labels = False,
+            column_label_size = 16.0,
+            column_label_offset = 0.14,
+            right_text_size = 10.0,
+            x_tick_label_size = 10.0,
+            share_x = True,
+            share_y = True)
+    fig.savefig(os.path.join(output_dir, 'power-omega-prob-4-panel.pdf'))
     
     omega_accuracy_plot = AccuracyPowerPlotGrid(
             observed_config_to_estimates = cfg_to_omega_true_ests,
@@ -286,6 +313,33 @@ def create_plots(info_path):
             share_x = False,
             share_y = False)
     fig.savefig(os.path.join(output_dir, 'power-accuracy-omega-mode-glm-4.pdf'))
+    omega_accuracy_plot_glm.label_offset = 6
+    omega_accuracy_plot_glm.width = 14.0
+    fig = omega_accuracy_plot_glm.create_column_grid(
+            subplot_indices_to_exclude = [],
+            x_title_size = 14.0,
+            y_title_size = 14.0,
+            add_column_labels = False,
+            column_label_size = 16.0,
+            column_label_offset = 0.14,
+            x_tick_label_size = 10.0,
+            share_x = False,
+            share_y = False)
+    fig.savefig(os.path.join(output_dir, 'power-accuracy-omega-mode-glm-6-panel.pdf'))
+    omega_accuracy_plot_glm.label_offset = 4
+    omega_accuracy_plot_glm.width = 10.0
+    fig = omega_accuracy_plot_glm.create_column_grid(
+            subplot_indices_to_exclude = [1,3],
+            x_title_size = 14.0,
+            y_title_size = 14.0,
+            add_column_labels = False,
+            column_label_size = 16.0,
+            column_label_offset = 0.14,
+            right_text_size = 10.0,
+            x_tick_label_size = 10.0,
+            share_x = False,
+            share_y = False)
+    fig.savefig(os.path.join(output_dir, 'power-accuracy-omega-mode-glm-4-panel.pdf'))
 
     ex_prob_plot = ProbabilityPowerPlotGrid(
             observed_config_to_estimates = cfg_to_prob_of_exclusion,
@@ -329,49 +383,34 @@ def create_plots(info_path):
             share_x = True,
             share_y = True)
     fig.savefig(os.path.join(output_dir, 'power-prob-exclusion-4.pdf'))
-
-    ex_prob_plot_glm = ProbabilityPowerPlotGrid(
-            observed_config_to_estimates = cfg_to_prob_of_exclusion_glm,
-            variable = 'tau_exclusion',
-            div_model_prior = 'psi',
-            bayes_factor = 10,
-            bayes_factor_prob = bf_10_exclusion_prob,
-            cfg_to_prob_of_bf_exclusion = cfg_to_prob_of_bf_ex,
-            num_columns = 2,
-            x_title = (r'Posterior probability of excluding true parameters, $p(\mathbf{\tau} \, \notin \, '
-                        r'M \, | \, B_{\epsilon}(S*))$'),
-            y_title = 'Density',
-            width = 14.0,
-            height = 2.8,
-            auto_height = False,
-            auto_adjust_margins = False,
-            margin_left = 0.025,
-            margin_bottom = 0.1,
-            margin_right = 1,
-            margin_top = 0.85,
-            padding_between_horizontal = 0.5)
-    fig = ex_prob_plot_glm.create_column_grid(
+    ex_prob_plot.label_offset = 6
+    ex_prob_plot.width = 14.0
+    fig = ex_prob_plot.create_column_grid(
             subplot_indices_to_exclude = [],
             x_title_size = 14.0,
             y_title_size = 14.0,
+            add_column_labels = False,
             column_label_size = 16.0,
             column_label_offset = 0.14,
             x_tick_label_size = 10.0,
             share_x = True,
             share_y = True)
-    fig.savefig(os.path.join(output_dir, 'power-prob-exclusion-glm-6.pdf'))
-    ex_prob_plot_glm.width = 10.0
-    fig = ex_prob_plot_glm.create_column_grid(
+    fig.savefig(os.path.join(output_dir, 'power-prob-exclusion-6-panel.pdf'))
+    ex_prob_plot.label_offset = 4
+    ex_prob_plot.width = 10.0
+    fig = ex_prob_plot.create_column_grid(
             subplot_indices_to_exclude = [1,3],
             x_title_size = 14.0,
             y_title_size = 14.0,
+            add_column_labels = False,
             column_label_size = 16.0,
             column_label_offset = 0.14,
             right_text_size = 10.0,
             x_tick_label_size = 10.0,
             share_x = True,
             share_y = True)
-    fig.savefig(os.path.join(output_dir, 'power-prob-exclusion-glm-4.pdf'))
+    fig.savefig(os.path.join(output_dir, 'power-prob-exclusion-4-panel.pdf'))
+
 
     ex_plot = PowerPlotGrid(
             observed_config_to_estimates = cfg_to_num_excluded,
