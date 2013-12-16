@@ -347,6 +347,7 @@ def create_plots(info_path):
             div_model_prior = 'psi',
             bayes_factor = 10,
             bayes_factor_prob = bf_10_exclusion_prob,
+            draw_bayes_factor_line = False,
             cfg_to_prob_of_bf_exclusion = cfg_to_prob_of_bf_ex,
             num_columns = 2,
             x_title = (r'Posterior probability of excluding true parameters, $p(\mathbf{\tau} \, \notin \, '
