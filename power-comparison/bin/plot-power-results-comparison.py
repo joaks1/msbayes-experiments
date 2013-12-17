@@ -121,11 +121,26 @@ def create_plots(info_path,
         output_dir = project_util.IMAGE_DIR
     if not os.path.exists(output_dir):
         os.mkdir(output_dir)
+    prior_prob_psi_one = {
+            1: 0.0022,  # dpp
+            2: 0.0454,  # old
+            3: 0.0011,  # uniform
+            4: 0.0454,  # u-shaped
+            }
     prior_prob_omega_less_than = {
-            1: 0.0025575,
-            2: 0.049283,
-            3: 0.002171,
-            4: 0.049191}
+            1: 0.0028,  # dpp
+            2: 0.0496,  # old
+            3: 0.0026,  # uniform
+            4: 0.0491,  # u-shaped
+            }
+    bf_prob_psi = dict(zip(prior_prob_psi_one.iterkeys(),
+            [probability.get_probability_from_bayes_factor(bf = 10,
+                    prior_prob = prior_prob_psi_one[k]
+                    ) for k in prior_prob_psi_one.iterkeys()]))
+    bf_prob_omega = dict(zip(prior_prob_omega_less_than.iterkeys(),
+            [probability.get_probability_from_bayes_factor(bf = 10,
+                    prior_prob = prior_prob_omega_less_than[k]
+                    ) for k in prior_prob_omega_less_than.iterkeys()]))
     psi_res, omega_res, prior_index_to_name = parse_results(dmc_sim,
             observed_prefixes_to_include = observed_prefixes_to_include,
             observed_suffixes_to_include = observed_suffixes_to_include,
@@ -209,7 +224,8 @@ def create_plots(info_path,
                 row_labels.append('')
             row_label_size = 28.0
             row_label_offset = 0.08
-            draw_bayes_factor_line = False
+            # draw_bayes_factor_line = False
+            draw_bayes_factor_line = True
             # if num_columns > 4:
             #     draw_bayes_factor_line = True
 
@@ -251,6 +267,7 @@ def create_plots(info_path,
                     div_model_prior = div_model_prior,
                     dpp_concentration_mean = dpp_concentration_mean,
                     bayes_factor = 10,
+                    bayes_factor_prob = bf_prob_psi[prior_index],
                     draw_bayes_factor_line = draw_bayes_factor_line,
                     x_title = r'Posterior probability of one divergence',
                     width = width,
@@ -260,7 +277,7 @@ def create_plots(info_path,
             for cfg, sp in psi_prob_plot.cfg_to_subplot.iteritems():
                 sp.set_left_text('')
                 # if num_columns <= 4:
-                sp.set_right_text('')
+                #     sp.set_right_text('')
 
             # psi_prob_plot_glm = ProbabilityPowerPlotGrid(
             #         observed_config_to_estimates = cfg_to_psi_prob_glm,
@@ -302,15 +319,15 @@ def create_plots(info_path,
                     div_model_prior = div_model_prior,
                     dpp_concentration_mean = dpp_concentration_mean,
                     bayes_factor = 10,
+                    bayes_factor_prob = bf_prob_omega[prior_index],
                     draw_bayes_factor_line = draw_bayes_factor_line,
-                    bayes_factor_prob = prior_prob_omega,
                     num_columns = 2,
                     text_size = 10.0)
             omega_prob_sub_plot_map[prior_name] = omega_prob_plot.subplots
             for cfg, sp in omega_prob_plot.cfg_to_subplot.iteritems():
                 sp.set_left_text('')
                 # if num_columns <= 4:
-                sp.set_right_text('')
+                #     sp.set_right_text('')
 
             # omega_prob_plot_glm = ProbabilityPowerPlotGrid(
             #         observed_config_to_estimates = cfg_to_omega_prob_glm,
@@ -375,7 +392,9 @@ def create_plots(info_path,
             p.yticks_obj.kwargs['size'] = 8.0
         for p in omega_prob_sub_plots:
             p.set_extra_y_label('')
-            p.right_text_size = 10.0
+            p.right_text_size = 7.0
+            if num_columns <= 4:
+                p.right_text_size = 9.0
         for p in omega_accuracy_sub_plots:
             p.set_extra_y_label('')
             p.right_text_size = 10.0
