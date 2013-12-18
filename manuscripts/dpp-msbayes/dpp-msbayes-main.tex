@@ -901,31 +901,45 @@ posterior samples \citep{Leuenberger2010}.
 
 \section*{Results}
 \subsection*{Validation analyses: Estimation accuracy}
-In terms of estimating summary statistics of model parameters (\divTimeNum,
-\divTimeDispersion, and \divTimeMean), the \modelDPP performs similarly when
-applied to datasets generated under all four models of Table \ref{tabPriors}
-(Figs.\
-\labelcref{figValidationAccuracyDPPDPP,figValidationAccuracyUniformDPP,figValidationAccuracyOldDPP,figValidationAccuracyUshapedDPP}).
-The same is true for models \modelUniform (Figs.\
-\labelcref{figValidationAccuracyDPPUniform,figValidationAccuracyUniformUniform,figValidationAccuracyOldUniform,figValidationAccuracyUshapedUniform})
-and \modelUshaped (Figs.\
-\labelcref{figValidationAccuracyDPPUshaped,figValidationAccuracyUniformUshaped,figValidationAccuracyOldUshaped,figValidationAccuracyUshapedUshaped}).
-All three of the models with exponential priors on nuisance parameters
-(\modelDPP, \modelUniform, and \modelUshaped) perform well when applied
-to the data generated under the original \msb model, \modelOld (Figs.\
-\labelcref{figValidationAccuracyOldDPP,figValidationAccuracyOldUniform,figValidationAccuracyOldUshaped}).
-The \modelOld model also performed well on its own datasets (Figure
-\ref{figValidationAccuracyOldOld}), but performed poorly when applied to the
-data generated under the other three models (Figs.\
-\labelcref{figValidationAccuracyDPPOld,figValidationAccuracyUniformOld,figValidationAccuracyUshapedOld}).
-Thus, the newly implemented models display greater robustness than
-the original model.
+In terms of estimating the variance of divergence times (\divTimeDispersion),
+the models with exponentially distributed priors (\modelUshaped, \modelUniform,
+and \modelDPP) perform similarly when applied to datasets generated under all
+four of the models of Table \ref{tabPriors}
+(Figure~S\ref{figValidationAccuracyOmega}).
+The \modelOld model performs similarly to these models when applied to its
+own datasets, but is sensitive to model violations and is more biased when
+applied to data generated under the other three models
+(Figure~S\ref{figValidationAccuracyOmega}).
+This results are similar for the GLM-adjusted estimates of \divTimeDispersion,
+albeit the regression adjustment tends to improve estimates of this continuous
+statistic for all the models
+(Figure~S\ref{figValidationAccuracyPsiGlm}).
 
-Posterior adjustment with GLM regression does improve the estimation
-accuracy for the continuous variables \divTimeDispersion and \divTimeMean,
-however, this is not always true for estimating the discrete variable
-\divTimeNum (Figs.\
-\labelcref{figValidationAccuracyDPPDPP,figValidationAccuracyUniformDPP,figValidationAccuracyOldDPP,figValidationAccuracyUshapedDPP,figValidationAccuracyDPPUniform,figValidationAccuracyUniformUniform,figValidationAccuracyOldUniform,figValidationAccuracyUshapedUniform,figValidationAccuracyDPPUshaped,figValidationAccuracyUniformUshaped,figValidationAccuracyOldUshaped,figValidationAccuracyUshapedUshaped,figValidationAccuracyDPPOld,figValidationAccuracyUniformOld,figValidationAccuracyUshapedOld,figValidationAccuracyOldOld}).
+The same general pattern is seen for estimates of \divTimeMean, with
+the all four models performing similarly when applied to the data generated
+under \modelOld, the models with exponentially distributed priors performing
+similarly when applied to data generated under other models, and the
+\modelOld is more biased when applied to data generated under other models
+(Figure~S\ref{figValidationAccuracyTime}).
+Also, the regression adjustment tends to slightly improve estimates of
+this continuous statistic for all of the models
+(Figure~S\ref{figValidationAccuracyTimeGlm}).
+
+In terms of estimating the number of divergence events (\divTimeNum), the
+\modelDPP model has the lowest root mean square error (RMSE) when applied
+to data generated under most of the models of Table \ref{tabPriors}
+(Figure~S\ref{figValidationAccuracyPsi}).
+The \modelOld model performs slightly better when applied to its own data,
+but is the worst performer when applied to data generated under other models
+(Figure~S\ref{figValidationAccuracyPsi}).
+There is a trend of $\modelDPP > \modelUniform > \modelUshaped > \modelOld$
+in terms of estimation accuracy as measured by RMSE when the models are applied
+to data generated under most of the models
+(Figure~S\ref{figValidationAccuracyPsi}).
+Unlike for the continuous statistics, regression adjustment of this discrete
+statistic tends to increase estimation bias; all of the models tend to
+underestimate \divTimeDispersion after the GLM-adjustment
+(Figure~S\ref{figValidationAccuracyPsiGlm}).
 
 \subsection*{Validation analyses: Model-choice accuracy}
 The \msb model, and our modification of it, is a model-choice method
@@ -933,13 +947,31 @@ with the primary purpose of estimating the probabilities of models
 of divergence across taxa.
 Thus, it is critical to assess the method's ability to accurately
 estimate the posterior probabilities of divergence models.
-Our results demonstrate that the unadjusted estimates of divergence models are
-generally more accurate than the regression-adjusted estimates, especially when
-using $\divTimeDispersion < 0.01$ to assess the probability of the one
-divergence model (Figs.\
-\labelcref{figValidationModelChoiceDPPDPP,figValidationModelChoiceUniformDPP,figValidationModelChoiceOldDPP,figValidationModelChoiceUshapedDPP,figValidationModelChoiceDPPUniform,figValidationModelChoiceUniformUniform,figValidationModelChoiceOldUniform,figValidationModelChoiceUshapedUniform,figValidationModelChoiceDPPUshaped,figValidationModelChoiceUniformUshaped,figValidationModelChoiceOldUshaped,figValidationModelChoiceUshapedUshaped,figValidationModelChoiceDPPOld,figValidationModelChoiceUniformOld,figValidationModelChoiceUshapedOld,figValidationModelChoiceOldOld}).
-Thus, we will focus our discussion of the results on the unadjusted estimates.
+Consistent with the findings of \citet{Oaks2012}, our results demonstrate that
+the unadjusted estimates of divergence-model posterior probabilities are
+generally more accurate than regression-adjusted estimates
+(Figure~\ref{figValidationModelChoicePsi} versus
+S\ref{figValidationModelChoicePsiGlm} and
+Figure~\ref{figValidationModelChoiceOmega} versus
+S\ref{figValidationModelChoiceOmegaGlm}).
+Regression adjustment results in biased estimates of the posterior probability
+of the one-divergence model when all model assumptions are satisfied, which is
+well illustrated in Figure S\ref{figValidationModelChoiceOmegaGlm}.
+As a result, we will focus our discussion of the results on the unadjusted
+estimates.
 
+We find that all four models accurately estimate the posterior probability of
+the one-divergence model when applied to their own datasets (i.e., when the
+prior is correct; see diagonal of Figures~\ref{figValidationModelChoicePsi} \&
+\ref{figValidationModelChoiceOmega}).
+The \modelUniform and \modelDPP show robustness to prior violations and
+perform well when applied to data generated under other models
+(Figures~\ref{figValidationModelChoicePsi} \&
+\ref{figValidationModelChoiceOmega}).
+However, both are less accurate and tends to underestimate the probability of the
+one-divergence model when applied to the data generated under \modelUshaped
+(Figures~\ref{figValidationModelChoicePsi} \&
+\ref{figValidationModelChoiceOmega}).
 The model-choice behavior of the \modelDPP is relatively accurate when applied
 to datasets generated under models \modelDPP, \modelUniform, and \modelOld
 (Figs.\
