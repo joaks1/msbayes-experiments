@@ -633,7 +633,7 @@ def tau_prior_in_generations(cfg, mu = 1e-8):
         return r'$\tau \sim U(0, \, {0:.1f} \, \mathsf{{MGA}})$'.format(upper_tau)
     elif isinstance(cfg.tau, probability.GammaDistribution):
         mean_tau = (cfg.tau.mean * (mean_theta / mu)) / 1000000.0
-        return r'$\tau \sim Exp(\mathsf{{mean}} = {0:.1f} \, \mathsf{{MGA}})$'.format(mean_tau)
+        return r'$\tau \sim Exp(\mathsf{{mean}} = {0:.2f} \, \mathsf{{MGA}})$'.format(mean_tau)
     else:
         raise Exception('unsupported tau distribution: {0}'.format(type(cfg.tau)))
 
