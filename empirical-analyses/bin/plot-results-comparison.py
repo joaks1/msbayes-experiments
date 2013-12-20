@@ -85,10 +85,14 @@ def get_omega_from_summary_path(summary_path):
     return omega, (hpd[0], hpd[1])
 
 def get_values_from_probs(probs, num_samples = 10000):
+    total = sum(probs.itervalues())
+    diff = 1.0 - total
     v = []
     for k, p in probs.iteritems():
         n = int(round(num_samples * p))
         v.extend([k] * n)
+    n = int(round(num_samples * diff))
+    v.extend([0] * n)
     return v
 
 def get_values_psi_path(psi_path, num_samples = 10000):
@@ -97,7 +101,9 @@ def get_values_psi_path(psi_path, num_samples = 10000):
 
 def get_histograms(config_path,
         info_path,
-        num_samples = 10000):
+        num_samples = 10000,
+        num_div_values = None,
+        div_model_values = None):
     cfg = MsBayesConfig(config_path)
     dmc = DMCSimulationResults(info_path)
     npairs = dmc.num_taxon_pairs
@@ -106,20 +112,23 @@ def get_histograms(config_path,
     sum_path = dmc.get_result_path_prefix(1, 1, 1) + '99-posterior-summary.txt'
     psis = get_values_psi_path(psi_path)
     omega, omega_hpd = get_omega_from_summary_path(sum_path)
-    if cfg.div_model_prior == 'dpp':
-        num_div_prior_psis, div_model_prior_psis = get_dpp_prior_values(
-                config_path = config_path,
-                num_samples = num_samples)
-    elif cfg.div_model_prior == 'uniform':
-        num_div_prior_psis, div_model_prior_psis = get_uniform_prior_values(
-                npairs = npairs,
-                num_samples = 10000)
-    elif cfg.div_model_prior == 'psi':
-        num_div_prior_psis, div_model_prior_psis = get_psi_uniform_prior_values(
-                npairs = npairs,
-                num_samples = 10000)
+    num_div_prior_psis, div_model_prior_psis = num_div_values, div_model_values
+    if (not num_div_values) or (not div_model_values):
+        if cfg.div_model_prior == 'dpp':
+            num_div_prior_psis, div_model_prior_psis = get_dpp_prior_values(
+                    config_path = config_path,
+                    num_samples = num_samples)
+        elif cfg.div_model_prior == 'uniform':
+            num_div_prior_psis, div_model_prior_psis = get_uniform_prior_values(
+                    npairs = npairs,
+                    num_samples = num_samples)
+        elif cfg.div_model_prior == 'psi':
+            num_div_prior_psis, div_model_prior_psis = get_psi_uniform_prior_values(
+                    npairs = npairs,
+                    num_samples = num_samples)
 
-    bins = range(1, npairs + 2)
+    # Extra bin for zero values
+    bins = range(0, npairs + 2)
 
     hds = []
     for p in [psis, num_div_prior_psis, div_model_prior_psis]:
@@ -149,11 +158,10 @@ def get_histograms(config_path,
                     omega_hpd[0],
                     omega_hpd[1])
         hist = ScatterPlot(hist_data_list = [hd],
-                # x_label = 'Number of divergence events',
-                # y_label = 'Posterior probability',
                 right_text = right_text,
                 xticks_obj = xticks_obj)
-        hist.set_xlim(left = bins[0], right = bins[-1])
+        # cut off extra zero-valued bin
+        hist.set_xlim(left = bins[1], right = bins[-1])
         hist.set_ylim(bottom = 0.0, top = 0.45)
         hist.right_text_size = 10.0
         hist.plot_label_size = 12.0
@@ -182,15 +190,21 @@ def create_plots(
     # matplotlib.rc('text',**{'usetex': True})
     if not os.path.exists(out_dir):
         os.mkdir(out_dir)
+    dpp_num_div_values, dpp_div_model_values = get_dpp_prior_values(
+                    config_path = dpp_config_path,
+                    num_samples = 1000000)
     dpp_hists = get_histograms(config_path = dpp_config_path,
             info_path = dpp_info_path,
-            num_samples = 1000000)
+            num_div_values = dpp_num_div_values,
+            div_model_values = dpp_div_model_values)
     dpp_simple_hists = get_histograms(config_path = dpp_config_path,
             info_path = dpp_simple_info_path,
-            num_samples = 1000000)
+            num_div_values = dpp_num_div_values,
+            div_model_values = dpp_div_model_values)
     dpp_inform_hists = get_histograms(config_path = dpp_config_path,
             info_path = dpp_inform_info_path,
-            num_samples = 1000000)
+            num_div_values = dpp_num_div_values,
+            div_model_values = dpp_div_model_values)
     uniform_hists = get_histograms(config_path = uniform_config_path,
             info_path = uniform_info_path,
             num_samples = 100000)
@@ -199,7 +213,6 @@ def create_plots(
             num_samples = 100000)
 
     hists = []
-    # for i in range(len(dpp_hists)):
     for i in range(len(dpp_hists)):
         hists.append(old_hists[i])
         hists.append(uniform_hists[i])
