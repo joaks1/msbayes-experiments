@@ -9,12 +9,25 @@ PROJECT_DIR = os.path.abspath(os.path.dirname(BIN_DIR))
 PLOT_DIR = os.path.join(PROJECT_DIR, 'plots')
 CONFIG_DIR = os.path.abspath(os.path.join(PROJECT_DIR, 'configs'))
 RESULTS_DIR = os.path.abspath(os.path.join(PROJECT_DIR, 'results'))
+
 PHILIPPINES_DIR = os.path.abspath(os.path.join(RESULTS_DIR, 'philippines'))
 PHILIPPINES_DPP_DIR = os.path.abspath(os.path.join(PHILIPPINES_DIR, 'dpp'))
+PHILIPPINES_DPP_SIMPLE_DIR = os.path.abspath(os.path.join(PHILIPPINES_DIR, 'dpp-simple'))
+PHILIPPINES_DPP_INFORM_DIR = os.path.abspath(os.path.join(PHILIPPINES_DIR, 'dpp-inform'))
+PHILIPPINES_UNIFORM_DIR = os.path.abspath(os.path.join(PHILIPPINES_DIR, 'uniform'))
 PHILIPPINES_OLD_DIR = os.path.abspath(os.path.join(PHILIPPINES_DIR, 'old'))
+
 PHILIPPINES_DPP_INFO = os.path.join(PHILIPPINES_DPP_DIR, 'pymsbayes-results', 'pymsbayes-info.txt')
+PHILIPPINES_DPP_SIMPLE_INFO = os.path.join(PHILIPPINES_DPP_SIMPLE_DIR, 'pymsbayes-results', 'pymsbayes-info.txt')
+PHILIPPINES_DPP_INFORM_INFO = os.path.join(PHILIPPINES_DPP_INFORM_DIR, 'pymsbayes-results', 'pymsbayes-info.txt')
+PHILIPPINES_UNIFORM_INFO = os.path.join(PHILIPPINES_UNIFORM_DIR, 'pymsbayes-results', 'pymsbayes-info.txt')
 PHILIPPINES_OLD_INFO = os.path.join(PHILIPPINES_OLD_DIR, 'pymsbayes-results', 'pymsbayes-info.txt')
 
+PHILIPPINES_DPP_CFG = os.path.join(CONFIG_DIR, 'philippines-dpp.cfg')
+PHILIPPINES_DPP_SIMPLE_CFG = os.path.join(CONFIG_DIR, 'philippines-dpp-simple.cfg')
+PHILIPPINES_DPP_INFORM_CFG = os.path.join(CONFIG_DIR, 'philippines-dpp-inform.cfg')
+PHILIPPINES_UNIFORM_CFG = os.path.join(CONFIG_DIR, 'philippines-uniform.cfg')
+PHILIPPINES_OLD_CFG = os.path.join(CONFIG_DIR, 'philippines-old.cfg')
 
 def main():
     sys.stdout.write("%s" % PROJECT_DIR)
