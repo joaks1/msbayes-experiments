@@ -29,6 +29,13 @@ PHILIPPINES_DPP_INFORM_CFG = os.path.join(CONFIG_DIR, 'philippines-dpp-inform.cf
 PHILIPPINES_UNIFORM_CFG = os.path.join(CONFIG_DIR, 'philippines-uniform.cfg')
 PHILIPPINES_OLD_CFG = os.path.join(CONFIG_DIR, 'philippines-old.cfg')
 
+NEGROS_PANAY_DIR = os.path.abspath(os.path.join(RESULTS_DIR, 'negros-panay'))
+NP_DPP_ORDERED_DIR = os.path.abspath(os.path.join(NEGROS_PANAY_DIR, 'dpp-ordered'))
+NP_DPP_ORDERED_INFO = os.path.join(NP_DPP_ORDERED_DIR, 'pymsbayes-results', 'pymsbayes-info.txt')
+NP_DPP_UNORDERED_DIR = os.path.abspath(os.path.join(NEGROS_PANAY_DIR, 'dpp-unordered'))
+NP_DPP_UNORDERED_INFO = os.path.join(NP_DPP_UNORDERED_DIR, 'pymsbayes-results', 'pymsbayes-info.txt')
+NEGROS_PANAY_CFG = os.path.join(CONFIG_DIR, 'negros-panay.cfg')
+
 def main():
     sys.stdout.write("%s" % PROJECT_DIR)
 

@@ -25,6 +25,13 @@ def get_divergence_model_probs(num_divergence_probs):
         div_model_probs[k] = p / float(ips[k-1])
     return div_model_probs
 
+def get_ordered_divergence_model_probs(num_divergence_probs):
+    part = stats.Partition([0] * len(num_divergence_probs))
+    div_model_probs = {}
+    for k, p in num_divergence_probs.iteritems():
+        div_model_probs[k] = p / float(part.number_of_partitions_into_k_subsets(k))
+    return div_model_probs
+
 def get_dpp_prior_probs(config_path, num_samples = 100000):
     prob_team = teams.ModelProbabilityEstimatorTeam(
             config_paths = [config_path],
@@ -33,14 +40,16 @@ def get_dpp_prior_probs(config_path, num_samples = 100000):
     prob_team.start()
     num_div_probs = prob_team.psi_probs[config_path]
     div_model_probs = get_divergence_model_probs(num_div_probs)
-    return num_div_probs, div_model_probs
+    ordered_div_model_probs = get_ordered_divergence_model_probs(num_div_probs)
+    return num_div_probs, div_model_probs, ordered_div_model_probs
 
 def get_dpp_prior_values(config_path, num_samples = 100000):
-    num_div_probs, div_model_probs = get_dpp_prior_probs(
+    num_div_probs, div_model_probs, ordered_div_model_probs = get_dpp_prior_probs(
             config_path,
             num_samples)
     return (get_values_from_probs(num_div_probs, num_samples),
-            get_values_from_probs(div_model_probs, num_samples))
+            get_values_from_probs(div_model_probs, num_samples),
+            get_values_from_probs(ordered_div_model_probs, num_samples))
 
 def get_uniform_prior_probs(npairs):
     ips = stats.IntegerPartition.number_of_int_partitions_by_k(
@@ -50,24 +59,28 @@ def get_uniform_prior_probs(npairs):
     for i in range(1, npairs + 1):
         num_div_probs[i] = ips[i-1] / float(n)
     div_model_probs = get_divergence_model_probs(num_div_probs)
-    return num_div_probs, div_model_probs
+    ordered_div_model_probs = get_ordered_divergence_model_probs(num_div_probs)
+    return num_div_probs, div_model_probs, ordered_div_model_probs
 
 def get_uniform_prior_values(npairs, num_samples = 10000):
-    num_div_probs, div_model_probs = get_uniform_prior_probs(npairs)
+    num_div_probs, div_model_probs, ordered_div_model_probs = get_uniform_prior_probs(npairs)
     return (get_values_from_probs(num_div_probs, num_samples),
-            get_values_from_probs(div_model_probs, num_samples))
+            get_values_from_probs(div_model_probs, num_samples),
+            get_values_from_probs(ordered_div_model_probs, num_samples))
 
 def get_psi_uniform_prior_probs(npairs):
     num_div_probs = {}
     for i in range(1, npairs + 1):
         num_div_probs[i] = 1.0 / npairs
     div_model_probs = get_divergence_model_probs(num_div_probs)
-    return num_div_probs, div_model_probs
+    ordered_div_model_probs = get_ordered_divergence_model_probs(num_div_probs)
+    return num_div_probs, div_model_probs, ordered_div_model_probs
 
 def get_psi_uniform_prior_values(npairs, num_samples = 10000):
-    num_div_probs, div_model_probs = get_psi_uniform_prior_probs(npairs)
+    num_div_probs, div_model_probs, ordered_div_model_probs = get_psi_uniform_prior_probs(npairs)
     return (get_values_from_probs(num_div_probs, num_samples),
-            get_values_from_probs(div_model_probs, num_samples))
+            get_values_from_probs(div_model_probs, num_samples),
+            get_values_from_probs(ordered_div_model_probs, num_samples))
 
 def get_probs_from_psi_path(psi_path):
     probs = {}
@@ -103,27 +116,35 @@ def get_histograms(config_path,
         info_path,
         num_samples = 10000,
         num_div_values = None,
-        div_model_values = None):
+        div_model_values = None,
+        ordered_div_model_values = None,
+        iteration_index = 99,
+        y_limits = [0.45, 0.45, 0.05, 0.05],
+        xtick_label_size = 8.0):
     cfg = MsBayesConfig(config_path)
     dmc = DMCSimulationResults(info_path)
     npairs = dmc.num_taxon_pairs
 
-    psi_path = dmc.get_result_path_prefix(1, 1, 1) + '99-psi-results.txt'
-    sum_path = dmc.get_result_path_prefix(1, 1, 1) + '99-posterior-summary.txt'
+    psi_path = (dmc.get_result_path_prefix(1, 1, 1) + 
+            '{0}-psi-results.txt'.format(iteration_index))
+    sum_path = (dmc.get_result_path_prefix(1, 1, 1) + 
+            '{0}-posterior-summary.txt'.format(iteration_index))
     psis = get_values_psi_path(psi_path)
     omega, omega_hpd = get_omega_from_summary_path(sum_path)
-    num_div_prior_psis, div_model_prior_psis = num_div_values, div_model_values
-    if (not num_div_values) or (not div_model_values):
+    (num_div_prior_psis, div_model_prior_psis, ordered_div_model_prior_psis) = (
+            num_div_values, div_model_values, ordered_div_model_values)
+    if ((not num_div_values) or (not div_model_values) or
+            (not ordered_div_model_values)):
         if cfg.div_model_prior == 'dpp':
-            num_div_prior_psis, div_model_prior_psis = get_dpp_prior_values(
+            num_div_prior_psis, div_model_prior_psis, ordered_div_model_prior_psis = get_dpp_prior_values(
                     config_path = config_path,
                     num_samples = num_samples)
         elif cfg.div_model_prior == 'uniform':
-            num_div_prior_psis, div_model_prior_psis = get_uniform_prior_values(
+            num_div_prior_psis, div_model_prior_psis, ordered_div_model_prior_psis = get_uniform_prior_values(
                     npairs = npairs,
                     num_samples = num_samples)
         elif cfg.div_model_prior == 'psi':
-            num_div_prior_psis, div_model_prior_psis = get_psi_uniform_prior_values(
+            num_div_prior_psis, div_model_prior_psis, ordered_div_model_prior_psis = get_psi_uniform_prior_values(
                     npairs = npairs,
                     num_samples = num_samples)
 
@@ -131,7 +152,7 @@ def get_histograms(config_path,
     bins = range(0, npairs + 2)
 
     hds = []
-    for p in [psis, num_div_prior_psis, div_model_prior_psis]:
+    for p in [psis, num_div_prior_psis, div_model_prior_psis, ordered_div_model_prior_psis]:
         hds.append(HistData(x = p,
                 normed = True,
                 bins = bins,
@@ -149,7 +170,7 @@ def get_histograms(config_path,
     xticks_obj = Ticks(ticks = bins,
             labels = tick_labels,
             horizontalalignment = 'left',
-            size = 8.0)
+            size = xtick_label_size)
     hists = []
     for i, hd in enumerate(hds):
         right_text = ''
@@ -162,7 +183,8 @@ def get_histograms(config_path,
                 xticks_obj = xticks_obj)
         # cut off extra zero-valued bin
         hist.set_xlim(left = bins[1], right = bins[-1])
-        hist.set_ylim(bottom = 0.0, top = 0.45)
+        top = y_limits[i]
+        hist.set_ylim(bottom = 0.0, top = top)
         hist.right_text_size = 10.0
         hist.plot_label_size = 12.0
         yticks = [i for i in hist.ax.get_yticks()]
@@ -190,21 +212,25 @@ def create_plots(
     # matplotlib.rc('text',**{'usetex': True})
     if not os.path.exists(out_dir):
         os.mkdir(out_dir)
-    dpp_num_div_values, dpp_div_model_values = get_dpp_prior_values(
+    dpp_num_div_values, dpp_div_model_values, dpp_ordered_model_values = get_dpp_prior_values(
                     config_path = dpp_config_path,
-                    num_samples = 1000000)
+                    # num_samples = 1000000)
+                    num_samples = 10000)
     dpp_hists = get_histograms(config_path = dpp_config_path,
             info_path = dpp_info_path,
             num_div_values = dpp_num_div_values,
-            div_model_values = dpp_div_model_values)
+            div_model_values = dpp_div_model_values,
+            ordered_div_model_values = dpp_ordered_model_values)
     dpp_simple_hists = get_histograms(config_path = dpp_config_path,
             info_path = dpp_simple_info_path,
             num_div_values = dpp_num_div_values,
-            div_model_values = dpp_div_model_values)
+            div_model_values = dpp_div_model_values,
+            ordered_div_model_values = dpp_ordered_model_values)
     dpp_inform_hists = get_histograms(config_path = dpp_config_path,
             info_path = dpp_inform_info_path,
             num_div_values = dpp_num_div_values,
-            div_model_values = dpp_div_model_values)
+            div_model_values = dpp_div_model_values,
+            ordered_div_model_values = dpp_ordered_model_values)
     uniform_hists = get_histograms(config_path = uniform_config_path,
             info_path = uniform_info_path,
             num_samples = 100000)
@@ -220,14 +246,14 @@ def create_plots(
         hists.append(dpp_inform_hists[i])
         hists.append(dpp_simple_hists[i])
 
-    column_labels = [r'$msBayes$', r'$Uniform$', r'$DPP_{ }$', r'$DPP_{inform}$', r'$DPP_{simple}$']
-    row_labels = ['Posterior', 'Prior', r'$p(M_{|\tau|, i})$']
+    column_labels = [r'$\mathbf{M}_{msBayes}$', r'$\mathbf{M}_{Uniform}$', r'$\mathbf{M}_{DPP_{ }}$', r'$\mathbf{M}^{inform}_{DPP}$', r'$\mathbf{M}^{simple}_{DPP}$']
+    row_labels = ['Posterior', 'Prior', r'Prior $E(p(\mathbf{t}))$', r'Prior $E(p(\mathbf{t^{\circ}}))$']
 
     pg = PlotGrid(subplots = hists,
             num_columns = 5,
             share_x = True,
-            share_y = True,
-            height = 5.7,
+            share_y = False,
+            height = 7.2,
             width = 11.0,
             auto_height = False,
             title = r'Number of divergence events, $|\tau|$',
@@ -238,16 +264,72 @@ def create_plots(
             row_labels = row_labels,
             row_label_offset = 0.08)
     pg.auto_adjust_margins = False
-    pg.margin_top = 0.915
+    pg.margin_top = 0.93
     pg.margin_bottom = 0.04
     pg.margin_right = 0.965
     pg.padding_between_vertical = 1.0
     pg.reset_figure()
     pg.set_shared_x_limits()
-    pg.set_shared_y_limits()
+    pg.set_shared_y_limits(by_row = True)
     pg.reset_figure()
     pg.savefig(os.path.join(out_dir, 'philippines-psi.pdf'))
 
+def create_negros_panay_plots(
+        config_path,
+        ordered_info_path,
+        unordered_info_path,
+        out_dir):
+    if not os.path.exists(out_dir):
+        os.mkdir(out_dir)
+    dpp_num_div_values, dpp_div_model_values, dpp_ordered_model_values = get_dpp_prior_values(
+                    config_path = config_path,
+                    num_samples = 1000000)
+    ordered_hists = get_histograms(config_path = config_path,
+            info_path = ordered_info_path,
+            num_div_values = dpp_num_div_values,
+            div_model_values = dpp_div_model_values,
+            ordered_div_model_values = dpp_ordered_model_values,
+            iteration_index = 249,
+            y_limits = [0.25, 0.25, 0.15, 0.15],
+            xtick_label_size = 11.0)
+    unordered_hists = get_histograms(config_path = config_path,
+            info_path = unordered_info_path,
+            num_div_values = dpp_num_div_values,
+            div_model_values = dpp_div_model_values,
+            ordered_div_model_values = dpp_ordered_model_values,
+            iteration_index = 249,
+            y_limits = [0.25, 0.25, 0.15, 0.15],
+            xtick_label_size = 11.0)
+
+    hists = [unordered_hists[0]] + ordered_hists
+
+    row_labels = [r'Posterior $\mathbf{M}_{DPP}$', r'Posterior $\mathbf{M}^{\circ}_{DPP}$', 'Prior', r'Prior $E(p(\mathbf{t}))$', r'Prior $E(p(\mathbf{t^{\circ}}))$']
+
+    pg = PlotGrid(subplots = hists,
+            num_columns = 1,
+            share_x = True,
+            share_y = False,
+            height = 7.2,
+            width = 2.5,
+            auto_height = False,
+            title = r'Number of divergences, $|\tau|$',
+            title_top = False,
+            title_size = 10.0,
+            y_title = 'Probability',
+            row_labels = row_labels,
+            row_label_offset = 0.08,
+            row_label_size = 12.0)
+    pg.auto_adjust_margins = False
+    pg.margin_top = 0.98
+    pg.margin_bottom = 0.03
+    pg.margin_right = 0.88
+    pg.margin_left = 0.05
+    pg.padding_between_vertical = 1.0
+    pg.reset_figure()
+    pg.set_shared_x_limits()
+    pg.set_shared_y_limits(by_row = True)
+    pg.reset_figure()
+    pg.savefig(os.path.join(out_dir, 'negros-panay-psi.pdf'))
 
 def main_cli():
     create_plots( 
@@ -259,6 +341,11 @@ def main_cli():
             dpp_inform_info_path = project_util.PHILIPPINES_DPP_INFORM_INFO,
             uniform_info_path = project_util.PHILIPPINES_UNIFORM_INFO,
             old_info_path = project_util.PHILIPPINES_OLD_INFO,
+            out_dir = project_util.PLOT_DIR)
+    create_negros_panay_plots(
+            config_path = project_util.NEGROS_PANAY_CFG,
+            ordered_info_path = project_util.NP_DPP_ORDERED_INFO,
+            unordered_info_path = project_util.NP_DPP_UNORDERED_INFO,
             out_dir = project_util.PLOT_DIR)
 
 if __name__ == '__main__':
