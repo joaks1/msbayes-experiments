@@ -214,8 +214,7 @@ def create_plots(
         os.mkdir(out_dir)
     dpp_num_div_values, dpp_div_model_values, dpp_ordered_model_values = get_dpp_prior_values(
                     config_path = dpp_config_path,
-                    # num_samples = 1000000)
-                    num_samples = 10000)
+                    num_samples = 1000000)
     dpp_hists = get_histograms(config_path = dpp_config_path,
             info_path = dpp_info_path,
             num_div_values = dpp_num_div_values,
@@ -247,7 +246,7 @@ def create_plots(
         hists.append(dpp_simple_hists[i])
 
     column_labels = [r'$\mathbf{M}_{msBayes}$', r'$\mathbf{M}_{Uniform}$', r'$\mathbf{M}_{DPP_{ }}$', r'$\mathbf{M}^{inform}_{DPP}$', r'$\mathbf{M}^{simple}_{DPP}$']
-    row_labels = ['Posterior', 'Prior', r'Prior $E(p(\mathbf{t}))$', r'Prior $E(p(\mathbf{t^{\circ}}))$']
+    row_labels = ['Posterior', 'Prior', r'Prior $\mathbb{E}(p(\mathbf{t}))$', r'Prior $\mathbb{E}(p(\mathbf{t^{\circ}}))$']
 
     pg = PlotGrid(subplots = hists,
             num_columns = 5,
@@ -303,7 +302,7 @@ def create_negros_panay_plots(
 
     hists = [unordered_hists[0]] + ordered_hists
 
-    row_labels = [r'Posterior $\mathbf{M}_{DPP}$', r'Posterior $\mathbf{M}^{\circ}_{DPP}$', 'Prior', r'Prior $E(p(\mathbf{t}))$', r'Prior $E(p(\mathbf{t^{\circ}}))$']
+    row_labels = [r'Posterior $\mathbb{M}_{DPP}$', r'Posterior $\mathbb{M}^{\circ}_{DPP}$', 'Prior', r'Prior $\mathbb{E}(p(\mathbf{t}))$', r'Prior $\mathbb{E}(p(\mathbf{t^{\circ}}))$']
 
     pg = PlotGrid(subplots = hists,
             num_columns = 1,
