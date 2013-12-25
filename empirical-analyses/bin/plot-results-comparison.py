@@ -5,7 +5,7 @@ import sys
 
 import matplotlib
 
-from pymsbayes import teams
+from pymsbayes import teams, plotting
 from pymsbayes.utils.parsing import DMCSimulationResults, spreadsheet_iter
 from pymsbayes.config import MsBayesConfig
 from pymsbayes.plotting import (Ticks, HistData, ScatterPlot, PlotGrid)
@@ -330,6 +330,30 @@ def create_negros_panay_plots(
     pg.reset_figure()
     pg.savefig(os.path.join(out_dir, 'negros-panay-psi.pdf'))
 
+def create_time_plot(config_path,
+        info_path,
+        out_dir,
+        iteration_index = 249):
+    if not os.path.exists(out_dir):
+        os.mkdir(out_dir)
+    cfg = MsBayesConfig(config_path)
+    dmc = DMCSimulationResults(info_path)
+    sum_path = (dmc.get_result_path_prefix(1, 1, 1) + 
+            '{0}-posterior-summary.txt'.format(iteration_index))
+    labels = []
+    for t in cfg.taxa:
+        l = t.strip().split('.')
+        labels.append(r'\textit{{{0} {1}}}'.format(l[0], l[1]))
+    pg = plotting.get_marginal_divergence_time_plot(
+            config_path = config_path,
+            posterior_summary_path = sum_path,
+            labels = labels,
+            label_size = 12.0,
+            x_tick_label_size = 12.0,
+            x_label_size = 16.0,
+            y_label_size = 16.0)
+    pg.savefig(os.path.join(out_dir, 'negros-panay-marginal-times.pdf'))
+
 def main_cli():
     create_plots( 
             dpp_config_path = project_util.PHILIPPINES_DPP_CFG,
@@ -345,6 +369,10 @@ def main_cli():
             config_path = project_util.NEGROS_PANAY_CFG,
             ordered_info_path = project_util.NP_DPP_ORDERED_INFO,
             unordered_info_path = project_util.NP_DPP_UNORDERED_INFO,
+            out_dir = project_util.PLOT_DIR)
+    create_time_plot(
+            config_path = project_util.NEGROS_PANAY_CFG,
+            info_path = project_util.NP_DPP_ORDERED_INFO,
             out_dir = project_util.PLOT_DIR)
 
 if __name__ == '__main__':
