@@ -897,7 +897,60 @@ We also estimated a GLM-regression adjusted posterior from each of the
 posterior samples \citep{Leuenberger2010}.
 
 \subsection*{An empirical application}
-\ldots
+We also assessed the behavior of the newly implemented models when applied to
+the empirical dataset of \citet{Oaks2012} comprised of sequence data from 22
+pairs of taxa from the Philippine Islands (Drayad DOI: 10.5061/dryad.5s07m).
+We analyzed these data under five different models, which are detailed in
+Table~\ref{tabEmpiricalModels}.
+All of these models except one (\empModelDPPSimple) have six free demographic
+parameters per pair of taxa (
+\ancestralTheta{},
+\descendantTheta{1}{},
+\descendantTheta{2}{},
+\bottleTime{},
+\bottleScalar{1}{}, and
+\bottleScalar{2}{}),
+in addition to the $\popSampleSize{i}{} - 1$ coalescent times.
+Three of these models use a Dirichlet-process prior on divergence models:
+\empModelDPP, \empModelDPPInform, and \empModelDPPSimple.
+The \empModelDPP model is meant to represent the prior that \citet{Oaks2012}
+would have selected to represent their prior uncertainty about the parameters
+of the model if provided the more flexible distributions that are now
+implemented.
+To assess prior sensitivity, the \empModelDPPInform model uses a more
+informative exponentially distributed prior on divergence times, but otherwise
+is identical to \empModelDPP.
+To assess sensitivity to parameterization, we also applied the simplest
+possible model under the new implementation (\empModelDPPSimple) with only a
+single demographic parameter (\myTheta{}) per taxon pair, in addition to the
+$\popSampleSize{i}{} - 1$ coalescent times.
+We also applied the original \msBayes model (\empModelOld) with priors
+selected to make it comparable to the \empModelDPP model;
+the uniform prior on divergence times was selected to have the same variance as
+the exponential prior of the \empModelDPP, and the mean prior on population
+size was selected to have the same mean so that the models are on the same
+timescale.
+We also applied a model with a uniform distribution over divergence models
+(\empModelUniform).
+For each of these models, we simulated 2\e{7} samples from the prior, and
+retained an approximate posterior of the 10,000 samples with the smallest
+Euclidean distance from the summary statistics calculated from the empirical
+sequence alignments.
+
+To compare models that sample over ordered versus unordered models of
+divergence, we also analyzed the data from the subset of nine taxon pairs that
+are sampled from the Islands of Negros and Panay in the Philippines.
+The model we used for these analyses had a Dirichlet-process prior over
+divergence models and two demographic parameters (\ancestralTheta{} and
+\descendantTheta{}{}) for each pair of taxa, in addition to the
+$\popSampleSize{i}{} - 1$ coalescent times (see Table~\ref{tabEmpiricalModels}
+for details).
+One of the models, which we denote \npModelDPPOrdered, maintained the identity
+of the taxon pairs and sampled over ordered models of divergence, while the
+other (\npModelDPP) re-sorted the summary statistics of pair, losing the
+identity of the taxa and thus sampled over unordered models of divergence.
+For both analyses, we simulated 5\e{7} samples from the prior and retained an
+approximate posterior of 10,000 samples.
 
 \section*{Results}
 \subsection*{Validation analyses: Estimation accuracy}
