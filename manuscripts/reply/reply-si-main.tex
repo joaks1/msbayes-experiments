@@ -10,14 +10,15 @@ has one of two priors on the mean size of the descendant populations of each
 taxon pair:
 $\meanDescendantTheta{} \sim U(0.0001, 0.1)$ or
 $\meanDescendantTheta{} \sim U(0.0005, 0.04)$.
-As described in \citet{Oaks2012}, the divergence-time parameters of the model
-implemented in \msb are scaled relative to a constant reference population
-size, \myTheta{C}.
-This reference population size is defined in terms of the upper limit of the
+As described in \citet{Oaks2012}, the divergence-time parameters in the model
+implemented in \msb are in generations scaled relative to a constant
+reference-population size, \myTheta{C}.
+This reference-population size is defined in terms of the upper limit of the
 uniform prior on the mean size of the descendant populations,
 \meanDescendantTheta{}, such that for the prior $\meanDescendantTheta{} \sim
 U(\uniformMin{\meanDescendantTheta{}},\uniformMax{\meanDescendantTheta{}})$,
-$\myTheta{C} = \uniformMax{\meanDescendantTheta{}}/2$.
+the size of the constant reference populations is $\myTheta{C} =
+\uniformMax{\meanDescendantTheta{}}/2$.
 Thus, the model used by \citet{Hickerson2013} mixes two different units of
 time.
 In other words, some of their prior and posterior samples are in units of

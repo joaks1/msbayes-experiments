@@ -50,8 +50,9 @@
 \newcommand{\numPriorSamples}{\ensuremath{\mathbf{n}}\xspace}
 \newcommand{\paramSampleVector}[1]{\ensuremath{\Lambda_{#1}}\xspace}
 \newcommand{\paramSampleMatrix}{\ensuremath{\boldsymbol{\paramSampleVector{}}}\xspace}
+\newcommand{\ordered}{\ensuremath{\circ}\xspace}
 \newcommand{\modelDPP}{\ensuremath{M_{DPP}}\xspace}
-\newcommand{\modelDPPOrdered}{\ensuremath{M^{\circ}_{DPP}}\xspace}
+\newcommand{\modelDPPOrdered}{\ensuremath{M^{\ordered}_{DPP}}\xspace}
 \newcommand{\modelUniform}{\ensuremath{M_{Uniform}}\xspace}
 \newcommand{\modelUshaped}{\ensuremath{M_{Ushaped}}\xspace}
 \newcommand{\modelOld}{\ensuremath{M_{msBayes}}\xspace}
@@ -61,6 +62,13 @@
 \newcommand{\powerSeriesOld}{\ensuremath{\mathcal{M}_{msBayes}}\xspace}
 \newcommand{\powerSeriesUniform}{\ensuremath{\mathcal{M}_{Uniform}}\xspace}
 \newcommand{\powerSeriesExp}{\ensuremath{\mathcal{M}_{Exp}}\xspace}
+\newcommand{\empModelOld}{\ensuremath{\mathbf{M}_{msBayes}}\xspace}
+\newcommand{\empModelUniform}{\ensuremath{\mathbf{M}_{Uniform}}\xspace}
+\newcommand{\empModelDPP}{\ensuremath{\mathbf{M}_{DPP}}\xspace}
+\newcommand{\empModelDPPInform}{\ensuremath{\mathbf{M}^{inform}_{DPP}}\xspace}
+\newcommand{\empModelDPPSimple}{\ensuremath{\mathbf{M}^{simple}_{DPP}}\xspace}
+\newcommand{\npModelDPP}{\ensuremath{\mathbb{M}_{DPP}}\xspace}
+\newcommand{\npModelDPPOrdered}{\ensuremath{\mathbb{M}^{\ordered}_{DPP}}\xspace}
 
 \newcommand{\allDatasets}{\ensuremath{\mathcal{\alignment{}{}}}\xspace}
 \newcommand{\allParameterValues}{\ensuremath{\boldsymbol{\Theta}}\xspace}
@@ -80,7 +88,7 @@
 \newcommand{\divtvector}{\ensuremath{\boldsymbol{\divt{}}}\xspace}
 \newcommand{\divtuniquevector}{\ensuremath{\mathbf{\divtunique{}}}\xspace}
 \newcommand{\bottleTimeVector}{\ensuremath{\boldsymbol{\bottleTime{}}}\xspace}
-\newcommand{\bottleTime}[1]{\ensuremath{\divt{B\ifArg{#1}{,}#1}}\xspace}
+\newcommand{\bottleTime}[1]{\ensuremath{\divt{B\protect\ifArg{#1}{,}#1}}\xspace}
 \newcommand{\bottleScalarVector}[1]{\ensuremath{\boldsymbol{\bottleScalar{#1}{}}}\xspace}
 \newcommand{\bottleScalar}[2]{\ensuremath{\zeta_{D#1\protect\ifArg{#2}{,}#2}}\xspace}
 \newcommand{\migrationRateVector}{\ensuremath{\mathbf{\migrationRate{}}}\xspace}
@@ -210,9 +218,18 @@ mean square error (RMSE) calculated from the 5000 estimates is provided.}
     (A--F) \modelOld, (G--L) \modelUshaped, (M--R) \modelUniform, and (S--X)
     \modelDPP to detect random variation in divergence times as simulated under
     the #1 series of models.}
+\newcommand{\powerCommentSummary}[1]{The power of models
+    (A--D) \modelOld, (E--H) \modelUshaped, (I--L) \modelUniform, and (M--P)
+    \modelDPP to detect random variation in divergence times as simulated under
+    the #1 series of models.}
 \newcommand{\powerSupportComment}[1]{
     The tendency of models (A--F) \modelOld, (G--L) \modelUshaped, (M--R)
     \modelUniform, and (S--X) \modelDPP to support one divergence event when
+    there is random variation in divergence times as simulated under the #1
+    series of models.}
+\newcommand{\powerSupportCommentSummary}[1]{
+    The tendency of models (A--D) \modelOld, (E--H) \modelUshaped, (I--L)
+    \modelUniform, and (M--P) \modelDPP to support one divergence event when
     there is random variation in divergence times as simulated under the #1
     series of models.}
 \newcommand{\powerPsiComment}[1]{ 

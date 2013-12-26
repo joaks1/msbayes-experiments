@@ -2,18 +2,4 @@ m1 = ../../../configs/prior/prior-dpp.cfg
 m2 = ../../../configs/prior/prior-old.cfg
 m3 = ../../../configs/prior/prior-uniform.cfg
 m4 = ../../../configs/prior/prior-u-shaped.cfg
--4.txt
-d5 = ../observed-summary-stats/observed-5.txt
-d6 = ../observed-summary-stats/observed-6.txt
-d7 = ../observed-summary-stats/observed-7.txt
-d8 = ../observed-summary-stats/observed-8.txt
-d9 = ../observed-summary-stats/observed-9.txt
-d10 = ../observed-summary-stats/observed-10.txt
-d11 = ../observed-summary-stats/observed-11.txt
-d12 = ../observed-summary-stats/observed-12.txt
-d13 = ../observed-summary-stats/observed-13.txt
-d14 = ../observed-summary-stats/observed-14.txt
-d15 = ../observed-summary-stats/observed-15.txt
-d16 = ../observed-summary-stats/observed-16.txt
-d17 = ../observed-summary-stats/observed-17.txt
-d18 = ../observed-summary-stats/observed-18.txt
+

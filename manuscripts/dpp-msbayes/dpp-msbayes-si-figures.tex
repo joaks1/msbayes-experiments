@@ -1,15 +1,4 @@
 %% Validation accuracy
-\siFigure{../../validation/images/validation-accuracy-psi.pdf}{
-    \validationAccuracyComparisonCaption{unadjusted}{\divTimeNum}
-    \jitterComment
-}{figValidationAccuracyPsi}
-
-\siFigure{../../validation/images/validation-accuracy-psi-glm.pdf}{
-    \validationAccuracyComparisonCaption{GLM-adjusted}{\divTimeNum}
-    \jitterComment
-}{figValidationAccuracyPsiGlm}
-
-
 \siFigure{../../validation/images/validation-accuracy-omega.pdf}{
     \validationAccuracyComparisonCaption{unadjusted}{\divTimeDispersion}
 }{figValidationAccuracyOmega}
@@ -28,18 +17,22 @@
 }{figValidationAccuracyTimeGlm}
 
 
-%% Validation model choice
-\siFigure{../../validation/images/validation-model-choice-psi.pdf}{
-    \validationModelChoiceComparisonCaption{unadjusted}{$\divTimeNum = 1$}
-}{figValidationModelChoicePsi}
+\siFigure{../../validation/images/validation-accuracy-psi.pdf}{
+    \validationAccuracyComparisonCaption{unadjusted}{\divTimeNum}
+    \jitterComment
+}{figValidationAccuracyPsi}
 
+\siFigure{../../validation/images/validation-accuracy-psi-glm.pdf}{
+    \validationAccuracyComparisonCaption{GLM-adjusted}{\divTimeNum}
+    \jitterComment
+}{figValidationAccuracyPsiGlm}
+
+
+
+%% Validation model choice
 \siFigure{../../validation/images/validation-model-choice-psi-glm.pdf}{
     \validationModelChoiceComparisonCaption{GLM-adjusted}{$\divTimeNum = 1$}
 }{figValidationModelChoicePsiGlm}
-
-\siFigure{../../validation/images/validation-model-choice-omega.pdf}{
-    \validationModelChoiceComparisonCaption{unadjusted}{$\divTimeDispersion < 0.01$}
-}{figValidationModelChoiceOmega}
 
 \siFigure{../../validation/images/validation-model-choice-omega-glm.pdf}{
     \validationModelChoiceComparisonCaption{GLM-adjusted}{$\divTimeDispersion < 0.01$}
@@ -57,33 +50,33 @@
 
 
 %% Power accuracy results
-\siFigure{../../power-comparison/images/old-power-omega-accuracy-6.pdf}{
+\siSidewaysFigure{../../power-comparison/images/old-power-omega-accuracy-6.pdf}{
     \powerAccuracyComparisonCaption{\powerSeriesOld}
 }{figPowerAccuracyOld}
 
-\siFigure{../../power-comparison/images/uniform-power-omega-accuracy-6.pdf}{
+\siSidewaysFigure{../../power-comparison/images/uniform-power-omega-accuracy-6.pdf}{
     \powerAccuracyComparisonCaption{\powerSeriesUniform}
 }{figPowerAccuracyUniform}
 
-\siFigure{../../power-comparison/images/exp-power-omega-accuracy-6.pdf}{
+\siSidewaysFigure{../../power-comparison/images/exp-power-omega-accuracy-6.pdf}{
     \powerAccuracyComparisonCaption{\powerSeriesExp}
 }{figPowerAccuracyExp}
 
 
 %% Power psi results
-\siFigure{../../power-comparison/images/old-power-psi-6.pdf}{
+\siSidewaysFigure{../../power-comparison/images/old-power-psi-6.pdf}{
     \powerComment{\powerSeriesOld}
     \powerPsiComment{\powerSeriesOld}
     \timeConversionComment
 }{figPowerPsiOld}
 
-\siFigure{../../power-comparison/images/uniform-power-psi-6.pdf}{
+\siSidewaysFigure{../../power-comparison/images/uniform-power-psi-6.pdf}{
     \powerComment{\powerSeriesUniform}
     \powerPsiComment{\powerSeriesUniform}
     \timeConversionComment
 }{figPowerPsiUniform}
 
-\siFigure{../../power-comparison/images/exp-power-psi-6.pdf}{
+\siSidewaysFigure{../../power-comparison/images/exp-power-psi-6.pdf}{
     \powerComment{\powerSeriesExp}
     \powerPsiComment{\powerSeriesExp}
     \timeConversionComment
@@ -91,61 +84,61 @@
 
 
 %% Power dispersion results
-\siFigure{../../power-comparison/images/old-power-omega-6.pdf}{
+\siSidewaysFigure{../../power-comparison/images/old-power-omega-6.pdf}{
     \powerComment{\powerSeriesOld}
     \powerDispersionComment{\powerSeriesOld}
     \timeConversionComment
-}{figPowerPsiOld}
+}{figPowerOmegaOld}
 
-\siFigure{../../power-comparison/images/uniform-power-omega-6.pdf}{
+\siSidewaysFigure{../../power-comparison/images/uniform-power-omega-6.pdf}{
     \powerComment{\powerSeriesUniform}
     \powerDispersionComment{\powerSeriesUniform}
     \timeConversionComment
-}{figPowerPsiUniform}
+}{figPowerOmegaUniform}
 
-\siFigure{../../power-comparison/images/exp-power-omega-6.pdf}{
+\siSidewaysFigure{../../power-comparison/images/exp-power-omega-6.pdf}{
     \powerComment{\powerSeriesExp}
     \powerDispersionComment{\powerSeriesExp}
     \timeConversionComment
-}{figPowerPsiExp}
+}{figPowerOmegaExp}
 
 
 %% Power psi probability results
-\siFigure{../../power-comparison/images/old-power-psi-prob-6.pdf}{
+\siSidewaysFigure{../../power-comparison/images/old-power-psi-prob-6.pdf}{
     \powerSupportComment{\powerSeriesOld}
     \powerProbComment{$p(\divTimeNum = 1 | \ssSpace)$}{\powerSeriesOld}
     \timeConversionComment
-}{figPowerPsiOld}
+}{figPowerPsiProbOld}
 
-\siFigure{../../power-comparison/images/uniform-power-psi-prob-6.pdf}{
+\siSidewaysFigure{../../power-comparison/images/uniform-power-psi-prob-6.pdf}{
     \powerSupportComment{\powerSeriesUniform}
     \powerProbComment{$p(\divTimeNum = 1 | \ssSpace)$}{\powerSeriesUniform}
     \timeConversionComment
-}{figPowerPsiUniform}
+}{figPowerPsiProbUniform}
 
-\siFigure{../../power-comparison/images/exp-power-psi-prob-6.pdf}{
+\siSidewaysFigure{../../power-comparison/images/exp-power-psi-prob-6.pdf}{
     \powerSupportComment{\powerSeriesExp}
     \powerProbComment{$p(\divTimeNum = 1 | \ssSpace)$}{\powerSeriesExp}
     \timeConversionComment
-}{figPowerPsiExp}
+}{figPowerPsiProbExp}
 
 
 %% Power dispersion prob results
-\siFigure{../../power-comparison/images/old-power-omega-prob-6.pdf}{
+\siSidewaysFigure{../../power-comparison/images/old-power-omega-prob-6.pdf}{
     \powerSupportComment{\powerSeriesOld}
     \powerProbComment{$p(\divTimeDispersion < 0.01 | \ssSpace)$}{\powerSeriesOld}
     \timeConversionComment
-}{figPowerPsiOld}
+}{figPowerOmegaProbOld}
 
-\siFigure{../../power-comparison/images/uniform-power-omega-prob-6.pdf}{
+\siSidewaysFigure{../../power-comparison/images/uniform-power-omega-prob-6.pdf}{
     \powerSupportComment{\powerSeriesUniform}
     \powerProbComment{$p(\divTimeDispersion < 0.01 | \ssSpace)$}{\powerSeriesUniform}
     \timeConversionComment
-}{figPowerPsiUniform}
+}{figPowerOmegaProbUniform}
 
-\siFigure{../../power-comparison/images/exp-power-omega-prob-6.pdf}{
+\siSidewaysFigure{../../power-comparison/images/exp-power-omega-prob-6.pdf}{
     \powerSupportComment{\powerSeriesExp}
     \powerProbComment{$p(\divTimeDispersion < 0.01 | \ssSpace)$}{\powerSeriesExp}
     \timeConversionComment
-}{figPowerPsiExp}
+}{figPowerOmegaProbExp}
 
