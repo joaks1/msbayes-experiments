@@ -348,10 +348,13 @@ def create_time_plot(config_path,
             config_path = config_path,
             posterior_summary_path = sum_path,
             labels = labels,
+            horizontal = True,
             label_size = 12.0,
-            x_tick_label_size = 12.0,
-            x_label_size = 16.0,
-            y_label_size = 16.0)
+            measure_tick_label_size = 12.0,
+            measure_axis_label = 'Divergence time',
+            measure_axis_label_size = 16.0,
+            label_axis_label = 'Taxon pair',
+            label_axis_label_size = 16.0)
     pg.savefig(os.path.join(out_dir, 'negros-panay-marginal-times.pdf'))
 
 def main_cli():
