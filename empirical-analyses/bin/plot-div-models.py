@@ -23,7 +23,9 @@ def get_posterior_path(dmc_sim_result, iteration_index):
 def get_div_model_plot_grid(
         info_path,
         iteration_index = 99,
-        ordered = False):
+        ordered = False,
+        margin_top = 0.99,
+        padding_between_vertical = 0.8):
     dmc = parsing.DMCSimulationResults(info_path)
     div_model_path = get_div_model_result_path(dmc, iteration_index)
     if ordered:
@@ -44,8 +46,8 @@ def get_div_model_plot_grid(
             margin_left = 0.03,
             margin_bottom = 0.0,
             margin_right = 1,
-            margin_top = 0.99,
-            padding_between_vertical = 0.8)
+            margin_top = margin_top,
+            padding_between_vertical = padding_between_vertical)
     return p.create_grid()
 
 def main_cli():
@@ -69,13 +71,17 @@ def main_cli():
 
     pg = get_div_model_plot_grid(
             info_path = project_util.PHILIPPINES_UNIFORM_INFO,
-            iteration_index = 99)
+            iteration_index = 99,
+            margin_top = 0.985,
+            padding_between_vertical = 0.9)
     path = os.path.join(project_util.PLOT_DIR, 'philippines-uniform-div-models.pdf')
     pg.savefig(path)
 
     pg = get_div_model_plot_grid(
             info_path = project_util.PHILIPPINES_OLD_INFO,
-            iteration_index = 99)
+            iteration_index = 99,
+            margin_top = 0.985,
+            padding_between_vertical = 0.9)
     path = os.path.join(project_util.PLOT_DIR, 'philippines-old-div-models.pdf')
     pg.savefig(path)
 
