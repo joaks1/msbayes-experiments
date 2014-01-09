@@ -351,7 +351,7 @@ def create_time_plot(config_path,
             horizontal = True,
             label_size = 12.0,
             measure_tick_label_size = 12.0,
-            measure_axis_label = 'Divergence time',
+            measure_axis_label = 'Divergence time ($4N_C$ generations)',
             measure_axis_label_size = 16.0,
             label_axis_label = 'Taxon pair',
             label_axis_label_size = 16.0)

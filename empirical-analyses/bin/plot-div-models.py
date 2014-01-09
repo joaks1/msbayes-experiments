@@ -39,7 +39,7 @@ def get_div_model_plot_grid(
             plot_label_schema = 'uppercase',
             plot_label_offset = 0,
             plot_label_size = 12.0,
-            y_title = 'Divergence time',
+            y_title = 'Divergence time ($4N_C$ generations)',
             y_title_size = 14.0,
             y_tick_label_size = 10.0,
             right_text_size = 10.0,
