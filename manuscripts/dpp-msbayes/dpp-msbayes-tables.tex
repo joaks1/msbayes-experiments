@@ -252,7 +252,8 @@
                       & $\divTime{} \sim U(0,34.64)$
                       & $\divTime{} \sim U(0,17.3)$
                       & $\ancestralTheta{} \sim U(0, 0.01)$
-                      & $\descendantThetaMean{} \sim U(0, 0.01)$ 
+                      % & $\descendantThetaMean{} \sim U(0, 0.01)$ 
+                      & $\descendantTheta{1}{}, \descendantTheta{2}{} \sim Beta(1, 1) \times 2 \times U(0, 0.01)$ 
                       & $\bottleScalar{}{} \sim U(0, 1)$ \\
             \empModelUniform & $\divTimeIndexVector \sim \priorUniform$
                       & $\divTime{} \sim Exp(0.1)$
