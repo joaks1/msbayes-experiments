@@ -223,7 +223,7 @@
     \sffamily
     \footnotesize
     \addtolength{\tabcolsep}{-0.08cm}
-    \rowcolors{2}{}{myGray}
+    \rowcolors{2}{myGray}{}
     %\captionsetup{font=footnotesize}
     \caption{The models used to analyze the data from the 22 pairs of taxa from
         the Philippines ($\mathbf{M}$), and a subset of nine of those pairs
@@ -242,51 +242,55 @@
         pair share the same \myTheta{} parameter, and there are no
         bottleneck parameters).}
     \centering
-    \begin{tabular}{ l l l l l l l }
+    \begin{tabulary}{\textwidth}{ l L }
         \toprule
-        & \multicolumn{6}{c}{Priors} \\
-        \cmidrule(){2-7}
-        Model & \divTimeIndexVector & \divTime{} (\globalcoalunit gens.) & \divTime{} (MGA) & \ancestralTheta{} & \descendantTheta{}{} & \bottleScalar{}{} \\
+        Model & Priors \\
         \midrule
-            \empModelOld & $\divTimeIndexVector \sim \priorOld$
-                      & $\divTime{} \sim U(0,34.64)$
-                      & $\divTime{} \sim U(0,17.3)$
-                      & $\ancestralTheta{} \sim U(0, 0.01)$
-                      % & $\descendantThetaMean{} \sim U(0, 0.01)$ 
-                      & $\descendantTheta{1}{}, \descendantTheta{2}{} \sim Beta(1, 1) \times 2 \times U(0, 0.01)$ 
-                      & $\bottleScalar{}{} \sim U(0, 1)$ \\
-            \empModelUniform & $\divTimeIndexVector \sim \priorUniform$
-                      & $\divTime{} \sim Exp(0.1)$
-                      & $\divTime{} \sim Exp(mean=5)$
-                      & $\ancestralTheta{} \sim Exp(200)$
-                      & $\descendantTheta{}{} \sim Exp(200)$
-                      & $\bottleScalar{}{} \sim Beta(5, 1)$ \\
-            \empModelDPP & $\divTimeIndexVector \sim \priorDPP{\sim Gamma(1.5,18.1)}$
-                      & $\divTime{} \sim Exp(0.1)$
-                      & $\divTime{} \sim Exp(mean=5)$
-                      & $\ancestralTheta{} \sim Exp(200)$
-                      & $\descendantTheta{}{} \sim Exp(200)$
-                      & $\bottleScalar{}{} \sim Beta(5, 1)$ \\
-            \empModelDPPInform & $\divTimeIndexVector \sim \priorDPP{\sim Gamma(1.5,18.1)}$
-                      & $\divTime{} \sim Exp(1/6)$
-                      & $\divTime{} \sim Exp(mean=3)$
-                      & $\ancestralTheta{} \sim Exp(200)$
-                      & $\descendantTheta{}{} \sim Exp(200)$
-                      & $\bottleScalar{}{} \sim Beta(5, 1)$ \\
-            \empModelDPPSimple & $\divTimeIndexVector \sim \priorDPP{\sim Gamma(1.5,18.1)}$
-                      & $\divTime{} \sim Exp(0.1)$
-                      & $\divTime{} \sim Exp(mean=5)$
-                      & $\myTheta{} \sim Exp(200)$
-                      & -
-                      & - \\
-            \npModelDPP & $\divTimeIndexVector \sim \priorDPP{\sim Gamma(1.5,5.0)}$
-                      & $\divTime{} \sim Exp(0.1)$
-                      & $\divTime{} \sim Exp(mean=5)$
-                      & $\ancestralTheta{} \sim Exp(200)$
-                      & $\descendantTheta{}{} \sim Exp(200)$
-                      & - \\
+            \empModelOld & $\divTimeIndexVector \sim \priorOld$ \tb
+                      $\divTime{} \sim U(0,34.64)$ \tb
+                      $\divTime{} \sim U(0,17.3 \; MGA)$ \tb
+                      $\ancestralTheta{} \sim U(0, 0.01)$ \tb
+                      $\descendantTheta{1}{}, \descendantTheta{2}{} \sim
+                            Beta(1, 1) \times 2 \times U(0, 0.01)$ \tb
+                      $\bottleScalar{1}{} \sim U(0, 1)$ \tb
+                      $\bottleScalar{2}{} \sim U(0, 1)$ \\[0.25em]
+            \empModelUniform & $\divTimeIndexVector \sim \priorUniform$ \tb
+                      $\divTime{} \sim Exp(0.1)$ \tb
+                      $\divTime{} \sim Exp(mean=5 \; MGA)$ \tb
+                      $\ancestralTheta{} \sim Exp(200)$ \tb
+                      $\descendantTheta{1}{} \sim Exp(200)$ \tb
+                      $\descendantTheta{2}{} \sim Exp(200)$ \tb
+                      $\bottleScalar{1}{} \sim Beta(5, 1)$ \tb
+                      $\bottleScalar{2}{} \sim Beta(5, 1)$ \\[0.25em]
+            \empModelDPP & $\divTimeIndexVector \sim \priorDPP{\sim Gamma(1.5,18.1)}$ \tb
+                      $\divTime{} \sim Exp(0.1)$ \tb
+                      $\divTime{} \sim Exp(mean=5 \; MGA)$ \tb
+                      $\ancestralTheta{} \sim Exp(200)$ \tb
+                      $\descendantTheta{1}{} \sim Exp(200)$ \tb
+                      $\descendantTheta{2}{} \sim Exp(200)$ \tb
+                      $\bottleScalar{1}{} \sim Beta(5, 1)$ \tb
+                      $\bottleScalar{2}{} \sim Beta(5, 1)$ \tb \\
+            \empModelDPPInform & $\divTimeIndexVector \sim \priorDPP{\sim Gamma(1.5,18.1)}$ \tb
+                      $\divTime{} \sim Exp(1/6)$ \tb
+                      $\divTime{} \sim Exp(mean=3 \; MGA)$ \tb
+                      $\ancestralTheta{} \sim Exp(200)$ \tb
+                      $\descendantTheta{1}{} \sim Exp(200)$ \tb
+                      $\descendantTheta{2}{} \sim Exp(200)$ \tb
+                      $\bottleScalar{1}{} \sim Beta(5, 1)$ \tb
+                      $\bottleScalar{2}{} \sim Beta(5, 1)$ \tb \\
+            \empModelDPPSimple & $\divTimeIndexVector \sim \priorDPP{\sim Gamma(1.5,18.1)}$ \tb
+                      $\divTime{} \sim Exp(0.1)$ \tb
+                      $\divTime{} \sim Exp(mean=5 \; MGA)$ \tb
+                      $\ancestralTheta{} = \descendantTheta{1}{} = \descendantTheta{2}{} \sim Exp(200)$ \tb
+                      $\bottleScalar{1}{} = \bottleScalar{2}{} = 1.0$ \\[0.25em]
+            \npModelDPP & $\divTimeIndexVector \sim \priorDPP{\sim Gamma(1.5,5.0)}$ \tb
+                      $\divTime{} \sim Exp(0.1)$ \tb
+                      $\divTime{} \sim Exp(mean=5 \; MGA)$ \tb
+                      $\ancestralTheta{} \sim Exp(200)$ \tb
+                      $\descendantTheta{1}{} = \descendantTheta{2}{} \sim Exp(200)$ \tb
+                      $\bottleScalar{1}{} = \bottleScalar{2}{} = 1.0$ \\[0.25em]
         \bottomrule
-    \end{tabular}
+    \end{tabulary}
     \label{tabEmpiricalModels}
 \end{table}
 
