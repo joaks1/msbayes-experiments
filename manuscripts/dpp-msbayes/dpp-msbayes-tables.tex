@@ -65,7 +65,7 @@
 
 \begin{table}[htbp]
     \sffamily
-    % \footnotesize
+    \footnotesize
     \addtolength{\tabcolsep}{-0.08cm}
     \rowcolors{2}{}{myGray}
     %\captionsetup{font=footnotesize}
@@ -73,30 +73,37 @@
         the \modelDPP model, the prior on the concentration parameter,
         $\concentrationParam \sim Gamma(\cdot,\cdot)$, was set to $Gamma(2,2)$
         for the validation analyses and $Gamma(1.5,18.1)$ for the power
-        analyses.}
+        analyses. The distributions of divergence times are given in units of
+        \globalcoalunit generations followed in brackets by units of millions
+        of generations ago (MGA), with the former converted to the latter
+        assuming a per-site rate of 1\e{-8} mutations per generation. For model
+        \modelOld, the priors for theta parameters are $\ancestralTheta{} \sim
+        U(0, 0.05)$ and $\descendantTheta{1}{}, \descendantTheta{2}{} \sim
+        Beta(1, 1) \times 2 \times U(0, 0.05)$. The later is summarized as
+        $\descendantThetaMean{} \sim U(0, 0.05)$. For the \modelDPP and
+        \modelUniform, and \modelUshaped models, \ancestralTheta{},
+        \descendantTheta{1}{}, and \descendantTheta{2}{} are independently
+        and exponentially distributed with a mean of 0.025.}
     \centering
     \begin{tabular}{ l l l l l }
         \toprule
         & \multicolumn{4}{c}{Priors} \\
         \cmidrule(){2-5}
-        Model & \divTimeIndexVector & \divTime{} & \ancestralTheta{} & \descendantTheta{}{} \\
+        Model & \divTimeIndexVector & \divTime{} & \myTheta{} &  \\
         \midrule
             \modelOld & $\divTimeIndexVector \sim \priorOld$
-                      & $\divTime{} \sim U(0,10)$
+                      & $\divTime{} \sim U(0,10 \; [25 \; MGA])$
                       & $\ancestralTheta{} \sim U(0, 0.05)$
                       & $\descendantThetaMean{} \sim U(0, 0.05)$ \\
             \modelDPP & $\divTimeIndexVector \sim \priorDPP{\sim Gamma(\cdot,\cdot)}$
-                      & $\divTime{} \sim Exp(0.3464)$
-                      & $\ancestralTheta{} \sim Exp(40)$
-                      & $\descendantTheta{}{} \sim Exp(40)$ \\
+                      & $\divTime{} \sim Exp(mean=2.887 \; [7.22 \; MGA])$
+                      & \multicolumn{2}{l}{$\ancestralTheta{} \sim \descendantTheta{1}{} \sim \descendantTheta{2}{} \sim Exp(mean=0.025)$} \\
             \modelUniform & $\divTimeIndexVector \sim \priorUniform$
-                          & $\divTime{} \sim Exp(0.3464)$
-                          & $\ancestralTheta{} \sim Exp(40)$
-                          & $\descendantTheta{}{} \sim Exp(40)$ \\
+                          & $\divTime{} \sim Exp(mean=2.887 \; [7.22 \; MGA])$
+                          & \multicolumn{2}{l}{$\ancestralTheta{} \sim \descendantTheta{1}{} \sim \descendantTheta{2}{} \sim Exp(mean=0.025)$} \\
             \modelUshaped & $\divTimeIndexVector \sim \priorOld$
-                          & $\divTime{} \sim Exp(0.3464)$
-                          & $\ancestralTheta{} \sim Exp(40)$
-                          & $\descendantTheta{}{} \sim Exp(40)$ \\
+                          & $\divTime{} \sim Exp(mean=2.887 \; [7.22 \; MGA])$
+                          & \multicolumn{2}{l}{$\ancestralTheta{} \sim \descendantTheta{1}{} \sim \descendantTheta{2}{} \sim Exp(mean=0.025)$} \\
         \bottomrule
     \end{tabular}
     \label{tabPriors}
@@ -107,113 +114,92 @@
 \begin{table}[htbp]
     \sffamily
     \footnotesize
+    % \scriptsize
     % \addtolength{\tabcolsep}{-0.08cm}
     \rowcolors{2}{}{myGray}
-    %\captionsetup{font=footnotesize}
+    % \captionsetup{font=footnotesize}
     \caption{The models we used to simulate pseudo-replicate datasets for
-        assessing the power of the models in Table \ref{tabPriors}.
-        The distributions of divergence times are given in units of
-        \globalcoalunit generations and millions of generations ago (MGA), the
-        latter assuming a per-site rate of 1\e{-8} mutations per generation.}
+        assessing the power of the models in Table \ref{tabPriors}.  The
+        distributions of divergence times are given in units of \globalcoalunit
+        generations followed in brackets by units of millions of generations
+        ago (MGA), with the former converted to the latter assuming a per-site
+        rate of 1\e{-8} mutations per generation. For all of the
+        \powerSeriesOld models, the priors for theta parameters are
+        $\ancestralTheta{} \sim U(0, 0.05)$ and $\descendantTheta{1}{},
+        \descendantTheta{2}{} \sim Beta(1, 1) \times 2 \times U(0, 0.05)$. The
+        later is summarized as $\descendantThetaMean{} \sim U(0, 0.05)$. For
+        the \powerSeriesUniform and \powerSeriesExp models, \ancestralTheta{},
+        \descendantTheta{1}{}, and \descendantTheta{2}{} are independently
+        and exponentially distributed with a mean of 0.025.}
     \centering
-    \begin{tabular}{ l l l l l l }
+    \begin{tabular}{ l l l l l }
         \toprule
-        & \multicolumn{5}{c}{Priors} \\
-        \cmidrule(){2-6}
-        Model series & \divTimeIndexVector & \divTime{} (\globalcoalunit gens.) & \divTime{} (MGA) & \ancestralTheta{} & \descendantTheta{}{} \\
+        & \multicolumn{4}{c}{Priors} \\
+        \cmidrule(){2-5}
+        Model series & \divTimeIndexVector & \divTime{} & \myTheta{} &  \\
         \midrule
             \powerSeriesOld & $\divTimeNum = 22$
-                            & $\divTime{} \sim U(0,0.2)$
-                            & $\divTime{} \sim U(0,0.5)$
+                            & $\divTime{} \sim U(0,0.2 \; [0.5 \; MGA])$
                             & $\ancestralTheta{} \sim U(0, 0.05)$
                             & $\descendantThetaMean{} \sim U(0, 0.05)$ \\
                             & $\divTimeNum = 22$
-                            & $\divTime{} \sim U(0,0.4)$
-                            & $\divTime{} \sim U(0,1.0)$
+                            & $\divTime{} \sim U(0,0.4 \; [1.0 \; MGA])$
                             & $\ancestralTheta{} \sim U(0, 0.05)$
                             & $\descendantThetaMean{} \sim U(0, 0.05)$ \\
                             & $\divTimeNum = 22$
-                            & $\divTime{} \sim U(0,0.6)$
-                            & $\divTime{} \sim U(0,1.5)$
+                            & $\divTime{} \sim U(0,0.6 \; [1.5 \; MGA])$
                             & $\ancestralTheta{} \sim U(0, 0.05)$
                             & $\descendantThetaMean{} \sim U(0, 0.05)$ \\
                             & $\divTimeNum = 22$
-                            & $\divTime{} \sim U(0,0.8)$
-                            & $\divTime{} \sim U(0,2.0)$
+                            & $\divTime{} \sim U(0,0.8 \; [2.0 \; MGA])$
                             & $\ancestralTheta{} \sim U(0, 0.05)$
                             & $\descendantThetaMean{} \sim U(0, 0.05)$ \\
                             & $\divTimeNum = 22$
-                            & $\divTime{} \sim U(0,1.0)$
-                            & $\divTime{} \sim U(0,2.5)$
+                            & $\divTime{} \sim U(0,1.0 \; [2.5 \; MGA])$
                             & $\ancestralTheta{} \sim U(0, 0.05)$
                             & $\descendantThetaMean{} \sim U(0, 0.05)$ \\
                             & $\divTimeNum = 22$
-                            & $\divTime{} \sim U(0,2.0)$
-                            & $\divTime{} \sim U(0,5.0)$
+                            & $\divTime{} \sim U(0,2.0 \; [5.0 \; MGA])$
                             & $\ancestralTheta{} \sim U(0, 0.05)$
                             & $\descendantThetaMean{} \sim U(0, 0.05)$ \\
         \midrule
             \powerSeriesUniform & $\divTimeNum = 22$
-                            & $\divTime{} \sim U(0,0.2)$
-                            & $\divTime{} \sim U(0,0.5)$
-                            & $\ancestralTheta{} \sim Exp(40)$
-                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTime{} \sim U(0,0.2 \; [0.5 \; MGA])$
+                            & \multicolumn{2}{l}{$\ancestralTheta{} \sim \descendantTheta{1}{} \sim \descendantTheta{2}{} \sim Exp(mean=0.025)$} \\
                             & $\divTimeNum = 22$
-                            & $\divTime{} \sim U(0,0.4)$
-                            & $\divTime{} \sim U(0,1.0)$
-                            & $\ancestralTheta{} \sim Exp(40)$
-                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTime{} \sim U(0,0.4 \; [1.0 \; MGA])$
+                            & \multicolumn{2}{l}{$\ancestralTheta{} \sim \descendantTheta{1}{} \sim \descendantTheta{2}{} \sim Exp(mean=0.025)$} \\
                             & $\divTimeNum = 22$
-                            & $\divTime{} \sim U(0,0.6)$
-                            & $\divTime{} \sim U(0,1.5)$
-                            & $\ancestralTheta{} \sim Exp(40)$
-                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTime{} \sim U(0,0.6 \; [1.5 \; MGA])$
+                            & \multicolumn{2}{l}{$\ancestralTheta{} \sim \descendantTheta{1}{} \sim \descendantTheta{2}{} \sim Exp(mean=0.025)$} \\
                             & $\divTimeNum = 22$
-                            & $\divTime{} \sim U(0,0.8)$
-                            & $\divTime{} \sim U(0,2.0)$
-                            & $\ancestralTheta{} \sim Exp(40)$
-                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTime{} \sim U(0,0.8 \; [2.0 \; MGA])$
+                            & \multicolumn{2}{l}{$\ancestralTheta{} \sim \descendantTheta{1}{} \sim \descendantTheta{2}{} \sim Exp(mean=0.025)$} \\
                             & $\divTimeNum = 22$
-                            & $\divTime{} \sim U(0,1.0)$
-                            & $\divTime{} \sim U(0,2.5)$
-                            & $\ancestralTheta{} \sim Exp(40)$
-                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTime{} \sim U(0,1.0 \; [2.5 \; MGA])$
+                            & \multicolumn{2}{l}{$\ancestralTheta{} \sim \descendantTheta{1}{} \sim \descendantTheta{2}{} \sim Exp(mean=0.025)$} \\
                             & $\divTimeNum = 22$
-                            & $\divTime{} \sim U(0,2.0)$
-                            & $\divTime{} \sim U(0,5.0)$
-                            & $\ancestralTheta{} \sim Exp(40)$
-                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTime{} \sim U(0,2.0 \; [5.0 \; MGA])$
+                            & \multicolumn{2}{l}{$\ancestralTheta{} \sim \descendantTheta{1}{} \sim \descendantTheta{2}{} \sim Exp(mean=0.025)$} \\
         \midrule
             \powerSeriesExp & $\divTimeNum = 22$
-                            & $\divTime{} \sim Exp(17.32)$
-                            & $\divTime{} \sim Exp(mean = 0.14)$
-                            & $\ancestralTheta{} \sim Exp(40)$
-                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTime{} \sim Exp(mean = 0.058 \; [0.14 \; MGA])$
+                            & \multicolumn{2}{l}{$\ancestralTheta{} \sim \descendantTheta{1}{} \sim \descendantTheta{2}{} \sim Exp(mean=0.025)$} \\
                             & $\divTimeNum = 22$
-                            & $\divTime{} \sim Exp(8.66)$
-                            & $\divTime{} \sim Exp(mean = 0.29)$
-                            & $\ancestralTheta{} \sim Exp(40)$
-                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTime{} \sim Exp(mean = 0.115 \; [0.29 \; MGA])$
+                            & \multicolumn{2}{l}{$\ancestralTheta{} \sim \descendantTheta{1}{} \sim \descendantTheta{2}{} \sim Exp(mean=0.025)$} \\
                             & $\divTimeNum = 22$
-                            & $\divTime{} \sim Exp(5.77)$
-                            & $\divTime{} \sim Exp(mean = 0.43)$
-                            & $\ancestralTheta{} \sim Exp(40)$
-                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTime{} \sim Exp(mean = 0.173 \; [0.43 \; MGA])$
+                            & \multicolumn{2}{l}{$\ancestralTheta{} \sim \descendantTheta{1}{} \sim \descendantTheta{2}{} \sim Exp(mean=0.025)$} \\
                             & $\divTimeNum = 22$
-                            & $\divTime{} \sim Exp(4.33)$
-                            & $\divTime{} \sim Exp(mean = 0.58)$
-                            & $\ancestralTheta{} \sim Exp(40)$
-                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTime{} \sim Exp(mean = 0.231 \; [0.58 \; MGA])$
+                            & \multicolumn{2}{l}{$\ancestralTheta{} \sim \descendantTheta{1}{} \sim \descendantTheta{2}{} \sim Exp(mean=0.025)$} \\
                             & $\divTimeNum = 22$
-                            & $\divTime{} \sim Exp(3.46)$
-                            & $\divTime{} \sim Exp(mean = 0.72)$
-                            & $\ancestralTheta{} \sim Exp(40)$
-                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTime{} \sim Exp(mean = 0.289 \; [0.72 \; MGA])$
+                            & \multicolumn{2}{l}{$\ancestralTheta{} \sim \descendantTheta{1}{} \sim \descendantTheta{2}{} \sim Exp(mean=0.025)$} \\
                             & $\divTimeNum = 22$
-                            & $\divTime{} \sim Exp(1.73)$
-                            & $\divTime{} \sim Exp(mean = 1.44)$
-                            & $\ancestralTheta{} \sim Exp(40)$
-                            & $\descendantTheta{}{} \sim Exp(40)$ \\
+                            & $\divTime{} \sim Exp(mean = 0.577 \; [1.44 \; MGA])$
+                            & \multicolumn{2}{l}{$\ancestralTheta{} \sim \descendantTheta{1}{} \sim \descendantTheta{2}{} \sim Exp(mean=0.025)$} \\
         \bottomrule
     \end{tabular}
     \label{tabPowerModels}
@@ -247,47 +233,41 @@
         Model & Priors \\
         \midrule
             \empModelOld & $\divTimeIndexVector \sim \priorOld$ \tb
-                      $\divTime{} \sim U(0,34.64)$ \tb
-                      $\divTime{} \sim U(0,17.3 \; MGA)$ \tb
+        $\divTime{} \sim U(0,34.64 \, [17.3 \; MGA])$ \tb
                       $\ancestralTheta{} \sim U(0, 0.01)$ \tb
                       $\descendantTheta{1}{}, \descendantTheta{2}{} \sim
                             Beta(1, 1) \times 2 \times U(0, 0.01)$ \tb
                       $\bottleScalar{1}{} \sim U(0, 1)$ \tb
                       $\bottleScalar{2}{} \sim U(0, 1)$ \\[0.25em]
             \empModelUniform & $\divTimeIndexVector \sim \priorUniform$ \tb
-                      $\divTime{} \sim Exp(0.1)$ \tb
-                      $\divTime{} \sim Exp(mean=5 \; MGA)$ \tb
-                      $\ancestralTheta{} \sim Exp(200)$ \tb
-                      $\descendantTheta{1}{} \sim Exp(200)$ \tb
-                      $\descendantTheta{2}{} \sim Exp(200)$ \tb
+                      $\divTime{} \sim Exp(mean=10 \; [5 \; MGA])$ \tb
+                      $\ancestralTheta{} \sim Exp(mean=0.005)$ \tb
+                      $\descendantTheta{1}{} \sim Exp(mean=0.005)$ \tb
+                      $\descendantTheta{2}{} \sim Exp(mean=0.005)$ \tb
                       $\bottleScalar{1}{} \sim Beta(5, 1)$ \tb
                       $\bottleScalar{2}{} \sim Beta(5, 1)$ \\[0.25em]
             \empModelDPP & $\divTimeIndexVector \sim \priorDPP{\sim Gamma(1.5,18.1)}$ \tb
-                      $\divTime{} \sim Exp(0.1)$ \tb
-                      $\divTime{} \sim Exp(mean=5 \; MGA)$ \tb
-                      $\ancestralTheta{} \sim Exp(200)$ \tb
-                      $\descendantTheta{1}{} \sim Exp(200)$ \tb
-                      $\descendantTheta{2}{} \sim Exp(200)$ \tb
+                      $\divTime{} \sim Exp(mean=10 \; [5 \; MGA])$ \tb
+                      $\ancestralTheta{} \sim Exp(mean=0.005)$ \tb
+                      $\descendantTheta{1}{} \sim Exp(mean=0.005)$ \tb
+                      $\descendantTheta{2}{} \sim Exp(mean=0.005)$ \tb
                       $\bottleScalar{1}{} \sim Beta(5, 1)$ \tb
                       $\bottleScalar{2}{} \sim Beta(5, 1)$ \tb \\
             \empModelDPPInform & $\divTimeIndexVector \sim \priorDPP{\sim Gamma(1.5,18.1)}$ \tb
-                      $\divTime{} \sim Exp(1/6)$ \tb
-                      $\divTime{} \sim Exp(mean=3 \; MGA)$ \tb
-                      $\ancestralTheta{} \sim Exp(200)$ \tb
-                      $\descendantTheta{1}{} \sim Exp(200)$ \tb
-                      $\descendantTheta{2}{} \sim Exp(200)$ \tb
+                      $\divTime{} \sim Exp(mean=6 \; [3 \; MGA])$ \tb
+                      $\ancestralTheta{} \sim Exp(mean=0.005)$ \tb
+                      $\descendantTheta{1}{} \sim Exp(mean=0.005)$ \tb
+                      $\descendantTheta{2}{} \sim Exp(mean=0.005)$ \tb
                       $\bottleScalar{1}{} \sim Beta(5, 1)$ \tb
                       $\bottleScalar{2}{} \sim Beta(5, 1)$ \tb \\
             \empModelDPPSimple & $\divTimeIndexVector \sim \priorDPP{\sim Gamma(1.5,18.1)}$ \tb
-                      $\divTime{} \sim Exp(0.1)$ \tb
-                      $\divTime{} \sim Exp(mean=5 \; MGA)$ \tb
-                      $\ancestralTheta{} = \descendantTheta{1}{} = \descendantTheta{2}{} \sim Exp(200)$ \tb
+                      $\divTime{} \sim Exp(mean=10 \; [5 \; MGA])$ \tb
+                      $\ancestralTheta{} = \descendantTheta{1}{} = \descendantTheta{2}{} \sim Exp(mean=0.005)$ \tb
                       $\bottleScalar{1}{} = \bottleScalar{2}{} = 1.0$ \\[0.25em]
             \npModelDPP & $\divTimeIndexVector \sim \priorDPP{\sim Gamma(1.5,5.0)}$ \tb
-                      $\divTime{} \sim Exp(0.1)$ \tb
-                      $\divTime{} \sim Exp(mean=5 \; MGA)$ \tb
-                      $\ancestralTheta{} \sim Exp(200)$ \tb
-                      $\descendantTheta{1}{} = \descendantTheta{2}{} \sim Exp(200)$ \tb
+                      $\divTime{} \sim Exp(mean=10 \; [5 \; MGA])$ \tb
+                      $\ancestralTheta{} \sim Exp(mean=0.005)$ \tb
+                      $\descendantTheta{1}{} = \descendantTheta{2}{} \sim Exp(mean=0.005)$ \tb
                       $\bottleScalar{1}{} = \bottleScalar{2}{} = 1.0$ \\[0.25em]
         \bottomrule
     \end{tabulary}
