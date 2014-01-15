@@ -46,21 +46,26 @@
     important to account for large-scale processes that affect the evolutionary
     history of groups of co-distributed populations of organisms.
     Such events predict temporally clustered divergences times, a pattern
-    that can be estimated from genetic data from co-distributed species.
+    that can be estimated using genetic data from co-distributed species.
     We introduce a new approximate-Bayesian model for comparative
     phylogeographical model-choice that estimates the temporal distribution of
     divergences across taxa from multi-locus DNA sequence data.
-    Our model is an extension of the model implemented in \msb.
-    By reparameterizing the model, and using more flexible priors on divergence
-    models and nuisance parameters, we improve the robustness, accuracy, and power
-    of the method for estimating the posterior probabilities of models
-    of divergence across taxa.
-    Our results demonstrate that the bias of the \msb model toward inferring
-    models of clustered divergences is caused by a combination of (1) uniform
-    priors on nuisance parameters hindering the marginal likelihoods of models
-    with more divergence time parameters, and (2) a prior on divergence models
-    that disfavors models with intermediate numbers of divergence time
+    Our model is an extension of that implemented in \msb.
+    By reparameterizing the model, introducing more flexible priors on
+    demographic and divergence-time parameters, and implementing a
+    non-parametric Dirichlet-process prior over divergence models, we improve
+    the robustness, accuracy, and power of the method for estimating shared
+    evolutionary history across taxa.
+    Our results demonstrate that the tendency of the \msb model to spuriously
+    support models of clustered divergences is caused by a combination of (1)
+    uniform priors on nuisance parameters hindering the marginal likelihoods of
+    models with more divergence-time parameters, and (2) a prior on divergence
+    models that disfavors models with intermediate numbers of divergence-time
     parameters.
+    The new method addresses both of these issues and yields more robust
+    estimates of posterior uncertainty, and thus greatly reduces the tendency
+    of the model to incorrectly estimate biogeographically interesting models
+    with strong support.
 
     \vspace{12pt}
     \noindent\textbf{KEY WORDS: Dirichlet-process prior; approximate Bayesian

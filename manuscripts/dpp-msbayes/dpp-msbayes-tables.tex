@@ -95,15 +95,15 @@
                       & $\divTime{} \sim U(0,10 \; [25 \; MGA])$
                       & $\ancestralTheta{} \sim U(0, 0.05)$
                       & $\descendantThetaMean{} \sim U(0, 0.05)$ \\
-            \modelDPP & $\divTimeIndexVector \sim \priorDPP{\sim Gamma(\cdot,\cdot)}$
-                      & $\divTime{} \sim Exp(mean=2.887 \; [7.22 \; MGA])$
-                      & \multicolumn{2}{l}{$\ancestralTheta{} \sim \descendantTheta{1}{} \sim \descendantTheta{2}{} \sim Exp(mean=0.025)$} \\
-            \modelUniform & $\divTimeIndexVector \sim \priorUniform$
-                          & $\divTime{} \sim Exp(mean=2.887 \; [7.22 \; MGA])$
-                          & \multicolumn{2}{l}{$\ancestralTheta{} \sim \descendantTheta{1}{} \sim \descendantTheta{2}{} \sim Exp(mean=0.025)$} \\
             \modelUshaped & $\divTimeIndexVector \sim \priorOld$
                           & $\divTime{} \sim Exp(mean=2.887 \; [7.22 \; MGA])$
                           & \multicolumn{2}{l}{$\ancestralTheta{} \sim \descendantTheta{1}{} \sim \descendantTheta{2}{} \sim Exp(mean=0.025)$} \\
+            \modelUniform & $\divTimeIndexVector \sim \priorUniform$
+                          & $\divTime{} \sim Exp(mean=2.887 \; [7.22 \; MGA])$
+                          & \multicolumn{2}{l}{$\ancestralTheta{} \sim \descendantTheta{1}{} \sim \descendantTheta{2}{} \sim Exp(mean=0.025)$} \\
+            \modelDPP & $\divTimeIndexVector \sim \priorDPP{\sim Gamma(\cdot,\cdot)}$
+                      & $\divTime{} \sim Exp(mean=2.887 \; [7.22 \; MGA])$
+                      & \multicolumn{2}{l}{$\ancestralTheta{} \sim \descendantTheta{1}{} \sim \descendantTheta{2}{} \sim Exp(mean=0.025)$} \\
         \bottomrule
     \end{tabular}
     \label{tabPriors}
