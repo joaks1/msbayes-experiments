@@ -1292,9 +1292,9 @@ probability of biogeographically interesting models of temporally clustered
 divergences (Figure~\ref{figValidationModelChoicePsi} \&
 \ref{figValidationModelChoiceOmega}).
 
-Furthermore, the modifications to the model also improve the method's power to
-detect random variation in divergence times, reducing the tendency to estimate
-clustered divergences
+The modifications to the model also improve the method's power to detect random
+variation in divergence times, reducing the tendency to estimate clustered
+divergences
 (Figures~\labelcref{figPowerPsiOld4,figPowerPsiProbOld4,figPowerOmegaOld4,figPowerOmegaProbOld4}).
 Our results are similar to those of \citet{Oaks2012} in that we also find
 the \msb model to infer strong support for clustered divergences when
@@ -1344,28 +1344,28 @@ using the method and interpreting its results.
 The method attempts to approximate the posterior of a very parameter-rich model
 using relatively little information from the data.
 For example, when applied to the dataset of 22 taxon pairs from the Philippines
-\citet{Oaks2012} the model can have as many as 604--625 free parameters
+\citep{Oaks2012} the model can have as many as 604--625 free parameters
 (depending on \divTimeNum), and samples over 1002 unordered divergence models.
 Even under the simplest possible model allowed under our new implementation,
 the model still has 471--492 free parameters.
-Furthermore, the coalescent and mutational models specified by these parameters
+Furthermore, the stochastic coalescent and mutational processes being modeled
 predict a large amount of variation in possible datasets even when the
 parameter values are known.
-Sampling over hundreds of parameters and more than a thousand models is a
-difficult inference problem, especially when only using a small number of
-summary statistics calculated from the sequence alignments of each taxon pair.
+The richness and stochastic nature of the model makes for a difficult inference
+problem, especially when using a small number of summary statistics calculated
+from the sequence alignments of each taxon pair.
 The population-genetic summary statistics used by our method contain little
 information about many of the free parameters in the model.
 Thus, we expect the improved method will still be sensitive to priors, and the
 power, while improved, may still be low.
 While we see much less prior sensitivity under the new model compared to those
-observed by \citet{Oaks2012}, we still some evidence of such sensitivity when
-comparing the results of the empirical data analyzed under a diffuse
-(\empModelDPP) and informative (\empModelDPPInform) divergence-time prior
-(Figure~\ref{figPhilippines} C versus D).
+observed by \citet{Oaks2012}, we still see an effect when comparing the results
+of the empirical data analyzed under a diffuse (\empModelDPP) and informative
+(\empModelDPPInform) divergence-time prior (Figure~\ref{figPhilippines} C
+versus D).
 The fact that the posterior shifts toward the prior under the informative prior
 suggests that the shift away from the prior toward fewer divergence events
-under the diffuse prior might be still be caused by small marginal likelihoods
+under the diffuse prior might still be caused by small marginal likelihoods
 of models with more divergence-time parameters (Figure~\ref{figPhilippines}).
 
 Nonetheless, it is reassuring to see a large amount of posterior uncertainty
@@ -1380,11 +1380,11 @@ and the relatively small amount of information in the summary statistics
 calculated from the sequence data, we do not expect to find strong posterior
 support for any scenario.
 Based on results of the empirical and power analyses
-(Figures~\labelcref{figPowerPsiProbOld4,figPowerOmegaProbOld4,figPhilippines,figNegrosPanay})
+(Figures~\labelcref{figPowerPsiProbOld4,figPowerOmegaProbOld4,figPhilippines,figNegrosPanay}),
 the new implementation more accurately reflects posterior uncertainty and
 avoids spurious support for biogeographic scenarios.
 
-We also urge caution when applying \dppmsbayes due to the fact that ABC methods
+We also urge caution when using \dppmsbayes due to the fact that ABC methods
 in general are known to be biased for model choice \citep{Robert2011}.
 As recommended by \citet{Oaks2012}, any results from the method should be
 accompanied by assessments of prior sensitivity and power.
