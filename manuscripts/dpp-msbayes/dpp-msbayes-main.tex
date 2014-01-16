@@ -1251,14 +1251,15 @@ models
 (Figures~S\labelcref{figDivModelsDPP,figDivModelsDPPInform,figDivModelsDPPSimple,figDivModelsUniform,figDivModelsOld}).
 Again, the new models estimate more divergences, a large amount of posterior
 uncertainty, and an order of magnitude smaller probability for their respective
-MAP model when compared to the \empModelOld model.
+MAP-divergence model when compared to the \empModelOld model
+(Figures~S\labelcref{figDivModelsDPP,figDivModelsDPPInform,figDivModelsDPPSimple,figDivModelsUniform,figDivModelsOld}).
 
 Figure \ref{figNegrosPanay} shows the estimated posterior probability
 distribution over the number of divergence events when the data from the
 nine-taxon pairs from the Islands of Negros and Panay are analyzed under the DPP
 models that sample over unordered (\npModelDPP) and ordered
 (\npModelDPPOrdered) models of divergence.
-The result are similar under both models and, again, yield a large amount of
+The results are similar under both models and, again, yield a large amount of
 uncertainty about the number of divergence events that is similar to the prior
 uncertainty.
 Both models estimate a similar set of 10 unordered divergence models with the
@@ -1292,12 +1293,12 @@ probability of biogeographically interesting models of temporally clustered
 divergences (Figure~\ref{figValidationModelChoicePsi} \&
 \ref{figValidationModelChoiceOmega}).
 
-The modifications to the model also improve the method's power to detect random
+Our modifications also improve the method's power to detect random
 variation in divergence times, reducing the tendency to estimate clustered
 divergences
 (Figures~\labelcref{figPowerPsiOld4,figPowerPsiProbOld4,figPowerOmegaOld4,figPowerOmegaProbOld4}).
-Our results are similar to those of \citet{Oaks2012} in that we also find
-the \msb model to infer strong support for clustered divergences when
+Our results are similar to those of \citet{Oaks2012} in that we find
+\msb will often infer strong support for clustered divergences when
 divergences are random over quite broad timescales
 (Figures~\labelcref{figPowerPsiOld4,figPowerPsiProbOld4,figPowerOmegaOld4,figPowerOmegaProbOld4}).
 Our results expand on this by showing that this behavior is consistent
@@ -1319,14 +1320,15 @@ model when there are model violations is reduced when the exponential
 priors are used in place of the uniform priors
 (Figure~\ref{figValidationModelChoicePsi} \&
 \ref{figValidationModelChoiceOmega}).
-Furthermore, better priors on parameters improves the method's power to detect
+Furthermore, using exponential priors improves the method's power to detect
 temporally random divergences
 (Figures~\labelcref{figPowerPsiOld4,figPowerPsiProbOld4,figPowerOmegaOld4,figPowerOmegaProbOld4}).
 Throughout our analyses, the intermediate model (\modelUshaped) performs better
 than the \msb model, but not as well as the models with alternative priors on
 divergence models.
-This suggests, as predicted by \citet{Oaks2012}, that the bias of \msb toward
-models of temporally clustered divergences is caused by a combination of
+This suggests, as predicted by \citet{Oaks2012}, that the tendency of \msb to
+erroneously support models of temporally clustered divergences is caused by a
+combination of
 (1) small marginal likelihoods of models with more \divTime{} parameters due to
 uniform priors on divergence-time and demographic parameters and
 (2) the U-shaped prior on divergence models giving low prior density to models
@@ -1344,7 +1346,7 @@ using the method and interpreting its results.
 The method attempts to approximate the posterior of a very parameter-rich model
 using relatively little information from the data.
 For example, when applied to the dataset of 22 taxon pairs from the Philippines
-\citep{Oaks2012} the model can have as many as 604--625 free parameters
+\citep{Oaks2012} the model has as many as 604--625 free parameters
 (depending on \divTimeNum), and samples over 1002 unordered divergence models.
 Even under the simplest possible model allowed under our new implementation,
 the model still has 471--492 free parameters.
