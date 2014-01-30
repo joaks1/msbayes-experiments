@@ -44,11 +44,14 @@ in so doing, estimates the posterior probability of each possible divergence
 model.
 
 For priors on divergence-time and demographic parameters, \msb uses continuous
-uniform probability distributions
-This causes  divergence models with more divergence-time parameters to
+uniform probability distributions.
+This causes divergence models with more divergence-time parameters to
 integrate over a \emph{much} greater parameter space with low likelihood yet
 high prior density, resulting in small marginal likelihoods relative to models
-with fewer divergence-time parameters.
+with fewer divergence-time parameters \citep{Jeffreys1939,Lindley1957}.
+Given that the marginal likelihood of a model weighted by its prior is what
+determines its posterior probability, this causes \msb to support models with
+fewer divergence events.
 Furthermore, \msb uses a discrete uniform prior over the number of divergence
 events $1,2,\ldots,\npairs{}$.
 Because there are many more possible divergence models for intermediate numbers
@@ -56,15 +59,16 @@ of divergence events, this imposes a prior on divergence models that strongly
 disfavors such models and puts most of the prior mass on models with either
 very few or very many divergence-time parameters (see Figure 5 of
 \citet{Oaks2012}; for brevity we will refer to this prior as ``U-shaped'').
-Given that models with many divergence-time parameters have small marginal
-likelihoods due to the uniform priors on divergence-time and demographic
-parameters, the U-shaped prior will strongly favor models with very
-few divergence events.
-As a result, even when highly informative uniform priors are used for
-divergence-time and demographic parameters, \msb will often strongly support
-biogeographically interesting models with a small number of divergence events
-shared among the taxa when, in reality, divergences were random over broad
-timescales (\citet{Oaks2012}).
+Given that models with many divergence events have small marginal likelihoods
+due to the uniform priors on divergence-time parameters, the U-shaped prior
+will effectively create a strong prior preference for models with very few
+divergence events.
+Recently, \citet{Oaks2012} found via simulation that \msb will often strongly
+support biogeographically interesting models with a small number of divergence
+events shared among the taxa, even when divergences were random over broad
+timescales.
+They suggested this behavior was due to the combination of uniform priors on
+parameters and the U-shaped prior on divergence models.
 
 % Recently, however, \citet{Oaks2012} found that \msb can be strongly biased
 % toward spuriously estimating biogeographically interesting models of highly
@@ -83,22 +87,22 @@ timescales (\citet{Oaks2012}).
 % Thus, together, the priors used in \msb will often create a bias toward
 % models with few divergence-time parameters \citep{Oaks2012}.
 
-Following the recommendations of \citet{Oaks2012}, we modify the \msb model to
-test whether alternative parameterizations and priors will improve the behavior
-of the approximate-Bayesian model-choice approach.
+We modify the \msb model to test whether alternative parameterizations and
+priors will improve the behavior of the approximate-Bayesian model-choice
+approach.
 We implement a Dirichlet-process prior (DPP) over all possible models of
 divergence, and use gamma and beta probability distributions in place of
 uniform priors on many of the model's parameters.
 Our simulation-based analyses show that the new implementation has improved
 robustness, accuracy, and power compared to the original model.
-Also, our results show that both the uniform priors on demographic and
+Also, our results confirm that both the uniform priors on demographic and
 divergence-time parameters and the U-shaped prior on divergence models
 contribute to the biases of \msb.
-When the Oaks et al.'s \citeyear{Oaks2012} sequence data of 22 pairs of taxa
-from the Philippines is reanalyzed under the new model, we find a large amount
-of posterior uncertainty in the number of divergence events shared among the
-taxa; a result congruent with intuition given the richness of the model
-and the relatively small amount of information in the data.
+After reanalyzing sequence data of 22 pairs of taxa from the Philippines
+\citep{Oaks2012} under the new model, we find a large amount of posterior
+uncertainty in the number of divergence events shared among the taxa; a result
+congruent with intuition given the richness of the model and the relatively
+small amount of information in the data.
 
 
 \section*{Methods}
