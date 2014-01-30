@@ -56,16 +56,22 @@
     non-parametric Dirichlet-process prior over divergence models, we improve
     the robustness, accuracy, and power of the method for estimating shared
     evolutionary history across taxa.
-    Our results demonstrate that the tendency of the \msb model to spuriously
-    support models of clustered divergences is caused by a combination of (1)
-    uniform priors on nuisance parameters hindering the marginal likelihoods of
-    models with more divergence-time parameters, and (2) a prior on divergence
-    models that disfavors models with intermediate numbers of divergence-time
-    parameters.
-    The new method addresses both of these issues and yields more robust
-    estimates of posterior uncertainty, and thus greatly reduces the tendency
-    of the model to incorrectly estimate biogeographically interesting models
-    with strong support.
+    Our results demonstrate the improved performance of the new method is due
+    to (1) more appropriate priors on divergence-time and demographic
+    parameters that avoid prohibitively small marginal likelihoods for models
+    with more divergence events,
+    and (2) the Dirichlet-process providing a flexible prior on divergence
+    histories that does not strongly disfavor models with intermediate numbers
+    of divergence events.
+    % Our results demonstrate that the tendency of the \msb model to spuriously
+    % support models of clustered divergences is caused by a combination of (1)
+    % uniform priors on nuisance parameters hindering the marginal likelihoods of
+    % models with more divergence-time parameters, and (2) a prior on divergence
+    % models that disfavors models with intermediate numbers of divergence-time
+    % parameters.
+    The new method yields more robust estimates of posterior uncertainty, and
+    thus greatly reduces the tendency of the model to incorrectly estimate
+    biogeographically interesting models with strong support.
 
     \vspace{12pt}
     \noindent\textbf{KEY WORDS: Dirichlet-process prior; approximate Bayesian

@@ -10,10 +10,9 @@ across affected populations of organisms, e.g., temporally clustered
 divergences across co-distributed species.
 At recent timescales, such events should leave a signature in the genetic
 variation within and among the affected lineages.
-Thus, being able to accurately estimate models of shared evolutionary
-history across co-distributed taxa would provide an important
-tool for better understanding how regional and global biogeographic
-processes affect biodiversity.
+Thus, accurately estimating models of shared evolutionary history across
+co-distributed taxa provides an important tool for better understanding how
+regional and global biogeographic processes affect biodiversity.
 
 This inference problem is challenging due to the stochastic nature by which
 mutations occur in populations and how they are inherited over generations
@@ -29,22 +28,60 @@ substitution and lineage coalescence.
 
 The software package \msb implements such an approach in an
 approximate-Bayesian model-choice framework \citep{Hickerson2006,Huang2011}.
-Recently, however, \citet{Oaks2012} found that \msb can be strongly biased
-toward spuriously estimating biogeographically interesting models of highly
-clustered divergence times across taxa.
-The results of their simulation-based assessment of the method suggest that a
-combination of broad, uniformly distributed priors on nuisance parameters and a
-``U-shaped'' prior on divergence models are causing the bias.
-The model implemented in \msb uses a discrete uniform prior over the number of
-possible divergence parameters, which \citet{Oaks2012} show imposes a prior on
-divergence models that puts most of the prior mass on models with either very
-few or very many divergence times shared across the taxa (see Figure 5 of
+Given aligned sequence data for \npairs{} pairs of populations, \msb 
+estimates the number of divergence events shared among the pairs, the timing of
+the events, and the assignment of pairs to the events, while integrating out
+uncertainty in demographic parameters and the genealogical history of the
+sequences.
+% samples over all the possible ways of assigning the divergences between the
+% populations of each pair to 1--\npairs{} divergence events, while estimating
+% the timing of the events and integrating out uncertainty in demographic
+% parameters and the genealogical history of the sequences.
+Thus, when the number of pairs is not trivial, the method samples over a large
+number of divergence models of differing dimensionality (i.e., all the possible
+partitions of \npairs{} pairs to 1--\npairs{} divergence-time parameters), and,
+in so doing, estimates the posterior probability of each possible divergence
+model.
+
+For priors on divergence-time and demographic parameters, \msb uses continuous
+uniform probability distributions
+This causes  divergence models with more divergence-time parameters to
+integrate over a \emph{much} greater parameter space with low likelihood yet
+high prior density, resulting in small marginal likelihoods relative to models
+with fewer divergence-time parameters.
+Furthermore, \msb uses a discrete uniform prior over the number of divergence
+events $1,2,\ldots,\npairs{}$.
+Because there are many more possible divergence models for intermediate numbers
+of divergence events, this imposes a prior on divergence models that strongly
+disfavors such models and puts most of the prior mass on models with either
+very few or very many divergence-time parameters (see Figure 5 of
 \citet{Oaks2012}; for brevity we will refer to this prior as ``U-shaped'').
-Furthermore, uniform priors used for most of the model's parameters
-result in small marginal likelihoods of parameter-rich models, i.e., models
-with many divergence-time parameters \citep{Jeffreys1935, Lindley1957}.
-Thus, together, the priors used in \msb will often create a bias toward
-models with few divergence-time parameters \citep{Oaks2012}.
+Given that models with many divergence-time parameters have small marginal
+likelihoods due to the uniform priors on divergence-time and demographic
+parameters, the U-shaped prior will strongly favor models with very
+few divergence events.
+As a result, even when highly informative uniform priors are used for
+divergence-time and demographic parameters, \msb will often strongly support
+biogeographically interesting models with a small number of divergence events
+shared among the taxa when, in reality, divergences were random over broad
+timescales (\citet{Oaks2012}).
+
+% Recently, however, \citet{Oaks2012} found that \msb can be strongly biased
+% toward spuriously estimating biogeographically interesting models of highly
+% clustered divergence times across taxa.
+% The results of their simulation-based assessment of the method suggest that a
+% combination of broad, uniformly distributed priors on nuisance parameters and a
+% ``U-shaped'' prior on divergence models are causing the bias.
+% The model implemented in \msb uses a discrete uniform prior over the number of
+% possible divergence parameters, which \citet{Oaks2012} show imposes a prior on
+% divergence models that puts most of the prior mass on models with either very
+% few or very many divergence times shared across the taxa (see Figure 5 of
+% \citet{Oaks2012}; for brevity we will refer to this prior as ``U-shaped'').
+% Furthermore, uniform priors used for most of the model's parameters
+% result in small marginal likelihoods of parameter-rich models, i.e., models
+% with many divergence-time parameters \citep{Jeffreys1935, Lindley1957}.
+% Thus, together, the priors used in \msb will often create a bias toward
+% models with few divergence-time parameters \citep{Oaks2012}.
 
 Following the recommendations of \citet{Oaks2012}, we modify the \msb model to
 test whether alternative parameterizations and priors will improve the behavior
