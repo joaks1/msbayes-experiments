@@ -14,14 +14,14 @@ The papers of \citet{Oaks2012} and \citet{Hickerson2013} are in agreement
 on the fundamental methodological point about the model selection performed in \msb:
 \begin{itemize}
    \item The use of vague priors on the divergence-time parameters can lead to
-       support models with few divergence events shared across taxa. Thus, the
-       primary inference enabled by the approach is very sensitive to the
+       support for models with few divergence events shared across taxa. Thus,
+       the primary inference enabled by the approach is very sensitive to the
        priors on divergence times.
 \end{itemize}
 
 This is not surprising given the rich statistical literature that shows that
-model marginal likelihoods are quite sensitive to the priors used in Bayesian
-model selection
+marginal likelihoods are very sensitive to the priors used in Bayesian model
+selection
 \citep[e.g.,][]{Jeffreys1939,Lindley1957}.
 Accordingly, \citet{Oaks2012} suggest the primary cause of spurious support
 for models with few divergence parameters is the greater marginal likelihoods
@@ -176,6 +176,7 @@ distributions that often exhibit well-behaved frequentist coverage
 probabilities
 \citep{Morris1983,Laird1987,Laird1989, Carlin1990,Hwang2009}.
 
+\begin{linenomath}
 Whereas empirical Bayes approaches can provide powerful methods for parameter
 estimation, a theoretical justification for empirical Bayes approaches to model
 choice is questionable.
@@ -208,6 +209,7 @@ to prior choice, even if the posterior distribution is technically incorrect
 due to using the data to inform the priors.
 This is why empirical Bayes can work well for estimating the values of model
 parameters.
+\end{linenomath}
 
 % Unlike parameter estimates, posterior probabilities represent a summary of the
 % entire posterior distribution.
@@ -256,6 +258,7 @@ parallel model-choice problems simultaneously, pooling information to inform
 priors can lead to favorable group-wise frequentist coverage across tests
 \citep{Efron2008}.
 
+\begin{linenomath}
 These distinctions between Bayesian parameter estimation and model choice can
 be illustrated with a simple example.
 Let us say we are interested in the fairness of a particular coin, and we
@@ -296,6 +299,7 @@ posterior probability of Model 1 as
 \end{equation}
 This is the correct posterior probability of Model 1 given our prior
 and data.
+\end{linenomath}
 
 To give the data more weight relative to the prior, we could use it twice, and
 calculate an empirical Bayes estimate using a prior of $beta(13,17)$.  This
@@ -487,8 +491,8 @@ Rather, the graphs suggest these incorrect priors are ``better fit''
 
 Given that the results of \citet{Hickerson2013} strongly prefer the models with
 the narrowest prior on divergence times, it seems quite likely that their
-model-averaged results are dominated by models that exclude at least some of
-the 22 true divergence times, making their results difficult to interpret.
+model-averaged results are dominated by models that exclude true divergence
+times, making their results difficult to interpret.
 
 
 \subsubsection*{Simulation-based assessment of Hickerson et al.'s
@@ -558,10 +562,10 @@ Siler2011,Siler2012,RafeStuart2012,LinkemBrown2013,Rafe2013AREES,Siler2014kikuch
 When limited to uniformly distributed priors, the alternative to priors that
 reflect prior uncertainty, as shown above, is to risk excluding the true values
 one seeks to estimate.
-However continuous distributions perhaps more appropriate as priors for
-positive real-valued parameters have been shown to greatly reduce spurious
-support for clustered divergence models while allowing prior uncertainty to be
-accommodated \citep{Oaks2014dpp}.
+However, continuous distributions more appropriate as priors for positive
+real-valued parameters have been shown to greatly reduce spurious support for
+clustered divergence models while allowing prior uncertainty to be accommodated
+\citep{Oaks2014dpp}.
 
 
 
