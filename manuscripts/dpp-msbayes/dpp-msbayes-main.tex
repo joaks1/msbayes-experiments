@@ -11,8 +11,8 @@ divergences across co-distributed species.
 At recent timescales, such events should leave a signature in the genetic
 variation within and among the affected lineages.
 Thus, accurately estimating models of shared evolutionary history across
-co-distributed taxa provides an important tool for better understanding how
-regional and global biogeographic processes affect biodiversity.
+co-distributed taxa is important for better understanding how regional and
+global biogeographic processes affect biodiversity.
 
 This inference problem is challenging due to the stochastic nature by which
 mutations occur in populations and how they are inherited over generations
@@ -37,32 +37,31 @@ sequences.
 % populations of each pair to 1--\npairs{} divergence events, while estimating
 % the timing of the events and integrating out uncertainty in demographic
 % parameters and the genealogical history of the sequences.
-Thus, when the number of pairs is not trivial, the method samples over a large
-number of divergence models of differing dimensionality (i.e., all the possible
-partitions of \npairs{} pairs to 1--\npairs{} divergence-time parameters), and,
-in so doing, estimates the posterior probability of each possible divergence
-model.
+Thus, the method samples over all possible divergence models of differing
+dimensionality (i.e., all the possible partitions of \npairs{} pairs to
+1--\npairs{} divergence-time parameters), and, in so doing, estimates the
+posterior probability of each model.
 
 For priors on divergence-time and demographic parameters, \msb uses continuous
 uniform probability distributions.
-This causes divergence models with more divergence-time parameters to
-integrate over a \emph{much} greater parameter space with low likelihood yet
-high prior density, resulting in small marginal likelihoods relative to models
-with fewer divergence-time parameters \citep{Jeffreys1939,Lindley1957}.
+This causes divergence models with more divergence-time parameters to integrate
+over a \emph{much} greater parameter space with low likelihood yet high prior
+density, resulting in small marginal likelihoods relative to models with fewer
+divergence-time parameters \citep{Jeffreys1939,Lindley1957}.
 Given that the marginal likelihood of a model weighted by its prior is what
-determines its posterior probability, this causes \msb to support models with
-fewer divergence events.
+determines its posterior probability, this can cause support for models with
+fewer divergence events \citep{Oaks2012}.
 Furthermore, \msb uses a discrete uniform prior over the number of divergence
 events $1,2,\ldots,\npairs{}$.
-Because there are many more possible divergence models for intermediate numbers
-of divergence events, this imposes a prior on divergence models that strongly
-disfavors such models and puts most of the prior mass on models with either
-very few or very many divergence-time parameters (see Figure 5 of
-\citet{Oaks2012}; for brevity we will refer to this prior as ``U-shaped'').
-Given that models with many divergence events have small marginal likelihoods
-due to the uniform priors on divergence-time parameters, the U-shaped prior
-will effectively create a strong prior preference for models with very few
-divergence events.
+Because there are many more possible assignments of populations pairs to
+intermediate numbers of divergence events, this imposes a prior on divergence
+models that puts most of the prior mass on models with either very few or very
+many divergence-time parameters (see Figure 5 of \citet{Oaks2012}; for brevity
+we will refer to this prior as ``U-shaped'').
+Given that models with many divergence events can have small marginal
+likelihoods due to the uniform priors on divergence-time parameters, the
+U-shaped prior will effectively create a strong prior preference for models
+with very few divergence events.
 Recently, \citet{Oaks2012} found via simulation that \msb will often strongly
 support biogeographically interesting models with a small number of divergence
 events shared among the taxa, even when divergences were random over broad
@@ -93,16 +92,23 @@ approach.
 We implement a Dirichlet-process prior (DPP) over all possible models of
 divergence, and use gamma and beta probability distributions in place of
 uniform priors on many of the model's parameters.
-Our simulation-based analyses show that the new implementation has improved
-robustness, accuracy, and power compared to the original model.
-Also, our results confirm that both the uniform priors on demographic and
-divergence-time parameters and the U-shaped prior on divergence models
-contribute to the biases of \msb.
-After reanalyzing sequence data of 22 pairs of taxa from the Philippines
+Using simulations, we show that the new implementation has improved robustness,
+accuracy, and power compared to the original model.
+Also, our results confirm that the improved performance of the new model
+is due to a combination of
+(1) more flexible priors on divergence-time and demographic parameters that
+avoid placing high prior density in improbable regions of parameter space, and
+(2) a diffuse Dirichlet-process prior that does not strongly disfavor
+divergence models with intermediate numbers of divergence events.
+% Also, our results confirm that both the uniform priors on demographic and
+% divergence-time parameters and the U-shaped prior on divergence models
+% contribute to the tendency of \msb.
+After reanalyzing sequence data from 22 pairs of taxa from the Philippines
 \citep{Oaks2012} under the new model, we find a large amount of posterior
 uncertainty in the number of divergence events shared among the taxa; a result
-congruent with intuition given the richness of the model and the relatively
-small amount of information in the data.
+in contrast with the original \msb model \citep{Oaks2012} and congruent with
+intuition given the richness of the model and the relatively small amount of
+information in the data.
 
 
 \section*{Methods}
@@ -598,12 +604,11 @@ This is discussed in more detail in the description of the ABC implementation
 below.
 
 \subsubsection*{The priors on nuisance parameters}
-Following the recommendations of \citet{Oaks2012}, we have replaced the use of
-continuous uniform distributions for priors on many of the
-model's parameters (\divTime{}, \ancestralTheta{}, \descendantTheta{1}{},
-\descendantTheta{2}{}, \bottleScalar{1}{}, \bottleScalar{2}{},
-\recombinationRate, \migrationRate{}) with more flexible parametric
-distributions from the exponential family.
+We have replaced the use of continuous uniform distributions for priors on many
+of the model's parameters (\divTime{}, \ancestralTheta{},
+\descendantTheta{1}{}, \descendantTheta{2}{}, \bottleScalar{1}{},
+\bottleScalar{2}{}, \recombinationRate, \migrationRate{}) with more flexible
+parametric distributions from the exponential family.
 We introduce gamma-distributed priors for rate parameters that have a sample
 space of all positive real numbers (\divTime{}, \ancestralTheta{},
 \descendantTheta{1}{}, \descendantTheta{2}{}, \recombinationRate,
@@ -613,8 +618,8 @@ proportions bounded by zero and one (\bottleScalar{1}{} and
 These priors provide an investigator with much greater flexibility in
 expressing prior uncertainty regarding the parameters of the model.
 
-Another distinction between our model and that of \msb, is the prior on the
-sizes of the descendant populations of each pair.
+In addition, we have modified the prior on the sizes of the descendant
+populations of each pair.
 As described by \citet{Oaks2012}, \msb uses the joint prior
 \begin{equation}
     \descendantTheta{1}{}, \descendantTheta{2}{} \sim
