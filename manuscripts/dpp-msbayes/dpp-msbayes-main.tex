@@ -444,6 +444,15 @@ repeated \npairs{} times), whereas if it contains \npairs{} divergence-time
 parameters, the model is fully generalized to allow all of the pairs to diverge
 at unique times.
 
+Unlike the model implemented in \msb, here I place priors on
+\divTimeIndexVector and \divTime{}, rather than \divTimeNum and
+\divTime{}.
+As a result, \divTimeIndexVector determines the number of divergence-time
+parameters (\divTimeNum) in the model.
+Below, I first describe the prior used for \divTime{} and the timescale it
+imposes on the model before discussing the priors implemented for
+\divTimeIndexVector.
+
 \begin{linenomath}
 Each \divTime{} within \divTimeVector is \iid as $\divTime{} \sim
 Gamma(\gammaShape{\divTime{}}, \gammaScale{\divTime{}})$.
@@ -454,12 +463,15 @@ The divergence times are in coalescent units relative to the size of
 a constant reference population, which I denote \myTheta{C}, that is equal to
 the expectation of the prior on the size of the descendant populations
 \begin{equation}
-    \myTheta{C} = \mathbb{E}(\dThetas),
+    % \myTheta{C} = \mathbb{E}(\dThetas),
+    \myTheta{C} = \mathbb{E}(\descendantTheta{}{}),
     \label{eq:thetaC}
 \end{equation}
-where \popIndex is the descendant-population index which can be either 1 or 2.
+% where \popIndex is the descendant-population index which can be either 1 or 2.
 Given the size of the descendant populations are \iid as
-$\dThetas \sim Gamma(\gammaShape{\descendantTheta{}{}},
+$\descendantTheta{1}{} \sim Gamma(\gammaShape{\descendantTheta{}{}},
+\gammaScale{\descendantTheta{}{}})$ and
+$\descendantTheta{2}{} \sim Gamma(\gammaShape{\descendantTheta{}{}},
 \gammaScale{\descendantTheta{}{}})$,
 this becomes
 \begin{equation}
@@ -481,14 +493,14 @@ effective size of the reference population
 \end{equation}
 Thus, for each of the divergence times in \divTimeVector to be on the same
 scale, the relative mutation rates among the pairs of populations are assumed
-to be fixed and known according to the user-provided values in
+to be known and fixed according to the user-provided values in
 \mutationRateScalarConstantVector.
 \end{linenomath}
 
 \begin{linenomath}
 As described by \citet{Oaks2012}, to get the divergence times in units
-proportional to the expected number of mutations, I must
-scale them by the realized population size for locus $j$ of population-pair $i$ 
+proportional to the expected number of mutations, they must be
+scaled by the realized population size for locus $j$ of population-pair $i$ 
 \begin{equation}
     \divTimeScaled{i}{j} = \divTimeMap{i} \times \frac{\myTheta{C}}{
         \descendantThetaMean{i} \ploidyScalar{i}{j}},
@@ -854,22 +866,25 @@ exponential priors on nuisance parameters,
 $\divTimeIndexVector \sim \priorOld$,
 $\divTime{} \sim Exp(mean=2.887)$,
 $\ancestralTheta{} \sim Exp(mean=0.025)$,
+$\descendantTheta{1}{} \sim Exp(mean=0.025)$,
 and
-$\dThetas \sim Exp(mean=0.025)$.
+$\descendantTheta{2}{} \sim Exp(mean=0.025)$.
 (3) a model with uniform prior probability over unordered divergence models,
 \modelUniform, with priors
 $\divTimeIndexVector \sim \priorUniform$,
 $\divTime{} \sim Exp(mean=2.887)$,
 $\ancestralTheta{} \sim Exp(mean=0.025)$,
+$\descendantTheta{1}{} \sim Exp(mean=0.025)$,
 and
-$\dThetas \sim Exp(mean=0.025)$;
+$\descendantTheta{2}{} \sim Exp(mean=0.025)$.
 and
 (4) a Dirichlet-process prior model, \modelDPP, with priors
 $\divTimeIndexVector \sim \priorDPP{\sim Gamma(2,2)}$,
 $\divTime{} \sim Exp(mean=2.887)$,
 $\ancestralTheta{} \sim Exp(mean=0.025)$,
+$\descendantTheta{1}{} \sim Exp(mean=0.025)$,
 and
-$\dThetas \sim Exp(mean=0.025)$.
+$\descendantTheta{2}{} \sim Exp(mean=0.025)$.
 I selected the exponential prior on divergence time used in models \modelDPP,
 \modelUniform, and \modelUshaped to have the same variance as the uniform prior
 in model \modelOld.
