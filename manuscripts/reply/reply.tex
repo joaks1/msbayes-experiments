@@ -6,57 +6,43 @@
 \input{../utils/preamble.tex}
 \input{../utils/macros.tex}
 
-\newcommand{\msTitle}{Implications of uniformly distributed, empirically
-    informed priors for phylogeographical model selection: A reply to Hickerson
-    et al.
-\xspace}
+\title{Implications of uniformly distributed, empirically informed priors for
+phylogeographical model selection: A reply to Hickerson et al.}
+
+\author[1]{Jamie R.\ Oaks\thanks{Corresponding author: \href{mailto:joaks1@gmail.com}{\tt joaks1@gmail.com}}\thanks{Current address: Department of Biology, University of Washington, Seattle, Washington 98195}}
+\author[2]{Jeet Sukumaran}
+\author[3]{Charles W.\ Linkem}
+\author[4]{Cameron D.\ Siler}
+\author[1]{Rafe M.\ Brown}
+\affil[1]{Department of Ecology and Evolutionary Biology, University of Kansas, Lawrence, Kansas 66045}
+\affil[2]{Department of Biology, Duke University, Durham, North Carolina 27708}
+\affil[3]{Department of Biology, University of Washington, Seattle, Washington 98195}
+\affil[4]{Sam Noble Museum, Department of Biology, University of Oklahoma, Norman, Oklahoma 73072}
+
+% \date{\today}
+\date{\parbox{\linewidth}{\centering%
+    \today\endgraf\bigskip
+    \textbf{Running head}: Approximate Bayesian model choice}}
+
+\makeatletter
+\let\msTitle\@title
+\let\msAuthor\@author
+\let\msDate\@date
+\makeatother
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
-\doublespacing
-\raggedright
-\setlength{\parindent}{0.5in}
-\begin{linenumbers}
+% \doublespacing
+% \raggedright
+% \setlength{\parindent}{0.5in}
+% \begin{linenumbers}
 
-\begin{titlepage}
-    \begin{flushleft}
-        \sffamily
+\maketitle
 
-        \MakeUppercase{\large\bfseries \msTitle}
-
-        \vspace{12pt}
-        \textbf{Running head:} \MakeUppercase{Approximate Bayesian model
-        choice}
-
-        \vspace{12pt}
-        Jamie R.\ Oaks$^{1,2}$, Jeet Sukumaran$^{3}$, Charles W.\ Linkem$^{4}$,
-        Cameron D.\ Siler$^{5}$, and Rafe M.\ Brown$^{1}$
-
-        \bigskip
-        $^1$\emph{Department of Ecology and Evolutionary Biology,
-            Biodiversity Institute,
-            University of Kansas,
-            Lawrence, Kansas 66045}\\[.1in]
-        $^3$\emph{Department of Biology,
-            Duke University,
-            Durham, North Carolina 27708} \\[.1in]
-        $^4$\emph{Department of Biology,
-            University of Washington,
-            Seattle, Washington 98195}\\[.1in]
-        $^5$\emph{Sam Noble Museum,
-            Department of Biology,
-            University of Oklahoma,
-            Norman, Oklahoma 73072}\\[.1in]
-        $^2$\emph{Corresponding author} (\href{mailto:joaks1@gmail.com}{\tt
-        joaks1@gmail.com})\\
-
-    \end{flushleft}
-\end{titlepage}
-
-{\sffamily
-    \noindent\textbf{ABSTRACT} \\
-    \noindent Biogeographers frequently seek to explain population and species
+\begin{abstract}
+    Biogeographers frequently seek to explain population and species
     differentiation on geographical phenomena.
     Establishing that a set of population splitting events occurred
     at the same time can be a potentially persuasive argument that a set of taxa
@@ -106,7 +92,7 @@
     \vspace{12pt}
     \noindent\textbf{KEY WORDS: Approximate Bayesian computation; Bayesian
         model choice; empirical Bayes} 
-}
+\end{abstract}
 
 \newpage
 
@@ -136,7 +122,7 @@ Biodiversity Institute.
 \listoffigures
 
 
-\end{linenumbers}
+% \end{linenumbers}
 
 %% TABLES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
@@ -156,29 +142,16 @@ Biodiversity Institute.
 \setcounter{figure}{0}
 \setcounter{table}{0}
 \setcounter{page}{1}
+\setcounter{section}{0}
 
 \singlespacing
 
+\section*{Supporting Information}
 % PUT MAIN TEXT CITATION HERE
-{
-\renewcommand{\refname}{\noindent\MakeUppercase{\LARGE\sffamily\upshape supporting information}}
-\begin{thebibliography}{1}
-\providecommand{\natexlab}[1]{#1}
-\providecommand{\url}[1]{\texttt{#1}}
-\providecommand{\urlprefix}{URL }
+\hangindent=1cm
+Oaks, J.~R., J.~Sukumaran, C.~W.\ Linkem, C.~D.\ Siler, and R.~M.\ Brown. \msTitle.
 
-\bibitem[{Oaks et~al.(2014)Oaks, Sukumaran, Esselstyn, Linkem, Siler, Brown,
-  and Holder}]{Oaks2013reply}
-Oaks, J.~R., J.~Sukumaran, J.~A.\ Esselstyn, C.~W.\ Linkem, C.~D.\ Siler,
-    R.~M.\ Brown, and M.~T.\ Holder,
-  % 2013.
-\newblock \msTitle
-% \newblock Evolution 67:991--1010.
-
-\end{thebibliography}
-}
-
-\doublespacing
+% \doublespacing
 \input{reply-si-main.tex}
 
 \newpage
