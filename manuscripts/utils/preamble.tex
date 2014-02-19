@@ -30,6 +30,7 @@
 \usepackage{rotating}
 \usepackage{array}
 \usepackage{tabulary}
+\usepackage{authblk}
 
 \usepackage{hyperref}
 \hypersetup{pdfborder={0 0 0}, colorlinks=true, urlcolor=black, linkcolor=black, citecolor=black}
@@ -40,7 +41,8 @@
 \setlength\linenumbersep{1cm}
 \def\linenumberfont{\normalfont\scriptsize\sffamily}
 
-\usepackage[format=plain, labelsep=period, justification=raggedright, singlelinecheck=true, skip=2pt, font=sf]{caption}
+% \usepackage[format=plain, labelsep=period, justification=raggedright, singlelinecheck=true, skip=2pt, font=sf]{caption}
+\usepackage{caption}
 \DeclareCaptionLabelFormat{noSpace}{{#1}{#2}}
 \DeclareCaptionListFormat{figList}{Figure {#2}.}
 \DeclareCaptionListFormat{sFigList}{Figure S{#2}.}
@@ -52,33 +54,31 @@
 \bibliographystyle{../bib/evolution.bst}
 % \bibliographystyle{evolution}
 
-% \input{macros.tex}
+% \makeatletter
+%   \renewcommand{\section}{\@startsection{section}{1}{0mm}%
+%     {-12pt}%
+%     {12pt}%
+%     {\sffamily\LARGE\itshape}}
+% \makeatother
 
-\makeatletter
-  \renewcommand{\section}{\@startsection{section}{1}{0mm}%
-    {-12pt}%
-    {12pt}%
-    {\sffamily\LARGE\itshape}}
-\makeatother
+% \makeatletter
+%   \renewcommand{\subsection}{\@startsection{subsection}{1}{0mm}%
+%   {-10pt}%
+%   {4pt}%
+%   {\sffamily\large\bfseries\MakeUppercase}}
+% \makeatother
 
-\makeatletter
-  \renewcommand{\subsection}{\@startsection{subsection}{1}{0mm}%
-  {-10pt}%
-  {4pt}%
-  {\sffamily\large\bfseries\MakeUppercase}}
-\makeatother
-
-\makeatletter
-  \renewcommand{\subsubsection}{\@startsection{subsubsection}{1}{0mm}%
-  {-10pt}%
-  {10pt}%
-  {\sffamily\large\itshape}}
-\makeatother
+% \makeatletter
+%   \renewcommand{\subsubsection}{\@startsection{subsubsection}{1}{0mm}%
+%   {-10pt}%
+%   {10pt}%
+%   {\sffamily\large\itshape}}
+% \makeatother
 
 % make list of figures ragged right
-\makeatletter
-  \renewcommand{\@tocrmarg}{0cm plus1fil}
-\makeatother
+% \makeatletter
+%   \renewcommand{\@tocrmarg}{0cm plus1fil}
+% \makeatother
 
 \definecolor{myGray}{gray}{0.9}
 \setlength\linenumbersep{1cm}
