@@ -40,7 +40,6 @@ dmc.py --np $nprocs \
     --staging-dir $staging_dir \
     --temp-dir $staging_dir \
     --seed $seed \
-    --compress \
     --generate-samples-only
 
 echo "Here are the contents of the local temp directory '${staging_dir}':"
