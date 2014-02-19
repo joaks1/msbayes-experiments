@@ -141,7 +141,7 @@ freely and publicly available in real-time at
 \href{https://github.com/joaks1/msbayes-experiments}{\url{https://github.com/joaks1/msbayes-experiments}}.
 All information necessary to reproduce my results is provided there.
 I follow much of the notation of \citet{Oaks2012}, but modify it to
-aid in my description of the new model.
+aid in the description of the new model.
 A summary of my notation can be found in Table \ref{tabNotation}.
 
 I assume an investigator is interested in inferring the distribution
@@ -158,7 +158,7 @@ $\alignmentVector = (\alignment{1}{1}, \ldots,
     \alignment{\npairs{}}{\nloci{\npairs{}}})$
 is the full dataset,
 i.e., a vector of sequence alignments for all pairs and loci.
-I let \geneTree{i}{j} represent the gene tree upon which \alignment{i}{j}
+Let \geneTree{i}{j} represent the gene tree upon which \alignment{i}{j}
 evolved according to fixed \hky substitution model parameters \hkyModel{i}{j}.
 The investigator must specify the parameters of all
 $\hkyModelVector = (\hkyModel{1}{1}, \ldots,
@@ -407,19 +407,21 @@ $\migrationRate{} \sim Gamma(\gammaShape{\migrationRate{}},
 
 \subsubsection{Priors on divergence models}
 \begin{linenomath}
-The prior term for the vector of divergence times for each of
-the \npairs{} pairs of populations can be expanded as
+The prior term for the vector of divergence times for each of the \npairs{}
+pairs of populations, \divTimeMapVector, can be expanded as
 \begin{equation}
     p(\divTimeMapVector) = p(\divTimeIndexVector)p(\divTimeVector \given \divTimeIndexVector),
     \label{eq:divModelPrior}
 \end{equation}
-where \divTimeVector is an ordered set of unique divergence-time parameters
+where \divTimeVector is an ordered set of divergence-time parameters
 $\{\divTime{1}, \ldots, \divTime{\divTimeNum}\}$ whose length
 \divTimeNum can range from 1 to \npairs{},
-and \divTimeIndexVector is the vector of indices of divergence-time parameters 
-$(\divTimeIndex{1}, \ldots, \divTimeIndex{\npairs{}})$
-that map the divergence times in \divTimeVector to each of the \npairs{}
-pairs of populations.
+and \divTimeIndexVector is a vector of indices %of divergence-time parameters 
+$(\divTimeIndex{1}, \ldots, \divTimeIndex{\npairs{}})$,
+where
+$\divTimeIndex{i} \in \{1, \ldots, \divTimeNum\}$.
+These indices map each of the \npairs{} pairs of populations to a
+divergence-time parameter in \divTimeVector.
 Thus, \divTimeMapVector is the result of applying the mapping function
 \begin{equation}
     f(\divTimeVector, \divTimeIndexVector, i) = \divTime{\divTimeIndex{i}}
@@ -434,11 +436,11 @@ $\divTimeMapVector = (\divTimeMap{1} = f(\divTimeVector, \divTimeIndexVector,
 Biologically speaking, \divTimeVector contains the times of divergence events,
 the length of which \divTimeNum is the number of divergence events shared across
 the \npairs{} pairs of populations.
-For example, if \divTimeVector contains a single divergence time parameter
+For example, if \divTimeVector contains a single divergence-time parameter
 \divTime{1}, all \npairs{} pairs of populations are constrained to diverge at
 this time (i.e., \divTimeIndexVector would contain the index 1 repeated
 \npairs{} times, and \divTimeMapVector would contain the value \divTime{1}
-repeated \npairs{} times), whereas if it contains \npairs{} divergence time
+repeated \npairs{} times), whereas if it contains \npairs{} divergence-time
 parameters, the model is fully generalized to allow all of the pairs to diverge
 at unique times.
 
