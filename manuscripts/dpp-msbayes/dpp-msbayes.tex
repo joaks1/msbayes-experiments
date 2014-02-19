@@ -6,19 +6,8 @@
 \input{../utils/preamble.tex}
 \input{../utils/macros.tex}
 
-\newcommand{\msTitle}{An Improved Approximate-Bayesian Model-choice Method for
-    Estimating Shared Evolutionary History \xspace}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{document}
-% \doublespacing
-% \raggedright
-% \setlength{\parindent}{0.5in}
-% \begin{linenumbers}
-
-\title{\msTitle}
+\title{An Improved Approximate-Bayesian Model-choice Method for Estimating
+Shared Evolutionary History}
 
 \author[1]{Jamie R.\ Oaks\thanks{Corresponding author: \href{mailto:joaks1@gmail.com}{\tt joaks1@gmail.com}}\thanks{Current address: Department of Biology, University of Washington, Seattle, Washington 98195}}
 \author[1]{Mark T.\ Holder}
@@ -28,6 +17,21 @@
 \date{\parbox{\linewidth}{\centering%
     \today\endgraf\bigskip
     \textbf{Running head}: Improved Estimation of Shared Evolutionary History}}
+
+\makeatletter
+\let\msTitle\@title
+\let\msAuthor\@author
+\let\msDate\@date
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+% \doublespacing
+% \raggedright
+% \setlength{\parindent}{0.5in}
+% \begin{linenumbers}
 
 \maketitle
 
