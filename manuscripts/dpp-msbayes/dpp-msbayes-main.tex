@@ -170,7 +170,7 @@ mutation rates among loci and/or among taxa.
 \begin{linenomath}
 With \alignmentVector, \hkyModelVector, \ploidyScalarVector, and
 \mutationRateScalarConstantVector in hand, the joint posterior distribution
-of our model is given by
+of our model is given by Bayes' rule as
 \begin{equation}
     p(\geneTreeVector, \divTimeMapVector, \demographicParamVector, 
     \locusMutationRateScalarVector, \locusRateHetShapeParameter \given
@@ -188,8 +188,8 @@ of our model is given by
         \mutationRateScalarConstantVector)},
     \label{eq:fullModelCompactJoint}
 \end{equation}
-which can be expanded out into components that are assumed to be independent
-to get
+which can be expanded using the chain rule of probability into components that
+are assumed to be independent to get
 \begin{equation}
     p(\geneTreeVector, \divTimeMapVector, \demographicParamVector, 
     \locusMutationRateScalarVector, \locusRateHetShapeParameter \given
