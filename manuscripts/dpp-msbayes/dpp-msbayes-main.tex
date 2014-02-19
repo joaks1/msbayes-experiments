@@ -1,18 +1,22 @@
 \section*{Introduction}
+
 Understanding the processes that generate biodiversity and regulate
 community assembly is a major goal of evolutionary biology.
-Given the dynamic nature of our planet, a major component of this goal is
-understanding how geological and climatic processes can affect the
-evolutionary history of whole groups of co-distributed species and their
-associated microbiota, including pathogens.
-Such large-scale processes predict patterns of shared evolutionary history
-across affected populations of organisms, e.g., temporally clustered
-divergences across co-distributed species.
-At recent timescales, such events should leave a signature in the genetic
-variation within and among the affected lineages.
-Thus, accurately estimating models of shared evolutionary history across
-co-distributed taxa is important for better understanding how regional and
-global biogeographic processes affect biodiversity.
+Large-scale changes to the environment, including geological and climatic
+events, can affect the evolutionary history of entire communities of
+co-distributed species and their associated microbiota.
+For example, by partitioning communities, such an event can isolate groups of
+populations and cause a temporal cluster of speciation events across
+co-distributed taxa.
+Given the dynamic nature of our planet, such biogeographical processes likely
+play a significant role in determining diversification rates and patterns.
+At recent timescales, temporal clusters of diversification caused by
+biogeographical events can leave a signature in the genetic variation within
+and among the affected lineages.
+Thus, methods for accurately estimating models of shared evolutionary events
+across co-distributed taxa from genetic data are important for better
+understanding how regional and global biogeographical processes affect
+biodiversity.
 
 This inference problem is challenging due to the stochastic nature by which
 mutations occur in populations and how they are inherited over generations
@@ -28,10 +32,16 @@ substitution and lineage coalescence.
 
 The software package \msb implements such an approach in an
 approximate-Bayesian model-choice framework \citep{Hickerson2006,Huang2011}.
+The method models temporally clustered divergences across taxa caused by a
+biogeographical event (or a ``divergence event'') as a single, instantaneous
+occurrence.
+In other words, a divergence event causes a set of taxa to share the same
+moment of divergence along a continuous time scale (i.e., simultaneous
+divergence).
 Given aligned sequence data for \npairs{} pairs of populations, \msb 
 estimates the number of divergence events shared among the pairs, the timing of
 the events, and the assignment of pairs to the events, while integrating out
-uncertainty in demographic parameters and the genealogical history of the
+uncertainty in demographic parameters and the genealogical histories of the
 sequences.
 % samples over all the possible ways of assigning the divergences between the
 % populations of each pair to 1--\npairs{} divergence events, while estimating
@@ -39,7 +49,7 @@ sequences.
 % parameters and the genealogical history of the sequences.
 Thus, the method samples over all possible divergence models of differing
 dimensionality (i.e., all the possible partitions of \npairs{} pairs to
-$1,2,\ldots,\npairs{}$ divergence-time parameters), and, in so doing, estimates
+$1,2,\ldots,\npairs{}$ divergence events), and, in so doing, estimates
 the posterior probability of each model.
 
 For priors on divergence-time and demographic parameters, \msb uses continuous
@@ -106,7 +116,7 @@ divergence models with intermediate numbers of divergence events.
 After reanalyzing sequence data from 22 pairs of taxa from the Philippines
 \citep{Oaks2012} under the new model, we find a large amount of posterior
 uncertainty in the number of divergence events shared among the taxa; a result
-in contrast with the original \msb model \citep{Oaks2012} and congruent with
+in contrast with the original \msb model and congruent with
 intuition given the richness of the model and the relatively small amount of
 information in the data.
 
