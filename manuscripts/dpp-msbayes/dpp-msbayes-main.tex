@@ -541,7 +541,7 @@ of \divTimeIndexVector is discussed in detail below.
 
 \begin{linenomath}
 I implement two prior probability distributions over the space
-of all possible discrete divergence models (\divTimeIndexVector).
+of all possible divergence models (\divTimeIndexVector).
 The first simply gives all possible unordered partitions of \npairs{} elements
 equal probability
 \begin{equation}
@@ -549,7 +549,7 @@ equal probability
     \label{eq:divModelPriorUniform}
 \end{equation}
 i.e., a discrete uniform prior over all the integer partitions of \npairs{}
-(discrete divergence models).
+(unordered divergence models).
 I denote this prior as
 $\divTimeIndexVector \sim \priorUniform$.
 \end{linenomath}
@@ -617,7 +617,7 @@ parameters are represented at least once (see Equation 2 of \citet{Oaks2012}).
 I denote this prior used by \msb as $\divTimeIndexVector \sim \priorOld$.
 \citet{Oaks2012} discuss how placing a uniform prior over the number of
 divergence parameters (denoted \divTimeNum here, and as \numt{} in
-\citet{Huang2011}) imposes an U-shaped prior over discrete divergence
+\citet{Huang2011}) imposes an U-shaped prior over divergence
 models (\divTimeIndexVector; see
 Figure 5B of \citet{Oaks2012}).
 To avoid this, I place priors directly on the sample space of divergence
@@ -782,7 +782,7 @@ taxon-specific summary statistics \alignmentSS{}{} within each \ssVector{}.
 Rather, the summary statistics are re-ordered by descending values of average
 pairwise differences between the descendant populations
 \citep[$\pi_b$;][]{NeiLi1979,Huang2011}.
-This has the advantage of reducing the sample space of the number of discrete
+This has the advantage of reducing the sample space of the number of
 divergence models \divTimeIndexVector, but there are at least two disadvantages.
 First, additional information in the data is lost.
 By discarding the identity of the \npairs{} pairs of populations, all
@@ -962,18 +962,16 @@ contained in the simulations of the other models.
 I evaluated the power of the same four models (Table~\ref{tabPriors}) to
 detect random variation in divergence times using methods similar to
 \citet{Oaks2012}.
-The only difference from the prior models used in the validation analyses above
-is the prior on the concentration parameter \concentrationParam for the
-\modelDPP model.
-Rather than the prior
-$\divTimeIndexVector \sim \priorDPP{\sim Gamma(2,2)}$,
-I use the prior
-$\divTimeIndexVector \sim \priorDPP{\sim Gamma(1.5,18.1)}$
-over the discrete divergence models for the model \modelDPP.
-The reason for this difference is because for all of the power simulations, I
-used a simulated data structure identical to that of the empirical dataset of
-Philippine vertebrates analyzed by \citet{Oaks2012}, which consists of 22 pairs
-of populations.
+For all power simulations, I used a data structure identical to that of the
+empirical dataset of Philippine vertebrates analyzed by \citet{Oaks2012}, which
+consists of 22 pairs of populations.
+Due to the larger number of pairs, I used a different hyperprior on the
+concentration parameter for the \modelDPP model; I used a prior of
+$\divTimeIndexVector \sim \priorDPP{\sim Gamma(1.5,18.1)}$ over divergence
+models for the model \modelDPP.
+All other aspects of the four models in Table~\ref{tabPriors} were identical to
+those used in the validation analyses described above.
+
 For each of the four models, I generated $2\e6$ samples from the prior.
 I then simulated datasets from three series of models
 (Table~\ref{tabPowerModels}).
