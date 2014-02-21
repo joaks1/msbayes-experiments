@@ -878,32 +878,33 @@ Following the simulation-based approach of \citet{Oaks2012}, I characterize
 the behavior of several models under the ideal conditions where the
 data are generated from parameters drawn from the same prior distributions used
 for analysis (i.e., the prior is correct).
-I selected four model priors for these analyses (Table~\ref{tabPriors}):
-\begin{description}
-    \item[\modelOld] a model to represent the original \msb implementation with
+I selected the following four model priors for these analyses
+(Table~\ref{tabPriors}).
+\begin{enumerate}
+    \item The \modelOld model represents the original \msb implementation with
         the U-shaped prior on unordered divergence models and uniform priors on
         divergence-time and demographic parameters; $\divTimeIndexVector \sim
         \priorOld$, $\divTime{} \sim U(0,10)$, $\ancestralTheta{} \sim U(0,
-        0.05)$, and $\descendantThetaMean{} \sim U(0, 0.05)$
-    \item[\modelUshaped] a model with the U-shaped prior of \msb on unordered
+        0.05)$, and $\descendantThetaMean{} \sim U(0, 0.05)$.
+    \item The \modelUshaped model with the U-shaped prior of \msb on unordered
         divergence models, but with exponential priors on divergence-time and
         demographic parameters; $\divTimeIndexVector \sim \priorOld$,
         $\divTime{} \sim Exp(mean=2.887)$, $\ancestralTheta{} \sim
         Exp(mean=0.025)$, $\descendantTheta{1}{} \sim Exp(mean=0.025)$, and
-        $\descendantTheta{2}{} \sim Exp(mean=0.025)$
-    \item[\modelUniform] a model with a uniform prior over unordered divergence
-        models and exponential priors on divergence-time and demographic
-        parameters; $\divTimeIndexVector \sim \priorUniform$, $\divTime{} \sim
-        Exp(mean=2.887)$, $\ancestralTheta{} \sim Exp(mean=0.025)$,
-        $\descendantTheta{1}{} \sim Exp(mean=0.025)$, and
-        $\descendantTheta{2}{} \sim Exp(mean=0.025)$
-    \item[\modelDPP] a model with a Dirichlet-process prior on ordered
+        $\descendantTheta{2}{} \sim Exp(mean=0.025)$.
+    \item The \modelUniform model with a uniform prior over unordered
+        divergence models and exponential priors on divergence-time and
+        demographic parameters; $\divTimeIndexVector \sim \priorUniform$,
+        $\divTime{} \sim Exp(mean=2.887)$, $\ancestralTheta{} \sim
+        Exp(mean=0.025)$, $\descendantTheta{1}{} \sim Exp(mean=0.025)$, and
+        $\descendantTheta{2}{} \sim Exp(mean=0.025)$.
+    \item The \modelDPP model with a Dirichlet-process prior on ordered
         divergence models and exponential priors on divergence-time and
         demographic parameters; $\divTimeIndexVector \sim \priorDPP{\sim
         Gamma(2,2)}$, $\divTime{} \sim Exp(mean=2.887)$, $\ancestralTheta{}
         \sim Exp(mean=0.025)$, $\descendantTheta{1}{} \sim Exp(mean=0.025)$,
         and $\descendantTheta{2}{} \sim Exp(mean=0.025)$.
-\end{description}
+\end{enumerate}
 I selected the exponential prior on divergence time used in models \modelDPP,
 \modelUniform, and \modelUshaped to have the same variance as the uniform prior
 in model \modelOld.
@@ -971,26 +972,42 @@ $\divTimeIndexVector \sim \priorDPP{\sim Gamma(1.5,18.1)}$ over divergence
 models for the model \modelDPP.
 All other aspects of the four models in Table~\ref{tabPriors} were identical to
 those used in the validation analyses described above.
-
 For each of the four models, I generated $2\e6$ samples from the prior.
-I then simulated datasets from three series of models
-(Table~\ref{tabPowerModels}).
-One series of models, which I denote \powerSeriesOld, is identically
-distributed as \modelOld except that the divergence times for each of the 22
-pairs of populations are randomly drawn from a series of uniform distributions,
-$U(0, \divt{max})$, where \divt{max} was set to: 0.2, 0.4, 0.6, 0.8, 1.0, and
-2.0, in \globalcoalunit generations.
-A second series of models, \powerSeriesUniform, is identically distributed as
-\modelUniform and \modelDPP except that the 22 divergence times are randomly
-drawn from the same series of uniform priors as above.
-The third series of models, \powerSeriesExp, is also identically distributed as
-\modelUniform and \modelDPP except that the 22 divergence times are randomly
-drawn from a series of of exponential distributions:
-$Exp(mean=0.058)$, $Exp(mean=0.115)$, $Exp(mean=0.173)$, $Exp(mean=0.231)$,
-$Exp(mean=0.289)$, and $Exp(mean=0.577)$.
-These exponential distributions have the same variance as their uniform
-counterparts in the first two series of models.
 
+Next, I simulated datasets from three series of models in which the divergence
+times of the 22 pairs were random (i.e., no clustering; $\divTimeNum = 22$).
+The models comprising each series differ in the variance of the distribution
+from which the divergence times are randomly drawn.
+When the variance of random divergence times is small, all of the models in
+Table~\ref{tabPriors} are expected to struggle to detect this variation and
+will often incorrectly estimate highly clustered models of divergence (i.e.,
+few divergence events).
+The goal is to assess how much temporal variation in random divergence times is
+necessary before the behavior of the models of Table~\ref{tabPriors} begins to
+improve.
+This will determine the timescales over which the models can reliably detect
+random variation in divergence times and avoid spurious inference of
+biogeographically interesting clustered divergence models.
+
+Specifically, I simulated datasets from the following three series of six
+models (Table~\ref{tabPowerModels}).
+\begin{enumerate}
+    \item The \powerSeriesOld models are identically distributed as \modelOld
+        except the divergence times for each of the 22 pairs of
+        populations are randomly drawn from a series of uniform distributions,
+        $U(0, \divt{max})$, where \divt{max} was set to: 0.2, 0.4, 0.6, 0.8,
+        1.0, and 2.0, in \globalcoalunit generations.
+    \item The \powerSeriesUniform models are identically distributed as
+        \modelUniform and \modelDPP except the 22 divergence times are
+        randomly drawn from the same series of uniform priors as above.
+    \item The \powerSeriesExp models are also identically distributed as
+        \modelUniform and \modelDPP except the 22 divergence times are
+        randomly drawn from a series of of exponential distributions:
+        $Exp(mean=0.058)$, $Exp(mean=0.115)$, $Exp(mean=0.173)$,
+        $Exp(mean=0.231)$, $Exp(mean=0.289)$, and $Exp(mean=0.577)$. These
+        exponential distributions have the same variance as their uniform
+        counterparts in the first two series of models.
+\end{enumerate}
 For each of the six models in each of the three series of models, I simulated
 1000 datasets (18,000 datasets in total).
 I then analyzed each simulated dataset under all four prior models
@@ -1001,8 +1018,9 @@ posterior samples \citep{Leuenberger2010}.
 
 \subsection{An empirical application}
 I also assessed the behavior of the newly implemented models when applied to
-the empirical dataset of \citet{Oaks2012} comprised of sequence data from 22
-pairs of taxa from the Philippine Islands (Drayad DOI: 10.5061/dryad.5s07m).
+the empirical dataset of \citet{Oaks2012}, which is comprised of sequence data
+from 22 pairs of taxa from the Philippine Islands (Drayad DOI:
+10.5061/dryad.5s07m).
 I analyzed these data under five different models, which are detailed in
 Table~\ref{tabEmpiricalModels}.
 All of these models except one (\empModelDPPSimple) have six free demographic
@@ -1016,10 +1034,9 @@ parameters per pair of taxa (
 in addition to the $\popSampleSize{i}{} - 1$ coalescent times.
 Three of these models use a Dirichlet-process prior on divergence models:
 \empModelDPP, \empModelDPPInform, and \empModelDPPSimple.
-The \empModelDPP model is meant to represent the prior that \citet{Oaks2012}
-would have selected to represent their prior uncertainty about the parameters
-of the model if provided the more flexible distributions that are now
-implemented.
+The \empModelDPP model represents the priors that \citet{Oaks2012} would have
+selected to reflect their prior uncertainty about the parameters of the model
+if provided the more flexible distributions that are now implemented.
 To assess prior sensitivity, the \empModelDPPInform model uses a more
 informative exponentially distributed prior on divergence times, but otherwise
 is identical to \empModelDPP.
@@ -1027,10 +1044,10 @@ To assess sensitivity to parameterization, I also applied the simplest
 possible model under the new implementation (\empModelDPPSimple) with only a
 single demographic parameter (\myTheta{}) per taxon pair, in addition to the
 $\popSampleSize{i}{} - 1$ coalescent times.
-I also applied the original \msb model (\empModelOld) with priors
-selected to make it comparable to the \empModelDPP model;
+I also applied the original \msb model (\empModelOld) with priors selected to
+make the results directly comparable to those of the \empModelDPP model;
 the uniform prior on divergence times was selected to have the same variance as
-the exponential prior of the \empModelDPP, and the prior on population
+the exponential prior of the \empModelDPP model, and the prior on population
 size was selected to have the same mean so that the models are on the same
 timescale.
 I also applied a model with a uniform distribution over divergence models
@@ -1366,7 +1383,7 @@ estimated from the posterior sample.
 \section{Discussion}
 My results demonstrate that using alternative priors on parameters and
 divergence models improved the behavior of the \msb model.
-In my implementation, model-choice estimation is more accurate and shows
+In the new implementation, model-choice estimation is more accurate and shows
 greater robustness to model violations
 (Figure~\ref{figValidationModelChoicePsi} \&
 \ref{figValidationModelChoiceOmega}).
