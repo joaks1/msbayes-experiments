@@ -478,8 +478,9 @@ this becomes
     \myTheta{C} = \gammaShape{\descendantTheta{}{}}\gammaScale{\descendantTheta{}{}}.
     \label{eq:thetaCGamma}
 \end{equation}
-The \divTime{} parameters are in units of $\myTheta{C}/\mutationRate$
-generations, which I denote as \globalcoalunit generations.
+More specifically, the \divTime{} parameters are in units of
+$\myTheta{C}/\mutationRate$ generations, which I denote as \globalcoalunit
+generations.
 Thus, each \divTime{} within \divTimeVector is proportional to time and can be
 converted to the number of generations of the reference population, which I
 denote \divTime{G_C}, by assuming a mutation rate and multiplying by the
@@ -553,20 +554,29 @@ I denote this prior as
 $\divTimeIndexVector \sim \priorUniform$.
 \end{linenomath}
 
-The second prior is based on the Dirichlet-process, which is a
-stochastic process that groups elements into an unknown number of discrete
+The second prior is based on the Dirichlet process, which is a stochastic
+process that groups random variables into an unknown number of discrete
 parameter classes \citep{Ferguson1973,Antoniak1974}.
-The process is controlled by the concentration parameter \concentrationParam,
-which determines how clustered the process will be.
-I use the Dirichlet process to place a prior over all possible ordered
-partitions of \npairs{} elements, which I denote as $\divTimeIndexVector \sim
-\priorDPP{}$.
+The Dirichlet process has been used as a nonparametric Bayesian approach to
+many inference problems in evolutionary biology
+\citep{Lartillot2004,Huelsenbeck2007,HuelsenbeckSuchard2007,Ane2007,Heath2011,Heath2012}.
+Here, I use the Dirichlet process to place a prior over all possible ordered
+partitions of \npairs{} population pairs into divergence-time parameter classes
+(i.e., ``divergence events'').
+As discussed above, the time of each divergence-time parameter is drawn from
+the base distribution $\divTime{} \sim Gamma(\gammaShape{\divTime{}},
+\gammaScale{\divTime{}})$.
+The partitioning of the population pairs to divergence-time classes is
+controlled by the concentration parameter \concentrationParam, which determines
+how clustered the process will be.
 I take a hierarchical approach and use a prior probability
-distribution (i.e., hyperprior) for \concentrationParam.
+distribution (i.e., hyperprior) for \concentrationParam \citep{Escobar1995}.
 More specifically, I use a gamma-distributed prior $\concentrationParam \sim
 Gamma(\gammaShape{\concentrationParam}, \gammaScale{\concentrationParam})$,
 where \gammaShape{\concentrationParam} and \gammaScale{\concentrationParam} are
 specified by the investigator.
+I use $\divTimeIndexVector \sim \priorDPP{}$ to denote this Dirichlet-process
+prior.
 
 \begin{linenomath}
 This provides a great deal of flexibility for specifying the prior uncertainty
@@ -594,7 +604,7 @@ will favor more divergence-time parameters, and thus less clustered models of
 divergence.
 \end{linenomath}
 
-\subsection{Differences between my model and the original \texttt{msBayes} model}
+\subsection{Differences between this model and the original \texttt{msBayes} model}
 \subsubsection{The prior on divergence models}
 One of the key differences between my model and that of \msb \citep{Huang2011}
 is the prior distribution on divergence models.
@@ -666,7 +676,7 @@ This relaxes the assumption that the sizes of the two descendant populations
 are interdependent and negatively correlated.
 
 \subsubsection{Flexibility in parameterizing the model}
-In my implementation, I provide the ability to control the richness of the
+In the new implementation, I provide the ability to control the richness of the
 model.
 For the \myTheta{} parameters, the model can be fully generalized to
 allow each population pair to have three parameters:
@@ -693,15 +703,17 @@ as many as seven parameters per population pair
 \migrationRate{})
 or as few as one parameter per pair
 (\myTheta{}),
-in addition to the $\popSampleSize{i}{} - 1$ coalescence-time parameters.
+in addition to the $\popSampleSize{i}{} - 1$ coalescence-time parameters
+(i.e., the node heights of the gene tree).
 
 \subsubsection{Time scale}
-As described above, in my model divergence times are in units of
+As described above, divergence times are in units of
 $\myTheta{C}/\mutationRate$ generations, where \myTheta{C} is the expectation
 of the prior on descendant-population size.
 As described by \citet{Oaks2012}, in \msb, \myTheta{C} is half of the upper
 limit of the continuous uniform prior on the mean of the descendant population
 sizes.
+This is only equal to the expectation of the prior if the lower limit is zero.
 
 \subsection{ABC estimation of the posterior of the model}
 \subsubsection{Sampling from the prior}
@@ -754,11 +766,15 @@ also contains four statistics that summarize \divTimeMapVector:
 the mean (\divTimeMean), variance (\divTimeVar), dispersion index
 ($\divTimeDispersion = \divTimeVar/\divTimeMean$), and the number
 of divergence time parameters (\divTimeNum).
-These have been denoted as \meant{}{}, \vart{}{}, \vmratio{}, and \numt{},
-respectively \citep{Hickerson2006,Huang2011,Oaks2012}.
-I use the new notation to avoid confusion that the values represent prior or
-posterior expectations, and to indicate that \vmratio{} is not a parameter of
-the model and \numt{} is no longer a parameter in the new implementation.
+Previously, these have been denoted as \meant{}{}, \vart{}{}, \vmratio{}, and
+\numt{}, respectively \citep{Hickerson2006,Huang2011,Oaks2012}.
+I use \divTimeMean and \divTimeVar in place \meant{}{} and \vart{}{} to make
+clear that these values do not represent the prior or posterior
+expectation/variance of divergence times.
+I use \divTimeDispersion in place of \vmratio{} to clarify that this is a
+statistic rather than a parameter of the model.
+Lastly, I use \divTimeNum in place of \numt{}, because the number of
+divergence-time parameters is no longer a parameter in the new implementation.
 
 \subsubsection{Ordering of taxon-specific summary statistics}
 As alluded to in the model description, \msb does not maintain the order of the
@@ -780,18 +796,28 @@ Second, the results are more difficult to interpret, because they can be no
 longer be directly associated to the taxa under study.
 
 The original descriptions of the \msb model claim that this re-ordering is
-justified by the fact that of $\pi_b$ (and other summary statistics) are
-unrelated to the sample sizes \popSampleSize{1}{} and \popSampleSize{2}{} of
-each pair and are thus exchangeable \citep{Hickerson2006,Huang2011}.
-This is actually incorrect for two reasons.
-First, the expectation of $\pi_b$ is not independent of samples sizes.
-If there are more than one coalescent events in the ancestor, which is expected
-to be common on phylogeographic timescales, more samples will increase the
-probability of capturing these deeper events, and thus affect the average
-pairwise differences between the descendant populations.
-Also, other statistics that estimate gross diversity (e.g., $\pi$ and
-$\theta_W$) are clearly not independent of sample size.
-Second, for variables to be exchangeable, they do not need to be independent,
+justified by the fact that the expected value of $\pi_b$ is
+unrelated to sample size \popSampleSize{1}{} and \popSampleSize{2}{} and
+thus exchangeable among pairs \citep{Hickerson2006,Huang2011}.
+This is actually incorrect for three reasons.
+First, the independence of the expected value of $\pi_b$ and sample size
+breaks down as $\pi_b$ approaches its lower limit of zero (i.e., very recent or
+no divergence between populations), which might be common given the timescales
+of most phylogeographical studies.
+Second, the entire vector of summary statistics \alignmentSS{}{} for each pair
+of populations is re-ordered across pairs, which implies that the justification
+for re-ordering $\pi_b$ applies to all the statistics within each
+\alignmentSS{}{}.
+% First, the expectation of $\pi_b$ is not independent of samples sizes.
+% If there are more than one coalescent events in the ancestor, which is expected
+% to be common on phylogeographic timescales, more samples will increase the
+% probability of capturing these deeper events, and thus affect the average
+% pairwise differences between the descendant populations.
+However, the expectations for statistics that estimate gross diversity (e.g.,
+$\pi$ and $\theta_W$) are not independent of sample size for structured
+populations, and other statistics are not independent of sample size in general
+(e.g., $SD(\pi-\theta_W)$).
+Third, for variables to be exchangeable, they do not need to be independent,
 but their marginal distributions must be the same (i.e., they must be
 identically distributed).
 The simulated alignments and their summary statistics are not identically
@@ -813,14 +839,14 @@ In such cases, it seems possible that discarding this information could
 cause bias.
 Furthermore, given that (1) part of the motivation for re-ordering by $\pi_b$
 is to minimize Euclidean distances between simulated datasets in which the true
-model has a single divergence event, and (2) the reordering increases the
-model's tendency to infer a single divergence event \citep{Huang2011}, it seems
-possible that this approach could be biasing the method \citep{Oaks2012}.
+model has a single divergence event \citep{Huang2011}, and (2) the reordering
+increases the model's tendency to infer a single divergence event
+\citep{Huang2011}, it seems possible that this approach could be biasing the
+method \citep{Oaks2012}.
 
-To maintain compatibility and comparability with \msb I maintain
-the re-ordering of taxon-specific summary statistics by $\pi_b$.
-However, I also allow the order to be maintained, and ordered
-divergence models to be estimated.
+For comparability with \msb, I maintain the re-ordering of taxon-specific
+summary statistics by $\pi_b$.  However, I also allow the order to be
+maintained, and ordered divergence models to be estimated.
 
 \subsubsection{Obtaining an approximate posterior from the prior samples}
 I use a rejection algorithm to retain an approximate posterior sample of
@@ -842,7 +868,7 @@ Post-hoc adjustment of the posterior sample can also be performed with a number
 of regression techniques \citep{Beaumont2002,Blum2009,Leuenberger2010}.
 For my analyses, I use the general linear model (GLM) regression adjustment
 \citep{Leuenberger2010} as implemented in \abctoolbox
-\citep[v1.1;][]{ABCtoolbox}, which \citet{Oaks2012} showed performed very
+\citep[v1.1;][]{ABCtoolbox}, which \citet{Oaks2012} showed performs very
 similarly to weighted local-linear regression and multinomial logistic
 regression adjustments \citep{Beaumont2002} for \msb posteriors.
 
@@ -853,38 +879,31 @@ the behavior of several models under the ideal conditions where the
 data are generated from parameters drawn from the same prior distributions used
 for analysis (i.e., the prior is correct).
 I selected four model priors for these analyses (Table~\ref{tabPriors}):
-(1) A model to represent the original \msb model, \modelOld, with
-priors
-$\divTimeIndexVector \sim \priorOld$,
-$\divTime{} \sim U(0,10)$,
-$\ancestralTheta{} \sim U(0, 0.05)$,
-and
-$\descendantThetaMean{} \sim U(0, 0.05)$;
-(2) a model with the \msb prior on unordered divergence models, but with
-exponential priors on nuisance parameters,
-\modelUshaped, with priors
-$\divTimeIndexVector \sim \priorOld$,
-$\divTime{} \sim Exp(mean=2.887)$,
-$\ancestralTheta{} \sim Exp(mean=0.025)$,
-$\descendantTheta{1}{} \sim Exp(mean=0.025)$,
-and
-$\descendantTheta{2}{} \sim Exp(mean=0.025)$.
-(3) a model with uniform prior probability over unordered divergence models,
-\modelUniform, with priors
-$\divTimeIndexVector \sim \priorUniform$,
-$\divTime{} \sim Exp(mean=2.887)$,
-$\ancestralTheta{} \sim Exp(mean=0.025)$,
-$\descendantTheta{1}{} \sim Exp(mean=0.025)$,
-and
-$\descendantTheta{2}{} \sim Exp(mean=0.025)$.
-and
-(4) a Dirichlet-process prior model, \modelDPP, with priors
-$\divTimeIndexVector \sim \priorDPP{\sim Gamma(2,2)}$,
-$\divTime{} \sim Exp(mean=2.887)$,
-$\ancestralTheta{} \sim Exp(mean=0.025)$,
-$\descendantTheta{1}{} \sim Exp(mean=0.025)$,
-and
-$\descendantTheta{2}{} \sim Exp(mean=0.025)$.
+\begin{description}
+    \item[\modelOld] a model to represent the original \msb implementation with
+        the U-shaped prior on unordered divergence models and uniform priors on
+        divergence-time and demographic parameters; $\divTimeIndexVector \sim
+        \priorOld$, $\divTime{} \sim U(0,10)$, $\ancestralTheta{} \sim U(0,
+        0.05)$, and $\descendantThetaMean{} \sim U(0, 0.05)$
+    \item[\modelUshaped] a model with the U-shaped prior of \msb on unordered
+        divergence models, but with exponential priors on divergence-time and
+        demographic parameters; $\divTimeIndexVector \sim \priorOld$,
+        $\divTime{} \sim Exp(mean=2.887)$, $\ancestralTheta{} \sim
+        Exp(mean=0.025)$, $\descendantTheta{1}{} \sim Exp(mean=0.025)$, and
+        $\descendantTheta{2}{} \sim Exp(mean=0.025)$
+    \item[\modelUniform] a model with a uniform prior over unordered divergence
+        models and exponential priors on divergence-time and demographic
+        parameters; $\divTimeIndexVector \sim \priorUniform$, $\divTime{} \sim
+        Exp(mean=2.887)$, $\ancestralTheta{} \sim Exp(mean=0.025)$,
+        $\descendantTheta{1}{} \sim Exp(mean=0.025)$, and
+        $\descendantTheta{2}{} \sim Exp(mean=0.025)$
+    \item[\modelDPP] a model with a Dirichlet-process prior on ordered
+        divergence models and exponential priors on divergence-time and
+        demographic parameters; $\divTimeIndexVector \sim \priorDPP{\sim
+        Gamma(2,2)}$, $\divTime{} \sim Exp(mean=2.887)$, $\ancestralTheta{}
+        \sim Exp(mean=0.025)$, $\descendantTheta{1}{} \sim Exp(mean=0.025)$,
+        and $\descendantTheta{2}{} \sim Exp(mean=0.025)$.
+\end{description}
 I selected the exponential prior on divergence time used in models \modelDPP,
 \modelUniform, and \modelUshaped to have the same variance as the uniform prior
 in model \modelOld.
@@ -894,11 +913,11 @@ model \modelOld, so that all four models have the same \myTheta{C} and thus the
 same units of time.
 All of the models were the same in other respects, with three free \myTheta{}
 parameters for each population pair, two uniformly distributed ($beta(1,1)$)
-\bottleScalar{}{} parameters per pair, no migration, no recombination,
-and unordered divergence models.
-For all of my simulations, I used a simulated data structure of eight
-population pairs, with a single 1000 base-pair locus sampled from 10
-individuals from each population.
+\bottleScalar{}{} parameters per pair, no migration, no recombination, and
+resorting of taxon-specific summary statistics by $\pi_b$ (i.e., sampling
+unordered divergence models).
+For all simulations, I used a data structure of eight population pairs, with a
+single 1000 base-pair locus sampled from 10 individuals from each population.
 
 For each of the four models, I simulated $1\e6$ samples from the prior and
 50,000 datasets, also drawn from the prior.
@@ -910,7 +929,7 @@ To assess the robustness of each of the four models, I also analyzed the
 datasets simulated under the other three models.
 Overall, for each model, I produced 200,000 posterior estimates,
 50,000 from the datasets simulated under that model,
-and 150,000 estimated from the datasets simulated under the
+and 150,000 from the datasets simulated under the
 other three models.
 
 For each set of 50,000 simulated datasets, I used the posterior estimates
@@ -923,16 +942,15 @@ event \citep{Huelsenbeck2004,Oaks2012}.
 I did this using two criteria for the one divergence model:
 (1) the number of divergence time parameters ($\divTimeNum = 1$) and
 (2) the dispersion index of divergence times \citep[$\divTimeDispersion <
-0.01$][]{Hickerson2006,Huang2011}.
+0.01$;][]{Hickerson2006,Huang2011}.
 I used the one-divergence model to assess model-choice behavior, because
 it is often of biogeographic interest and is easily comparable among
 the three different priors used on divergence models.
 
 In addition to the four models above, I also assessed the behavior of a model
-with ordered divergence models (i.e., the order of the taxon-specific summary
-statistic vectors were maintained for the observed and simulated datasets).
-For this, I used a model with identical priors as \modelDPP, but that samples
-over ordered divergence models.
+that samples over ordered divergence models (i.e., the order of the
+taxon-specific summary statistic vectors were maintained for the observed and
+simulated datasets); all other settings were identical to the \modelDPP model.
 I denote this model as \modelDPPOrdered.
 I simulated $1\e6$ prior samples and 50,000 datasets, and
 analyzed them as above.
