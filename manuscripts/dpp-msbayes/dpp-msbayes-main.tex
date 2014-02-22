@@ -795,33 +795,27 @@ taxon- and locus-specific parameters (\hkyModel{}{},
 Second, the results are more difficult to interpret, because they can be no
 longer be directly associated to the taxa under study.
 
-The original descriptions of the \msb model claim that this re-ordering is
-justified by the fact that the expected value of $\pi_b$ is
-unrelated to sample size \popSampleSize{1}{} and \popSampleSize{2}{} and
-thus exchangeable among pairs \citep{Hickerson2006,Huang2011}.
-This is actually incorrect for three reasons.
-First, the independence of the expected value of $\pi_b$ and sample size
-breaks down as $\pi_b$ approaches its lower limit of zero (i.e., very recent or
-no divergence between populations), which might be common given the timescales
-of most phylogeographical studies.
-Second, the entire vector of summary statistics \alignmentSS{}{} for each pair
+In the original descriptions of the \msb model \citep{Hickerson2006,Huang2011},
+this re-ordering is justified by the fact that the expected value of $\pi_b$ is
+unrelated to sample size \popSampleSize{1}{} and \popSampleSize{2}{} and thus
+exchangeable among pairs.
+However, this is incorrect for two reasons.
+First, the entire vector of summary statistics \alignmentSS{}{} for each pair
 of populations is re-ordered across pairs, which implies that the justification
 for re-ordering $\pi_b$ applies to all the statistics within each
 \alignmentSS{}{}.
-% First, the expectation of $\pi_b$ is not independent of samples sizes.
-% If there are more than one coalescent events in the ancestor, which is expected
-% to be common on phylogeographic timescales, more samples will increase the
-% probability of capturing these deeper events, and thus affect the average
-% pairwise differences between the descendant populations.
 However, the expectations for statistics that estimate gross diversity (e.g.,
 $\pi$ and $\theta_W$) are not independent of sample size for structured
 populations, and other statistics are not independent of sample size in general
 (e.g., $SD(\pi-\theta_W)$).
-Third, for variables to be exchangeable, they do not need to be independent,
-but their marginal distributions must be the same (i.e., they must be
-identically distributed).
-The simulated alignments and their summary statistics are not identically
-distributed because of differing sample sizes \emph{and} taxon- and
+Second, and more importantly, having the same expectation does not ensure
+random variables are exchangeable.
+Rather, for variables to be exchangeable their marginal distributions must be
+the same (i.e., they must be identically distributed).
+None of the summary statistics used by \msb, including $\pi_b$, are identically
+distributed across different sample sizes.
+In addition to differences in sample size, the simulated alignments and their
+summary statistics are not identically distributed because of the taxon- and
 locus-specific parameters \hkyModel{}{}, \mutationRateScalarConstant{}{}, and
 \ploidyScalar{}{}.
 
@@ -936,15 +930,19 @@ other three models.
 For each set of 50,000 simulated datasets, I used the posterior estimates
 to assess the model-choice behavior of each model.
 I did this by assigning the 50,000 estimates of the posterior probability
-of one divergence event to 20 bins of width 0.05, and plotted
+of one-divergence event to 20 bins of width 0.05, and plotted
 the estimated posterior probability of each bin against the proportion of
 replicates in that bin with a true value consistent with one divergence
 event \citep{Huelsenbeck2004,Oaks2012}.
-I did this using two criteria for the one divergence model:
-(1) the number of divergence time parameters ($\divTimeNum = 1$) and
-(2) the dispersion index of divergence times \citep[$\divTimeDispersion <
-0.01$;][]{Hickerson2006,Huang2011}.
-I used the one-divergence model to assess model-choice behavior, because
+If the method is unbiased, the points should fall near the identity line,
+whereas any trend away from the identity line indicates bias.
+I did this using two criteria for the one-divergence model:
+(1) the number of divergence-time parameters ($\divTimeNum = 1$) and
+(2) the dispersion index of divergence times ($\divTimeDispersion < 0.01$).
+For the latter, $\divTimeDispersion < 0.01$ has been commonly used as an
+arbitrary criterion for a single ``simultaneous'' divergence event
+\citep[e.g.,][]{Hickerson2006,Leache2007,Stone2012}.
+I focused on the one-divergence model to assess model-choice behavior, because
 it is often of biogeographic interest and is easily comparable among
 the three different priors used on divergence models.
 
@@ -1078,7 +1076,7 @@ approximate posterior of 10,000 samples.
 In terms of estimating the variance of divergence times (\divTimeDispersion),
 the models with exponentially distributed priors (\modelUshaped, \modelUniform,
 and \modelDPP) perform similarly when applied to datasets generated under all
-four of the models of Table \ref{tabPriors}
+four of the models in Table \ref{tabPriors}
 (Figure~S\ref{figValidationAccuracyOmega}).
 The \modelOld model performs similarly to these models when applied to its
 own datasets, but is sensitive to model violations and is more biased when
@@ -1087,14 +1085,15 @@ applied to data generated under the other three models
 Results are similar for the GLM-adjusted estimates of \divTimeDispersion,
 albeit the regression adjustment tends to improve estimates of this continuous
 statistic for all the models
-(Figure~S\ref{figValidationAccuracyPsiGlm}).
+(Figure~S\ref{figValidationAccuracyOmegaGlm}).
 
-The same general pattern is seen for estimates of \divTimeMean, with all four
-models performing similarly when applied to the data generated under the
-\modelOld model, the models with exponentially distributed priors performing
-similarly when applied to data generated under the other three models, and the
-\modelOld model is sensitive to model violations and is more biased whenever
-applied to data generated under other models
+The same general pattern is seen for estimates of \divTimeMean, with
+(1) all four models performing similarly when applied to the data generated
+under the \modelOld model,
+(2) the models with exponentially distributed priors performing similarly when
+applied to data generated under the other three models, and
+(3) the \modelOld model is sensitive to model violations and is more biased
+whenever applied to data generated under other models
 (Figure~S\ref{figValidationAccuracyTime}).
 Also, the regression adjustment tends to slightly improve estimates of
 this continuous statistic for all of the models
@@ -1113,7 +1112,7 @@ to data generated under most of the models
 (Figure~S\ref{figValidationAccuracyPsi}).
 Unlike for the continuous statistics, regression adjustment of this discrete
 statistic tends to increase estimation bias; all of the models tend to
-underestimate \divTimeDispersion after the GLM-adjustment
+underestimate \divTimeNum after the GLM-adjustment
 (Figure~S\ref{figValidationAccuracyPsiGlm}).
 
 \subsection{Validation analyses: Model-choice accuracy}
@@ -1140,7 +1139,7 @@ I find that all four models accurately estimate the posterior probability of
 the one-divergence model when applied to their own datasets (i.e., when the
 prior is correct; see diagonal of Figures~\ref{figValidationModelChoicePsi} \&
 \ref{figValidationModelChoiceOmega}).
-The \modelUniform and \modelDPP show robustness to prior violations and
+The \modelUniform and \modelDPP models show robustness to prior violations and
 perform well when applied to data generated under other models
 (Figures~\ref{figValidationModelChoicePsi} \&
 \ref{figValidationModelChoiceOmega}).
@@ -1170,8 +1169,8 @@ relatively robust in terms of model-choice accuracy, and when model violations
 do cause them to be biased, they tend to under-estimate the probability of the
 biogeographically interesting model of a single divergence event.
 In contrast, the \modelOld model is very sensitive to model violations, and
-strongly over-estimates the one-divergence model whenever the model is
-misspecified.
+strongly over-estimates the probability of the one-divergence model whenever
+the model is misspecified.
 Furthermore, the results suggest that using exponentially distributed priors on
 nuisance parameters rather than uniform priors helps the \modelUshaped model
 perform better than \modelOld, but it is still hindered by the U-shaped prior
@@ -1261,7 +1260,7 @@ simulation replicates but still tends to infer relatively few (4--6) divergence
 events when divergences are random over longer periods 
 (Figure~\ref{figPowerPsiOld4} I--L \& plots M--R of Figures
 S\labelcref{figPowerPsiOld,figPowerPsiUniform,figPowerPsiExp}).
-Using exponential priors on divergence-time and \myTheta{} parameters does
+Using exponential priors on divergence-time and demographic parameters does
 increase the power of the \modelUshaped model compared to \modelOld across all
 three series of data models, but the U-shaped prior still prevents the model
 from performing as well as the \modelDPP and \modelUniform models 
@@ -1281,21 +1280,21 @@ one divergence event ($\divTimeDispersion < 0.01)$ in almost none of the
 replicates across all the simulations.
 In contrast, the \modelOld model infers values consistent with a single
 divergence event in most of the replicates across all the simulations.
-Using exponential priors on divergence-time and \myTheta{} parameters greatly
+Using exponential priors on divergence-time and demographic parameters greatly
 increases the power of the \modelUshaped model to detect variation in
 divergence times relative to \modelOld, but it still has less power than the
 models with Dirichlet-process or uniform priors across divergence models 
 (Figure~\ref{figPowerOmegaOld4} \& 
 S\labelcref{figPowerOmegaOld,figPowerOmegaUniform,figPowerOmegaExp}).
-An estimated value of \divTimeDispersion less than 0.01 is an arbitrary
-threshold for ``simultaneous'' divergence used throughout the \msb
-literature.
-Albeit arbitrary, \cite{Oaks2012} did show via simulation that the true value
-of \divTimeDispersion will almost always be greater than 0.01 when divergences
-are random over periods of 0.1 \globalcoalunit generations or more (see
-Figure~S4 of \citet{Oaks2012}).
+% An estimated value of \divTimeDispersion less than 0.01 is an arbitrary
+% threshold for ``simultaneous'' divergence used throughout the \msb
+% literature.
+Although the \divTimeDispersion threshold of 0.01 is arbitrary, \cite{Oaks2012}
+did show via simulation that the true value of \divTimeDispersion will almost
+always be greater than 0.01 when divergences are random over periods of 0.1
+coalescent units or more (see Figure~S4 of \citet{Oaks2012}).
 
-As mentioned above, I also see increased power of the new models when
+As mentioned above, the increased power of the new models is also evident when
 looking at the estimated posterior probability of the one-divergence model
 across the power analyses 
 (Figure~\ref{figPowerPsiProbOld4} \& 
@@ -1306,26 +1305,26 @@ This is in contrast to the \modelOld model, which infers high posterior probabil
 divergence for most replicates across all simulations
 (Figure~\ref{figPowerPsiProbOld4} \& 
 S\labelcref{figPowerPsiProbOld,figPowerPsiUniform,figPowerPsiExp}).
-The exponential priors on divergence-time and \myTheta{} parameters (model
+The exponential priors on divergence-time and demographic parameters (model
 \modelUshaped) result in lower estimates of the probability of one divergence
 when compared to \modelOld, but higher estimates when compared to \modelUniform
 and \modelDPP
 (Figure~\ref{figPowerPsiProbOld4} \& 
 S\labelcref{figPowerPsiProbOld,figPowerPsiUniform,figPowerPsiExp}).
 The \modelDPP and \modelUniform models do frequently support the one-divergence
-model according to a Bayes factor criterion of greater than 10, however still
+model according to a Bayes factor criterion of greater than 10, but still
 less frequently than the \modelOld model.
 This result is not surprising given the extremely small prior probability of
-the one-divergence model under the \modelDPP and \modelUniform models (I.e.,
+the one-divergence model under the \modelDPP and \modelUniform models (i.e.,
 very few posterior samples of the one-divergence model will result in a
 large Bayes factor under these models).
 However, the small posterior probability of the one-divergence model estimated
 under \modelDPP and \modelUniform should prevent an investigator from
 overinterpreting the Bayes factor as strong support for clustered divergences.
 
-Lastly, when I look at the estimated posterior probability of
+Lastly, when looking at the estimated posterior probability of
 \divTimeDispersion being consistent with one shared divergence
-($p(\divTimeDispersion < 0.01 | \ssSpace)$), I see the same pattern of model
+($p(\divTimeDispersion < 0.01 | \ssSpace)$), I find the same pattern of model
 behavior, with \modelDPP and \modelUniform inferring low probabilities across
 all simulations, \modelOld inferring high probabilities, and \modelUshaped
 inferring intermediate values
@@ -1335,24 +1334,24 @@ S\labelcref{figPowerOmegaProbOld,figPowerOmegaUniform,figPowerOmegaExp}).
 \subsection{Empirical results}
 As expected based on the results of \citet{Oaks2012}, when the Philippines data
 are analyzed under the \empModelOld model, there is strong support for very few
-divergence events shared among all 22 pairs of taxa with a maximum \emph{a
+divergence events shared among all 22 pairs of taxa, with a maximum \emph{a
 posteriori} (MAP) estimate of one-shared divergence
 (Figure~\ref{figPhilippines}A).
-When these data are analyzed under models allowed under the new implementation,
+When these data are analyzed using models allowed by the new implementation,
 there is much less support for highly clustered models and much greater
 uncertainty regarding the number of divergence events shared among the taxa,
 especially under the DPP models (Figure~\ref{figPhilippines}B--E).
 Figure \ref{figPhilippines} also shows the prior distribution across the number
-of divergence events (\divTimeNum) for each of the model, as well as the
+of divergence events (\divTimeNum) for each model, as well as the
 average prior probability of an unordered and ordered model of divergence
-(\divTimeIndexVector) across \divTimeNum for each model.
+(\divTimeIndexVector) across \divTimeNum.
 Estimates under the new models tend to be similar to the prior, which is
 expected under such a parameter-rich model when there is limited information
 from the data (four summary statistics from a single locus for each pair of
 taxa).
 
 The disparity between the results of the \empModelOld model and the new models
-is even more pronounced when I look at the 10 divergence models
+is even more pronounced when looking at the 10 divergence models
 (\divTimeIndexVector) estimated to have the highest probability under each of the
 models
 (Figures~S\labelcref{figDivModelsDPP,figDivModelsDPPInform,figDivModelsDPPSimple,figDivModelsUniform,figDivModelsOld}).
@@ -1363,7 +1362,7 @@ MAP-divergence model when compared to the \empModelOld model
 
 Figure \ref{figNegrosPanay} shows the estimated posterior probability
 distribution over the number of divergence events when the data from the
-nine-taxon pairs from the Islands of Negros and Panay are analyzed under the DPP
+nine-taxon pairs from the Islands of Negros and Panay are analyzed under DPP
 models that sample over unordered (\npModelDPP) and ordered
 (\npModelDPPOrdered) models of divergence.
 The results are similar under both models and, again, yield a large amount of
@@ -1387,7 +1386,7 @@ In the new implementation, model-choice estimation is more accurate and shows
 greater robustness to model violations
 (Figure~\ref{figValidationModelChoicePsi} \&
 \ref{figValidationModelChoiceOmega}).
-The original model is very sensitive to model violations and, when present,
+The original model is very sensitive to violations and, when present,
 strongly over-estimates the probability of one-divergence event shared
 across all taxa
 (Figure~\ref{figValidationModelChoicePsi} \&
@@ -1410,14 +1409,14 @@ divergences are random over quite broad timescales
 (Figures~\labelcref{figPowerPsiOld4,figPowerPsiProbOld4,figPowerOmegaOld4,figPowerOmegaProbOld4}).
 My results expand on this by showing that this behavior is consistent
 across a range of conditions underlying the data.
-The new method \dppmsbayes has greater power to detect random temporal variation in
-divergences, is less prone to spurious inference of clustered divergence
-models, and much less likely to incorrectly infer such models with strong
-support
+The new method, \dppmsbayes, has greater power to detect random temporal
+variation in divergences, is less prone to spurious inference of clustered
+divergence models, and much less likely to incorrectly infer such models with
+strong support
 (Figures~\labelcref{figPowerPsiOld4,figPowerPsiProbOld4,figPowerOmegaOld4,figPowerOmegaProbOld4}).
 
 By evaluating a model intermediate between the old and new implementation
-(\modelUshaped), I was able to determine the relative effects of my 
+(\modelUshaped), I was able to determine the relative affects of my 
 modifications to the model.
 Across all of the analyses, the results show that using better priors on
 divergence-time and demographic parameters alone does improve the performance
@@ -1467,11 +1466,11 @@ The population-genetic summary statistics used by the method contain little
 information about many of the free parameters in the model.
 Thus, I expect the improved method will still be sensitive to priors, and the
 power, while improved, may still be low.
-While I see much less prior sensitivity under the new model compared to those
-observed by \citet{Oaks2012}, I still see an effect when comparing the results
-of the empirical data analyzed under a diffuse (\empModelDPP) and informative
-(\empModelDPPInform) divergence-time prior (Figure~\ref{figPhilippines} C
-versus D).
+While there is much less prior sensitivity under the new model compared to
+those observed by \citet{Oaks2012}, there is still an effect when comparing the
+results of the empirical data analyzed under a diffuse (\empModelDPP) and
+informative (\empModelDPPInform) divergence-time prior
+(Figure~\ref{figPhilippines} C versus D).
 The fact that the posterior shifts toward the prior under the informative prior
 suggests that the shift away from the prior toward fewer divergence events
 under the diffuse prior might still be caused by small marginal likelihoods
@@ -1482,16 +1481,16 @@ when the new implementation is applied to the empirical datasets
 (Figure~\labelcref{figPhilippines,figNegrosPanay}).
 Applications of the \msb model often result in strong posterior support for
 estimated scenarios
-\citep{Barber2010,Bell2012,Carnaval2009,Chan2011,Hickerson2006,Leache2007,Plouviez2009,Stone2012,Voje2009,Oaks2012},
+\citep{Barber2010,Carnaval2009,Chan2011,Hickerson2006,Leache2007,Plouviez2009,Stone2012,Voje2009,Oaks2012},
 as I found here (Figure~\ref{figPhilippines}).
 Given the richness of the model, the variance of the processes being modeled,
 and the relatively small amount of information in the summary statistics
-calculated from the sequence data, I do not expect to find strong posterior
-support for any scenario.
+calculated from the sequence data, finding strong posterior support for any
+scenario is unexpected.
 Based on results of the empirical and power analyses
 (Figures~\labelcref{figPowerPsiProbOld4,figPowerOmegaProbOld4,figPhilippines,figNegrosPanay}),
 the new implementation more accurately reflects posterior uncertainty and
-avoids spurious support for biogeographic scenarios.
+avoids spurious support for biogeographical scenarios.
 
 I also urge caution when using \dppmsbayes due to the fact that ABC methods
 in general are known to be biased for model choice \citep{Robert2011}.
