@@ -751,8 +751,9 @@ behavior of \msb when empirically informed uniform priors are employed.
 Even if we assume the gene divergence times are estimated without error,
 Hickerson et al.'s \citeyear{Hickerson2013} argument only applies to one of the
 three different priors used by \citet{Oaks2012}.
-The narrowest prior on divergence times used by \citet{Oaks2012} ($U(0, 5
-mya)$) closely mirrors the range of estimates of gene-divergence times.
+The narrowest prior on divergence times used by \citet{Oaks2012} ($U(0, 5)$)
+closely mirrors the range of estimates of gene-divergence times if we assume
+the same mutation rate and one generation per year (0--5 million years ago).
 Applying Hickerson et al.'s (\citeyear{Hickerson2013}) sampling-probability
 argument demonstrates this prior is densely populated with samples with large
 numbers of divergence parameters with values younger than the estimated gene
@@ -791,7 +792,8 @@ divergence times (\vmratio{}) as the prior samples accumulate
 \citet{Hickerson2013} in either the unadjusted or GLM-regression-adjusted
 estimates.
 While sampling error is always a reality, it does not appear to be playing a
-large role in the results of \citet{Oaks2012} or presented above.
+large role in the biases revealed by the results of \citet{Oaks2012} or
+presented above.
 
 As discussed by \citet{Oaks2012}, a straightforward prediction if marginal
 likelihoods are causing the preference for simple models is that the bias should
@@ -820,7 +822,7 @@ and models with fewer \divt{} parameters (Figure~\ref{figPower4}).
 In all of these analyses, each of the prior models have the same number of
 samples.
 Thus, while sampling error will always be present in any numerical Bayesian
-approximation method, insufficient sampling is an unlikely explanation for
+approximation method, insufficient sampling is an unlikely explanation for the
 support of prior models with less parameter space.
 While analyses that sample each model proportional to their parameter space
 could be explored, it is clear that the marginal likelihoods under broad
