@@ -49,7 +49,7 @@ sequences.
 % parameters and the genealogical history of the sequences.
 Thus, the method samples over all possible divergence models of differing
 dimensionality (i.e., all the possible partitions of \npairs{} pairs to
-$1,2,\ldots,\npairs{}$ divergence events), and, in so doing, estimates
+$1,2,\ldots,\npairs{}$ divergence-time parameters), and, in so doing, estimates
 the posterior probability of each model.
 
 For priors on divergence-time and demographic parameters, \msb uses continuous
@@ -228,7 +228,7 @@ is a vector of the demographic parameters for each of the \npairs{} population
 pairs,
 $\locusMutationRateScalarVector = (\locusMutationRateScalar{1}, \ldots
 \locusMutationRateScalar{\nlociTotal})$
-is a vector of locus-specific mutation-rate scaling parameters for each of the
+is a vector of locus-specific mutation-rate multipliers for each of the
 \nlociTotal loci,
 \locusRateHetShapeParameter is the shape parameter of a gamma-distributed
 prior on \locusMutationRateScalar{}, and
@@ -315,7 +315,7 @@ is the probability of the gene tree under a multi-population coalescent model
 (i.e., species tree) where the ancestral population of pair $i$ diverges
 and gives rise to the two sampled descendant populations.
 Each \demographicParams{} contains the following demographic parameters: The
-mutation-scaled effective sizes ($\myTheta{} = 4N\mutationRate$) of the
+mutation-rate-scaled effective sizes ($\myTheta{} = 4N\mutationRate$) of the
 ancestral, \ancestralTheta{}, and descendant populations, \descendantTheta{1}{}
 and \descendantTheta{2}{};
 the proportion of the first, \bottleScalar{1}{}, and second population,
@@ -349,10 +349,10 @@ Following divergence, the descendant populations of pair $i$ exchange migrants a
 \subsubsection{Prior terms of Equation \ref{eq:fullModelCompact}}
 \begin{linenomath}
 The term $p(\locusRateHetShapeParameter)$ is the prior density
-function for the shape-parameter of the gamma-distributed prior on
+function for the shape parameter of the gamma-distributed prior on
 rate heterogeneity among loci.
 This prior is $\locusRateHetShapeParameter \sim U(1, 20)$.
-The prior probability of the vector of locus-specific mutation-rate scaling parameters
+The prior probability of the vector of locus-specific mutation-rate multipliers
 given \locusRateHetShapeParameter then expands out as a product over
 the loci
 \begin{equation}

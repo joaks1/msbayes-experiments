@@ -22,35 +22,35 @@
         \tol & Radius of \ssSpace, i.e., the tolerance of the ABC estimation. \tn
         \geneTree{i}{j} & Gene tree of the sequences in \alignment{i}{j}. \tn
         \geneTreeVector & Vector containing the gene trees of each locus from each population pair: $(\geneTree{1}{1},\ldots,\geneTree{\npairs{}}{\nloci{\npairs{}}})$. \tn
-        \divTimeNum & Number of unique population divergence times among the \npairs{} population pairs. \tn
-        \divTime{} & One of the \divTimeNum \iid divergence time paramters in \globalcoalunit generations. \tn
-        \divTimeVector & Ordered set of divergence time parameters: $\{\divTime{1},\ldots,\divTime{\divTimeNum}\}$. \tn
-        \divTimeIndex{i} & The index of the divergence time parameter in \divTimeVector that is mapped to population pair $i$. \tn
-        \divTimeIndexVector & Vector of divergence time parameter indices: $(\divTimeIndex{1},\ldots,\divTimeIndex{\npairs{}})$. \tn
+        \divTimeNum & Number of population divergence-time parameters shared among the \npairs{} population pairs. \tn
+        \divTime{} & Time of population divergence in \globalcoalunit generations. \tn
+        \divTimeVector & Set of divergence-time parameters: $\{\divTime{1},\ldots,\divTime{\divTimeNum}\}$. \tn
+        \divTimeIndex{i} & The index of the divergence-time in \divTimeVector to which population pair $i$ is mapped. \tn
+        \divTimeIndexVector & Vector of divergence-time indices: $(\divTimeIndex{1},\ldots,\divTimeIndex{\npairs{}})$. \tn
         \divTimeMap{i} & Time of divergence in \globalcoalunit generations between the populations of pair $i$. \tn
         \divTimeMapVector & Vector of divergence times for each of the population pairs: $(\divTimeMap{1},\ldots,\divTimeMap{\npairs{}})$. \tn
         \divTimeScaled{i}{j} & Scaled time of divergence between the populations of pair $i$ for locus $j$. \tn
         \divTimeScaledVector & Vector containing the scaled divergence times of each locus from each population pair: $(\divTimeScaled{1}{1},\ldots,\divTimeScaled{\npairs{}}{\nloci{\npairs{}}})$. \tn
-        \descendantTheta{1}{i}, \descendantTheta{2}{i} & \myTheta{} of the $1^{st}$ and $2^{nd}$ descendent population, respectively, of pair $i$. \tn
-        \ancestralTheta{i} & \myTheta{} of the population ancestral to pair $i$. \tn
+        \descendantTheta{1}{i}, \descendantTheta{2}{i} & Mutation-rate-scaled effective population size of the $1^{st}$ and $2^{nd}$ descendent population, respectively, of pair $i$. \tn
+        \ancestralTheta{i} & Mutation-rate-scaled effective population size of the population ancestral to pair $i$. \tn
         \descendantThetaVector{1}, \descendantThetaVector{2} & Vectors $(\descendantTheta{1}{1},\ldots,\descendantTheta{1}{\npairs{}})$ and $(\descendantTheta{2}{1},\ldots,\descendantTheta{2}{\npairs{}})$, respectively. \tn
         \ancestralThetaVector & Vector containing the \ancestralTheta{} parameters for each population pair: $(\ancestralTheta{1},\ldots,\ancestralTheta{\npairs{}})$. \tn
-        \locusMutationRateScalar{j} & mutation-rate scaling parameter for locus $j$. \tn
-        \locusMutationRateScalarVector & Vector containing the locus-specific mutation-rate parameters: $(\locusMutationRateScalar{1},\ldots,\locusMutationRateScalar{\nlociTotal})$. \tn
-        \locusRateHetShapeParameter & Hyper-parameter for the shape of the gamma prior distribution on each \locusMutationRateScalar{}. \tn
+        \locusMutationRateScalar{j} & Mutation-rate multiplier of locus $j$. \tn
+        \locusMutationRateScalarVector & Vector containing the locus-specific mutation-rate multipliers: $(\locusMutationRateScalar{1},\ldots,\locusMutationRateScalar{\nlociTotal})$. \tn
+        \locusRateHetShapeParameter & The shape parameter of the gamma prior distribution on \locusMutationRateScalar{}. \tn
         \bottleScalar{1}{i}, \bottleScalar{2}{i} & \myTheta{}-scaling parameters that determine the magnitude of the population bottleneck in the $1^{st}$ and $2^{nd}$ descendant population of pair $i$, respectively. The bottleneck in each descendant population begins immediately after divergence. \tn
         \bottleScalarVector{1}, \bottleScalarVector{2} & Vectors $(\bottleScalar{1}{1},\ldots,\bottleScalar{1}{\npairs{}})$ and $(\bottleScalar{2}{1},\ldots,\bottleScalar{2}{\npairs{}})$, respectively. \tn
-        \bottleTime{i} & Proportion of time between present and \divt{i} when the bottleneck ends for the descendant populations of pair $i$. \tn
+        \bottleTime{i} & Proportion of time between present and \divTimeMap{i} when the bottleneck ends for the descendant populations of pair $i$. \tn
         \bottleTimeVector & Vector containing the \bottleTime{} parameters for each population pair: $(\bottleTime{1},\ldots,\bottleTime{\npairs{}})$. \tn
         \migrationRate{i} & Symmetric migration rate between the descendant populations of pair $i$. \tn
         \migrationRateVector & Vector containing the migration rates for each population pair: $(\migrationRate{1},\ldots,\migrationRate{\npairs{}})$. \tn
-        \ploidyScalar{i}{j} & \myTheta{}-scaling constant provided by the user for locus $j$ of pair $i$. This constant is intended to allow the user to scale \myTheta{} for differences in ploidy among loci or differences in generation times among taxa. \tn
-        \mutationRateScalarConstant{i}{j} & \myTheta{}-scaling constant provided by the user for locus $j$ of pair $i$. This constant is intended to allow the user to scale \myTheta{} for differences in mutation rates among loci or among taxa. \tn
+        \ploidyScalar{i}{j} & \myTheta{}-scaling constant provided by the investigator for locus $j$ of pair $i$. This constant is required to scale \myTheta{} for differences in ploidy among loci or differences in generation times among taxa. \tn
+        \mutationRateScalarConstant{i}{j} & \myTheta{}-scaling constant provided by the investigator for locus $j$ of pair $i$. This constant is required to scale \myTheta{} for differences in mutation rates among loci or among taxa. \tn
         \ploidyScalarVector & Vector of ploidy and/or generation-time scaling constants: $(\ploidyScalar{1}{1},\ldots,\ploidyScalar{\npairs{}}{\nloci{\npairs{}}})$. \tn
         \mutationRateScalarConstantVector & Vector of mutation-rate scaling constants: $(\mutationRateScalarConstant{1}{1},\ldots,\mutationRateScalarConstant{\npairs{}}{\nloci{\npairs{}}})$. \tn
-        \divTimeMean  & Mean of \divTimeMapVector. \tn
-        \divTimeVar  & Variance of \divTimeMapVector. \tn
-        \divTimeDispersion  & Dispersion index of \divTimeMapVector ($\divTimeVar/\divTimeMean$). \tn
+        \divTimeMean  & Mean of divergence times across the \npairs{} population pairs. \tn
+        \divTimeVar  & Variance of divergence times across the \npairs{} population pairs. \tn
+        \divTimeDispersion  & Dispersion index of divergence times across the \npairs{} population pairs ($\divTimeVar/\divTimeMean$). \tn
         \numPriorSamples & Number of samples from the joint prior. \tn
         \paramSampleVector{} & Vector of parameter values drawn from the joint prior. \tn
         \ssVector{} & Vector containing the summary statistics calculated from data simulated under parameter values drawn from the prior (\hpvector{}). \tn
@@ -69,7 +69,7 @@
     \addtolength{\tabcolsep}{-0.08cm}
     \rowcolors{2}{}{myGray}
     %\captionsetup{font=footnotesize}
-    \caption{The model priors evaluated in the simulation-based analyses.  For
+    \caption{The models evaluated in the simulation-based analyses.  For
         the \modelDPP model, the prior on the concentration parameter,
         $\concentrationParam \sim Gamma(\cdot,\cdot)$, was set to $Gamma(2,2)$
         for the validation analyses and $Gamma(1.5,18.1)$ for the power
