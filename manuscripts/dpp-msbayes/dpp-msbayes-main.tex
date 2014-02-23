@@ -60,7 +60,7 @@ density, resulting in small marginal likelihoods relative to models with fewer
 divergence-time parameters \citep{Jeffreys1939,Lindley1957}.
 Given that the marginal likelihood of a model weighted by its prior is what
 determines its posterior probability, this can cause support for models with
-fewer divergence events \citep{Oaks2012}.
+fewer divergence events \citep{Oaks2012,Oaks2014reply}.
 Furthermore, \msb uses a discrete uniform prior over the number of divergence
 events $1,2,\ldots,\npairs{}$.
 Because there are many more possible assignments of populations pairs to
@@ -72,12 +72,24 @@ Given that models with many divergence events can have small marginal
 likelihoods due to the uniform priors on divergence-time parameters, the
 U-shaped prior will effectively create a strong prior preference for models
 with very few divergence events.
-Recently, \citet{Oaks2012} found via simulation that \msb will often strongly
-support biogeographically interesting models with a small number of divergence
-events shared among the taxa, even when divergences were random over broad
-timescales.
+
+Recently, \citet{Oaks2012} and \citet{Oaks2014reply} found via simulation that
+\msb will often strongly support biogeographically interesting models with a
+small number of divergence events shared among taxa, even when divergences were
+random over broad timescales.
 They suggested this behavior was due to the combination of uniform priors on
-parameters and the U-shaped prior on divergence models.
+parameters causing small marginal likelihoods of richer models and the
+U-shaped prior on divergence models.
+\citet{Hickerson2013} suggested the problem is caused by sampling error, and
+proposed as a solution an approximate-Bayesian model averaging approach that
+samples over empirically informed uniform priors.
+However, \citet{Oaks2014reply} evaluated the approach proposed by
+\citet{Hickerson2013} using simulations and found that it did not mitigate the
+method's propensity to incorrectly infer clustered divergences, and often
+preferred priors that excluded the true values of the model's parameters.
+Here, I describe a new method that successfully mitigates spurious inference
+of biogeographically interesting scenarios while avoiding negative side effects
+of empirically informed uniform priors.
 
 % Recently, however, \citet{Oaks2012} found that \msb can be strongly biased
 % toward spuriously estimating biogeographically interesting models of highly
@@ -96,12 +108,15 @@ parameters and the U-shaped prior on divergence models.
 % Thus, together, the priors used in \msb will often create a bias toward
 % models with few divergence-time parameters \citep{Oaks2012}.
 
-Here, I modify the \msb model to test whether alternative parameterizations and
-priors will improve the behavior of the approximate-Bayesian model-choice
-approach.
-I implement a Dirichlet-process prior (DPP) over all possible models of
-divergence, and use gamma and beta probability distributions in place of
-uniform priors on many of the model's parameters.
+
+In this study, I introduce a new method, implemented in the software
+\dppmsbayes, that extends the model of \msb.
+I use this method to test whether alternative parameterizations and priors
+improve the behavior of the approximate-Bayesian model-choice approach to
+estimating shared divergence events.
+The new approach uses a Dirichlet-process prior (DPP) over all possible models
+of divergence, and gamma and beta probability distributions in place of uniform
+priors on many of the model's parameters.
 Using simulations, I show that the new implementation has improved robustness,
 accuracy, and power compared to the original model.
 Also, my results confirm that the improved performance of the new model
