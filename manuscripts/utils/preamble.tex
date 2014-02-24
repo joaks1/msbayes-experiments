@@ -83,3 +83,12 @@
 \definecolor{myGray}{gray}{0.9}
 \setlength\linenumbersep{1cm}
 
+%% redefine multicolumn to not override rowcolors
+\let\oldmulticolumn\multicolumn
+\makeatletter
+\newcommand{\multicolumninherit}{%
+    \renewcommand{\multicolumn}[3]{%
+        \oldmulticolumn{##1}{##2}{\ifodd\rownum \@oddrowcolor\else@evenrowcolor\fi ##3}%
+}}
+\makeatother
+
