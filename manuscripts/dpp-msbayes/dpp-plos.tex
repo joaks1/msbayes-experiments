@@ -1,0 +1,185 @@
+% Template for PLoS
+% Version 1.0 January 2009
+%
+% To compile to pdf, run:
+% latex plos.template
+% bibtex plos.template
+% latex plos.template
+% latex plos.template
+% dvipdf plos.template
+
+\documentclass[10pt]{article}
+
+% amsmath package, useful for mathematical formulas
+\usepackage{amsmath}
+% amssymb package, useful for mathematical symbols
+\usepackage{amssymb}
+
+% graphicx package, useful for including eps and pdf graphics
+% include graphics with the command \includegraphics
+\usepackage{graphicx}
+
+% cite package, to clean up citations in the main text. Do not remove.
+\usepackage{cite}
+
+\usepackage{ifthen}
+\usepackage{color} 
+\usepackage{xspace}
+\usepackage{hyperref}
+\hypersetup{pdfborder={0 0 0}, colorlinks=true, urlcolor=black, linkcolor=black, citecolor=black}
+\usepackage[capitalize]{cleveref}
+\newcommand{\crefrangeconjunction}{--}
+\usepackage[right, mathlines]{lineno}
+\usepackage[table, x11names]{xcolor}
+\usepackage{booktabs}
+\usepackage{tabulary}
+\usepackage{rotating}
+
+% Use doublespacing - comment out for single spacing
+\usepackage{setspace} 
+%\doublespacing
+
+
+% Text layout
+\topmargin 0.0cm
+\oddsidemargin 0.5cm
+\evensidemargin 0.5cm
+\textwidth 16cm 
+\textheight 21cm
+
+% Bold the 'Figure #' in the caption and separate it with a period
+% Captions will be left justified
+\usepackage[labelfont=bf,labelsep=period,justification=raggedright]{caption}
+\DeclareCaptionLabelFormat{noSpace}{{#1}{#2}}
+\DeclareCaptionListFormat{figList}{Figure {#2}.}
+\DeclareCaptionListFormat{sFigList}{Figure S{#2}.}
+
+% Use the PLoS provided bibtex style
+\bibliographystyle{../bib/plos2009.bst}
+
+% Remove brackets from numbering in List of References
+\makeatletter
+\renewcommand{\@biblabel}[1]{\quad#1.}
+\makeatother
+
+% Remove numbers from section titles
+\makeatletter
+\renewcommand\@seccntformat[1]{}
+\makeatother
+
+% Leave date blank
+\date{}
+
+\pagestyle{myheadings}
+%% ** EDIT HERE **
+
+
+%% ** EDIT HERE **
+%% PLEASE INCLUDE ALL MACROS BELOW
+\input{../utils/macros.tex}
+
+%% END MACROS SECTION
+
+\begin{document}
+
+% Title must be 150 characters or less
+\begin{flushleft}
+{\Large
+\textbf{\dppTitle}
+}
+% Insert Author names, affiliations and corresponding author email.
+\\
+Jamie R.\ Oaks$^{1,\dagger\ast}$
+\\
+\bf{1} Department of Ecology and Evolutionary Biology, University of Kansas, Lawrence, Kansas 66045, USA
+\\
+$\dagger$ Current address: Department of Biology, University of Washington, Seattle, Washington 98195, USA
+\\
+$\ast$ E-mail: \href{mailto:joaks1@gmail.com}{\texttt{joaks1@gmail.com}}
+\end{flushleft}
+
+% Please keep the abstract between 250 and 300 words
+\section*{Abstract}
+\input{dpp-msbayes-abstract.tex}
+
+% Please keep the Author Summary between 150 and 200 words
+% Use first person. PLoS ONE authors please skip this step. 
+% Author Summary not valid for PLoS ONE submissions.   
+\section*{Author Summary}
+
+\input{dpp-msbayes-main.tex}
+% \section*{Introduction}
+
+% Results and Discussion can be combined.
+% \section*{Results}
+
+% \subsection*{Subsection 1}
+
+% \subsection*{Subsection 2}
+
+% \section*{Discussion}
+
+% You may title this section "Methods" or "Models". 
+% "Models" is not a valid title for PLoS ONE authors. However, PLoS ONE
+% authors may use "Analysis" 
+% \section*{Materials and Methods}
+
+% Do NOT remove this, even if you are not including acknowledgments
+\section*{Acknowledgments}
+\input{dpp-msbayes-acknowledgments.tex}
+
+
+%\section*{References}
+% The bibtex filename
+\bibliography{../bib/references}
+
+\section*{Figure Legends}
+\input{dpp-msbayes-figures.tex}
+%\begin{figure}[!ht]
+%\begin{center}
+%%\includegraphics[width=4in]{figure_name.2.eps}
+%\end{center}
+%\caption{
+%{\bf Bold the first sentence.}  Rest of figure 2  caption.  Caption 
+%should be left justified, as specified by the options to the caption 
+%package.
+%}
+%\label{Figure_label}
+%\end{figure}
+
+
+\section*{Tables}
+\input{dpp-msbayes-tables.tex}
+%\begin{table}[!ht]
+%\caption{
+%\bf{Table title}}
+%\begin{tabular}{|c|c|c|}
+%table information
+%\end{tabular}
+%\begin{flushleft}Table caption
+%\end{flushleft}
+%\label{tab:label}
+% \end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SUPPORTING INFO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\setcounter{page}{1}
+\setcounter{section}{0}
+
+\singlespacing
+
+\section*{Supporting Information}
+% PUT MAIN TEXT CITATION HERE
+\hangindent=1cm
+Oaks, J.\ R. \dppTitle.
+
+\newpage
+\singlespacing
+
+\input{dpp-msbayes-si-figures.tex}
+
+\end{document}
+
