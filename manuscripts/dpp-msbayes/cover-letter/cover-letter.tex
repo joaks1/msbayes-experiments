@@ -1,6 +1,6 @@
-\documentclass[letterpaper]{letter}
+\documentclass[letterpaper,11pt]{letter}
 \usepackage{anysize}
-\marginsize{1.25in}{1.25in}{0.5in}{0.5in}
+\marginsize{0.8in}{0.8in}{-0.2in}{0.3in}
 \usepackage{setspace}
 \usepackage{url}
 \usepackage{verbatim}
@@ -35,27 +35,63 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\signature{Jamie Oaks \\ 
-                 Postdoctoral Fellow \\ 
+\signature{Jamie Oaks, Postdoctoral Fellow \\ 
                  Department of Biology \\
                  University of Washington \\ 
-                 Box 351800 \\ 
+                 % Box 351800 \\ 
                  Seattle, WA 98195 \\ 
                  \href{mailto:joaks1@uw.edu}{\texttt{joaks1@uw.edu}} \\ 
                  \href{http://www.phyletica.com}{\texttt{www.phyletica.com}}}
 \begin{document}
-\begin{letter}{Journal/Society \\
-                address \\
-                here}
+\begin{letter}{\emph{PLOS Computational Biology} Editorial Board \\
+                        1160 Battery Street \\
+                        Koshland Building East, Suite 100 \\
+                    San Francisco, CA 94111}
 \opening{Dear Editor:}
 % \raggedright
-I am submitting a manuscript entitled ``An Improved Approximate-Bayesian
-Model-choice Method for Estimating Shared Evolutionary History'' to be
-considered for publication in \highLight{journal here}.
+% I am submitting a manuscript entitled ``An Improved Approximate-Bayesian
+% Model-choice Method for Estimating Shared Evolutionary History'' to be
+% considered for publication in \highLight{journal here}.
+I am submitting a presubmission inquiry regarding a manuscript entitled ``An
+Improved Approximate-Bayesian Model-choice Method for Estimating Shared
+Evolutionary History'' that I wish to be considered for publication in
+\emph{PLOS Computational Biology}.
 The field of research is comparative biogeography and Bayesian model choice.
-All of the computer code for the newly implemented model I present in the
-the manuscript is freely available in the open-source
-software packages \texttt{dpp-msbayes} and \texttt{PyMsBayes}
+
+In the paper, I introduce a novel Bayesian method for estimating the
+probability of shared divergence histories across a set of taxa from
+multi-locus DNA sequence data.
+The new method provides an important tool for evolutionary biologists to
+investigate how large-scale changes to the environment, including geological
+and climatic events, have affected the evolutionary history of entire
+communities of co-distributed species and their associated microbiota.
+Given the dynamic nature of our planet, such biogeographical processes likely
+play a significant role in regulating biodiversification and community assembly.
+
+More specifically, given a set of species pairs, the method estimates
+the probabilities of all possible models in which multiple sets of taxa
+can diverge at the same time.
+These models range from a single divergence event shared across all of the
+taxa, to the fully generalized model in which each pair of taxa diverged at a
+unique time.
+The current state-of-the-art method for this estimation problem is implemented
+in the popular software package \texttt{msBayes}, which has a broad community
+of users.
+I introduce a non-parametric Bayesian approach to this inference problem that
+uses a Dirichlet-process prior over all possible divergence models.
+Using extensive simulations and applications to empirical data, I demonstrate
+that the new method has improved robustness, accuracy, and power for estimating
+shared evolutionary history across taxa when compared to \texttt{msBayes}.
+Also, previous simulation work has shown that \texttt{msBayes} often
+incorrectly supports biogeographically compelling scenarios of simultaneous
+divergence across taxa, even when divergences were random over broad time
+periods.
+Importantly, my results show that the new method is \emph{much} less likely to
+make such misleading and costly errors.
+
+All of the computer code for the new method presented in the the manuscript is
+freely available in the open-source software packages \texttt{dpp-msbayes} and
+\texttt{PyMsBayes}
 (\href{https://github.com/joaks1/dpp-msbayes}{\url{https://github.com/joaks1/dpp-msbayes}}
 and
 \href{https://github.com/joaks1/PyMsBayes}{\url{https://github.com/joaks1/PyMsBayes}},
@@ -66,38 +102,10 @@ all aspects of the work freely and publicly available in real-time at
 \href{https://github.com/joaks1/msbayes-experiments}{\url{https://github.com/joaks1/msbayes-experiments}}.
 All information necessary to reproduce my results is provided there.
 
-In this paper, I introduce a novel Bayesian method for estimating the
-probability of shared divergence histories across a set of taxa from
-multi-locus DNA sequence data.
-More specifically, given a set of species pairs, the method estimates
-the probabilities of all possible models in which multiple sets of taxa
-can diverge at the same time.
-These models range from a single divergence-time parameter (i.e., simultaneous
-divergence of all pairs of taxa) to the fully generalized model in which each
-pair of taxa diverged at a unique time.
-The current state-of-the-art method for this estimation problem is implemented
-in the software package \texttt{msBayes}.
-By introducing more flexible priors on the parameters the model and a
-non-parametric Dirichlet-process prior over divergence models, the new method
-has improved robustness, accuracy, and power for estimating shared evolutionary
-history across taxa when compared to \texttt{msBayes}.
-Also, simulations have shown that \texttt{msBayes} will often to incorrectly
-support biogeographically interesting scenarios of shared divergences when
-divergences were random over broad time periods.
-My results show that the new method is \emph{much} less likely to make such
-misleading and costly errors.
-
-The new method provides an important tool for evolutionary biologists to
-investigate how large-scale changes to the environment, including geological
-and climatic events, have affected the evolutionary history of entire
-communities of co-distributed species and their associated microbiota.
-Given the dynamic nature of our planet, such biogeographical processes likely
-play a significant role regulating biodiversification and community assembly.
-
 Thank you for your consideration, and I look forward to your correspondence
 regarding this manuscript.
 
-\addtolength{\medskipamount}{-5pt}
+\addtolength{\medskipamount}{-6pt}
 \closing{Sincerely,}
 \end{letter}
 
