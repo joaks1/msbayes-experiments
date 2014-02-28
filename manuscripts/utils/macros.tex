@@ -1,6 +1,17 @@
 % \newcommand{\change}[1]{{\color{blue} #1}\xspace}
 \newcommand{\change}[1]{{\color{black} #1}\xspace}
 
+\definecolor{myGray}{gray}{0.9}
+
+%% redefine multicolumn to not override rowcolors
+\let\oldmulticolumn\multicolumn
+\makeatletter
+\newcommand{\mcrowcolors}{%
+  \renewcommand{\multicolumn}[3]{%
+    \oldmulticolumn{##1}{##2}{\ifodd\rownum \@oddrowcolor\else\@evenrowcolor\fi ##3}%
+  }}
+\makeatother
+
 \newcommand{\dppTitle}{An Improved Approximate-Bayesian Model-choice Method for
 Estimating Shared Evolutionary History\xspace}
 
