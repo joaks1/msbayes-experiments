@@ -1,0 +1,107 @@
+\documentclass[letterpaper]{letter}
+\usepackage{anysize}
+\marginsize{1in}{1in}{0.5in}{0.5in}
+\usepackage{setspace}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{parskip}
+\usepackage{hyperref}
+\hypersetup{pdfborder={0 0 0}, colorlinks=true, urlcolor=blue}
+
+\newcommand{\ignore}[1]{}
+\newcommand{\super}[1]{\ensuremath{^{\textrm{#1}}}}
+\newcommand{\sub}[1]{\ensuremath{_{\textrm{#1}}}}
+\newcommand{\dC}{\ensuremath{^\circ{\textrm{C}}}}
+
+\makeatletter
+\let\@texttop\relax
+\makeatother
+
+\newenvironment{myEnumerate}{
+  \begin{enumerate}
+    \setlength{\itemsep}{1pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\parsep}{0pt}}
+  {\end{enumerate}}
+
+\newenvironment{myItemize}{
+  \begin{itemize}
+    \setlength{\itemsep}{1pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\parsep}{0pt}}
+  {\end{itemize}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\signature{Jamie Oaks \\
+                 Postdoctoral Fellow \\ 
+                 Department of Biology \\
+                 University of Washington \\ 
+                 Box 351800 \\ 
+                 Seattle, WA 98195 \\ 
+                 USA \\
+                 \href{mailto:joaks1@uw.edu}{\texttt{joaks1@uw.edu}} \\ 
+                 \href{http://www.phyletica.com}{\texttt{www.phyletica.com}}}
+%\address{Biodiversity Institute \\ University of Kansas \\ Dyche Hall, 1345 Jayhawk Blvd \\ Lawrence, KS 66045}
+\begin{document}
+\begin{letter}{The Society for the Study of Evolution \\
+                     PO Box 299 \\
+                     St. Louis, MO 63166-0299}
+\opening{Dear Editor:}
+% \raggedright
+I am submitting a manuscript entitled ``Implications of uniformly distributed,
+empirically informed priors for phylogeographical model selection: A reply to
+Hickerson et al.'' to be considered for publication in the \emph{International
+Journal of Organic Evolution}.
+This manuscript is a response to a paper by Hickerson et al.\ (2014,
+\emph{Evolution} 68:284--294), which was a response to a paper published last
+year by my co-authors and me (Oaks et al.\ 2013, \emph{Evolution}
+67:991--1010).
+Former Associate Editor Dr.\ Laura Kubatko invited us to write this response,
+with the intention of handling its review.
+The following is an excerpt from Dr.\ Kubatko's comments in the decision letter
+for Hickerson et al.\ (2014):
+
+\begin{quote}
+Thus, I propose the following: Hickerson et al. should prepare and
+submit the final version of their response.  I urge them to fully
+consider all of the points raised by Oaks in his most recent review of their
+paper. However, since the point of view of Hickerson et al. seems to
+be at odds with Oaks et al., I would like to give Oaks et al. the opportunity
+to respond, if they so choose. I have therefore recommended acceptance
+for this version of the manuscript, and I ask that Hickerson et al. provide a
+copy of the final version to Jamie Oaks once they have submitted it, so
+that he and his co-authors can consider whether they wish to respond.
+\end{quote}
+
+In our response, we use simulated and biological data to evaluate the empirical
+Bayesian method proposed by Hickerson et al.\ (2014) as a solution to the
+problems revealed by Oaks et al.\ (2013) regarding the power and accuracy of the
+comparative phylogeographical method implemented in the software
+\texttt{msBayes}.
+We demonstrate their approach does not mitigate the method's bias toward
+supporting models with less parameter space, but rather allows it to manifest
+in strong preference for models that often exclude from consideration the true
+values of the model's parameters.
+Our results also strongly suggest the underlying statistical cause of the
+method's tendency to support simple models.
+More generally, we discuss the theoretical and practical issues of empirical
+Bayesian approaches to model choice; these issues are important for empiricists
+applying methods of Bayesian model selection to carefully consider.
+Lastly, we discuss ways to mitigate the biases of the \texttt{msBayes} method
+while avoiding negative side effects of empirically informed uniform priors.
+
+We performed the work described in the manuscript following the principles of
+Open Notebook Science; using version-control software, we make progress in all
+aspects of the work freely and publicly available in real-time at
+\href{https://github.com/joaks1/msbayes-experiments}{\url{https://github.com/joaks1/msbayes-experiments}}.
+All information necessary to reproduce my results is provided there.
+
+Thank you for your consideration, and I look forward to your correspondence
+regarding this manuscript.
+
+\addtolength{\medskipamount}{-5pt}
+\closing{Sincerely,}
+\end{letter}
+
+\end{document}
