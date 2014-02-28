@@ -1,0 +1,104 @@
+\documentclass[letterpaper]{letter}
+\usepackage{anysize}
+\marginsize{1.25in}{1.25in}{0.5in}{0.5in}
+\usepackage{setspace}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{parskip}
+\usepackage{xspace}
+\usepackage{hyperref}
+\hypersetup{pdfborder={0 0 0}, colorlinks=true, urlcolor=blue}
+
+\newcommand{\ignore}[1]{}
+\newcommand{\super}[1]{\ensuremath{^{\textrm{#1}}}}
+\newcommand{\sub}[1]{\ensuremath{_{\textrm{#1}}}}
+\newcommand{\dC}{\ensuremath{^\circ{\textrm{C}}}}
+\newcommand{\highLight}[1]{\textcolor{magenta}{\MakeUppercase{#1}}\xspace}
+
+\makeatletter
+\let\@texttop\relax
+\makeatother
+
+\newenvironment{myEnumerate}{
+  \begin{enumerate}
+    \setlength{\itemsep}{1pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\parsep}{0pt}}
+  {\end{enumerate}}
+
+\newenvironment{myItemize}{
+  \begin{itemize}
+    \setlength{\itemsep}{1pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\parsep}{0pt}}
+  {\end{itemize}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\signature{Jamie Oaks \\ 
+                 Postdoctoral Fellow \\ 
+                 Department of Biology \\
+                 University of Washington \\ 
+                 Box 351800 \\ 
+                 Seattle, WA 98195 \\ 
+                 \href{mailto:joaks1@uw.edu}{\texttt{joaks1@uw.edu}} \\ 
+                 \href{http://www.phyletica.com}{\texttt{www.phyletica.com}}}
+\begin{document}
+\begin{letter}{Journal/Society \\
+                address \\
+                here}
+\opening{Dear Editor:}
+% \raggedright
+I am submitting a manuscript entitled ``An Improved Approximate-Bayesian
+Model-choice Method for Estimating Shared Evolutionary History'' to be
+considered for publication in \highLight{journal here}.
+The field of research is comparative biogeography and Bayesian model choice.
+All of the computer code for the newly implemented model I present in the
+the manuscript is freely available in the open-source
+software packages \texttt{dpp-msbayes} and \texttt{PyMsBayes}
+(\href{https://github.com/joaks1/dpp-msbayes}{\url{https://github.com/joaks1/dpp-msbayes}}
+and
+\href{https://github.com/joaks1/PyMsBayes}{\url{https://github.com/joaks1/PyMsBayes}},
+respectively).
+Also, I performed the work described in the manuscript following the principles
+of Open Notebook Science; using version-control software, I make progress in
+all aspects of the work freely and publicly available in real-time at
+\href{https://github.com/joaks1/msbayes-experiments}{\url{https://github.com/joaks1/msbayes-experiments}}.
+All information necessary to reproduce my results is provided there.
+
+In this paper, I introduce a novel Bayesian method for estimating the
+probability of shared divergence histories across a set of taxa from
+multi-locus DNA sequence data.
+More specifically, given a set of species pairs, the method estimates
+the probabilities of all possible models in which multiple sets of taxa
+can diverge at the same time.
+These models range from a single divergence-time parameter (i.e., simultaneous
+divergence of all pairs of taxa) to the fully generalized model in which each
+pair of taxa diverged at a unique time.
+The current state-of-the-art method for this estimation problem is implemented
+in the software package \texttt{msBayes}.
+By introducing more flexible priors on the parameters the model and a
+non-parametric Dirichlet-process prior over divergence models, the new method
+has improved robustness, accuracy, and power for estimating shared evolutionary
+history across taxa when compared to \texttt{msBayes}.
+Also, simulations have shown that \texttt{msBayes} will often to incorrectly
+support biogeographically interesting scenarios of shared divergences when
+divergences were random over broad time periods.
+My results show that the new method is \emph{much} less likely to make such
+misleading and costly errors.
+
+The new method provides an important tool for evolutionary biologists to
+investigate how large-scale changes to the environment, including geological
+and climatic events, have affected the evolutionary history of entire
+communities of co-distributed species and their associated microbiota.
+Given the dynamic nature of our planet, such biogeographical processes likely
+play a significant role regulating biodiversification and community assembly.
+
+Thank you for your consideration, and I look forward to your correspondence
+regarding this manuscript.
+
+\addtolength{\medskipamount}{-5pt}
+\closing{Sincerely,}
+\end{letter}
+
+\end{document}
