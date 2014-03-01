@@ -426,7 +426,7 @@ def create_plots(info_path):
             margin_left = 0.025,
             margin_bottom = 0.1,
             margin_right = 1,
-            margin_top = 0.85,
+            margin_top = 0.84,
             padding_between_horizontal = 0.5)
 
     fig = ex_plot.create_column_grid(
