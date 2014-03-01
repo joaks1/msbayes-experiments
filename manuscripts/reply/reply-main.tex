@@ -275,13 +275,13 @@ tails (i.e., $\myTheta{} < 0.5$).
 We already have data from flipping a different coin 20 times that landed both
 heads and tails 10 times each, and so we decide to use these data in specifying
 a beta prior on fairness of the new coin of $beta(a=10, b=10)$
-(Figure~\ref{figCoinFlip}).
+(Figure~S\ref{figCoinFlip}).
 We collect data by flipping the coin of interest $N=10$ times, $y=3$ of which
 land heads.
 Given the beta distribution is a conjugate prior for a binomial likelihood, the
 posterior distribution has the nice analytical form $\theta \given y,N \sim
 beta(a + y, b + N - y)$, which for the new dataset is simply $beta(13, 17)$
-(Figure~\ref{figCoinFlip}).
+(Figure~S\ref{figCoinFlip}).
 The maximum a posteriori (MAP) estimate of the probability of heads is 0.429,
 and following Equation~\ref{eq:marginallikelhiood} the marginal likelihoods of
 our models of interest are
@@ -307,14 +307,14 @@ and data.
 To give the data more weight relative to the prior, we could use it twice, and
 calculate an empirical Bayes estimate using a prior of $beta(13,17)$.  This
 results in a ``posterior'' distribution of $beta(16, 24)$
-(Figure~\ref{figCoinFlip}), with a MAP estimate of 0.395, and $p(M_1 \given
+(Figure~S\ref{figCoinFlip}), with a MAP estimate of 0.395, and $p(M_1 \given
 y=3, N=10) = 0.10$.
 The estimated posterior distribution of the parameter, and resulting MAP
 estimate, is similar whether or not an empirically informed prior is used.
 However, the posterior probability of Model 1 is very sensitive to the
 empirical prior, decreasing by 56\%.
 By using the empirically informed prior, we ignored prior uncertainty, leading
-to an underestimate of our posterior uncertainty (Figure~\ref{figCoinFlip}).
+to an underestimate of our posterior uncertainty (Figure~S\ref{figCoinFlip}).
 While this did not greatly affect our estimate of \myTheta{}, it misled us
 to be overconfident in Model 2.
 % Our mode estimate of \myTheta{} under the empirical prior might be closer
@@ -670,7 +670,7 @@ Again, this demonstrates the method's sensitivity to priors.
 
 
 
-\section{The importance of power analysis to guide applications of \texttt{msBayes}}
+\section{The importance of power analyses to guide applications of \texttt{msBayes}}
 \citet{Hickerson2013} presented a power analysis of \msb under a narrow uniform
 divergence-time prior of 0--1 coalescent units ago.
 They found that under these prior conditions \msb can, assuming a
