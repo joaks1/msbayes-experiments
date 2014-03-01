@@ -1,0 +1,45 @@
+Biogeographers frequently seek to explain population and species
+differentiation on geographical phenomena.
+Establishing that a set of population splitting events occurred
+at the same time can be a potentially persuasive argument that a set of taxa
+were affected by the same geographic events.
+Unfortunately, estimating divergence times precisely when one lacks
+precise information about the rate of molecular evolution is a notoriously
+difficult problem in evolutionary biology.
+\citet{Huang2011} introduced an approximate Bayesian approach (implemented
+in the software \msb) which can be used to estimate the probabilities of
+models in which multiple sets of taxa diverge at the same time. 
+% This method  does not require a common set of character data that links all
+% of the taxa under investigation, but does require the relative mutation
+% rates among the taxa and loci to be assumed \emph{a priori}.
+Recently, \citet{Oaks2012} used this model-choice framework to 
+study 22 pairs of vertebrate lineages which are distributed across
+the Philippines; they also studied the behavior of the \msb approach
+using computer simulations.
+\citet{Oaks2012} found that the model was very sensitive to the prior and
+that the inference method had low power to detect variation in divergences
+times.
+These results were not surprising, in light of a rich statistical literature
+showing that the marginal likelihood of a model is sensitive to the
+use of vague priors.
+Because this sensitivity to prior assumptions affects the crucial insights 
+that a researcher who employs \msb seeks to gain, \citet{Oaks2012} recommended
+that users of the approach should carefully assess the robustness of their 
+conclusions to different priors.
+According to \citet{Hickerson2013}, the lack of robustness in \msb analyses
+was due to excessively broad priors on divergence times, leading to 
+inadequate numbers of simulation replicates.
+They proposed a new model-averaging approach that uses narrow, empirically
+informed uniform priors.
+Here we demonstrate that the approach of \citet{Hickerson2013} is
+dangerous in the sense that the empirically-derived priors often
+exclude from consideration the true values of the models' parameters.
+On a more fundamental level, we question the value of adopting an empirical
+Bayesian stance for this model-choice problem, because it can mislead model
+posterior probabilities, which are inherently measures of belief in the
+models after prior knowledge is updated by the data.
+The robust Bayesian approach of conducting analyses under a variety
+of priors can reveal prior sensitivity and communicate which assumptions
+underlie model inference.
+Furthermore, simulations provide insight into the temporal resolution of
+the method, which in turn helps guide interpretation of results.

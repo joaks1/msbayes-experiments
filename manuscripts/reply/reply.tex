@@ -7,6 +7,9 @@
 \usepackage[round]{natbib}
 \input{../utils/macros.tex}
 
+\newcommand{\keywords}{Approximate Bayesian computation; Bayesian model choice;
+empirical Bayes; phylogeography; biogeography\xspace}
+
 \title{Implications of uniformly distributed, empirically informed priors for
 phylogeographical model selection: A reply to Hickerson et al.}
 
@@ -20,7 +23,10 @@ phylogeographical model selection: A reply to Hickerson et al.}
 % \date{\today}
 \date{\parbox{\linewidth}{\centering%
     \today\endgraf\bigskip
-    \textbf{Running head}: Approximate Bayesian model choice}}
+    \textbf{Running head}: Approximate Bayesian model choice\endgraf\bigskip
+    \textbf{Key words}: \keywords\endgraf\bigskip
+    \textbf{Counts}: 7219 words, 7 figures, 1 table, 7 supporting figures\endgraf\bigskip
+    \textbf{Archival location}: \href{https://github.com/joaks1/msbayes-experiments}{\url{https://github.com/joaks1/msbayes-experiments}}}}
 
 \makeatletter
 \let\msTitle\@title
@@ -32,63 +38,20 @@ phylogeographical model selection: A reply to Hickerson et al.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
-% \doublespacing
-% \raggedright
-% \setlength{\parindent}{0.5in}
-% \begin{linenumbers}
 
 \maketitle
 
-\begin{abstract}
-    Biogeographers frequently seek to explain population and species
-    differentiation on geographical phenomena.
-    Establishing that a set of population splitting events occurred
-    at the same time can be a potentially persuasive argument that a set of taxa
-    were affected by the same geographic events.
-    Unfortunately, estimating divergence times precisely when one lacks
-    precise information about the rate of molecular evolution is a notoriously
-    difficult problem in evolutionary biology.
-    \citet{Huang2011} introduced an approximate Bayesian approach (implemented
-    in the software \msb) which can be used to estimate the probabilities of
-    models in which multiple sets of taxa diverge at the same time. 
-    % This method  does not require a common set of character data that links all
-    % of the taxa under investigation, but does require the relative mutation
-    % rates among the taxa and loci to be assumed \emph{a priori}.
-    Recently, \citet{Oaks2012} used this model-choice framework to 
-    study 22 pairs of vertebrate lineages which are distributed across
-    the Philippines; they also studied the behavior of the \msb approach
-    using computer simulations.
-    \citet{Oaks2012} found that the model was very sensitive to the prior and
-    that the inference method had low power to detect variation in divergences
-    times.
-    These results were not surprising, in light of a rich statistical literature
-    showing that the marginal likelihood of a model is sensitive to the
-    use of vague priors.
-    Because this sensitivity to prior assumptions affects the crucial insights 
-    that a researcher who employs \msb seeks to gain, \citet{Oaks2012} recommended
-    that users of the approach should carefully assess the robustness of their 
-    conclusions to different priors.
-    According to \citet{Hickerson2013}, the lack of robustness in \msb analyses
-    was due to excessively broad priors on divergence times, leading to 
-    inadequate numbers of simulation replicates.
-    They proposed a new model-averaging approach that uses narrow, empirically
-    informed uniform priors.
-    Here we demonstrate that the approach of \citet{Hickerson2013} is
-    dangerous in the sense that the empirically-derived priors often
-    exclude from consideration the true values of the models' parameters.
-    On a more fundamental level, we question the value of adopting an empirical
-    Bayesian stance for this model-choice problem, because it can mislead model
-    posterior probabilities, which are inherently measures of belief in the
-    models after prior knowledge is updated by the data.
-    The robust Bayesian approach of conducting analyses under a variety
-    of priors can reveal prior sensitivity and communicate which assumptions
-    underlie model inference.
-    Furthermore, simulations provide insight into the temporal resolution of
-    the method, which in turn helps guide interpretation of results.
+\newpage
+\doublespacing
+\raggedright
+% \setlength{\parindent}{0.5in}
+\begin{linenumbers}
 
-    \vspace{12pt}
-    \noindent\textbf{KEY WORDS: Approximate Bayesian computation; Bayesian
-        model choice; empirical Bayes} 
+\begin{abstract}
+    \input{reply-abstract.tex}
+
+    % \vspace{12pt}
+    % \noindent\textbf{KEY WORDS: \keywords} 
 \end{abstract}
 
 \newpage
@@ -96,26 +59,14 @@ phylogeographical model selection: A reply to Hickerson et al.}
 \input{reply-main.tex}
 
 \section{Acknowledgments}
-We thank Melissa Callahan, Jake Esselstyn, Cameron Siler, Mark Holder, Rafe
-Brown, Emily McTavish, Daniel Money, Jordan Koch, and Adam Leach\'{e} for
-insightful comments that greatly improved this work.
-We thank Michael Hickerson and co-authors for generously providing their data.
-J.\ Oaks and C.\ Linkem thank the National Science Foundation for supporting
-this work (DEB 1011423, DBI 1308885 and BIO-1202754).
-J.\ Oaks was also supported by the University of Kansas (KU) Office of Graduate
-Studies, Society of Systematic Biologists, Sigma Xi Scientific Research
-Society, KU Department of Ecology and Evolutionary Biology, and the KU
-Biodiversity Institute.
-We also thank Mark Holder, the KU Information and Telecommunication Technology
-Center, KU Computing Center, and the iPlant Collaborative for the computational
-support necessary to conduct the analyses presented herein.
+\input{reply-acknowledgments.tex}
 
 \bibliographystyle{../bib/evolution.bst}
 \bibliography{../bib/references}
 
 %% LIST OF FIGURES %%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\singlespacing
+% \singlespacing
 
 \renewcommand\listfigurename{Figure Captions}
 \cftsetindents{fig}{0cm}{2.2cm}
@@ -125,7 +76,7 @@ support necessary to conduct the analyses presented herein.
 \listoffigures
 
 
-% \end{linenumbers}
+\end{linenumbers}
 
 %% TABLES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
