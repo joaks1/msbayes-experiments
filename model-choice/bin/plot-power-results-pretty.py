@@ -143,7 +143,7 @@ def create_plots(info_path):
             margin_left = 0.025,
             margin_bottom = 0.1,
             margin_right = 1,
-            margin_top = 0.85,
+            margin_top = 0.835,
             padding_between_horizontal = 0.5)
 
     fig = psi_plot.create_column_grid(
@@ -188,7 +188,7 @@ def create_plots(info_path):
             margin_left = 0.025,
             margin_bottom = 0.1,
             margin_right = 1,
-            margin_top = 0.85,
+            margin_top = 0.835,
             padding_between_horizontal = 0.5)
     fig = omega_prob_plot.create_column_grid(
             subplot_indices_to_exclude = [],
@@ -252,7 +252,7 @@ def create_plots(info_path):
             margin_left = 0.025,
             margin_bottom = 0.1,
             margin_right = 1,
-            margin_top = 0.83,
+            margin_top = 0.825,
             padding_between_horizontal = 0.5)
     fig = omega_accuracy_plot.create_column_grid(
             subplot_indices_to_exclude = [],
@@ -289,7 +289,7 @@ def create_plots(info_path):
             margin_left = 0.025,
             margin_bottom = 0.1,
             margin_right = 1,
-            margin_top = 0.83,
+            margin_top = 0.825,
             padding_between_horizontal = 0.5)
     fig = omega_accuracy_plot_glm.create_column_grid(
             subplot_indices_to_exclude = [],
@@ -360,7 +360,7 @@ def create_plots(info_path):
             margin_left = 0.025,
             margin_bottom = 0.1,
             margin_right = 1,
-            margin_top = 0.85,
+            margin_top = 0.835,
             padding_between_horizontal = 0.5)
     fig = ex_prob_plot.create_column_grid(
             subplot_indices_to_exclude = [],
@@ -426,7 +426,7 @@ def create_plots(info_path):
             margin_left = 0.025,
             margin_bottom = 0.1,
             margin_right = 1,
-            margin_top = 0.84,
+            margin_top = 0.835,
             padding_between_horizontal = 0.5)
 
     fig = ex_plot.create_column_grid(
