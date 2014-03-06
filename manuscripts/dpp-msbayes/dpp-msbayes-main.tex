@@ -1,4 +1,5 @@
-\section{Introduction}
+% \section{Introduction}
+\section{Background}
 
 Understanding the processes that generate biodiversity and regulate
 community assembly is a major goal of evolutionary biology.
@@ -136,7 +137,7 @@ intuition given the richness of the model and the relatively small amount of
 information in the data.
 
 
-\section{Materials and Methods}
+\section{Methods}
 
 \subsection{The model}
 In this section, I describe the model, which is a modification of the model
@@ -572,7 +573,7 @@ $\divTimeIndexVector \sim \priorUniform$.
 The second prior is based on the Dirichlet process, which is a stochastic
 process that groups random variables into an unknown number of discrete
 parameter classes \cite{Ferguson1973,Antoniak1974}.
-The Dirichlet process has been used as a nonparametric Bayesian approach to
+The Dirichlet process has been used as a non-parametric Bayesian approach to
 many inference problems in evolutionary biology
 \cite{Lartillot2004,Huelsenbeck2007,HuelsenbeckSuchard2007,Ane2007,Heath2011,Heath2012}.
 Here, I use the Dirichlet process to place a prior over all possible ordered
@@ -1525,4 +1526,19 @@ full-likelihood Bayesian framework is becoming computationally practical,
 especially when considering that simulating millions of random datasets from
 the prior under the simple ABC rejection approach is inefficient and
 computationally nontrivial.
+
+\section{Conclusions}
+I introduced a new approximate-Bayesian model-choice method for estimating
+shared divergence histories across taxa using DNA sequence data.
+The new method, \dppmsbayes, takes a non-parametric approach to the problem by
+using a Dirichlet-process prior on the temporal distribution of divergences
+across taxa.
+The new method shows improved robustness, accuracy, and power compared to the
+existing method, \msb.
+Compared to \msb, the new approach better estimates posterior uncertainty,
+which greatly reduces the chances of incorrectly estimating biogeographically
+interesting scenarios of shared divergence events.
+This new tool will allow evolutionary biologists to better leverage comparative
+genetic data to assess the affects of regional and global biogeographical
+processes on biodiversity.
 
