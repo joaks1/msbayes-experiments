@@ -90,6 +90,10 @@
 %%% Put your definitions there:
 \startlocaldefs
 \input{../utils/macros.tex}
+% Remove numbers from section titles
+\makeatletter
+\renewcommand\@seccntformat[1]{}
+\makeatother
 \endlocaldefs
 
 
