@@ -1,6 +1,11 @@
 % \newcommand{\change}[1]{{\color{blue} #1}\xspace}
 \newcommand{\change}[1]{{\color{black} #1}\xspace}
 
+\newcommand{\ifbmc}[2]{#2\xspace}
+\makeatletter
+\@ifclassloaded{bmcart}{\renewcommand{\ifbmc}[2]{#1\xspace}}{}
+\makeatother
+
 \definecolor{myGray}{gray}{0.9}
 
 %% redefine multicolumn to not override rowcolors

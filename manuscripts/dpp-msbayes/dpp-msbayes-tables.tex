@@ -2,7 +2,7 @@
 \begin{table}[htbp]
     \sffamily
     \scriptsize
-    \rowcolors{2}{}{myGray}
+    \ifbmc{}{\rowcolors{2}{}{myGray}}
     \addtolength{\tabcolsep}{-0.1cm}
 \caption{Summary of the notation used throughout this work; modified from \cite{Oaks2012}.}
     \centering
@@ -68,7 +68,7 @@
     % \footnotesize
     \scriptsize
     \addtolength{\tabcolsep}{-0.08cm}
-    \rowcolors{2}{}{myGray} \mcrowcolors
+    \ifbmc{}{\rowcolors{2}{}{myGray} \mcrowcolors}
     %\captionsetup{font=footnotesize}
     \caption{The models evaluated in the simulation-based analyses.  For
         the \modelDPP model, the prior on the concentration parameter,
@@ -117,7 +117,7 @@
     \footnotesize
     % \scriptsize
     % \addtolength{\tabcolsep}{-0.08cm}
-    \rowcolors{2}{}{myGray} \mcrowcolors
+    \ifbmc{}{\rowcolors{2}{}{myGray} \mcrowcolors}
     % \captionsetup{font=footnotesize}
     \caption{The models used to simulate pseudo-replicate datasets for
         assessing the power of the models in Table \ref{tabPriors}.  The
@@ -210,7 +210,7 @@
     \sffamily
     \footnotesize
     \addtolength{\tabcolsep}{-0.08cm}
-    \rowcolors{2}{myGray}{}
+    \ifbmc{}{\rowcolors{2}{myGray}{}}
     %\captionsetup{font=footnotesize}
     \caption{The models used to analyze the data from the 22 pairs of taxa from
         the Philippines ($\mathbf{M}$), and a subset of nine of those pairs
