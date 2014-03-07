@@ -1,18 +1,20 @@
 %% Validation model choice
 \mFigure{../../validation/images/validation-model-choice-psi.pdf}{%
-    \ifbmc{\csentence{Comparison of model-choice behavior.}}{}
+    \ifbmc{\csentence{Comparison of model-choice accuracy.}}{}
     \validationModelChoiceComparisonCaption{unadjusted}{$\divTimeNum = 1$}
 }{figValidationModelChoicePsi}
 
 \mFigure{../../validation/images/validation-model-choice-omega.pdf}{
-    \ifbmc{\csentence{Comparison of model-choice behavior.}}{}
+    \ifbmc{\csentence{Comparison of model-choice accuracy using
+    \divTimeDispersion threshold.}}{}
     \validationModelChoiceComparisonCaption{unadjusted}{$\divTimeDispersion < 0.01$}
 }{figValidationModelChoiceOmega}
 
 
 %% Power results
 \mFigure{../../power-comparison/images/old-power-psi-4.pdf}{
-    \ifbmc{\csentence{Power comparison.}}{}
+    \ifbmc{\csentence{Power to avoid spurious estimation of clustered
+    divergences when divergence times are random.}}{}
     \powerCommentSummary{\powerSeriesOld}
     \powerPsiComment{\powerSeriesOld}
     \timeConversionComment
@@ -22,7 +24,8 @@
 }{figPowerPsiOld4}
 
 \mFigure{../../power-comparison/images/old-power-omega-4.pdf}{
-    \ifbmc{\csentence{Power comparison.}}{}
+    \ifbmc{\csentence{Power to avoid spurious estimation of small temporal
+    variance in divergences when divergence times are random.}}{}
     \powerCommentSummary{\powerSeriesOld}
     \powerDispersionComment{\powerSeriesOld}
     \timeConversionComment
@@ -32,7 +35,8 @@
 }{figPowerOmegaOld4}
 
 \mFigure{../../power-comparison/images/old-power-psi-prob-4.pdf}{
-    \ifbmc{\csentence{Power comparison.}}{}
+    \ifbmc{\csentence{Power to avoid spurious support for one divergence event
+    when divergence times are random.}}{}
     \powerSupportCommentSummary{\powerSeriesOld}
     \powerProbComment{$p(\divTimeNum = 1 | \ssSpace)$}{\powerSeriesOld}
     \timeConversionComment
@@ -42,7 +46,9 @@
 }{figPowerPsiProbOld4}
 
 \mFigure{../../power-comparison/images/old-power-omega-prob-4.pdf}{
-    \ifbmc{\csentence{Power comparison.}}{}
+    \ifbmc{\csentence{Power to avoid spurious support for no temporal variance
+    in divergences (i.e., $\divTimeDispersion < 0.01$) when divergence times
+    are random.}}{}
     \powerSupportCommentSummary{\powerSeriesOld}
     \powerProbComment{$p(\divTimeDispersion < 0.01 | \ssSpace)$}{\powerSeriesOld}
     \timeConversionComment
@@ -53,7 +59,8 @@
 
 %% Empirical results
 \mFigure{../../empirical-analyses/plots/philippines-psi.pdf}{
-    \ifbmc{\csentence{Empirical results for 22 Philippine taxa.}}{}
+    \ifbmc{\csentence{Estimated number of divergence events for 22 taxa from
+    the Philippines.}}{}
     The (A--E) posterior and (F--J) prior probabilities of the number of
     divergence events (\divTimeNum) when the data of the 22 pairs of taxa from
     the Philippines are analyzed under the five models indicated at the top of
@@ -67,7 +74,8 @@
 }{figPhilippines}
 
 \widthFigure{0.4}{../../empirical-analyses/plots/negros-panay-psi.pdf}{listformat=figList}{
-    \ifbmc{\csentence{Empirical results for 9 Philippine taxa.}}{}
+    \ifbmc{\csentence{Estimated number of divergence events for 9 taxa from the
+    Philippines.}}{}
     The posterior probabilities of the number of divergence events,
     \divTimeNum, when the data of the 9 pairs of taxa from Negros and Panay
     Islands are analyzed under the DPP model that samples over (A) unordered
