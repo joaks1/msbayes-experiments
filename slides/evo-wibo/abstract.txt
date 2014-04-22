@@ -1,0 +1,27 @@
+Authors:
+Jamie R. Oaks
+Department of Biology, University of Washington, Seattle, Washington 98195
+
+Title:
+An Improved Nonparametric Approximate-Bayesian Method for Estimating Shared
+Evolutionary History
+
+Abstract:
+To understand the processes that generate biodiversity, it is important to
+account for large-scale processes that affect the evolutionary history of
+groups of co-distributed populations of organisms.
+Such events predict temporally clustered divergences times, a pattern that can
+be estimated using genetic data from co-distributed species.
+I introduce a nonparametric approximate-Bayesian method, dpp-msbayes, for
+estimating shared divergence histories across taxa using DNA sequence data.
+Using analyses of biological and simulated data, I compared the performance of
+the new approach to the method implemented in msBayes.
+The new method has improved robustness, accuracy, and power for estimating
+shared evolutionary history across taxa.
+Compared to msBayes, the new approach better estimates posterior uncertainty,
+which greatly reduces the chances of incorrectly estimating biogeographically
+interesting scenarios of shared divergence events.
+This new tool will allow evolutionary biologists to better leverage comparative
+genetic data to assess the affects of regional and global biogeographical
+processes on biodiversity.
+
