@@ -11,8 +11,8 @@
 \usepackage{booktabs}
 \usepackage{xcolor}
 \usepackage[style=nature]{biblatex}
-\bibliography{../manuscripts/bib/references}
 \newrobustcmd*{\footlessfullcite}{\AtNextCite{\renewbibmacro{title}{}\renewbibmacro{in:}{}}\footfullcite}
+\newrobustcmd*{\shortfullcite}{\AtNextCite{\renewbibmacro{title}{}\renewbibmacro{in:}{}}\fullcite}
 \AtEveryBibitem{\clearfield{month}}
 \AtEveryCitekey{\clearfield{month}}
 
@@ -70,6 +70,14 @@
     \begin{itemize}
         \setlength{\leftskip}{-.3cm}}
     {\end{itemize}}
+
+% footnote without a marker
+\newcommand\barefootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
 
 % define formatting for footer
 \newcommand{\myfootline}{%
