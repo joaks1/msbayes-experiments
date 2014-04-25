@@ -81,6 +81,7 @@ Evolutionary History}
 
 \subsection{Philippines---Pleistocene model of diversification}
 
+\ignore{
 \begin{frame}
     \frametitle{Philippine Archipelago}
     \begin{center}
@@ -88,6 +89,7 @@ Evolutionary History}
         \includegraphics<2>[width=.5\textwidth]{../images/maps/Philippines.png}
     \end{center}
 \end{frame}
+}
 
 \ignore{
 \begin{frame}
@@ -119,7 +121,7 @@ Evolutionary History}
     \textbf{Did repeated fragmentation of islands during inter-glacial rises in sea level
     promote diversification?}\\
     \bigskip
-    \uncover<2->{
+    \uncover<1->{
     Model has testable prediction:\\
     \begin{itemize}
         \item Temporally clustered divergences among taxa
@@ -136,9 +138,9 @@ Evolutionary History}
 \begin{frame}
     \frametitle{Climate-driven model: Prediction}
     \centerline{
-    \includegraphics<1>[width=\textwidth]{../images/sea-level-prediction-bare.pdf}
-    \includegraphics<2>[width=\textwidth]{../images/sea-level-prediction-trees.pdf}
-    \includegraphics<3>[width=\textwidth]{../images/sea-level-prediction-trees-labels.pdf}
+    % \includegraphics<1>[width=\textwidth]{../images/sea-level-prediction-bare.pdf}
+    % \includegraphics<2>[width=\textwidth]{../images/sea-level-prediction-trees.pdf}
+    \includegraphics<1>[width=\textwidth]{../images/sea-level-prediction-trees-labels.pdf}
     }
 \end{frame}
 
@@ -146,7 +148,7 @@ Evolutionary History}
     \frametitle{Divergence model choice}
     \begin{columns}[c]
         \column{.4\textwidth}
-            \begin{onlyenv}<2>
+            \begin{onlyenv}<1>
             \begin{displaybox}[4.5cm]
                 {\small
                 \[
@@ -164,7 +166,7 @@ Evolutionary History}
                 % \]\vspace{0mm}
             \end{displaybox}
             \end{onlyenv}
-            \begin{onlyenv}<3>
+            \begin{onlyenv}<2>
             \begin{displaybox}[4.5cm]
                 {\small
                 \[
@@ -182,7 +184,7 @@ Evolutionary History}
                 % \]\vspace{0mm}
             \end{displaybox}
             \end{onlyenv}
-            \begin{onlyenv}<4>
+            \begin{onlyenv}<3>
             \begin{displaybox}[4.5cm]
                 {\small
                 \[
@@ -200,7 +202,7 @@ Evolutionary History}
                 % \]\vspace{0mm}
             \end{displaybox}
             \end{onlyenv}
-            \begin{onlyenv}<5>
+            \begin{onlyenv}<4>
             \begin{displaybox}[4.5cm]
                 {\small
                 \[
@@ -221,25 +223,25 @@ Evolutionary History}
                 % \]\vspace{0mm}
             \end{displaybox}
             \end{onlyenv}
-            \begin{onlyenv}<6>
-            \begin{displaybox}[4.5cm]
-                {\small
-                \[
-                    \divTimeMapVector = (\divTimeMap{1},\divTimeMap{2},\divTimeMap{3},\divTimeMap{4},\divTimeMap{5})
-                \]\vspace{0mm}
-                }
-                \[
-                    \divTimeVector = \{\divTime{1},\divTime{2},\divTime{3}\}
-                \]\vspace{0mm}
-                \[
-                    \divTimeNum = 3
-                \]\vspace{0mm}
-                % \[
-                %     \divTimeIndexVector = (\divTimeIndex{1},\divTimeIndex{2},\divTimeIndex{3},\divTimeIndex{4},\divTimeIndex{5})
-                % \]\vspace{0mm}
-            \end{displaybox}
-            \end{onlyenv}
-            \begin{onlyenv}<7->
+            % \begin{onlyenv}<6>
+            % \begin{displaybox}[4.5cm]
+            %     {\small
+            %     \[
+            %         \divTimeMapVector = (\divTimeMap{1},\divTimeMap{2},\divTimeMap{3},\divTimeMap{4},\divTimeMap{5})
+            %     \]\vspace{0mm}
+            %     }
+            %     \[
+            %         \divTimeVector = \{\divTime{1},\divTime{2},\divTime{3}\}
+            %     \]\vspace{0mm}
+            %     \[
+            %         \divTimeNum = 3
+            %     \]\vspace{0mm}
+            %     % \[
+            %     %     \divTimeIndexVector = (\divTimeIndex{1},\divTimeIndex{2},\divTimeIndex{3},\divTimeIndex{4},\divTimeIndex{5})
+            %     % \]\vspace{0mm}
+            % \end{displaybox}
+            % \end{onlyenv}
+            \begin{onlyenv}<5->
             \begin{displaybox}[4.5cm]
                 {\small
                 \[
@@ -257,34 +259,35 @@ Evolutionary History}
                 % \]\vspace{0mm}
             \end{displaybox}
             \end{onlyenv}
+            \uncover<5->{\small We want to infer \divTimeMapVector given DNA sequence alignments \alignmentVector}
         \column{.6\textwidth}
-            \includegraphics<1-3>[height=6.8cm]{../images/sea-level-prediction-trees-labels-compact.pdf}
-            \includegraphics<4>[height=6.8cm]{../images/sea-level-prediction-trees-labels-compact-alt1.pdf}
-            \includegraphics<5-7>[height=6.8cm]{../images/sea-level-prediction-trees-labels-compact-alt2.pdf}
-            \begin{onlyenv}<8->
-                \begin{itemize}
-                \item<8-> We want to infer \divTimeMapVector given DNA sequence alignments \alignmentVector
-                \item<8->
-                \[
-                    p(\divTimeMapVector \given \alignmentVector) =
-                    \frac{p(\alignmentVector \given
-                    \divTimeMapVector)p(\divTimeMapVector)}{p(\alignmentVector)}
-                \]
-                \item<9-> This approach implemented in \msb
-                \begin{itemize}
-                    \item<9-> Not that simple 
-                \end{itemize}
-            \end{itemize}
-            \end{onlyenv}
+            \includegraphics<1-2>[height=6.8cm]{../images/sea-level-prediction-trees-labels-compact.pdf}
+            \includegraphics<3>[height=6.8cm]{../images/sea-level-prediction-trees-labels-compact-alt1.pdf}
+            \includegraphics<4->[height=6.8cm]{../images/sea-level-prediction-trees-labels-compact-alt2.pdf}
+            % \begin{onlyenv}<7->
+            %     \begin{itemize}
+            %     \item<7-> We want to infer \divTimeMapVector given DNA sequence alignments \alignmentVector
+            %     \item<7->
+            %     \[
+            %         p(\divTimeMapVector \given \alignmentVector) =
+            %         \frac{p(\alignmentVector \given
+            %         \divTimeMapVector)p(\divTimeMapVector)}{p(\alignmentVector)}
+            %     \]
+            %     \item<8-> This approach implemented in \msb
+            %     \begin{itemize}
+            %         \item<8-> Not that simple 
+            %     \end{itemize}
+            % \end{itemize}
+            % \end{onlyenv}
     \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle{The \msb model}
+    \frametitle{Population divergence model}
     \centerline{
-        \includegraphics<1>[width=\textwidth]{../images/sea-level-prediction-trees-labels.pdf}
-        \includegraphics<2>[width=\textwidth]{../images/sea-level-species-trees-islands.pdf}
-        \includegraphics<3>[width=\textwidth]{../images/sea-level-species-trees-gene-trees-islands.pdf}
+        % \includegraphics<1>[width=\textwidth]{../images/sea-level-prediction-trees-labels.pdf}
+        % \includegraphics<1>[width=\textwidth]{../images/sea-level-species-trees-islands.pdf}
+        \includegraphics<1>[width=\textwidth]{../images/sea-level-species-trees-gene-trees-islands.pdf}
         % \includegraphics<4>[width=\textwidth]{../images/sea-level-species-trees-gene-trees-demog-islands.pdf}
         % \includegraphics<5>[width=\textwidth]{../images/sea-level-msbayes-model-islands.pdf}
         % \includegraphics<6>[width=\textwidth]{../images/sea-level-msbayes-model-labels-islands.pdf}
@@ -292,15 +295,15 @@ Evolutionary History}
 \end{frame}
 
 \begin{frame}
-    \frametitle{The \msb model}
+    \frametitle{Population divergence model}
     \begin{columns}[c]
         \column{.4\textwidth}
             \begin{mydescription}
-                \item<2->[\alignmentVector] Sequence alignments
-                \item<2->[\geneTreeVector] Gene trees
+                \item<1->[\alignmentVector] Sequence alignments
+                \item<1->[\geneTreeVector] Gene trees
                 % \item<2->[\hkyModelVector] Substitution parameters
-                \item<2->[\divTimeMapVector] Divergence times
-                \item<2->[\demographicParamVector] Demographic parameters
+                \item<1->[\divTimeMapVector] Divergence times
+                \item<1->[\demographicParamVector] Demographic parameters
             \end{mydescription}
         \column{.6\textwidth}
             \includegraphics[width=\textwidth]{../images/sea-level-species-trees-gene-trees.pdf}
@@ -315,7 +318,7 @@ Evolutionary History}
 
 \begin{frame}[t]
     \frametitle{The \msb model}
-        \uncover<2->{
+        \uncover<1->{
         \begin{block}{\it Full Model:}
         \[
             p(\geneTreeVector, \divTimeMapVector, \demographicParamVector
@@ -328,7 +331,7 @@ Evolutionary History}
         \]\vspace{0mm}
         \end{block}
         }
-        \begin{onlyenv}<1-2>
+        \begin{onlyenv}<1>
         \smallskip
         \begin{mydescription}
             \item[\alignmentVector] Sequence alignments
@@ -338,62 +341,12 @@ Evolutionary History}
             \item[\demographicParamVector] Demographic parameters
         \end{mydescription}
         \end{onlyenv}
-    \begin{onlyenv}<3>
-    \bigskip
-    \begin{displaybox}
-    {\tiny
-    \begin{equation*}
-        \begin{split}
-        & p(\geneTreeVector,
-        \divTimeMapVector,
-        \ancestralThetaVector,
-        \descendantThetaVector{1}, \descendantThetaVector{2},
-        \bottleTimeVector, \bottleScalarVector{1},
-        \bottleScalarVector{2},
-        \migrationRateVector,
-        \locusRateHetShapeParameter,
-        \locusMutationRateScalarVector \given
-        \alignmentVector, \hkyModelVector, \ploidyScalarVector,
-        \mutationRateScalarConstantVector) \\
-        & = \frac{1}{p(\alignmentVector \given \hkyModelVector,
-        \ploidyScalarVector, \mutationRateScalarConstantVector)}
-        p(\divTimeMapVector)
-        f(\locusRateHetShapeParameter)
-        \Bigg[
-        \prod_{i=1}^{\npairs{}}
-        p(\ancestralTheta{i})
-        p(\descendantTheta{1}{i}, \descendantTheta{2}{i})
-        p(\bottleTime{i})
-        p(\bottleScalar{1}{i}) f(\bottleScalar{2}{i})
-        p(\migrationRate{i}) \\
-        &
-        \prod_{j=1}^{\nloci{i}}
-        p(\alignment{i}{j} \given
-        \geneTree{i}{j}, \hkyModel{i}{j})
-        p(\geneTree{i}{j} \given
-        \divTimeMap{i},
-        \ancestralTheta{i}, \descendantTheta{1}{i}, \descendantTheta{2}{i},
-        \ploidyScalar{i}{j}, \mutationRateScalarConstant{i}{j},
-        \locusMutationRateScalar{j},
-        \bottleTime{i}, \bottleScalar{1}{i}, \bottleScalar{2}{i},
-        \migrationRate{i})
-        \Bigg]
-        \Bigg[
-        \prod_{j=1}^{\nlociTotal}
-        f(\locusMutationRateScalar{j} \given \locusRateHetShapeParameter)
-        \Bigg]
-        \label{eq:fullmodel}
-        \end{split}
-    \end{equation*}
-    }
-    \end{displaybox}
-    \end{onlyenv}
-    \begin{onlyenv}<4-5>
+    \begin{onlyenv}<2-3>
     \smallskip
         \centerline{Approximate Bayesian computation (ABC)}
         \[ \alignmentVector \, \to \, \ssVectorObs \, \to \, \ssSpace\]
     \end{onlyenv}
-    \begin{onlyenv}<5>
+    \begin{onlyenv}<3>
     \begin{block}{\it Approximate Model:}
     \[
         p(\geneTreeVector, \divTimeMapVector, \demographicParamVector
@@ -406,7 +359,7 @@ Evolutionary History}
     \]\vspace{0mm}
     \end{block}
     \end{onlyenv}
-    \only<6>{
+    \only<4>{
         \bigskip
         \begin{mydescription}
             \item[\divTimeMapVector] Vector of divergence times across pairs of populations
@@ -486,6 +439,7 @@ Evolutionary History}
 \end{columns}
 \end{frame}
 
+\ignore{
 \begin{frame}
 \begin{columns}[c]
     \column{.5\textwidth}
@@ -544,6 +498,7 @@ Evolutionary History}
         % \includegraphics<6>[width=\textwidth]{../images/maps/Philippines-leyte_samar.png}
 \end{columns}
 \end{frame}
+}
 
 
 \section{Empirical results}
@@ -679,10 +634,10 @@ Evolutionary History}
     \begin{itemize}
         \item<1-> \msb uses uniform priors on most model parameters, including
             divergence times
-        \item<2-> This requires the use of broad priors
-        \item<3-> Models with more divergence-time parameters have much greater
+        \item<1-> This requires the use of broad priors
+        \item<2-> Models with more divergence-time parameters have much greater
             parameter space, much of it with low likelihood
-        \uncover<4->{
+        \uncover<3->{
         \item This vast space can cause problems with Bayesian model choice
         \begin{itemize}
             \item Reduced marginal likelihoods
@@ -702,8 +657,8 @@ Evolutionary History}
     \end{displaybox}
     \smallskip
     \centerline{
-        \includegraphics<2>[height=6.5cm]{../images/marginal-plot-2d-no-priors.pdf}
-        \includegraphics<3>[height=6.5cm]{../images/marginal-plot-2d-uniform-prior.pdf}
+        % \includegraphics<2>[height=6.5cm]{../images/marginal-plot-2d-no-priors.pdf}
+        \includegraphics<1>[height=6.5cm]{../images/marginal-plot-2d-uniform-prior.pdf}
         % \includegraphics<3>[height=6.5cm]{images/marginal-plot-2d.pdf}
     }
 \end{frame}
@@ -719,9 +674,9 @@ Evolutionary History}
     % \end{displaybox}
     % \smallskip
     \centerline{
-        \includegraphics<1>[height=8.0cm]{../images/marginal-plot-3d-bare.png}
-        \includegraphics<2>[height=8.0cm]{../images/marginal-plot-3d-prior.png}
-        \includegraphics<3>[height=8.0cm]{../images/marginal-plot-3d.png}}
+        % \includegraphics<1>[height=8.0cm]{../images/marginal-plot-3d-bare.png}
+        % \includegraphics<2>[height=8.0cm]{../images/marginal-plot-3d-prior.png}
+        \includegraphics<1>[height=8.0cm]{../images/marginal-plot-3d.png}}
 \end{frame}
 
 \ignore{
@@ -1074,6 +1029,7 @@ Evolutionary History}
     \end{columns}
 \end{frame}
 
+\ignore{
 \begin{frame}
 \begin{columns}[c]
     \column{.5\textwidth}
@@ -1134,6 +1090,7 @@ Evolutionary History}
         \includegraphics<1>[height=1.5cm]{../images/photos/limnonectes-leytensis-rmb.jpg}}
 \end{columns}
 \end{frame}
+}
 
 \begin{frame}
     \frametitle{\dppmsbayes: Philippine diversification}
@@ -1165,7 +1122,7 @@ Evolutionary History}
             model choice shows improved behavior
             \begin{myitemize}
                 \item<1-> Improved accuracy, robustness, and power
-                \item<1-> More ``honest'' estimates regarding
+                \item<1-> Better estimates of posterior
                     uncertainty
             \end{myitemize}
         \smallskip
