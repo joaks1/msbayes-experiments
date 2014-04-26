@@ -112,7 +112,6 @@ Evolutionary History}
             \includegraphics[width=\textwidth]{../images/maps/Philippines.png}
     \end{columns}
 \end{frame}
-}
 
 \begin{frame}
     \frametitle{Testing climate-driven diversification}
@@ -132,11 +131,12 @@ Evolutionary History}
             \includegraphics[width=\textwidth]{../images/maps/Philippines.png}
     \end{columns}
 \end{frame}
+}
 
 \section{Testing the Pleistocene model of diversification}
 
 \begin{frame}
-    \frametitle{Climate-driven model: Prediction}
+    \frametitle{Climate-driven diversification model: Prediction}
     \centerline{
     % \includegraphics<1>[width=\textwidth]{../images/sea-level-prediction-bare.pdf}
     % \includegraphics<2>[width=\textwidth]{../images/sea-level-prediction-trees.pdf}
@@ -259,7 +259,9 @@ Evolutionary History}
                 % \]\vspace{0mm}
             \end{displaybox}
             \end{onlyenv}
-            \uncover<5->{\small We want to infer \divTimeMapVector given DNA sequence alignments \alignmentVector}
+            \uncover<5->{
+                \small We want to infer \textcolor{blue}{\divTimeMapVector} given DNA sequence alignments \textcolor{blue}{\alignmentVector}
+            }
         \column{.6\textwidth}
             \includegraphics<1-2>[height=6.8cm]{../images/sea-level-prediction-trees-labels-compact.pdf}
             \includegraphics<3>[height=6.8cm]{../images/sea-level-prediction-trees-labels-compact-alt1.pdf}
@@ -282,22 +284,23 @@ Evolutionary History}
     \end{columns}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Population divergence model}
-    \centerline{
-        % \includegraphics<1>[width=\textwidth]{../images/sea-level-prediction-trees-labels.pdf}
-        % \includegraphics<1>[width=\textwidth]{../images/sea-level-species-trees-islands.pdf}
-        \includegraphics<1>[width=\textwidth]{../images/sea-level-species-trees-gene-trees-islands.pdf}
-        % \includegraphics<4>[width=\textwidth]{../images/sea-level-species-trees-gene-trees-demog-islands.pdf}
-        % \includegraphics<5>[width=\textwidth]{../images/sea-level-msbayes-model-islands.pdf}
-        % \includegraphics<6>[width=\textwidth]{../images/sea-level-msbayes-model-labels-islands.pdf}
-    }
-\end{frame}
+% \begin{frame}
+%     \frametitle{Population divergence model}
+%     \centerline{
+%         % \includegraphics<1>[width=\textwidth]{../images/sea-level-prediction-trees-labels.pdf}
+%         % \includegraphics<1>[width=\textwidth]{../images/sea-level-species-trees-islands.pdf}
+%         \includegraphics<1>[width=\textwidth]{../images/sea-level-species-trees-gene-trees-islands.pdf}
+%         % \includegraphics<4>[width=\textwidth]{../images/sea-level-species-trees-gene-trees-demog-islands.pdf}
+%         % \includegraphics<5>[width=\textwidth]{../images/sea-level-msbayes-model-islands.pdf}
+%         % \includegraphics<6>[width=\textwidth]{../images/sea-level-msbayes-model-labels-islands.pdf}
+%     }
+% \end{frame}
 
 \begin{frame}
     \frametitle{Population divergence model}
     \begin{columns}[c]
         \column{.4\textwidth}
+            % \small We want to infer \textcolor{blue}{\divTimeMapVector} given DNA sequence alignments \textcolor{blue}{\alignmentVector}
             \begin{mydescription}
                 \item<1->[\alignmentVector] Sequence alignments
                 \item<1->[\geneTreeVector] Gene trees
@@ -331,7 +334,7 @@ Evolutionary History}
         \]\vspace{0mm}
         \end{block}
         }
-        \begin{onlyenv}<1>
+        \begin{onlyenv}<1->
         \smallskip
         \begin{mydescription}
             \item[\alignmentVector] Sequence alignments
@@ -341,33 +344,33 @@ Evolutionary History}
             \item[\demographicParamVector] Demographic parameters
         \end{mydescription}
         \end{onlyenv}
-    \begin{onlyenv}<2-3>
+    \begin{onlyenv}<2>
     \smallskip
         \centerline{Approximate Bayesian computation (ABC)}
         \[ \alignmentVector \, \to \, \ssVectorObs \, \to \, \ssSpace\]
     \end{onlyenv}
-    \begin{onlyenv}<3>
-    \begin{block}{\it Approximate Model:}
-    \[
-        p(\geneTreeVector, \divTimeMapVector, \demographicParamVector
-        \given
-        \ssSpace) =
-        \frac{p(\alignmentVector \given \geneTreeVector, \divTimeMapVector,
-        \demographicParamVector)
-        p(\geneTreeVector, \divTimeMapVector, \demographicParamVector)}{
-        p(\ssSpace)}
-    \]\vspace{0mm}
-    \end{block}
-    \end{onlyenv}
-    \only<4>{
-        \bigskip
-        \begin{mydescription}
-            \item[\divTimeMapVector] Vector of divergence times across pairs of populations
-            \item[\divTimeNum] Number of divergence parameters
-            \item[\divTimeDispersion] The variance of \divTimeMapVector
-        \end{mydescription}
-        \vspace{1cm}
-    }
+    % \begin{onlyenv}<3>
+    % \begin{block}{\it Approximate Model:}
+    % \[
+    %     p(\geneTreeVector, \divTimeMapVector, \demographicParamVector
+    %     \given
+    %     \ssSpace) =
+    %     \frac{p(\alignmentVector \given \geneTreeVector, \divTimeMapVector,
+    %     \demographicParamVector)
+    %     p(\geneTreeVector, \divTimeMapVector, \demographicParamVector)}{
+    %     p(\ssSpace)}
+    % \]\vspace{0mm}
+    % \end{block}
+    % \end{onlyenv}
+    % \only<3>{
+    %     \bigskip
+    %     \begin{mydescription}
+    %         \item[\divTimeMapVector] Vector of divergence times across pairs of populations
+    %         \item[\divTimeNum] Number of divergence parameters
+    %         \item[\divTimeDispersion] The variance of \divTimeMapVector
+    %     \end{mydescription}
+    %     \vspace{1cm}
+    % }
     \barefootnote{\tiny\shortfullcite{Huang2011}. \hspace{2mm}\shortfullcite{Oaks2012}.}
 \end{frame}
 
@@ -378,6 +381,7 @@ Evolutionary History}
 % \tableofcontents[currentsection,currentsubsection]
 % \end{frame}
 
+\ignore{
 \begin{frame}
 \begin{columns}[c]
     \column{.5\textwidth}
@@ -438,6 +442,7 @@ Evolutionary History}
         \includegraphics<1>[height=1.5cm]{../images/photos/limnonectes-leytensis-rmb.jpg}}
 \end{columns}
 \end{frame}
+}
 
 \ignore{
 \begin{frame}
@@ -510,22 +515,35 @@ Evolutionary History}
 % \end{frame}
 
 \begin{frame}
-    \frametitle{Empirical results}
-    \begin{columns}[c]
-        \column{.45\textwidth}
-            {\small
-            \begin{itemize}
-                \item<1-> Strong support for simultaneous divergence of all 22 taxon pairs \\
-            % \vspace{1cm}
-                \item<1-> pp $>$ 0.96 \\
-            % \vspace{1cm}
-                \item<1-> $\approx \,$100,000--250,000 years ago
-                \item<2-> $\approx \,$600 parameters and 88 statistics?
-            \end{itemize}
-            }
-        \column{.55\textwidth}
-        \includegraphics[width=\textwidth]{../images/jointDensityPlotsSlide.jpg}
-    \end{columns}
+    % \frametitle{Empirical results}
+    \frametitle{The \msb model}
+    However, \msb will often infer clustered divergences when divergence times
+    are random over millions of generations.
+
+    \vspace{1cm}
+    % \begin{center}
+    %     \includegraphics[width=0.8\textwidth]{../images/old-psi-results.pdf}
+        \centerline{
+        \includegraphics[width=1.13\textwidth]{../images/old_old_power_psi_mode.pdf}}
+        % \vspace{0mm}
+        % \centerline{
+        % \includegraphics[width=\textwidth]{../images/old-sims_power_psi_prob_headless.pdf}}
+    % \begin{columns}[c]
+    %     \column{.45\textwidth}
+            % {\small
+            % \begin{itemize}
+            %     % \item<1-> Strong support for simultaneous divergence of all 22 taxon pairs \\
+            % % \vspace{1cm}
+            %     % \item<1-> pp $>$ 0.96 \\
+            % % \vspace{1cm}
+            %     \item<1-> $\approx \,$100,000--250,000 years ago
+            %     \item<1-> $\approx \,$600 parameters and 88 statistics?
+            % \end{itemize}
+            % }
+        % \column{.55\textwidth}
+        % \includegraphics[width=\textwidth]{../images/jointDensityPlotsSlide.jpg}
+    % \end{columns}
+    % \end{center}
     \barefootnote{\shortfullcite{Oaks2012}}
 \end{frame}
 
@@ -536,6 +554,7 @@ Evolutionary History}
 % \tableofcontents[currentsection,currentsubsection]
 % \end{frame}
 
+\ignore{
 \begin{frame}
     \frametitle{Simulation-based power analyses}
     % What is ``simultaneous''?
@@ -578,6 +597,7 @@ Evolutionary History}
     \bigskip
     The empirical results are likely spurious
 \end{frame}
+}
 
 \subsection{Why the odd behavior?}
 
@@ -591,7 +611,7 @@ Evolutionary History}
     Potential causes of the bias:
     \begin{enumerate}
         \item Broad uniform priors on many of the model's parameters, including
-            divergence times
+            divergence times, cause small marginal likelihoods of rich models
         \item The prior on divergence models
             % \begin{enumerate}
             %     \item Small marginal likelihoods of rich models
@@ -629,6 +649,7 @@ Evolutionary History}
 %     \end{columns}
 % \end{frame}
 
+\ignore{
 \begin{frame}
     \frametitle{Causes of bias: Broad priors}
     \begin{itemize}
@@ -645,9 +666,11 @@ Evolutionary History}
         }
     \end{itemize}
 \end{frame}
+}
 
 \begin{frame}[t]
-    \frametitle{Causes of bias: Marginal likelihoods}
+    % \frametitle{Causes of bias: Marginal likelihoods}
+    \frametitle{Causes of bias: Broad priors}
     \begin{displaybox}[5.5cm]
         \small
         \[
@@ -938,7 +961,8 @@ Evolutionary History}
         \item $MGA$ = Millions of Generations Ago
         }
         \item Simulate 1000 datasets for each \divTime{} distribution
-        \item Analyze all 4000 datasets as we did the empirical data
+        % \item Analyze all 4000 datasets as we did the empirical data
+        \item Analyze all 4000 datasets under models $M_{msBayes}$, $M_{Ushaped}$, and $M_{DPP}$
     \end{myitemize}
 \end{frame}
 
@@ -978,6 +1002,7 @@ Evolutionary History}
     \barefootnote{\shortfullcite{Oaks2014dpp}}
 \end{frame}
 
+\ignore{
 \begin{frame}[t]
     \frametitle{\dppmsbayes: Simulation results}
     \vspace{1cm}
@@ -988,18 +1013,19 @@ Evolutionary History}
         \includegraphics[width=1.13\textwidth]{../images/old_dpp_power_omega_median_headless.pdf}}
     \barefootnote{\shortfullcite{Oaks2014dpp}}
 \end{frame}
+}
 
 \begin{frame}
     \frametitle{\dppmsbayes: Simulation results}
     % \vspace{1cm}
         \centerline{
-        \includegraphics[width=\textwidth]{../images/old_old_power_omega_median.pdf}}
+        \includegraphics[width=\textwidth]{../images/old_old_power_psi_prob.pdf}}
         \vspace{0mm}
         \centerline{
-        \includegraphics[width=\textwidth]{../images/old_u-shaped_power_omega_median_headless.pdf}}
+        \includegraphics[width=\textwidth]{../images/old_u-shaped_power_psi_prob_headless.pdf}}
         \vspace{0mm}
         \centerline{
-        \includegraphics[width=\textwidth]{../images/old_dpp_power_omega_median_headless.pdf}}
+        \includegraphics[width=\textwidth]{../images/old_dpp_power_psi_prob_headless.pdf}}
     % \barefootnote{\shortfullcite{Oaks2014dpp}}
 \end{frame}
 
@@ -1029,7 +1055,6 @@ Evolutionary History}
     \end{columns}
 \end{frame}
 
-\ignore{
 \begin{frame}
 \begin{columns}[c]
     \column{.5\textwidth}
@@ -1090,7 +1115,6 @@ Evolutionary History}
         \includegraphics<1>[height=1.5cm]{../images/photos/limnonectes-leytensis-rmb.jpg}}
 \end{columns}
 \end{frame}
-}
 
 \begin{frame}
     \frametitle{\dppmsbayes: Philippine diversification}
@@ -1138,8 +1162,8 @@ Evolutionary History}
 
 \begin{frame}
     \frametitle{Future directions: Full-Bayesian phylogenetic framework}
-    \includegraphics<1>[height=6.8cm]{../images/sea-level-prediction-trees-labels-compact-alt2.pdf}
-    \includegraphics<2>[width=\textwidth]{../images/sea-level-prediction-phylo.pdf}
+    % \includegraphics<1>[height=6.8cm]{../images/sea-level-prediction-trees-labels-compact-alt2.pdf}
+    \includegraphics<1>[width=\textwidth]{../images/sea-level-prediction-phylo.pdf}
 \end{frame}
 
 \begin{frame}
@@ -1169,7 +1193,7 @@ Evolutionary History}
         \item \texttt{msbayes-experiments}:
             \href{https://github.com/joaks1/msbayes-experiments}{\tt
             https://github.com/joaks1/msbayes-experiments}
-        \item joaks1@gmail.com
+        % \item joaks1@gmail.com
     \end{itemize}
 \end{frame}
 
@@ -1262,5 +1286,34 @@ Evolutionary History}
     \includegraphics[width=\textwidth]{../images/maps/arees-fig3.png}
 \end{frame}
     
+\begin{frame}[noframenumbering]
+    \frametitle{\dppmsbayes: Simulation results}
+    % \vspace{1cm}
+        \centerline{
+        \includegraphics[width=\textwidth]{../images/old_old_power_psi_mode.pdf}}
+        \vspace{0mm}
+        \centerline{
+        \includegraphics[width=\textwidth]{../images/old_u-shaped_power_psi_mode_headless.pdf}}
+        \vspace{0mm}
+        \centerline{
+        \includegraphics[width=\textwidth]{../images/old_dpp_power_psi_mode_headless.pdf}}
+    % \barefootnote{\shortfullcite{Oaks2014dpp}}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+    \frametitle{\dppmsbayes: Simulation results}
+    % \vspace{1cm}
+        \centerline{
+        \includegraphics[width=\textwidth]{../images/old_old_power_omega_median.pdf}}
+        \vspace{0mm}
+        \centerline{
+        \includegraphics[width=\textwidth]{../images/old_u-shaped_power_omega_median_headless.pdf}}
+        \vspace{0mm}
+        \centerline{
+        \includegraphics[width=\textwidth]{../images/old_dpp_power_omega_median_headless.pdf}}
+    % \barefootnote{\shortfullcite{Oaks2014dpp}}
+\end{frame}
+
+
 \end{document}
 

@@ -210,6 +210,9 @@ def create_plots(info_path,
             pg.row_label_size = row_label_size
             pg.row_label_offset = row_label_offset
             pg.reset_figure()
+            pg.set_shared_x_limits()
+            pg.set_shared_y_limits()
+            pg.reset_figure()
             pg.savefig(os.path.join(output_dir,
                     prefix + '_power_psi_mode.pdf'))
             pg.column_labels = ['' for x in column_labels]
