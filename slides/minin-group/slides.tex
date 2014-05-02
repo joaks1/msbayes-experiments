@@ -228,10 +228,10 @@ comparative phylogeographical models}
     \begin{columns}[c]
         \column{.4\textwidth}
             \begin{mydescription}
+                \item<2->[\divTimeMapVector] Divergence times
                 \item<2->[\alignmentVector] Sequence alignments
                 \item<2->[\geneTreeVector] Gene trees
-                % \item<2->[\hkyModelVector] Substitution parameters
-                \item<2->[\divTimeMapVector] Divergence times
+                \item<2->[\hkyModelVector] Substitution parameters
                 \item<2->[\demographicParamVector] Demographic parameters
             \end{mydescription}
         \column{.6\textwidth}
@@ -242,20 +242,20 @@ comparative phylogeographical models}
 
 \begin{frame}
     \frametitle{Data}
-    \begin{itemize}
-        \item Comparing divergence times across \npairs{} pairs of populations
-        \item For each pair $i$, \popSampleSize{i}{} genome copies have been
-            sampled, with \popSampleSize{1}{i} copies sampled from population
-            1, and \popSampleSize{2}{i} sampled from population 2
-        \item \nloci{i} is the number of DNA sequence loci collected from
-            pair $i$
-        \item \nlociTotal is the total number of unique loci
-        \item \alignment{i}{j} is the sequence alignment of
-            locus $j$ for pair $i$
-        \item $\alignmentVector = (\alignment{1}{1}, \ldots,
-            \alignment{\npairs{}}{\nloci{\npairs{}}})$
-            are the alignments for all pairs/loci
-    \end{itemize}
+    \begin{description}
+        \item[\npairs{}] Number of population pairs we are comparing
+            divergence times across
+        \item[\popSampleSize{i}{}] Number of genome copies sampled for each
+                pair $i$; \popSampleSize{1}{i} sampled from population 1, and
+                \popSampleSize{2}{i} sampled from population 2.
+        \item[\nloci{i}] Number of DNA sequence loci collected from genome
+            copies of pair $i$
+        \item[\nlociTotal] Total number of unique loci
+        \item[\alignment{i}{j}] Sequence alignment of locus $j$ for pair $i$
+        \item[$\alignmentVector = (\alignment{1}{1}, \ldots,
+            \alignment{\npairs{}}{\nloci{\npairs{}}})$]
+            Alignments for all pairs/loci
+    \end{description}
 \end{frame}
 
 \begin{frame}
@@ -278,21 +278,22 @@ comparative phylogeographical models}
 
 \begin{frame}
     \frametitle{Fixed constants}
+    \hky model parameters:
     \[
         \hkyModelVector = (\hkyModel{1}{1}, \ldots,
         \hkyModel{\npairs{}}{\nloci{\npairs{}}})
     \]
+    Differences in ploidy among loci and/or generation times among
+    pairs:
     \[
         \ploidyScalarVector = (\ploidyScalar{1}{1}, \ldots,
         \ploidyScalar{\npairs{}}{\nloci{\npairs{}}})
     \]
-    Differences in ploidy among loci and/or generation times among
-    pairs
+    Differences in mutation rates among taxa:
     \[
         \mutationRateScalarConstantVector = (\mutationRateScalarConstant{1}{1},
         \ldots, \mutationRateScalarConstant{\npairs{}}{\nloci{\npairs{}}})
     \]
-    Differences in mutation rates among taxa
 \end{frame}
 
 \begin{frame}[t]
@@ -300,6 +301,8 @@ comparative phylogeographical models}
     With \alignmentVector, \hkyModelVector, \ploidyScalarVector, and
     \mutationRateScalarConstantVector in hand, the joint posterior distribution
     of the model is given by Bayes' rule as
+    \smallskip
+
     \begin{displaybox}
         \footnotesize
         \[
@@ -319,6 +322,8 @@ comparative phylogeographical models}
                 \mutationRateScalarConstantVector)}
         \]\vspace{0mm}
     \end{displaybox}
+    \smallskip
+
     \begin{displaybox}
         \footnotesize
         \[
@@ -338,6 +343,8 @@ comparative phylogeographical models}
                 \mutationRateScalarConstantVector)}
         \]\vspace{0mm}
     \end{displaybox}
+    \smallskip
+
 $\locusMutationRateScalarVector = (\locusMutationRateScalar{1}, \ldots
 \locusMutationRateScalar{\nlociTotal})$
 is a vector of locus-specific mutation-rate multipliers for each of the
@@ -367,8 +374,8 @@ prior on \locusMutationRateScalar{}, and
                 \mutationRateScalarConstantVector)}
         \]\vspace{0mm}
     \end{displaybox}
-% The likelihood terms of Equation \ref{eq:fullModelCompact} can
-% be expanded out as a product over population pairs and loci
+    \smallskip
+
     \begin{displaybox}
         \footnotesize
         \[
@@ -422,7 +429,9 @@ prior on \locusMutationRateScalar{}, and
                 \mutationRateScalarConstantVector)}
         \]\vspace{0mm}
     \end{displaybox}
+
     \only<2>{
+    {\centering
     \[
         \locusRateHetShapeParameter \sim U(1, 20)
     \]
@@ -433,16 +442,16 @@ prior on \locusMutationRateScalar{}, and
         \prod_{j=1}^{\nlociTotal} p(\locusMutationRateScalar{j} \given
         \locusRateHetShapeParameter)
     \]
-    }
+    }}
     \only<3>{
         \[
             p(\divTimeMapVector) = p(\divTimeIndexVector)p(\divTimeVector
             \given \divTimeIndexVector)
         \]
-        Prior on \divTimeIndexVector is a combination of
+        Prior on \divTimeIndexVector is a combination of:
         \begin{enumerate}
             \item discrete uniform prior over the number of divergence-time
-                parameters \divTimeNum from 1 to \npairs{}
+                parameters (\divTimeNum) from 1 to \npairs{}
             \item multinomial distribution on the number of times each index of
                 \divTimeVector appears in \divTimeIndexVector, with the
                 constraint that all \divTime{} parameters are represented at
@@ -451,6 +460,7 @@ prior on \locusMutationRateScalar{}, and
         Each \divTime{} within \divTimeVector is \iid as $\divTime{} \sim U(a, b)$
     }
     \only<4>{
+        \bigskip
         Continuous uniform priors on everything else:
         \ancestralTheta{}, \descendantTheta{1}{},
         \descendantTheta{2}{}, \bottleScalar{1}{}, \bottleScalar{2}{}
@@ -549,7 +559,7 @@ prior on \locusMutationRateScalar{}, and
 
 \begin{frame}
     \frametitle{Problem}
-    However, \msb will often infer clustered divergences when divergence times
+    \msb will often infer clustered divergences when divergence times
     are random over millions of generations.
 
     \vspace{1cm}
@@ -563,66 +573,14 @@ prior on \locusMutationRateScalar{}, and
 \section{Is exchangeability of taxon-specific statistics valid?}
 
 
-
 \begin{frame}
     \frametitle{Why the bias?}
     Potential causes of the bias:
     \begin{enumerate}
-        \item The prior on divergence models
         \item Broad uniform priors on many of the model's parameters, including
-            divergence times
-            % \begin{enumerate}
-            %     \item Small marginal likelihoods of rich models
-            %     \item Insufficient sampling of rich models
-            % \end{enumerate}
-        % \item Theoretical limitations of ABC model choice
+            divergence times, cause small marginal likelihoods of rich models
+        \item The prior on divergence models
     \end{enumerate}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Causes of bias: Prior on divergence models}
-    \begin{columns}[c]
-        \column{.4\textwidth}
-            \begin{displaybox}[4.5cm]
-                {\small
-                \[
-                    \divTimeMapVector = (375,330,125,330,125)
-                \]\vspace{0mm}
-                }
-                % {\small
-                % \vspace{0.7mm}
-                \[
-                    \divTimeVector = \{125,330,375\}
-                \]\vspace{0mm}
-                % }
-                \[
-                    \divTimeNum = 3
-                \]\vspace{0mm}
-                % \[
-                %     \divTimeIndexVector = (3,2,1,2,1)
-                % \]\vspace{0mm}
-            \end{displaybox}
-        \column{.6\textwidth}
-            \includegraphics[height=6.8cm]{../images/sea-level-prediction-trees-labels-compact-alt2.pdf}
-    \end{columns}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Causes of bias: Prior on divergence models}
-    \begin{itemize}
-        \item \msb uses a discrete uniform prior on the \emph{number} of
-            divergence events, \divTimeNum
-    % \vspace{0.1cm}
-        % \item Each class of \divTimeNum represents a different number of
-        %     divergence models, i.e., the number of integer partitions
-        %     \divTimeNum into \npairs{}
-    % % \vspace{0.1cm}
-        % \item This creates a U-shaped prior on divergence models that disfavors
-        %     models with intermediate numbers of events
-    \end{itemize}
-    % \smallskip
-    \centerline{
-    \includegraphics[width=\textwidth]{../images/partition_numbers.pdf}}
 \end{frame}
 
 \begin{frame}
@@ -661,14 +619,6 @@ prior on \locusMutationRateScalar{}, and
 
 \begin{frame}
     \frametitle{Causes of bias: Marginal likelihoods}
-    % \begin{displaybox}[5.5cm]
-    %     \small
-    %     \[
-    %         p(X) = \int_{\theta} p(X
-    %         \given \theta) p(\theta) \mathrm{d}\theta
-    %     \]%\vspace{0mm}
-    % \end{displaybox}
-    % \smallskip
     \centerline{
         \includegraphics<1>[height=8.0cm]{../images/marginal-plot-3d-bare.png}
         \includegraphics<2>[height=8.0cm]{../images/marginal-plot-3d-prior.png}
@@ -722,131 +672,57 @@ prior on \locusMutationRateScalar{}, and
     }
 \end{frame}
 
-
-\begin{frame}
+\begin{frame}[t]
     \frametitle{Causes of bias: Marginal likelihoods}
-    \uncover<1->{
-    Predictions:\\
-    \begin{itemize}
-        \item Posterior estimates should be sensitive to priors
-        \item As prior converges to distribution underlying the data, the
-            bias should disappear
-    \end{itemize}
-    }
-    \uncover<2->{
-    Testing prior sensitivity: \\
-    }
-    \begin{enumerate}
-        \item<3-> Analyze empirical data under several different prior settings
-            \begin{itemize}
-                \item<3-> Results are very sensitive
-            \end{itemize}
-        \item<4-> Use simulations to assess behavior when priors are correct
-        % \item<5-> Use simulations to assess behavior under ``ideal'' real-world priors
-    \end{enumerate}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Simulation results: Performance when priors are correct}
-    \begin{center}
-        \includegraphics[height=6.5cm]{../images/validation-model-choice-old.pdf}
-
-        \smallskip
-        \msb performs well when all assumptions are met
-    \end{center}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Causes of bias: Marginal likelihoods}
-    Predictions:\\
-    \begin{itemize}
-        \item Posterior estimates should be sensitive to priors
-        \item As prior converges to distribution underlying the data, the
-            bias should disappear
-    \end{itemize}
-    Testing prior sensitivity: \\
-    \begin{enumerate}
-        \item Analyze empirical data under several different prior settings
-            \begin{itemize}
-                \item Results are very sensitive
-            \end{itemize}
-        \item Use simulations to assess behavior when priors are correct
-        \item<2-> Use simulations to assess behavior under ``ideal'' real-world priors
-    \end{enumerate}
-\end{frame}
-
-\begin{frame}[t]
-    \frametitle{Simulation results: Power with informed priors}
-    \vspace{1cm}
-        \centerline{
-        \includegraphics[width=\textwidth]{../images/old-sims_power_psi_mode.pdf}}
-        \vspace{0mm}
-        \centerline{
-        \includegraphics[width=\textwidth]{../images/old-sims-inform10_power_psi_mode_headless.pdf}}
-\end{frame}
-
-\begin{frame}[t]
-    \frametitle{Simulation results: Power with informed priors}
-    \vspace{1cm}
-        \centerline{
-        \includegraphics[width=\textwidth]{../images/old-sims_power_psi_prob.pdf}}
-        \vspace{0mm}
-        \centerline{
-        \includegraphics[width=\textwidth]{../images/old-sims-inform10_power_psi_prob_headless.pdf}}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Causes of bias: Simulation results}
-    Broad uniform priors are reducing marginal likelihoods of models with more
-    divergence events\\
-    \bigskip
-    Even when uniform priors are informed by the data the bias remains\\
-    \bigskip
-    \begin{block}<2>{\it Potential solution:}
-        More flexible priors
-    \end{block}
-\end{frame}
-
-\begin{frame}[t]
-    \frametitle{Mitigating the bias}
     \begin{block}{\it Potential solution:}
         More flexible priors
     \end{block}
     \smallskip
     \centerline{
         \includegraphics<1>[height=6.0cm]{../images/marginal-plot-2d-uniform-prior.pdf}
-        \includegraphics<2>[height=6.0cm]{../images/marginal-plot-2d.pdf}
-        \includegraphics<3>[width=\textwidth]{../images/partition_numbers.pdf}}
-    \begin{block}<4>{\it Potential solution:}
-        Alternative prior over divergence models
-        (e.g., uniform or Dirichlet process)
-    \end{block}
+        \includegraphics<2>[height=6.0cm]{../images/marginal-plot-2d.pdf}}
 \end{frame}
 
-% \begin{frame}
-%     \frametitle{Causes of bias: Theoretical limits of ABC}
-%     When summary statistics are insufficient for discriminating among models,
-%     ABC is inconsistent estimator of model posterior probabilities
-%     \footlessfullcite{Robert2011}\\
-%     \bigskip
-%     True even if statistics are sufficient for each model\\
-% \end{frame}
+\begin{frame}
+    \frametitle{Causes of bias: Prior on divergence models}
+    Potential causes of the bias:
+    \begin{enumerate}
+        \item Broad uniform priors on many of the model's parameters, including
+            divergence times
+        \item The prior on divergence models
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Causes of bias: Prior on divergence models}
+    \begin{itemize}
+        \item \msb uses a discrete uniform prior on the \emph{number} of
+            divergence events, \divTimeNum
+    \end{itemize}
+    % \smallskip
+    \centerline{
+        \includegraphics<1->[width=\textwidth]{../images/partition_numbers.pdf}}
+    \begin{block}<2->{\it Potential solution:}
+        Alternative prior over divergence models
+        (e.g., Dirichlet process)
+    \end{block}
+\end{frame}
 
 \begin{frame}
     \frametitle{New method: \dppmsbayes}
     \begin{itemize}
-        \item<1-> Reparameterized the model implemented in \msb
-        \item<2-> Replaced uniform priors on continuous parameters with gamma and
+        % \item<1-> Reparameterized the model implemented in \msb
+        \item<1-> Replaced uniform priors on continuous parameters with gamma and
             beta distributions
-        \item<3-> Dirichlet process prior (DPP) over all possible discrete divergence
+        \item<1-> Dirichlet process prior (DPP) over all possible discrete divergence
             models
-        \item<4-> Uniform prior over divergence models
+        % \item<4-> Uniform prior over divergence models
     \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{\dppmsbayes: Simulation-based assessment}
-        Simulate 50,000 datasets under four models\\
+        Simulate 50,000 datasets under three models\\
         \smallskip
         \begin{description}
             \item[$M_{msBayes}$]
@@ -861,12 +737,12 @@ prior on \locusMutationRateScalar{}, and
                     \item Gamma priors on continuous parameters
                 \end{itemize}
             \smallskip
-            \item[$M_{Uniform}$]
-                \begin{itemize}
-                    \item Uniform prior on divergence models
-                    \item Gamma priors on continuous parameters
-                \end{itemize}
-            \smallskip
+            % \item[$M_{Uniform}$]
+            %     \begin{itemize}
+            %         \item Uniform prior on divergence models
+            %         \item Gamma priors on continuous parameters
+            %     \end{itemize}
+            % \smallskip
             \item[$M_{DPP}$]
                 \begin{itemize}
                     \item DPP prior on divergence models
@@ -898,20 +774,23 @@ prior on \locusMutationRateScalar{}, and
         \item $MGA$ = Millions of Generations Ago
         }
         \item Simulate 1000 datasets for each \divTime{} distribution
-        \item Analyze all 4000 datasets as we did the empirical data
+        % \item Analyze all 4000 datasets as we did the empirical data
+        \item Analyze all 4000 datasets under models $M_{msBayes}$, $M_{Ushaped}$, and $M_{DPP}$
     \end{myitemize}
 \end{frame}
 
-\begin{frame}
-    \frametitle{\dppmsbayes: Simulation results}
-    \centerline{
-        \includegraphics[height=7.0cm]{../images/validation-model-choice-old-dpp.pdf}}
-\end{frame}
+% \begin{frame}
+%     \frametitle{\dppmsbayes: Simulation results}
+%     \centerline{
+%         \includegraphics[height=7.0cm]{../images/validation-model-choice-old-dpp.pdf}}
+%     \barefootnote{\shortfullcite{Oaks2014dpp}}
+% \end{frame}
 
 \begin{frame}
     \frametitle{\dppmsbayes: Simulation results}
     \centerline{
         \includegraphics[width=1.13\textwidth]{../images/validation-model-choice-old-dpp-full.pdf}}
+    \barefootnote{\shortfullcite{Oaks2014dpp}}
 \end{frame}
 
 \begin{frame}[t]
@@ -922,6 +801,7 @@ prior on \locusMutationRateScalar{}, and
         \vspace{0mm}
         \centerline{
         \includegraphics[width=1.13\textwidth]{../images/old_dpp_power_psi_mode_headless.pdf}}
+    \barefootnote{\shortfullcite{Oaks2014dpp}}
 \end{frame}
 
 \begin{frame}[t]
@@ -932,8 +812,10 @@ prior on \locusMutationRateScalar{}, and
         \vspace{0mm}
         \centerline{
         \includegraphics[width=1.13\textwidth]{../images/old_dpp_power_psi_prob_headless.pdf}}
+    \barefootnote{\shortfullcite{Oaks2014dpp}}
 \end{frame}
 
+\ignore{
 \begin{frame}[t]
     \frametitle{\dppmsbayes: Simulation results}
     \vspace{1cm}
@@ -942,19 +824,22 @@ prior on \locusMutationRateScalar{}, and
         \vspace{0mm}
         \centerline{
         \includegraphics[width=1.13\textwidth]{../images/old_dpp_power_omega_median_headless.pdf}}
+    \barefootnote{\shortfullcite{Oaks2014dpp}}
 \end{frame}
+}
 
 \begin{frame}
     \frametitle{\dppmsbayes: Simulation results}
     % \vspace{1cm}
         \centerline{
-        \includegraphics[width=\textwidth]{../images/old_old_power_omega_median.pdf}}
+        \includegraphics[width=\textwidth]{../images/old_old_power_psi_prob.pdf}}
         \vspace{0mm}
         \centerline{
-        \includegraphics[width=\textwidth]{../images/old_u-shaped_power_omega_median_headless.pdf}}
+        \includegraphics[width=\textwidth]{../images/old_u-shaped_power_psi_prob_headless.pdf}}
         \vspace{0mm}
         \centerline{
-        \includegraphics[width=\textwidth]{../images/old_dpp_power_omega_median_headless.pdf}}
+        \includegraphics[width=\textwidth]{../images/old_dpp_power_psi_prob_headless.pdf}}
+    % \barefootnote{\shortfullcite{Oaks2014dpp}}
 \end{frame}
 
 \begin{frame}
@@ -973,117 +858,20 @@ prior on \locusMutationRateScalar{}, and
 \end{frame}
 
 \begin{frame}
-    \frametitle{Testing climate-driven diversification}
-    \begin{columns}[c]
-        \column{.5\textwidth}
-    \textbf{Did repeated fragmentation of islands during inter-glacial rises in sea level
-    promote diversification?}\\
-        \column{.5\textwidth}
-            \includegraphics[width=\textwidth]{../images/maps/Philippines.png}
-    \end{columns}
-\end{frame}
-
-\begin{frame}
-\begin{columns}[c]
-    \column{.5\textwidth}
-        \begin{table}%[htbp]
-            \scriptsize
-            \addtolength{\tabcolsep}{-0.09cm}
-            \centering
-            \begin{tabular}{ l c c }
-                % \toprule
-                \textbf{Species} & {\boldmath $n_1$} & {\boldmath $n_2$} \\
-                \hline
-                \textbf{\textsc{Mammals}} & & \\
-                \emph{Crocidura beatus}             & 12 & 11 \\
-                \emph{Crocidura negrina-panayensis} & 12 & 6  \\
-                \emph{Hipposideros obscurus}        & 19 & 9  \\
-                \emph{Hipposideros pygmaeus}        & 3  & 12 \\
-                \emph{Cynopterus brachyotis}        & 20 & 8  \\
-                \emph{Cynopterus brachyotis}        & 8  & 14 \\
-                \emph{Haplonycteris fischeri}       & 29 & 8  \\
-                \emph{Haplonycteris fischeri}       & 9  & 21 \\
-                \emph{Macroglossus minimus}         & 19 & 4  \\
-                \emph{Macroglossus minimus}         & 8  & 10 \\
-                \emph{Ptenochirus jagori}           & 4  & 7  \\
-                \emph{Ptenochirus jagori}           & 8  & 8  \\
-                \emph{Ptenochirus minor}            & 30 & 9  \\
-                \textbf{\textsc{Squamates}} & & \\
-                \emph{Cyrtodactylus gubaot-sumuroi} & 29 & 6  \\
-                \emph{Cyrtodactylus annulatus}      & 14 & 3  \\
-                \emph{Cyrtodactylus philippinicus}  & 6  & 14 \\
-                \emph{Gekko mindorensis}            & 8  & 11 \\
-                \emph{Insulasaurus arborens}        & 22 & 10 \\
-                \emph{Pinoyscincus jagori}          & 8  & 8  \\
-                \emph{Dendrelaphis marenae}         & 6  & 6  \\
-                \textbf{\textsc{Anurans}}  & & \\
-                \emph{Limnonectes leytensis}        & 4  & 2  \\
-                \emph{Limnonectes magnus}           & 2  & 3  \\
-                \hline
-            \end{tabular}
-        \end{table}
-    \column{.5\textwidth}
-        \centerline{
-        \includegraphics<1>[height=1.5cm]{../images/photos/crocidura-negrina-JAEsselstyn.jpg}}
-        % \vspace{0.5mm}
-        \centerline{
-        \includegraphics<1>[height=1.5cm]{../images/photos/hipposideros-obscurus-MRMDuya.jpg}
-        \hspace{0.3mm}
-        \includegraphics<1>[height=1.5cm]{../images/photos/haplonycteris-fischeri-JHolden.jpg}}
-        % \vspace{0.5mm}
-        \centerline{
-        \includegraphics<1>[height=1.5cm]{../images/photos/gekko-mindorensis.jpg}
-        \hspace{0.3mm}
-        \includegraphics<1>[height=1.5cm]{../images/photos/sphenomorphus-arborens-rmb.jpg}}
-        % \vspace{0.5mm}
-        \centerline{
-        \includegraphics<1>[height=1.5cm]{../images/photos/dendrelaphis-pictus-cds.jpg}}
-        % \vspace{0.5mm}
-        \centerline{
-        \includegraphics<1>[height=1.5cm]{../images/photos/limnonectes-leytensis-rmb.jpg}}
-\end{columns}
-\end{frame}
-
-\begin{frame}
     \frametitle{\dppmsbayes: Philippine diversification}
     \includegraphics[width=\textwidth]{../../empirical-analyses/plots/philippines-dpp-psi-posterior-old-vs-dpp.pdf}
 \end{frame}
 
 \begin{frame}
-    \frametitle{\dppmsbayes: Philippine diversification}
-    \centerline{
-    \includegraphics[width=\textwidth]{../../empirical-analyses/plots/philippines-dpp-psi-posterior-prior.pdf}}
-    \smallskip
-    \centerline{
-    \includegraphics[height=2cm]{../images/sea-level-only.pdf}}
-\end{frame}
-
-\section{Conclusions}
-
-% \begin{frame}
-% \frametitle{Outline}
-% \tableofcontents[currentsection,currentsubsection]
-% \end{frame}
-
-\begin{frame}
-    \frametitle{Conclusions}
-    \begin{myitemize}
-        \item<1-> Our new approximate-Bayesian method of phylogeographical
-            model choice shows improved behavior
-            \begin{myitemize}
-                \item<1-> Improved accuracy, robustness, and power
-                \item<1-> More ``honest'' estimates regarding
-                    uncertainty
-            \end{myitemize}
-        \smallskip
-        \item<2-> Philippine climate-driven diversification model?
-            \begin{myitemize}
-                \item<2-> Results consistent with prediction of clustered
-                    divergences
-                \item<2-> Results suggest multiple co-divergences
-                \item<2-> However, there is a lot of uncertainty
-            \end{myitemize}
-    \end{myitemize}
+    \frametitle{Recommendations}
+    For Bayesian model choice, choose prior distributions carefully\\
+    \bigskip
+    All ABC model choice estimates should be accompanied by:
+    \begin{enumerate}
+        \item Simulation-based power analyses
+        \item Assessment of prior sensitivity
+    \end{enumerate}
+    \medskip
 \end{frame}
 
 \begin{frame}
@@ -1119,21 +907,9 @@ prior on \locusMutationRateScalar{}, and
         \item \texttt{msbayes-experiments}:
             \href{https://github.com/joaks1/msbayes-experiments}{\tt
             https://github.com/joaks1/msbayes-experiments}
-        \item joaks1@gmail.com
+        % \item joaks1@gmail.com
     \end{itemize}
 \end{frame}
-
-% \begin{frame}
-%     \frametitle{Recommendations}
-%     For Bayesian model choice, choose prior distributions carefully\\
-%     \bigskip
-%     All ABC model choice estimates should be accompanied by:
-%     \begin{enumerate}
-%         \item Simulation-based power analyses
-%         \item Assessment of prior sensitivity
-%     \end{enumerate}
-%     \medskip
-% \end{frame}
 
 \begin{frame}
     \frametitle{Acknowledgments}
@@ -1146,7 +922,6 @@ prior on \locusMutationRateScalar{}, and
                 \item Melissa Callahan
                 \item Mike Hickerson
                 \item Laura Kubatko
-                \item My committee
             \end{myitemize}
             \smallskip
             {\bf Computation:}
@@ -1173,36 +948,6 @@ prior on \locusMutationRateScalar{}, and
                     \end{myitemize}
             \end{myitemize}
     \end{columns}
-\end{frame}
-
-\begin{frame}[t]
-    \frametitle{Acknowledgments}
-    \begin{center}
-    Friends \& Family \\
-    \smallskip
-    \includegraphics[height=2.5cm]{../images/photos/fam.jpg}\hspace{0.2mm}
-    \includegraphics[height=2.5cm]{../images/photos/wed.jpg}\hspace{0.2mm}
-    \includegraphics[height=2.5cm]{../images/photos/friends4.jpg}
-
-    \smallskip
-    \includegraphics[height=2.6cm]{../images/photos/friends1.jpg}\hspace{0.2mm}
-    \includegraphics[height=2.6cm]{../images/photos/friends2.jpg}\hspace{0.2mm}
-    \includegraphics[height=2.6cm]{../images/photos/friends3.jpg}
-    \end{center}
-\end{frame}
-
-\begin{frame}[t]
-    \frametitle{Acknowledgments}
-    \begin{center}
-    Friends \& Family \\
-    \bigskip
-    \includegraphics[height=2.8cm]{../images/photos/mel.jpg}
-
-    \smallskip
-    \includegraphics[height=2.8cm]{../images/photos/coop.jpg}\hspace{1mm}
-    \includegraphics[height=2.8cm]{../images/photos/cats.jpg}\hspace{1mm}
-    \includegraphics[height=2.8cm]{../images/photos/luna.jpg}
-    \end{center}
 \end{frame}
 
 {
