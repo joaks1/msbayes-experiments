@@ -30,6 +30,24 @@ comparative phylogeographical models}
 % \tableofcontents[currentsection]
 % \end{frame}
 
+\section{Empirical motivation}
+% Empirical motivation
+% Frame problem as model choice
+% Population model
+% MODEL
+%   Intro data notation
+%   Intro sequence evolution
+%   Intro constants
+%   Intro full model
+%       Breakdown likelihood
+%       Breakdown priors
+%           Theirs
+%               ABC??
+%               show problems
+%               show possible reasons
+%           Show mine
+%               better
+%
 
 {
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/maps/se-asia-present.png}}
@@ -45,6 +63,7 @@ comparative phylogeographical models}
 \end{frame}
 }
 
+\section{Model choice framework}
 \begin{frame}
     \frametitle{Climate-driven model: Prediction}
     \centerline{
@@ -191,6 +210,7 @@ comparative phylogeographical models}
     \end{columns}
 \end{frame}
 
+\section{Flesh out model}
 \begin{frame}
     \frametitle{The \msb model}
     \centerline{
@@ -385,6 +405,7 @@ prior on \locusMutationRateScalar{}, and
                 \mutationRateScalarConstantVector)}
         \]\vspace{0mm}
     \end{displaybox}
+    \uncover<2>{
     \[
         \locusRateHetShapeParameter \sim U(1, 20)
     \]
@@ -393,310 +414,95 @@ prior on \locusMutationRateScalar{}, and
         \prod_{j=1}^{\nlociTotal} p(\locusMutationRateScalar{j} \given
         \locusRateHetShapeParameter)
     \]
-\end{frame}
-
-\begin{frame}[t]
-    \frametitle{The \msb model}
-        \uncover<2->{
-        \begin{block}{\it Full Model:}
+    }
+    \uncover<3>{
         \[
-            p(\geneTreeVector, \divTimeMapVector, \demographicParamVector
-            \given
-            \alignmentVector) =
-            \frac{p(\alignmentVector \given \geneTreeVector, \divTimeMapVector,
-            \demographicParamVector)
-            p(\geneTreeVector, \divTimeMapVector, \demographicParamVector)}{
-            p(\alignmentVector)}
-        \]\vspace{0mm}
-        \end{block}
-        }
-        \begin{onlyenv}<1-2>
-        \smallskip
-        \begin{mydescription}
-            \item[\alignmentVector] Sequence alignments
-            \item[\geneTreeVector] Gene trees
-            % \item[\hkyModelVector] Substitution parameters
-            \item[\divTimeMapVector] Divergence times
-            \item[\demographicParamVector] Demographic parameters
-        \end{mydescription}
-        \end{onlyenv}
-    \begin{onlyenv}<3>
-    \bigskip
+            p(\divTimeMapVector) = p(\divTimeIndexVector)p(\divTimeVector
+            \given \divTimeIndexVector)
+        \]
+        Prior on \divTimeIndexVector is a combination of
+        \begin{enumerate}
+            \item discrete uniform prior over the number of divergence-time
+                parameters \divTimeNum from 1 to \npairs{}
+            \item multinomial distribution on the number of times each index of
+                \divTimeVector appears in \divTimeIndexVector, with the
+                constraint that all \divTime{} parameters are represented at
+                least once.
+        \end{enumerate}
+    }
+    \uncover<4>{
+        Continuous uniform priors on everything else:
+        \divTime{}, \ancestralTheta{}, \descendantTheta{1}{},
+        \descendantTheta{2}{}, \bottleScalar{1}{}, \bottleScalar{2}{}
+    }
+\end{frame}
+
+\section{ABC implementation}
+
+\begin{frame}
+    \frametitle{Easy as ABC}
     \begin{displaybox}
-    {\tiny
-    \begin{equation*}
-        \begin{split}
-        & p(\geneTreeVector,
-        \divTimeMapVector,
-        \ancestralThetaVector,
-        \descendantThetaVector{1}, \descendantThetaVector{2},
-        \bottleTimeVector, \bottleScalarVector{1},
-        \bottleScalarVector{2},
-        \migrationRateVector,
-        \locusRateHetShapeParameter,
-        \locusMutationRateScalarVector \given
-        \alignmentVector, \hkyModelVector, \ploidyScalarVector,
-        \mutationRateScalarConstantVector) \\
-        & = \frac{1}{p(\alignmentVector)}
-        p(\divTimeMapVector)
-        f(\locusRateHetShapeParameter)
-        \Bigg[
-        \prod_{i=1}^{\npairs{}}
-        p(\ancestralTheta{i})
-        p(\descendantTheta{1}{i}, \descendantTheta{2}{i})
-        p(\bottleTime{i})
-        p(\bottleScalar{1}{i}) f(\bottleScalar{2}{i})
-        p(\migrationRate{i}) \\
-        &
-        \prod_{j=1}^{\nloci{i}}
-        p(\alignment{i}{j} \given
-        \geneTree{i}{j}, \hkyModel{i}{j})
-        p(\geneTree{i}{j} \given
-        \divTimeMap{i},
-        \ancestralTheta{i}, \descendantTheta{1}{i}, \descendantTheta{2}{i},
-        \ploidyScalar{i}{j}, \mutationRateScalarConstant{i}{j},
-        \locusMutationRateScalar{j},
-        \bottleTime{i}, \bottleScalar{1}{i}, \bottleScalar{2}{i},
-        \migrationRate{i})
-        \Bigg]
-        \Bigg[
-        \prod_{j=1}^{\nlociTotal}
-        f(\locusMutationRateScalar{j} \given \locusRateHetShapeParameter)
-        \Bigg]
-        \label{eq:fullmodel}
-        \end{split}
-    \end{equation*}
-    }
+        \footnotesize
+        \[
+            p(\geneTreeVector, \divTimeMapVector, \demographicParamVector, 
+            \locusMutationRateScalarVector, \locusRateHetShapeParameter \given
+            \alignmentVector, \hkyModelVector, \ploidyScalarVector,
+            \mutationRateScalarConstantVector) =
+            \frac{p(\alignmentVector \given \geneTreeVector, \hkyModelVector)
+                p(\geneTreeVector \given \divTimeMapVector, \demographicParamVector,
+                \locusMutationRateScalarVector, \ploidyScalarVector,
+                \mutationRateScalarConstantVector)
+                p(\locusMutationRateScalarVector \given \locusRateHetShapeParameter)
+                p(\locusRateHetShapeParameter)
+                p(\divTimeMapVector)
+                p(\demographicParamVector)}{
+                p(\alignmentVector \given \hkyModelVector, \ploidyScalarVector,
+                \mutationRateScalarConstantVector)}
+        \]\vspace{0mm}
     \end{displaybox}
-    \end{onlyenv}
-    \begin{onlyenv}<4-5>
-    \smallskip
-        \centerline{Approximate Bayesian computation (ABC)}
-        \[ \alignmentVector \, \to \, \ssVectorObs \, \to \, \ssSpace\]
-    \end{onlyenv}
-    \begin{onlyenv}<5>
-    \begin{block}{\it Approximate Model:}
-    \[
-        p(\geneTreeVector, \divTimeMapVector, \demographicParamVector
-        \given
-        \ssSpace) =
-        \frac{p(\alignmentVector \given \geneTreeVector, \divTimeMapVector,
-        \demographicParamVector)
-        p(\geneTreeVector, \divTimeMapVector, \demographicParamVector)}{
-        p(\ssSpace)}
-    \]\vspace{0mm}
-    \end{block}
-    \end{onlyenv}
-    \only<6>{
-        \bigskip
-        \begin{mydescription}
-            \item[\divTimeMapVector] Vector of divergence times across pairs of populations
-            \item[\divTimeNum] Number of divergence parameters
-            \item[\divTimeDispersion] The variance of \divTimeMapVector
-        \end{mydescription}
-        \vspace{1cm}
-    }
+
+    \[ \alignmentVector \, \to \, \ssVectorObs \, \to \, \ssSpace\]
+
+    \begin{displaybox}
+        \footnotesize
+        \[
+            p(\geneTreeVector, \divTimeMapVector, \demographicParamVector, 
+            \locusMutationRateScalarVector, \locusRateHetShapeParameter \given
+            \ssSpace, \hkyModelVector, \ploidyScalarVector,
+            \mutationRateScalarConstantVector) =
+            \frac{p(\ssSpace \given \geneTreeVector, \hkyModelVector)
+                p(\geneTreeVector \given \divTimeMapVector, \demographicParamVector,
+                \locusMutationRateScalarVector, \ploidyScalarVector,
+                \mutationRateScalarConstantVector)
+                p(\locusMutationRateScalarVector \given \locusRateHetShapeParameter)
+                p(\locusRateHetShapeParameter)
+                p(\divTimeMapVector)
+                p(\demographicParamVector)}{
+                p(\ssSpace \given \hkyModelVector, \ploidyScalarVector,
+                \mutationRateScalarConstantVector)}
+        \]\vspace{0mm}
+    \end{displaybox}
+    \barefootnote{\tiny\shortfullcite{Huang2011}. \hspace{2mm}\shortfullcite{Oaks2012}.}
 \end{frame}
+
+\section{Performance issues}
 
 \begin{frame}
-\begin{columns}[c]
-    \column{.5\textwidth}
-        \begin{table}%[htbp]
-            \scriptsize
-            \addtolength{\tabcolsep}{-0.09cm}
-            \centering
-            \begin{tabular}{ l c c }
-                % \toprule
-                \textbf{Species} & {\boldmath $n_1$} & {\boldmath $n_2$} \\
-                \hline
-                \textbf{\textsc{Mammals}} & & \\
-                \emph{Crocidura beatus}             & 12 & 11 \\
-                \emph{Crocidura negrina-panayensis} & 12 & 6  \\
-                \emph{Hipposideros obscurus}        & 19 & 9  \\
-                \emph{Hipposideros pygmaeus}        & 3  & 12 \\
-                \emph{Cynopterus brachyotis}        & 20 & 8  \\
-                \emph{Cynopterus brachyotis}        & 8  & 14 \\
-                \emph{Haplonycteris fischeri}       & 29 & 8  \\
-                \emph{Haplonycteris fischeri}       & 9  & 21 \\
-                \emph{Macroglossus minimus}         & 19 & 4  \\
-                \emph{Macroglossus minimus}         & 8  & 10 \\
-                \emph{Ptenochirus jagori}           & 4  & 7  \\
-                \emph{Ptenochirus jagori}           & 8  & 8  \\
-                \emph{Ptenochirus minor}            & 30 & 9  \\
-                \textbf{\textsc{Squamates}} & & \\
-                \emph{Cyrtodactylus gubaot-sumuroi} & 29 & 6  \\
-                \emph{Cyrtodactylus annulatus}      & 14 & 3  \\
-                \emph{Cyrtodactylus philippinicus}  & 6  & 14 \\
-                \emph{Gekko mindorensis}            & 8  & 11 \\
-                \emph{Insulasaurus arborens}        & 22 & 10 \\
-                \emph{Pinoyscincus jagori}          & 8  & 8  \\
-                \emph{Dendrelaphis marenae}         & 6  & 6  \\
-                \textbf{\textsc{Anurans}}  & & \\
-                \emph{Limnonectes leytensis}        & 4  & 2  \\
-                \emph{Limnonectes magnus}           & 2  & 3  \\
-                \hline
-            \end{tabular}
-        \end{table}
-    \column{.5\textwidth}
-        \centerline{
-        \includegraphics<1>[height=1.5cm]{../images/photos/crocidura-negrina-JAEsselstyn.jpg}}
-        % \vspace{0.5mm}
-        \centerline{
-        \includegraphics<1>[height=1.5cm]{../images/photos/hipposideros-obscurus-MRMDuya.jpg}
-        \hspace{0.3mm}
-        \includegraphics<1>[height=1.5cm]{../images/photos/haplonycteris-fischeri-JHolden.jpg}}
-        % \vspace{0.5mm}
-        \centerline{
-        \includegraphics<1>[height=1.5cm]{../images/photos/gekko-mindorensis.jpg}
-        \hspace{0.3mm}
-        \includegraphics<1>[height=1.5cm]{../images/photos/sphenomorphus-arborens-rmb.jpg}}
-        % \vspace{0.5mm}
-        \centerline{
-        \includegraphics<1>[height=1.5cm]{../images/photos/dendrelaphis-pictus-cds.jpg}}
-        % \vspace{0.5mm}
-        \centerline{
-        \includegraphics<1>[height=1.5cm]{../images/photos/limnonectes-leytensis-rmb.jpg}}
-\end{columns}
-\end{frame}
+    \frametitle{Problem}
+    However, \msb will often infer clustered divergences when divergence times
+    are random over millions of generations.
 
-\begin{frame}
-\begin{columns}[c]
-    \column{.5\textwidth}
-        \begin{table}%[htbp]
-            \scriptsize
-            \addtolength{\tabcolsep}{-0.09cm}
-            \def\firstrowcolor{}
-            \def\secondrowcolor{}
-            \def\thirdrowcolor{}
-            \def\fourthrowcolor{}
-            \def\fifthrowcolor{}
-            \only<2>{\def\firstrowcolor{\rowcolor{rowred}}}
-            \only<3>{\def\secondrowcolor{\rowcolor{rowred}}}
-            \only<4>{\def\thirdrowcolor{\rowcolor{rowred}}}
-            \only<5>{\def\fourthrowcolor{\rowcolor{rowred}}}
-            \only<6>{\def\fifthrowcolor{\rowcolor{rowred}}}
-            \centering
-            \begin{tabular}{ l c c }
-                % \toprule
-                \textbf{Species} & {\boldmath $n_1$} & {\boldmath $n_2$} \\
-                \hline
-                \textbf{\textsc{Mammals}} & & \\
-                \fifthrowcolor  \emph{Crocidura beatus}             & 12 & 11 \\
-                \firstrowcolor  \emph{Crocidura negrina-panayensis} & 12 & 6  \\
-                \thirdrowcolor  \emph{Hipposideros obscurus}        & 19 & 9  \\
-                \secondrowcolor \emph{Hipposideros pygmaeus}        & 3  & 12 \\
-                \thirdrowcolor  \emph{Cynopterus brachyotis}        & 20 & 8  \\
-                \firstrowcolor  \emph{Cynopterus brachyotis}        & 8  & 14 \\
-                \thirdrowcolor  \emph{Haplonycteris fischeri}       & 29 & 8  \\
-                \firstrowcolor  \emph{Haplonycteris fischeri}       & 9  & 21 \\
-                \thirdrowcolor  \emph{Macroglossus minimus}         & 19 & 4  \\
-                \firstrowcolor  \emph{Macroglossus minimus}         & 8  & 10 \\
-                \thirdrowcolor  \emph{Ptenochirus jagori}           & 4  & 7  \\
-                \firstrowcolor  \emph{Ptenochirus jagori}           & 8  & 8  \\
-                \thirdrowcolor  \emph{Ptenochirus minor}            & 30 & 9  \\
-                \textbf{\textsc{Squamates}} & & \\
-                \fifthrowcolor  \emph{Cyrtodactylus gubaot-sumuroi} & 29 & 6  \\
-                \secondrowcolor \emph{Cyrtodactylus annulatus}      & 14 & 3  \\
-                \firstrowcolor  \emph{Cyrtodactylus philippinicus}  & 6  & 14 \\
-                \firstrowcolor  \emph{Gekko mindorensis}            & 8  & 11 \\
-                \firstrowcolor  \emph{Insulasaurus arborens}        & 22 & 10 \\
-                \fourthrowcolor \emph{Pinoyscincus jagori}          & 8  & 8  \\
-                \firstrowcolor  \emph{Dendrelaphis marenae}         & 6  & 6  \\
-                \textbf{\textsc{Anurans}}  & & \\
-                \secondrowcolor \emph{Limnonectes leytensis}        & 4  & 2  \\
-                \secondrowcolor \emph{Limnonectes magnus}           & 2  & 3  \\
-                \hline
-            \end{tabular}
-        \end{table}
-    \column{.5\textwidth}
-        \includegraphics<1>[width=\textwidth]{../images/maps/Philippines.png}
-        \includegraphics<2>[width=\textwidth]{../images/maps/Philippines-negros_panay.png}
-        \includegraphics<3>[width=\textwidth]{../images/maps/Philippines-bohol_mindanao.png}
-        \includegraphics<4>[width=\textwidth]{../images/maps/Philippines-leyte_mindanao.png}
-        \includegraphics<5>[width=\textwidth]{../images/maps/Philippines-mindanao_samar.png}
-        \includegraphics<6>[width=\textwidth]{../images/maps/Philippines-leyte_samar.png}
-\end{columns}
-\end{frame}
-
-
-\section{Empirical results}
-\subsection{Too good to be true?}
-
-% \begin{frame}
-% \frametitle{Outline}
-% \tableofcontents[currentsection,currentsubsection]
-% \end{frame}
-
-\begin{frame}
-    \frametitle{Empirical results}
-    \begin{columns}[c]
-        \column{.4\textwidth}
-            {\small
-            Strong support for simultaneous divergence of all 22 taxon pairs \\
-            \vspace{1cm}
-            pp $>$ 0.96 \\
-            \vspace{1cm}
-            $\sim$100,000--250,000 years ago}
-        \column{.6\textwidth}
-        \includegraphics[width=\textwidth]{../images/jointDensityPlotsSlide.jpg}
-    \end{columns}
-\end{frame}
-
-\section{Simulation-based assessment of method}
-
-% \begin{frame}
-% \frametitle{Outline}
-% \tableofcontents[currentsection,currentsubsection]
-% \end{frame}
-
-\begin{frame}
-    \frametitle{Simulation-based power analyses}
-    What is ``simultaneous''?
-    \begin{myitemize}
-        \item<2-> Simulate datasets in which all 22 divergence times are random
-        \uncover<3->{
-            \smallskip
-            \begin{myitemize}
-                \item $\divTime{} \sim U(0, \,0.5 \,MGA)$
-                \smallskip
-                \item $\divTime{} \sim U(0, \,1.5 \,MGA)$
-                \smallskip
-                \item $\divTime{} \sim U(0, \,2.5 \,MGA)$
-                \smallskip
-                \item $\divTime{} \sim U(0, \,5.0 \,MGA)$
-                \smallskip
-            \end{myitemize}
-        \item<3-> $MGA$ = Millions of Generations Ago
-        }
-        \item<4-> Simulate 1000 datasets for each \divTime{} distribution
-        \item<4-> Analyze all 4000 datasets as we did the empirical data
-    \end{myitemize}
-\end{frame}
-
-\begin{frame}[t]
-    \frametitle{Simulation-based power analyses: Results}
     \vspace{1cm}
         \centerline{
-        \includegraphics[width=\textwidth]{../images/old-sims_power_psi_mode.pdf}}
-        \vspace{0mm}
-        \centerline{
-        \includegraphics<2>[width=\textwidth]{../images/old-sims_power_psi_prob_headless.pdf}}
+        \includegraphics[width=1.13\textwidth]{../images/old_old_power_psi_mode.pdf}}
+    \barefootnote{\shortfullcite{Oaks2012}}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Simulation-based power analyses: Results}
-    Strong support for highly clustered divergences when divergence times
-    are random over 5 million generations \\
-    \bigskip
-    Our empirical results are likely spurious
-\end{frame}
 
-\subsection{Why the odd behavior?}
+\section{Modifications}
+\section{Is exchangeability of taxon-specific statistics valid?}
 
-% \begin{frame}
-% \frametitle{Outline}
-% \tableofcontents[currentsection,currentsubsection]
-% \end{frame}
+
 
 \begin{frame}
     \frametitle{Why the bias?}
