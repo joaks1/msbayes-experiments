@@ -355,10 +355,10 @@ prior on \locusMutationRateScalar{}, and
             \locusMutationRateScalarVector, \locusRateHetShapeParameter \given
             \alignmentVector, \hkyModelVector, \ploidyScalarVector,
             \mutationRateScalarConstantVector) =
-            \frac{p(\alignmentVector \given \geneTreeVector, \hkyModelVector)
+            \frac{\textcolor{red}{p(\alignmentVector \given \geneTreeVector, \hkyModelVector)
                 p(\geneTreeVector \given \divTimeMapVector, \demographicParamVector,
                 \locusMutationRateScalarVector, \ploidyScalarVector,
-                \mutationRateScalarConstantVector)
+                \mutationRateScalarConstantVector)}
                 p(\locusMutationRateScalarVector \given \locusRateHetShapeParameter)
                 p(\locusRateHetShapeParameter)
                 p(\divTimeMapVector)
@@ -397,25 +397,44 @@ prior on \locusMutationRateScalar{}, and
                 p(\geneTreeVector \given \divTimeMapVector, \demographicParamVector,
                 \locusMutationRateScalarVector, \ploidyScalarVector,
                 \mutationRateScalarConstantVector)
+                \only<2>{\textcolor{red}{
                 p(\locusMutationRateScalarVector \given \locusRateHetShapeParameter)
                 p(\locusRateHetShapeParameter)
+                }}
+                \only<1,3->{
+                p(\locusMutationRateScalarVector \given \locusRateHetShapeParameter)
+                p(\locusRateHetShapeParameter)
+                }
+                \only<3>{\textcolor{red}{
                 p(\divTimeMapVector)
-                p(\demographicParamVector)}{
+                }}
+                \only<1-2,4->{
+                p(\divTimeMapVector)
+                }
+                \only<4>{\textcolor{red}{
+                p(\demographicParamVector)
+                }}
+                \only<1-3>{
+                p(\demographicParamVector)
+                }
+                }{
                 p(\alignmentVector \given \hkyModelVector, \ploidyScalarVector,
                 \mutationRateScalarConstantVector)}
         \]\vspace{0mm}
     \end{displaybox}
-    \uncover<2>{
+    \only<2>{
     \[
         \locusRateHetShapeParameter \sim U(1, 20)
     \]
+    Each \locusMutationRateScalar{} is \iid as $\locusMutationRateScalar{} \sim
+    Gamma(\locusRateHetShapeParameter, 1/\locusRateHetShapeParameter)$
     \[
         p(\locusMutationRateScalarVector \given \locusRateHetShapeParameter) =
         \prod_{j=1}^{\nlociTotal} p(\locusMutationRateScalar{j} \given
         \locusRateHetShapeParameter)
     \]
     }
-    \uncover<3>{
+    \only<3>{
         \[
             p(\divTimeMapVector) = p(\divTimeIndexVector)p(\divTimeVector
             \given \divTimeIndexVector)
@@ -429,10 +448,11 @@ prior on \locusMutationRateScalar{}, and
                 constraint that all \divTime{} parameters are represented at
                 least once.
         \end{enumerate}
+        Each \divTime{} within \divTimeVector is \iid as $\divTime{} \sim U(a, b)$
     }
-    \uncover<4>{
+    \only<4>{
         Continuous uniform priors on everything else:
-        \divTime{}, \ancestralTheta{}, \descendantTheta{1}{},
+        \ancestralTheta{}, \descendantTheta{1}{},
         \descendantTheta{2}{}, \bottleScalar{1}{}, \bottleScalar{2}{}
     }
 \end{frame}
@@ -464,7 +484,7 @@ prior on \locusMutationRateScalar{}, and
     \[ \alignmentVector \, \to \, \ssVectorObs \, \to \, \ssSpace\]
 
     \begin{displaybox}
-        \footnotesize
+        \tiny
         \[
             p(\geneTreeVector, \divTimeMapVector, \demographicParamVector, 
             \locusMutationRateScalarVector, \locusRateHetShapeParameter \given
@@ -483,6 +503,46 @@ prior on \locusMutationRateScalar{}, and
         \]\vspace{0mm}
     \end{displaybox}
     \barefootnote{\tiny\shortfullcite{Huang2011}. \hspace{2mm}\shortfullcite{Oaks2012}.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Easy as ABC}
+        Each \alignment{}{} distilled to
+        \[
+            \alignmentSS{}{} = (\pi, \theta_W, \pi_{net}, SD(\pi-\theta_W) )
+        \]
+        So, we go from
+        \[
+            \alignmentVector = (\alignment{1}{1}, \ldots,
+            \alignment{\npairs{}}{\nloci{\npairs{}}})
+        \]
+        to
+        \[
+            \ssVector{} = (\alignmentSS{1}{1}, \ldots,
+            \alignmentSS{\npairs{}}{\nloci{\npairs{}}})
+        \]
+        For each population pair, the means of the summary statistics are
+        calculated across the \nloci{} loci, reducing the vector to
+        \[
+            \ssVector{} = (\alignmentSS{1}{}, \ldots,
+            \alignmentSS{\npairs{}}{})
+        \]
+\end{frame}
+
+\begin{frame}
+    \frametitle{Easy as ABC}
+    \centerline{
+    \includegraphics<1>[width=\textwidth]{../images/rejection-sampling-observed.pdf}
+    \includegraphics<2>[width=\textwidth]{../images/rejection-sampling-tolerance.pdf}
+    \includegraphics<3>[width=\textwidth]{../images/rejection-sampling-10.pdf}
+    \includegraphics<4>[width=\textwidth]{../images/rejection-sampling-100.pdf}
+    \includegraphics<5>[width=\textwidth]{../images/rejection-sampling-200.pdf}
+    \includegraphics<6>[width=\textwidth]{../images/rejection-sampling-500.pdf}
+    \includegraphics<7>[width=\textwidth]{../images/rejection-sampling-1000.pdf}
+    \includegraphics<8>[width=\textwidth]{../images/rejection-sampling-10000.pdf}
+    \includegraphics<9>[width=\textwidth]{../images/rejection-sampling-20000.pdf}
+    \includegraphics<10>[width=\textwidth]{../images/rejection-sampling-20000-post.pdf}
+    }
 \end{frame}
 
 \section{Performance issues}
