@@ -41,6 +41,7 @@ dmc.py --np $nprocs \
     -n $nprior \
     --prior-batch-size $batch_size \
     --num-standardizing-samples $nsums \
+    --sort-index 7 \
     --output-dir $output_dir \
     --staging-dir $staging_dir \
     --seed $seed \

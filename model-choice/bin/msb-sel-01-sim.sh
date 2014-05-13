@@ -45,6 +45,7 @@ dmc.py --np $nprocs \
     --num-posterior-samples $npost \
     --num-standardizing-samples $nsums \
     -q $nquantiles \
+    --sort-index 7 \
     --output-dir $output_dir \
     --staging-dir $staging_dir \
     --compress \
