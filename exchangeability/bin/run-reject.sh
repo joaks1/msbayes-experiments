@@ -34,7 +34,7 @@ fi
 dmc.py --np $nprocs \
     -r $reps \
     -o ../configs/prior.cfg \
-    -p ../priors/no-sort/pymsbayes-results/pymsbayes-output/prior-stats-summaries \
+    -p ../priors/sort/pymsbayes-results/pymsbayes-output/prior-stats-summaries \
     -n $nprior \
     --prior-batch-size $batch_size \
     --num-posterior-samples $npost \
