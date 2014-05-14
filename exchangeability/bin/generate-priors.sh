@@ -40,13 +40,11 @@ dmc.py --np $nprocs \
     --staging-dir $staging_dir \
     --temp-dir $staging_dir \
     --seed $seed \
-    --debug \
-    --keep-temps \
     --generate-samples-only
 
-# echo "Here are the contents of the local temp directory '${staging_dir}':"
-# ls -Fla $staging_dir
-# echo 'Removing the local temp directory...'
-# rm -r $staging_dir
-# echo 'Done!'
+echo "Here are the contents of the local temp directory '${staging_dir}':"
+ls -Fla $staging_dir
+echo 'Removing the local temp directory...'
+rm -r $staging_dir
+echo 'Done!'
 
