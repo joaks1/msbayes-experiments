@@ -17,6 +17,6 @@ do
     then
         mkdir $out_dir
     fi
-    dmc_plot_stats.py -c "$config" -n 1000 --np $nproc --compress -o "$out_dir" --seed 199065646
+    dmc_plot_stats.py -c "$config" -n 1000 --np $nproc --compress -o "$out_dir" --sort-index 11 --seed 199065646
 done
 
