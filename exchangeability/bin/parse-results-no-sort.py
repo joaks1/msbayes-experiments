@@ -5,7 +5,6 @@ import sys
 
 from pymsbayes.utils.parsing import DMCSimulationResults
 from pymsbayes.utils.messaging import get_logger
-import project_util
 
 _LOG = get_logger(__name__)
 
