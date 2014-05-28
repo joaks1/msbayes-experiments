@@ -30,6 +30,11 @@ An appealing approach would be a comparative, Bayesian model-choice method for
 inferring the probability of competing divergence histories while integrating
 over uncertainty in mutational and ancestral processes via models of nucleotide
 substitution and lineage coalescence.
+\change{
+The goal would be to estimate the posterior probability of models ranging from
+a single divergence-time parameter (i.e., simultaneous divergence of all
+co-distributed taxa) to the fully generalized model in which each taxon
+diverged at a unique time.}
 
 The software package \msb implements such an approach in an
 approximate-Bayesian model-choice framework \cite{Hickerson2006,Huang2011}.
@@ -53,6 +58,26 @@ dimensionality (i.e., all the possible partitions of \npairs{} pairs to
 $1,2,\ldots,\npairs{}$ divergence-time parameters), and, in so doing, estimates
 the posterior probability of each model.
 
+\change{
+\msb has been used to address biogeographical questions in variety of empirical
+systems. Some examples include
+(1) whether rising of the Isthmus of Panama caused co-divergence across species
+of echinoids co-distributed across the Pacific and Atlantic sides of the ishmus
+\cite{Hickerson2006}, 
+(2) if an historical seaway across the Baja Peninsula caused co-divergence
+across species of squamates and mammals co-distributed both north and south of
+the putative seaway \cite{Leache2007},
+(3) if species of gall-wasps and their associated parasitoids share divergences
+across putative glacial refugia \cite{Stone2012}, and
+(4) whether repeated coalescence and fragmentation of the oceanic Islands of
+the Philippines caused by Pleistocene sea-level fluctuations caused
+diversification of vertebrate taxa distributed across the islands
+\cite{Oaks2012}.
+Such applications of the method often result in strong posterior support for
+co-divergence among some of the taxa investigated (e.g.,
+\cite{Barber2010,Carnaval2009,Chan2011,Hickerson2006,Leache2007,Plouviez2009,Stone2012,Voje2009,Oaks2012}).
+}
+
 For priors on divergence-time and demographic parameters, \msb uses continuous
 uniform probability distributions.
 This causes divergence models with more divergence-time parameters to integrate
@@ -74,10 +99,11 @@ likelihoods due to the uniform priors on divergence-time parameters, the
 U-shaped prior will effectively create a strong prior preference for models
 with very few divergence events.
 
+\change{
 Recently, Oaks et al.\ \cite{Oaks2012,Oaks2014reply} found via simulation that
-\msb will often strongly support biogeographically interesting models with a
-small number of divergence events shared among taxa, even when divergences were
-random over broad timescales.
+\msb will often strongly support models with a small number of divergence
+events shared among taxa, even when divergences were random over broad
+timescales.}
 They suggested this behavior was due to the combination of uniform priors on
 parameters causing small marginal likelihoods of richer models and the
 U-shaped prior on divergence models.
@@ -89,9 +115,10 @@ Hickerson et al.\ \cite{Hickerson2013} using simulations and found that it did
 not mitigate the method's propensity to incorrectly infer clustered
 divergences, and often preferred priors that excluded the true values of the
 model's parameters.
-Here, I describe a new method that successfully mitigates spurious inference
-of biogeographically interesting scenarios while avoiding negative side effects
-of empirically informed uniform priors.
+\change{
+Here, I describe a new method that successfully mitigates spurious inference of
+co-divergence while avoiding negative side effects of empirically informed
+uniform priors.}
 
 % Recently, however, \cite{Oaks2012} found that \msb can be strongly biased
 % toward spuriously estimating biogeographically interesting models of highly
@@ -695,13 +722,15 @@ are interdependent and negatively correlated.
 \subsubsection{Flexibility in parameterizing the model}
 In the new implementation, I provide the ability to control the richness of the
 model.
-For the \myTheta{} parameters, the model can be fully generalized to
+\change{
+For the \myTheta{} parameters, by default, the model is fully generalized to
 allow each population pair to have three parameters:
 \ancestralTheta{}, \descendantTheta{1}{}, and \descendantTheta{2}{}.
-Furthermore, any model of \myTheta{} parameters nested within this
+Furthermore, if an investigator prefers to reduce the number of parameters, any
+model of \myTheta{} parameters nested within this
 general model can also be specified, including the most restricted model
 where the ancestral and descendant populations of each pair share
-a single \myTheta{} parameter.
+a single \myTheta{} parameter.}
 
 I also provide the option of eliminating the parameters associated with the
 post-divergence bottlenecks in the descendant populations of each pair
@@ -816,15 +845,18 @@ In the original descriptions of the \msb model \cite{Hickerson2006,Huang2011},
 this re-ordering is justified by the fact that the expected value of $\pi_b$ is
 unrelated to sample size \popSampleSize{1}{} and \popSampleSize{2}{} and thus
 exchangeable among pairs.
-However, this is incorrect for two reasons.
+\change{
+This is incorrect for two reasons.}
 First, the entire vector of summary statistics \alignmentSS{}{} for each pair
 of populations is re-ordered across pairs, which implies that the justification
 for re-ordering $\pi_b$ applies to all the statistics within each
 \alignmentSS{}{}.
+\change{
 However, the expectations for statistics that estimate gross diversity (e.g.,
 $\pi$ and $\theta_W$) are not independent of sample size for structured
-populations, and other statistics are not independent of sample size in general
-(e.g., $SD(\pi-\theta_W)$).
+populations (e.g., the divergent pairs of populations modeled by \msb), and
+other statistics are not independent of sample size in general (e.g.,
+$SD(\pi-\theta_W)$).}
 Second, and more importantly, having the same expectation does not ensure
 random variables are exchangeable.
 Rather, for variables to be exchangeable their marginal distributions must be
@@ -1000,9 +1032,10 @@ few divergence events).
 The goal is to assess how much temporal variation in random divergence times is
 necessary before the behavior of the models of Table~\ref{tabPriors} begins to
 improve.
+\change{
 This will determine the timescales over which the models can reliably detect
-random variation in divergence times and avoid spurious inference of
-biogeographically interesting clustered divergence models.
+random variation in divergence times and avoid spurious inference of clustered
+divergence models.}
 
 Specifically, I simulated datasets from the following three series of six
 models (Table~\ref{tabPowerModels}).
@@ -1180,10 +1213,11 @@ other models
 \ref{figValidationModelChoiceOmega}).
 However, the bias is stronger in the \modelOld model than \modelUshaped.
 
+\change{
 Overall, the results suggest that the \modelDPP and \modelUniform models are
 relatively robust in terms of model-choice accuracy, and when model violations
 do cause them to be biased, they tend to under-estimate the probability of the
-biogeographically interesting model of a single divergence event.
+model with a single, shared divergence event.}
 In contrast, the \modelOld model is very sensitive to model violations, and
 strongly over-estimates the probability of the one-divergence model whenever
 the model is misspecified.
@@ -1199,9 +1233,17 @@ The results show that the method performs similarily when sampling over ordered
 models of divergence
 (Figures S\ref{figValidationAccuracyDPPOrderedDPPOrdered} \&
 S\ref{figValidationModelChoiceDPPOrderedDPPOrdered}).
-This suggests that the method is not adversely affected by the large increase
+This suggests that the method is not adversely affected by the increase
 in the number of possible discrete models (from 22 unordered to 4140 ordered
 models) when there are eight pairs of populations.
+\change{
+This is encouraging, because, as discussed above, the sorting of the summary
+statistics calculated from sequence alignments is not valid for empirical
+datasets in which there is variation in the number of individuals sampled per
+population, generation times across taxa, nucleotide substitution parameters,
+or the number, length, mutation rate, or ploidy of the loci sampled.
+Thus, this sorting should not be performed for any empirical application
+of the method.}
 
 \subsection{Power analyses: Estimation accuracy}
 All of the models I evaluated (Table \ref{tabPriors}) struggle to estimate the
@@ -1408,13 +1450,14 @@ strongly over-estimates the probability of one-divergence event shared
 across all taxa
 (Figure~\ref{figValidationModelChoicePsi} \&
 \ref{figValidationModelChoiceOmega}).
+\change{
 When more appropriate priors are used for divergence-time and demographic
 parameters, and either a Dirichlet-process or uniform prior applied across
 divergence models, the model is less sensitive to violations, and, when they do
 cause bias, the method is conservative and tends to underestimate the
-probability of biogeographically interesting models of temporally clustered
-divergences (Figure~\ref{figValidationModelChoicePsi} \&
-\ref{figValidationModelChoiceOmega}).
+probability of models with temporally clustered divergences
+(Figure~\ref{figValidationModelChoicePsi} \&
+\ref{figValidationModelChoiceOmega}).}
 
 The modifications also improve the method's power to detect random
 variation in divergence times, reducing the tendency to estimate clustered
@@ -1510,8 +1553,12 @@ Based on results of the empirical and power analyses
 the new implementation more accurately reflects posterior uncertainty and
 avoids spurious support for biogeographical scenarios.
 
-I also urge caution when using \dppmsbayes due to the fact that ABC methods
-in general are known to be biased for model choice \cite{Robert2011}.
+\change{
+I also urge caution when using \dppmsbayes due to the lack of theoretical
+validation of Bayesian model choice when the full data are replaced by
+insufficient summary statistics, and the recent demonstration that ABC
+estimates of model posterior probabilities can be biased when insufficient
+summary statistics are employed \cite{Rober2011}.}
 As recommended by Oaks et al.\ \cite{Oaks2012}, any results from the method
 should be accompanied by assessments of prior sensitivity and power.
 I encourage investigators to view this method as a means of exploring their
@@ -1538,9 +1585,13 @@ using a Dirichlet-process prior on the temporal distribution of divergences
 across taxa.
 The new method shows improved robustness, accuracy, and power compared to the
 existing method, \msb.
+\change{
 Compared to \msb, the new approach better estimates posterior uncertainty,
-which greatly reduces the chances of incorrectly estimating biogeographically
-interesting scenarios of shared divergence events.
+which greatly reduces the chances of incorrectly estimating biogeographical
+scenarios of shared divergence events.
+This is important, because models of shared divergence events are often of
+particular interest to researchers who employ the method.
+}
 This new tool will allow evolutionary biologists to better leverage comparative
 genetic data to assess the affects of regional and global biogeographical
 processes on biodiversity.
