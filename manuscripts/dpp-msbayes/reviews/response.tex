@@ -1,0 +1,345 @@
+%&<latex>
+\documentclass[12pt]{article}
+
+\usepackage{parskip}
+\input{../../utils/preamble.tex}
+\usepackage[numbers,sort&compress]{natbib}
+\input{../../utils/macros.tex}
+
+\newcounter{commentCounter}
+\newcommand{\revcomment}[1]{{\addtocounter{commentCounter}{1}}
+    \medskip \hrule \noindent
+\textbf{\arabic{section}.\arabic{commentCounter}}: {\sl #1}\par\xspace}
+\newcommand{\response}[1]{{\addtolength{\leftskip}{0.25in} #1\par}\xspace}
+
+\let\quoteOld\quote
+\let\endquoteOld\endquote
+% \renewenvironment{quote}{\sffamily\slshape\small\quoteOld}{\endquoteOld}
+\renewenvironment{quote}{\sffamily\small\quoteOld}{\endquoteOld}
+
+% \makeatletter
+% \renewcommand{\section}{\@startsection{section}{1}{0mm}%
+%     {-8pt}%
+%     {4pt}%
+% {\sffamily\large\itshape}}
+% \makeatother
+
+\begin{document}
+% \raggedright
+\setlength{\parindent}{0in}
+
+We greatly appreciate the helpful comments of the editors and reviewers. In
+this document, we provide responses to these comments, including descriptions
+of the changes we have made.
+
+\section{Editor's Comments}
+\setcounter{commentCounter}{0}
+\revcomment{
+    Looking at Reviewer 2's list of issues, they appear to relate only to the
+    presentation, and Reviewer 2 is not asking for more analysis.  These
+    requests for revision are requests for comments, clarifications, and
+    statements of caveats to be made by the author.  I think that if these
+    requests are attended to then the ms will be improved.
+}
+\response{
+    ADD!!
+}
+
+\revcomment{
+    (Concerning Reviewer 2's comment 1.  I did not get the impression that the
+    author was criticizing Bayesian foundations, but this Reviewer did, and
+    that in itself shows that there is room for misunderstanding.  I suspect
+    that the author may feel that the intention of the paragraph is clear
+    enough, but perhaps the wording here can be adjusted in the light of this
+    reviewer's comment to more clearly say that you are talking about options
+    for prior choice, that msBayes has opted for uniform priors, and your
+    comments on that.)
+}
+\response{
+    ADD!!
+}
+
+\revcomment{
+    I would like to ask that in replying to the requests for revision that a
+    point-by-point be made to make it easy for us to see what you have done."
+}
+\response{
+    ADD!!
+}
+
+
+\section{Reviewer 1's Comments}
+\setcounter{commentCounter}{0}
+\revcomment{
+    In reference to ``Bayesian model-choice method'' in the second paragraph
+    of page 2, Reviewer 1 requested a clearer description of the models being
+    sampled by such a method.
+}
+\response{
+    I have added the following sentence to this paragraph that provides a
+    specific possibility for the model sample space and, thanks to Reviewer 1's
+    suggestion, provides a smoother transition into the description of the \msb
+    model in the following paragraph:
+    \begin{quote}
+        More specifically, the sample space of such a model-choice procedure
+        could include all models ranging from a single divergence-time
+        parameter (i.e., simultaneous divergence of all co-distributed taxa) to
+        the fully generalized model in which each taxon diverged at a unique
+        time.
+    \end{quote}
+}
+
+\revcomment{
+    Reviewer 1 felt the equating of ``biogeographically interesting models''
+    with models of shared divergences was unnecessarily subjective.
+}
+\response{
+    I agree. I have removed the use of the model descriptor ``biogeographically
+    interesting'' from the manuscript, and have added the following to the
+    Conclusions:
+    \begin{quote}
+        Compared to \msb, the new approach better estimates posterior
+        uncertainty, which greatly reduces the chances of incorrectly
+        estimating biogeographical scenarios of shared divergence events.  This
+        is important, because models of shared divergence events are often of
+        particular interest to researchers who employ these methods.
+    \end{quote}
+    Thanks to Reviewer 1's comment, this is a much clearer description of what
+    I was intending to convey with ``biogeographically interesting.''
+}
+
+\revcomment{
+    Many readers may be generally unaware of several important factors of how
+    phylogeographers use msBayes. I'd suggest a review paragraph somewhere in
+    the intro that describes your empirical paper and others such that the
+    readers have a better concept of why these technical details matter.
+}
+\response{
+    Good point. I have added the following paragraph to the introduction to
+    familiarize readers with how \msb has been applied, and the general results
+    of such applications.
+    \begin{quote}
+        \msb has been used to address biogeographical questions in variety of
+        empirical systems. Some examples include (1) whether rising of the
+        Isthmus of Panama caused co-divergence across species of echinoids
+        co-distributed across the Pacific and Atlantic sides of the ishmus
+        \cite{Hickerson2006}, (2) if an historical seaway across the Baja
+        Peninsula caused co-divergence across species of squamates and mammals
+        co-distributed both north and south of the putative seaway
+        \cite{Leache2007}, (3) if species of gall-wasps and their associated
+        parasitoids share divergences across putative glacial refugia
+        \cite{Stone2012}, and (4) whether repeated coalescence and
+        fragmentation of the oceanic Islands of the Philippines during by
+        Pleistocene sea-level fluctuations caused diversification of vertebrate
+        taxa distributed across the islands \cite{Oaks2012}.  Such applications
+        of the method often result in strong posterior support for
+        co-divergence among some of the taxa investigated (e.g.,
+        \cite{Barber2010,Carnaval2009,Chan2011,Hickerson2006,Leache2007,Plouviez2009,Stone2012,Voje2009,Oaks2012}).
+    \end{quote}
+}
+
+\revcomment{
+    In reference to ``I provide the ability to control the richness of the model'' on Page 9,
+    Reviewer 1 commented:
+
+    While I appreciate how this flexibility is a selling point to someone who
+    is very familiar with this model (such as the author), it might also be
+    viewed as an increased difficulty for the average user. Is this to say that
+    the 'richness' of the model has to be specified by the user, or can be
+    specified? Please clarify.
+}
+\response{
+    To clarify that the user is not required to control the richness of the
+    model, I have changed the subsequent sentences to:
+    \begin{quote}
+        For the \myTheta{} parameters, by default, the model is fully
+        generalized to allow each population pair to have three parameters:
+        \ancestralTheta{}, \descendantTheta{1}{}, and \descendantTheta{2}{}.
+        Furthermore, if an investigator prefers to reduce the number of
+        parameters, any model of \myTheta{} parameters nested within this
+        general model can also be specified, including the most restricted
+        model where the ancestral and descendant populations of each pair share
+        a single \myTheta{} parameter.
+    \end{quote}
+}
+
+\revcomment{
+    Reviewer 1 commented that I awkwardly started two consecutive sentences
+    with ``However'' on Page 11.
+}
+\response{
+    Thank you for catching this. I have removed ``However'' from the beginning
+    of the first sentence, because it was unnecessary.
+}
+
+\revcomment{
+    Reviewer 1 commented that I was underselling the results in section
+    ``Validation analyses: Ordered divergence models'' on Page 16.
+}
+\response{
+    I have expanded this section by including the following sentences:
+    \begin{quote}
+        ADD!!
+    \end{quote}
+}
+
+\revcomment{
+    Given these caveats, what (in your opinion) is the best usage of this
+    approach to phylogeographic analysis?
+}
+\response{
+    ADD!!!
+}
+
+\revcomment{
+    Reviewer 1 requested that we elaborate about how Robert et al's
+    \cite{Robert2011} critique of ABC model choice relates to \dppmsbayes.
+}
+\response{
+    I have expanded:
+    \begin{quote}
+        I also urge caution when using dpp-msbayes due to the fact that ABC
+        methods in general are known to be biased for model choice
+        \cite{Robert2011}.
+    \end{quote}
+    to:
+    \begin{quote}
+        I also urge caution when using \dppmsbayes due to the lack of
+        theoretical validation of Bayesian model choice when the full data are
+        replaced by summary statistics that are insufficient for discriminating
+        across models under comparision \cite{Robert2011}, which is certainly
+        the case here.  Robert et al.\ \cite{Robert2011} demonstrated that ABC
+        estimates of model posterior probabilities can be biased when such
+        across-model insufficient statistics are used \cite{Robert2011}.
+    \end{quote}
+    I think this makes it more clear how the findings of \cite{Robert2011} are
+    potentially relevant to the posterior probabilities estimated by
+    \dppmsbayes and \msb.
+}
+
+\section{Reviewer 2's Comments}
+\setcounter{commentCounter}{0}
+
+\revcomment{
+    The complaint that ``This causes divergence models with more divergence-time
+    parameters to integrate over a much greater parameter space with low
+    likelihood yet high prior density, resulting in small marginal likelihoods
+    relative to models with fewer divergence-time parameters.'' (p.2) is
+    essentially stressing the point with Occam's razor argument. Which I deem a
+    rather positive feature of Bayesian model choice. A reflection on the
+    determination of the prior distribution away from uniform priors thus
+    sounds most timely, rather than a criticism of the Bayesian foundations.
+}
+\response{
+    ADD!!
+}
+
+\revcomment{
+    The current paper claims to have reached a satisfactory prior modelling
+    with ``improved robustness, accuracy, and power'' (p.3). If I understand
+    correctly, the changes are in replacing a uniform distribution with a Gamma
+    or a Dirichlet prior.  Which means introducing a seriously large number of
+    hyperparameters into the picture. Having a lot of flexibility in the prior
+    also means a lot of variability in the resulting inference. This is a
+    general feature of all Bayesian modellings and I am rather surprised by the
+    conclusion that things look better by taking this step away from the
+    uniform prior. Depending on the problem they could also look worse.
+}
+\response{
+    ADD!!
+}
+
+\revcomment{
+    The ABC part is rather standard, except for the rather strange feature that
+    the divergence times are used to construct summary statistics (p.10). I
+    find it strange because these times are not observed for the actual data.
+    So I must be missing something, which should be spelled out more clearly.
+    (And I object to the sentence ``I have introduced a new approximate-Bayesian
+    model choice method.'' (p.21) since there is no new ABC technique, simply a
+    different form of prior.)
+}
+\response{
+    ADD!!
+}
+
+\revcomment{
+    I do not understand much the part about (reshuffling) introducing bias as
+    detailed on p.11: every approximate method gives a ``biased'' answer in the
+    sense this answer is not the true and proper posterior distribution. Using
+    a different (re-ordered) vector of statistics provides a different ABC
+    outcome, hence a different approximate posterior, for which it seems truly
+    impossible to check whether or not it increases the discrepancy from the
+    true posterior, compared with the other version. I always find it annoying
+    to see the word `bias' used in a vague meaning and esp. within a Bayesian
+    setting. All Bayesian methods are biased.
+}
+\response{
+    ADD!!
+}
+
+\revcomment{
+    Quoting [43] as concluding that ABC model choice is biased is
+    somewhatmisleading: the warning therein was that Bayes factors and
+    posterior probabilities resulting from those ABC steps could be quite
+    unrelated with those based on the whole dataset. That the same authors
+    concluded that the proper choice of summary statistics leads to a
+    consistent model choice shows ABC model choice is not necessarily
+    ``biased''.
+}
+\response{
+    ADD!!
+}
+
+\revcomment{
+    I also fail to understand why the posterior probability of model i should
+    be distributed as a uniform (``If the method is unbiased, the points should
+    fall near the identity line'') when the data is from model i: this is not a
+    p-value but a posterior probability and the posterior probability is not
+    the frequentist coverage.
+}
+\response{
+    ADD!!
+}
+
+\revcomment{
+    My overall problem with the paper is that, all in all, this is a single
+    Monte Carlo study about the performances of some classes of priors and, as
+    such, it does not carry enough weight to validate an approach that remains
+    highly subjective in the selection of its hyperparameters. I think this
+    remains a controlled experiment with simulated data where the true
+    parameters are know and the prior is ``true''. This obviously helps in
+    getting better performances. In a different and less controlled experiment,
+    a new experimenter may (should?) be at a loss as to which hyperparameters
+    to chose.
+}
+\response{
+    ADD!!
+}
+
+\revcomment{
+    The conclusion of the paper that ``With improving numerical methods (...),
+    advances in Monte Carlo techniques and increasing efficiency of likelihood
+    calculations, analyzing rich comparative phylo-geographical models in a
+    full-likelihood Bayesian framework is becoming computationally feasible.''
+    (p.21) sounds overly optimistic and rather premature. As to this day, I do
+    not know of any significant advance in computing the observed likelihood
+    for the population genetics models ABC is currently handling. (The SMC
+    algorithm of Bouchard-Côté, Sankaraman and Jordan 2012 does not apply to
+    Kingman's coalescent, as far as I can judge.) This is certainly a goal
+    worth pursuing and borrowing strength from multiple techniques cannot hurt,
+    but it remains so far a lofty goal, still beyond our reach... I thus think
+    the major message of the paper is to reinforce our earlier calls for
+    caution when interpreting the output of an ABC model choice (p.20), or even
+    of a regular Bayesian analysis, agreeing that we should aim at seeing ``a
+    large amount of posterior uncertainty'' rather than posterior probability
+    values close to 0 and 1.
+}
+\response{
+    ADD!!
+}
+
+\bibliographystyle{../../bib/bmc-mathphys.bst}
+\bibliography{../../bib/references}
+
+\end{document}
+

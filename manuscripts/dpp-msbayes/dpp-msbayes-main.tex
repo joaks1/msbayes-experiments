@@ -31,10 +31,10 @@ inferring the probability of competing divergence histories while integrating
 over uncertainty in mutational and ancestral processes via models of nucleotide
 substitution and lineage coalescence.
 \change{
-The goal would be to estimate the posterior probability of models ranging from
-a single divergence-time parameter (i.e., simultaneous divergence of all
-co-distributed taxa) to the fully generalized model in which each taxon
-diverged at a unique time.}
+More specifically, the sample space of such a model-choice procedure could
+include all models ranging from a single divergence-time parameter (i.e.,
+simultaneous divergence of all co-distributed taxa) to the fully generalized
+model in which each taxon diverged at a unique time.}
 
 The software package \msb implements such an approach in an
 approximate-Bayesian model-choice framework \cite{Hickerson2006,Huang2011}.
@@ -70,7 +70,7 @@ the putative seaway \cite{Leache2007},
 (3) if species of gall-wasps and their associated parasitoids share divergences
 across putative glacial refugia \cite{Stone2012}, and
 (4) whether repeated coalescence and fragmentation of the oceanic Islands of
-the Philippines caused by Pleistocene sea-level fluctuations caused
+the Philippines during by Pleistocene sea-level fluctuations caused
 diversification of vertebrate taxa distributed across the islands
 \cite{Oaks2012}.
 Such applications of the method often result in strong posterior support for
@@ -864,7 +864,7 @@ the same (i.e., they must be identically distributed).
 None of the summary statistics used by \msb, including $\pi_b$, are identically
 distributed across different sample sizes.
 In addition to differences in sample size, the simulated alignments and their
-summary statistics are not identically distributed because of the taxon- and
+summary statistics are not \change{exchangeable} because of the taxon- and
 locus-specific parameters \hkyModel{}{}, \mutationRateScalarConstant{}{}, and
 \ploidyScalar{}{}.
 
@@ -1555,14 +1555,18 @@ avoids spurious support for biogeographical scenarios.
 
 \change{
 I also urge caution when using \dppmsbayes due to the lack of theoretical
-validation of Bayesian model choice when the full data are replaced by
-insufficient summary statistics, and the recent demonstration that ABC
-estimates of model posterior probabilities can be biased when insufficient
-summary statistics are employed \cite{Rober2011}.}
+validation of Bayesian model choice when the full data are replaced by summary
+statistics that are insufficient for discriminating across models under
+comparision \cite{Robert2011}, which is certainly the case here.
+Robert et al.\ \cite{Robert2011} demonstrated that ABC estimates of model
+posterior probabilities can be biased when such across-model insufficient
+statistics are used \cite{Robert2011}.
 As recommended by Oaks et al.\ \cite{Oaks2012}, any results from the method
 should be accompanied by assessments of prior sensitivity and power.
-I encourage investigators to view this method as a means of exploring their
-data rather than a rigorous means of evaluating hypotheses.
+Until full-likelihood methods are available to assess the accuracy of ABC
+estimates of divergence-model posterior probabilities, I encourage
+investigators to view this method as a means of exploring their data rather
+than a rigorous means of evaluating hypotheses.}
 
 Given the difficulty of this estimation problem, I anticipate that
 full-likelihood methods that can leverage all of the information present in the
@@ -1590,7 +1594,7 @@ Compared to \msb, the new approach better estimates posterior uncertainty,
 which greatly reduces the chances of incorrectly estimating biogeographical
 scenarios of shared divergence events.
 This is important, because models of shared divergence events are often of
-particular interest to researchers who employ the method.
+particular interest to researchers who employ these methods.
 }
 This new tool will allow evolutionary biologists to better leverage comparative
 genetic data to assess the affects of regional and global biogeographical
