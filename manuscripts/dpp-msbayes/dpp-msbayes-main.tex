@@ -983,9 +983,28 @@ of one-divergence event to 20 bins of width 0.05, and plotted
 the estimated posterior probability of each bin against the proportion of
 replicates in that bin with a true value consistent with one divergence
 event \cite{Huelsenbeck2004,Oaks2012}.
-If the method is unbiased, the points should fall near the identity line,
-whereas any trend away from the identity line indicates bias.
-I did this using two criteria for the one-divergence model:
+\change{
+Ideally, the estimated posterior probability of the one-divergence model
+should estimate the probability that the one-divergence model is correct
+given the data.
+For large numbers of simulation replicates, the proportion of the replicates in
+each bin for which the one-divergence model is true will approximate the
+probability that the one-divergence model is correct.
+Thus, if the method has the desirable behavior such that the
+estimated posterior probability of the one-divergence model is an unbiased
+estimate of the probability that the one-divergence model is correct given the
+data, the points should fall near the identity line.
+For example, let us say the method estimates a posterior probability of 0.90
+for 1000 simulated datasets.
+If the method is accurately estimating the probability that the one-divergence
+model is correct given the data, then the one-divergence model should be the
+true model in approximately 900 of the 1000 replicates.
+Any trend away from the identity line indicates the method is biased in the
+sense that it is not correctly estimating the probability that the
+one-divergence model is correct given the data.
+
+I constructed these plots using two criteria for the one-divergence model:
+}
 (1) the number of divergence-time parameters ($\divTimeNum = 1$) and
 (2) the dispersion index of divergence times ($\divTimeDispersion < 0.01$).
 For the latter, $\divTimeDispersion < 0.01$ has been commonly used as an
@@ -1557,7 +1576,7 @@ avoids spurious support for biogeographical scenarios.
 I also urge caution when using \dppmsbayes due to the lack of theoretical
 validation of Bayesian model choice when the full data are replaced by summary
 statistics that are insufficient for discriminating across models under
-comparision \cite{Robert2011}, which is certainly the case here.
+comparison \cite{Robert2011}, which is certainly the case here.
 Robert et al.\ \cite{Robert2011} demonstrated that ABC estimates of model
 posterior probabilities can be biased when such across-model insufficient
 statistics are used \cite{Robert2011}.

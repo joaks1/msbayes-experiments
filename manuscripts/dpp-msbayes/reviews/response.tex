@@ -207,7 +207,7 @@ of the changes we have made.
         I also urge caution when using \dppmsbayes due to the lack of
         theoretical validation of Bayesian model choice when the full data are
         replaced by summary statistics that are insufficient for discriminating
-        across models under comparision \cite{Robert2011}, which is certainly
+        across models under comparison \cite{Robert2011}, which is certainly
         the case here.  Robert et al.\ \cite{Robert2011} demonstrated that ABC
         estimates of model posterior probabilities can be biased when such
         across-model insufficient statistics are used \cite{Robert2011}.
@@ -279,7 +279,7 @@ of the changes we have made.
 
 \revcomment{
     Quoting [43] as concluding that ABC model choice is biased is
-    somewhatmisleading: the warning therein was that Bayes factors and
+    somewhat misleading: the warning therein was that Bayes factors and
     posterior probabilities resulting from those ABC steps could be quite
     unrelated with those based on the whole dataset. That the same authors
     concluded that the proper choice of summary statistics leads to a
@@ -287,7 +287,18 @@ of the changes we have made.
     ``biased''.
 }
 \response{
-    ADD!!
+    This is a very good point, thank you. I have expanded this section
+    to be clearer about the findings of \cite{Robert2011} and how they
+    relate to the methods discussed in the paper:
+    \begin{quote}
+        I also urge caution when using \dppmsbayes due to the lack of
+        theoretical validation of Bayesian model choice when the full data are
+        replaced by summary statistics that are insufficient for discriminating
+        across models under comparison \cite{Robert2011}, which is certainly
+        the case here.  Robert et al.\ \cite{Robert2011} demonstrated that ABC
+        estimates of model posterior probabilities can be biased when such
+        across-model insufficient statistics are used \cite{Robert2011}.
+    \end{quote}
 }
 
 \revcomment{
@@ -298,7 +309,30 @@ of the changes we have made.
     the frequentist coverage.
 }
 \response{
-    ADD!!
+    I agree that the justification of why the identity line should be considered
+    ``unbiased'' was too vague and relied entirely on the reference to
+    \cite{Huelsenbeck2004}. I have expanded this section out to be very
+    explicit what is meant by ``bias'' and why it is desirable for the method
+    to produce estimates that fall along the identity line:
+    \begin{quote}
+        Ideally, the estimated posterior probability of the one-divergence model
+        should estimate the probability that the one-divergence model is
+        correct given the data.  For large numbers of simulation replicates,
+        the proportion of the replicates in each bin for which the
+        one-divergence model is true will approximate the probability that the
+        one-divergence model is correct.  Thus, if the method has the desirable
+        behavior such that the estimated posterior probability of
+        the one-divergence model is an unbiased estimate of the probability
+        that the one-divergence model is correct given the data, the points
+        should fall near the identity line.  For example, let us say the method
+        estimates a posterior probability of 0.90 for 1000 simulated datasets.
+        If the method is accurately estimating the probability that the
+        one-divergence model is correct given the data, then the one-divergence
+        model should be the true model in approximately 900 of the 1000
+        replicates.  Any trend away from the identity line indicates the method
+        is biased in the sense that it is not correctly estimating the
+        probability that the one-divergence model is correct given the data.
+    \end{quote}
 }
 
 \revcomment{
@@ -313,7 +347,23 @@ of the changes we have made.
     to chose.
 }
 \response{
-    ADD!!
+    I agree. However, the goal of the paper is not to demonstrate, for example,
+    that gamma probability distributions are generally superior to uniform
+    probability distributions for Bayesian statistics. Nor is the goal to
+    solve the subjective nature of prior selection in Bayesian statistics.
+    My primary goal was to develop an improved comparative method that
+    biogeographers can use to investigate the affect of historical events on
+    diversification.
+
+    I used extensive simulations and biological data to compare, as fairly as
+    possible, the new approach to the current state-of-the-art method for this
+    inference problem. I agree the new approach has many weaknesses, including
+    the subjective nature of choosing priors when the truth is unknown. However,
+    these weaknesses apply to both \dppmsbayes and \msbayes (and to most
+    empirical applications of Bayesian statistical methods where extensive
+    prior information is lacking). However, the results strongly support
+    the overall conclusion that the primary goal was accomplished, and the
+    new approach out performs \msb under a range of conditions.
 }
 
 \revcomment{
@@ -335,6 +385,11 @@ of the changes we have made.
     values close to 0 and 1.
 }
 \response{
+    It's already been done \cite{JeetDiss}.
+    I can cite skyline/skyride plots, species trees, snapp, IM, etc. (all
+    full-likelihood coalescent methods).
+    Bryant et al.: analytical integration of gene trees for biallelic markers
+    under the Kingman coalescent.
     ADD!!
 }
 
