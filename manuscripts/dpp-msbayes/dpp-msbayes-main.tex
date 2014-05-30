@@ -80,13 +80,23 @@ co-divergence among some of the taxa investigated (e.g.,
 
 For priors on divergence-time and demographic parameters, \msb uses continuous
 uniform probability distributions.
+\change{
 This causes divergence models with more divergence-time parameters to integrate
 over a \emph{much} greater parameter space with low likelihood yet high prior
-density, resulting in small marginal likelihoods relative to models with fewer
-divergence-time parameters \cite{Jeffreys1939,Lindley1957}.
+density, which can result in small marginal likelihoods relative to models with
+fewer divergence-time parameters \cite{Jeffreys1939,Lindley1957}.
 Given that the marginal likelihood of a model weighted by its prior is what
 determines its posterior probability, this can cause support for models with
 fewer divergence events \cite{Oaks2012,Oaks2014reply}.
+This serves as a ``natural'' penalty for over-parameterization, which is a
+strength of Bayesian model choice.
+However, given the sensitivity of marginal likelihoods to the prior, care is
+needed when selecting prior distributions \cite{Lindley1957}.
+Selecting distributions that are broad or very differently shaped than the
+likelihood density (e.g., a uniform prior for divergence times) can lead to
+small marginal likelihoods of parameter-rich models even if they are correct.
+}
+
 Furthermore, \msb uses a discrete uniform prior over the number of divergence
 events $1,2,\ldots,\npairs{}$.
 Because there are many more possible assignments of populations pairs to
@@ -291,11 +301,13 @@ $\alignmentVector = (\alignment{1}{1}, \ldots,
 with vectors of summary statistics for each alignment
 $\ssVectorObs = (\alignmentSSObs{1}{1}, \ldots,
     \alignmentSSObs{\npairs{}}{\nloci{\npairs{}}})$.
-For each population pair, the means of the summary statistics are calculated
-across the \nloci{} loci, reducing the vector to
-$\ssVectorObs = (\alignmentSSObs{1}{}, \ldots,
-    \alignmentSSObs{\npairs{}}{})$.
-This allows us to estimate the approximate joint posterior distribution
+\change{
+Optionally, for each population pair, the means of the summary statistics can
+be calculated across the \nloci{} loci, and the vector can be further reduced
+to $\ssVectorObs = (\alignmentSSObs{1}{}, \ldots,
+\alignmentSSObs{\npairs{}}{})$.
+Either way, with \ssVectorObs in hand, we can estimate the approximate joint
+posterior distribution}
 {\small
 \begin{equation}
     p(\geneTreeVector, \divTimeMapVector, \demographicParamVector, 
@@ -409,11 +421,12 @@ where each \locusMutationRateScalar{} is independently and identically
 distributed (\iid) as
 $\locusMutationRateScalar{} \sim Gamma(\locusRateHetShapeParameter,
 1/\locusRateHetShapeParameter)$.
-If the recombination rate \recombinationRate is allowed to be
-non-zero, the prior term $p(\recombinationRate)$ would be added
-to Equation \ref{eq:fullModelCompact}, and the prior would be
-$\recombinationRate \sim Gamma(\gammaShape{\recombinationRate},
-\gammaScale{\recombinationRate})$.
+If the recombination rate \recombinationRate is allowed to be non-zero, the
+prior term $p(\recombinationRate)$ would be added to Equation
+\ref{eq:fullModelCompact}, and the prior would be $\recombinationRate \sim
+Gamma(\gammaShape{\recombinationRate}, \gammaScale{\recombinationRate})$,
+\change{where \gammaShape{\recombinationRate} and
+\gammaScale{\recombinationRate} are specified by the investigator.}
 \end{linenomath}
 
 \begin{linenomath}
@@ -447,6 +460,18 @@ $\bottleTime{} \sim U(0, 1)$,
 and
 $\migrationRate{} \sim Gamma(\gammaShape{\migrationRate{}},
 \gammaScale{\migrationRate{}})$.
+\change{
+By default, \ancestralTheta{}, \descendantTheta{1}{}, and \descendantTheta{2}{}
+share the same prior (i.e., $\gammaShape{\ancestralTheta{}} =
+\gammaShape{\descendantTheta{}{}}$ and $\gammaScale{\ancestralTheta{}} =
+\gammaScale{\descendantTheta{}{}}$), but a separate gamma-distributed prior can
+be assigned to \ancestralTheta{}.
+Also, the \bottleScalar{1}{}, \bottleScalar{2}{}, and \migrationRate{}
+parameters are optional (i.e., it can be assumed that there is no migration
+between populations of each pair, and that the population size of each
+descendant population has been constant through time).
+For the parameters included in the model, the hyper-parameters of the prior
+distributions are specified by the investigator.}
 \end{linenomath}
 
 \subsubsection{Priors on divergence models}
@@ -499,7 +524,10 @@ imposes on the model before discussing the priors implemented for
 
 \begin{linenomath}
 Each \divTime{} within \divTimeVector is \iid as $\divTime{} \sim
-Gamma(\gammaShape{\divTime{}}, \gammaScale{\divTime{}})$.
+Gamma(\gammaShape{\divTime{}}, \gammaScale{\divTime{}})$,
+\change{
+where \gammaShape{\divTime{}} and \gammaScale{\divTime{}} are specified by the
+investigator}.
 Thus, given the number of unique divergence-time classes in
 \divTimeIndexVector, this determines the probability of prior term
 $p(\divTimeVector \given \divTimeIndexVector)$.
@@ -769,34 +797,36 @@ The first step of this algorithm entails collecting a random sample of
 parameter values from the joint prior and their associated summary
 statistics.
 Each sample is generated by
+\change{
 (1) drawing values of all the model's parameters, which I denote \hpvector{},
 from their respective prior distributions;
-(2) rescaling the divergence times
-$\divTimeMapVector = (\divTimeMap{1}, \ldots, \divTimeMap{\npairs{}})$
-from units proportional to time to units proportional to the expected number
-of mutations via Equation \ref{eq:divTimeScaled} to get 
-$\divTimeScaledVector = (\divTimeScaled{1}{1}, \ldots,
-\divTimeScaled{\npairs{}}{\nloci{\npairs{}}})$;
-(3) simulating gene trees $\geneTreeVector = (\geneTree{1}{1}, \ldots, 
+% (2) rescaling the divergence times
+% $\divTimeMapVector = (\divTimeMap{1}, \ldots, \divTimeMap{\npairs{}})$
+% from units proportional to time to units proportional to the expected number
+% of mutations via Equation \ref{eq:divTimeScaled} to get 
+% $\divTimeScaledVector = (\divTimeScaled{1}{1}, \ldots,
+% \divTimeScaled{\npairs{}}{\nloci{\npairs{}}})$;
+(2) simulating gene trees $\geneTreeVector = (\geneTree{1}{1}, \ldots, 
 \geneTree{\npairs{}}{\nloci{\npairs{}}})$
 for each locus of each population pair by drawing coalescent times from
 a multi-population Kingman-coalescent model given the demographic parameters;
-(4) simulating sequence alignments 
+(3) simulating sequence alignments 
 $\alignmentVector = (\alignment{1}{1}, \ldots, \alignment{\npairs{}}{\nloci{\npairs{}}})$
 along the gene trees under the
 \hky substitution parameters
 $\hkyModelVector = (\hkyModel{1}{1}, \ldots, \hkyModel{\npairs{}}{\nloci{\npairs{}}})$
 that have the same number of sequences and sequence lengths as the observed
 dataset;
-(5) calculating population genetic summary statistics
+and
+(4) calculating population genetic summary statistics
 $\ssVector{} = (\alignmentSS{1}{1}, \ldots, \alignmentSS{\npairs{}}{\nloci{\npairs{}}})$
 from the simulated sequence alignments;
-% (these are the same statistics
-% calculated from the observed alignments, \ssVectorObs{});
-and (6) reducing the summary statistics to the means across loci for each
-population pair to get
-$\ssVector{} = (\alignmentSS{1}{}, \ldots, \alignmentSS{\npairs{}}{})$, which is
-the same summary statistic vector estimated from the observed data \ssVectorObs.
+Optionally, an additional step can be performed to reduce the summary
+statistics to the means across loci for each population pair to get
+$\ssVector{} = (\alignmentSS{1}{}, \ldots, \alignmentSS{\npairs{}}{})$.
+Either way, \ssVector{} contains the same summary statistics as those estimated
+from the observed data \ssVectorObs.
+}
 After repeating this procedure \numPriorSamples times, I obtain a random
 sample of parameter vectors
 $\paramSampleMatrix = (\paramSampleVector{1}, \ldots, \paramSampleVector{\numPriorSamples})$
@@ -828,6 +858,16 @@ taxon-specific summary statistics \alignmentSS{}{} within each \ssVector{}.
 Rather, the summary statistics are re-ordered by descending values of average
 pairwise differences between the descendant populations
 ($\pi_b$) \cite{NeiLi1979,Huang2011}.
+\change{
+Thus, the summary statistics being compared when calculating the Euclidean
+distance between the observed data and each simulation are often from sequence
+alignments of \emph{different} taxon pairs and loci.
+In other words, the compared statistics are often calulated from datasets
+simulated with \emph{different} numbers and length of sequences, and
+potentially different numbers of loci, and different fixed \hky model
+parameters (\hkyModel{}{}) and mutation-rate (\mutationRateScalarConstant{}{})
+and ploidy (\ploidyScalar{}{}) scaling parameters.}
+
 This has the advantage of reducing the sample space of the number of
 divergence models \divTimeIndexVector, but there are at least two disadvantages.
 First, additional information in the data is lost.

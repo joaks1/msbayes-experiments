@@ -231,7 +231,19 @@ of the changes we have made.
     sounds most timely, rather than a criticism of the Bayesian foundations.
 }
 \response{
-    ADD!!
+    Sorry for the confusion here. This statement was not intened as
+    a general criticism of Bayesian foundations. Rather, the intent was to
+    highlight why prior choice is very important in Bayesian model choice.
+    I have added the following sentences to clarify:
+    \begin{quote}
+        This serves as a ``natural'' penalty for over-parameterization, which
+        is a strength of Bayesian model choice.  However, given the sensitivity
+        of marginal likelihoods to the prior, care is needed when selecting
+        prior distributions \cite{Lindley1957}.  Selecting distributions that
+        are broad or very differently shaped than the likelihood density (e.g.,
+        a uniform prior for divergence times) can lead to small marginal
+        likelihoods of parameter-rich models even if they are correct.
+    \end{quote}
 }
 
 \revcomment{
@@ -246,7 +258,67 @@ of the changes we have made.
     uniform prior. Depending on the problem they could also look worse.
 }
 \response{
-    ADD!!
+    Both uniform and gamma distributions have two parameters. Thus, the new
+    model only has one additional hyperparameter compared to the original
+    msBayes model: the concentration parameter on the Dirichlet process prior
+    on divergence models. Also, as described in the manuscript, the new method
+    offers a uniform prior over divergence models, which would have the same
+    number of hyper-parameters as the original method.
+
+    Also, in both msBayes and dpp-msbayes the hyper-parameters are fixed, and
+    thus do not contribute variability to the model. While a hiearchical
+    approach that places hyper-priors on the various hyper-parameters would be
+    interesting to explore for either the msBayes or dpp-msbayes model, it is
+    beyond the scope of the current study.
+
+    I have added some text to various places in the manuscript to clarify that
+    the hyper-parameters are fixed:
+    \begin{quote}
+        If the recombination rate \recombinationRate is allowed to be non-zero,
+        the prior term $p(\recombinationRate)$ would be added to Equation
+        \ref{eq:fullModelCompact}, and the prior would be $\recombinationRate
+        \sim Gamma(\gammaShape{\recombinationRate},
+        \gammaScale{\recombinationRate})$, \change{where
+        \gammaShape{\recombinationRate} and \gammaScale{\recombinationRate} are
+        specified by the investigator.}
+    \end{quote}
+
+    \begin{quote}
+        The priors for the demographic parameters are:
+        $\ancestralTheta{} \sim Gamma(\gammaShape{\ancestralTheta{}},
+        \gammaScale{\ancestralTheta{}})$,
+        $\descendantTheta{1}{} \sim Gamma(\gammaShape{\descendantTheta{}{}},
+        \gammaScale{\descendantTheta{}{}})$,
+        $\descendantTheta{2}{} \sim Gamma(\gammaShape{\descendantTheta{}{}},
+        \gammaScale{\descendantTheta{}{}})$,
+        $\bottleScalar{1}{} \sim Beta(\betaA{\bottleScalar{}{}},
+        \betaB{\bottleScalar{}{}})$,
+        $\bottleScalar{2}{} \sim Beta(\betaA{\bottleScalar{}{}},
+        \betaB{\bottleScalar{}{}})$,
+        $\bottleTime{} \sim U(0, 1)$,
+        and
+        $\migrationRate{} \sim Gamma(\gammaShape{\migrationRate{}},
+        \gammaScale{\migrationRate{}})$.
+        \change{
+        By default, \ancestralTheta{}, \descendantTheta{1}{}, and \descendantTheta{2}{}
+        share the same prior (i.e., $\gammaShape{\ancestralTheta{}} =
+        \gammaShape{\descendantTheta{}{}}$ and $\gammaScale{\ancestralTheta{}} =
+        \gammaScale{\descendantTheta{}{}}$), but a separate gamma-distributed prior can
+        be assigned to \ancestralTheta{}.
+        Also, the \bottleScalar{1}{}, \bottleScalar{2}{}, and \migrationRate{}
+        parameters are optional (i.e., it can be assumed that there is no migration
+        between populations of each pair, and that the population size of each
+        descendant population has been constant through time).
+        For the parameters included in the model, the hyper-parameters of the prior
+        distributions are specified by the investigator.}
+    \end{quote}
+
+    \begin{quote}
+        Each \divTime{} within \divTimeVector is \iid as $\divTime{} \sim
+        Gamma(\gammaShape{\divTime{}}, \gammaScale{\divTime{}})$, \change{
+        where \gammaShape{\divTime{}} and \gammaScale{\divTime{}} are specified
+        by the investigator}.
+    \end{quote}
 }
 
 \revcomment{
@@ -274,6 +346,18 @@ of the changes we have made.
     setting. All Bayesian methods are biased.
 }
 \response{
+    Regarding the reshuffling of the summary statistics calculated from
+    different alignments of sequences, those statistics are simply not
+    exchangeable. So, reshuffling them in a manner that is not conistent across
+    all simulations and the observed data (as is done in msBayes) is not
+    mathematically valid. Also, if elements are exchangeable, their order will
+    not affect the likelihood (or the posterior, barring sampling error). Thus,
+    if the goal is to approximate the likelihood, I would hope the reshuffling
+    would also have little affect on the approximate posterior. The fact that
+    \cite{Huang2011} demonstrate that it does strongly affect the posterior
+    suggests this reshuffling is not only mathematically incorrect, but also is
+    misleading the results.
+
     ADD!!
 }
 
@@ -311,7 +395,7 @@ of the changes we have made.
 \response{
     I agree that the justification of why the identity line should be considered
     ``unbiased'' was too vague and relied entirely on the reference to
-    \cite{Huelsenbeck2004}. I have expanded this section out to be very
+    \cite{Huelsenbeck2004}. I have expanded this section to be very
     explicit what is meant by ``bias'' and why it is desirable for the method
     to produce estimates that fall along the identity line:
     \begin{quote}
@@ -385,12 +469,13 @@ of the changes we have made.
     values close to 0 and 1.
 }
 \response{
-    It's already been done \cite{JeetDiss}.
-    I can cite skyline/skyride plots, species trees, snapp, IM, etc. (all
-    full-likelihood coalescent methods).
-    Bryant et al.: analytical integration of gene trees for biallelic markers
-    under the Kingman coalescent.
-    ADD!!
+    Full-likelihood methods in this domain are not as lofty of a goal as you
+    might think. The likelihood function of the msBayes model is tractable,
+    and, in fact, has already been derived and implemented via reversible-jump
+    MCMC (see \cite{JeetDiss}; albeit, not readily available yet).
+    Also, there are plenty of examples of rich, Kingman-coalescent models
+    implemented in full-likelihood Bayesian frameworks.
+    A small sample includes \cite{Drummond2005,Drummond2008,Drummond2002,Kuhner1995,Hey2007,Hey2010,Bryant2012,Shapiro2011,Vaughan2014,Heled2010,Lemey2009,Lemey2010,Pybus2012,Baele2012,Minin2008beast,Bloomquist2010}.
 }
 
 \bibliographystyle{../../bib/bmc-mathphys.bst}
