@@ -859,26 +859,31 @@ Rather, the summary statistics are re-ordered by descending values of average
 pairwise differences between the descendant populations
 ($\pi_b$) \cite{NeiLi1979,Huang2011}.
 \change{
-Thus, the summary statistics being compared when calculating the Euclidean
+As a result, the summary statistics being compared when calculating the Euclidean
 distance between the observed data and each simulation are often from sequence
-alignments of \emph{different} taxon pairs and loci.
-In other words, the compared statistics are often calulated from datasets
-simulated with \emph{different} numbers and length of sequences, and
-potentially different numbers of loci, and different fixed \hky model
-parameters (\hkyModel{}{}) and mutation-rate (\mutationRateScalarConstant{}{})
-and ploidy (\ploidyScalar{}{}) scaling parameters.}
+alignments of \emph{different} taxon pairs and/or loci.
+More specifically, the summary statistics calculated from the observed sequence
+alignments are being compared to summary statistics calulated from datasets
+simulated with potentially \emph{different} 
+(1) numbers of sequences,
+(2) length of sequences,
+(3) numbers of loci,
+(4) \hky model parameters (\hkyModel{}{}),
+(5) mutation-rate multipliers (\mutationRateScalarConstant{}{}),
+and
+(6) ploidy multipliers (\ploidyScalar{}{}).}
 
 This has the advantage of reducing the sample space of the number of
 divergence models \divTimeIndexVector, but there are at least two disadvantages.
 First, additional information in the data is lost.
 By discarding the identity of the \npairs{} pairs of populations, all
-pair-specific information about the amount of data (e.g., the number gene
+pair-specific information about the amount of data (e.g., the number of gene
 copies collected from each of the populations [\popSampleSize{1}{} and
 \popSampleSize{2}{}], the number of loci, and the length of the loci), and the
 taxon- and locus-specific parameters (\hkyModel{}{},
 \mutationRateScalarConstant{}{}, \ploidyScalar{}{}, and
 \locusMutationRateScalar{}) is lost.
-Second, the results are more difficult to interpret, because they can be no
+Second, the results are more difficult to interpret, because they can no
 longer be directly associated to the taxa under study.
 
 In the original descriptions of the \msb model \cite{Hickerson2006,Huang2011},
@@ -908,28 +913,57 @@ summary statistics are not \change{exchangeable} because of the taxon- and
 locus-specific parameters \hkyModel{}{}, \mutationRateScalarConstant{}{}, and
 \ploidyScalar{}{}.
 
-Thus, the theoretical basis for this reshuffling is questionable.
-It may be justifiable as an additional coarsening of the data,
-by removing the information associated with the identity of the
-population pairs.
-However, I do not provide a formal proof that this re-ordering of the pairs
-does not introduce bias.
-One can imagine situations in which the sampling intensity (i.e., the
-number of gene copies, loci, and locus length) is highly skewed across
-pairs and/or there is large heterogeneity in mutational processes
-(e.g., \hkyModel{}{}, \mutationRateScalarConstant{}{}) among the pairs.
-In such cases, it seems possible that discarding this information could
-cause bias.
-Furthermore, given that (1) part of the motivation for re-ordering by $\pi_b$
-is to minimize Euclidean distances between simulated datasets in which the true
-model has a single divergence event \cite{Huang2011}, and (2) the reordering
-increases the model's tendency to infer a single divergence event
-\cite{Huang2011}, it seems possible that this approach could be biasing the
-method \cite{Oaks2012}.
+\change{
+Thus, whenever the six parameters listed above vary across any of the taxa or
+loci (i.e., nearly all empirical applications), the taxon-specific summary
+statistics \alignmentSS{}{} are not exchangeable.
+Hence, the reshuffling of the summary statistic vectors in not mathematically
+valid.
+The magnitude of the affect of this violaton of exchangeability is currently
+unknown.
+Huang et al.\ \cite{Huang2011} demonstrated that the reordering of the summary
+statistic vectors can greatly increase the method's tendency to infer a single
+divergence event.
+By definition, if the summary statistic vectors were exhangeable, the
+reordering would not change the likelihood or posterior (barring sampling
+error).
+Thus, the results of Huang et al.\ \cite{Huang2011} suggest the
+reordering of the statistics could be introducing a bias.
+% Thus, the theoretical basis for this reshuffling is questionable.
+% It may be justifiable as an additional coarsening of the data,
+% by removing the information associated with the identity of the
+% population pairs.
+% However, I do not provide a formal proof that this re-ordering of the pairs
+% does not introduce bias.
+% One can imagine situations in which the sampling intensity (i.e., the
+% number of gene copies, loci, and locus length) is highly skewed across
+% pairs and/or there is large heterogeneity in mutational processes
+% (e.g., \hkyModel{}{}, \mutationRateScalarConstant{}{}) among the pairs.
+% In such cases, it seems possible that discarding this information could
+% cause bias.
+% Furthermore, given that (1) part of the motivation for re-ordering by $\pi_b$
+% is to minimize Euclidean distances between simulated datasets in which the true
+% model has a single divergence event \cite{Huang2011}, and (2) the reordering
+% increases the model's tendency to infer a single divergence event
+% \cite{Huang2011}, it seems possible that this approach could be biasing the
+% method \cite{Oaks2012}.
+}
 
 For comparability with \msb, I maintain the re-ordering of taxon-specific
 summary statistics by $\pi_b$.  However, I also allow the order to be
 maintained, and ordered divergence models to be estimated.
+\change{
+Also, in all of the simulation-based analyses described below, the
+summary statistic vectors \emph{are} exchangeable, because all of the
+simulated datasets have the same 
+(1) numbers of sequences,
+(2) length of sequences,
+(3) numbers of loci,
+(4) \hky model parameters (\hkyModel{}{}),
+(5) mutation-rate multipliers (\mutationRateScalarConstant{}{}),
+and
+(6) ploidy multipliers (\ploidyScalar{}{}).}
+
 
 \subsubsection{Obtaining an approximate posterior from the prior samples}
 I use a rejection algorithm to retain an approximate posterior sample of
