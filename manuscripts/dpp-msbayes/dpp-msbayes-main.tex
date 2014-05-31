@@ -31,10 +31,10 @@ inferring the probability of competing divergence histories while integrating
 over uncertainty in mutational and ancestral processes via models of nucleotide
 substitution and lineage coalescence.
 \change{
-More specifically, the sample space of such a model-choice procedure could
-include all models ranging from a single divergence-time parameter (i.e.,
-simultaneous divergence of all co-distributed taxa) to the fully generalized
-model in which each taxon diverged at a unique time.}
+The sample space of such a model-choice procedure would include all models
+ranging from a single divergence-time parameter (i.e., simultaneous divergence
+of all co-distributed taxa) to the fully generalized model in which each taxon
+diverged at a unique time.}
 
 The software package \msb implements such an approach in an
 approximate-Bayesian model-choice framework \cite{Hickerson2006,Huang2011}.
@@ -61,16 +61,16 @@ the posterior probability of each model.
 \change{
 \msb has been used to address biogeographical questions in variety of empirical
 systems. Some examples include
-(1) whether rising of the Isthmus of Panama caused co-divergence across species
-of echinoids co-distributed across the Pacific and Atlantic sides of the ishmus
-\cite{Hickerson2006}, 
+(1) whether the rise of the Isthmus of Panama caused co-divergence among
+species of echinoids co-distributed across the Pacific and Atlantic sides of
+the isthmus \cite{Hickerson2006}, 
 (2) if an historical seaway across the Baja Peninsula caused co-divergence
 across species of squamates and mammals co-distributed both north and south of
 the putative seaway \cite{Leache2007},
 (3) if species of gall-wasps and their associated parasitoids share divergences
 across putative glacial refugia \cite{Stone2012}, and
 (4) whether repeated coalescence and fragmentation of the oceanic Islands of
-the Philippines during by Pleistocene sea-level fluctuations caused
+the Philippines during Pleistocene sea-level fluctuations caused
 diversification of vertebrate taxa distributed across the islands
 \cite{Oaks2012}.
 Such applications of the method often result in strong posterior support for
@@ -88,13 +88,17 @@ fewer divergence-time parameters \cite{Jeffreys1939,Lindley1957}.
 Given that the marginal likelihood of a model weighted by its prior is what
 determines its posterior probability, this can cause support for models with
 fewer divergence events \cite{Oaks2012,Oaks2014reply}.
-This serves as a ``natural'' penalty for over-parameterization, which is a
-strength of Bayesian model choice.
+% The use of marginal likelihoods to estimat model probabilities provides a
+% ``natural'' penalty for overparameterization, and can be a great strength of
+% the Bayesian approach.
+This is not a critique of Bayesian model choice in general; comparing models by
+their marginal likelihoods provides a ``natural'' penalty for
+overparameterization and can be a great strength of the Bayesian approach.
 However, given the sensitivity of marginal likelihoods to the prior, care is
 needed when selecting prior distributions \cite{Lindley1957}.
-Selecting distributions that are broad or very differently shaped than the
-likelihood density (e.g., a uniform prior for divergence times) can lead to
-small marginal likelihoods of parameter-rich models even if they are correct.
+Selecting distributions that will often place high prior density in large
+regions of parameter space with low likelihood can lead to small marginal
+likelihoods of parameter-rich models even if they are correct.
 }
 
 Furthermore, \msb uses a discrete uniform prior over the number of divergence
@@ -158,7 +162,7 @@ of divergence, and gamma and beta probability distributions in place of uniform
 priors on many of the model's parameters.
 Using simulations, I show that the new implementation has improved robustness,
 accuracy, and power compared to the original model.
-Also, my results confirm that the improved performance of the new model
+The results confirm that the improved performance of the new model
 is due to a combination of
 (1) more flexible priors on divergence-time and demographic parameters that
 avoid placing high prior density in improbable regions of parameter space, and
@@ -186,7 +190,7 @@ software package \dppmsbayes
 To perform the analyses described below, I used the freely avaliable,
 open-source software package \pymsbayes
 (\href{https://github.com/joaks1/PyMsBayes}{\url{https://github.com/joaks1/PyMsBayes}}),
-which is a Python API that provides a multi-processing interface to \msb and
+which provides a multi-processing interface to \msb and
 \dppmsbayes.
 I performed the work described below following the principles of
 Open Notebook Science.
@@ -306,7 +310,7 @@ Optionally, for each population pair, the means of the summary statistics can
 be calculated across the \nloci{} loci, and the vector can be further reduced
 to $\ssVectorObs = (\alignmentSSObs{1}{}, \ldots,
 \alignmentSSObs{\npairs{}}{})$.
-Either way, with \ssVectorObs in hand, we can estimate the approximate joint
+With \ssVectorObs in hand, we can estimate the approximate joint
 posterior distribution}
 {\small
 \begin{equation}
@@ -335,10 +339,16 @@ I describe the full model in detail before delving into the numerical
 method of estimating the approximate model.
 \end{linenomath}
 
-\subsubsection{Likelihood terms of Equation \ref{eq:fullModelCompact}}
+% \subsubsection{Likelihood terms of Equation \ref{eq:fullModelCompact}}
+\change{
+\subsubsection{Likelihood and gene-tree prior terms of Equation \ref{eq:fullModelCompact}}
+}
 \begin{linenomath}
-The likelihood terms of Equation \ref{eq:fullModelCompact} can
-be expanded out as a product over population pairs and loci
+% The likelihood terms of Equation \ref{eq:fullModelCompact} can
+\change{
+The likelihood and gene-tree prior terms of Equation \ref{eq:fullModelCompact}
+}
+can be expanded out as a product over population pairs and loci
 \begin{equation}
     p(\alignmentVector \given \geneTreeVector, \hkyModelVector)
     p(\geneTreeVector \given \divTimeMapVector, \demographicParamVector,
@@ -402,7 +412,10 @@ Following divergence, the descendant populations of pair $i$ exchange migrants a
 \end{linenomath}
 
 
-\subsubsection{Prior terms of Equation \ref{eq:fullModelCompact}}
+% \subsubsection{Prior terms of Equation \ref{eq:fullModelCompact}}
+\change{
+\subsubsection{Additional prior terms of Equation \ref{eq:fullModelCompact}}
+}
 \begin{linenomath}
 The term $p(\locusRateHetShapeParameter)$ is the prior density
 function for the shape parameter of the gamma-distributed prior on
@@ -445,7 +458,8 @@ pairs of populations
     p(\migrationRate{i}).
     \label{eq:demographicPrior}
 \end{equation}
-The priors for the demographic parameters are:
+\change{
+The priors for the demographic parameters are
 $\ancestralTheta{} \sim Gamma(\gammaShape{\ancestralTheta{}},
 \gammaScale{\ancestralTheta{}})$,
 $\descendantTheta{1}{} \sim Gamma(\gammaShape{\descendantTheta{}{}},
@@ -459,19 +473,18 @@ $\bottleScalar{2}{} \sim Beta(\betaA{\bottleScalar{}{}},
 $\bottleTime{} \sim U(0, 1)$,
 and
 $\migrationRate{} \sim Gamma(\gammaShape{\migrationRate{}},
-\gammaScale{\migrationRate{}})$.
-\change{
+\gammaScale{\migrationRate{}})$,
+where the hyper-parameters of each prior distribution can be specified by
+the investigator.
 By default, \ancestralTheta{}, \descendantTheta{1}{}, and \descendantTheta{2}{}
 share the same prior (i.e., $\gammaShape{\ancestralTheta{}} =
 \gammaShape{\descendantTheta{}{}}$ and $\gammaScale{\ancestralTheta{}} =
 \gammaScale{\descendantTheta{}{}}$), but a separate gamma-distributed prior can
 be assigned to \ancestralTheta{}.
 Also, the \bottleScalar{1}{}, \bottleScalar{2}{}, and \migrationRate{}
-parameters are optional (i.e., it can be assumed that there is no migration
-between populations of each pair, and that the population size of each
-descendant population has been constant through time).
-For the parameters included in the model, the hyper-parameters of the prior
-distributions are specified by the investigator.}
+parameters are optional (i.e., the investigator can assume that there has been
+no migration between populations of each pair and/or the population size of
+each descendant population has been constant through time).}
 \end{linenomath}
 
 \subsubsection{Priors on divergence models}
@@ -787,7 +800,8 @@ of the prior on descendant-population size.
 As described by Oaks et al.\ \cite{Oaks2012}, in \msb, \myTheta{C} is half of
 the upper limit of the continuous uniform prior on the mean of the descendant
 population sizes.
-This is only equal to the expectation of the prior if the lower limit is zero.
+This is only equal to the expectation of the prior if the lower limit of the
+prior is zero.
 
 \subsection{ABC estimation of the posterior of the model}
 \subsubsection{Sampling from the prior}
@@ -820,21 +834,21 @@ dataset;
 and
 (4) calculating population genetic summary statistics
 $\ssVector{} = (\alignmentSS{1}{1}, \ldots, \alignmentSS{\npairs{}}{\nloci{\npairs{}}})$
-from the simulated sequence alignments;
+from the simulated sequence alignments.
 Optionally, an additional step can be performed to reduce the summary
 statistics to the means across loci for each population pair to get
 $\ssVector{} = (\alignmentSS{1}{}, \ldots, \alignmentSS{\npairs{}}{})$.
 Either way, \ssVector{} contains the same summary statistics as those estimated
 from the observed data \ssVectorObs.
 }
-After repeating this procedure \numPriorSamples times, I obtain a random
+After repeating this procedure \numPriorSamples times, we have a random
 sample of parameter vectors
 $\paramSampleMatrix = (\paramSampleVector{1}, \ldots, \paramSampleVector{\numPriorSamples})$
 from the model prior and their associated vectors of summary statistics
 $\ssMatrix = (\ssVector{1}, \ldots, \ssVector{\numPriorSamples})$.
 
-For all of the analyses below, I use four summary statistics for each of
-the pairs of populations:
+For all of the analyses below, I use four summary statistics for each pair of
+populations:
 $\pi$ \cite{Tajima1983}, $\theta_W$ \cite{Watterson1975}, $\pi_{net}$
 \cite{Takahata1985}, and $SD(\pi-\theta_W)$ \cite{Tajima1989}.
 Furthermore, in addition to model parameters, each sample \hpvector{}
@@ -852,6 +866,32 @@ statistic rather than a parameter of the model.
 Lastly, I use \divTimeNum in place of \numt{}, because the number of
 divergence-time parameters is no longer a parameter in the new implementation.
 
+
+\subsubsection{Obtaining an approximate posterior from the prior samples}
+I use a rejection algorithm to retain an approximate posterior sample of
+\paramSampleVector{} from the prior sample
+$\paramSampleMatrix = (\paramSampleVector{1}, \ldots, \paramSampleVector{\numPriorSamples})$.
+First, the observed summary statistics \ssVectorObs, and the summary statistics
+of the prior samples 
+$\ssMatrix = (\ssVector{1}, \ldots, \ssVector{\numPriorSamples})$,
+are standardized using the means and standard deviations of the statistics from
+the prior sample (i.e., the prior mean is subtracted from each statistic, and the
+difference is divided by the prior standard deviation).
+After all statistics are standardized, the Euclidean distance between
+\ssVectorObs and each \ssVector{} within \ssMatrix is calculated.
+The samples that fall within a range of tolerance \tol around \ssVectorObs
+are retained.
+The range of tolerance is determined by specifying the desired number of
+posterior samples to be retained.
+Post-hoc adjustment of the posterior sample can also be performed with a number
+of regression techniques \cite{Beaumont2002,Blum2009,Leuenberger2010}.
+For analyses below, I use the general linear model (GLM) regression adjustment
+\cite{Leuenberger2010} as implemented in \abctoolbox v1.1
+\cite{ABCtoolbox}, which Oaks et al.\ \cite{Oaks2012} showed performs
+very similarly to weighted local-linear regression and multinomial logistic
+regression adjustments \cite{Beaumont2002} for \msb posteriors.
+
+
 \subsubsection{Ordering of taxon-specific summary statistics}
 As alluded to in the model description, \msb does not maintain the order of the
 taxon-specific summary statistics \alignmentSS{}{} within each \ssVector{}.
@@ -859,15 +899,15 @@ Rather, the summary statistics are re-ordered by descending values of average
 pairwise differences between the descendant populations
 ($\pi_b$) \cite{NeiLi1979,Huang2011}.
 \change{
-As a result, the summary statistics being compared when calculating the Euclidean
-distance between the observed data and each simulation are often from sequence
-alignments of \emph{different} taxon pairs and/or loci.
+As a result, the summary statistics being compared when calculating the
+Euclidean distance between the observed data and each simulated dataset often
+represent sequence alignments of \emph{different} taxon pairs and/or loci.
 More specifically, the summary statistics calculated from the observed sequence
-alignments are being compared to summary statistics calulated from datasets
+alignments are being compared to summary statistics calculated from datasets
 simulated with potentially \emph{different} 
-(1) numbers of sequences,
-(2) length of sequences,
-(3) numbers of loci,
+(1) numbers of sequences (\popSampleSize{1}{} and \popSampleSize{2}{}),
+(2) length of alignments,
+(3) numbers of loci (\nloci{}),
 (4) \hky model parameters (\hkyModel{}{}),
 (5) mutation-rate multipliers (\mutationRateScalarConstant{}{}),
 and
@@ -908,27 +948,31 @@ Rather, for variables to be exchangeable their marginal distributions must be
 the same (i.e., they must be identically distributed).
 None of the summary statistics used by \msb, including $\pi_b$, are identically
 distributed across different sample sizes.
-In addition to differences in sample size, the simulated alignments and their
-summary statistics are not \change{exchangeable} because of the taxon- and
-locus-specific parameters \hkyModel{}{}, \mutationRateScalarConstant{}{}, and
-\ploidyScalar{}{}.
-
 \change{
-Thus, whenever the six parameters listed above vary across any of the taxa or
-loci (i.e., nearly all empirical applications), the taxon-specific summary
-statistics \alignmentSS{}{} are not exchangeable.
-Hence, the reshuffling of the summary statistic vectors in not mathematically
+More generally, the simulated alignments and their summary statistics are not
+identically distributed if there is any variation among taxa or loci in the
+(1) numbers of sequences (\popSampleSize{1}{} and \popSampleSize{2}{}),
+(2) length of alignments,
+(3) numbers of loci (\nloci{}),
+(4) \hky model parameters (\hkyModel{}{}),
+(5) mutation-rate multipliers (\mutationRateScalarConstant{}{}),
+or
+(6) ploidy multipliers (\ploidyScalar{}{}).}
+\change{
+Whenever such variation is present (i.e., nearly all empirical applications),
+the taxon-specific summary statistics \alignmentSS{}{} are not exchangeable,
+and the reshuffling of the summary statistic vectors in not mathematically
 valid.
-The magnitude of the affect of this violaton of exchangeability is currently
-unknown.
+
+The magnitude of the affect of this violation of exchangeability is not known.
 Huang et al.\ \cite{Huang2011} demonstrated that the reordering of the summary
 statistic vectors can greatly increase the method's tendency to infer a single
 divergence event.
-By definition, if the summary statistic vectors were exhangeable, the
+By definition, if the summary statistic vectors were exchangeable, the
 reordering would not change the likelihood or posterior (barring sampling
 error).
-Thus, the results of Huang et al.\ \cite{Huang2011} suggest the
-reordering of the statistics could be introducing a bias.
+Thus, the results of Huang et al.\ \cite{Huang2011} suggest the reordering of
+the statistics can introduce bias.
 % Thus, the theoretical basis for this reshuffling is questionable.
 % It may be justifiable as an additional coarsening of the data,
 % by removing the information associated with the identity of the
@@ -949,45 +993,20 @@ reordering of the statistics could be introducing a bias.
 % method \cite{Oaks2012}.
 }
 
-For comparability with \msb, I maintain the re-ordering of taxon-specific
-summary statistics by $\pi_b$.  However, I also allow the order to be
-maintained, and ordered divergence models to be estimated.
 \change{
-Also, in all of the simulation-based analyses described below, the
-summary statistic vectors \emph{are} exchangeable, because all of the
-simulated datasets have the same 
+For comparability with \msb, I maintain the option for re-ordering
+taxon-specific summary statistics by $\pi_b$.
+However, by default, the order is preserved, and ordered divergence models are
+estimated.
+In all of the simulation-based analyses described below, the summary statistic
+vectors \emph{are} exchangeable, because the simulated datasets have the same 
 (1) numbers of sequences,
 (2) length of sequences,
 (3) numbers of loci,
-(4) \hky model parameters (\hkyModel{}{}),
-(5) mutation-rate multipliers (\mutationRateScalarConstant{}{}),
+(4) \hky model parameters,
+(5) mutation-rate multipliers,
 and
-(6) ploidy multipliers (\ploidyScalar{}{}).}
-
-
-\subsubsection{Obtaining an approximate posterior from the prior samples}
-I use a rejection algorithm to retain an approximate posterior sample of
-\paramSampleVector{} from the prior sample
-$\paramSampleMatrix = (\paramSampleVector{1}, \ldots, \paramSampleVector{\numPriorSamples})$.
-First, the observed summary statistics \ssVectorObs, and the summary statistics
-of the prior samples 
-$\ssMatrix = (\ssVector{1}, \ldots, \ssVector{\numPriorSamples})$,
-are standardized using the means and standard deviations of the statistics from
-the prior sample (i.e., the prior mean is subtracted from each statistic, and the
-difference is divided by the prior standard deviation).
-After all statistics are standardized, the Euclidean distance between
-\ssVectorObs and each \ssVector{} within \ssMatrix is calculated.
-The samples that fall within a range of tolerance \tol around \ssVectorObs
-are retained.
-The range of tolerance is determined by specifying the desired number of
-posterior samples to be retained.
-Post-hoc adjustment of the posterior sample can also be performed with a number
-of regression techniques \cite{Beaumont2002,Blum2009,Leuenberger2010}.
-For my analyses, I use the general linear model (GLM) regression adjustment
-\cite{Leuenberger2010} as implemented in \abctoolbox
-\cite[v1.1;]{ABCtoolbox}, which Oaks et al.\ \cite{Oaks2012} showed performs
-very similarly to weighted local-linear regression and multinomial logistic
-regression adjustments \cite{Beaumont2002} for \msb posteriors.
+(6) ploidy multipliers.}
 
 
 \subsection{Assessing model-choice behavior and robustness}
@@ -1059,23 +1078,22 @@ replicates in that bin with a true value consistent with one divergence
 event \cite{Huelsenbeck2004,Oaks2012}.
 \change{
 Ideally, the estimated posterior probability of the one-divergence model
-should estimate the probability that the one-divergence model is correct
-given the data.
+should estimate the probability that the one-divergence model is correct.
 For large numbers of simulation replicates, the proportion of the replicates in
 each bin for which the one-divergence model is true will approximate the
-probability that the one-divergence model is correct.
-Thus, if the method has the desirable behavior such that the
-estimated posterior probability of the one-divergence model is an unbiased
-estimate of the probability that the one-divergence model is correct given the
-data, the points should fall near the identity line.
+probability that the one-divergence model is the correct model.
+Thus, if the method has the desirable behavior such that the estimated
+posterior probability of the one-divergence model is an unbiased estimate of
+the probability that the one-divergence model is correct, the points should
+fall near the identity line.
 For example, let us say the method estimates a posterior probability of 0.90
 for 1000 simulated datasets.
 If the method is accurately estimating the probability that the one-divergence
 model is correct given the data, then the one-divergence model should be the
 true model in approximately 900 of the 1000 replicates.
 Any trend away from the identity line indicates the method is biased in the
-sense that it is not correctly estimating the probability that the
-one-divergence model is correct given the data.
+sense that it is not accurately estimating the probability that the
+one-divergence model is the correct model.
 
 I constructed these plots using two criteria for the one-divergence model:
 }
