@@ -59,8 +59,8 @@ $1,2,\ldots,\npairs{}$ divergence-time parameters), and, in so doing, estimates
 the posterior probability of each model.
 
 \change{
-\msb has been used to address biogeographical questions in variety of empirical
-systems. Some examples include
+\msb has been used to address biogeographical questions in a variety of
+empirical systems. Some examples include
 (1) whether the rise of the Isthmus of Panama caused co-divergence among
 species of echinoids co-distributed across the Pacific and Atlantic sides of
 the isthmus \cite{Hickerson2006}, 
@@ -69,12 +69,11 @@ across species of squamates and mammals co-distributed both north and south of
 the putative seaway \cite{Leache2007},
 (3) if species of gall-wasps and their associated parasitoids share divergences
 across putative glacial refugia \cite{Stone2012}, and
-(4) whether repeated coalescence and fragmentation of the oceanic Islands of
-the Philippines during Pleistocene sea-level fluctuations caused
-diversification of vertebrate taxa distributed across the islands
-\cite{Oaks2012}.
+(4) whether repeated fragmentation of the oceanic Islands of the Philippines
+during Pleistocene sea-level fluctuations caused diversification of vertebrate
+taxa distributed across the islands \cite{Oaks2012}.
 Such applications of the method often result in strong posterior support for
-co-divergence among some of the taxa investigated (e.g.,
+co-divergence among all or subsets of the taxa investigated (e.g.,
 \cite{Barber2010,Carnaval2009,Chan2011,Hickerson2006,Leache2007,Plouviez2009,Stone2012,Voje2009,Oaks2012}).
 }
 
@@ -93,7 +92,7 @@ fewer divergence events \cite{Oaks2012,Oaks2014reply}.
 % the Bayesian approach.
 This is not a critique of Bayesian model choice in general; comparing models by
 their marginal likelihoods provides a ``natural'' penalty for
-overparameterization and can be a great strength of the Bayesian approach.
+over-parameterization and can be a great strength of the Bayesian approach.
 However, given the sensitivity of marginal likelihoods to the prior, care is
 needed when selecting prior distributions \cite{Lindley1957}.
 Selecting distributions that will often place high prior density in large
@@ -103,7 +102,7 @@ likelihoods of parameter-rich models even if they are correct.
 
 Furthermore, \msb uses a discrete uniform prior over the number of divergence
 events $1,2,\ldots,\npairs{}$.
-Because there are many more possible assignments of populations pairs to
+Because there are many more possible assignments of population pairs to
 intermediate numbers of divergence events, this imposes a prior on divergence
 models that puts most of the prior mass on models with either very few or very
 many divergence-time parameters (see Figure 5 of \cite{Oaks2012}; for brevity
@@ -121,7 +120,7 @@ timescales.}
 They suggested this behavior was due to the combination of uniform priors on
 parameters causing small marginal likelihoods of richer models and the
 U-shaped prior on divergence models.
-Hickerson et al.\ \cite{Hickerson2013} suggested the problem is caused by
+Hickerson et al.\ \cite{Hickerson2013} suggested the problem was caused by
 sampling error, and proposed as a solution an approximate-Bayesian model
 averaging approach that samples over empirically informed uniform priors.
 However, Oaks et al.\ \cite{Oaks2014reply} evaluated the approach proposed by
@@ -458,7 +457,6 @@ pairs of populations
     p(\migrationRate{i}).
     \label{eq:demographicPrior}
 \end{equation}
-\change{
 The priors for the demographic parameters are
 $\ancestralTheta{} \sim Gamma(\gammaShape{\ancestralTheta{}},
 \gammaScale{\ancestralTheta{}})$,
@@ -474,6 +472,7 @@ $\bottleTime{} \sim U(0, 1)$,
 and
 $\migrationRate{} \sim Gamma(\gammaShape{\migrationRate{}},
 \gammaScale{\migrationRate{}})$,
+\change{
 where the hyper-parameters of each prior distribution can be specified by
 the investigator.
 By default, \ancestralTheta{}, \descendantTheta{1}{}, and \descendantTheta{2}{}
@@ -898,10 +897,27 @@ taxon-specific summary statistics \alignmentSS{}{} within each \ssVector{}.
 Rather, the summary statistics are re-ordered by descending values of average
 pairwise differences between the descendant populations
 ($\pi_b$) \cite{NeiLi1979,Huang2011}.
+This has the advantage of reducing the sample space of possible divergence
+models \divTimeIndexVector, but there are at least two disadvantages.
+First, additional information in the data is lost.
+By discarding the identity of the \npairs{} pairs of populations, all
+pair-specific information about the amount of data (e.g., the number of gene
+copies collected from each of the populations [\popSampleSize{1}{} and
+\popSampleSize{2}{}], the number of loci, and the length of the loci), and the
+taxon- and locus-specific parameters (\hkyModel{}{},
+\mutationRateScalarConstant{}{}, \ploidyScalar{}{}, and
+\locusMutationRateScalar{}) is lost.
 \change{
-As a result, the summary statistics being compared when calculating the
-Euclidean distance between the observed data and each simulated dataset often
-represent sequence alignments of \emph{different} taxon pairs and/or loci.
+Second, the results are more difficult to interpret, because divergence models
+and parameter estimates cannot be directly associated to the taxa under study.
+}
+
+\change{
+The re-ordering of the summary statistic vectors also has an important
+implication for the ABC algorithm.
+When calculating the Euclidean distance between the observed data and each
+simulated dataset, the summary statistics being compared often represent
+sequence alignments of \emph{different} taxon pairs and/or loci.
 More specifically, the summary statistics calculated from the observed sequence
 alignments are being compared to summary statistics calculated from datasets
 simulated with potentially \emph{different} 
@@ -913,20 +929,7 @@ simulated with potentially \emph{different}
 and
 (6) ploidy multipliers (\ploidyScalar{}{}).}
 
-This has the advantage of reducing the sample space of the number of
-divergence models \divTimeIndexVector, but there are at least two disadvantages.
-First, additional information in the data is lost.
-By discarding the identity of the \npairs{} pairs of populations, all
-pair-specific information about the amount of data (e.g., the number of gene
-copies collected from each of the populations [\popSampleSize{1}{} and
-\popSampleSize{2}{}], the number of loci, and the length of the loci), and the
-taxon- and locus-specific parameters (\hkyModel{}{},
-\mutationRateScalarConstant{}{}, \ploidyScalar{}{}, and
-\locusMutationRateScalar{}) is lost.
-Second, the results are more difficult to interpret, because they can no
-longer be directly associated to the taxa under study.
-
-In the original descriptions of the \msb model \cite{Hickerson2006,Huang2011},
+In the original descriptions of the \msb method \cite{Hickerson2006,Huang2011},
 this re-ordering is justified by the fact that the expected value of $\pi_b$ is
 unrelated to sample size \popSampleSize{1}{} and \popSampleSize{2}{} and thus
 exchangeable among pairs.
@@ -941,27 +944,23 @@ However, the expectations for statistics that estimate gross diversity (e.g.,
 $\pi$ and $\theta_W$) are not independent of sample size for structured
 populations (e.g., the divergent pairs of populations modeled by \msb), and
 other statistics are not independent of sample size in general (e.g.,
-$SD(\pi-\theta_W)$).}
+$SD(\pi-\theta_W)$).
 Second, and more importantly, having the same expectation does not ensure
 random variables are exchangeable.
 Rather, for variables to be exchangeable their marginal distributions must be
 the same (i.e., they must be identically distributed).
 None of the summary statistics used by \msb, including $\pi_b$, are identically
-distributed across different sample sizes.
-\change{
-More generally, the simulated alignments and their summary statistics are not
-identically distributed if there is any variation among taxa or loci in the
+distributed when there is any variation among taxa or loci in the
 (1) numbers of sequences (\popSampleSize{1}{} and \popSampleSize{2}{}),
 (2) length of alignments,
 (3) numbers of loci (\nloci{}),
 (4) \hky model parameters (\hkyModel{}{}),
 (5) mutation-rate multipliers (\mutationRateScalarConstant{}{}),
 or
-(6) ploidy multipliers (\ploidyScalar{}{}).}
-\change{
+(6) ploidy multipliers (\ploidyScalar{}{}).
 Whenever such variation is present (i.e., nearly all empirical applications),
 the taxon-specific summary statistics \alignmentSS{}{} are not exchangeable,
-and the reshuffling of the summary statistic vectors in not mathematically
+and the reshuffling of the summary statistic vectors is not mathematically
 valid.
 
 The magnitude of the affect of this violation of exchangeability is not known.
@@ -972,7 +971,7 @@ By definition, if the summary statistic vectors were exchangeable, the
 reordering would not change the likelihood or posterior (barring sampling
 error).
 Thus, the results of Huang et al.\ \cite{Huang2011} suggest the reordering of
-the statistics can introduce bias.
+the statistics is potentially introducing sizeable error to the analysis.
 % Thus, the theoretical basis for this reshuffling is questionable.
 % It may be justifiable as an additional coarsening of the data,
 % by removing the information associated with the identity of the
@@ -1087,7 +1086,7 @@ posterior probability of the one-divergence model is an unbiased estimate of
 the probability that the one-divergence model is correct, the points should
 fall near the identity line.
 For example, let us say the method estimates a posterior probability of 0.90
-for 1000 simulated datasets.
+for 1000 datasets simulated from the prior.
 If the method is accurately estimating the probability that the one-divergence
 model is correct given the data, then the one-divergence model should be the
 true model in approximately 900 of the 1000 replicates.
@@ -1340,7 +1339,7 @@ one-divergence model whenever there are violations of the model.
 
 
 \subsection{Validation analyses: Ordered divergence models}
-The results show that the method performs similarily when sampling over ordered
+The results show that the method performs similarly when sampling over ordered
 models of divergence
 (Figures S\ref{figValidationAccuracyDPPOrderedDPPOrdered} \&
 S\ref{figValidationModelChoiceDPPOrderedDPPOrdered}).
@@ -1348,13 +1347,11 @@ This suggests that the method is not adversely affected by the increase
 in the number of possible discrete models (from 22 unordered to 4140 ordered
 models) when there are eight pairs of populations.
 \change{
-This is encouraging, because, as discussed above, the sorting of the summary
-statistics calculated from sequence alignments is not valid for empirical
-datasets in which there is variation in the number of individuals sampled per
-population, generation times across taxa, nucleotide substitution parameters,
-or the number, length, mutation rate, or ploidy of the loci sampled.
-Thus, this sorting should not be performed for any empirical application
-of the method.}
+This is encouraging, because, as discussed above, estimating unordered models
+of divergence by shuffling the summary statistic vectors calculated from the
+sequence alignments is not valid for most empirical datasets.
+Given these results, estimation of unordered divergence models should be
+avoided for empirical applications of the method.}
 
 \subsection{Power analyses: Estimation accuracy}
 All of the models I evaluated (Table \ref{tabPriors}) struggle to estimate the
@@ -1564,9 +1561,9 @@ across all taxa
 \change{
 When more appropriate priors are used for divergence-time and demographic
 parameters, and either a Dirichlet-process or uniform prior applied across
-divergence models, the model is less sensitive to violations, and, when they do
-cause bias, the method is conservative and tends to underestimate the
-probability of models with temporally clustered divergences
+divergence models, the model is less sensitive to violations, and, when
+violations do cause bias, the method is conservative and tends to underestimate
+the probability of models with temporally clustered divergences
 (Figure~\ref{figValidationModelChoicePsi} \&
 \ref{figValidationModelChoiceOmega}).}
 
@@ -1670,14 +1667,20 @@ validation of Bayesian model choice when the full data are replaced by summary
 statistics that are insufficient for discriminating across models under
 comparison \cite{Robert2011}, which is certainly the case here.
 Robert et al.\ \cite{Robert2011} demonstrated that ABC estimates of model
-posterior probabilities can be biased when such across-model insufficient
-statistics are used \cite{Robert2011}.
+posterior probabilities can be inaccurate when such across-model insufficient
+statistics are used.
+
+Given all of these caveats, I encourage investigators to view this method as a
+means of exploring their data for general temporal patterns of divergences
+across taxa, rather than a rigorous means of evaluating hypotheses.
 As recommended by Oaks et al.\ \cite{Oaks2012}, any results from the method
-should be accompanied by assessments of prior sensitivity and power.
-Until full-likelihood methods are available to assess the accuracy of ABC
-estimates of divergence-model posterior probabilities, I encourage
-investigators to view this method as a means of exploring their data rather
-than a rigorous means of evaluating hypotheses.}
+should be accompanied by
+(1) analyses under a variety of priors to assess the assumptions underlying
+model inference and the prior sensitivity of the results, and
+(2) simulation-based power analyses to provide insight into the temporal
+resolution of the method.
+Both approaches are important to help guide the interpretation of results.
+}
 
 Given the difficulty of this estimation problem, I anticipate that
 full-likelihood methods that can leverage all of the information present in the
@@ -1693,8 +1696,10 @@ the prior under the simple ABC rejection approach is inefficient and
 computationally nontrivial.
 
 \section{Conclusions}
-I introduced a new approximate-Bayesian model-choice method for estimating
-shared divergence histories across taxa using DNA sequence data.
+\change{
+I introduced a new model for estimating shared divergence histories across taxa
+from DNA sequence data within an approximate-Bayesian model-choice framework.
+}
 The new method, \dppmsbayes, takes a non-parametric approach to the problem by
 using a Dirichlet-process prior on the temporal distribution of divergences
 across taxa.

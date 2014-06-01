@@ -28,9 +28,9 @@
 % \raggedright
 \setlength{\parindent}{0in}
 
-We greatly appreciate the helpful comments of the editors and reviewers. In
-this document, we provide responses to these comments, including descriptions
-of the changes we have made.
+I greatly appreciate the helpful comments of the editor and reviewers. In this
+document, I provide responses to these comments, including descriptions of the
+changes I have made.
 
 \section{Editor's Comments}
 \setcounter{commentCounter}{0}
@@ -42,7 +42,9 @@ of the changes we have made.
     requests are attended to then the ms will be improved.
 }
 \response{
-    ADD!!
+    Reviewer 2's comments were very helpful, and have helped to improve the
+    clarity of the manuscript. Below, I address each of Reviewer 2's concerns
+    along with the corresponding changes I have made in light of the comments.
 }
 
 \revcomment{
@@ -56,15 +58,18 @@ of the changes we have made.
     comments on that.)
 }
 \response{
-    ADD!!
+    I agree that there was room for misunderstanding given that the context of
+    the statements were not made clear. Please see the below for the specific
+    edits I have made in response to this helpful comment.
 }
 
 \revcomment{
     I would like to ask that in replying to the requests for revision that a
-    point-by-point be made to make it easy for us to see what you have done."
+    point-by-point be made to make it easy for us to see what you have done.
 }
 \response{
-    ADD!!
+    Please see below for my point-by-point revisions. Also, I am attaching a
+    PDF of the manuscript with all of the revisions highlighted in color.
 }
 
 
@@ -77,15 +82,14 @@ of the changes we have made.
 }
 \response{
     I have added the following sentence to this paragraph that provides a
-    specific possibility for the model sample space and, thanks to Reviewer 1's
+    clearer description of the model sample space and, thanks to Reviewer 1's
     suggestion, provides a smoother transition into the description of the \msb
     model in the following paragraph:
     \begin{quote}
-        More specifically, the sample space of such a model-choice procedure
-        could include all models ranging from a single divergence-time
-        parameter (i.e., simultaneous divergence of all co-distributed taxa) to
-        the fully generalized model in which each taxon diverged at a unique
-        time.
+        The sample space of such a model-choice procedure would include all
+        models ranging from a single divergence-time parameter (i.e.,
+        simultaneous divergence of all co-distributed taxa) to the fully
+        generalized model in which each taxon diverged at a unique time.
     \end{quote}
 }
 
@@ -119,21 +123,21 @@ of the changes we have made.
     familiarize readers with how \msb has been applied, and the general results
     of such applications.
     \begin{quote}
-        \msb has been used to address biogeographical questions in variety of
-        empirical systems. Some examples include (1) whether rising of the
-        Isthmus of Panama caused co-divergence across species of echinoids
-        co-distributed across the Pacific and Atlantic sides of the ishmus
+        \msb has been used to address biogeographical questions in a variety of
+        empirical systems. Some examples include (1) whether the rise of the
+        Isthmus of Panama caused co-divergence among species of echinoids
+        co-distributed across the Pacific and Atlantic sides of the isthmus
         \cite{Hickerson2006}, (2) if an historical seaway across the Baja
         Peninsula caused co-divergence across species of squamates and mammals
         co-distributed both north and south of the putative seaway
         \cite{Leache2007}, (3) if species of gall-wasps and their associated
         parasitoids share divergences across putative glacial refugia
-        \cite{Stone2012}, and (4) whether repeated coalescence and
-        fragmentation of the oceanic Islands of the Philippines during by
-        Pleistocene sea-level fluctuations caused diversification of vertebrate
-        taxa distributed across the islands \cite{Oaks2012}.  Such applications
-        of the method often result in strong posterior support for
-        co-divergence among some of the taxa investigated (e.g.,
+        \cite{Stone2012}, and (4) whether repeated fragmentation of the oceanic
+        Islands of the Philippines during Pleistocene sea-level fluctuations
+        caused diversification of vertebrate taxa distributed across the
+        islands \cite{Oaks2012}.  Such applications of the method often result
+        in strong posterior support for co-divergence among all or subsets of
+        the taxa investigated (e.g.,
         \cite{Barber2010,Carnaval2009,Chan2011,Hickerson2006,Leache2007,Plouviez2009,Stone2012,Voje2009,Oaks2012}).
     \end{quote}
 }
@@ -179,7 +183,11 @@ of the changes we have made.
 \response{
     I have expanded this section by including the following sentences:
     \begin{quote}
-        ADD!!
+        This is encouraging, because, as discussed above, estimating unordered
+        models of divergence by shuffling the summary statistic vectors
+        calculated from the sequence alignments is not valid for most empirical
+        datasets.  Given these results, estimation of unordered divergence
+        models should be avoided for empirical applications of the method.
     \end{quote}
 }
 
@@ -188,7 +196,23 @@ of the changes we have made.
     approach to phylogeographic analysis?
 }
 \response{
-    ADD!!!
+    This was an important observation by Reviewer 1 that I was listing a lot of
+    potential problems with the new method without providing any advice or
+    guidance on how to navigate such potential pitfalls and how to best use the
+    method. I have added the following paragraph following the discussion of
+    caveats:
+    \begin{quote}
+        Given all of these caveats, I encourage investigators to view this
+        method as a means of exploring their data for general temporal patterns
+        of divergences across taxa, rather than a rigorous means of evaluating
+        hypotheses.  As recommended by Oaks et al.\ \cite{Oaks2012}, any
+        results from the method should be accompanied by (1) analyses under a
+        variety of priors to assess the assumptions underlying model inference
+        and the prior sensitivity of the results, and (2) simulation-based
+        power analyses to provide insight into the temporal resolution of the
+        method.  Both approaches are important to help guide the interpretation
+        of results.
+    \end{quote}
 }
 
 \revcomment{
@@ -209,8 +233,8 @@ of the changes we have made.
         replaced by summary statistics that are insufficient for discriminating
         across models under comparison \cite{Robert2011}, which is certainly
         the case here.  Robert et al.\ \cite{Robert2011} demonstrated that ABC
-        estimates of model posterior probabilities can be biased when such
-        across-model insufficient statistics are used \cite{Robert2011}.
+        estimates of model posterior probabilities can be inaccurate when such
+        across-model insufficient statistics are used.
     \end{quote}
     I think this makes it more clear how the findings of \cite{Robert2011} are
     potentially relevant to the posterior probabilities estimated by
@@ -231,18 +255,20 @@ of the changes we have made.
     sounds most timely, rather than a criticism of the Bayesian foundations.
 }
 \response{
-    Sorry for the confusion here. This statement was not intened as
+    Sorry for the confusion here. This statement was not intended as
     a general criticism of Bayesian foundations. Rather, the intent was to
     highlight why prior choice is very important in Bayesian model choice.
     I have added the following sentences to clarify:
     \begin{quote}
-        This serves as a ``natural'' penalty for over-parameterization, which
-        is a strength of Bayesian model choice.  However, given the sensitivity
-        of marginal likelihoods to the prior, care is needed when selecting
-        prior distributions \cite{Lindley1957}.  Selecting distributions that
-        are broad or very differently shaped than the likelihood density (e.g.,
-        a uniform prior for divergence times) can lead to small marginal
-        likelihoods of parameter-rich models even if they are correct.
+        This is not a critique of Bayesian model choice in general; comparing
+        models by their marginal likelihoods provides a ``natural'' penalty for
+        over-parameterization and can be a great strength of the Bayesian
+        approach.  However, given the sensitivity of marginal likelihoods to
+        the prior, care is needed when selecting prior distributions
+        \cite{Lindley1957}.  Selecting distributions that will often place high
+        prior density in large regions of parameter space with low likelihood
+        can lead to small marginal likelihoods of parameter-rich models even if
+        they are correct.
     \end{quote}
 }
 
@@ -272,11 +298,11 @@ of the changes we have made.
     beyond the scope of the current study.
 
     I have added some text to various places in the manuscript to clarify that
-    the hyper-parameters are fixed:
+    the hyper-parameters are fixed rather than estimated:
     \begin{quote}
         If the recombination rate \recombinationRate is allowed to be non-zero,
         the prior term $p(\recombinationRate)$ would be added to Equation
-        \ref{eq:fullModelCompact}, and the prior would be $\recombinationRate
+        2, and the prior would be $\recombinationRate
         \sim Gamma(\gammaShape{\recombinationRate},
         \gammaScale{\recombinationRate})$, \change{where
         \gammaShape{\recombinationRate} and \gammaScale{\recombinationRate} are
@@ -284,33 +310,28 @@ of the changes we have made.
     \end{quote}
 
     \begin{quote}
-        The priors for the demographic parameters are:
-        $\ancestralTheta{} \sim Gamma(\gammaShape{\ancestralTheta{}},
-        \gammaScale{\ancestralTheta{}})$,
+        The priors for the demographic parameters are $\ancestralTheta{} \sim
+        Gamma(\gammaShape{\ancestralTheta{}}, \gammaScale{\ancestralTheta{}})$,
         $\descendantTheta{1}{} \sim Gamma(\gammaShape{\descendantTheta{}{}},
-        \gammaScale{\descendantTheta{}{}})$,
-        $\descendantTheta{2}{} \sim Gamma(\gammaShape{\descendantTheta{}{}},
-        \gammaScale{\descendantTheta{}{}})$,
-        $\bottleScalar{1}{} \sim Beta(\betaA{\bottleScalar{}{}},
-        \betaB{\bottleScalar{}{}})$,
+        \gammaScale{\descendantTheta{}{}})$, $\descendantTheta{2}{} \sim
+        Gamma(\gammaShape{\descendantTheta{}{}},
+        \gammaScale{\descendantTheta{}{}})$, $\bottleScalar{1}{} \sim
+        Beta(\betaA{\bottleScalar{}{}}, \betaB{\bottleScalar{}{}})$,
         $\bottleScalar{2}{} \sim Beta(\betaA{\bottleScalar{}{}},
-        \betaB{\bottleScalar{}{}})$,
-        $\bottleTime{} \sim U(0, 1)$,
-        and
+        \betaB{\bottleScalar{}{}})$, $\bottleTime{} \sim U(0, 1)$, and
         $\migrationRate{} \sim Gamma(\gammaShape{\migrationRate{}},
-        \gammaScale{\migrationRate{}})$.
-        \change{
-        By default, \ancestralTheta{}, \descendantTheta{1}{}, and \descendantTheta{2}{}
-        share the same prior (i.e., $\gammaShape{\ancestralTheta{}} =
-        \gammaShape{\descendantTheta{}{}}$ and $\gammaScale{\ancestralTheta{}} =
-        \gammaScale{\descendantTheta{}{}}$), but a separate gamma-distributed prior can
-        be assigned to \ancestralTheta{}.
-        Also, the \bottleScalar{1}{}, \bottleScalar{2}{}, and \migrationRate{}
-        parameters are optional (i.e., it can be assumed that there is no migration
-        between populations of each pair, and that the population size of each
-        descendant population has been constant through time).
-        For the parameters included in the model, the hyper-parameters of the prior
-        distributions are specified by the investigator.}
+        \gammaScale{\migrationRate{}})$, \change{where the hyper-parameters of
+        each prior distribution can be specified by the investigator.  By
+        default, \ancestralTheta{}, \descendantTheta{1}{}, and
+        \descendantTheta{2}{} share the same prior (i.e.,
+        $\gammaShape{\ancestralTheta{}} = \gammaShape{\descendantTheta{}{}}$
+        and $\gammaScale{\ancestralTheta{}} =
+        \gammaScale{\descendantTheta{}{}}$), but a separate gamma-distributed
+        prior can be assigned to \ancestralTheta{}.  Also, the
+        \bottleScalar{1}{}, \bottleScalar{2}{}, and \migrationRate{} parameters
+        are optional (i.e., the investigator can assume that there has been no
+        migration between populations of each pair and/or the population size
+        of each descendant population has been constant through time).}
     \end{quote}
 
     \begin{quote}
@@ -331,7 +352,48 @@ of the changes we have made.
     different form of prior.)
 }
 \response{
-    ADD!!
+    Reviewer 2 is correct that there is no new ABC numerical machinery
+    presented in the manuscript, only a new model. To make this clearer,
+    I have changed the sentence to:
+    \begin{quote}
+        I introduced a new model for estimating shared divergence histories
+        across taxa from DNA sequence data within an approximate-Bayesian
+        model-choice framework.
+    \end{quote}
+    
+    Also, the intuition of Reviewer 2 is correct, I do not use the divergence
+    times to calculate summary statistics. I mention the divergence times in
+    the description of the ABC algorithm with the hope of making it clear that
+    the times are scaled (see Equation (12)) prior to the simulation of the
+    data (from which the summary statistics are calculated). This scaling is
+    simply to go from units proportional to time, to units that are
+    proportional to the expected number of mutations. Because, this is already
+    described earlier in the description of the model, I have removed the
+    re-description of this scaling from the description of the ABC algorithm.
+
+    This section now reads as:
+
+    \begin{quote}
+        Each sample is generated by \change{(1) drawing values of all the
+            model's parameters, which I denote \hpvector{}, from their
+            respective prior distributions; (2) simulating gene trees
+            $\geneTreeVector = (\geneTree{1}{1}, \ldots,
+            \geneTree{\npairs{}}{\nloci{\npairs{}}})$ for each locus of each
+            population pair by drawing coalescent times from a multi-population
+            Kingman-coalescent model given the demographic parameters; (3)
+            simulating sequence alignments $\alignmentVector =
+            (\alignment{1}{1}, \ldots,
+            \alignment{\npairs{}}{\nloci{\npairs{}}})$ along the gene trees
+            under the \hky substitution parameters $\hkyModelVector =
+            (\hkyModel{1}{1}, \ldots, \hkyModel{\npairs{}}{\nloci{\npairs{}}})$
+            that have the same number of sequences and sequence lengths as the
+            observed dataset; and (4) calculating population genetic summary
+            statistics $\ssVector{} = (\alignmentSS{1}{1}, \ldots,
+            \alignmentSS{\npairs{}}{\nloci{\npairs{}}})$ from the simulated
+        sequence alignments.}
+    \end{quote}
+
+    Many thanks to Reviewer 2 for catching this potential source of confusion.
 }
 
 \revcomment{
@@ -347,18 +409,70 @@ of the changes we have made.
 }
 \response{
     Regarding the reshuffling of the summary statistics calculated from
-    different alignments of sequences, those statistics are simply not
-    exchangeable. So, reshuffling them in a manner that is not conistent across
-    all simulations and the observed data (as is done in msBayes) is not
+    different alignments of sequences, those statistics are not exchangeable.
+    So, reshuffling them in a manner that is not consistent across all
+    simulations and the observed data (as is done in msBayes) is not
     mathematically valid. Also, if elements are exchangeable, their order will
-    not affect the likelihood (or the posterior, barring sampling error). Thus,
-    if the goal is to approximate the likelihood, I would hope the reshuffling
-    would also have little affect on the approximate posterior. The fact that
-    \cite{Huang2011} demonstrate that it does strongly affect the posterior
-    suggests this reshuffling is not only mathematically incorrect, but also is
-    misleading the results.
+    not affect the likelihood (or the posterior). Thus, if the goal is to
+    approximate the likelihood, the reshuffling should also have little affect
+    on the approximate posterior. The fact that \cite{Huang2011} demonstrate
+    that it does strongly affect the posterior suggests this reshuffling is not
+    only mathematically incorrect, but also is misleading the results.
 
-    ADD!!
+    I have revised this section to make it more precise and clear:
+    \begin{quote}
+        \change{
+        The re-ordering of the summary statistic vectors also has an important
+        implication for the ABC algorithm.  When calculating the Euclidean
+        distance between the observed data and each simulated dataset, the
+        summary statistics being compared often represent sequence alignments
+        of \emph{different} taxon pairs and/or loci.  More specifically, the
+        summary statistics calculated from the observed sequence alignments are
+        being compared to summary statistics calculated from datasets simulated
+        with potentially \emph{different} (1) numbers of sequences
+        (\popSampleSize{1}{} and \popSampleSize{2}{}), (2) length of
+        alignments, (3) numbers of loci (\nloci{}), (4) \hky model parameters
+        (\hkyModel{}{}), (5) mutation-rate multipliers
+        (\mutationRateScalarConstant{}{}), and (6) ploidy multipliers
+        (\ploidyScalar{}{}).}
+
+        In the original descriptions of the \msb method
+        \cite{Hickerson2006,Huang2011}, this re-ordering is justified by the
+        fact that the expected value of $\pi_b$ is unrelated to sample size
+        \popSampleSize{1}{} and \popSampleSize{2}{} and thus exchangeable among
+        pairs.  \change{ This is incorrect for two reasons.} First, the entire
+        vector of summary statistics \alignmentSS{}{} for each pair of
+        populations is re-ordered across pairs, which implies that the
+        justification for re-ordering $\pi_b$ applies to all the statistics
+        within each \alignmentSS{}{}.  \change{However, the expectations for
+        statistics that estimate gross diversity (e.g., $\pi$ and $\theta_W$)
+        are not independent of sample size for structured populations (e.g.,
+        the divergent pairs of populations modeled by \msb), and other
+        statistics are not independent of sample size in general (e.g.,
+        $SD(\pi-\theta_W)$).  Second, and more importantly, having the same
+        expectation does not ensure random variables are exchangeable.  Rather,
+        for variables to be exchangeable their marginal distributions must be
+        the same (i.e., they must be identically distributed).  None of the
+        summary statistics used by \msb, including $\pi_b$, are identically
+        distributed when there is any variation among taxa or loci in the (1)
+        numbers of sequences (\popSampleSize{1}{} and \popSampleSize{2}{}), (2)
+        length of alignments, (3) numbers of loci (\nloci{}), (4) \hky model
+        parameters (\hkyModel{}{}), (5) mutation-rate multipliers
+        (\mutationRateScalarConstant{}{}), or (6) ploidy multipliers
+        (\ploidyScalar{}{}).  Whenever such variation is present (i.e., nearly
+        all empirical applications), the taxon-specific summary statistics
+        \alignmentSS{}{} are not exchangeable, and the reshuffling of the
+        summary statistic vectors is not mathematically valid.
+
+        The magnitude of the affect of this violation of exchangeability is not
+        known.  Huang et al.\ \cite{Huang2011} demonstrated that the reordering
+        of the summary statistic vectors can greatly increase the method's
+        tendency to infer a single divergence event.  By definition, if the
+        summary statistic vectors were exchangeable, the reordering would not
+        change the likelihood or posterior (barring sampling error).  Thus, the
+        results of Huang et al.\ \cite{Huang2011} suggest the reordering of the
+        statistics is potentially introducing sizeable error to the analysis.}
+    \end{quote}
 }
 
 \revcomment{
@@ -371,17 +485,17 @@ of the changes we have made.
     ``biased''.
 }
 \response{
-    This is a very good point, thank you. I have expanded this section
-    to be clearer about the findings of \cite{Robert2011} and how they
-    relate to the methods discussed in the paper:
+    This is a very good point, thank you. I have expanded this section to be
+    clearer about the findings of \cite{Robert2011} and how they relate to the
+    methods discussed in the paper:
     \begin{quote}
         I also urge caution when using \dppmsbayes due to the lack of
         theoretical validation of Bayesian model choice when the full data are
         replaced by summary statistics that are insufficient for discriminating
         across models under comparison \cite{Robert2011}, which is certainly
         the case here.  Robert et al.\ \cite{Robert2011} demonstrated that ABC
-        estimates of model posterior probabilities can be biased when such
-        across-model insufficient statistics are used \cite{Robert2011}.
+        estimates of model posterior probabilities can be inaccurate when such
+        across-model insufficient statistics are used.
     \end{quote}
 }
 
@@ -393,29 +507,29 @@ of the changes we have made.
     the frequentist coverage.
 }
 \response{
-    I agree that the justification of why the identity line should be considered
-    ``unbiased'' was too vague and relied entirely on the reference to
-    \cite{Huelsenbeck2004}. I have expanded this section to be very
-    explicit what is meant by ``bias'' and why it is desirable for the method
-    to produce estimates that fall along the identity line:
+    I agree that the justification of why the identity line should be
+    considered ``unbiased'' was too vague and relied entirely on the reference
+    to \cite{Huelsenbeck2004}. I have expanded this section to be very explicit
+    what is meant by ``bias'' and why it is desirable for the method to produce
+    estimates that fall along the identity line:
     \begin{quote}
-        Ideally, the estimated posterior probability of the one-divergence model
-        should estimate the probability that the one-divergence model is
-        correct given the data.  For large numbers of simulation replicates,
-        the proportion of the replicates in each bin for which the
-        one-divergence model is true will approximate the probability that the
-        one-divergence model is correct.  Thus, if the method has the desirable
-        behavior such that the estimated posterior probability of
-        the one-divergence model is an unbiased estimate of the probability
-        that the one-divergence model is correct given the data, the points
-        should fall near the identity line.  For example, let us say the method
-        estimates a posterior probability of 0.90 for 1000 simulated datasets.
-        If the method is accurately estimating the probability that the
-        one-divergence model is correct given the data, then the one-divergence
-        model should be the true model in approximately 900 of the 1000
-        replicates.  Any trend away from the identity line indicates the method
-        is biased in the sense that it is not correctly estimating the
-        probability that the one-divergence model is correct given the data.
+        Ideally, the estimated posterior probability of the one-divergence
+        model should estimate the probability that the one-divergence model is
+        correct.  For large numbers of simulation replicates, the proportion of
+        the replicates in each bin for which the one-divergence model is true
+        will approximate the probability that the one-divergence model is the
+        correct model.  Thus, if the method has the desirable behavior such
+        that the estimated posterior probability of the one-divergence model is
+        an unbiased estimate of the probability that the one-divergence model
+        is correct, the points should fall near the identity line.  For
+        example, let us say the method estimates a posterior probability of
+        0.90 for 1000 datasets simulated from the prior.  If the method is
+        accurately estimating the probability that the one-divergence model is
+        correct given the data, then the one-divergence model should be the
+        true model in approximately 900 of the 1000 replicates.  Any trend away
+        from the identity line indicates the method is biased in the sense that
+        it is not accurately estimating the probability that the one-divergence
+        model is the correct model.
     \end{quote}
 }
 
@@ -433,7 +547,7 @@ of the changes we have made.
 \response{
     I agree. However, the goal of the paper is not to demonstrate, for example,
     that gamma probability distributions are generally superior to uniform
-    probability distributions for Bayesian statistics. Nor is the goal to
+    probability distributions for Bayesian model-choice. Nor is the goal to
     solve the subjective nature of prior selection in Bayesian statistics.
     My primary goal was to develop an improved comparative method that
     biogeographers can use to investigate the affect of historical events on
@@ -442,12 +556,12 @@ of the changes we have made.
     I used extensive simulations and biological data to compare, as fairly as
     possible, the new approach to the current state-of-the-art method for this
     inference problem. I agree the new approach has many weaknesses, including
-    the subjective nature of choosing priors when the truth is unknown. However,
-    these weaknesses apply to both \dppmsbayes and \msbayes (and to most
-    empirical applications of Bayesian statistical methods where extensive
-    prior information is lacking). However, the results strongly support
-    the overall conclusion that the primary goal was accomplished, and the
-    new approach out performs \msb under a range of conditions.
+    the subjective nature of choosing priors when the truth is unknown.
+    However, these weaknesses apply to \emph{both} \dppmsbayes and \msb
+    (and to all empirical applications of Bayesian statistical methods where
+    extensive prior information is lacking). However, the results strongly
+    support the overall conclusion that the primary goal was accomplished, and
+    the new approach outperforms \msb under a range of conditions.
 }
 
 \revcomment{
@@ -458,7 +572,7 @@ of the changes we have made.
     (p.21) sounds overly optimistic and rather premature. As to this day, I do
     not know of any significant advance in computing the observed likelihood
     for the population genetics models ABC is currently handling. (The SMC
-    algorithm of Bouchard-Côté, Sankaraman and Jordan 2012 does not apply to
+    algorithm of Bouchard-C\^{o}t\'{e}, Sankaraman and Jordan 2012 does not apply to
     Kingman's coalescent, as far as I can judge.) This is certainly a goal
     worth pursuing and borrowing strength from multiple techniques cannot hurt,
     but it remains so far a lofty goal, still beyond our reach... I thus think
@@ -474,8 +588,11 @@ of the changes we have made.
     and, in fact, has already been derived and implemented via reversible-jump
     MCMC (see \cite{JeetDiss}; albeit, not readily available yet).
     Also, there are plenty of examples of rich, Kingman-coalescent models
-    implemented in full-likelihood Bayesian frameworks.
+    implemented in a full-likelihood Bayesian framework.
     A small sample includes \cite{Drummond2005,Drummond2008,Drummond2002,Kuhner1995,Hey2007,Hey2010,Bryant2012,Shapiro2011,Vaughan2014,Heled2010,Lemey2009,Lemey2010,Pybus2012,Baele2012,Minin2008beast,Bloomquist2010}.
+    Also, the SMC algorithm of \cite{Jordan2012} can be used to estimate
+    phylogenetic trees using an arbitrary prior on trees (e.g., Birth-death
+    process, coalescent, etc.).
 }
 
 \bibliographystyle{../../bib/bmc-mathphys.bst}
