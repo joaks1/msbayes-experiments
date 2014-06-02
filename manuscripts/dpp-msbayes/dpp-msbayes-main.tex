@@ -1535,16 +1535,26 @@ models that sample over unordered (\npModelDPP) and ordered
 The results are similar under both models and, again, yield a large amount of
 uncertainty about the number of divergence events that is similar to the prior
 uncertainty.
+\change{
+The small difference between the results of the \npModelDPP and
+\npModelDPPOrdered models is consistent across multiple analyses, and thus
+could be due to error introduced to the \npModelDPP model by the invalid
+shuffling of the summary statitic vectors.
+}
 Both models estimate a similar set of 10 unordered divergence models with the
 highest posterior probability
 (Figures~S\labelcref{figDivModelsNP,figDivModelsNPOrdered}).
 
-The main advantage of the \npModelDPPOrdered over the \npModelDPP is that the
-identity of the taxa is maintained, and thus a fully marginalized estimate of
-divergence times across the taxa can be obtained
-(Figure~S\ref{figMarginalTimes}).
-Furthermore, the probability of co-divergence among any set of taxa can be
+\change{
+The main advantages of the \npModelDPPOrdered model over the \npModelDPP are
+that
+(1) the incorrect shuffling of the summary statistic vectors is avoided,
+(2) the identity of the taxa is maintained, and thus a fully marginalized
+estimate of divergence times across the taxa can be obtained
+(Figure~S\ref{figMarginalTimes}), and
+(3) the probability of co-divergence among any set of taxa can be
 estimated from the posterior sample.
+}
 
 \section{Discussion}
 My results demonstrate that using alternative priors on parameters and
