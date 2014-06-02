@@ -129,8 +129,8 @@ not mitigate the method's propensity to incorrectly infer clustered
 divergences, and often preferred priors that excluded the true values of the
 model's parameters.
 \change{
-Here, I describe a new method that successfully mitigates spurious inference of
-co-divergence while avoiding negative side effects of empirically informed
+Here, I describe a new approach that successfully mitigates spurious inference
+of co-divergence while avoiding negative side effects of empirically informed
 uniform priors.}
 
 % Recently, however, \cite{Oaks2012} found that \msb can be strongly biased
@@ -949,8 +949,8 @@ Second, and more importantly, having the same expectation does not ensure
 random variables are exchangeable.
 Rather, for variables to be exchangeable their marginal distributions must be
 the same (i.e., they must be identically distributed).
-None of the summary statistics used by \msb, including $\pi_b$, are identically
-distributed when there is any variation among taxa or loci in the
+\emph{None} of the summary statistics used by \msb, including $\pi_b$, have
+this property when there is any variation among taxa or loci in the
 (1) numbers of sequences (\popSampleSize{1}{} and \popSampleSize{2}{}),
 (2) length of alignments,
 (3) numbers of loci (\nloci{}),
@@ -1562,10 +1562,13 @@ across all taxa
 When more appropriate priors are used for divergence-time and demographic
 parameters, and either a Dirichlet-process or uniform prior applied across
 divergence models, the model is less sensitive to violations, and, when
-violations do cause bias, the method is conservative and tends to underestimate
+violations do cause bias, the method tends to underestimate
 the probability of models with temporally clustered divergences
 (Figure~\ref{figValidationModelChoicePsi} \&
-\ref{figValidationModelChoiceOmega}).}
+\ref{figValidationModelChoiceOmega}).
+Given that clustered models are often of particular interest to biogeographers,
+this behavior of the new method can be considered conservative.
+}
 
 The modifications also improve the method's power to detect random
 variation in divergence times, reducing the tendency to estimate clustered
