@@ -14,4 +14,4 @@ then
 fi
 
 which python
-python parse-results-ml.py
+python parse-results-ml-check.py

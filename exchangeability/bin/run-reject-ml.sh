@@ -40,7 +40,7 @@ dmc.py --np $nprocs \
     --num-posterior-samples $npost \
     --num-standardizing-samples $nsums \
     -q $nquantiles \
-    --sort-index 7 \
+    --sort-index 11 \
     --output-dir $output_dir \
     --staging-dir $staging_dir \
     --temp-dir $staging_dir \
