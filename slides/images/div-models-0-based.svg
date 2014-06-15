@@ -39,21 +39,23 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1366"
-     inkscape:window-height="744"
+     inkscape:window-height="716"
      id="namedview4"
      showgrid="false"
      inkscape:zoom="0.70710678"
-     inkscape:cx="764.892"
-     inkscape:cy="186.76686"
+     inkscape:cx="326.07979"
+     inkscape:cy="316.65444"
      inkscape:window-x="0"
      inkscape:window-y="24"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="layer5"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="g3104"
      fit-margin-top="1"
      fit-margin-left="1"
      fit-margin-right="1"
      fit-margin-bottom="1"
-     inkscape:snap-grids="true">
+     inkscape:snap-grids="true"
+     showguides="true"
+     inkscape:guide-bbox="true">
     <inkscape:grid
        type="xygrid"
        id="grid4037"
@@ -215,11 +217,10 @@
          sodipodi:role="line"
          id="tspan5888-8"
          x="228.58337"
-         y="-111.49537"><tspan
-           style="font-size:56px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Latin Modern Math;-inkscape-font-specification:Latin Modern Math Italic"
-           id="tspan5892-9">τ</tspan><tspan
-           style="font-size:24px;baseline-shift:sub"
-           id="tspan5890-0">1</tspan></tspan></text>
+         y="-111.49537"
+         style="font-size:56px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Latin Modern Math;-inkscape-font-specification:Latin Modern Math Italic">τ<tspan
+   style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;baseline-shift:sub;font-family:Sans;-inkscape-font-specification:Sans"
+   id="tspan3385">0</tspan></tspan></text>
   </g>
   <g
      style="display:none"
@@ -237,11 +238,10 @@
          y="-111.49537"
          x="228.58337"
          id="tspan4103"
-         sodipodi:role="line"><tspan
-           id="tspan4105"
-           style="font-size:56px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Latin Modern Math;-inkscape-font-specification:Latin Modern Math Italic">τ</tspan><tspan
-           id="tspan4107"
-           style="font-size:24px;baseline-shift:sub">1</tspan></tspan></text>
+         sodipodi:role="line"
+         style="font-size:56px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Latin Modern Math;-inkscape-font-specification:Latin Modern Math Italic">τ<tspan
+   style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;baseline-shift:sub;font-family:Sans;-inkscape-font-specification:Sans"
+   id="tspan3396">0</tspan></tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text4101-5"
@@ -255,7 +255,7 @@
          sodipodi:role="line"
          style="font-size:56px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Latin Modern Math;-inkscape-font-specification:Latin Modern Math Italic">τ<tspan
    style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;baseline-shift:sub;font-family:Sans;-inkscape-font-specification:Sans"
-   id="tspan4152">3</tspan></tspan></text>
+   id="tspan3401">2</tspan></tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text4101-6"
@@ -269,7 +269,7 @@
          sodipodi:role="line"
          style="font-size:56px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Latin Modern Math;-inkscape-font-specification:Latin Modern Math Italic">τ<tspan
    style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;baseline-shift:sub;font-family:Sans;-inkscape-font-specification:Sans"
-   id="tspan4149">2</tspan></tspan></text>
+   id="tspan3399">1</tspan></tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
@@ -287,11 +287,10 @@
          sodipodi:role="line"
          id="tspan4193"
          x="228.58337"
-         y="-111.49537"><tspan
-           style="font-size:56px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Latin Modern Math;-inkscape-font-specification:Latin Modern Math Italic"
-           id="tspan4195">τ</tspan><tspan
-           style="font-size:24px;baseline-shift:sub"
-           id="tspan4197">1</tspan></tspan></text>
+         y="-111.49537"
+         style="font-size:56px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Latin Modern Math;-inkscape-font-specification:Latin Modern Math Italic">τ<tspan
+   style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;baseline-shift:sub;font-family:Sans;-inkscape-font-specification:Sans"
+   id="tspan3391">0</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
@@ -304,8 +303,8 @@
          id="tspan4207"
          x="97.768738"
          y="-111.49537">τ<tspan
-   id="tspan4209"
-   style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;baseline-shift:sub;font-family:Sans;-inkscape-font-specification:Sans">2</tspan></tspan></text>
+   style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;baseline-shift:sub;font-family:Sans;-inkscape-font-specification:Sans"
+   id="tspan3394">1</tspan></tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
@@ -324,11 +323,9 @@
          id="tspan5749"
          x="215.21622"
          y="2.7061577"
-         style="font-size:20.00018311px"><tspan
-           style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic"
-           id="tspan5753">T</tspan><tspan
-           style="font-size:14px;baseline-shift:sub"
-           id="tspan5841">1</tspan></tspan></text>
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3403">0</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
@@ -340,11 +337,9 @@
          id="tspan5749-8"
          x="215.21622"
          y="202.79181"
-         style="font-size:20.00018311px;font-style:italic;-inkscape-font-specification:Sans Italic"><tspan
-           style="font-size:24px"
-           id="tspan4058">T</tspan><tspan
-           style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
-           id="tspan4052">2</tspan></tspan></text>
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3406">1</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
@@ -356,12 +351,21 @@
          id="tspan5749-3"
          x="215.21622"
          y="402.77832"
-         style="font-size:20.00018311px;font-style:italic;-inkscape-font-specification:Sans Italic"><tspan
-           style="font-size:24px"
-           id="tspan4060">T</tspan><tspan
-           style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
-           id="tspan4055">3</tspan></tspan></text>
-  </g>
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3412">2</tspan></tspan></text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3414"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(-0.53760538,-96.218564)"><flowRegion
+         id="flowRegion3416"><rect
+           id="rect3418"
+           width="255.26555"
+           height="112.42998"
+           x="-164.75587"
+           y="167.49364" /></flowRegion><flowPara
+         id="flowPara3420" /></flowRoot>  </g>
   <g
      inkscape:groupmode="layer"
      id="g5975"
@@ -379,11 +383,9 @@
          id="tspan5979"
          x="215.21622"
          y="2.7061577"
-         style="font-size:20.00018311px"><tspan
-           style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic"
-           id="tspan5981">T</tspan><tspan
-           style="font-size:14px;baseline-shift:sub"
-           id="tspan5983">1</tspan></tspan></text>
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3422">0</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
@@ -395,11 +397,9 @@
          id="tspan5987"
          x="377.21622"
          y="202.79181"
-         style="font-size:20.00018311px;font-style:italic;-inkscape-font-specification:Sans Italic"><tspan
-           style="font-size:24px"
-           id="tspan5989">T</tspan><tspan
-           style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
-           id="tspan5991">2</tspan></tspan></text>
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3425">1</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
@@ -411,11 +411,9 @@
          id="tspan5995"
          x="85.216217"
          y="402.77832"
-         style="font-size:20.00018311px;font-style:italic;-inkscape-font-specification:Sans Italic"><tspan
-           style="font-size:24px"
-           id="tspan5997">T</tspan><tspan
-           style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
-           id="tspan5999">3</tspan></tspan></text>
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3428">2</tspan></tspan></text>
   </g>
   <g
      transform="translate(0.53760538,96.218564)"
@@ -430,15 +428,13 @@
        x="215.21622"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        xml:space="preserve"><tspan
-         style="font-size:20.00018311px"
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic"
          y="2.7061577"
          x="215.21622"
          id="tspan3172"
-         sodipodi:role="line"><tspan
-           id="tspan3174"
-           style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic">T</tspan><tspan
-           id="tspan3176"
-           style="font-size:14px;baseline-shift:sub">1</tspan></tspan></text>
+         sodipodi:role="line">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3437">0</tspan></tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text3178"
@@ -446,15 +442,13 @@
        x="215.21622"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        xml:space="preserve"><tspan
-         style="font-size:20.00018311px;font-style:italic;-inkscape-font-specification:Sans Italic"
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic"
          y="202.79181"
          x="215.21622"
          id="tspan3180"
-         sodipodi:role="line"><tspan
-           id="tspan3182"
-           style="font-size:24px">T</tspan><tspan
-           id="tspan3184"
-           style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans">2</tspan></tspan></text>
+         sodipodi:role="line">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3434">1</tspan></tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text3186"
@@ -462,15 +456,13 @@
        x="85.216217"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        xml:space="preserve"><tspan
-         style="font-size:20.00018311px;font-style:italic;-inkscape-font-specification:Sans Italic"
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic"
          y="402.77832"
          x="85.216217"
          id="tspan3188"
-         sodipodi:role="line"><tspan
-           id="tspan3190"
-           style="font-size:24px">T</tspan><tspan
-           id="tspan3192"
-           style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans">3</tspan></tspan></text>
+         sodipodi:role="line">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3431">2</tspan></tspan></text>
   </g>
   <g
      transform="translate(0.53760538,96.218564)"
@@ -485,15 +477,13 @@
        x="215.21622"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        xml:space="preserve"><tspan
-         style="font-size:20.00018311px"
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic"
          y="2.7061577"
          x="215.21622"
          id="tspan3146"
-         sodipodi:role="line"><tspan
-           id="tspan3148"
-           style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic">T</tspan><tspan
-           id="tspan3150"
-           style="font-size:14px;baseline-shift:sub">1</tspan></tspan></text>
+         sodipodi:role="line">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3440">0</tspan></tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text3152"
@@ -501,15 +491,13 @@
        x="87.216217"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        xml:space="preserve"><tspan
-         style="font-size:20.00018311px;font-style:italic;-inkscape-font-specification:Sans Italic"
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic"
          y="202.79181"
          x="87.216217"
          id="tspan3154"
-         sodipodi:role="line"><tspan
-           id="tspan3156"
-           style="font-size:24px">T</tspan><tspan
-           id="tspan3158"
-           style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans">2</tspan></tspan></text>
+         sodipodi:role="line">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3443">1</tspan></tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text3160"
@@ -517,15 +505,13 @@
        x="215.21622"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        xml:space="preserve"><tspan
-         style="font-size:20.00018311px;font-style:italic;-inkscape-font-specification:Sans Italic"
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic"
          y="402.77832"
          x="215.21622"
          id="tspan3162"
-         sodipodi:role="line"><tspan
-           id="tspan3164"
-           style="font-size:24px">T</tspan><tspan
-           id="tspan3166"
-           style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans">3</tspan></tspan></text>
+         sodipodi:role="line">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3446">2</tspan></tspan></text>
   </g>
   <g
      transform="translate(0.53760538,96.218564)"
@@ -540,15 +526,13 @@
        x="87.216217"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        xml:space="preserve"><tspan
-         style="font-size:20.00018311px"
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic"
          y="2.7061577"
          x="87.216217"
          id="tspan3120"
-         sodipodi:role="line"><tspan
-           id="tspan3122"
-           style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic">T</tspan><tspan
-           id="tspan3124"
-           style="font-size:14px;baseline-shift:sub">1</tspan></tspan></text>
+         sodipodi:role="line">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3455">0</tspan></tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text3126"
@@ -556,15 +540,13 @@
        x="215.21622"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        xml:space="preserve"><tspan
-         style="font-size:20.00018311px;font-style:italic;-inkscape-font-specification:Sans Italic"
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic"
          y="202.79181"
          x="215.21622"
          id="tspan3128"
-         sodipodi:role="line"><tspan
-           id="tspan3130"
-           style="font-size:24px">T</tspan><tspan
-           id="tspan3132"
-           style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans">2</tspan></tspan></text>
+         sodipodi:role="line">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3452">1</tspan></tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text3134"
@@ -572,15 +554,13 @@
        x="215.21622"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        xml:space="preserve"><tspan
-         style="font-size:20.00018311px;font-style:italic;-inkscape-font-specification:Sans Italic"
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic"
          y="402.77832"
          x="215.21622"
          id="tspan3136"
-         sodipodi:role="line"><tspan
-           id="tspan3138"
-           style="font-size:24px">T</tspan><tspan
-           id="tspan3140"
-           style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans">3</tspan></tspan></text>
+         sodipodi:role="line">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3449">2</tspan></tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
@@ -671,7 +651,7 @@
      inkscape:groupmode="layer"
      id="layer17"
      inkscape:label="trees-shared"
-     style="display:inline"
+     style="display:none"
      transform="translate(0.53760538,96.218564)">
     <path
        style="fill:none;stroke:#000000;stroke-width:3.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
@@ -782,7 +762,7 @@
      id="layer5"
      inkscape:label="phylopics"
      transform="translate(-4.1656246,431.58513)"
-     style="display:inline">
+     style="display:none">
     <g
        id="g5649"
        transform="matrix(1.6237888,-0.5910108,0.5910108,1.6237888,-160.1686,364.66539)">
@@ -856,9 +836,9 @@
          style="fill:#ff0007;fill-opacity:1;stroke:#000000;stroke-width:0.12135922;stroke-miterlimit:4;stroke-opacity:0.59817349;stroke-dasharray:none;stroke-dashoffset:0" />
     </g>
     <g
-       transform="translate(-349.93727,-538.33149)"
+       transform="translate(-349.93727,-540.53539)"
        id="g3-10"
-       style="fill:#0000ff;fill-opacity:1;display:inline">
+       style="fill:#0000ff;fill-opacity:1">
       <g
          id="g5-5"
          transform="matrix(0.093731,0,0,0.093731,867.10157,327.3712)"
@@ -875,7 +855,7 @@
     </g>
     <g
        style="fill:#ff0000;fill-opacity:1;display:inline"
-       transform="translate(-349.93727,-440.68775)"
+       transform="translate(-349.93727,-442.89165)"
        id="g3-10-0">
       <g
          id="g5-5-9"
@@ -893,7 +873,7 @@
     </g>
   </g>
   <g
-     style="display:none"
+     style="display:inline"
      transform="translate(-4.1656246,431.58513)"
      inkscape:label="phylopics-species-tree"
      id="g6001"
@@ -1123,7 +1103,7 @@
          inkscape:connector-curvature="0" />
     </g>
     <g
-       transform="matrix(0.65,0,0,0.65,-45.497591,-429.53482)"
+       transform="matrix(0.65,0,0,0.65,-45.497591,-428.73312)"
        id="g3-10-03"
        style="fill:#0000ff;fill-opacity:1;display:inline">
       <g
@@ -1142,7 +1122,7 @@
     </g>
     <g
        style="fill:#ff0000;fill-opacity:1;display:inline"
-       transform="matrix(0.65,0,0,0.65,-45.497591,-310.13314)"
+       transform="matrix(0.65,0,0,0.65,-45.497591,-309.33144)"
        id="g3-10-0-0">
       <g
          id="g5-5-9-3"
@@ -1159,7 +1139,7 @@
       </g>
     </g>
     <g
-       transform="matrix(0.65,0,0,0.65,-45.497591,-385.52069)"
+       transform="matrix(0.65,0,0,0.65,-45.497591,-384.71899)"
        id="g3-10-03-9"
        style="fill:#0000ff;fill-opacity:1;display:inline">
       <g
@@ -1177,7 +1157,7 @@
       </g>
     </g>
     <g
-       transform="matrix(0.65,0,0,0.65,-45.497591,-407.52773)"
+       transform="matrix(0.65,0,0,0.65,-45.497591,-406.72603)"
        id="g3-10-03-6"
        style="fill:#0000ff;fill-opacity:1;display:inline">
       <g
@@ -1196,7 +1176,7 @@
     </g>
     <g
        style="fill:#ff0000;fill-opacity:1;display:inline"
-       transform="matrix(0.65,0,0,0.65,-45.497591,-288.21397)"
+       transform="matrix(0.65,0,0,0.65,-45.497591,-287.41227)"
        id="g3-10-0-0-4">
       <g
          id="g5-5-9-3-0"
@@ -1214,7 +1194,7 @@
     </g>
     <g
        style="fill:#ff0000;fill-opacity:1;display:inline"
-       transform="matrix(0.65,0,0,0.65,-45.497591,-332.05226)"
+       transform="matrix(0.65,0,0,0.65,-45.497591,-331.25056)"
        id="g3-10-0-0-3">
       <g
          id="g5-5-9-3-1"
@@ -1303,7 +1283,7 @@
     </g>
   </g>
   <g
-     style="display:none"
+     style="display:inline"
      inkscape:label="species-trees-shared"
      id="g5581"
      inkscape:groupmode="layer"
@@ -1552,7 +1532,7 @@
   </g>
   <g
      transform="translate(0.53760538,96.218564)"
-     style="display:none"
+     style="display:inline"
      inkscape:label="pop-div-times-shared"
      id="g5555"
      inkscape:groupmode="layer">
@@ -1563,15 +1543,13 @@
        x="215.21622"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        xml:space="preserve"><tspan
-         style="font-size:20.00018311px"
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic"
          y="-29.293842"
          x="215.21622"
          id="tspan5559"
-         sodipodi:role="line"><tspan
-           id="tspan5561"
-           style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic">T</tspan><tspan
-           id="tspan5563"
-           style="font-size:14px;baseline-shift:sub">1</tspan></tspan></text>
+         sodipodi:role="line">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3458">0</tspan></tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text5565"
@@ -1586,8 +1564,8 @@
          sodipodi:role="line"><tspan
            id="tspan5569"
            style="font-size:24px">T</tspan><tspan
-           id="tspan5571"
-           style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans">2</tspan></tspan></text>
+           id="tspan3463"
+           style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans">1</tspan></tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text5573"
@@ -1602,8 +1580,8 @@
          sodipodi:role="line"><tspan
            id="tspan5577"
            style="font-size:24px">T</tspan><tspan
-           id="tspan5579"
-           style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans">3</tspan></tspan></text>
+           id="tspan3467"
+           style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans">2</tspan></tspan></text>
   </g>
   <g
      transform="translate(0.53760538,96.218564)"
@@ -1618,15 +1596,13 @@
        x="215.21622"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        xml:space="preserve"><tspan
-         style="font-size:20.00018311px"
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic"
          y="-29.293842"
          x="215.21622"
          id="tspan5953"
-         sodipodi:role="line"><tspan
-           id="tspan5955"
-           style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic">T</tspan><tspan
-           id="tspan5957"
-           style="font-size:14px;baseline-shift:sub">1</tspan></tspan></text>
+         sodipodi:role="line">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3475">0</tspan></tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text5959"
@@ -1634,15 +1610,13 @@
        x="379.21622"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        xml:space="preserve"><tspan
-         style="font-size:20.00018311px;font-style:italic;-inkscape-font-specification:Sans Italic"
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic"
          y="156.79181"
          x="379.21622"
          id="tspan5961"
-         sodipodi:role="line"><tspan
-           id="tspan5963"
-           style="font-size:24px">T</tspan><tspan
-           id="tspan5965"
-           style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans">2</tspan></tspan></text>
+         sodipodi:role="line">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3472">1</tspan></tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text5967"
@@ -1650,15 +1624,13 @@
        x="87.216217"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        xml:space="preserve"><tspan
-         style="font-size:20.00018311px;font-style:italic;-inkscape-font-specification:Sans Italic"
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic"
          y="342.77832"
          x="87.216217"
          id="tspan5969"
-         sodipodi:role="line"><tspan
-           id="tspan5971"
-           style="font-size:24px">T</tspan><tspan
-           id="tspan5973"
-           style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans">3</tspan></tspan></text>
+         sodipodi:role="line">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3469">2</tspan></tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
@@ -1677,11 +1649,9 @@
          id="tspan5927"
          x="215.21622"
          y="-29.293842"
-         style="font-size:20.00018311px"><tspan
-           style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic"
-           id="tspan5929">T</tspan><tspan
-           style="font-size:14px;baseline-shift:sub"
-           id="tspan5931">1</tspan></tspan></text>
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3478">0</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
@@ -1693,11 +1663,9 @@
          id="tspan5935"
          x="215.21622"
          y="156.79181"
-         style="font-size:20.00018311px;font-style:italic;-inkscape-font-specification:Sans Italic"><tspan
-           style="font-size:24px"
-           id="tspan5937">T</tspan><tspan
-           style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
-           id="tspan5939">2</tspan></tspan></text>
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3481">1</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
@@ -1709,11 +1677,9 @@
          id="tspan5943"
          x="87.216217"
          y="342.77832"
-         style="font-size:20.00018311px;font-style:italic;-inkscape-font-specification:Sans Italic"><tspan
-           style="font-size:24px"
-           id="tspan5945">T</tspan><tspan
-           style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
-           id="tspan5947">3</tspan></tspan></text>
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3484">2</tspan></tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
@@ -1732,11 +1698,9 @@
          id="tspan5901"
          x="215.21622"
          y="-29.293842"
-         style="font-size:20.00018311px"><tspan
-           style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic"
-           id="tspan5903">T</tspan><tspan
-           style="font-size:14px;baseline-shift:sub"
-           id="tspan5905">1</tspan></tspan></text>
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3487">0</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
@@ -1748,11 +1712,9 @@
          id="tspan5909"
          x="87.216217"
          y="156.79181"
-         style="font-size:20.00018311px;font-style:italic;-inkscape-font-specification:Sans Italic"><tspan
-           style="font-size:24px"
-           id="tspan5911">T</tspan><tspan
-           style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
-           id="tspan5913">2</tspan></tspan></text>
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3490">1</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
@@ -1764,11 +1726,9 @@
          id="tspan5917"
          x="215.21622"
          y="342.77832"
-         style="font-size:20.00018311px;font-style:italic;-inkscape-font-specification:Sans Italic"><tspan
-           style="font-size:24px"
-           id="tspan5919">T</tspan><tspan
-           style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
-           id="tspan5921">3</tspan></tspan></text>
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3493">2</tspan></tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
@@ -1787,11 +1747,9 @@
          id="tspan5875"
          x="87.216217"
          y="-29.293842"
-         style="font-size:20.00018311px"><tspan
-           style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic"
-           id="tspan5877">T</tspan><tspan
-           style="font-size:14px;baseline-shift:sub"
-           id="tspan5879">1</tspan></tspan></text>
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3496">0</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
@@ -1803,11 +1761,9 @@
          id="tspan5883"
          x="215.21622"
          y="156.79181"
-         style="font-size:20.00018311px;font-style:italic;-inkscape-font-specification:Sans Italic"><tspan
-           style="font-size:24px"
-           id="tspan5885">T</tspan><tspan
-           style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
-           id="tspan5887">2</tspan></tspan></text>
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3499">1</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
@@ -1819,10 +1775,8 @@
          id="tspan5891"
          x="215.21622"
          y="342.77832"
-         style="font-size:20.00018311px;font-style:italic;-inkscape-font-specification:Sans Italic"><tspan
-           style="font-size:24px"
-           id="tspan5893">T</tspan><tspan
-           style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
-           id="tspan5895">3</tspan></tspan></text>
+         style="font-size:24px;font-style:italic;-inkscape-font-specification:Sans Italic">T<tspan
+   style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans"
+   id="tspan3502">2</tspan></tspan></text>
   </g>
 </svg>
