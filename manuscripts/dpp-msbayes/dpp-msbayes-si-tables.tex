@@ -1,0 +1,22 @@
+%:TABLE-model-sample-spaces
+\begin{table}%[htbp]
+    % \small
+    % \addtolength{\tabcolsep}{-0.9mm}
+    \centering
+    \rowcolors{2}{}{myGray} \mcrowcolors
+    \captionsetup{name=Table S, labelformat=noSpace}
+    \caption{An example showing the number of divergence events (\divTimeNum)
+        and the associated sample space of the unordered divergence models
+        (integer partitions of \npairs{} pairs) and ordered divergence models
+        (partitions of \npairs{} pairs) for $\npairs{} = 4$ pairs of
+        populations.}
+    \begin{tabular}{ c | l | l }
+        \divTimeNum & Unordered divergence models & Ordered divergence models \\
+        \hline
+        1 & $4$          & 1111                                     \\
+        2 & $3+1$; $2+2$ & 1112, 1121, 1211, 2111, 1122, 1212, 1221 \\
+        3 & $2+1+1$      & 1123, 1213, 1231, 1223, 1232, 1233       \\
+        4 & $1+1+1+1$    & 1234                                     \\
+    \end{tabular}
+    \label{tabSampleSpace}
+\end{table}

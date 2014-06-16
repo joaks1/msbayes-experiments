@@ -600,9 +600,15 @@ $\divTimeScaledVector = (\divTimeScaled{1}{1}, \ldots,
 
 
 \begin{linenomath}
+\change{
 As for the prior term $p(\divTimeIndexVector)$, the total sample space of
-ordered realizations of \divTimeIndexVector is all the possible partitions of
-\npairs{} elements into 1 to \npairs{} categories.
+\divTimeIndexVector is all the possible partitionings of the \npairs{} pairs of
+populations into 1 to \npairs{} divergence-time classes, where each
+partitioning consists of non-overlapping and non-empty subsets whose union is
+the \npairs{} pairs;
+Hereinafter, I refer to these partitionings as ``ordered'' divergence models or
+partitions.
+}
 The total number of possible partitions is a sum of the Stirling numbers of
 the second kind over all possible numbers of categories \divTimeNum
 \begin{equation}
@@ -611,14 +617,16 @@ the second kind over all possible numbers of categories \divTimeNum
     \binom{\divTimeNum}{j} (\divTimeNum-j)^{\npairs{}} \right],
     \label{eq:bell}
 \end{equation}
-which is the Bell Number \cite{Bell1934}.
-The original \msb model only samples over the unordered realizations of
+which is the Bell number \cite{Bell1934}.
+The original \msb model samples over the unordered realizations of
 \divTimeIndexVector, such that the sample space is reduced to all the possible
 integer partitions of \npairs{} \cite{Oaks2012,Huang2011,OeisPartitionNumber,
-    OeisPartitionTriangle,Malenfant2011}.
-I denote the set of all possible integer partitions of \npairs{} as
-\integerPartitionSet{\npairs{}} and the length of that set as
-\integerPartitionNum{\npairs{}}.
+OeisPartitionTriangle,Malenfant2011} (Table~S\ref{tabSampleSpace}).
+\change{
+I denote the set of all possible integer partitions of the \npairs{} pairs of
+populations as \integerPartitionSet{\npairs{}} and the length of that set as
+\integerPartitionNum{\npairs{}}, and I hereinafter refer to these integer
+partitions as ``unordered'' divergence models or partitions.}
 The advantages, disadvantages, and justification of ignoring the order
 of \divTimeIndexVector is discussed in detail below.
 \end{linenomath}
@@ -1050,7 +1058,7 @@ same units of time.
 All of the models were the same in other respects, with three free \myTheta{}
 parameters for each population pair, two uniformly distributed ($beta(1,1)$)
 \bottleScalar{}{} parameters per pair, no migration, no recombination, and
-resorting of taxon-specific summary statistics by $\pi_b$ (i.e., sampling
+re-sorting of taxon-specific summary statistics by $\pi_b$ (i.e., sampling
 unordered divergence models).
 For all simulations, I used a data structure of eight population pairs, with a
 single 1000 base-pair locus sampled from 10 individuals from each population.
