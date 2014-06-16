@@ -709,7 +709,7 @@ parameters are represented at least once (see Equation 2 of \cite{Oaks2012}).
 I denote this prior used by \msb as $\divTimeIndexVector \sim \priorOld$.
 Oaks et al.\ \cite{Oaks2012} discuss how placing a uniform prior over the
 number of divergence parameters (denoted \divTimeNum here, and as \numt{} in
-\cite{Huang2011}) imposes an U-shaped prior over divergence
+\cite{Huang2011}) imposes an ``U-shaped'' prior over divergence
 models (\divTimeIndexVector; see
 Figure 5B of \cite{Oaks2012}).
 To avoid this, I place priors directly on the sample space of divergence
@@ -1410,8 +1410,8 @@ all three series of data-generating models, inferring a single divergence event 
 most of the 18,000 simulations
 (Figure~\ref{figPowerPsiOld4}A--D \& plots A--F of Figures
 S\labelcref{figPowerPsiOld,figPowerPsiUniform,figPowerPsiExp}).
-Importantly, the \modelOld tends to strongly support these estimates
-of one divergence across most of the simulations
+Importantly, the \modelOld \change{model} tends to strongly support these
+estimates of one divergence across most of the simulations
 (Figure~\ref{figPowerPsiProbOld4}A--D \& plots A--F of Figures
 S\labelcref{figPowerPsiProbOld,figPowerPsiProbUniform,figPowerPsiProbExp}).
 The \modelDPP model also prefers the one-divergence model 
@@ -1473,19 +1473,19 @@ As mentioned above, the increased power of the new models is also evident when
 looking at the estimated posterior probability of the one-divergence model
 across the power analyses 
 (Figure~\ref{figPowerPsiProbOld4} \& 
-S\labelcref{figPowerPsiProbOld,figPowerPsiUniform,figPowerPsiExp}).
+S\labelcref{figPowerPsiProbOld,figPowerPsiProbUniform,figPowerPsiProbExp}).
 The \modelDPP and \modelUniform models estimate low posterior probability of
 $\divTimeNum = 1$ across all of the simulations.
 This is in contrast to the \modelOld model, which infers high posterior probabilities of a single
 divergence for most replicates across all simulations
 (Figure~\ref{figPowerPsiProbOld4} \& 
-S\labelcref{figPowerPsiProbOld,figPowerPsiUniform,figPowerPsiExp}).
+S\labelcref{figPowerPsiProbOld,figPowerPsiProbUniform,figPowerPsiProbExp}).
 The exponential priors on divergence-time and demographic parameters (model
 \modelUshaped) result in lower estimates of the probability of one divergence
 when compared to \modelOld, but higher estimates when compared to \modelUniform
 and \modelDPP
 (Figure~\ref{figPowerPsiProbOld4} \& 
-S\labelcref{figPowerPsiProbOld,figPowerPsiUniform,figPowerPsiExp}).
+S\labelcref{figPowerPsiProbOld,figPowerPsiProbUniform,figPowerPsiProbExp}).
 The \modelDPP and \modelUniform models do frequently support the one-divergence
 model according to a Bayes factor criterion of greater than 10, but still
 less frequently than the \modelOld model.
@@ -1504,7 +1504,7 @@ behavior, with \modelDPP and \modelUniform inferring low probabilities across
 all simulations, \modelOld inferring high probabilities, and \modelUshaped
 inferring intermediate values
 (Figure~\ref{figPowerOmegaProbOld4} \& 
-S\labelcref{figPowerOmegaProbOld,figPowerOmegaUniform,figPowerOmegaExp}).
+S\labelcref{figPowerOmegaProbOld,figPowerOmegaProbUniform,figPowerOmegaProbExp}).
 
 \subsection{Empirical results}
 As expected based on the results of Oaks et al.\ \cite{Oaks2012}, when the
@@ -1547,7 +1547,7 @@ uncertainty.
 The small difference between the results of the \npModelDPP and
 \npModelDPPOrdered models is consistent across multiple analyses, and thus
 could be due to error introduced to the \npModelDPP model by the invalid
-shuffling of the summary statitic vectors.
+shuffling of the summary statistic vectors.
 }
 Both models estimate a similar set of 10 unordered divergence models with the
 highest posterior probability
