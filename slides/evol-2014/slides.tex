@@ -212,26 +212,6 @@ Evolutionary History}
     \end{columns}
 \end{frame}
 
-% \begin{frame}
-%     \frametitle<1>{Divergence model choice}
-%     \frametitle<2->{Population divergence model}
-%     \begin{columns}[c]
-%         \column{.4\textwidth}
-%         \small We want to infer \textcolor{blue}{\divTimeMapVector} given DNA sequence alignments \textcolor{blue}{\alignmentVector}
-%         \bigskip
-%         \begin{mydescription}
-%             \item<3>[\alignmentVector] Sequence alignments
-%             \item<3>[\divTimeMapVector] Divergence times
-%             \item<3>[\geneTreeVector] Gene trees
-%             % \item<3>[\hkyModelVector] Substitution parameters
-%             \item<3>[\demographicParamVector] Demographic parameters
-%         \end{mydescription}
-%         \column{.6\textwidth}
-%         \includegraphics<1>[height=6cm]{../images/div-model-cartoon-shared.pdf}
-%         \includegraphics<2->[height=6cm]{../images/div-model-cartoon-sp-tree-shared.pdf}
-%     \end{columns}
-% \end{frame}
-
 \begin{frame}[t]
     \frametitle{The \msb model}
         \uncover<1->{
@@ -476,7 +456,8 @@ Evolutionary History}
 \begin{frame}
     \frametitle{\dppmsbayes: Simulation results}
     \centerline{
-        \includegraphics[width=1.13\textwidth]{../images/validation-model-choice-old-dpp-full.pdf}}
+        \includegraphics<1>[width=0.85\textwidth]{../images/validation-model-choice-old-dpp.pdf}
+        \includegraphics<2>[width=1.13\textwidth]{../images/validation-model-choice-old-dpp-full.pdf}}
     \barefootnote{\shortfullcite{Oaks2014dpp}}
 \end{frame}
 
@@ -535,7 +516,7 @@ Evolutionary History}
     \frametitle{Testing climate-driven diversification}
     \begin{columns}[c]
         \column{.5\textwidth}
-    \textbf{Did repeated fragmentation of islands during inter-glacial rises in sea level
+    \textbf{Did fragmentation of islands during inter-glacial rises in sea level
     promote diversification?}\\
         \column{.5\textwidth}
             \includegraphics[width=\textwidth]{../images/maps/Philippines.png}
@@ -693,16 +674,13 @@ Evolutionary History}
 
 \begin{frame}
     \frametitle{Acknowledgments}
-    \begin{columns}[c]
+    \begin{columns}[t]
         \column{.5\textwidth}
             {\bf Ideas and feedback:}
             \begin{myitemize}
-                \item KU Herpetology
                 \item Holder Lab
+                \item KU Herpetology
                 \item Melissa Callahan
-                % \item Mike Hickerson
-                % \item Laura Kubatko
-                % \item My committee
             \end{myitemize}
             \smallskip
             {\bf Computation:}
