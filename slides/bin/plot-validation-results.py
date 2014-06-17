@@ -80,17 +80,17 @@ def main_cli():
             share_x = True,
             share_y = True,
             title = 'Posterior probability of one divergence',
-            title_size = 12.0,
+            title_size = 16.0,
             title_top = False,
             y_title = 'True probability of one divergence',
             y_title_position = 0.03,
-            y_title_size = 12.0,
+            y_title_size = 16.0,
             height = 6.0,
             auto_height = False,
             column_labels = [r'$M_{msBayes}$', r'$M_{DPP}$'],
             row_labels = [r'$M_{msBayes}$', r'$M_{DPP}$'],
-            column_label_size = 20.0,
-            row_label_size = 20.0,
+            column_label_size = 22.0,
+            row_label_size = 22.0,
             column_label_offset = 0.05,
             row_label_offset = 0.05,
             super_title = r'\textbf{Data model}',
@@ -100,8 +100,8 @@ def main_cli():
             super_y_title_right = True)
     pg.label_schema = None
     pg.auto_adjust_margins = False
-    pg.margin_bottom = 0.04
-    pg.margin_left = 0.06
+    pg.margin_bottom = 0.05
+    pg.margin_left = 0.07
     pg.margin_top = 0.90
     pg.margin_right = 0.92
     pg.reset_figure()
@@ -126,18 +126,18 @@ def main_cli():
             share_x = True,
             share_y = True,
             title = 'Posterior probability of one divergence',
-            title_size = 12.0,
+            title_size = 16.0,
             title_top = False,
             y_title = 'True probability of one divergence',
             y_title_position = 0.015,
-            y_title_size = 12.0,
+            y_title_size = 16.0,
             height = 4.8,
             width = 11.0,
             auto_height = False,
             row_labels = [r'$M_{msBayes}$', r'$M_{DPP}$'],
             column_labels = [r'$M_{msBayes}$', r'$M_{DPP}$', r'$M_{Uniform}$', r'$M_{Ushaped}$'],
-            column_label_size = 20.0,
-            row_label_size = 20.0,
+            column_label_size = 22.0,
+            row_label_size = 22.0,
             column_label_offset = 0.05,
             row_label_offset = 0.05,
             super_title = r'\textbf{Data model}',
@@ -147,8 +147,8 @@ def main_cli():
             super_y_title_right = True)
     pg.label_schema = None
     pg.auto_adjust_margins = False
-    pg.margin_bottom = 0.05
-    pg.margin_left = 0.04
+    pg.margin_bottom = 0.06
+    pg.margin_left = 0.045
     pg.margin_top = 0.88
     pg.margin_right = 0.94
     pg.reset_figure()

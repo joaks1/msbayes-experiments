@@ -164,11 +164,13 @@ def create_plots(info_path,
             height = 3.5
             column_label_offset = 0.14
             margin_top = 0.83
-            margin_bottom = 0.085
-            margin_left = 0.017
+            margin_bottom = 0.1
+            margin_left = 0.025
             margin_right = 0.95
-            column_label_size = 22.0
-            title_size = 18.0
+            column_label_size = 26.0
+            title_size = 22.0
+            y_title_size = 20.0
+            right_text_size = 14.0
             row_labels = []
             if prior_name == 'old':
                 row_labels.append(r'$M_{msBayes}$')
@@ -180,7 +182,7 @@ def create_plots(info_path,
                 row_labels.append(r'$M_{DPP}$')
             else:
                 row_labels.append('')
-            row_label_size = 28.0
+            row_label_size = 32.0
             row_label_offset = 0.08
 
 
@@ -191,7 +193,11 @@ def create_plots(info_path,
                     num_columns = num_columns,
                     width = width,
                     height = height,
-                    x_title = r'Estimated number of divergence events (mode)')
+                    x_title = r'Estimated number of divergence events (mode)',
+                    y_title_size = y_title_size,
+                    include_right_text = False,
+                    text_size = right_text_size,
+                    xtick_label_size = 14.0)
             pg = psi_plot.create_grid()
             pg.label_schema = None
             column_labels = []
@@ -203,6 +209,7 @@ def create_plots(info_path,
             pg.margin_top = margin_top
             pg.margin_left = margin_left
             pg.margin_right = margin_right
+            pg.padding_between_horizontal = 2.0
             pg.column_label_offset = column_label_offset
             pg.column_label_size = column_label_size
             pg.title_size = title_size
@@ -239,9 +246,13 @@ def create_plots(info_path,
                     bayes_factor = 10,
                     draw_bayes_factor_line = False,
                     x_title = r'Posterior probability of one divergence',
+                    y_title_size = y_title_size,
                     width = width,
                     height = height,
-                    num_columns = num_columns)
+                    num_columns = num_columns,
+                    text_size = right_text_size,
+                    xtick_label_size = 14.0,
+                    pretty_xtick_labels = True)
             pg = psi_prob_plot.create_grid()
             pg.label_schema = None
             column_labels = []
@@ -256,10 +267,14 @@ def create_plots(info_path,
             pg.margin_right = margin_right
             pg.column_label_offset = column_label_offset
             pg.column_label_size = column_label_size
+            pg.padding_between_horizontal = 1.0
             pg.title_size = title_size
             pg.row_labels = row_labels
             pg.row_label_size = row_label_size
             pg.row_label_offset = row_label_offset
+            pg.reset_figure()
+            pg.set_shared_x_limits()
+            pg.set_shared_y_limits()
             pg.reset_figure()
             pg.savefig(os.path.join(output_dir,
                     prefix + '_power_psi_prob.pdf'))
@@ -287,7 +302,9 @@ def create_plots(info_path,
                     num_columns = num_columns,
                     width = width,
                     height = height,
-                    x_title = r'Estimated variance in divergence times (median)')
+                    x_title = r'Estimated variance in divergence times (median)',
+                    y_title_size = y_title_size,
+                    text_size = right_text_size)
             pg = omega_plot.create_grid()
             pg.label_schema = None
             column_labels = []
