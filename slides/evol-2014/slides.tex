@@ -41,6 +41,8 @@ Evolutionary History}
 \end{frame}
 }
 
+%TODO: NEED GENERAL INTRO
+
 \begin{frame}
     \frametitle<1-6>{Blah}
     \frametitle<7->{Divergence model choice}
@@ -231,7 +233,7 @@ Evolutionary History}
 \begin{frame}[t]
     \frametitle{Bayesian model choice}
     \begin{block}{\it Full model:}
-        \begin{minipage}[c][3.5cm][c]{\linewidth}
+        \begin{minipage}[c][3.8cm][c]{\linewidth}
             \begin{uncoverenv}<1->
             \[
                 p(
@@ -257,7 +259,7 @@ Evolutionary History}
                         \given \divModel{i}
                         )
                     }{p(\alignmentVector \given \divModel{i})}
-            \]\vspace{-2mm}
+            \]\vspace{-1mm}
             \end{uncoverenv}
             % \begin{uncoverenv}<2->
             % \[
@@ -281,7 +283,7 @@ Evolutionary History}
                 p(\alignmentVector \given \allParameters, \divModel{i})
                 p(\allParameters \given \divModel{i})
                 d\allParameters
-            \]\vspace{-2mm}
+            \]\vspace{-1mm}
             \end{uncoverenv}
             \begin{uncoverenv}<3->
             \[
@@ -293,7 +295,7 @@ Evolutionary History}
                     \sum_{i} p(\alignmentVector \given \divModel{i})
                     p(\divModel{i})
                 }
-            \]\vspace{-2mm}
+            \]\vspace{-1mm}
             \end{uncoverenv}
         \end{minipage}
     \end{block}
@@ -362,68 +364,51 @@ Evolutionary History}
     %             \item[\demographicParamVector] Demographic parameters
     %     \end{mydescription}
     % \end{onlyenv}
-    \smallskip
+    \vspace{1mm}
     \begin{uncoverenv}<4>
-        \centerline{\msb: Approximate Bayesian computation (ABC)}
-        \[ \alignmentVector \, \to \, \ssVectorObs \, \to \, \ssSpace\]
+        \begin{center}
+            \msb: Approximate Bayesian computation (ABC)
+
+            \vspace{-5mm}
+            \[ \alignmentVector \, \to \, \ssVectorObs \, \to \, \ssSpace\]
+        \end{center}
     \end{uncoverenv}
     \barefootnote{\tiny\shortfullcite{Huang2011}. \hspace{2mm}\shortfullcite{Oaks2012}.}
 \end{frame}
 
-\begin{frame}
-    % \frametitle{Empirical results}
+\begin{frame}[t]
     \frametitle{The \msb model}
-    However, \msb will often infer clustered divergences when divergence times
-    are random over millions of generations.
+    \begin{minipage}[c][0.18\textheight][c]{\linewidth}
+        % \begin{itemize}
+        \msb will often infer clustered divergences when divergences are random
+        over millions of generations.
+        % \end{itemize}
+    \end{minipage}
 
-    \vspace{1cm}
-    % \begin{center}
-    %     \includegraphics[width=0.8\textwidth]{../images/old-psi-results.pdf}
-        \centerline{
-        \includegraphics[width=0.5\textwidth]{../images/old_old_power_psi_mode_last.pdf}}
-        % \vspace{0mm}
-        % \centerline{
-        % \includegraphics[width=\textwidth]{../images/old-sims_power_psi_prob_headless.pdf}}
-    % \begin{columns}[c]
-    %     \column{.45\textwidth}
-            % {\small
-            % \begin{itemize}
-            %     % \item<1-> Strong support for simultaneous divergence of all 22 taxon pairs \\
-            % % \vspace{1cm}
-            %     % \item<1-> pp $>$ 0.96 \\
-            % % \vspace{1cm}
-            %     \item<1-> $\approx \,$100,000--250,000 years ago
-            %     \item<1-> $\approx \,$600 parameters and 88 statistics?
-            % \end{itemize}
-            % }
-        % \column{.55\textwidth}
-        % \includegraphics[width=\textwidth]{../images/jointDensityPlotsSlide.jpg}
-    % \end{columns}
-    % \end{center}
-    \barefootnote{\tiny\shortfullcite{Oaks2012}. \hspace{2mm}\shortfullcite{Oaks2014reply}.}
+%TODO: NEED TRANSITION TO OBJECTIVES
+
+    \begin{onlyenv}<1>
+        \vspace{-3mm}
+        \begin{center}
+            \includegraphics[width=0.5\textwidth]{../images/old_old_power_psi_mode_last.pdf}
+        \end{center}
+    \end{onlyenv}
+    \begin{onlyenv}<2->
+    Potential causes:
+        \begin{enumerate}
+            \item Broad uniform priors on many of the model's parameters, including
+                divergence times
+            \begin{itemize}
+                \item Small marginal likelihoods of rich models
+            \end{itemize}
+            % \item Uniform priors on many of the model's parameters, including
+            %     divergence times
+            \item Prior on divergence models that, coupled with \#1, favors
+                models with few divergence events
+        \end{enumerate}
+    \end{onlyenv}
+    \barefootnote{\tiny\shortfullcite{Oaks2012}. \hspace{2mm}\shortfullcite{Oaks2014reply}}
 \end{frame}
-
-\section{Simulation-based assessment of method}
-
-
-\subsection{Why the odd behavior?}
-
-
-\begin{frame}
-    \frametitle{Why the bias?}
-    Potential causes of the bias:
-    \begin{enumerate}
-        \item Broad uniform priors on many of the model's parameters, including
-            divergence times, cause small marginal likelihoods of rich models
-        \item The prior on divergence models
-            % \begin{enumerate}
-            %     \item Small marginal likelihoods of rich models
-            %     \item Insufficient sampling of rich models
-            % \end{enumerate}
-        % \item Theoretical limitations of ABC model choice
-    \end{enumerate}
-\end{frame}
-
 
 \begin{frame}[t]
     % \frametitle{Causes of bias: Marginal likelihoods}
@@ -431,8 +416,7 @@ Evolutionary History}
     \begin{displaybox}[5.5cm]
         \small
         \[
-            p(X) = \int_{\theta} p(X
-            \given \theta) p(\theta) \mathrm{d}\theta
+            p(X) = \int_{\theta} p(X \given \theta) p(\theta) \mathrm{d}\theta
         \]%\vspace{0mm}
     \end{displaybox}
     \smallskip
@@ -445,14 +429,6 @@ Evolutionary History}
 
 \begin{frame}
     \frametitle{Causes of bias: Marginal likelihoods}
-    % \begin{displaybox}[5.5cm]
-    %     \small
-    %     \[
-    %         p(X) = \int_{\theta} p(X
-    %         \given \theta) p(\theta) \mathrm{d}\theta
-    %     \]%\vspace{0mm}
-    % \end{displaybox}
-    % \smallskip
     \centerline{
         % \includegraphics<1>[height=8.0cm]{../images/marginal-plot-3d-bare.png}
         % \includegraphics<2>[height=8.0cm]{../images/marginal-plot-3d-prior.png}
