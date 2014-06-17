@@ -1,6 +1,6 @@
 \input{../utils/preamble.tex}
 \input{../../manuscripts/utils/macros.tex}
-\newcommand{\allParameters}{\ensuremath{\psi}\xspace}
+\newcommand{\allParameters}{\ensuremath{\theta}\xspace}
 \bibliography{../../manuscripts/bib/references}
 
 \title[Estimating shared history]{An Improved Approximate-Bayesian Method for Estimating Shared
@@ -400,7 +400,7 @@ Evolutionary History}
         % \includegraphics[width=\textwidth]{../images/jointDensityPlotsSlide.jpg}
     % \end{columns}
     % \end{center}
-    \barefootnote{\shortfullcite{Oaks2012}}
+    \barefootnote{\tiny\shortfullcite{Oaks2012}. \hspace{2mm}\shortfullcite{Oaks2014reply}.}
 \end{frame}
 
 \section{Simulation-based assessment of method}
@@ -638,75 +638,31 @@ Evolutionary History}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Testing climate-driven diversification}
+    \frametitle{Empirical application}
     \begin{columns}[c]
         \column{.5\textwidth}
-    \textbf{Did fragmentation of islands during inter-glacial rises in sea level
-    promote diversification?}\\
-        \column{.5\textwidth}
-            \includegraphics[width=\textwidth]{../images/maps/Philippines.png}
-    \end{columns}
-\end{frame}
+        Did fragmentation of Philippine Islands during inter-glacial rises in
+        sea level promote diversification?\\
+        \begin{center}
+            \includegraphics<1>[height=1.6cm]{../images/photos/gekko-mindorensis.jpg}
+            \hspace{0.3mm}
+            \includegraphics<1>[height=1.6cm]{../images/photos/sphenomorphus-arborens-rmb.jpg}
 
-\begin{frame}
-\begin{columns}[c]
-    \column{.5\textwidth}
-        \begin{table}%[htbp]
-            \scriptsize
-            \addtolength{\tabcolsep}{-0.09cm}
-            \centering
-            \begin{tabular}{ l c c }
-                % \toprule
-                \textbf{Species} & {\boldmath $n_1$} & {\boldmath $n_2$} \\
-                \hline
-                \textbf{\textsc{Mammals}} & & \\
-                \emph{Crocidura beatus}             & 12 & 11 \\
-                \emph{Crocidura negrina-panayensis} & 12 & 6  \\
-                \emph{Hipposideros obscurus}        & 19 & 9  \\
-                \emph{Hipposideros pygmaeus}        & 3  & 12 \\
-                \emph{Cynopterus brachyotis}        & 20 & 8  \\
-                \emph{Cynopterus brachyotis}        & 8  & 14 \\
-                \emph{Haplonycteris fischeri}       & 29 & 8  \\
-                \emph{Haplonycteris fischeri}       & 9  & 21 \\
-                \emph{Macroglossus minimus}         & 19 & 4  \\
-                \emph{Macroglossus minimus}         & 8  & 10 \\
-                \emph{Ptenochirus jagori}           & 4  & 7  \\
-                \emph{Ptenochirus jagori}           & 8  & 8  \\
-                \emph{Ptenochirus minor}            & 30 & 9  \\
-                \textbf{\textsc{Squamates}} & & \\
-                \emph{Cyrtodactylus gubaot-sumuroi} & 29 & 6  \\
-                \emph{Cyrtodactylus annulatus}      & 14 & 3  \\
-                \emph{Cyrtodactylus philippinicus}  & 6  & 14 \\
-                \emph{Gekko mindorensis}            & 8  & 11 \\
-                \emph{Insulasaurus arborens}        & 22 & 10 \\
-                \emph{Pinoyscincus jagori}          & 8  & 8  \\
-                \emph{Dendrelaphis marenae}         & 6  & 6  \\
-                \textbf{\textsc{Anurans}}  & & \\
-                \emph{Limnonectes leytensis}        & 4  & 2  \\
-                \emph{Limnonectes magnus}           & 2  & 3  \\
-                \hline
-            \end{tabular}
-        \end{table}
-    \column{.5\textwidth}
-        \centerline{
-        \includegraphics<1>[height=1.5cm]{../images/photos/crocidura-negrina-JAEsselstyn.jpg}}
-        % \vspace{0.5mm}
-        \centerline{
-        \includegraphics<1>[height=1.5cm]{../images/photos/hipposideros-obscurus-MRMDuya.jpg}
-        \hspace{0.3mm}
-        \includegraphics<1>[height=1.5cm]{../images/photos/haplonycteris-fischeri-JHolden.jpg}}
-        % \vspace{0.5mm}
-        \centerline{
-        \includegraphics<1>[height=1.5cm]{../images/photos/gekko-mindorensis.jpg}
-        \hspace{0.3mm}
-        \includegraphics<1>[height=1.5cm]{../images/photos/sphenomorphus-arborens-rmb.jpg}}
-        % \vspace{0.5mm}
-        \centerline{
-        \includegraphics<1>[height=1.5cm]{../images/photos/dendrelaphis-pictus-cds.jpg}}
-        % \vspace{0.5mm}
-        \centerline{
-        \includegraphics<1>[height=1.5cm]{../images/photos/limnonectes-leytensis-rmb.jpg}}
-\end{columns}
+            \vspace{0.7mm}
+            \includegraphics<1>[height=1.6cm]{../images/photos/dendrelaphis-pictus-cds.jpg}
+            \hspace{0.3mm}
+            \includegraphics<1>[height=1.6cm]{../images/photos/limnonectes-leytensis-rmb.jpg}
+
+            \vspace{0.7mm}
+            \includegraphics<1>[height=1.4cm]{../images/photos/hipposideros-obscurus-MRMDuya.jpg}
+            \hspace{0.3mm}
+            % \includegraphics<1>[height=1.2cm]{../images/photos/haplonycteris-fischeri-JHolden.jpg}
+            % \hspace{0.1mm}
+            \includegraphics<1>[height=1.4cm]{../images/photos/crocidura-negrina-JAEsselstyn.jpg}
+        \end{center}
+        \column{.5\textwidth}
+        \includegraphics[width=\textwidth]{../images/maps/Philippines.png}
+    \end{columns}
 \end{frame}
 
 \begin{frame}

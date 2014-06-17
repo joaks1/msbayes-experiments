@@ -227,15 +227,33 @@ def create_plots(info_path,
             pg.savefig(os.path.join(output_dir,
                     prefix + '_power_psi_mode_headless.pdf'))
 
-            # psi_plot_glm = PowerPlotGrid(
-            #         observed_config_to_estimates = cfg_to_psi_glm,
-            #         variable = 'psi',
-            #         variable_symbol = r'|\mathbf{\tau}|',
-            #         num_columns = 2,
-            #         margin_top = 0.975)
-            # fig = psi_plot_glm.create_grid()
-            # fig.savefig(os.path.join(output_dir,
-            #         prefix + '_power_psi_mode_glm.pdf'))
+            psi_plot.width = 5.0
+            psi_plot.height = 4.0
+            pg = psi_plot.create_column_grid(
+                subplot_indices_to_exclude = [0,1,2],
+                x_title_size = 16.0,
+                y_title_size = 15.0,
+                add_column_labels = True,
+                column_label_size = 18.0,
+                column_label_offset = 0.14,
+                plot_label_size = 12.0,
+                right_text_size = 10.0,
+                x_tick_label_size = 14.0,
+                share_x = False,
+                share_y = False)
+            pg.label_schema = None
+            pg.column_labels = [[t for (c, t) in sorted(column_labels, key = lambda x : x[0])][-1]]
+            pg.margin_bottom = 0.07
+            pg.margin_top = 0.88
+            pg.margin_left = 0.07
+            pg.margin_right = 0.99
+            pg.column_label_offset = 0.04
+            pg.column_label_size = column_label_size
+            # pg.title_size = title_size
+            pg.row_labels = None
+            pg.reset_figure()
+            pg.savefig(os.path.join(output_dir,
+                    prefix + '_power_psi_mode_last.pdf'))
 
             psi_prob_plot = ProbabilityPowerPlotGrid(
                     observed_config_to_estimates = cfg_to_psi_prob,
