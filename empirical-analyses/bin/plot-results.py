@@ -22,7 +22,7 @@ def get_dpp_psi_values(num_elements, shape, scale, num_sims = 100000):
     for i in range(num_sims):
         a = conc.draw()
         x = p.dirichlet_process_draw(a)
-        psis.append(len(set(x)))
+        psis.append(len(set(x.partition)))
     return psis
 
 def create_plots(dpp_info_path, old_info_path, out_dir):
@@ -149,6 +149,63 @@ def create_plots(dpp_info_path, old_info_path, out_dir):
     pg.reset_figure()
     pg.savefig(os.path.join(out_dir, 'philippines-dpp-psi-posterior-prior-lablels.pdf'))
 
+    prior_psis_old = []
+    for i in range(22):
+        prior_psis_old.extend([i + 1] * 100)
+    prior_hd_old = HistData(x = prior_psis_old,
+            normed = True,
+            bins = bins,
+            histtype = 'bar',
+            align = 'mid',
+            orientation = 'vertical',
+            zorder = 0)
+    prior_hist_old = ScatterPlot(hist_data_list = [prior_hd_old],
+            x_label = 'Number of divergence events',
+            y_label = 'Prior probability',
+            xticks_obj = xticks_obj)
+    prior_hist.set_xlim(left = bins[0], right = bins[-1])
+    prior_hist.set_ylim(bottom = 0.0, top = 0.5)
+
+    hist.set_ylim(bottom = 0.0, top = 0.5)
+    prior_hist.set_ylim(bottom = 0.0, top = 0.5)
+
+    for h in [hist_old, hist, prior_hist_old, prior_hist]:
+        h.set_ylabel(ylabel = '')
+        h.set_xlabel(xlabel = '')
+        h.set_title_text('')
+        h.set_extra_y_label('')
+
+    pg = PlotGrid(subplots = [hist_old, hist, prior_hist_old, prior_hist],
+            num_columns = 2,
+            height = 6.0,
+            width = 8.0,
+            share_x = True,
+            share_y = False,
+            label_schema = None,
+            auto_height = False,
+            title = r'Number of divergence events',
+            title_top = False,
+            title_size = 16.0,
+            y_title = 'Probability',
+            y_title_size = 16.0,
+            column_labels = [r'msBayes', r'dpp-msbayes'],
+            row_labels = ['Posterior', 'Prior'],
+            column_label_offset = 0.07,
+            column_label_size = 22.0,
+            row_label_offset = 0.04,
+            row_label_size = 20.0)
+    pg.auto_adjust_margins = False
+    pg.margin_top = 0.94
+    pg.margin_bottom = 0.045
+    pg.margin_right = 0.95
+    pg.margin_left = 0.045
+    pg.padding_between_vertical = 0.5
+    pg.padding_between_horizontal = 1.0
+    pg.reset_figure()
+    pg.set_shared_x_limits()
+    pg.set_shared_y_limits(by_row = True)
+    pg.reset_figure()
+    pg.savefig(os.path.join(out_dir, 'philippines-dpp-psi-posterior-old-vs-dpp-with-prior.pdf'))
 
 def main_cli():
     create_plots(project_util.PHILIPPINES_DPP_INFO, 
