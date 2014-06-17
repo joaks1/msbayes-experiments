@@ -1,5 +1,6 @@
 \input{../utils/preamble.tex}
 \input{../../manuscripts/utils/macros.tex}
+\newcommand{\allParameters}{\ensuremath{\psi}\xspace}
 \bibliography{../../manuscripts/bib/references}
 
 \title[Estimating shared history]{An Improved Approximate-Bayesian Method for Estimating Shared
@@ -176,7 +177,7 @@ Evolutionary History}
                             \divTimeMapVector = (\divTimeMap{1},\ldots,\divTimeMap{\npairs{}})
                         \]\vspace{0mm}
                         \[
-                            model = \divTimeIndex{1}\ldots\divTimeIndex{\npairs{}}
+                            model = \divModel{i}
                         \]\vspace{0mm}
                         \[
                             \divTimeVector = \{\divTime{1},\ldots,\divTime{\divTimeNum}\}
@@ -190,20 +191,27 @@ Evolutionary History}
                 \begin{mydescription}
                     \item[\alignmentVector] Sequence alignments
                     \item[\divTimeMapVector] Divergence times
+                    \item[\divModel{}] Divergence model
                     \item[\geneTreeVector] Gene trees
-                    % \item[\hkyModelVector] Substitution parameters
+                    \item[\hkyModelVector] Substitution parameters
                     \item[\demographicParamVector] Demographic parameters
+                    % \item[\allParameters] $(\divTimeMapVector, \geneTreeVector,
+                    %     \hkyModelVector, \demographicParamVector)$
                 \end{mydescription}
             \end{minipage}
         \end{onlyenv}
         \begin{uncoverenv}<15->
+            \begin{minipage}[c][0.18\textheight][c]{\linewidth}
             \begin{flushleft}
-                \small We want to infer \textcolor{blue}{\divTimeMapVector}
-                given DNA sequence alignments
+                \small We want to infer \textcolor{blue}{\divModel{}} and
+                \textcolor{blue}{\divTimeMapVector} given DNA sequence
+                alignments
                 \textcolor{blue}{\alignmentVector}
             \end{flushleft}
+            \end{minipage}
         \end{uncoverenv}
         \column{.6\textwidth}
+        \begin{minipage}[t][0.8\textheight][c]{\linewidth}
         \includegraphics<1>[height=6cm]{../images/community-ellipse-small.pdf}
         \includegraphics<2>[height=6cm]{../images/community-ellipse-barrier-small.pdf}
         \includegraphics<3>[height=6cm]{../images/community-ellipse-split-small.pdf}
@@ -216,39 +224,149 @@ Evolutionary History}
         \includegraphics<12>[height=6cm]{../images/div-model-cartoon-general.pdf}
         \includegraphics<13-15>[height=6cm]{../images/div-model-cartoon-shared.pdf}
         \includegraphics<16->[height=6cm]{../images/div-model-cartoon-sp-tree-shared.pdf}
+        \end{minipage}
     \end{columns}
 \end{frame}
 
 \begin{frame}[t]
-    \frametitle{The \msb model}
-        \uncover<1->{
-        \begin{block}{\it Full Model:}
-        \[
-            p(\geneTreeVector, \divTimeMapVector, \demographicParamVector
-            \given
-            \alignmentVector) =
-            \frac{p(\alignmentVector \given \geneTreeVector, \divTimeMapVector,
-            \demographicParamVector)
-            p(\geneTreeVector, \divTimeMapVector, \demographicParamVector)}{
-            p(\alignmentVector)}
-        \]\vspace{0mm}
-        \end{block}
-        }
-        \begin{onlyenv}<1->
-        \smallskip
-        \begin{mydescription}
-            \item[\alignmentVector] Sequence alignments
-            \item[\geneTreeVector] Gene trees
-            % \item[\hkyModelVector] Substitution parameters
-            \item[\divTimeMapVector] Divergence times
-            \item[\demographicParamVector] Demographic parameters
-        \end{mydescription}
-        \end{onlyenv}
-    \begin{onlyenv}<2>
+    \frametitle{Bayesian model choice}
+    \begin{block}{\it Full model:}
+        \begin{minipage}[c][3.5cm][c]{\linewidth}
+            \begin{uncoverenv}<1->
+            \[
+                p(
+                  \divTimeMapVector,
+                  \geneTreeVector,
+                  \hkyModelVector,
+                  \demographicParamVector
+                  \given \alignmentVector, \divModel{i})
+                  =
+                \frac{
+                    p(\alignmentVector \given
+                      \divTimeMapVector,
+                      \geneTreeVector,
+                      \hkyModelVector,
+                      \demographicParamVector,
+                      \divModel{i}
+                      )
+                      p(
+                        \divTimeMapVector,
+                        \geneTreeVector,
+                        \hkyModelVector,
+                        \demographicParamVector
+                        \given \divModel{i}
+                        )
+                    }{p(\alignmentVector \given \divModel{i})}
+            \]\vspace{-2mm}
+            \end{uncoverenv}
+            % \begin{uncoverenv}<2->
+            % \[
+            %     p(\allParameters \given \alignmentVector, \divModel{i})
+            %       =
+            %     \frac{
+            %         p(\alignmentVector \given
+            %           \allParameters,
+            %           \divModel{i}
+            %           )
+            %           p(
+            %             \allParameters \given \divModel{i}
+            %             )
+            %         }{p(\alignmentVector \given \divModel{i})}
+            % \]\vspace{0mm}
+            % \end{uncoverenv}
+            \begin{uncoverenv}<2->
+            \[
+                p(\alignmentVector \given \divModel{i}) =
+                \int_{\allParameters}
+                p(\alignmentVector \given \allParameters, \divModel{i})
+                p(\allParameters \given \divModel{i})
+                d\allParameters
+            \]\vspace{-2mm}
+            \end{uncoverenv}
+            \begin{uncoverenv}<3->
+            \[
+                p(\divModel{i} \given \alignmentVector) =
+                \frac{
+                    p(\alignmentVector \given \divModel{i})
+                    p(\divModel{i})
+                }{
+                    \sum_{i} p(\alignmentVector \given \divModel{i})
+                    p(\divModel{i})
+                }
+            \]\vspace{-2mm}
+            \end{uncoverenv}
+        \end{minipage}
+    \end{block}
+    % \end{minipage}
+    % \begin{minipage}[c][2cm][c]{\linewidth}
+    %     \begin{block}{\it Full Model:}
+    %         \begin{minipage}[c][1.7cm][c]{\linewidth}
+    %             \[
+    %                 p(
+    %                   \divTimeMapVector,
+    %                   \geneTreeVector,
+    %                   \hkyModelVector,
+    %                   \demographicParamVector
+    %                   \given \alignmentVector)
+    %                   =
+    %                 \frac{
+    %                     p(\alignmentVector \given
+    %                       \divTimeMapVector,
+    %                       \geneTreeVector,
+    %                       \hkyModelVector,
+    %                       \demographicParamVector
+    %                       )
+    %                     p(
+    %                       \divTimeMapVector,
+    %                       \geneTreeVector,
+    %                       \hkyModelVector,
+    %                       \demographicParamVector
+    %                       )
+    %                     }{p(\alignmentVector)}
+    %             \]\vspace{0mm}
+    %         \end{minipage}
+    %     \end{block}
+    % \end{minipage}
+    % \begin{minipage}[c][2cm][c]{\linewidth}
+    %     \begin{block}{\it Full Model:}
+    %         \begin{minipage}[c][1.7cm][c]{\linewidth}
+    %             \[
+    %                 p(
+    %                   \divTimeMapVector,
+    %                   \geneTreeVector,
+    %                   \hkyModelVector,
+    %                   \demographicParamVector
+    %                   \given \alignmentVector)
+    %                   =
+    %                 \frac{p(\alignmentVector \given
+    %                         \geneTreeVector,
+    %                         \hkyModelVector)
+    %                       p(\geneTreeVector \given
+    %                         \divTimeMapVector,
+    %                         \demographicParamVector)
+    %                       p(\divTimeMapVector)
+    %                       p(\hkyModelVector)
+    %                       p(\demographicParamVector)
+    %                     }{p(\alignmentVector)}
+    %             \]\vspace{0mm}
+    %         \end{minipage}
+    %     \end{block}
+    % \end{minipage}
+    % \begin{onlyenv}<1->
+    %     \bigskip
+    %     \begin{mydescription}
+    %             \item[\alignmentVector] Sequence alignments
+    %             \item[\divTimeMapVector] Divergence times
+    %             \item[\geneTreeVector] Gene trees
+    %             \item[\hkyModelVector] Substitution parameters
+    %             \item[\demographicParamVector] Demographic parameters
+    %     \end{mydescription}
+    % \end{onlyenv}
     \smallskip
-        \centerline{Approximate Bayesian computation (ABC)}
+    \begin{uncoverenv}<4>
+        \centerline{\msb: Approximate Bayesian computation (ABC)}
         \[ \alignmentVector \, \to \, \ssVectorObs \, \to \, \ssSpace\]
-    \end{onlyenv}
+    \end{uncoverenv}
     \barefootnote{\tiny\shortfullcite{Huang2011}. \hspace{2mm}\shortfullcite{Oaks2012}.}
 \end{frame}
 
