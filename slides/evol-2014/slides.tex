@@ -394,45 +394,48 @@ Evolutionary History}
         \end{center}
     \end{onlyenv}
     \begin{onlyenv}<2->
-    Potential causes:
-        \begin{enumerate}
-            \item Broad uniform priors on many of the model's parameters, including
-                divergence times
-            \begin{itemize}
-                \item Small marginal likelihoods of rich models
-            \end{itemize}
-            % \item Uniform priors on many of the model's parameters, including
-            %     divergence times
-            \item Prior on divergence models that, coupled with \#1, favors
-                models with few divergence events
-        \end{enumerate}
+        \begin{block}{Objective:}
+            Use principles of probability to extend \msb framework for improved
+            estimation of shared evolutionary history
+        \end{block}
     \end{onlyenv}
     \barefootnote{\tiny\shortfullcite{Oaks2012}. \hspace{2mm}\shortfullcite{Oaks2014reply}}
 \end{frame}
 
 \begin{frame}[t]
-    % \frametitle{Causes of bias: Marginal likelihoods}
-    \frametitle{Causes of bias: Broad priors}
+    \frametitle{An improved method}
+    Potential improvements:
+    \begin{enumerate}
+        \item Alternative priors on model parameters that improve marginal
+            likelihoods of rich models
+        \item Dirichlet process prior over divergence models
+        % \item Broad uniform priors on many of the model's parameters, including
+        %     divergence times
+        % \begin{itemize}
+        %     \item Small marginal likelihoods of rich models
+        % \end{itemize}
+        % % \item Uniform priors on many of the model's parameters, including
+        % %     divergence times
+        % \item Prior on divergence models that, coupled with \#1, favors
+        %     models with few divergence events
+    \end{enumerate}
+    \barefootnote{\tiny\shortfullcite{Oaks2012}. \hspace{2mm}\shortfullcite{Oaks2014reply}}
+\end{frame}
+
+\begin{frame}[t]
+    \vspace{-2mm}
     \begin{displaybox}[5.5cm]
         \small
         \[
             p(X) = \int_{\theta} p(X \given \theta) p(\theta) \mathrm{d}\theta
         \]%\vspace{0mm}
     \end{displaybox}
-    \smallskip
-    \centerline{
-        % \includegraphics<2>[height=6.5cm]{../images/marginal-plot-2d-no-priors.pdf}
-        \includegraphics<1>[height=6.5cm]{../images/marginal-plot-2d-uniform-prior.pdf}
-        % \includegraphics<3>[height=6.5cm]{images/marginal-plot-2d.pdf}
-    }
-\end{frame}
 
-\begin{frame}
-    \frametitle{Causes of bias: Marginal likelihoods}
-    \centerline{
-        % \includegraphics<1>[height=8.0cm]{../images/marginal-plot-3d-bare.png}
-        % \includegraphics<2>[height=8.0cm]{../images/marginal-plot-3d-prior.png}
-        \includegraphics<1>[height=8.0cm]{../images/marginal-plot-3d.png}}
+    \vspace{-1mm}
+    \begin{center}
+        \includegraphics<1>[height=7.8cm]{../images/marginal-plot-2d-uniform-prior.pdf}
+        \includegraphics<2>[height=7.8cm]{../images/marginal-plot-3d.png}
+    \end{center}
 \end{frame}
 
 
