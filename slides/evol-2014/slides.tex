@@ -435,39 +435,45 @@ Evolutionary History}
     \begin{center}
         \includegraphics<1>[height=7.8cm]{../images/marginal-plot-2d-uniform-prior.pdf}
         \includegraphics<2>[height=7.8cm]{../images/marginal-plot-3d.png}
+        \includegraphics<3>[height=7.8cm]{../images/marginal-plot-2d.pdf}
     \end{center}
 \end{frame}
 
 
-\begin{frame}[t]
-    \frametitle{Mitigating the bias}
-    \begin{block}{\it Potential solution:}
-        More flexible priors
-    \end{block}
-    \smallskip
-    \centerline{
-        \includegraphics<1>[height=6.0cm]{../images/marginal-plot-2d-uniform-prior.pdf}
-        \includegraphics<2>[height=6.0cm]{../images/marginal-plot-2d.pdf}}
-        % \includegraphics<3>[width=\textwidth]{../images/partition_numbers.pdf}}
-    % \begin{block}<4>{\it Potential solution:}
-        % Alternative prior over divergence models
-        % % (e.g., uniform or Dirichlet process)
-    % \end{block}
-\end{frame}
+% \begin{frame}[t]
+%     \frametitle{Mitigating the bias}
+%     \begin{block}{\it Potential solution:}
+%         More flexible priors
+%     \end{block}
+%     \smallskip
+%     \centerline{
+%         \includegraphics<1>[height=6.0cm]{../images/marginal-plot-2d-uniform-prior.pdf}
+%         \includegraphics<2>[height=6.0cm]{../images/marginal-plot-2d.pdf}}
+%         % \includegraphics<3>[width=\textwidth]{../images/partition_numbers.pdf}}
+%     % \begin{block}<4>{\it Potential solution:}
+%         % Alternative prior over divergence models
+%         % % (e.g., uniform or Dirichlet process)
+%     % \end{block}
+% \end{frame}
 
-\begin{frame}
-    \frametitle{Causes of bias: Prior on divergence models}
-    Potential causes of the bias:
+\begin{frame}[t]
+    \frametitle{An improved method}
+    Potential improvements:
     \begin{enumerate}
-        \item Broad uniform priors on many of the model's parameters, including
-            divergence times
-        \item The prior on divergence models
-            % \begin{enumerate}
-            %     \item Small marginal likelihoods of rich models
-            %     \item Insufficient sampling of rich models
-            % \end{enumerate}
-        % \item Theoretical limitations of ABC model choice
+        \item Alternative priors on model parameters that improve marginal
+            likelihoods of rich models
+        \item Dirichlet process prior over divergence models
+        % \item Broad uniform priors on many of the model's parameters, including
+        %     divergence times
+        % \begin{itemize}
+        %     \item Small marginal likelihoods of rich models
+        % \end{itemize}
+        % % \item Uniform priors on many of the model's parameters, including
+        % %     divergence times
+        % \item Prior on divergence models that, coupled with \#1, favors
+        %     models with few divergence events
     \end{enumerate}
+    \barefootnote{\tiny\shortfullcite{Oaks2012}. \hspace{2mm}\shortfullcite{Oaks2014reply}}
 \end{frame}
 
 \begin{frame}
@@ -532,6 +538,14 @@ Evolutionary History}
 \end{frame}
 
 \begin{frame}
+    \frametitle{\dppmsbayes: Simulation results}
+    \centerline{
+        \includegraphics<1>[width=0.85\textwidth]{../images/validation-model-choice-old-dpp.pdf}
+        \includegraphics<2>[width=1.13\textwidth]{../images/validation-model-choice-old-dpp-full.pdf}}
+    \barefootnote{\shortfullcite{Oaks2014dpp}}
+\end{frame}
+
+\begin{frame}
     \frametitle{\dppmsbayes: Simulation-based assessment}
     Assess power \\
     \smallskip
@@ -555,14 +569,6 @@ Evolutionary History}
         % \item Analyze all 4000 datasets as we did the empirical data
         \item Analyze all 4000 datasets under models $M_{msBayes}$, $M_{Ushaped}$, and $M_{DPP}$
     \end{myitemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{\dppmsbayes: Simulation results}
-    \centerline{
-        \includegraphics<1>[width=0.85\textwidth]{../images/validation-model-choice-old-dpp.pdf}
-        \includegraphics<2>[width=1.13\textwidth]{../images/validation-model-choice-old-dpp-full.pdf}}
-    \barefootnote{\shortfullcite{Oaks2014dpp}}
 \end{frame}
 
 \begin{frame}[t]
