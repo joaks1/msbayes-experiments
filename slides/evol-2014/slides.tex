@@ -44,7 +44,7 @@ Evolutionary History}
 %TODO: NEED GENERAL INTRO
 
 \begin{frame}
-    \frametitle<1-6>{Blah}
+    \frametitle<1-6>{Community scale processes}
     \frametitle<7->{Divergence model choice}
     \begin{columns}[c]
         \column{.4\textwidth}
@@ -402,13 +402,13 @@ Evolutionary History}
     \barefootnote{\tiny\shortfullcite{Oaks2012}. \hspace{2mm}\shortfullcite{Oaks2014reply}}
 \end{frame}
 
-\begin{frame}[t]
+\begin{frame}
     \frametitle{An improved method}
     Potential improvements:
     \begin{enumerate}
         \item Alternative priors on model parameters that improve marginal
             likelihoods of rich models
-        \item Dirichlet process prior over divergence models
+        \item Alternative prior over divergence models
         % \item Broad uniform priors on many of the model's parameters, including
         %     divergence times
         % \begin{itemize}
@@ -435,59 +435,33 @@ Evolutionary History}
     \begin{center}
         \includegraphics<1>[height=7.8cm]{../images/marginal-plot-2d-uniform-prior.pdf}
         \includegraphics<2>[height=7.8cm]{../images/marginal-plot-3d.png}
-        \includegraphics<3>[height=7.8cm]{../images/marginal-plot-2d.pdf}
+        \includegraphics<3>[height=7.8cm]{../images/marginal-plot-2d-uniform-prior.pdf}
+        \includegraphics<4>[height=7.8cm]{../images/marginal-plot-2d.pdf}
     \end{center}
 \end{frame}
 
-
-% \begin{frame}[t]
-%     \frametitle{Mitigating the bias}
-%     \begin{block}{\it Potential solution:}
-%         More flexible priors
-%     \end{block}
-%     \smallskip
-%     \centerline{
-%         \includegraphics<1>[height=6.0cm]{../images/marginal-plot-2d-uniform-prior.pdf}
-%         \includegraphics<2>[height=6.0cm]{../images/marginal-plot-2d.pdf}}
-%         % \includegraphics<3>[width=\textwidth]{../images/partition_numbers.pdf}}
-%     % \begin{block}<4>{\it Potential solution:}
-%         % Alternative prior over divergence models
-%         % % (e.g., uniform or Dirichlet process)
-%     % \end{block}
-% \end{frame}
-
-\begin{frame}[t]
+\begin{frame}
     \frametitle{An improved method}
     Potential improvements:
     \begin{enumerate}
         \item Alternative priors on model parameters that improve marginal
             likelihoods of rich models
-        \item Dirichlet process prior over divergence models
-        % \item Broad uniform priors on many of the model's parameters, including
-        %     divergence times
-        % \begin{itemize}
-        %     \item Small marginal likelihoods of rich models
-        % \end{itemize}
-        % % \item Uniform priors on many of the model's parameters, including
-        % %     divergence times
-        % \item Prior on divergence models that, coupled with \#1, favors
-        %     models with few divergence events
+        \item Alternative prior over divergence models
     \end{enumerate}
     \barefootnote{\tiny\shortfullcite{Oaks2012}. \hspace{2mm}\shortfullcite{Oaks2014reply}}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Causes of bias: Prior on divergence models}
+    \frametitle{Prior on divergence models}
     \begin{itemize}
         \item \msb uses a discrete uniform prior on the \emph{number} of
-            divergence events, \divTimeNum
+            divergence events
     \end{itemize}
     % \smallskip
     \centerline{
         \includegraphics<1->[width=\textwidth]{../images/partition_numbers.pdf}}
     \begin{block}<2->{\it Potential solution:}
-        Alternative prior over divergence models
-        (e.g., Dirichlet process)
+        Place flexible prior directly on the sample space of divergence models
     \end{block}
 \end{frame}
 
@@ -498,7 +472,7 @@ Evolutionary History}
         % \item<1-> Reparameterized the model implemented in \msb
         \item<1-> Replaced uniform priors on continuous parameters with gamma and
             beta distributions
-        \item<1-> Dirichlet process prior (DPP) over all possible discrete divergence
+        \item<1-> Dirichlet process prior (DPP) over all possible divergence
             models
         % \item<4-> Uniform prior over divergence models
     \end{itemize}
@@ -546,9 +520,7 @@ Evolutionary History}
 \end{frame}
 
 \begin{frame}
-    \frametitle{\dppmsbayes: Simulation-based assessment}
-    Assess power \\
-    \smallskip
+    \frametitle{\dppmsbayes: Simulation-based power analyses}
     \begin{myitemize}
         \item Simulate datasets in which all 22 divergence times are random
         \uncover{
@@ -572,7 +544,7 @@ Evolutionary History}
 \end{frame}
 
 \begin{frame}[t]
-    \frametitle{\dppmsbayes: Simulation results}
+    \frametitle{\dppmsbayes: Power results}
     \vspace{1cm}
         \centerline{
         \includegraphics[width=1.13\textwidth]{../images/old_old_power_psi_mode.pdf}}
@@ -583,7 +555,7 @@ Evolutionary History}
 \end{frame}
 
 \begin{frame}[t]
-    \frametitle{\dppmsbayes: Simulation results}
+    \frametitle{\dppmsbayes: Power results}
     \vspace{1cm}
         \centerline{
         \includegraphics[width=1.13\textwidth]{../images/old_old_power_psi_prob.pdf}}
@@ -594,7 +566,7 @@ Evolutionary History}
 \end{frame}
 
 \begin{frame}
-    \frametitle{\dppmsbayes: Simulation results}
+    \frametitle{\dppmsbayes: Power results}
     % \vspace{1cm}
         \centerline{
         \includegraphics[width=\textwidth]{../images/old_old_power_psi_prob.pdf}}
@@ -605,21 +577,6 @@ Evolutionary History}
         \centerline{
         \includegraphics[width=\textwidth]{../images/old_dpp_power_psi_prob_headless.pdf}}
     % \barefootnote{\shortfullcite{Oaks2014dpp}}
-\end{frame}
-
-\begin{frame}
-    \frametitle{\dppmsbayes: Simulation results}
-    \begin{itemize}
-        \item Results confirm the bias of \msb was caused by
-
-        \begin{enumerate}
-            \item Broad uniform priors
-            \item U-shaped prior on divergence models
-        \end{enumerate}
-
-        \item The new model shows improved model-choice accuracy, power, and
-            robustness
-    \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -651,49 +608,76 @@ Evolutionary History}
 \end{frame}
 
 \begin{frame}
-    \frametitle{\dppmsbayes: Philippine diversification}
+    \frametitle{Empirical results: Philippine diversification}
     \centerline{
     \includegraphics[width=0.8\textwidth]{../../empirical-analyses/plots/philippines-dpp-psi-posterior-old-vs-dpp-with-prior.pdf}}
     \barefootnote{\shortfullcite{Oaks2014dpp}}
 \end{frame}
 
-% \begin{frame}
-%     \frametitle{\dppmsbayes: Philippine diversification}
-%     \centerline{
-%     \includegraphics[width=\textwidth]{../../empirical-analyses/plots/philippines-dpp-psi-posterior-prior.pdf}}
-%     \smallskip
-%     \centerline{
-%     \includegraphics[height=2cm]{../images/sea-level-only.pdf}}
-%     \barefootnote{\shortfullcite{Oaks2014dpp}}
-% \end{frame}
-
 \section{Conclusions}
 
 \begin{frame}
     \frametitle{Conclusions}
-    \begin{myitemize}
-        \item<1-> New approximate-Bayesian method of phylogeographical
-            model choice shows improved behavior
-            \begin{myitemize}
-                \item<1-> Improved accuracy, robustness, and power
-                \item<1-> Better estimates of posterior
-                    uncertainty
-            \end{myitemize}
-        \smallskip
-        \item<2-> Philippine climate-driven diversification model?
-            \begin{myitemize}
-                \item<2-> Results consistent with prediction of clustered
-                    divergences
-                \item<2-> Results suggest multiple co-divergences
-                \item<2-> However, there is a lot of uncertainty
-            \end{myitemize}
-    \end{myitemize}
+    \begin{itemize}
+        \item<1-> New method for estimating shared evolutionary history shows
+            improved
+        \begin{enumerate}
+            \item Estimates of posterior uncertainty
+            \item Model-choice accuracy
+            \item Power to detect temporal variation across divergences
+            \item Robustness to model violations
+        \end{enumerate}
+
+        \item<2-> Improvement is due to
+        \begin{enumerate}
+            \item Alternative priors on model parameters avoid prohibitively
+                small marginal likelihoods for models with more divergence
+                events
+            \item Nonparametric prior on the temporal distribution of
+                divergences avoids combinatorial ``interaction'' with
+                divergence-time priors
+        \end{enumerate}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Future directions: Full-Bayesian phylogenetic framework}
-    % \includegraphics<1>[height=6.8cm]{../images/sea-level-prediction-trees-labels-compact-alt2.pdf}
-    \includegraphics<1>[width=\textwidth]{../images/sea-level-prediction-phylo.pdf}
+    \frametitle{Caveats}
+    \begin{itemize}
+        \item<1-> Estimating a very rich (600+ parameters for 22 taxa) model
+            using limited information from the data
+
+        \begin{itemize}
+            \item Likely sensitive to prior assumptions
+            \item Be skeptical of strongly supported results
+        \end{itemize}
+
+        \item<2-> ABC can be inaccurate for model choice
+            \footnote{\tiny\shortfullcite{Robert2011}}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Recommendations}
+    For Bayesian model choice, choose priors carefully\\
+    \bigskip
+    ABC model choice estimates should be accompanied by:
+    \begin{enumerate}
+        \item Simulation-based power analyses
+        \item Assessment of prior sensitivity
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[t]
+    \frametitle{Future directions}
+    \begin{itemize}
+        \item<1-> Full-likelihood Bayesian approach \footnote{\tiny\shortfullcite{JeetDiss}}
+        \item<2-> Full-phylogenetic framework
+    \end{itemize}
+    
+    \begin{center}
+        \includegraphics<2>[height=5.5cm]{../images/div-model-cartoon-sp-tree-shared-wide.pdf}
+        \includegraphics<3>[height=5.5cm]{../images/div-model-cartoon-sp-phylogeny.pdf}
+    \end{center}
 \end{frame}
 
 \begin{frame}
@@ -726,18 +710,6 @@ Evolutionary History}
         % \item joaks1@gmail.com
     \end{itemize}
 \end{frame}
-
-% \begin{frame}
-%     \frametitle{Recommendations}
-%     For Bayesian model choice, choose prior distributions carefully\\
-%     \bigskip
-%     All ABC model choice estimates should be accompanied by:
-%     \begin{enumerate}
-%         \item Simulation-based power analyses
-%         \item Assessment of prior sensitivity
-%     \end{enumerate}
-%     \medskip
-% \end{frame}
 
 \begin{frame}
     \frametitle{Acknowledgments}
@@ -786,12 +758,6 @@ Evolutionary History}
 % Extra slides
 
 \begin{frame}[noframenumbering]
-    \frametitle{Gene tree divergences}
-    \centerline{
-    \includegraphics[height=8cm]{../images/gene_splits.pdf}}
-\end{frame}
-
-\begin{frame}[noframenumbering]
     \frametitle{Causes of bias: Insufficient sampling}
     \begin{itemize}
         \item Models with more parameter space are less densely sampled
@@ -808,11 +774,6 @@ Evolutionary History}
     \includegraphics[width=\textwidth]{../images/omega_over_sampling.pdf}}
 \end{frame}
 
-\begin{frame}[noframenumbering]
-    \frametitle{Geological history}
-    \includegraphics[width=\textwidth]{../images/maps/arees-fig3.png}
-\end{frame}
-    
 \begin{frame}[noframenumbering]
     \frametitle{\dppmsbayes: Simulation results}
     % \vspace{1cm}
