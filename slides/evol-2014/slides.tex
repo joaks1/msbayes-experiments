@@ -34,12 +34,12 @@ Evolutionary History}
 % \tableofcontents[currentsection]
 % \end{frame}
 
-{
-\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/maps/se-asia-120.png}}
-\begin{frame}
-    \frametitle{Southeast Asia}    
-\end{frame}
-}
+% {
+% \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/maps/se-asia-120.png}}
+% \begin{frame}
+%     \frametitle{Southeast Asia}    
+% \end{frame}
+% }
 
 \begin{frame}
     \frametitle{Processes of diversification}
@@ -53,7 +53,6 @@ Evolutionary History}
         \end{itemize}
 \end{frame}
 
-%TODO: NEED GENERAL INTRO
 
 \begin{frame}
     \frametitle<1-6>{Community scale processes}
@@ -296,71 +295,6 @@ Evolutionary History}
             \end{uncoverenv}
         \end{minipage}
     \end{block}
-    % \end{minipage}
-    % \begin{minipage}[c][2cm][c]{\linewidth}
-    %     \begin{block}{\it Full Model:}
-    %         \begin{minipage}[c][1.7cm][c]{\linewidth}
-    %             \[
-    %                 p(
-    %                   \divTimeMapVector,
-    %                   \geneTreeVector,
-    %                   \hkyModelVector,
-    %                   \demographicParamVector
-    %                   \given \alignmentVector)
-    %                   =
-    %                 \frac{
-    %                     p(\alignmentVector \given
-    %                       \divTimeMapVector,
-    %                       \geneTreeVector,
-    %                       \hkyModelVector,
-    %                       \demographicParamVector
-    %                       )
-    %                     p(
-    %                       \divTimeMapVector,
-    %                       \geneTreeVector,
-    %                       \hkyModelVector,
-    %                       \demographicParamVector
-    %                       )
-    %                     }{p(\alignmentVector)}
-    %             \]\vspace{0mm}
-    %         \end{minipage}
-    %     \end{block}
-    % \end{minipage}
-    % \begin{minipage}[c][2cm][c]{\linewidth}
-    %     \begin{block}{\it Full Model:}
-    %         \begin{minipage}[c][1.7cm][c]{\linewidth}
-    %             \[
-    %                 p(
-    %                   \divTimeMapVector,
-    %                   \geneTreeVector,
-    %                   \hkyModelVector,
-    %                   \demographicParamVector
-    %                   \given \alignmentVector)
-    %                   =
-    %                 \frac{p(\alignmentVector \given
-    %                         \geneTreeVector,
-    %                         \hkyModelVector)
-    %                       p(\geneTreeVector \given
-    %                         \divTimeMapVector,
-    %                         \demographicParamVector)
-    %                       p(\divTimeMapVector)
-    %                       p(\hkyModelVector)
-    %                       p(\demographicParamVector)
-    %                     }{p(\alignmentVector)}
-    %             \]\vspace{0mm}
-    %         \end{minipage}
-    %     \end{block}
-    % \end{minipage}
-    % \begin{onlyenv}<1->
-    %     \bigskip
-    %     \begin{mydescription}
-    %             \item[\alignmentVector] Sequence alignments
-    %             \item[\divTimeMapVector] Divergence times
-    %             \item[\geneTreeVector] Gene trees
-    %             \item[\hkyModelVector] Substitution parameters
-    %             \item[\demographicParamVector] Demographic parameters
-    %     \end{mydescription}
-    % \end{onlyenv}
     \vspace{1mm}
     \begin{uncoverenv}<4>
         \begin{center}
@@ -382,8 +316,6 @@ Evolutionary History}
         % \end{itemize}
     \end{minipage}
 
-%TODO: NEED TRANSITION TO OBJECTIVES
-
     \begin{onlyenv}<1>
         \vspace{-3mm}
         \begin{center}
@@ -399,22 +331,14 @@ Evolutionary History}
     \barefootnote{\tiny\shortfullcite{Oaks2012}. \hspace{2mm}\shortfullcite{Oaks2014reply}}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[label=improvements]
     \frametitle{An improved method}
     Potential improvements:
     \begin{enumerate}
         \item Alternative priors on parameters that increase marginal
             likelihoods of rich models
-        \item Alternative prior over divergence models
-        % \item Broad uniform priors on many of the model's parameters, including
-        %     divergence times
-        % \begin{itemize}
-        %     \item Small marginal likelihoods of rich models
-        % \end{itemize}
-        % % \item Uniform priors on many of the model's parameters, including
-        % %     divergence times
-        % \item Prior on divergence models that, coupled with \#1, favors
-        %     models with few divergence events
+        \item Alternative approach to modeling the temporal distribution of
+            divergences
     \end{enumerate}
     \barefootnote{\tiny\shortfullcite{Oaks2012}. \hspace{2mm}\shortfullcite{Oaks2014reply}}
 \end{frame}
@@ -437,16 +361,7 @@ Evolutionary History}
     \end{center}
 \end{frame}
 
-\begin{frame}
-    \frametitle{An improved method}
-    Potential improvements:
-    \begin{enumerate}
-        \item Alternative priors on model parameters that increase marginal
-            likelihoods of rich models
-        \item Alternative prior over divergence models
-    \end{enumerate}
-    \barefootnote{\tiny\shortfullcite{Oaks2012}. \hspace{2mm}\shortfullcite{Oaks2014reply}}
-\end{frame}
+\againframe{improvements}
 
 \begin{frame}
     \frametitle{Prior on divergence models}
@@ -678,9 +593,8 @@ Evolutionary History}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Software}
-    Everything is on GitHub\ldots\\
-    \smallskip
+    \frametitle{Everything is on GitHub\ldots}
+    Software:\\
     \begin{itemize}
         \item \texttt{dpp-msbayes}:
             \href{https://github.com/joaks1/dpp-msbayes}{\tt
@@ -694,17 +608,13 @@ Evolutionary History}
             \href{https://github.com/joaks1/abacus}{\tt
             https://github.com/joaks1/abacus}
     \end{itemize}
-\end{frame}
 
-\begin{frame}
-    \frametitle{Open Notebook Science}
-    Everything is on GitHub\ldots\\
-    \smallskip
+    \medskip
+    Open-Science Notebook:\\
     \begin{itemize}
         \item \texttt{msbayes-experiments}:
             \href{https://github.com/joaks1/msbayes-experiments}{\tt
             https://github.com/joaks1/msbayes-experiments}
-        % \item joaks1@gmail.com
     \end{itemize}
 \end{frame}
 
@@ -741,16 +651,20 @@ Evolutionary History}
                     \begin{myitemize}
                         \item D.S.\ Balete, M.R.M.\ Duya, \& J.\ Holden
                     \end{myitemize}
+                \item PhyloPic!
             \end{myitemize}
     \end{columns}
 \end{frame}
 
-{
-\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/maps/se-asia-120.png}}
 \begin{frame}
     \frametitle{Questions?}    
+    \begin{center}
+        {
+        \Large
+        \href{mailto:joaks1@gmail.com}{\tt joaks1@gmail.com}
+        }
+    \end{center}
 \end{frame}
-}
 
 % Extra slides
 
