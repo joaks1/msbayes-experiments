@@ -1,6 +1,6 @@
 \input{../utils/preamble.tex}
 \input{../../manuscripts/utils/macros.tex}
-\newcommand{\allParameters}{\ensuremath{\theta}\xspace}
+\newcommand{\allParameters}[1]{\ensuremath{\theta_{#1}}\xspace}
 \bibliography{../../manuscripts/bib/references}
 
 \title[Estimating shared history]{An Improved Approximate-Bayesian Method for Estimating Shared
@@ -261,28 +261,13 @@ Evolutionary History}
                     }{p(\alignmentVector \given \divModel{i})}
             \]\vspace{-1mm}
             \end{uncoverenv}
-            % \begin{uncoverenv}<2->
-            % \[
-            %     p(\allParameters \given \alignmentVector, \divModel{i})
-            %       =
-            %     \frac{
-            %         p(\alignmentVector \given
-            %           \allParameters,
-            %           \divModel{i}
-            %           )
-            %           p(
-            %             \allParameters \given \divModel{i}
-            %             )
-            %         }{p(\alignmentVector \given \divModel{i})}
-            % \]\vspace{0mm}
-            % \end{uncoverenv}
             \begin{uncoverenv}<2->
             \[
                 p(\alignmentVector \given \divModel{i}) =
-                \int_{\allParameters}
-                p(\alignmentVector \given \allParameters, \divModel{i})
-                p(\allParameters \given \divModel{i})
-                d\allParameters
+                \int_{\allParameters{i}}
+                p(\alignmentVector \given \allParameters{i}, \divModel{i})
+                p(\allParameters{i} \given \divModel{i})
+                d\allParameters{i}
             \]\vspace{-1mm}
             \end{uncoverenv}
             \begin{uncoverenv}<3->
