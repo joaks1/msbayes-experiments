@@ -6,12 +6,12 @@ It approximates a posterior probability over models that range from a single
 divergence-time parameter (i.e., simultaneous divergence of all pairs of taxa)
 to the fully generalized model in which each pair of taxa diverged at a
 unique time.
-A full description of the model is given in \citet{Oaks2012}.
-Frequently, the exact values of the divergence times are hard 
-to determine because researchers typically lack precise knowledge 
-of the rate at which substitutions occur.
-The exact divergence time is therefore often viewed as a nuisance parameter,
-and researchers focus on the number of divergence events.
+% A full description of the model is given in \citet{Oaks2012}.
+% Frequently, the exact values of the divergence times are hard 
+% to determine because researchers typically lack precise knowledge 
+% of the rate at which substitutions occur.
+% The exact divergence time is therefore often viewed as a nuisance parameter,
+% and researchers focus on the number of divergence events.
 The papers of \citet{Oaks2012} and \citet{Hickerson2013} are in agreement
 on the fundamental methodological point about the model selection performed in \msb:
 \begin{itemize}
@@ -32,10 +32,13 @@ models.
 Models with more divergence-time parameters integrate over \emph{much} greater
 parameter space with low probability of producing the data, yet relatively high
 prior density imposed by the uniformly distributed prior on divergence times.
+% By using such priors on divergence times, we are essentially telling the
+% method to favor models with few divergence times even if they do not
+% explain the data very well.
 Note, this is a statistical issue, extrinsic to \msb, and does not question the
 soundness of the numerical approximation machinery of \msb.
 
-\citet{Hickerson2013} suggest the bias is the result of a numerical issue
+\citet{Hickerson2013} suggest the problem is the result of a numerical issue
 intrinsic to \msb, concluding the method's rejection algorithm is inefficient
 and will be biased toward models with fewer divergence-time parameters, because
 the parameter space of these models are more densely sampled relative to models
@@ -293,8 +296,8 @@ see Table~6 of \citet{Oaks2012}).
 The strong preference for the questionable priors on divergence times (their
 $M_1$ and $M_2$) in the model-averaged results of \citet{Hickerson2013} suggest
 their approach is biased toward models with less parameter space, and as a
-consequence, is biased toward estimating model-averaged posteriors dominated by
-models that exclude true values of parameters of the model.
+consequence, will estimate model-averaged posteriors dominated by models that
+exclude true values of parameters of the model.
 We explored this possibility in two ways.
 First, we re-analyzed the Philippines dataset using the model-averaging
 approach of \citet{Hickerson2013}, but set one of the prior models with a
