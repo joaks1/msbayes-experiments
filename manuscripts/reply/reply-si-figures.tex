@@ -68,6 +68,18 @@
     rate of 1\e{-8} mutations per generation).
 }{figPowerExclusion6}
 
+%% Sampling error
+\widthFigure{0.9}{../../response-redux/results/sampling-error/pymsbayes-results/omega_over_sampling.pdf}{listformat=sFigList}{
+    Traces of the estimated lower and upper limits of the 95\% highest posterior density (HPD)
+    interval of \vmratio{} (the dispersion index of divergence times) as 100 million prior
+    samples are accumulated. Each pair of points is based on 1000 posterior samples retained
+    from the prior. Both (A) unadjusted and (B) GLM-regression-adjusted estimates are shown.
+    The data analyzed were the 22 pairs of Philippine taxa from \citet{Oaks2012}.
+    Prior settings were $\divt{} \sim U(0,10)$, $\meanDescendantTheta{} \sim U(0.0005, 0.04)$,
+    and $\ancestralTheta{} \sim U(0.0005, 0.02)$.
+}{figSamplingError}
+\clearpage
+
 %% Validation results
 \siFigure{../../model-choice/results/validation/results/pymsbayes-results/plots/mc_behavior.pdf}{
     An assessment of the approximate Bayesian model-averageing approach of
@@ -107,4 +119,13 @@
     $\meanDescendantTheta{} \sim U(0.0005, 0.04)$, and $\ancestralTheta{} \sim
     U(0.0005, 0.02)$.
 }{figSaturationPlot}
+
+%% Model-choice tau prior
+\siFigure{../../model-choice/tau-prior/tau_prior.pdf}{
+    The prior distribution on divergence times imposed by the model-averaging prior
+    comprised of five models with different uniform priors on \divt{}:
+    $M_1$ ($\divt{} \sim U(0, 0.1)$), $M_2$ ($\divt{} \sim U(0, 1)$), $M_3$
+    ($\divt{} \sim U(0, 5)$), $M_4$ ($\divt{} \sim U(0, 10)$), $M_5$ ($\divt{}
+    \sim U(0, 20)$).
+}{figMCTauPrior}
 

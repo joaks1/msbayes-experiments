@@ -788,7 +788,7 @@ U(0, 10)$, $\meanDescendantTheta{} \sim (0.0005, 0.04)$, $\ancestralTheta{}
 \sim (0.0005, 0.02)$), using a very large prior sample size of $10^8$.
 When we look at the trace of the estimates of the dispersion index of
 divergence times (\vmratio{}) as the prior samples accumulate
-(Figure~\ref{figSamplingError}) we do not see the trend predicted by
+(Figure~S\ref{figSamplingError}) we do not see the trend predicted by
 \citet{Hickerson2013} in either the unadjusted or GLM-regression-adjusted
 estimates.
 While sampling error is always a reality, it does not appear to be playing a
@@ -899,14 +899,14 @@ parameters of the \msb model, and recommend the use of probability
 distributions from the exponential family.
 If we look at the prior distribution on divergence-time parameters imposed by
 the model-averaging approach of \citet{Hickerson2013} we see it is a mixture of
-overlapping uniforms with lower limits of zero (Figure~\ref{figMCTauPrior}).
+overlapping uniforms with lower limits of zero (Figure~S\ref{figMCTauPrior}).
 This looks very much like an exponential distribution, except that in any state
 of the model, all the divergence-time parameters are restricted to the hard
 bounds of one of the uniform distributions.
 Thus, it seems more appropriate to simply place a gamma prior (the exponential
 being a special case of the gamma) on divergence times.
 This would capture the prior uncertainty that \citet{Hickerson2013} are
-suggesting for divergence times (Figure~\ref{figMCTauPrior}) while avoiding
+suggesting for divergence times (Figure~S\ref{figMCTauPrior}) while avoiding
 costly model-averaging and the constraint that all divergence times must fall
 within the hard bounds of the current model state.
 It also would allow an investigator to place the majority of the prior density
