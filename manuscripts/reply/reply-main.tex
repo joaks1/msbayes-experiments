@@ -32,11 +32,31 @@ models.
 Models with more divergence-time parameters integrate over \emph{much} greater
 parameter space with low probability of producing the data, yet relatively high
 prior density imposed by the uniformly distributed prior on divergence times.
+\change{
 % By using such priors on divergence times, we are essentially telling the
 % method to favor models with few divergence times even if they do not
 % explain the data very well.
-Note, this is a statistical issue, extrinsic to \msb, and does not question the
-soundness of the numerical approximation machinery of \msb.
+This affect of the priors on marginal likelihoods creates a penalty for
+over-parameterization in Bayesian model choice.
+However, for this inference problem, the uniform priors on divergence times can
+create a strong preference for simple models that are often of interest to
+biogeographers even if these models do not explain the data very well.
+This phenomenon is extrinsic to the numerical approximation machinery of \msb;
+with such prior assumptions, the true posterior will favor models with
+few divergence events.
+However, such results, even if correct from the perspective of Bayesian model
+choice, do not provide the biogeographical insights that a researcher who
+employs \msb seeks to gain.
+For example, a biogeographer would like to interpret the posterior probability
+of a simultaneous divergence model as an estimate of the probability that this
+model is correct.
+However, when such prior assumptions are made about divergence times, the
+estimated posterior probability is better interpretted as the probability that
+you cannot completely rule out that the simultaneous-divergence model can
+explain the data.
+% Note, this is a statistical issue, extrinsic to \msb, and does not question the
+% soundness of the numerical approximation machinery of \msb.
+}
 
 \citet{Hickerson2013} suggest the problem is the result of a numerical issue
 intrinsic to \msb, concluding the method's rejection algorithm is inefficient
@@ -52,9 +72,9 @@ divergence-time parameters, because they have greater likelihoods when
 averaged over broad uniform priors on divergences times.
 
 \citet{Oaks2012} suggest alternative prior probability distributions on
-divergence-times and other nuisance parameters could increase the marginal
-likelihoods of models with more divergence-time parameters and thus reduce
-spurious support for models of temporally clustered divergences.
+divergence-times could increase the marginal likelihoods of models with more
+divergence-time parameters and thus reduce spurious support for models of
+temporally clustered divergences.
 Alternatively, \citet{Hickerson2013} present an approach that uses empirically
 informed uniform priors and Bayesian model-averaging in an attempt to accommodate
 uncertainty in selecting priors.
@@ -64,8 +84,10 @@ However, we question whether adding an additional dimension of model choice
 that samples over empirically informed uniform priors is a fruitful solution
 for a model-choice method that is highly sensitive to priors.
 
-In this paper, we discuss the potential theoretical and practical
-considerations of using empirically informed priors for Bayesian model choice.
+\change{
+In this paper, we discuss theoretical and practical considerations of using
+empirically informed priors for Bayesian model choice.
+}
 Furthermore, we evaluate the empirical Bayesian model-averaging approach of
 \citet{Hickerson2013} as a potential solution to the biases of \msb revealed by
 \citet{Oaks2012}.
@@ -79,10 +101,12 @@ Furthermore, the approach provides another means by which the method can
 ``escape'' models with large parameter space, which manifests in the preference
 of models that exclude from consideration the true values of the model's
 parameters.
-Our results, when combined with those of \citet{Oaks2012}, suggest that it is
-difficult to choose a uniformly distributed prior on divergence times that is
-broad enough to confidently contain the true values of parameters while being
-narrow enough to avoid spurious support of models with less parameter space.
+\change{
+Our results, show that it is difficult to choose a uniformly distributed prior
+on divergence times that is broad enough to confidently contain the true values
+of parameters while being narrow enough to avoid spurious support of models
+with less parameter space.
+}
 However, recent work shows more flexible probability distributions without a
 hard upper bound (e.g., gamma) can accommodate prior uncertainty in divergence
 times without inhibiting the marginal likelihoods of models with more
@@ -92,32 +116,42 @@ detect temporal variation in divergences
 
 
 \section{The potential implications of empirical Bayesian model choice}
-\citet{Hickerson2013} repeatedly refer to the prior distributions used by
-\citet{Oaks2012} for divergence-time parameters as ``poorly selected.''
-However, this is misleading, as \citet{Oaks2012} discuss in detail how they
-selected their prior to reflect the large amount of uncertainty about the
-timing of divergences across all 22 of the taxa in their study (see section
-``Specifying and simulating the joint prior'' of \citet{Oaks2012}).
-\citet{Oaks2012} further discuss how the use of uniform prior distributions in
-\msb for many of the model's parameters requires investigators to select broad
-priors to avoid excluding the truth \textit{a priori}, resulting in too much
-density in improbable regions of parameter space.
-
-\citet{Hickerson2013} suggest that \citet{Oaks2012} should have used their
-data to inform their prior on divergence times (i.e., an empirical Bayesian
-approach).
-However, \citet{Oaks2012} did use empirically informed priors to mimic
-empirical situations in which a large amount of prior information is available;
-they did so to assess the prior sensitivity of the method and to determine if
-uniform priors in such situations are narrow enough to avoid spurious support
-of models with few divergence-time parameters.
+\change{
 The results of \citet{Oaks2012} and \citet{Hickerson2013} show the method is
 highly sensitive to the prior on divergence times.
 Furthermore, \citet{Oaks2012} found the method remained biased toward clustered
-divergences under the empirically informed priors.
-
+divergences when using a prior on divergence times that is strongly
+informed by the data being analyzed.
 The main argument of \citet{Hickerson2013} is that the priors used by
 \citet{Oaks2012} were not informative enough.
+}
+%
+% \citet{Hickerson2013} repeatedly refer to the prior distributions used by
+% \citet{Oaks2012} for divergence-time parameters as ``poorly selected.''
+% However, this is misleading, as \citet{Oaks2012} discuss in detail how they
+% selected their prior to reflect the large amount of uncertainty about the
+% timing of divergences across all 22 of the taxa in their study (see section
+% ``Specifying and simulating the joint prior'' of \citet{Oaks2012}).
+% \citet{Oaks2012} further discuss how the use of uniform prior distributions in
+% \msb for many of the model's parameters requires investigators to select broad
+% priors to avoid excluding the truth \textit{a priori}, resulting in too much
+% density in improbable regions of parameter space.
+
+% \citet{Hickerson2013} suggest that \citet{Oaks2012} should have used their
+% data to inform their prior on divergence times (i.e., an empirical Bayesian
+% approach).
+% However, \citet{Oaks2012} did use empirically informed priors to mimic
+% empirical situations in which a large amount of prior information is available;
+% they did so to assess the prior sensitivity of the method and to determine if
+% uniform priors in such situations are narrow enough to avoid spurious support
+% of models with few divergence-time parameters.
+% The results of \citet{Oaks2012} and \citet{Hickerson2013} show the method is
+% highly sensitive to the prior on divergence times.
+% Furthermore, \citet{Oaks2012} found the method remained biased toward clustered
+% divergences under the empirically informed priors.
+%
+% The main argument of \citet{Hickerson2013} is that the priors used by
+% \citet{Oaks2012} were not informative enough.
 They suggest a very narrow, highly informed uniform prior on divergence times
 is necessary to avoid the method's preference for models with few
 divergence-time parameters.
@@ -175,10 +209,10 @@ This is not to say that empirical Bayesian approaches are not useful.
 Empirical Bayes is a well-studied branch of Bayesian statistics that has given
 rise to many inference methods that provide means of parameter estimation that
 often exhibit favorable frequentist properties.
-Furthermore, many post-hoc correction methods have been developed for
-estimating confidence-intervals from empirical Bayes estimates of
-distributions that often exhibit well-behaved frequentist coverage
-probabilities
+% Furthermore, many post-hoc correction methods have been developed for
+% estimating confidence-intervals from empirical Bayes estimates of
+% distributions that often exhibit well-behaved frequentist coverage
+% probabilities
 \citep{Morris1983,Laird1987,Laird1989, Carlin1990,Hwang2009}.
 
 \begin{linenomath}
@@ -212,8 +246,11 @@ the data are strongly informative relative to the prior, the values of the
 parameters that maximize the posterior distribution will be relatively robust
 to prior choice, even if the posterior distribution is technically incorrect
 due to using the data to inform the priors.
-This is why empirical Bayes can work well for estimating the values of model
-parameters.
+By giving the data more weight relative to the prior, the goal is that the
+posterior distribution will be peaked near the true value(s) of the model's
+parameter(s).
+% This is why empirical Bayes can work well for estimating the values of model
+% parameters.
 \end{linenomath}
 
 % Unlike parameter estimates, posterior probabilities represent a summary of the
@@ -230,6 +267,17 @@ the prior probability density is no longer a normalizing constant, but rather
 is what informs the posterior probability of that model from the data.
 As a result, Bayesian model choice tends to be much more sensitive to priors
 than parameter estimation.
+Also, unlike model parameters, the posterior probabilities of candidate
+models have no clear true values.
+% There is no such justification for empirical Bayesian model choice, because
+% there are no true values for the model probabilities being estimated.
+Model posterior probabilities are inherently measures of our belief in the
+models after our prior beliefs are updated by the data being analyzed.
+This complicates the meaning of model posterior probabilities when Bayes' rule
+is violated by informing priors with the same data to be analyzed.
+By using the data twice, we fail to account for prior uncertainty and mislead
+our posterior beliefs in the models being compared; we will be over confident
+in some models and under confident in others.
 
 Another important difference of Bayesian model choice illustrated by
 Equation~\ref{eq:bayesmodelchoice} is that the value of interest, the
@@ -238,24 +286,10 @@ it is integrated out of the marginal likelihoods of the candidate models.
 Thus, unlike parameter estimates, the estimated posterior probability of a
 model is a single value (rather than a distribution) lacking a measure of
 posterior uncertainty.
-Also, unlike model parameters, the posterior probabilities of candidate
-models have no clear true values.
 % In some simple situations we might suspect that one model is correct and the
 % rest are wrong, but in most applications, we know that all the models under
 % consideration are oversimplifications of reality.
-Model posterior probabilities are inherently measures of our belief in the
-models after our prior beliefs are updated by the data being analyzed.
 
-This complicates the meaning of model posterior probabilities when Bayes' rule
-is violated by informing priors with the same data to be analyzed.
-For empirical Bayesian parameter estimation, the objective is that by giving the
-data more weight relative to the prior, the posterior distribution will be
-peaked near the true value(s) of the model's parameter(s).
-There is no such justification for empirical Bayesian model choice, because
-there are no true values for the model probabilities being estimated.
-By using the data twice, we fail to account for prior uncertainty and mislead
-our posterior beliefs in the models being compared; we will be over confident
-in some models and under confident in others.
 Nonetheless, empirical Bayesian model choice does perform well for some
 problems.
 Particularly, in cases where large aggregate data sets are used for many
@@ -269,9 +303,9 @@ distinctions between Bayesian parameter estimation and model choice.
 \subsection{Practical concerns about empirically informed uniform priors for
     Bayesian model choice}
 In addition to the theoretical concerns discussed above, there are practical
-problems with using narrow, empirically informed, uniform priors for a method
-that has already been shown to be biased toward models with less parameter
-space.
+problems with using narrow, empirically informed, uniform priors.
+% for a method that has already been shown to be biased toward models with less
+% parameter space.
 The results of Hickerson et al.'s \citeyear{Hickerson2013} reanalysis of the
 Philippine dataset strongly favored models with the narrowest, empirically
 informed prior on divergence time, and thus their model-averaged posterior
@@ -279,8 +313,8 @@ estimates are dominated by models $M_1$ and $M_2$ (see Table 1 of
 \citet{Hickerson2013}).
 This is concerning, because the narrowest \divt{} prior used by
 \citet{Hickerson2013} ($\divt{} \sim U(0,0.1)$) likely excludes the true
-divergence times for at least some of the Philippine taxa, a major problem when
-using uniform priors.
+divergence times for at least some of the Philippine taxa.
+%, a major problem when using uniform priors.
 \citet{Hickerson2013} set this prior to match the 95\% highest posterior
 density (HPD) interval for the mean divergence time estimated under one of the
 priors used by \citet{Oaks2012} (see Tables 2 and 3 of \citet{Oaks2012}).
@@ -293,11 +327,13 @@ of the mean divergence time under the other two priors explored by
 \citet{Oaks2012} (under these priors the 95\% HPD is approximately 0.3--0.6;
 see Table~6 of \citet{Oaks2012}).
 
-The strong preference for the questionable priors on divergence times (their
-$M_1$ and $M_2$) in the model-averaged results of \citet{Hickerson2013} suggest
-their approach is biased toward models with less parameter space, and as a
+\change{
+Hickerson et al.'s \citeyear{Hickerson2013} results that strongly prefer the
+narrowest priors on divergence times (their $M_1$ and $M_2$) suggest their
+approach is biased toward models with less parameter space, and as a
 consequence, will estimate model-averaged posteriors dominated by models that
-exclude true values of parameters of the model.
+exclude true values of model's parameters.
+}
 We explored this possibility in two ways.
 First, we re-analyzed the Philippines dataset using the model-averaging
 approach of \citet{Hickerson2013}, but set one of the prior models with a
@@ -353,7 +389,7 @@ Our results show that the model-averaging approach of \citet{Hickerson2013}
 does not reduce the method's support of models with less parameter space.
 Rather, the method strongly prefers the prior model with the narrowest
 distribution on divergence times across all three of our analyses, even when
-this model is almost certainly incorrect and excludes the true divergence times
+this model is incorrect and excludes the true divergence times
 of the Philippine taxa (Table~\ref{tabModelChoiceEmpirical}).
 
 However, \citet{Hickerson2013} vetted the priors used in their model-averaging
@@ -369,10 +405,10 @@ Rather, the graphs suggest these incorrect priors are ``better fit''
 (Figure~S\ref{figPCA}A--C) than the valid priors similar to those used by
 \citet{Oaks2012} (Figure~S\ref{figPCA}D--F).
 
-Given that the results of \citet{Hickerson2013} strongly prefer the models with
-the narrowest prior on divergence times, it seems quite likely that their
-model-averaged results are dominated by models that exclude true divergence
-times, making their results difficult to interpret.
+% Given that the results of \citet{Hickerson2013} strongly prefer the models with
+% the narrowest prior on divergence times, it seems quite likely that their
+% model-averaged results are dominated by models that exclude true divergence
+% times, making their results difficult to interpret.
 
 
 \subsubsection{Simulation-based assessment of Hickerson et al.'s
@@ -386,8 +422,8 @@ Exp(2)$).
 All other parameters were identically distributed as the $M_1$--$M_5$ models
 (Table~\ref{tabModelChoiceEmpirical}).
 We then repeated the analysis described above using $1\e6$ random samples from
-prior models $M_1$, $M_2$, $M_3$, $M_4$, and $M_5$, retaining 1000 posterior
-samples for each of the 1000 simulated datasets.
+each of the prior models $M_1$, $M_2$, $M_3$, $M_4$, and $M_5$, retaining 1000
+posterior samples for each of the 1000 simulated datasets.
 
 For each simulation replicate, we estimated the Bayes factor in favor
 of excluding the truth as the ratio of the posterior to prior odds of
@@ -400,8 +436,8 @@ favors a model that excludes the true values of parameters in 97\% of the
 replicates (90\% with GLM-regression adjustment), excluding up to 21 of the 22
 true divergence times (Figure~\ref{figExclusionSimTau}).
 We also used the mode estimate of the preferred model for each replicate to
-estimate the number of true parameter values excluded, which produced very
-similar results.
+estimate the number of true parameter values excluded, which produced nearly
+identical results.
 Importantly, the posterior probability of excluding at least one true parameter
 value is very high in nearly all of the replicates
 (Figure~\ref{figExclusionSimProb}).
@@ -427,25 +463,27 @@ distributed, the posterior can be dominated by models that exclude from
 consideration the true values of parameters due to the larger marginal
 likelihoods of the models that are integrated over less space with high prior
 weight yet low likelihood.
-
-Given the theoretical and practical issues with empirical Bayes approaches to
-Bayesian model choice, it is clear why one should use caution before overly
-criticizing an investigator's choice of priors \emph{after} having seen the
-resulting posterior.
-As discussed by \citet{Oaks2012}, prior to analyzing the data, there was a
-large amount of uncertainty regarding the divergence times of the 22 population
-pairs under study.
-Two of these pairs represent distinct species, and the taxonomy of many groups
-in the Philippines has repeatedly been shown to mask deeply divergent lineages
-\citep{RafeDiesmosAlcala2008,Linkem2010,Siler2010,Welton2010,Siler2011HerpMonographs,
-Siler2011,Siler2012,RafeStuart2012,LinkemBrown2013,Rafe2013AREES,Siler2014kikuchii}.
+\change{
 When limited to uniformly distributed priors, the alternative to priors that
-reflect prior uncertainty, as shown above, is to risk excluding the true values
-one seeks to estimate.
+reflect prior uncertainty is to risk excluding the true values one seeks to
+estimate, as shown above.
 However, continuous distributions more appropriate as priors for positive
 real-valued parameters have been shown to greatly reduce spurious support for
 clustered divergence models while allowing prior uncertainty to be accommodated
 \citep{Oaks2014dpp}.
+}
+
+% Given the theoretical and practical issues with empirical Bayes approaches to
+% Bayesian model choice, it is clear why one should use caution before overly
+% criticizing an investigator's choice of priors \emph{after} having seen the
+% resulting posterior.
+% As discussed by \citet{Oaks2012}, prior to analyzing the data, there was a
+% large amount of uncertainty regarding the divergence times of the 22 population
+% pairs under study.
+% Two of these pairs represent distinct species, and the taxonomy of many groups
+% in the Philippines has repeatedly been shown to mask deeply divergent lineages
+% \citep{RafeDiesmosAlcala2008,Linkem2010,Siler2010,Welton2010,Siler2011HerpMonographs,
+% Siler2011,Siler2012,RafeStuart2012,LinkemBrown2013,Rafe2013AREES,Siler2014kikuchii}.
 
 
 
@@ -487,8 +525,8 @@ Furthermore, our results demonstrate that the approach of \citet{Hickerson2013}
 consistently infers highly clustered divergences across all the \divt{max} we
 simulated (Figure~\ref{figPower4}A--D \& S\ref{figPower6}A--F).
 The method is most likely to infer the extreme case of a single divergence
-event shared across 22 taxa when populations diverged randomly over the past
-\globalcoalunit generations.
+event shared across all 22 taxa when populations diverged randomly over the
+past \globalcoalunit generations.
 When divergences are random over the past $8\globalpopsize$ generations, the
 most likely inference is only two divergence events, and a single
 divergence is still estimated in more than 10\% of the replicates.
@@ -524,10 +562,10 @@ locus, assuming a mutation rate of $2\e{-8}$ per site per generation, this
 translates to 5 million generations.
 Assuming a mutation rate consistent with nuclear loci of $1\e{-9}$, this is 100
 million generations.
-Given the empirically Bayesian model-averaging approach of \citet{Hickerson2013}
-lacks power to detect random variation in divergence times over such
-timescales, it is difficult to justify the risk of the approach to exclude
-regions of parameter space containing the truth.
+% Given the empirically Bayesian model-averaging approach of \citet{Hickerson2013}
+% lacks power to detect random variation in divergence times over such
+% timescales, it is difficult to justify the risk of the approach to exclude
+% regions of parameter space containing the truth.
 
 Also, the results of our power analyses further demonstrate the propensity of
 Hickerson et al.'s (\citeyear{Hickerson2013}) approach to exclude true
@@ -543,7 +581,7 @@ divergence value is also quite high across many of the \divt{max}
 Only when the data are identically distributed as one of the prior models does
 the method avoid excluding the truth more than 5\% of the time
 (Figure~\ref{figPowerExclusion4}C).
-Again, this demonstrates the method's sensitivity to priors.
+% Again, this demonstrates the method's sensitivity to priors.
 
 
 
@@ -573,8 +611,9 @@ be certain that all taxa diverged within the last 4$\globalpopsize$ generations
 Also, it seems unlikely that when such prior information is available that
 being able to detect multiple divergences on the scale of hundreds of thousands
 of generations will add much insight about the evolutionary history of the
-taxa; assuming a rate of mutation consistent with nuclear loci ($1\e{-9}$),
-this translates to a temporal resolution of 3 million generations or more.
+taxa.
+% ; assuming a rate of mutation consistent with nuclear loci ($1\e{-9}$), this
+% translates to a temporal resolution of 3 million generations or more.
 
 As noted by \citet{Oaks2012}, inferring more than one divergence time
 shared across all taxa does not confirm the method is working well when
@@ -712,8 +751,8 @@ divergence-time dimensions.
 \section{General thoughts on the model of \texttt{msBayes}}
 Our findings are not surprising in light of the difficult inference problem
 with which \msb is faced.
-To get a sense of the difficulty of this problem, we tally up all the free
-parameters of the \msb model as applied to the dataset of \citet{Oaks2012}.
+% To get a sense of the difficulty of this problem, we tally up all the free
+% parameters of the \msb model as applied to the dataset of \citet{Oaks2012}.
 Under the simplest model in \msb (i.e., assuming no migration and no
 intra-locus recombination), the number of parameters for each taxon pair
 include:
@@ -728,10 +767,10 @@ Lastly, there are between one and 22 divergence time parameters \divt{} in
 the vector \divtvector.
 Overall, when applying the simplest model in \msb to the dataset of
 \citet{Oaks2012} with 22 taxon pairs, there are 581--602 free parameters
-(depending on the number of divergence-time parameters in \divtvector).
-Furthermore, under this rich model, the method is estimating the probability of
-1002 divergence models \citep[i.e., the number of integer partitions of
-$Y=22$;][]{Oaks2012}.
+that model highly stochastic coalescent and mutational processes.
+Furthermore, under this rich stochastic model, the method is estimating the
+probability of 1002 divergence models \citep[i.e., the number of integer
+partitions of $Y=22$;][]{Oaks2012}.
 
 This is a very difficult inference problem, especially considering that all the
 information in the sequence alignment of each taxon pair is distilled into four
@@ -798,34 +837,39 @@ in divergences and reduces the bias toward models of clustered divergences
 
 
 \section{Conclusions}
+% We demonstrate how the approximate Bayesian model-choice method implemented in
+% \msb can be strongly biased away from models with greater parameter space.
 We demonstrate how the approximate Bayesian model-choice method implemented in
-\msb can be strongly biased away from models with greater parameter space.
+\msb can be spuriously support models with less parameter space.
 As suggested by \citet{Oaks2012}, this is likely caused by the use of uniform
 priors on most of the model's parameters.
-Uniform distributions necessitate the use of broad priors that place high prior
-density in unlikely regions of parameter space, less the risk of excluding the
-truth \emph{a priori}.
+Uniform distributions necessitate the use of priors that place high density in
+unlikely regions of parameter space, less the risk of excluding the truth
+\emph{a priori}.
 These broad priors reduce the marginal likelihoods of models with more
 divergence-time parameters or broader prior distributions on those parameters.
 We show that the empirical Bayesian model-averaging approach of
 \citet{Hickerson2013} does not mitigate this bias, but rather causes it to
 manifest by sampling predominantly from models that may exclude the true values
 of the parameters.
+Also, our results show that it is difficult to choose an uniformly distributed
+prior on divergence times that is broad enough to confidently contain the true
+values of parameters while being narrow enough to avoid bias toward models with
+less parameter space.
 
-Whether or not one chooses to use empirically informed priors, our results
-suggest that it is difficult to choose an uniformly distributed prior on
-divergence times that is broad enough to confidently contain the true values of
-parameters while being narrow enough to avoid bias toward models with less
-parameter space.
-While we do not assume ``that all previous \msb results are invalid,'' as
-suggested by \citet{Hickerson2013}, we do conservatively recommend that the
-common inference of temporally clustered divergences \citep{Barber2010,
+\change{
+% Whether or not one chooses to use empirically informed priors,
+% We do not assume results of all previous applications of \msb results are invalid, as
+% suggested by \citet{Hickerson2013}.
+% We do conservatively recommend that
+The common inference of temporally clustered divergences \citep{Barber2010,
     Bell2012, Carnaval2009, Chan2011, Daza2010, Hickerson2006, Huang2011,
-Lawson2010, Leache2007, Plouviez2009, Stone2012, Voje2009}, when not
+    Lawson2010, Leache2007, Plouviez2009, Stone2012, Voje2009}, when not
 accompanied with the necessary analyses to assess the robustness and temporal
-resolution of such results, should be treated with caution, because the method
-has been shown to spuriously infer clustered divergences over a range of prior
+resolution of such results, should be treated with caution, because \msb has
+been shown to spuriously infer clustered divergences over a range of prior
 conditions.
+}
 Fortunately, alternative prior probability distributions allow prior
 uncertainty to be accommodated while avoiding excessive prior density in
 regions of low likelihood, which greatly improves the power of the method
