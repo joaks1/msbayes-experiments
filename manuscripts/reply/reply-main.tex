@@ -19,13 +19,16 @@ study 22 pairs of vertebrate lineages which are distributed across
 the Philippines; they also studied the behavior of the \msb approach
 using computer simulations.
 They found the method was very sensitive to prior assumptions and suggested
-this was due to the fact that the marginal likelihoods of models are sensitive
-to the use of uniform priors on divergence times.
+this was due to the fact that the marginal likelihoods of divergence models are
+sensitive to the use of uniform priors on divergence times.
+\citet{Oaks2012} suggested that alternative probability distributions (e.g.,
+gamma) could better represent prior uncertainty about divergence times while
+mitigating the disparity of marginal likelihoods across divergence models.
 In response, \citet{Hickerson2013} suggested the lack of robustness in \msb
 analyses was caused by sampling error due to the inefficiency of the method's
 rejection algorithm.
-They proposed a model-averaging approach that uses narrow, empirically
-informed uniform priors.
+As a potential solution, they proposed a model-averaging approach that uses
+narrow, empirically informed uniform priors.
 
 Whereas the papers of \citet{Oaks2012} and \citet{Hickerson2013} differ about
 the cause and solution, they agree on the fundamental methodological point
@@ -127,11 +130,12 @@ with less parameter space.
 }
 We also explore the predictions of the alternative causes of this problem
 proposed by \citet{Oaks2012} and \citet{Hickerson2013}.
-We find the prior sensitivity of the marginal likelihoods is a likely
-culprit,
-and show that sampling error is not a major contributer to the biases found
-by \citet{Oaks2012}.
-Fortunately, \citet{Oaks2014dpp} has introduced a new method that uses more
+Our finings suggest the primary cause is the disparity in marginal likelihoods
+across possible divergence models imposed by the uniform priors on divergence
+times.
+Furthermore, we show that sampling error is not a major contributer to the
+biases found by \citet{Oaks2012}.
+Fortunately, \citet{Oaks2014dpp} has introduced a method that uses more
 flexible probability distributions to accommodate prior uncertainty in
 divergence times without inhibiting the marginal likelihoods of models with
 more divergence-time parameters, which increases the method's robustness and
