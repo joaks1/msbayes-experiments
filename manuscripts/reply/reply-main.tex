@@ -457,7 +457,7 @@ see Table~6 of \citet{Oaks2012}).
 
 \change{
 The strong preference for the narrowest priors on divergence times used by
-\citet{Hickerson2013} suggest their approach is biased toward models with less
+\citet{Hickerson2013} suggests their approach is biased toward models with less
 parameter space and, as a consequence, will estimate model-averaged posteriors
 dominated by models that exclude true values of the model's parameters.
 }
@@ -650,44 +650,50 @@ deviating from the true, underlying distribution of the data.
 Furthermore, our results demonstrate that the approach of \citet{Hickerson2013}
 consistently infers highly clustered divergences across all the \divt{max} we
 simulated (Figure~\ref{figPower4}A--D \& S\ref{figPower6}A--F).
-The method is most likely to infer the extreme case of a single divergence
-event shared across all 22 taxa when populations diverged randomly over the
-past \globalcoalunit generations.
-When divergences are random over the past $8\globalpopsize$ generations, the
-most likely inference is only two divergence events, and a single
-divergence is still estimated in more than 10\% of the replicates.
-It is interesting to note that as \divt{max} increases, but before the
-estimates are finally pulled away from $\numt{} = 1$, the distribution of
-\numt{} estimates closely mirror the U-shaped prior on divergence models
-used by \msb (see Figure~\ref{figPower4}E and Oaks et al.'s
-(\citeyear{Oaks2012}) Figure 5B).
-This suggests this U-shaped prior coupled with the small marginal likelihoods
-of models with many divergence parameters, is a major cause of the method's
-bias toward clustered divergence models; this is consistent with
-\citet{Oaks2012} and confirmed by \citet{Oaks2014dpp}.
-
-Looking at our simulation results in terms of the posterior probability of the
-dispersion index of divergence times supporting the extreme case of one
-divergence event (i.e., $p(\vmratio{} < 0.01 \given \ssSpace)$), we find the
-method strongly supports one divergence in greater than 27\% of the replicates
-across all the \divt{max} we simulated (Figure~\ref{figPower4}E--H \&
-S\ref{figPower6}G--L);
-following \citet{Hickerson2013}, we use a Bayes factor of greater than 10 as
-the criterion for incorrect inference of a single divergence event.
-Furthermore, there is strong support for a single divergence event in
-more than 90\% of the replicates when divergences are random over the past
-$2.4\globalpopsize$ generations, and more than 60\% when over the past
-$3.2\globalpopsize$ generations (Figure~\ref{figPower4}E--H \&
+If we follow \citet{Hickerson2013} and use a Bayes factor of greater than 10 as
+the criterion for incorrect inference of a single divergence event, we find
+that the approach will often strongly support the extreme case of one
+divergence event across all our simulation conditions (Figure~\ref{figPower4}E--H \&
 S\ref{figPower6}G--L).
-
-Our results show that the empirical Bayesian model-averaging approach leads to
-erroneous support for highly clustered divergences when populations diverge
-randomly over the last $8\globalpopsize$ generations.
-To put this on the scale roughly consistent with a vertebrate mitochondrial
+Overall, the empirical Bayesian model-averaging approach leads to erroneous
+support for highly clustered divergences when populations diverge randomly over
+the last $8\globalpopsize$ generations.
+To put this on a timescale roughly consistent with a vertebrate mitochondrial
 locus, assuming a mutation rate of $1\e{-8}$ per site per generation, this
 translates to 10 million generations.
 Assuming a mutation rate consistent with nuclear loci of $1\e{-9}$, this is 100
 million generations.
+
+% The method is most likely to infer the extreme case of a single divergence
+% event shared across all 22 taxa when populations diverged randomly over the
+% past \globalcoalunit generations.
+% When divergences are random over the past $8\globalpopsize$ generations, the
+% most likely inference is only two divergence events, and a single
+% divergence is still estimated in more than 10\% of the replicates.
+It is interesting to note that as \divt{max} increases, but before the
+estimates are finally pulled away from $\numt{} = 1$, the distribution of
+\numt{} estimates closely mirror the ``U-shaped'' prior on divergence models
+used by \msb (see Figure~\ref{figPower4}E and Oaks et al.'s
+(\citeyear{Oaks2012}) Figure 5B).
+This suggests the U-shaped prior coupled with the small marginal likelihoods
+of models with many divergence parameters is a major cause of the method's
+bias toward clustered divergence models; this is consistent with
+\citet{Oaks2012} and confirmed by \citet{Oaks2014dpp}.
+
+% Looking at our simulation results in terms of the posterior probability of the
+% dispersion index of divergence times supporting the extreme case of one
+% divergence event (i.e., $p(\vmratio{} < 0.01 \given \ssSpace)$), we find the
+% method strongly supports one divergence in greater than 27\% of the replicates
+% across all the \divt{max} we simulated (Figure~\ref{figPower4}E--H \&
+% S\ref{figPower6}G--L);
+% following \citet{Hickerson2013}, we use a Bayes factor of greater than 10 as
+% the criterion for incorrect inference of a single divergence event.
+% Furthermore, there is strong support for a single divergence event in
+% more than 90\% of the replicates when divergences are random over the past
+% $2.4\globalpopsize$ generations, and more than 60\% when over the past
+% $3.2\globalpopsize$ generations (Figure~\ref{figPower4}E--H \&
+% S\ref{figPower6}G--L).
+
 % Given the empirically Bayesian model-averaging approach of \citet{Hickerson2013}
 % lacks power to detect random variation in divergence times over such
 % timescales, it is difficult to justify the risk of the approach to exclude
