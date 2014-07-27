@@ -17,7 +17,7 @@ This reference-population size is defined in terms of the upper limit of the
 uniform prior on the mean size of the descendant populations,
 \meanDescendantTheta{}, such that for the prior $\meanDescendantTheta{} \sim
 U(\uniformMin{\meanDescendantTheta{}},\uniformMax{\meanDescendantTheta{}})$,
-the size of the constant reference populations is $\myTheta{C} =
+the size of the constant reference population is $\myTheta{C} =
 \uniformMax{\meanDescendantTheta{}}/2$.
 Thus, the model used by \citet{Hickerson2013} mixes two different units of
 time.
@@ -36,7 +36,7 @@ Efficiency by Prior Weighting Supports Asynchronous and Recent Divergence for
 the Philippines Vertebrate Data'' and presented in Figure 2 of
 \citet{Hickerson2013} should be disregarded.
 The error is easily illustrated by re-plotting their results with the different
-time units indicated (Figure~\ref{figJointPosteriorHickerson}).
+time units indicated (Figure~S\ref{figJointPosteriorHickerson}).
 
 \section{Theoretical implications of empirical priors for Bayesian model
 choice---A simple example}
@@ -218,8 +218,7 @@ two of the priors used by \citet{Oaks2012} and, as a result, does not
 explain the bias they found.
 
 \subsection{Graphical prior comparisons}
-\citet{Hickerson2013} advocate the use of what they call graphical checks of
-prior models.
+\citet{Hickerson2013} advocate the use graphical checks of prior models.
 This prior-predictive approach entails generating a small number (1000) of
 random samples from the prior and plotting the resulting summary statistics in
 comparison to the observed statistics to see if they coincide (see Figure 1 of
@@ -256,11 +255,11 @@ biogeographically relevant than \numt{}.
 % We struggle to follow this logic.
 However, all of the information about the temporal distribution of divergences
 is contained within the divergence-time vector that \vmratio{} is summarizing.
-Clearly, the number of divergence time parameters within the vector and their
-values is more informative than its variance (i.e., the dispersion index is not
+Clearly, the number of divergence-time parameters within the vector and their
+values is more informative than the variance (i.e., the dispersion index is not
 a sufficient statistic for \divtvector).
-\citet{Hickerson2013} also argue that ``\msb can estimate \vmratio{} much
-better than \numt{}.''
+\citet{Hickerson2013} also argue that \msb can estimate \vmratio{} much better
+than \numt{}.
 However, \citet{Oaks2012} demonstrate that even when all assumptions of the
 model are met, \vmratio{} is a poor model-choice estimator (see plots B, D \& F
 of Figure 4 in \citet{Oaks2012}), whereas \numt{} performs better.
