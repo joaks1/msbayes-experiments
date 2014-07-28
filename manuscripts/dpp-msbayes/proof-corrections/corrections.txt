@@ -1,0 +1,98 @@
+Author Query Q1: Yes, all of the URLs are working. Thank you.
+
+Below is a list of corrections that are needed. If you have any questions,
+please let me know.
+
+1) Address 2:
+    Please insert comma between ``Box 351800'' and ``Seattle''.
+
+2) Line 7:
+    ``To understand the processes that generate biodiversity, it is ...''
+    ``To understand biological diversification, it is ...''
+
+3) Line 20:
+    ``... reduces the tendency of the model to incorrectly estimate models ...''
+    ``... reduces the tendency to incorrectly estimate models ...''
+
+4) Line 56:
+    Please remove indentation. This sentence should not be a new paragraph.
+
+5) Line 201--202:
+    ``... collected i ...''
+    ``... collected for population pair i ...''
+
+6) Equation 3:
+    In the numerator, S* should be (S*). I.e., it should be in parentheses.
+
+7) Equation 3:
+    In the denominator, the Greek letter phi should be bold.
+
+8) Page 4, Line t1.4:
+    ``n_1,_i'' should be ``n_1,i''. I.e., The ``i'' subscript should be on the same level
+    as ``1,''
+
+9) Page 4, Line t1.9:
+    The Y in ``k_Y'' should be uppercase.
+
+10) Page 4, Line t1.34:
+    ``t_i'' should be ``T_i''. I.e., the t needs to be capitalized.
+
+11) Page 5, Line t1.3:
+    The Greek letter lambda should be in parentheses.
+
+12) Line 268:
+    the Greek letter mu should not be subscript.
+
+13) Line 309:
+    ``... prior can theta_A.''
+    ``... prior can be assigned to theta_A.''
+
+14) Line 320:
+    ``T_i'' should be ``t_i''. I.e., please make the t lowercase.
+
+15) Line 375:
+    Please replace ``;'' with ``.''
+
+16) Line 432:
+    ``... between my model ...''
+    ``... between this model ...''
+
+17) Line 602:
+    ``When calculating the observed data ...''
+    ``When calculating the Euclidean distance between the observed data ...''
+
+18) Line 683:
+    ``DU{a,(Y)}'' should be ``DU{a(Y)}'' (no comma).
+
+19) Line t4.5:
+    ``DU{aY}'' should be ``DU{a(Y)}'' (Y in parentheses).
+
+20) Table 4:
+    The horizontal spacing in the second column of the first two Models (first
+    two rows) is really nice, but the horizontal spacing for the second column
+    of the remaining 4 models is a bit squished. If possible, please add some
+    spacing between the expressions in these last four rows so that it looks
+    like the first two rows. More specifically:
+     
+    For column 2 of rows 3 and 4, add more space before
+      - ``tau ~'' 
+      - ``theta_A~''
+      - ``theta_D1 ~''
+      - ``theta_D2 ~''
+      - ``zeta_D1 ~''
+      - ``zeta_D2 ~''
+
+    For column 2 of row 5, add more space before
+      - ``tau ~'' 
+      - ``theta_A =''
+      - ``zeta_D1 =''
+
+    For column 2 of row 6, add more space before
+      - ``tau ~'' 
+      - ``theta_A~''
+      - ``theta_D1 =''
+      - ``zeta_D1 =''
+
+21) Line 1159:
+    Please remove indentation. This sentence should not be a new paragraph.
+
