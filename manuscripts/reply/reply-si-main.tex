@@ -25,16 +25,14 @@ In other words, some of their prior and posterior samples are in units of
 $0.05/\mutationRate$ generations, whereas others are in units of
 $0.02/\mutationRate$ generations.
 
-The fact that their posterior samples are in different units makes the results
-of \citet{Hickerson2013} difficult to interpret, and renders their
-regression-adjusted results invalid.
-A fundamental assumption of regression is that all of the values of the
-response variable are in the same units.
+A fundamental assumption of the \msb model and post hoc regression adjustment
+is that all possible values of the parameter of interest (divergence times) are
+in the same units.
 Thus, the results in sections ``Using ABC Model Comparison to Weight
 Alternative Priors for the Philippine Vertebrate Data'' and ``Improved Sampling
 Efficiency by Prior Weighting Supports Asynchronous and Recent Divergence for
 the Philippines Vertebrate Data'' and presented in Figure 2 of
-\citet{Hickerson2013} should be disregarded.
+\citet{Hickerson2013} are invalid and should be disregarded.
 The error is easily illustrated by re-plotting their results with the different
 time units indicated (Figure~S\ref{figJointPosteriorHickerson}).
 
@@ -213,9 +211,10 @@ Clearly, the priors used by \citet{Oaks2012} with upper limits on \divt{} of fiv
 and 10 coalescent units suffered little to no effect from saturation.
 Even at divergence times of 20 coalescent units, there is still signal in the
 summary statistics used by \msb (Figure~\ref{figSaturationPlot}).
-Thus, the assertion of \citet{Hickerson2013} does not apply to at least
-two of the priors used by \citet{Oaks2012} and, as a result, does not
-explain the bias they found.
+Thus, the assertion of \citet{Hickerson2013} that the priors used by
+\citet{Oaks2012} sample parameter space in which the mtDNA alignments are
+saturated by substitutions is incorrect and, as a result, does not explain the
+bias they found.
 
 \subsection{Graphical prior comparisons}
 \citet{Hickerson2013} advocate the use graphical checks of prior models.
@@ -248,16 +247,15 @@ divergence-time parameters within the vector,
 They present a plot of \numt{} against \vmratio{} (Fig.~S1 of
 \citet{Hickerson2013}), which is essentially a plot of sample size versus
 variance.
-This plot shows, not surprisingly, that \vmratio{} has very little information
+This plot shows that \vmratio{} has very little information
 about the number of divergences among taxa.
 Nonetheless, \citet{Hickerson2013} conclude \vmratio{} is more informative and
 biogeographically relevant than \numt{}.
 % We struggle to follow this logic.
-However, all of the information about the temporal distribution of divergences
-is contained within the divergence-time vector that \vmratio{} is summarizing.
-Clearly, the number of divergence-time parameters within the vector and their
-values is more informative than the variance (i.e., the dispersion index is not
-a sufficient statistic for \divtvector).
+However, the number of divergence-time parameters within the vector and their
+values contains all of the information about the temporal distribution of
+divergences, and is much more informative than the variance (i.e., the
+dispersion index is not a sufficient statistic for \divtvector).
 \citet{Hickerson2013} also argue that \msb can estimate \vmratio{} much better
 than \numt{}.
 However, \citet{Oaks2012} demonstrate that even when all assumptions of the
@@ -280,8 +278,8 @@ Even with this arbitrary threshold, it is still not surprising to see that it
 is numerically difficult to obtain reliable estimates of the probability that
 \vmratio{} is ``near'' its lower limit of zero.
 It is easier, less subjective, and more interpretable to estimate the
-probability of the discrete parameter of the model, \numt{}, is at its lower
-limit of one.
+probability of the model with one divergence-time parameter (i.e., $\numt{} =
+1$).
 Thus, it is not surprising that \citet{Oaks2012} find that \numt{} is a better
 estimator of model probability than \vmratio{}.
 
