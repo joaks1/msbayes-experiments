@@ -167,11 +167,7 @@ to be overconfident in Model 2.
 % estimators, using them for model choice is much less certain.
 
 
-%CWL: This seems to specific, not sure about including
 \section{Validation analyses}
-% \highLight{Not sure where to put this section}.
-% \highLight{This justifies presenting the unadjusted results in this paper.}
-% \highLight{Is it worth including just for this purpose?}
 Following \citet{Oaks2012}, we characterize the model-choice behavior of the
 model-averaging approach of \citet{Hickerson2013} under the ideal conditions
 where the prior is correct (i.e., the data are generated from parameters drawn
@@ -193,6 +189,29 @@ method are met (i.e., the prior is correct) and the unadjusted posterior
 estimates are used.
 Similar to \cite{Oaks2012}, we find that the regression-adjusted estimates of
 the model probabilities are biased.
+
+\section{A difficult inference problem}
+In the main text, we discuss how the prior assumption of uniformly distributed
+divergence times in \msb leads to posteriors that are difficult to interpret.
+However, it is also important to consider the difficult inference problem with
+which \msb is faced.
+When applying \msb to the dataset of \citet{Oaks2012} with 22 taxon
+pairs, there are 581--602 free parameters that model highly stochastic
+coalescent and mutational processes.
+Under this rich stochastic model, the method is estimating the
+probability of 1002 divergence models \citep[i.e., the number of integer
+partitions of $Y=22$;][]{Oaks2012}.
+Furthermore, all the information in the sequence alignment of each taxon pair
+is distilled into four summary statistics.
+This gives us a total of 88 summary statistics (four from each of the 22 taxon
+pairs) that contain minimal information about many of the $\approx 600$
+parameters in the model.
+More summary statistics can be used in \msb, but most are highly correlated
+with the four default statistics, and thus contribute little additional
+information about the parameters from the sequence data.
+The large number of parameters and divergence models relative to the amount of
+information in the data is undoubtedly another reason the method lacks
+robustness to prior conditions.
 
 \section{Additional clarifications from \citet{Hickerson2013}}
 
