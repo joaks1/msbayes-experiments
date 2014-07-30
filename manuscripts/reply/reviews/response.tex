@@ -1,0 +1,244 @@
+%&<latex>
+\documentclass[12pt]{article}
+
+\usepackage{parskip}
+\input{../../utils/preamble.tex}
+\usepackage[numbers,sort&compress]{natbib}
+\input{../../utils/macros.tex}
+
+\newcounter{commentCounter}
+\newcommand{\revcomment}[1]{{\addtocounter{commentCounter}{1}}
+    \medskip \hrule \noindent
+\textbf{\arabic{section}.\arabic{commentCounter}}: {\sl #1}\par\xspace}
+\newcommand{\response}[1]{{\addtolength{\leftskip}{0.25in} #1\par}\xspace}
+
+\let\quoteOld\quote
+\let\endquoteOld\endquote
+% \renewenvironment{quote}{\sffamily\slshape\small\quoteOld}{\endquoteOld}
+\renewenvironment{quote}{\sffamily\small\quoteOld}{\endquoteOld}
+
+% \makeatletter
+% \renewcommand{\section}{\@startsection{section}{1}{0mm}%
+%     {-8pt}%
+%     {4pt}%
+% {\sffamily\large\itshape}}
+% \makeatother
+
+\begin{document}
+% \raggedright
+\setlength{\parindent}{0in}
+
+I greatly appreciate the helpful comments of the editor and reviewers. In this
+document, I provide responses to these comments, including descriptions of the
+changes I have made.
+
+\section{Editor's Comments}\label{ed}
+\setcounter{commentCounter}{0}
+\revcomment{
+    The most negative review suggests that the authors (and Hickerson et al)
+    might have reached a point of diminishing returns, where further exchange
+    in the pages of Evolution might not be informative for our readership. My
+    own view is somewhat in line with this reviewer. I do think there are some
+    new ideas in the present manuscript, and I also want to honor the previous
+    AE who solicited an additional response from Oaks and colleagues to the
+    last Hickerson et al. paper. But I would also say that after this paper,
+    enough is enough, in my opinion \ldots
+}
+\response{
+    We agree. We are very appreciative of this opportunity to clarify some
+    aspects of Hickerson et al.'s response, and feel our reply will make a nice
+    end to an interesting discussion about Bayesian model selection.
+}
+
+\revcomment{
+     I also echo the suggestion from reviewer 2 to shorten this paper as much
+     as is practical, especially by moving things to the supplement. One can
+     safely assume that readers still following the thread have read the
+     preceding papers in the series, I think.
+}
+\response{
+    We are greatful for this insight by the editor and reviewers that our
+    paper was too long and lacked focus.
+    We have greatly reduced the length of the main text and moved some items
+    (including 2 figures) to the supplement.
+}
+
+\revcomment{
+    One small point: there is a typo on line 19: Oaks (2014) should be (Oaks
+    2014).
+}
+\response{
+    Corrected. Thank you.
+}
+
+
+\section{Reviewer 1's Comments}\label{rev1}
+\setcounter{commentCounter}{0}
+\revcomment{
+    At this point, I think at least for the readers of Evolution, we are
+    reaching the point of diminishing returns and perhaps the discussion has
+    burned out. The arguments of how broad priors or mixes of specific and
+    diffuse priors yield poor posteriors is indeed important but perhaps
+    another venue would be appropriate for this discussion---also with a
+    greater emphasis on solutions, if they exist for non-model organisms, to
+    common problems affecting most molecular ecologists (particularly regarding
+    substitution rate uncertainty).
+    
+}
+\response{
+    We agree that Bayesian statisticians are aware of the issues raised in our
+    paper. However, I think among biologists there is common misunderstanding
+    about some of the subtle but fundamental differences between Bayesian
+    approaches to parameter estimation and model selection. Mainly, the
+    implicit and strong statements that priors on the models' parameters can
+    make about the probability of the models. Thus, we feel the readership of
+    \emph{Evolution} will benefit from issues discussed in the paper.
+
+    We have added emphasis of solutions to the problem in several places in the
+    manuscript (abstract, introduction, and conclusions). The solution was the
+    focus of a different paper \citep{Oaks2014dpp} that introduces an improved
+    method for estimating shared divergence histories. We now draw attention to
+    this positive outcome from this work.
+}
+
+
+\section{Reviewer 2's Comments}\label{rev2}
+\setcounter{commentCounter}{0}
+
+\revcomment{
+    The paper is rather long for simply arguing against a model averaging
+    approach. I recommend to move the coin example to the supp info, as this is
+    a simple text book example that does require to be published in a journal
+    such as evolution, but is still a nice illustration so that it should be
+    published as supp info to the paper. Also, I think the paper sometimes
+    reads like a direct accusation of the findings in Hickerson et al, to agree
+    to which they might be more emotional than required for the presented
+    arguments. Paragraphs such as L96-100, L104-108, L222-237 or L287-289
+    (among others later in the text and, especially, in the supp info) for
+    instance, could simply be omitted or shortened, which would make reading
+    the paper much more enjoyable, as it would focus on the valid arguments,
+    instead of highlighting subtleties only personally important to people
+    included in the debate.
+    
+}
+\response{
+    We thank Reviewer 2 for this insight. We agree that the paper was too long
+    and lacked focus. Reviewer 2 also points out several sections that might be
+    interpreted as emotionally charged or polemical, which we appreciate. We
+    did not intend for our response to read as an ``attack'' of the work of
+    Hickerson et al., but Reviewer 2 helped us to realize that wording in a
+    response paper needs to be carefully chosen to avoid this interpretation.
+
+    We have moved the coin-flipping example to the supplement.
+
+    In regard to the sections specifically highlighted by Reviewer 2:
+    \begin{description}
+        \item[L96-100 and L104-108]
+            We have reduced this section to only three sentences that summarize
+            only the information necessary to introduce our subsequent
+            discussion.
+        \item[L222-237]
+            We see how this paragraph can be interpreted as polemical. However,
+            this brief summary of the methods and results of Hickerson et al.'s
+            model-averaging approach is needed to set up the motivation for our
+            subsequent analyses.
+        \item[L287-289]
+            We agree this section was superfluous. We have removed it.
+    \end{description}
+    
+    We have also removed and edited many other sections of the paper to try to
+    eliminate sections that might seem overly negative. Specifically, we
+    removed all quotations of sections from Hickerson et al. While we only
+    intended to accurately represent their positions, we felt this is too
+    easily interpreted as contentious.
+}
+
+\revcomment{
+    While criticizing the approach proposed by Hickerson et al. and admitting
+    the power problem of msBayes, the paper falls short of providing much of an
+    alternative. However, I do think that there could be other ways of solving
+    the problem of too many parameters for few summary statistics (section 6).
+    This is especially true since ABC is known to be particularly sensitive to
+    the choice of summary statistics for model choice (see Roberts et al. PNAS
+    2011). I think the paper would be much stronger, if it could also discuss
+    (but not necessarily test or implement) potential solutions to the apparent
+    problem.
+}
+\response{
+    This is a great point, and we have added emphasis to solutions to the
+    problem, as recommended by Reviewer 2. As mentioned above, solutions to
+    this problem were the focus of a separate paper, and were too extensive to
+    discuss in detail in the response paper. However, we highlight the main
+    points of this paper to make the response more positive, and to to refer
+    readers to an improved methodology.
+}
+
+\revcomment{
+    One alternative suggestion could be to formulate the problem as a
+    hierarchical model, in which one seeks only to infer mean and variance in
+    divergence times. Such a model would be much easier to fit, as the summary
+    statistics ordering problem discussed (and solved) in the original msBayes
+    paper could be circumvented easily, as the model would not seek to infer
+    taxon specific divergence times. Also, it could then be compared to a model
+    of zero variance using either Bayes factors, or by assessing the posterior
+    probability of the variance to be zero using a simulation / bootstrap
+    approach. If a model of co-divergence is preferred, the inferred posterior
+    on the mean divergence would directly serve as an estimate of the joint
+    divergence time. If independent divergences are inferred, then a simpler
+    model of a single taxon pair could be used to infer the divergence times of
+    each taxon pair individually, as they were found to be independent. For
+    such a model, the same ABC simulations could be reused for all pairs,
+    making this step computationally very cheap. But I'm sure there would also
+    be other alternatives.
+}
+\response{
+    These are great points raised by Reviewer 2. Many of these are
+    discussed in detail in a separate paper \citep{Oaks2014dpp}.
+    We highlight the improved methodology presented there to add a positive
+    note to the response.
+}
+
+\revcomment{
+    A minor issue on L53: while it is true that all numerical methods suffer
+    from large prior ranges, it is also true that effect is pronounced in ABC,
+    as the sampling occurs from the prior, and not the posteriors, as is done
+    in techniques such as MCMC. Hence, it is not a problem that is completely
+    extrinsic to the ABC machinery.
+}
+\response{
+    We thank Reviewer 2 for pointing out this section, which was admitedly very
+    confusing. We have re-written this section (and almost all of the
+    introduction) to try to make this distinction clearer. Our goal is to
+    distinguish two different ways that broad uniform priors could cause the
+    poor behavior of msBayes that was shown in the origin Oaks et al. paper.
+    \begin{enumerate}
+        \item As pointed out by reviewer 2, these priors could cause numerical
+            issues, where the simple ABC rejection machinery is unable to
+            sufficiently sample the space of the model in manageable
+            computational time.
+        \item The priors can cause rich models to have very small (but correct)
+            marginal likelihoods.
+    \end{enumerate}
+
+    These issues are not mutually exclusive, but in the former the true
+    posterior would support heterogeneity in divergence times in the face of
+    random divergences (i.e., the problem only arises from our inability to
+    estimate that posterior).
+    Whereas in the later, the true posterior (i.e., an analytical solution)
+    would correctly tell us that the most probable model is simultaneous
+    divergence despite random variation in divergence times. I.e., this is
+    actually the correct answer under the prior assumptions from the
+    perspective of Bayesian model choice. Unfortunately, this correct answer
+    does not provide the biogeographical insights we are using the method to
+    gain.
+
+    This is an important distinction, because if the prior conditions are such
+    that we are in situation 2, any arguments about the estimation procedure
+    are moot, because even the true posterior is biogeographcially misleading.
+}
+
+\bibliographystyle{../../bib/bmc-mathphys.bst}
+\bibliography{../../bib/references}
+
+\end{document}
+
