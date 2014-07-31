@@ -11,7 +11,7 @@ time \citep{Hickerson2006,Huang2011}.
 Recently, \citet{Oaks2012} used this model-choice framework to study 22 pairs
 of vertebrate lineages distributed across the Philippines; they also studied
 the behavior of the \msb approach using computer simulations.
-They found the method was very sensitive to prior assumptions and often
+They found the method is very sensitive to prior assumptions and often
 supports shared divergences across taxa that diverged randomly over broad time
 periods, to which \citet{Hickerson2013} responded.
 \citet{Oaks2012} and \citet{Hickerson2013} agree on the fundamental
@@ -28,7 +28,7 @@ divergence times cause this behavior:
     \item \citet{Hickerson2013} suggest that under broad uniform priors, the
         rejection algorithm implemented in \msb is unable to adequately sample
         the space of the models within reasonable computational time, which
-        leads to support for models with fewer divergence-time parameters
+        leads to bias toward models with fewer divergence-time parameters
         because they are better sampled.
     \item \citet{Oaks2012} suggest the cause is more fundamental; the uniform
         priors on divergence times simply lead to very small marginal
@@ -36,11 +36,12 @@ divergence times cause this behavior:
         models are ``averaged'' over much greater parameter space with large
         prior weight and small likelihood \citep{Jeffreys1939,Lindley1957}.
 \end{itemize}
-In the former case, the problem is estimation error; the true (correct)
-posterior supports models with many divergence-time parameters given data
-generated under temporally random divergences, but we are unable to accurately
-estimate the posterior.
-In the latter case, estimation error is not the issue, because the true
+In the former case, the problem is numerical approximation error due to
+insufficient computation;
+the true (correct) posterior supports models with many divergence-time
+parameters given data generated under temporally random divergences, but we are
+unable to accurately approximate the posterior.
+In the latter case, numerical error is not the issue, because the true
 posterior supports simultaneous divergences given data from randomly diverged
 taxa.
 I.e., this is the correct (albeit biogeographically misleading) answer given
@@ -53,10 +54,12 @@ insights that a researcher who employs \msb seeks to gain.
 While these phenomena are not mutually exclusive, it is important to
 distinguish between them in order to determine how best to improve our ability
 to estimate shared divergence histories.
-If the cause is estimation error, then the model is sound and we need to
-improve our numerical estimation procedures.
-For example, Markov chain or sequential Monte Carlo algorithms might improve
-the efficiency of sampling from the posterior.
+If the cause is numerical approximation error, then the model is sound and we
+need to increase our computational effort or improve our Monte Carlo
+integration procedures.
+For example, Markov chain or sequential Monte Carlo algorithms might sample the
+posterior more efficiently than the simple Monte Carlo rejection sampler
+currently implemented in \msb.
 Rather than alter the sampling algorithm, \citet{Hickerson2013} tried a
 model-averaging approach that uses narrow, empirically informed uniform priors
 in the hope that with less parameter space to sample, the rejection algorithm
@@ -72,12 +75,13 @@ We correct this error, but still find their approach will often support
 (1) clustered divergence models when divergences are random, and
 (2) models that exclude from consideration the true values of the
 parameters.
-The behavior of their approach also suggests that estimation error is not the
-primary cause of the issue.
+The behavior of their approach also suggests that insufficient computation is
+not the primary cause of the issue.
 
 If support for models with few divergence events is caused by their larger
-marginal likelihoods, we need to correct the model; improving the estimation
-machinery will only increase our ability to estimate misleading posteriors.
+marginal likelihoods, we need to correct the model; improving the numerical
+approximation machinery will only increase our ability to estimate the true
+posterior that leads us to the wrong interpretation about evolutionary history.
 Accordingly, \citet{Oaks2014dpp} has introduced a method that uses more
 flexible probability distributions to accommodate prior uncertainty in
 divergence times without overly inhibiting the marginal likelihoods of models
@@ -94,7 +98,8 @@ bias proposed by \citet{Oaks2012} and \citet{Hickerson2013}.
 We show the primary cause of the method's tendency to support models of shared
 divergences is the large marginal likelihoods of these models under the prior
 assumption of uniformly distributed divergence times.
-We also show that sampling error is not a major contributer to the problem.
+We also show that numerical approximation error is not a major contributer to
+the problem.
 
 
 
@@ -487,11 +492,12 @@ with small likelihood.
 In light of this fundamental statistical issue, it is not surprising that the
 method tends to support simple models.
 
-However, \citet{Hickerson2013} conclude that the bias is caused by estimation
-error due to insufficient sampling.
+However, \citet{Hickerson2013} conclude that the bias is caused by
+numerical approximation error due to insufficient computation.
 They argue the widest of the three priors used by \citet{Oaks2012} would
-infrequently produce samples with many independent population divergence times
-as recent as the estimated gene divergence times presented in \citet{Oaks2012}.
+infrequently produce random samples with many independent population divergence
+times as recent as the estimated gene divergence times presented in
+\citet{Oaks2012}.
 However, this argument assumes the gene divergence times presented in
 \citet{Oaks2012} were estimated without error.
 These estimates were intended to provide only a rough comparison of the
@@ -530,15 +536,16 @@ in \msb, and there are many cases after \citet{Oaks2012} corrected the
 bug where the narrowest prior performs slightly worse (see panels D--J of
 Figures 3 and S12).
 
-To disentangle whether model likelihoods or insufficient prior sampling is to
+To disentangle whether model likelihoods or numerical approximation error is to
 blame for the method's erroneous support for simple models, we must look at the
 different predictions made by these two phenomena.
-For example, insufficient prior sampling should create large variance among
-posterior estimates and cause analyses to be highly sensitive to the number of
-samples drawn from the prior.
-Furthermore, if sampling error is \emph{biasing} estimates toward models with
-less parameter space, as suggested by \citet{Hickerson2013}, we expect to see
-support for these models decrease as sampling increases.
+For example, numerical error due to insufficient prior sampling should create
+large variance among posterior estimates and cause analyses to be highly
+sensitive to the number of samples drawn from the prior.
+Furthermore, if insufficient prior sampling is \emph{biasing} estimates toward
+models with less parameter space, as suggested by \citet{Hickerson2013}, we
+expect to see support for these models decrease as sampling from the prior
+increases.
 \citet{Oaks2012} did not see such sensitivity when they compared prior sample
 sizes of $2\e6$, $5\e6$, and $10^7$.
 
@@ -550,9 +557,9 @@ When we look at the trace of the estimates of the dispersion index of
 divergence times (\vmratio{}) as the prior samples accumulate
 (Figure~S\ref{figSamplingError}) we do not see the trend predicted by
 \citet{Hickerson2013}.
-While sampling error is always a reality, it does not appear to be playing a
-large role in the biases revealed by the results of \citet{Oaks2012} or
-presented above.
+While approximation error is always present for any numerical analysis, it does
+not appear to be playing a large role in the biases revealed by the results of
+\citet{Oaks2012} or presented above.
 
 A straightforward prediction if marginal likelihoods are causing the preference
 for simple models is that the bias should disappear as the model generating the
@@ -564,8 +571,8 @@ The results confirm the prediction:
 prior is correct (see Figure 4 of \citet{Oaks2012}).
 We confirmed this same behavior for the model-averaging approach used by
 \citet{Hickerson2013} (see SI text and Figure~S\ref{figValidationMCBehavior}).
-These results are not clearly predicted if insufficient sampling was causing
-estimation bias.
+These results are not clearly predicted if insufficient computation was causing
+numerical error.
 Even when the prior is correct, due to the discrete uniform prior on the number
 of divergence events (\numt{}) implemented in \msb, models with larger numbers
 of divergence-time parameters (and thus greater parameter space) will still be
@@ -579,11 +586,11 @@ model-averaging approach of \citet{Hickerson2013} prefers models with narrower
 \divt{} priors (Table~\ref{tabModelChoiceEmpirical} and
 Figs.~\labelcref{figExclusionSimTau,figExclusionSimProb,figPowerExclusion4})
 and fewer \divt{} parameters (Figure~\ref{figPower4}).
-In all of these analyses, each of the prior models have the same number of
-samples.
-Thus, while sampling error will always be present in any numerical Bayesian
-approximation method, insufficient sampling is an unlikely explanation for the
-erroneous support for models with less parameter space.
+In all of these analyses, the same number of random samples were drawn from
+each of the prior models.
+Thus, while approximation error will always be present in any numerical
+approximation method, insufficient prior sampling is an unlikely explanation
+for the erroneous support for models with less parameter space.
 While analyses that sample each model proportional to their parameter space
 could be explored, it is clear that the marginal likelihoods under broad
 uniform priors on divergence times will be greater for models with fewer
@@ -648,8 +655,8 @@ prior on divergence times that is broad enough to confidently contain the true
 values of parameters while being narrow enough to avoid erroneous support for
 models with less parameter space.
 More generally, it is important to carefully choose prior assumptions about
-parameters in Bayesian model selection; these prior assumptions strongly
-influence the posterior probabilities we seek to estimate.
+parameters in Bayesian model selection; these prior assumptions about
+parameters strongly influence the posterior probabilities we seek to estimate.
 
 The common inference of temporally clustered divergences \citep{Barber2010,
     Bell2012, Carnaval2009, Chan2011, Daza2010, Hickerson2006, Huang2011,
