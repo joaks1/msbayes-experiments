@@ -24,46 +24,64 @@ methodological point about the model selection performed in \msb:
 \end{itemize}
 However, the two papers suggest alternative mechanisms by which the priors on
 divergence times cause this behavior:
-\begin{itemize}
-    \item \citet{Hickerson2013} suggest that under broad uniform priors, the
-        rejection algorithm implemented in \msb is unable to adequately sample
-        the space of the models within reasonable computational time, which
-        leads to bias toward models with fewer divergence-time parameters
-        because they are better sampled.
-    \item \citet{Oaks2012} suggest the cause is more fundamental; the uniform
-        priors on divergence times simply lead to very small marginal
-        likelihoods of models with many divergence-time parameters. These
-        models are ``averaged'' over much greater parameter space with large
-        prior weight and small likelihood \citep{Jeffreys1939,Lindley1957}.
-\end{itemize}
-In the former case, the problem is numerical approximation error due to
+\begin{description}
+    \item[Hypothesis 1: Numerical approximation error \citep{Hickerson2013}]
+        Under broad uniform priors, the rejection algorithm implemented in \msb
+        is unable to adequately sample the space of the models within
+        reasonable computational time, which leads to bias toward models with
+        fewer divergence-time parameters because they are better sampled.
+    % \item \citet{Hickerson2013} suggest that under broad uniform priors, the
+    %     rejection algorithm implemented in \msb is unable to adequately sample
+    %     the space of the models within reasonable computational time, which
+    %     leads to bias toward models with fewer divergence-time parameters
+    %     because they are better sampled.
+    \item[Hypothesis 2: Strongly weighted marginal likelihoods
+        \citep{Oaks2012}]
+        The uniform priors on divergence times simply lead to very small
+        marginal likelihoods of models with many divergence-time parameters.
+        These models are ``averaged'' over much greater parameter space with
+        large prior weight and small likelihood
+        \citep{Jeffreys1939,Lindley1957}.
+    % \item \citet{Oaks2012} suggest the cause is more fundamental; the uniform
+    %     priors on divergence times simply lead to very small marginal
+    %     likelihoods of models with many divergence-time parameters. These
+    %     models are ``averaged'' over much greater parameter space with large
+    %     prior weight and small likelihood \citep{Jeffreys1939,Lindley1957}.
+\end{description}
+In Hypothesis 1, the problem is numerical approximation error due to
 insufficient computation;
-the true (correct) posterior supports models with many divergence-time
-parameters given data generated under temporally random divergences, but we are
-unable to accurately approximate the posterior.
-In the latter case, numerical error is not the issue, because the true
-posterior supports simultaneous divergences given data from randomly diverged
-taxa.
-I.e., this is the correct (albeit biogeographically misleading) answer given
-the prior assumption that divergence times are broadly and uniformly
-distributed.
-Such posterior support for simultaneous divergence, even if correct from the
-perspective of Bayesian model choice, does not provide the biogeographical
+% In the former case, the problem is numerical approximation error due to
+% insufficient computation;
+the exact posterior supports models with many divergence-time parameters
+given data generated under temporally random divergences, but we are unable to
+accurately approximate the posterior.
+In Hypothesis 2, the problem is more fundamental, because the exact posterior
+supports simultaneous divergences given data from randomly diverged taxa.
+% In the latter case, numerical error is not the issue, because the exact
+% posterior supports simultaneous divergences given data from randomly diverged
+% taxa.
+I.e., given the assumption that divergence times are broadly and uniformly
+distributed, the exact posterior from Bayes' rule leads us to the wrong
+conclusions about evolutonary history.
+% I.e., this is the correct (albeit biogeographically misleading) answer given
+% the prior assumption that divergence times are broadly and uniformly
+% distributed.
+Such posterior support for simultaneous divergence, even if ``correct'' from
+the perspective of Bayesian model choice, does not provide the biogeographical
 insights that a researcher who employs \msb seeks to gain.
 
 While these phenomena are not mutually exclusive, it is important to
-distinguish between them in order to determine how best to improve our ability
-to estimate shared divergence histories.
-If the cause is numerical approximation error, then the model is sound and we
-need to increase our computational effort or improve our Monte Carlo
-integration procedures.
+distinguish between them in order to determine how to improve our ability to
+estimate shared divergence histories.
+If Hypothesis 1 is correct, then the model is sound and we need to increase our
+computational effort or improve our Monte Carlo integration procedures.
 For example, Markov chain or sequential Monte Carlo algorithms might sample the
 posterior more efficiently than the simple Monte Carlo rejection sampler
-currently implemented in \msb.
-Rather than alter the sampling algorithm, \citet{Hickerson2013} tried a
-model-averaging approach that uses narrow, empirically informed uniform priors
-in the hope that with less parameter space to sample, the rejection algorithm
-will produce better estimates of the posterior.
+implemented in \msb.
+Rather than alter the sampling algorithm, \citet{Hickerson2013} tried using
+narrow, empirically informed uniform priors in the hope that with less
+parameter space to sample, the rejection algorithm will produce better
+estimates of the posterior.
 Here, we discuss theoretical considerations for using empirically informed
 priors for Bayesian model choice and evaluate the approach of
 \citet{Hickerson2013} as a potential solution to the biases of \msb revealed by
@@ -75,13 +93,12 @@ We correct this error, but still find their approach will often support
 (1) clustered divergence models when divergences are random, and
 (2) models that exclude from consideration the true values of the
 parameters.
-The behavior of their approach also suggests that insufficient computation is
-not the primary cause of the issue.
+The behavior of their approach also suggests that insufficient computation
+(Hypothesis 1) is not the primary cause of the issue.
 
-If support for models with few divergence events is caused by their larger
-marginal likelihoods, we need to correct the model; improving the numerical
-approximation machinery will only increase our ability to estimate the true
-posterior that leads us to the wrong interpretation about evolutionary history.
+If Hypothesis 2 is correct, we need to correct the model, because no amount of
+computation will help; even if we could calculate the exact posterior, we would
+still reach the wrong interpretation about evolutionary history.
 Accordingly, \citet{Oaks2014dpp} has introduced a method that uses more
 flexible probability distributions to accommodate prior uncertainty in
 divergence times without overly inhibiting the marginal likelihoods of models
@@ -93,13 +110,15 @@ marginal likelihoods are very sensitive to the priors used in Bayesian model
 selection
 \citep[e.g.,][]{Jeffreys1939,Lindley1957}.
 
-We also explore the distinct predictions made by the alternative causes of the
-bias proposed by \citet{Oaks2012} and \citet{Hickerson2013}.
-We show the primary cause of the method's tendency to support models of shared
-divergences is the large marginal likelihoods of these models under the prior
-assumption of uniformly distributed divergence times.
-We also show that numerical approximation error is not a major contributer to
-the problem.
+We also explore the distinct predictions made by Hypotheses 1 and 2.
+We show the behavior of \msb matches the predictions of Hypothesis 2,
+but not Hypothesis 1.
+This strongly suggests the method tends to support models of shared divergences
+not due to insufficient computation, but rather due to the larger marginal
+likelihoods of these models under the prior assumption of uniformly distributed
+divergence times.
+% We also show that numerical approximation error is not a major contributer to
+% the problem.
 
 
 
