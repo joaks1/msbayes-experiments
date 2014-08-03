@@ -5,34 +5,40 @@ Recently, \citet{Oaks2012} used an approximate-Bayesian model choice method
 (\msb) to estimate the support for such a pattern of divergences across 22
 pairs of taxa from the Philippines; they also studied the behavior of \msb
 using computer simulations.
-\citet{Hickerson2013} responded to this work.
-Both papers agree that the primary inference enabled by the method is very
-sensitive to prior assumptions, which can lead the approach to erroneously
-support shared divergences across taxa.
+% \citet{Hickerson2013} responded to this work.
+They found the primary inference enabled by the method is very sensitive to
+prior assumptions and often erroneously supports shared divergences across
+taxa.
 % \citet{Oaks2012} found the method was very sensitive to prior assumptions and
 % often incorrectly supported models with few divergence events shared
 % across taxa.
-\citet{Oaks2012} suggested the method's behavior was due to the sensitivity of
-marginal likelihoods of models to the uniformly distributed priors on
-divergence times.  They suggested alternative distributions for prior
-uncertainty about divergence times, and recommended that users of the method
-should conduct analyses under a variety of priors to reveal prior sensitivity
-and communicate which assumptions underlie model inference.
+\citet{Oaks2012} suggested this was due to the sensitivity of marginal
+likelihoods of models to the uniformly distributed priors on divergence times.
+To mitigate this sensitivity they suggested alternative distributions for
+priors on divergence times.
+They also recommended that users of the method should conduct analyses under a
+variety of priors to reveal prior sensitivity and communicate which assumptions
+underlie model inference.
 % These results were not surprising in light of a rich statistical literature
 % showing that the marginal likelihood of a model is sensitive to the
 % use of vague priors.
-\citet{Hickerson2013} suggested the lack of robustness in \msb analyses was due
-to the inefficiency of the method's rejection algorithm under broad uniform
-priors on divergence times leading to numerical approximation error.
+In response, \citet{Hickerson2013} suggested the lack of robustness in \msb
+analyses was caused by numerical approximation error stemming from the
+inefficiency of the method's rejection algorithm under broad uniform priors on
+divergence times.
 They proposed a model-averaging approach that uses narrow, empirically informed
 uniform priors to overcome this.
 Here we demonstrate that the approach of \citet{Hickerson2013} will often
 erroneously support shared divergence events and is dangerous in the sense that
 the empirically-derived uniform priors often exclude from consideration the
 true values of the models' parameters.
-We also show this behavior of the method is primarily due to marginal
-likelihoods strongly weighted by the prior assumption of uniformly distributed
-divergence times, and not numerical approximation error.
+% On a more fundamental level, we question the value of adopting an empirical
+% Bayesian stance for this model-choice problem.
+We also show the tendency of \msb analyses to support models of shared
+divergences is primarily due to the larger marginal likelihoods of these models
+when they are strongly weighted by the prior assumption of uniformly
+distributed divergence times; numerical approximation error is not a tenable
+explanation for the bias.
 % On a more fundamental level, we question the value of adopting an empirical
 % Bayesian stance for this model-choice problem.
 % The robust Bayesian approach of conducting analyses under a variety of priors
@@ -42,5 +48,7 @@ divergence times, and not numerical approximation error.
 % method, which helps guide interpretation of results.
 As predicted by fundamental principles of Bayesian model choice, more flexible
 distributions can accommodate prior uncertainty about the models' parameters
-while increasing the method's robustness and power to detect temporal variation
+without placing excessive prior weight in vast regions of parameter space with
+low likelihood;
+this increases the method's robustness and power to detect temporal variation
 in divergences \citep{Oaks2014dpp}.
