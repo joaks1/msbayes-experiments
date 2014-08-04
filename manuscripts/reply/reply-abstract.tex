@@ -1,54 +1,42 @@
 Establishing that a set of population splitting events occurred at the same
 time can be a potentially persuasive argument that the populations were
 affected by the same geographic event.
-Recently, \citet{Oaks2012} used an approximate-Bayesian model choice method
-(\msb) to estimate the support for such a pattern of divergences across 22
-pairs of taxa from the Philippines; they also studied the behavior of \msb
-using computer simulations.
-% \citet{Hickerson2013} responded to this work.
-They found the primary inference enabled by the method is very sensitive to
-prior assumptions and often erroneously supports shared divergences across
-taxa.
-% \citet{Oaks2012} found the method was very sensitive to prior assumptions and
-% often incorrectly supported models with few divergence events shared
-% across taxa.
-\citet{Oaks2012} suggested this was due to the sensitivity of marginal
-likelihoods of models to the uniformly distributed priors on divergence times.
-To mitigate this sensitivity they suggested alternative distributions for
-priors on divergence times.
-They also recommended that users of the method should conduct analyses under a
-variety of priors to reveal prior sensitivity and communicate which assumptions
-underlie model inference.
-% These results were not surprising in light of a rich statistical literature
-% showing that the marginal likelihood of a model is sensitive to the
-% use of vague priors.
-In response, \citet{Hickerson2013} suggested the lack of robustness in \msb
-analyses was caused by numerical approximation error stemming from the
-inefficiency of the method's rejection algorithm under broad uniform priors on
-divergence times.
-They proposed a model-averaging approach that uses narrow, empirically informed
-uniform priors to overcome this.
-Here we demonstrate that the approach of \citet{Hickerson2013} will often
+Recently, \citet{Oaks2012} assessed the ability of an approximate-Bayesian
+model choice method (\msb) to estimate such patterns of divergences across
+taxa, to which \citet{Hickerson2013} responded.
+Both papers agree that the primary inference enabled by the method is very
+sensitive to prior assumptions and often erroneously supports shared
+divergences across taxa.
+However, the papers differ in the best explanation and solution for this
+problem.
+\citet{Hickerson2013} suggested the lack of robustness in \msb analyses is
+caused by numerical approximation error due to the inefficiency of the method's
+rejection algorithm under broad uniform priors on divergence times
+(Hypothesis~\ref{hypError}).
+To overcome this, they proposed a model-averaging approach that uses narrow,
+empirically informed uniform priors.
+Here we demonstrate the approach of \citet{Hickerson2013} will often
 erroneously support shared divergence events and is dangerous in the sense that
 the empirically-derived uniform priors often exclude from consideration the
-true values of the models' parameters.
-% On a more fundamental level, we question the value of adopting an empirical
-% Bayesian stance for this model-choice problem.
-We also show the tendency of \msb analyses to support models of shared
-divergences is primarily due to the larger marginal likelihoods of these models
-when they are strongly weighted by the prior assumption of uniformly
-distributed divergence times; numerical approximation error is not a tenable
-explanation for the bias.
-% On a more fundamental level, we question the value of adopting an empirical
-% Bayesian stance for this model-choice problem.
-% The robust Bayesian approach of conducting analyses under a variety of priors
-% can reveal prior sensitivity and communicate which assumptions underlie model
-% inference.
-% Furthermore, simulations provide insight into the temporal resolution of the
-% method, which helps guide interpretation of results.
+true values of the divergence-time parameters.
+\citet{Oaks2012} suggested the method's behavior was due to the sensitivity of
+marginal likelihoods to the uniformly distributed priors on divergence times
+(Hypothesis~\ref{hypML}).
+To mitigate this sensitivity, they suggested alternative probability
+distributions to accommodate prior uncertainty about divergence times.
 As predicted by fundamental principles of Bayesian model choice, more flexible
-distributions can accommodate prior uncertainty about the models' parameters
-without placing excessive prior weight in vast regions of parameter space with
-low likelihood;
+distributions can accommodate prior uncertainty about parameters without
+placing excessive prior weight in vast regions of parameter space with low
+likelihood;
 this increases the method's robustness and power to detect temporal variation
 in divergences \citep{Oaks2014dpp}.
+We also show that the tendency of \msb analyses to support models of shared
+divergences is primarily due to Hypothesis~\ref{hypML};
+Hypothesis~\ref{hypError} is not a tenable explanation for the bias.
+All of these papers have highlighted the importance of choosing prior
+assumptions about parameters in Bayesian model selection, because they can
+strongly influence the posterior probabilities of the models we seek to
+estimate.
+No amount of computation can rescue our inference if we choose priors on
+parameters such that the exact posterior supports the wrong model of
+evolutionary history.

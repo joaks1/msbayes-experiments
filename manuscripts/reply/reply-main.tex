@@ -176,10 +176,8 @@ parameter estimation, a theoretical justification for empirical Bayesian
 approaches to model choice is questionable.
 In Bayesian model choice, the primary goal is not to estimate parameters, but
 to estimate the probabilities of candidate models.
-In a simple example where two candidate models, $M_1$ and $M_2$, are being
-compared, the goal is to estimate the posterior probabilities of these two
-models.
-Again, we can use Bayes' rule to calculate this as
+In a simple example with two candidate models, $M_1$ and $M_2$, we can use
+Bayes' rule to calculate the posterior probability of $M_1$ as
 \begin{equation}
     p(M_1 \given \alignment{i}{}) = \frac{p(\alignment{i}{} \given
     M_1)p(M_1)}{p(\alignment{i}{} \given M_1)p(M_1) + p(\alignment{i}{} \given
@@ -280,7 +278,7 @@ certainly excludes most, if not all, of the true divergence times of the 22
 taxon pairs.
 If small likelihoods of large models cause the method to prefer models with
 less parameter space (Hypothesis~\ref{hypML}), we expect \msb will
-preferentially sample from this erroneous model yielding a posterior that is
+preferentially sample from this erroneous prior yielding a posterior that is
 misleading (i.e., the model-averaged posterior will be dominated by a model
 that excludes the truth).
 Second, we generated simulated datasets for which the divergence times are
@@ -454,7 +452,7 @@ divergence-time prior of 0--1 coalescent units ago.
 They found that under these prior conditions \msb can, assuming a
 per-site rate of $1.92\e{-8}$ mutations per generation, detect multiple
 divergence events among 18 taxa when the true divergences were random over
-hundreds of thousands of generations or more.
+150,000 generations or more.
 It is important that investigators perform such simulations to determine the
 method's power for their dataset, and decide if \msb has sufficient temporal
 resolution to address their hypotheses; in the case of the Philippines dataset,
@@ -465,9 +463,9 @@ It is rare for there to be enough \emph{a priori} information to be certain
 that all taxa diverged within the last 4$\globalpopsize$ generations (i.e.,
 0--1 coalescent units).
 Also, it seems unlikely that when such prior information is available that
-being able to detect more than one divergence event in the face of 18 random
-divergences over hundreds of thousands of generations will provide much insight
-into the evolutionary history of the taxa.
+being able to detect more than one divergence event in the face of 18
+divergences that were random over 150,000+ generations will
+provide much insight into the evolutionary history of the taxa.
 
 Inferring more than one divergence time shared across all taxa does not confirm
 the method is working well when analyzing data generated under random temporal
