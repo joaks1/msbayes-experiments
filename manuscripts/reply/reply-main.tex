@@ -17,10 +17,11 @@ periods, to which \citet{Hickerson2013} responded.
 \citet{Oaks2012} and \citet{Hickerson2013} agree on the fundamental
 methodological point about the model selection performed in \msb:
 \begin{itemize}
-   \item The use of vague priors on the divergence-time parameters can lead to
-       spurious support for models with few divergence events shared across
-       taxa. Thus, the primary inference enabled by the approach is very
-       sensitive to the priors on divergence times.
+   \item Representing prior uncertainty about divergence-time parameters with a
+       uniform distribution can lead to spurious support for models with few
+       divergence events shared across taxa. Thus, the primary inference
+       enabled by the approach is very sensitive to the priors on divergence
+       times.
 \end{itemize}
 However, the two papers suggest alternative mechanisms by which the priors on
 divergence times cause this behavior:
@@ -40,17 +41,17 @@ divergence times cause this behavior:
         large amount of prior weight and small probability of producing the
         data.  \citep{Jeffreys1939,Lindley1957}. \label{hypML}
 \end{enumerate}
-In Hypothesis~\ref{hypError}, the problem is numerical approximation error due to
-insufficient computation;
-given data from randomly diverged taxa, the exact posterior supports a model
-with many divergence-time parameters, but we are unable to accurately
-approximate this posterior.
+In Hypothesis~\ref{hypError}, the problem is numerical approximation error due
+to insufficient computation.
+In this scenario, given data from taxa that diverged randomly through time, the
+exact posterior supports a model with many divergence-time parameters, but we
+are unable to accurately approximate this posterior.
 In Hypothesis~\ref{hypML}, the problem is more fundamental; given data from
-randomly diverged taxa, the exact posterior supports a model with a small
-number of simultaneous divergences.
-I.e., given the assumption that divergence times are broadly and uniformly
-distributed, the exact posterior from Bayes' rule leads us to the wrong
-conclusion about evolutionary history.
+taxa that diverged randomly through time, the exact posterior supports a model
+with simultaneous divergences across taxa.
+I.e., when accommodating prior uncertainty about divergence times with a
+uniform distribution, the exact posterior from Bayes' rule leads us to the
+wrong conclusion about evolutionary history.
 Such posterior support for simultaneous divergence, even if ``correct'' from
 the perspective of Bayesian model choice, does not provide the biogeographical
 insights that a researcher who employs \msb seeks to gain.
@@ -70,8 +71,7 @@ parameter space to sample, the rejection algorithm would produce better
 estimates of the posterior.
 Here, we discuss theoretical considerations for using empirically informed
 priors for Bayesian model choice and evaluate the approach of
-\citet{Hickerson2013} as a potential solution to the biases of \msb revealed by
-\citet{Oaks2012}.
+\citet{Hickerson2013} as a potential solution to the biases of \msb.
 In their analyses, \citet{Hickerson2013} made an error by mixing different
 units of time, which invalidates the results presented in their response (see
 Supporting Information for details).
@@ -98,10 +98,10 @@ selection
 We also explore the distinct predictions made by Hypotheses 1 and 2.
 We show the behavior of \msb matches the predictions of Hypothesis~\ref{hypML},
 but not Hypothesis~\ref{hypError}.
-This strongly suggests the method tends to support models of shared divergences
-not because of insufficient computation, but rather due to the larger marginal
-likelihoods of these models under the prior assumption of uniformly distributed
-divergence times.
+This strongly suggests that the method tends to support models of shared
+divergences not because of insufficient computation, but rather due to the
+larger marginal likelihoods of these models under the prior assumption of
+uniformly distributed divergence times.
 
 
 
@@ -500,9 +500,9 @@ However, \citet{Hickerson2013} conclude that the bias is caused by numerical
 approximation error due to insufficient computation
 (Hypothesis~\ref{hypError}).
 They argue the widest of the three priors on divergence times used by
-\citet{Oaks2012} would infrequently produce random samples with many
-independent population divergence times as recent as the estimated gene
-divergence times presented in \citet{Oaks2012}.
+\citet{Oaks2012} would infrequently produce random samples of parameter values
+with many independent population divergence times as recent as the estimated
+gene divergence times presented in \citet{Oaks2012}.
 % They also also suggest that Oaks et al.'s \citeyear{Oaks2012} estimated gene
 % divergence times should be used to set the upper bound of the uniform prior on
 % divergence times for the \msb analysis of the same sequence data.
@@ -540,7 +540,7 @@ S12).
 
 
 
-To disentangle whether Hypothesis 1 or 2 is the primary cause the method's
+To disentangle whether Hypothesis 1 or 2 is the primary cause of the method's
 erroneous support for simple models, we must look at the different predictions
 made by these two phenomena.
 For example, numerical error due to insufficient prior sampling
@@ -593,14 +593,14 @@ model-averaging approach of \citet{Hickerson2013} prefers models with narrower
 Figs.~\labelcref{figExclusionSimTau,figExclusionSimProb,figPowerExclusion4})
 and fewer \divt{} parameters (Figure~\ref{figPower4}).
 For these model-averaging analyses, insufficient prior sampling
-(Hypothesis~\ref{hypError}) is an unlikely explanation for the erroneous support
+(Hypothesis~\ref{hypError}) is an untenable explanation for the erroneous support
 for models with less parameter space, because (1) all of the prior models share
 the same dimensionality, and (2) the same number of random samples were drawn
 from each of the prior models.
-These results are predicted by Hypothesis~\ref{hypML}, because the marginal
-likelihoods will be higher for models with narrower priors on divergence times
-and fewer divergence-time dimensions (these models integrate over less space
-with large prior weight and small likelihood).
+However, these results are predicted by Hypothesis~\ref{hypML}, because the
+marginal likelihoods will be higher for models with narrower priors on
+divergence times and fewer divergence-time dimensions (these models integrate
+over less space with large prior weight and small likelihood).
 
 
 
