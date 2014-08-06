@@ -48,6 +48,10 @@ changes I have made.
     We agree. We are very appreciative of this opportunity to clarify some
     aspects of Hickerson et al.'s response, and feel our reply will make a nice
     end to an interesting discussion about Bayesian model selection.
+
+    We have re-written a lot of the manuscript and feel the new version will be
+    of general interest to readers interested in Bayesian selection of
+    evolutionary models.
 }
 
 \revcomment{
@@ -59,8 +63,10 @@ changes I have made.
 \response{
     We are greatful for this insight by the editor and reviewers that our
     paper was too long and lacked focus.
-    We have greatly reduced the length of the main text and moved some items
-    (including 2 figures) to the supplement.
+    We greatly reduced the length of the main text, moved some items (including
+    2 figures) to the supplement, and re-wrote a lot of the manuscript to focus
+    on the most interesting aspects of Bayesian model choice brought to
+    light by this series of papers.
 }
 
 \revcomment{
@@ -134,9 +140,7 @@ changes I have made.
     In regard to the sections specifically highlighted by Reviewer 2:
     \begin{description}
         \item[L96-100 and L104-108]
-            We have reduced this section to only three sentences that summarize
-            only the information necessary to introduce our subsequent
-            discussion.
+            We have removed this section.
         \item[L222-237]
             We see how this paragraph can be interpreted as polemical. However,
             this brief summary of the methods and results of Hickerson et al.'s
@@ -207,34 +211,19 @@ changes I have made.
 }
 \response{
     We thank Reviewer 2 for pointing out this section, which was admitedly very
-    confusing. We have re-written this section (and almost all of the
-    introduction) to try to make this distinction clearer. Our goal is to
-    distinguish two different ways that broad uniform priors could cause the
-    poor behavior of msBayes that was shown in the origin Oaks et al. paper.
-    \begin{enumerate}
-        \item As pointed out by reviewer 2, these priors could cause numerical
-            issues, where the simple ABC rejection machinery is unable to
-            sufficiently sample the space of the model in manageable
-            computational time.
-        \item The priors can cause rich models to have very small (but correct)
-            marginal likelihoods.
-    \end{enumerate}
+    confusing. We have re-written this section (and a lot of the manuscript) to
+    try to make this distinction clearer. Our goal is to distinguish two
+    different ways that broad uniform priors could cause the poor behavior of
+    msBayes that was shown in the original Oaks et al. paper.
 
-    These issues are not mutually exclusive, but in the former the true
-    posterior would support heterogeneity in divergence times in the face of
-    random divergences (i.e., the problem only arises from our inability to
-    estimate that posterior).
-    Whereas in the later, the true posterior (i.e., an analytical solution)
-    would correctly tell us that the most probable model is simultaneous
-    divergence despite random variation in divergence times. I.e., this is
-    actually the correct answer under the prior assumptions from the
-    perspective of Bayesian model choice. Unfortunately, this correct answer
-    does not provide the biogeographical insights we are using the method to
-    gain.
+    We now pose these as alternative hypotheses to explain the methods tendency
+    to support clustered divergence times. We also discuss the distinct
+    predictions made by each hypothesis, and how best to improve the method
+    under each of them.
 
-    This is an important distinction, because if the prior conditions are such
-    that we are in situation 2, any arguments about the estimation procedure
-    are moot, because even the true posterior is biogeographcially misleading.
+    This has greatly improved the clarity, focus, and general interest of the
+    paper, and we are very thankful that Reviewer 2 steered us in this
+    direction.
 }
 
 \bibliographystyle{../../bib/bmc-mathphys.bst}

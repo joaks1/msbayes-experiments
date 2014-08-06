@@ -2,8 +2,8 @@ Establishing that a set of population splitting events occurred at the same
 time can be a potentially persuasive argument that the populations were
 affected by the same geographic event.
 Recently, \citet{Oaks2012} assessed the ability of an approximate-Bayesian
-model choice method (\msb) to estimate such patterns of divergences across
-taxa, to which \citet{Hickerson2013} responded.
+model choice method (\msb) to estimate such a pattern of simultaneous
+divergence across taxa, to which \citet{Hickerson2013} responded.
 Both papers agree that the primary inference enabled by the method is very
 sensitive to prior assumptions and often erroneously supports shared
 divergences across taxa when prior uncertainty about divergence times
@@ -16,28 +16,28 @@ rejection algorithm under broad uniform priors on divergence times
 (Hypothesis~\ref{hypError}).
 To overcome this, they proposed a model-averaging approach that uses narrow,
 empirically informed uniform priors.
-Here we demonstrate the approach of \citet{Hickerson2013} will often
-erroneously support shared divergence events and is dangerous in the sense that
-the empirically-derived uniform priors often exclude from consideration the
-true values of the divergence-time parameters.
 \citet{Oaks2012} suggested the method's behavior was due to the sensitivity of
 marginal likelihoods to the uniformly distributed priors on divergence times
 (Hypothesis~\ref{hypML}).
 To mitigate this sensitivity, they suggested alternative probability
 distributions to accommodate prior uncertainty about divergence times.
-As predicted by fundamental principles of Bayesian model choice, more flexible
-distributions can accommodate prior uncertainty about parameters without
-placing excessive prior weight in vast regions of parameter space with low
-likelihood;
-this increases the method's robustness and power to detect temporal variation
-in divergences \citep{Oaks2014dpp}.
-We also show that the tendency of \msb analyses to support models of shared
-divergences is primarily due to Hypothesis~\ref{hypML}, whereas
-Hypothesis~\ref{hypError} is not a tenable explanation for the bias.
+Here we use analyses of simulated and empirical data to show that the tendency
+of \msb analyses to support models of shared divergences is primarily due to
+Hypothesis~\ref{hypML}, whereas Hypothesis~\ref{hypError} is an untenable
+explanation for the bias.
+We also demonstrate the approach of \citet{Hickerson2013} will often
+erroneously support shared divergence events and is dangerous in the sense that
+the empirically-derived uniform priors often exclude from consideration the
+true values of the divergence-time parameters.
+\citep{Oaks2014dpp} showed, as predicted by fundamental principles of Bayesian
+model choice, more flexible distributions can accommodate prior uncertainty
+about parameters without placing excessive prior weight in vast regions of
+parameter space with low likelihood; this increases the method's robustness and
+power to detect temporal variation in divergences.
 All of these papers have highlighted the importance of choosing prior
-assumptions about parameters in Bayesian model selection, because they can
-strongly influence the posterior probabilities of the models we seek to
-estimate.
-No amount of computation can rescue our inference if we choose priors on
-parameters such that the exact posterior supports the wrong model of
-evolutionary history.
+assumptions about parameters in Bayesian model selection, because they
+can strongly influence the posterior probabilities of the models we seek
+to estimate.
+If we choose priors placing too much weight in unlikely regions of parameter
+space such that the true posterior supports the wrong model of evolutionary
+history, no amount of computation can rescue our inference. 
