@@ -4,6 +4,7 @@
 \usepackage{parskip}
 \input{../../utils/preamble.tex}
 \usepackage[numbers,sort&compress]{natbib}
+\usepackage{enumitem}
 \input{../../utils/macros.tex}
 
 \newcounter{commentCounter}
@@ -28,11 +29,26 @@
 % \raggedright
 \setlength{\parindent}{0in}
 
-I greatly appreciate the helpful comments of the editor and reviewers. In this
-document, I provide responses to these comments, including descriptions of the
-changes I have made.
+My co-authors and I greatly appreciate the helpful comments of the editor and
+reviewers.
+In this document, I provide our responses to these comments, including
+descriptions of the changes we have made.
 
 \section{Editor's Comments}\label{ed}
+\setcounter{commentCounter}{0}
+\revcomment{
+    In particular, the paper needs to be more focused and would benefit from
+    avoiding unnecessary polemical considerations. Importantly, the core
+    arguments could be made in much fewer words, given previous publications. A
+    resubmission should be cut by at least 25\% in the main text. Similarly
+    consider removing 1 or 2 figures (perhaps fig. 5 and 6).
+}
+\response{
+    We have reduced the number of words in the main text be 26\%, and
+    moved Figures 5 and 6 to the Supporting Information.
+}
+
+\section{Associate Editor's Comments}\label{ed}
 \setcounter{commentCounter}{0}
 \revcomment{
     The most negative review suggests that the authors (and Hickerson et al)
@@ -138,7 +154,7 @@ changes I have made.
     We have moved the coin-flipping example to the supplement.
 
     In regard to the sections specifically highlighted by Reviewer 2:
-    \begin{description}
+    \begin{description}[align=left,labelindent=0.5in,leftmargin=0.75in]
         \item[L96-100 and L104-108]
             We have removed this section.
         \item[L222-237]
@@ -224,6 +240,16 @@ changes I have made.
     This has greatly improved the clarity, focus, and general interest of the
     paper, and we are very thankful that Reviewer 2 steered us in this
     direction.
+}
+
+\section{Reviewer 3's Comments}\label{rev2}
+\setcounter{commentCounter}{0}
+
+\revcomment{
+     I feel this is an excellent paper and is ready for publication in Evolution.
+}
+\response{
+    Thank you.
 }
 
 \bibliographystyle{../../bib/bmc-mathphys.bst}
