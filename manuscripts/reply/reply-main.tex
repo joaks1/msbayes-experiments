@@ -26,12 +26,6 @@ methodological point about the model selection performed in \msb:
 However, the two papers suggest alternative mechanisms by which the priors on
 divergence times cause this behavior:
 \begin{enumerate}[label=\textsl{\textbf{Hypothesis \arabic*)}},ref=\arabic*,align=left]
-    \item \textsl{\textbf{Numerical approximation error}} \citep{Hickerson2013}:
-        Under broad uniform priors, the rejection algorithm implemented in \msb
-        is unable to adequately sample the space of the models within
-        reasonable computational time, which leads to bias toward models with
-        fewer divergence-time parameters because they are better sampled.
-        \label{hypError}
     \item \textsl{\textbf{Strongly weighted marginal likelihoods}}
         \citep{Oaks2012}:
         The uniform priors on divergence times lead to very small marginal
@@ -40,6 +34,12 @@ divergence times cause this behavior:
         ``averaged'' over a much greater parameter space in which there is a
         large amount of prior weight and small probability of producing the
         data.  \citep{Jeffreys1939,Lindley1957}. \label{hypML}
+    \item \textsl{\textbf{Numerical approximation error}} \citep{Hickerson2013}:
+        Under broad uniform priors, the rejection algorithm implemented in \msb
+        is unable to adequately sample the space of the models within
+        reasonable computational time, which leads to bias toward models with
+        fewer divergence-time parameters because they are better sampled.
+        \label{hypError}
 \end{enumerate}
 In Hypothesis~\ref{hypError}, the problem is numerical approximation error due
 to insufficient computation.
@@ -660,7 +660,7 @@ of parameters while being narrow enough to avoid strongly weighted and
 misleading posterior support for models with less parameter space.
 More generally, it is important to carefully choose prior assumptions about
 parameters in Bayesian model selection, because they can strongly influence the
-\emph{true} posterior probabilities of the models we seek to estimate.
+posterior probabilities of the models we seek to compare.
 No amount of computation can rescue our inference if our prior assumptions
 place too much weight in unlikely regions of parameter space such that the
 exact posterior supports the wrong model of evolutionary history. 
