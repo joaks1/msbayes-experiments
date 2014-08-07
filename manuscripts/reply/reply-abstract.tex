@@ -10,19 +10,19 @@ divergences across taxa when prior uncertainty about divergence times
 is represented by a uniform distribution.
 However, the papers differ about the best explanation and solution for this
 problem.
-\citet{Hickerson2013} suggested the lack of robustness in \msb analyses is
-caused by numerical approximation error due to the inability of the method's
-rejection algorithm to adequately sample parameter space within reasonable
-computational limits when using broad uniform priors on divergence times
-(Hypothesis~\ref{hypError}).
-To overcome this, they proposed a model-averaging approach that uses narrow,
-empirically informed uniform priors.
+\citet{Hickerson2013} suggested numerical approximation error causes \msb
+analyses to be biased toward models of clustered divergences because the the
+method's rejection algorithm is unable to adequately sample the parameter space
+of richer models within reasonable computational limits when using broad
+uniform priors on divergence times (Hypothesis~\ref{hypError}).
+As a potential solution, they proposed a model-averaging approach that uses
+narrow, empirically informed uniform priors.
 \citet{Oaks2012} suggested the method's behavior was caused by the strong
 weight of uniformly distributed priors on divergence times leading to smaller
-marginal likelihoods (and posterior probabilities) of models with more
-divergence time parameters
-(Hypothesis~\ref{hypML}); they proposed alternative prior probability
-distributions to avoid such strongly weighted marginal likelihoods.
+marginal likelihoods (and thus smaller posterior probabilities) of models with
+more divergence time parameters (Hypothesis~\ref{hypML}); they proposed
+alternative prior probability distributions to avoid such strongly weighted
+posteriors.
 % \citet{Oaks2012} suggested the method's behavior was due to the sensitivity of
 % marginal likelihoods to the uniformly distributed priors on divergence times
 % (Hypothesis~\ref{hypML}), and proposed alternative prior probability
@@ -35,9 +35,8 @@ I.e., if our prior assumptions place too much weight in unlikely regions of
 parameter space such that the true posterior supports the wrong model of
 evolutionary history, no amount of computation can rescue our inference. 
 We also demonstrate the empirical Bayesian model-averaging approach of
-\citet{Hickerson2013} does not mitigate the method's tendency to strongly
-support models of highly clustered divergence times when analyzing data from
-taxa that diverged randomly over millions of generations.
+\citet{Hickerson2013} does not mitigate the method's tendency to erroneously
+support models of highly clustered divergences.
 Furthermore, we show this approach is dangerous in the sense that the
 empirically-derived uniform priors often exclude from consideration the true
 values of the divergence-time parameters.
