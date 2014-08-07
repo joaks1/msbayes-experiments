@@ -11,15 +11,22 @@ is represented by a uniform distribution.
 However, the papers differ about the best explanation and solution for this
 problem.
 \citet{Hickerson2013} suggested the lack of robustness in \msb analyses is
-caused by numerical approximation error due to the inefficiency of the method's
-rejection algorithm under broad uniform priors on divergence times
+caused by numerical approximation error due to the inability of the method's
+rejection algorithm to adequately sample parameter space within reasonable
+computational limits when using broad uniform priors on divergence times
 (Hypothesis~\ref{hypError}).
 To overcome this, they proposed a model-averaging approach that uses narrow,
 empirically informed uniform priors.
-\citet{Oaks2012} suggested the method's behavior was due to the sensitivity of
-marginal likelihoods to the uniformly distributed priors on divergence times
-(Hypothesis~\ref{hypML}), and proposed alternative prior probability
-distributions to mitigate this sensitivity.
+\citet{Oaks2012} suggested the method's behavior was caused by the strong
+weight of uniformly distributed priors on divergence times leading to smaller
+marginal likelihoods (and posterior probabilities) of models with more
+divergence time parameters
+(Hypothesis~\ref{hypML}); they proposed alternative prior probability
+distributions to avoid such strongly weighted marginal likelihoods.
+% \citet{Oaks2012} suggested the method's behavior was due to the sensitivity of
+% marginal likelihoods to the uniformly distributed priors on divergence times
+% (Hypothesis~\ref{hypML}), and proposed alternative prior probability
+% distributions to mitigate this sensitivity.
 Here, we use analyses of simulated and empirical data to show that the tendency
 of \msb analyses to support models of shared divergences is primarily due to
 Hypothesis~\ref{hypML}, whereas Hypothesis~\ref{hypError} is an untenable
