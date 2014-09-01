@@ -3,12 +3,17 @@ Table of Contents
 
  -  [Overview](#overview)
  -  [Requirements](#requirements)
+ -  [Documentation](#documentation)
  -  [Acknowledgements](#acknowledgements)
  -  [License](#license)
 
 
 Overview
 ========
+
+This project is archived on [zenodo](https://zenodo.org)
+
+https://zenodo.org/badge/doi/10.5281/zenodo.11557.png
 
 This repository serves as an [open-science
 notebook](http://en.wikipedia.org/wiki/Open_notebook_science) for research
