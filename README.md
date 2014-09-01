@@ -13,7 +13,7 @@ Overview
 
 This project is archived on [zenodo](https://zenodo.org/record/11557):
 
-<a rel="doi" href="https://zenodo.org/record/11557"><img alt="Zenodo DOI" style="border-width:0" src="https://zenodo.org/badge/doi/10.5281/zenodo.11557.png" /></a>
+<a href="http://dx.doi.org/10.5281/zenodo.11557"><img src="https://zenodo.org/badge/doi/10.5281/zenodo.11557.png" alt="10.5281/zenodo.11557"></a>
 
 This repository serves as an [open-science
 notebook](http://en.wikipedia.org/wiki/Open_notebook_science) for research
