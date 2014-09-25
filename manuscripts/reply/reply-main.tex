@@ -1,7 +1,7 @@
 \section{Introduction}
 Biogeographers frequently seek to explain population and species
 differentiation on geographical phenomena.
-Establishing that a set of population splitting events occurred
+Establishing that a set of population-splitting events occurred
 at the same time can be a potentially persuasive argument that a set of taxa
 were affected by the same geographic events.
 The approximate-Bayesian method, \msb, allows biogeographers to estimate the
@@ -34,14 +34,14 @@ divergence times cause this behavior:
         ``averaged'' over a much greater parameter space in which there is a
         large amount of prior weight and small probability of producing the
         data.  \citep{Jeffreys1939,Lindley1957}. \label{hypML}
-    \item \textsl{\textbf{Numerical approximation error}} \citep{Hickerson2013}:
+    \item \textsl{\textbf{Numerical-approximation error}} \citep{Hickerson2013}:
         Under broad uniform priors, the rejection algorithm implemented in \msb
         is unable to adequately sample the space of the models within
         reasonable computational time, which leads to bias toward models with
         fewer divergence-time parameters because they are better sampled.
         \label{hypError}
 \end{enumerate}
-In Hypothesis~\ref{hypError}, the problem is numerical approximation error due
+In Hypothesis~\ref{hypError}, the problem is numerical-approximation error due
 to insufficient computation.
 In this scenario, given data from taxa that diverged randomly through time, the
 exact (true) posterior supports a model with many divergence-time parameters,
@@ -172,7 +172,7 @@ exhibit favorable frequentist properties.
 \citep{Morris1983,Laird1987,Laird1989, Carlin1990,Hwang2009}.
 
 \begin{linenomath}
-Whereas empirical Bayesian approaches can provide powerful methods for
+Although empirical Bayesian approaches can provide powerful methods for
 parameter estimation, a theoretical justification for empirical Bayesian
 approaches to model choice is questionable.
 In Bayesian model choice, the primary goal is not to estimate parameters, but
@@ -497,7 +497,7 @@ with small likelihood (Hypothesis~\ref{hypML}).
 In light of this fundamental statistical issue, it is not surprising that the
 method tends to support simple models.
 
-However, \citet{Hickerson2013} conclude that the bias is caused by numerical
+However, \citet{Hickerson2013} conclude that the bias is caused by numerical-
 approximation error due to insufficient computation
 (Hypothesis~\ref{hypError}).
 They argue the widest of the three priors on divergence times used by
@@ -642,7 +642,7 @@ divergences.
 
 
 \section{Conclusions}
-We demonstrate how the approximate Bayesian model-choice method implemented in
+We demonstrate how the approximate-Bayesian model-choice method implemented in
 \msb can spuriously support models with less parameter space.
 This is caused by the use of uniform priors on divergence times.
 Uniform distributions necessitate the use of priors that place high density in
