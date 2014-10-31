@@ -167,7 +167,7 @@ def get_marginal_plot_3d(maximum = 1.0,
         xmin, xmax = ax.get_xlim()
         ymin, ymax = ax.get_ylim()
         prior_d = 1.0 / (xmax * ymax)
-        prior_d *= 2.0
+        prior_d *= 4.0
         x_back_line = ax.plot([xmin, xmax], [ymax, ymax], [prior_d, prior_d])
         x_front_line = ax.plot([xmin, xmax], [ymin, ymin], [prior_d, prior_d], zorder=200)
         y_back_line = ax.plot([xmin, xmin], [ymin, ymax], [prior_d, prior_d], zorder=-10)
@@ -175,7 +175,7 @@ def get_marginal_plot_3d(maximum = 1.0,
         plt.setp([x_back_line, y_back_line, x_front_line, y_front_line],
                 color = 'r',
                 linestyle = '--',
-                linewidth = 1.0,
+                linewidth = 2.0,
                 marker = '')
     if include_constrained_density:
         a, b, c = [], [], []
@@ -187,7 +187,7 @@ def get_marginal_plot_3d(maximum = 1.0,
         plt.setp(identity_line,
                 color = 'w',
                 linestyle = '-',
-                linewidth = 0.75,
+                linewidth = 1.5,
                 marker = '',
                 zorder = 100)
     ax.set_xlabel(r'$T_1$', size=14.0)
