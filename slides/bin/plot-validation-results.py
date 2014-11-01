@@ -57,23 +57,52 @@ def main_cli():
             share_x = True,
             share_y = True,
             title = 'Posterior probability of one divergence',
-            title_size = 12.0,
+            title_size = 14.0,
             title_top = False,
             y_title = 'True probability of one divergence',
             y_title_position = 0.001,
-            y_title_size = 12.0,
-            width = 5.2,
-            height = 4.0,
+            y_title_size = 14.0,
+            column_labels = [r'$M_{msBayes}$'],
+            column_label_size = 22.0,
+            column_label_offset = 0.04,
+            width = 4.6,
+            height = 3.7,
             auto_height = False)
     pg.label_schema = None
     pg.auto_adjust_margins = False
-    pg.margin_bottom = 0.05
-    pg.margin_left = 0.04
-    pg.margin_top = 1
-    pg.margin_right = 1
+    pg.margin_bottom = 0.06
+    pg.margin_left = 0.05
+    pg.margin_top = 0.91
+    pg.margin_right = 0.94
     pg.reset_figure()
 
     pg.savefig('../images/validation-model-choice-old.pdf')
+
+    pg = plotting.PlotGrid(subplots = sub_plot_list[-1:],
+            num_columns = 1,
+            share_x = True,
+            share_y = True,
+            title = 'Posterior probability of one divergence',
+            title_size = 14.0,
+            title_top = False,
+            y_title = 'True probability of one divergence',
+            y_title_position = 0.001,
+            y_title_size = 14.0,
+            column_labels = [r'$M_{DPP}$'],
+            column_label_size = 22.0,
+            column_label_offset = 0.04,
+            width = 4.6,
+            height = 3.7,
+            auto_height = False)
+    pg.label_schema = None
+    pg.auto_adjust_margins = False
+    pg.margin_bottom = 0.06
+    pg.margin_left = 0.05
+    pg.margin_top = 0.91
+    pg.margin_right = 0.94
+    pg.reset_figure()
+
+    pg.savefig('../images/validation-model-choice-dpp.pdf')
 
     pg = plotting.PlotGrid(subplots = sub_plot_list,
             num_columns = 2,
@@ -154,6 +183,75 @@ def main_cli():
     pg.reset_figure()
 
     pg.savefig('../images/validation-model-choice-old-dpp-full.pdf')
+
+    for p in sub_plot_list:
+        p.set_extra_y_label('')
+        p.set_title_text('')
+
+    old_violations = sub_plot_list[1:3]
+    dpp_violations = sub_plot_list[4:5] + sub_plot_list[6:7]
+
+    pg = plotting.PlotGrid(subplots = old_violations,
+            num_columns = 1,
+            share_x = True,
+            share_y = True,
+            title = 'Posterior probability of one divergence',
+            title_size = 16.0,
+            title_top = False,
+            y_title = 'True probability of one divergence',
+            y_title_position = 0.015,
+            y_title_size = 16.0,
+            height = 6.5,
+            width = 4.5,
+            auto_height = False,
+            column_labels = [r'$M_{msBayes}$'],
+            column_label_size = 22.0,
+            column_label_offset = 0.05,
+            # super_title = r'\textbf{Data model}',
+            # super_y_title = r'\textbf{Analysis model}',
+            super_title_size = 20.0,
+            super_y_title_size = 20.0,
+            super_y_title_right = True)
+    pg.label_schema = None
+    pg.auto_adjust_margins = False
+    pg.margin_bottom = 0.05
+    pg.margin_left = 0.07
+    pg.margin_top = 0.94
+    pg.margin_right = 0.95
+    pg.reset_figure()
+
+    pg.savefig('../images/validation-model-choice-old-violations.pdf')
+
+    pg = plotting.PlotGrid(subplots = dpp_violations,
+            num_columns = 1,
+            share_x = True,
+            share_y = True,
+            title = 'Posterior probability of one divergence',
+            title_size = 16.0,
+            title_top = False,
+            y_title = 'True probability of one divergence',
+            y_title_position = 0.015,
+            y_title_size = 16.0,
+            height = 6.5,
+            width = 4.5,
+            auto_height = False,
+            column_labels = [r'$M_{DPP}$'],
+            column_label_size = 22.0,
+            column_label_offset = 0.05,
+            # super_title = r'\textbf{Data model}',
+            # super_y_title = r'\textbf{Analysis model}',
+            super_title_size = 20.0,
+            super_y_title_size = 20.0,
+            super_y_title_right = True)
+    pg.label_schema = None
+    pg.auto_adjust_margins = False
+    pg.margin_bottom = 0.05
+    pg.margin_left = 0.07
+    pg.margin_top = 0.94
+    pg.margin_right = 0.95
+    pg.reset_figure()
+
+    pg.savefig('../images/validation-model-choice-dpp-violations.pdf')
 
 if __name__ == '__main__':
     main_cli()
