@@ -55,7 +55,7 @@
     \frametitle<1-4>{Community scale processes}
     \frametitle<5->{Divergence model choice}
     \begin{columns}[c]
-        \column{.4\textwidth}
+        \column{.5\textwidth}
         \begin{onlyenv}<1-4>
             \begin{minipage}[c][0.5\textheight][c]{\linewidth}
             \end{minipage}
@@ -65,13 +65,13 @@
                 \begin{displaybox}[0.95\linewidth]
                     \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
                         \[
-                            \divTimeMapVector = (\divTimeMap{1},\divTimeMap{2},\divTimeMap{3})
+                            \divTimeVector = \{\divTime{1}\}
                         \]\vspace{0mm}
                         \[
                             model = 111
                         \]\vspace{0mm}
                         \[
-                            \divTimeVector = \{\divTime{1}\}
+                            \divTimeMapVector = (\divTimeMap{1},\divTimeMap{2},\divTimeMap{3})
                         \]\vspace{0mm}
                     \end{minipage}
                 \end{displaybox}
@@ -82,13 +82,13 @@
                 \begin{displaybox}[0.95\linewidth]
                     \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
                         \[
-                            \divTimeMapVector = (260,260,260)
+                            \divTimeVector = \{130\}
                         \]\vspace{0mm}
                         \[
                             model = 111
                         \]\vspace{0mm}
                         \[
-                            \divTimeVector = \{260\}
+                            \divTimeMapVector = (130,130,130)
                         \]\vspace{0mm}
                     \end{minipage}
                 \end{displaybox}
@@ -99,13 +99,13 @@
                 \begin{displaybox}[0.95\linewidth]
                     \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
                         \[
-                            \divTimeMapVector = (397,260,260)
+                            \divTimeVector = \{130,397\}
                         \]\vspace{0mm}
                         \[
                             model = 211
                         \]\vspace{0mm}
                         \[
-                            \divTimeVector = \{260,397\}
+                            \divTimeMapVector = (397,130,130)
                         \]\vspace{0mm}
                     \end{minipage}
                 \end{displaybox}
@@ -116,13 +116,13 @@
                 \begin{displaybox}[0.95\linewidth]
                     \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
                         \[
-                            \divTimeMapVector = (260,397,260)
+                            \divTimeVector = \{130,397\}
                         \]\vspace{0mm}
                         \[
                             model = 121
                         \]\vspace{0mm}
                         \[
-                            \divTimeVector = \{260,397\}
+                            \divTimeMapVector = (130,397,130)
                         \]\vspace{0mm}
                     \end{minipage}
                 \end{displaybox}
@@ -133,30 +133,30 @@
                 \begin{displaybox}[0.95\linewidth]
                     \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
                         \[
-                            \divTimeMapVector = (260,260,397)
+                            \divTimeVector = \{130,397\}
                         \]\vspace{0mm}
                         \[
                             model = 112
                         \]\vspace{0mm}
                         \[
-                            \divTimeVector = \{260,397\}
+                            \divTimeVector = \{130,397\}
                         \]\vspace{0mm}
                     \end{minipage}
                 \end{displaybox}
             \end{minipage}
         \end{onlyenv}
-        \begin{onlyenv}<10>
+        \begin{onlyenv}<10-12>
             \begin{minipage}[c][0.5\textheight][c]{\linewidth}
                 \begin{displaybox}[0.95\linewidth]
                     \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
                         \[
-                            \divTimeMapVector = (260,95,397)
+                            \divTimeVector = \{130,397,260\}
                         \]\vspace{0mm}
                         \[
-                            model = 123
+                            model = 312
                         \]\vspace{0mm}
                         \[
-                            \divTimeVector = \{260,95,397\}
+                            \divTimeMapVector = (260,130,397)
                         \]\vspace{0mm}
                     \end{minipage}
                 \end{displaybox}
@@ -167,50 +167,33 @@
         %         \begin{displaybox}[0.95\linewidth]
         %             \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
         %                 \[
-        %                     \divTimeMapVector = (260,260,260)
+        %                     \divTimeVector = \{\divTime{1},\ldots,\divTime{\divTimeNum}\}
         %                 \]\vspace{0mm}
         %                 \[
-        %                     model = 111
+        %                     model = \divModel{i}
         %                 \]\vspace{0mm}
         %                 \[
-        %                     \divTimeVector = \{260\}
+        %                     \divTimeMapVector = (\divTimeMap{1},\ldots,\divTimeMap{\npairs{}})
         %                 \]\vspace{0mm}
         %             \end{minipage}
         %         \end{displaybox}
         %     \end{minipage}
         % \end{onlyenv}
-        \begin{onlyenv}<11-13>
-            \begin{minipage}[c][0.5\textheight][c]{\linewidth}
-                \begin{displaybox}[0.95\linewidth]
-                    \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
-                        \[
-                            \divTimeMapVector = (\divTimeMap{1},\ldots,\divTimeMap{\npairs{}})
-                        \]\vspace{0mm}
-                        \[
-                            model = \divModel{i}
-                        \]\vspace{0mm}
-                        \[
-                            \divTimeVector = \{\divTime{1},\ldots,\divTime{\divTimeNum}\}
-                        \]\vspace{0mm}
-                    \end{minipage}
-                \end{displaybox}
-            \end{minipage}
-        \end{onlyenv}
-        \begin{onlyenv}<14>
+        \begin{onlyenv}<13>
             \begin{minipage}[c][0.5\textheight][c]{\linewidth}
                 \begin{mydescription}
                     \item[\alignmentVector] Sequence alignments
                     \item[\divTimeMapVector] Divergence times
                     \item[\divModel{}] Divergence model
-                    \item[\geneTreeVector] Gene trees
-                    \item[\hkyModelVector] Substitution parameters
-                    \item[\demographicParamVector] Demographic parameters
+                    \item[\allParameters{}] Gene trees
+                    \item[\ ] Substitution parameters
+                    \item[\ ] Demographic parameters
                     % \item[\allParameters] $(\divTimeMapVector, \geneTreeVector,
                     %     \hkyModelVector, \demographicParamVector)$
                 \end{mydescription}
             \end{minipage}
         \end{onlyenv}
-        \begin{uncoverenv}<12->
+        \begin{uncoverenv}<11->
             \begin{minipage}[c][0.18\textheight][c]{\linewidth}
             \begin{flushleft}
                 \small We want to infer \textcolor{blue}{\divModel{}} and
@@ -222,18 +205,16 @@
         \end{uncoverenv}
         \column{.6\textwidth}
         \begin{minipage}[t][0.8\textheight][c]{\linewidth}
-        \includegraphics<1>[height=6cm]{../images/community-ellipse-small.pdf}
-        % \includegraphics<2>[height=6cm]{../images/community-ellipse-barrier-small.pdf}
-        \includegraphics<2>[height=6cm]{../images/community-ellipse-split-small.pdf}
-        \includegraphics<3>[height=6cm]{../images/div-model-cartoon-taxa.pdf}
-        \includegraphics<4>[height=6cm]{../images/div-model-cartoon-shared-no-labels.pdf}
-        \includegraphics<5-6>[height=6cm]{../images/div-model-cartoon-shared.pdf}
-        \includegraphics<7>[height=6cm]{../images/div-model-cartoon-2-1.pdf}
-        \includegraphics<8>[height=6cm]{../images/div-model-cartoon-2-2.pdf}
-        \includegraphics<9>[height=6cm]{../images/div-model-cartoon-2-3.pdf}
-        \includegraphics<10>[height=6cm]{../images/div-model-cartoon-general.pdf}
-        \includegraphics<11-12>[height=6cm]{../images/div-model-cartoon-shared.pdf}
-        \includegraphics<13->[height=6cm]{../images/div-model-cartoon-sp-tree-shared.pdf}
+        \includegraphics<1>[height=6cm]{../images/dmc-cartoon-islands.pdf}
+        \includegraphics<2>[height=6cm]{../images/dmc-cartoon-taxa.pdf}
+        \includegraphics<3>[height=6cm]{../images/dmc-cartoon-sea-level.pdf}
+        \includegraphics<4>[height=6cm]{../images/dmc-cartoon-shared-no-labels.pdf}
+        \includegraphics<5-6>[height=6cm]{../images/dmc-cartoon-shared.pdf}
+        \includegraphics<7>[height=6cm]{../images/dmc-cartoon-2-1.pdf}
+        \includegraphics<8>[height=6cm]{../images/dmc-cartoon-2-2.pdf}
+        \includegraphics<9>[height=6cm]{../images/dmc-cartoon-2-3.pdf}
+        \includegraphics<10-11>[height=6cm]{../images/dmc-cartoon-general.pdf}
+        \includegraphics<12->[height=6cm]{../images/dmc-cartoon-pop-general.pdf}
         \end{minipage}
     \end{columns}
 \end{frame}
@@ -249,24 +230,18 @@
             \[
                 p(
                   \divTimeMapVector,
-                  \geneTreeVector,
-                  \hkyModelVector,
-                  \demographicParamVector
+                  \allParameters{}
                   \given \alignmentVector, \divModel{i})
                   =
                 \frac{
                     p(\alignmentVector \given
                       \divTimeMapVector,
-                      \geneTreeVector,
-                      \hkyModelVector,
-                      \demographicParamVector,
+                      \allParameters{},
                       \divModel{i}
                       )
                       p(
                         \divTimeMapVector,
-                        \geneTreeVector,
-                        \hkyModelVector,
-                        \demographicParamVector
+                        \allParameters{}
                         \given \divModel{i}
                         )
                     }{p(\alignmentVector \given \divModel{i})}
@@ -275,10 +250,10 @@
             \begin{uncoverenv}<2->
             \[
                 p(\alignmentVector \given \divModel{i}) =
-                \int_{\allParameters{i}}
-                p(\alignmentVector \given \allParameters{i}, \divModel{i})
-                p(\allParameters{i} \given \divModel{i})
-                d\allParameters{i}
+                \int_{\divTimeMapVector} \int_{\allParameters{}}
+                p(\alignmentVector \given \divTimeMapVector, \allParameters{}, \divModel{i})
+                p(\divTimeMapVector, \allParameters{} \given \divModel{i})
+                d\divTimeMapVector d\allParameters{}
             \]\vspace{-1mm}
             \end{uncoverenv}
             \begin{uncoverenv}<3->
@@ -311,6 +286,7 @@
 %       i. Surprising results!
 %       ii. Rather than publish, did some detective work
 
+\ignore{
 \begin{frame}
 \begin{columns}[c]
     \column{.5\textwidth}
@@ -379,55 +355,85 @@
             \scriptsize
             \addtolength{\tabcolsep}{-0.09cm}
             \def\firstrowcolor{}
-            \def\secondrowcolor{}
-            \def\thirdrowcolor{}
-            \def\fourthrowcolor{}
-            \def\fifthrowcolor{}
+            % \def\secondrowcolor{}
+            % \def\thirdrowcolor{}
+            % \def\fourthrowcolor{}
+            % \def\fifthrowcolor{}
             \only<2>{\def\firstrowcolor{\rowcolor{rowred}}}
-            \only<3>{\def\secondrowcolor{\rowcolor{rowred}}}
-            \only<4>{\def\thirdrowcolor{\rowcolor{rowred}}}
-            \only<5>{\def\fourthrowcolor{\rowcolor{rowred}}}
-            \only<6>{\def\fifthrowcolor{\rowcolor{rowred}}}
+            % \only<3>{\def\secondrowcolor{\rowcolor{rowred}}}
+            % \only<4>{\def\thirdrowcolor{\rowcolor{rowred}}}
+            % \only<5>{\def\fourthrowcolor{\rowcolor{rowred}}}
+            % \only<6>{\def\fifthrowcolor{\rowcolor{rowred}}}
             \centering
             \begin{tabular}{ l c c }
                 % \toprule
                 \textbf{Species} & {\boldmath $n_1$} & {\boldmath $n_2$} \\
                 \hline
                 \textbf{\textsc{Mammals}} & & \\
-                \fifthrowcolor  \emph{Crocidura beatus}             & 12 & 11 \\
+                  \emph{Crocidura beatus}             & 12 & 11 \\
                 \firstrowcolor  \emph{Crocidura negrina-panayensis} & 12 & 6  \\
-                \thirdrowcolor  \emph{Hipposideros obscurus}        & 19 & 9  \\
-                \secondrowcolor \emph{Hipposideros pygmaeus}        & 3  & 12 \\
-                \thirdrowcolor  \emph{Cynopterus brachyotis}        & 20 & 8  \\
+                  \emph{Hipposideros obscurus}        & 19 & 9  \\
+                  \emph{Hipposideros pygmaeus}        & 3  & 12 \\
+                  \emph{Cynopterus brachyotis}        & 20 & 8  \\
                 \firstrowcolor  \emph{Cynopterus brachyotis}        & 8  & 14 \\
-                \thirdrowcolor  \emph{Haplonycteris fischeri}       & 29 & 8  \\
+                  \emph{Haplonycteris fischeri}       & 29 & 8  \\
                 \firstrowcolor  \emph{Haplonycteris fischeri}       & 9  & 21 \\
-                \thirdrowcolor  \emph{Macroglossus minimus}         & 19 & 4  \\
+                  \emph{Macroglossus minimus}         & 19 & 4  \\
                 \firstrowcolor  \emph{Macroglossus minimus}         & 8  & 10 \\
-                \thirdrowcolor  \emph{Ptenochirus jagori}           & 4  & 7  \\
+                  \emph{Ptenochirus jagori}           & 4  & 7  \\
                 \firstrowcolor  \emph{Ptenochirus jagori}           & 8  & 8  \\
-                \thirdrowcolor  \emph{Ptenochirus minor}            & 30 & 9  \\
+                  \emph{Ptenochirus minor}            & 30 & 9  \\
                 \textbf{\textsc{Squamates}} & & \\
-                \fifthrowcolor  \emph{Cyrtodactylus gubaot-sumuroi} & 29 & 6  \\
-                \secondrowcolor \emph{Cyrtodactylus annulatus}      & 14 & 3  \\
+                  \emph{Cyrtodactylus gubaot-sumuroi} & 29 & 6  \\
+                  \emph{Cyrtodactylus annulatus}      & 14 & 3  \\
                 \firstrowcolor  \emph{Cyrtodactylus philippinicus}  & 6  & 14 \\
                 \firstrowcolor  \emph{Gekko mindorensis}            & 8  & 11 \\
                 \firstrowcolor  \emph{Insulasaurus arborens}        & 22 & 10 \\
-                \fourthrowcolor \emph{Pinoyscincus jagori}          & 8  & 8  \\
+                  \emph{Pinoyscincus jagori}          & 8  & 8  \\
                 \firstrowcolor  \emph{Dendrelaphis marenae}         & 6  & 6  \\
                 \textbf{\textsc{Anurans}}  & & \\
-                \secondrowcolor \emph{Limnonectes leytensis}        & 4  & 2  \\
-                \secondrowcolor \emph{Limnonectes magnus}           & 2  & 3  \\
+                  \emph{Limnonectes leytensis}        & 4  & 2  \\
+                  \emph{Limnonectes magnus}           & 2  & 3  \\
                 \hline
             \end{tabular}
         \end{table}
     \column{.5\textwidth}
         \includegraphics<1>[width=\textwidth]{../images/maps/Philippines.png}
         \includegraphics<2>[width=\textwidth]{../images/maps/Philippines-negros_panay.png}
-        \includegraphics<3>[width=\textwidth]{../images/maps/Philippines-bohol_mindanao.png}
-        \includegraphics<4>[width=\textwidth]{../images/maps/Philippines-leyte_mindanao.png}
-        \includegraphics<5>[width=\textwidth]{../images/maps/Philippines-mindanao_samar.png}
-        \includegraphics<6>[width=\textwidth]{../images/maps/Philippines-leyte_samar.png}
+        % \includegraphics<3>[width=\textwidth]{../images/maps/Philippines-bohol_mindanao.png}
+        % \includegraphics<4>[width=\textwidth]{../images/maps/Philippines-leyte_mindanao.png}
+        % \includegraphics<5>[width=\textwidth]{../images/maps/Philippines-mindanao_samar.png}
+        % \includegraphics<6>[width=\textwidth]{../images/maps/Philippines-leyte_samar.png}
+\end{columns}
+\end{frame}
+}
+
+\begin{frame}
+\begin{columns}[c]
+    \column{.5\textwidth}
+        \centerline{
+        \includegraphics<1>[height=1.5cm]{../images/photos/crocidura-negrina-JAEsselstyn.jpg}}
+        % \vspace{0.5mm}
+        \centerline{
+        \includegraphics<1>[height=1.5cm]{../images/photos/hipposideros-obscurus-MRMDuya.jpg}
+        \hspace{0.3mm}
+        \includegraphics<1>[height=1.5cm]{../images/photos/haplonycteris-fischeri-JHolden.jpg}}
+        % \vspace{0.5mm}
+        \centerline{
+        \includegraphics<1>[height=1.5cm]{../images/photos/gekko-mindorensis.jpg}
+        \hspace{0.3mm}
+        \includegraphics<1>[height=1.5cm]{../images/photos/sphenomorphus-arborens-rmb.jpg}}
+        % \vspace{0.5mm}
+        \centerline{
+        \includegraphics<1>[height=1.5cm]{../images/photos/cyrt-agusanensis.jpg}
+        \hspace{0.3mm}
+        \includegraphics<1>[height=1.5cm]{../images/photos/dendrelaphis-pictus-cds.jpg}}
+        % \vspace{0.5mm}
+        \centerline{
+        \includegraphics<1>[height=1.5cm]{../images/photos/limnonectes-leytensis-rmb.jpg}}
+    \column{.5\textwidth}
+        \includegraphics<1>[width=\textwidth]{../images/maps/Philippines.png}
+        \includegraphics<2>[width=\textwidth]{../images/maps/Philippines-negros_panay.png}
 \end{columns}
 \end{frame}
 
