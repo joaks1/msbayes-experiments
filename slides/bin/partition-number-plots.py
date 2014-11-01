@@ -76,7 +76,7 @@ def create_plots(n = 22,
                     y_label_size = y_label_size,
                     ylim = (0, ymax),
                     )
-    ymax = 1.1 * max(prob_div_models)
+    ymax = 1.05 * max(prob_div_models)
     prob_plot = plotting.ScatterPlot(
                     bar_data_list = [prob_bar_data],
                     x_label = '# of divergence events',
