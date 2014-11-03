@@ -67,14 +67,14 @@
 {
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/maps/se-asia-present.png}}
 \begin{frame}
-    \frametitle{Southeast Asia}    
+    \frametitle{Climate-driven diversification}    
 \end{frame}
 }
 
 {
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/maps/se-asia-120.png}}
 \begin{frame}
-    \frametitle{Southeast Asia}    
+    \frametitle{Climate-driven diversification}    
     \begin{columns}
         \column{0.6\textwidth}
         \ \\
@@ -86,25 +86,25 @@
         \begin{uncoverenv}<2->
         \colorbox{white}{
             \begin{minipage}[t][3.6cm][t]{1.1\textwidth}
-                \begin{onlyenv}<2-3>
-                \begin{itemize}
-                    \item<2-> Repeated coalescence and fragmentation of island complexes
-                    \item<3-> Prominent paradigm for explaining biodiversity
-                \end{itemize}
-                \end{onlyenv}
+                % \begin{onlyenv}<2-3>
+                % \begin{itemize}
+                %     \item<2-> Repeated coalescence and fragmentation of island complexes
+                %     \item<3-> Prominent paradigm for explaining biodiversity
+                % \end{itemize}
+                % \end{onlyenv}
 
-                \begin{onlyenv}<4>
+                \begin{onlyenv}<2>
                 \begin{itemize}
-                    \item<4> \textbf{Did repeated fragmentation of islands
+                    \item \textbf{Did repeated fragmentation of islands
                         during inter-glacial rises in sea level promote
                         diversification?}
                 \end{itemize}
                 \end{onlyenv}
 
-                \begin{onlyenv}<5->
+                \begin{onlyenv}<3->
                 \begin{itemize}
-                    \item<5-> Climate-driven model of diversification
-                    \item<6-> Testable prediction:
+                    \item<3-> Climate-driven model of diversification
+                    \item<4-> Testable prediction:
                     \begin{itemize}
                         \item Temporally clustered divergences among taxa
                             co-distributed across fragmented islands
@@ -161,7 +161,7 @@
 
 %   b. Predictions of climate-driven diversification
 \begin{frame}
-    \frametitle<1-4>{Community scale processes}
+    \frametitle<1-4>{Climate-driven model: Predictions}
     \frametitle<5->{Divergence model choice}
     \begin{columns}[c]
         \column{.5\textwidth}
@@ -585,9 +585,11 @@
     \vspace{-1mm}
     \begin{center}
         % \includegraphics<1>[height=7.8cm]{../images/marginal-plot-2d-uniform-prior.pdf}
-        \includegraphics<2>[height=7.8cm]{../images/marginal-plot-3d.png}
-        \includegraphics<3>[height=7.8cm]{../images/marginal-plot-2d-uniform-prior.pdf}
-        \includegraphics<4>[height=7.8cm]{../images/marginal-plot-2d.pdf}
+        \includegraphics<2>[height=7.8cm]{../images/marginal-plot-3d-bare.png}
+        \includegraphics<3>[height=7.8cm]{../images/marginal-plot-3d-constrained.png}
+        \includegraphics<4>[height=7.8cm]{../images/marginal-plot-3d.png}
+        \includegraphics<5>[height=7.8cm]{../images/marginal-plot-2d-uniform-prior.pdf}
+        \includegraphics<6>[height=7.8cm]{../images/marginal-plot-2d.pdf}
     \end{center}
 \end{frame}
 
@@ -1075,6 +1077,32 @@
 \end{frame}
 }
 
+\begin{frame}
+    \frametitle{Everything is on GitHub\ldots}
+    Software:\\
+    \begin{itemize}
+        \item \texttt{dpp-msbayes}:
+            \href{https://github.com/joaks1/dpp-msbayes}{\tt
+            https://github.com/joaks1/dpp-msbayes}
+
+        \item \texttt{PyMsBayes}:
+            \href{https://github.com/joaks1/PyMsBayes}{\tt
+            https://github.com/joaks1/PyMsBayes}
+
+        \item ABACUS: Approximate BAyesian C UtilitieS.
+            \href{https://github.com/joaks1/abacus}{\tt
+            https://github.com/joaks1/abacus}
+    \end{itemize}
+
+    \medskip
+    Open-Science Notebook:\\
+    \begin{itemize}
+        \item \texttt{msbayes-experiments}:
+            \href{https://github.com/joaks1/msbayes-experiments}{\tt
+            https://github.com/joaks1/msbayes-experiments}
+    \end{itemize}
+\end{frame}
+
 
 \begin{frame}
     \frametitle{Acknowledgments}
@@ -1115,32 +1143,6 @@
                 \item PhyloPic!
             \end{myitemize}
     \end{columns}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Everything is on GitHub\ldots}
-    Software:\\
-    \begin{itemize}
-        \item \texttt{dpp-msbayes}:
-            \href{https://github.com/joaks1/dpp-msbayes}{\tt
-            https://github.com/joaks1/dpp-msbayes}
-
-        \item \texttt{PyMsBayes}:
-            \href{https://github.com/joaks1/PyMsBayes}{\tt
-            https://github.com/joaks1/PyMsBayes}
-
-        \item ABACUS: Approximate BAyesian C UtilitieS.
-            \href{https://github.com/joaks1/abacus}{\tt
-            https://github.com/joaks1/abacus}
-    \end{itemize}
-
-    \medskip
-    Open-Science Notebook:\\
-    \begin{itemize}
-        \item \texttt{msbayes-experiments}:
-            \href{https://github.com/joaks1/msbayes-experiments}{\tt
-            https://github.com/joaks1/msbayes-experiments}
-    \end{itemize}
 \end{frame}
 
 \begin{frame}
