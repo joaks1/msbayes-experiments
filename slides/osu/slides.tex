@@ -18,23 +18,51 @@
 \date{November 3, 2014}
 
 \begin{document}
-\maketitle
+% \maketitle
+\begin{frame}
+    \begin{columns}[c]
+        \column{.5\textwidth}
+            \maketitle
+        \column{.5\textwidth}
+            \begin{figure}
+                \begin{center}
+                \includegraphics[width=\textwidth]{../images/darwin-tol-copyright-boris-kulikov-2007.jpg}
+                \caption{\tiny \copyright~2007 Boris Kulikov \href{http://boris-kulikov.blogspot.com/}{boris-kulikov.blogspot.com}}
+                \end{center}
+            \end{figure}
+    \end{columns}
+\end{frame}
 
 % I. What I do
 % II. What I've been focusing on recently (started in PhD and continuing in postdoc)
 %   a. Dynamic planet---need to account for large-scale processes
 %       i. E.g., SE Asia---dynamic landscape
+{
+\setbeamercolor{background canvas}{bg=black}
+\setbeamercolor{whitetext}{fg=white}
 \begin{frame}
     \frametitle{Processes of diversification}
+    \begin{columns}[c]
+        \column{.5\textwidth}
+        {\usebeamercolor[fg]{whitetext}
         \begin{itemize}
-            \item<1-> Large-scale geological and climatic processes are
+            \item<2-> Large-scale geological and climatic processes are
                 important in biodiversification and community assembly
-            \item<2-> Accounting for such processes will better our
+            \item<3-> Accounting for such processes will better our
                 understanding of biodiversity
-            \item<3-> We need methods for inferring evolutionary patterns
+            \item<4-> We need methods for inferring evolutionary patterns
                 predicted by historical events from contemporary populations
         \end{itemize}
+        }
+        \column{.5\textwidth}
+        \begin{figure}
+            \begin{center}
+            \includegraphics[width=\textwidth]{../images/earth-image.jpg}
+            \end{center}
+        \end{figure}
+    \end{columns}
 \end{frame}
+}
 
 {
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/maps/se-asia-present.png}}
@@ -61,7 +89,7 @@
                 \begin{onlyenv}<2-3>
                 \begin{itemize}
                     \item<2-> Repeated coalescence and fragmentation of island complexes
-                    \item<3-> Prominent paradigm for explaining Philippine biodiversity
+                    \item<3-> Prominent paradigm for explaining biodiversity
                 \end{itemize}
                 \end{onlyenv}
 
@@ -390,171 +418,64 @@
 \end{frame}
 }
 
-\ignore{
-\begin{frame}
-\begin{columns}[c]
-    \column{.5\textwidth}
-        \begin{table}%[htbp]
-            \scriptsize
-            \addtolength{\tabcolsep}{-0.09cm}
-            \centering
-            \begin{tabular}{ l c c }
-                % \toprule
-                \textbf{Species} & {\boldmath $n_1$} & {\boldmath $n_2$} \\
-                \hline
-                \textbf{\textsc{Mammals}} & & \\
-                \emph{Crocidura beatus}             & 12 & 11 \\
-                \emph{Crocidura negrina-panayensis} & 12 & 6  \\
-                \emph{Hipposideros obscurus}        & 19 & 9  \\
-                \emph{Hipposideros pygmaeus}        & 3  & 12 \\
-                \emph{Cynopterus brachyotis}        & 20 & 8  \\
-                \emph{Cynopterus brachyotis}        & 8  & 14 \\
-                \emph{Haplonycteris fischeri}       & 29 & 8  \\
-                \emph{Haplonycteris fischeri}       & 9  & 21 \\
-                \emph{Macroglossus minimus}         & 19 & 4  \\
-                \emph{Macroglossus minimus}         & 8  & 10 \\
-                \emph{Ptenochirus jagori}           & 4  & 7  \\
-                \emph{Ptenochirus jagori}           & 8  & 8  \\
-                \emph{Ptenochirus minor}            & 30 & 9  \\
-                \textbf{\textsc{Squamates}} & & \\
-                \emph{Cyrtodactylus gubaot-sumuroi} & 29 & 6  \\
-                \emph{Cyrtodactylus annulatus}      & 14 & 3  \\
-                \emph{Cyrtodactylus philippinicus}  & 6  & 14 \\
-                \emph{Gekko mindorensis}            & 8  & 11 \\
-                \emph{Insulasaurus arborens}        & 22 & 10 \\
-                \emph{Pinoyscincus jagori}          & 8  & 8  \\
-                \emph{Dendrelaphis marenae}         & 6  & 6  \\
-                \textbf{\textsc{Anurans}}  & & \\
-                \emph{Limnonectes leytensis}        & 4  & 2  \\
-                \emph{Limnonectes magnus}           & 2  & 3  \\
-                \hline
-            \end{tabular}
-        \end{table}
-    \column{.5\textwidth}
-        \centerline{
-        \includegraphics<1>[height=1.5cm]{../images/photos/crocidura-negrina-JAEsselstyn.jpg}}
-        % \vspace{0.5mm}
-        \centerline{
-        \includegraphics<1>[height=1.5cm]{../images/photos/hipposideros-obscurus-MRMDuya.jpg}
-        \hspace{0.3mm}
-        \includegraphics<1>[height=1.5cm]{../images/photos/haplonycteris-fischeri-JHolden.jpg}}
-        % \vspace{0.5mm}
-        \centerline{
-        \includegraphics<1>[height=1.5cm]{../images/photos/gekko-mindorensis.jpg}
-        \hspace{0.3mm}
-        \includegraphics<1>[height=1.5cm]{../images/photos/sphenomorphus-arborens-rmb.jpg}}
-        % \vspace{0.5mm}
-        \centerline{
-        \includegraphics<1>[height=1.5cm]{../images/photos/dendrelaphis-pictus-cds.jpg}}
-        % \vspace{0.5mm}
-        \centerline{
-        \includegraphics<1>[height=1.5cm]{../images/photos/limnonectes-leytensis-rmb.jpg}}
-\end{columns}
-\end{frame}
-
-\begin{frame}
-\begin{columns}[c]
-    \column{.5\textwidth}
-        \begin{table}%[htbp]
-            \scriptsize
-            \addtolength{\tabcolsep}{-0.09cm}
-            \def\firstrowcolor{}
-            % \def\secondrowcolor{}
-            % \def\thirdrowcolor{}
-            % \def\fourthrowcolor{}
-            % \def\fifthrowcolor{}
-            \only<2>{\def\firstrowcolor{\rowcolor{rowred}}}
-            % \only<3>{\def\secondrowcolor{\rowcolor{rowred}}}
-            % \only<4>{\def\thirdrowcolor{\rowcolor{rowred}}}
-            % \only<5>{\def\fourthrowcolor{\rowcolor{rowred}}}
-            % \only<6>{\def\fifthrowcolor{\rowcolor{rowred}}}
-            \centering
-            \begin{tabular}{ l c c }
-                % \toprule
-                \textbf{Species} & {\boldmath $n_1$} & {\boldmath $n_2$} \\
-                \hline
-                \textbf{\textsc{Mammals}} & & \\
-                  \emph{Crocidura beatus}             & 12 & 11 \\
-                \firstrowcolor  \emph{Crocidura negrina-panayensis} & 12 & 6  \\
-                  \emph{Hipposideros obscurus}        & 19 & 9  \\
-                  \emph{Hipposideros pygmaeus}        & 3  & 12 \\
-                  \emph{Cynopterus brachyotis}        & 20 & 8  \\
-                \firstrowcolor  \emph{Cynopterus brachyotis}        & 8  & 14 \\
-                  \emph{Haplonycteris fischeri}       & 29 & 8  \\
-                \firstrowcolor  \emph{Haplonycteris fischeri}       & 9  & 21 \\
-                  \emph{Macroglossus minimus}         & 19 & 4  \\
-                \firstrowcolor  \emph{Macroglossus minimus}         & 8  & 10 \\
-                  \emph{Ptenochirus jagori}           & 4  & 7  \\
-                \firstrowcolor  \emph{Ptenochirus jagori}           & 8  & 8  \\
-                  \emph{Ptenochirus minor}            & 30 & 9  \\
-                \textbf{\textsc{Squamates}} & & \\
-                  \emph{Cyrtodactylus gubaot-sumuroi} & 29 & 6  \\
-                  \emph{Cyrtodactylus annulatus}      & 14 & 3  \\
-                \firstrowcolor  \emph{Cyrtodactylus philippinicus}  & 6  & 14 \\
-                \firstrowcolor  \emph{Gekko mindorensis}            & 8  & 11 \\
-                \firstrowcolor  \emph{Insulasaurus arborens}        & 22 & 10 \\
-                  \emph{Pinoyscincus jagori}          & 8  & 8  \\
-                \firstrowcolor  \emph{Dendrelaphis marenae}         & 6  & 6  \\
-                \textbf{\textsc{Anurans}}  & & \\
-                  \emph{Limnonectes leytensis}        & 4  & 2  \\
-                  \emph{Limnonectes magnus}           & 2  & 3  \\
-                \hline
-            \end{tabular}
-        \end{table}
-    \column{.5\textwidth}
-        \includegraphics<1>[width=\textwidth]{../images/maps/Philippines.png}
-        \includegraphics<2>[width=\textwidth]{../images/maps/Philippines-negros_panay.png}
-        % \includegraphics<3>[width=\textwidth]{../images/maps/Philippines-bohol_mindanao.png}
-        % \includegraphics<4>[width=\textwidth]{../images/maps/Philippines-leyte_mindanao.png}
-        % \includegraphics<5>[width=\textwidth]{../images/maps/Philippines-mindanao_samar.png}
-        % \includegraphics<6>[width=\textwidth]{../images/maps/Philippines-leyte_samar.png}
-\end{columns}
-\end{frame}
-}
-
 \begin{frame}
     \frametitle{Climate-driven diversification}
 \begin{columns}[c]
     \column{.5\textwidth}
         \vspace{-1cm}
+        \begin{onlyenv}<1>
         \begin{minipage}[t][1.0\textheight][c]{\linewidth}
         \centerline{
-        \includegraphics<1->[height=1.3cm]{../images/photos/crocidura-negrina-JAEsselstyn.jpg}
+        \includegraphics<1>[height=3cm]{../../../../Dropbox/field-photos/people/rafe.jpg}
         \hspace{0.3mm}
-        \includegraphics<1->[height=1.3cm]{../images/photos/crocidura-beatus-DSBalete.jpg}}
-        % \vspace{0.5mm}
+        \includegraphics<1>[height=3cm]{../../../../Dropbox/field-photos/people/cam.jpg}}
         \centerline{
-        \includegraphics<1->[height=1.3cm]{../images/photos/hipposideros-obscurus-MRMDuya.jpg}
+        \includegraphics<1>[height=3cm]{../../../../Dropbox/field-photos/people/charles.jpg}
         \hspace{0.3mm}
-        \includegraphics<1->[height=1.3cm]{../images/photos/haplonycteris-fischeri-JHolden.jpg}}
-        % \vspace{0.5mm}
-        \centerline{
-        \includegraphics<1->[height=1.3cm]{../images/photos/sphenomorphus-abdictus-rmb.jpg}
-        \hspace{0.3mm}
-        \includegraphics<1->[height=1.3cm]{../images/photos/sphenomorphus-arborens-rmb.jpg}}
-        % \vspace{0.5mm}
-        \centerline{
-        \includegraphics<1->[height=1.3cm]{../images/photos/gekko-mindorensis.jpg}
-        \hspace{0.3mm}
-        \includegraphics<1->[height=1.3cm]{../images/photos/dendrelaphis-pictus-cds.jpg}}
-        % \vspace{0.5mm}
-        \centerline{
-        \includegraphics<1->[height=1.3cm]{../images/photos/cyrt-agusanensis.jpg}
-        \hspace{0.3mm}
-        \includegraphics<1->[height=1.3cm]{../images/photos/cyrt-annulatus-cds.jpg}}
-        % \vspace{0.5mm}
-        \centerline{
-        \includegraphics<1->[height=1.3cm]{../images/photos/limnonectes-magnus-cds.jpg}
-        \hspace{0.3mm}
-        \includegraphics<1->[height=1.3cm]{../images/photos/limnonectes-leytensis-rmb.jpg}}
+        \includegraphics<1>[height=3cm]{../../../../Dropbox/field-photos/people/jake.jpg}}
         \end{minipage}
+        \end{onlyenv}
+
+        \begin{onlyenv}<2->
+        \begin{minipage}[t][1.0\textheight][c]{\linewidth}
+        \centerline{
+        \includegraphics<2->[height=1.3cm]{../images/photos/crocidura-negrina-JAEsselstyn.jpg}
+        \hspace{0.3mm}
+        \includegraphics<2->[height=1.3cm]{../images/photos/crocidura-beatus-DSBalete.jpg}}
+        % \vspace{0.5mm}
+        \centerline{
+        \includegraphics<2->[height=1.3cm]{../images/photos/hipposideros-obscurus-MRMDuya.jpg}
+        \hspace{0.3mm}
+        \includegraphics<2->[height=1.3cm]{../images/photos/haplonycteris-fischeri-JHolden.jpg}}
+        % \vspace{0.5mm}
+        \centerline{
+        \includegraphics<2->[height=1.3cm]{../images/photos/sphenomorphus-abdictus-rmb.jpg}
+        \hspace{0.3mm}
+        \includegraphics<2->[height=1.3cm]{../images/photos/sphenomorphus-arborens-rmb.jpg}}
+        % \vspace{0.5mm}
+        \centerline{
+        \includegraphics<2->[height=1.3cm]{../images/photos/gekko-mindorensis.jpg}
+        \hspace{0.3mm}
+        \includegraphics<2->[height=1.3cm]{../images/photos/dendrelaphis-pictus-cds.jpg}}
+        % \vspace{0.5mm}
+        \centerline{
+        \includegraphics<2->[height=1.3cm]{../images/photos/cyrt-agusanensis.jpg}
+        \hspace{0.3mm}
+        \includegraphics<2->[height=1.3cm]{../images/photos/cyrt-annulatus-cds.jpg}}
+        % \vspace{0.5mm}
+        \centerline{
+        \includegraphics<2->[height=1.3cm]{../images/photos/limnonectes-magnus-cds.jpg}
+        \hspace{0.3mm}
+        \includegraphics<2->[height=1.3cm]{../images/photos/limnonectes-leytensis-rmb.jpg}}
+        \end{minipage}
+        \end{onlyenv}
 
     \column{.5\textwidth}
         \vspace{-1cm}
         \begin{minipage}[t][1.0\textheight][c]{\linewidth}
-        \includegraphics<1>[width=\textwidth]{../images/maps/Philippines.png}
-        \includegraphics<2>[width=\textwidth]{../images/maps/Philippines-negros_panay.png}
-        \begin{onlyenv}<3->
+        \includegraphics<1-2>[width=\textwidth]{../images/maps/Philippines.png}
+        \includegraphics<3>[width=\textwidth]{../images/maps/Philippines-negros_panay.png}
+        \begin{onlyenv}<4->
             \begin{itemize}
                 \item Strong support for simultaneous divergence of all 22 taxon pairs
                 
@@ -704,9 +625,9 @@
         % \item<1-> Reparameterized the model implemented in \msb
         \item<1-> Replaced uniform priors on continuous parameters with gamma and
             beta distributions
-        \item<1-> Dirichlet process prior (DPP) over all possible divergence
+        \item<2-> Dirichlet process prior (DPP) over all possible divergence
             models
-        \item<1-> Develop multi-processing interface to improve performance for
+        \item<3-> Develop multi-processing interface to improve performance for
             accommodating genomic datasets
         % \item<4-> Uniform prior over divergence models
     \end{itemize}
@@ -944,33 +865,6 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Everything is on GitHub\ldots}
-    Software:\\
-    \begin{itemize}
-        \item \texttt{dpp-msbayes}:
-            \href{https://github.com/joaks1/dpp-msbayes}{\tt
-            https://github.com/joaks1/dpp-msbayes}
-
-        \item \texttt{PyMsBayes}:
-            \href{https://github.com/joaks1/PyMsBayes}{\tt
-            https://github.com/joaks1/PyMsBayes}
-
-        \item ABACUS: Approximate BAyesian C UtilitieS.
-            \href{https://github.com/joaks1/abacus}{\tt
-            https://github.com/joaks1/abacus}
-    \end{itemize}
-
-    \medskip
-    Open-Science Notebook:\\
-    \begin{itemize}
-        \item \texttt{msbayes-experiments}:
-            \href{https://github.com/joaks1/msbayes-experiments}{\tt
-            https://github.com/joaks1/msbayes-experiments}
-    \end{itemize}
-\end{frame}
-
-
 %   g. Collected thousands of loci from across the genome of almost 300
 %   individuals of two genera of geckos from across the Philippine Islands
 %       i. Prelim results with dpp-msbayes (can accommodate NGS data!)
@@ -990,6 +884,10 @@
             \item RAD-seq libraries constructed for $\approx150$ individuals
                 from each genus
         \end{myitemize}
+        \centerline{
+        \includegraphics<1->[height=2.5cm]{../../../../Dropbox/field-photos/misc/lee-and-me.jpg}
+        \hspace{2mm}
+        \includegraphics<1->[height=2.5cm]{../../../../Dropbox/field-photos/people/rafe.jpg}}
         \column{.5\textwidth}
         \includegraphics[width=\textwidth]{../images/photos/cyrt-agusanensis.jpg} \quad
         \includegraphics[width=\textwidth]{../images/photos/gekko-mindorensis.jpg}
@@ -1014,6 +912,15 @@
 
 \begin{frame}
     \frametitle{More power}
+    \centerline{
+    \includegraphics<1->[height=2cm]{../../../../Dropbox/field-photos/people/mtholder.jpg}
+    \hspace{0.6mm}
+    \includegraphics<1->[height=2cm]{../../../../Dropbox/field-photos/people/jeet2.jpg}
+    \hspace{0.6mm}
+    \includegraphics<1->[height=2cm]{../../../../Dropbox/field-photos/people/vladimir.jpg}
+    \hspace{0.6mm}
+    \includegraphics<1->[height=2cm]{../images/revbayes.png}}
+
     \begin{itemize}[<+->]
         \item Full-likelihood Bayesian implementation \footnote{\tiny\shortfullcite{JeetDiss}}
             \begin{itemize}
@@ -1073,15 +980,35 @@
 %           reproductive mode
 %           6. Evolutionary ecology---what ecological context influence
 %           evolution asexuality/live-bearing/color.
+{
+\setbeamercolor{background canvas}{bg=black}
+\setbeamercolor{whitetext}{fg=white}
 \begin{frame}
-    \frametitle{Future directions---Empirical}
-    \begin{itemize}
-        \item<1-> Many exciting empirical systems for applying new methods!
-    \end{itemize}
+    \frametitle{Processes of diversification}
+    \begin{columns}[c]
+        \column{.5\textwidth}
+        {\usebeamercolor[fg]{whitetext}
+        \begin{itemize}
+            \item<1-> These comparative tools will allow evolutionary
+                biologists to leverage genomic data to infer shared
+                evolutionary history
+            \item<2-> This will better our understanding of how community scale
+                processes affect the generation and assembly of biodiversity
+            \item<3-> Many exciting empirical systems for applying new methods!
+        \end{itemize}
+        }
+        \column{.5\textwidth}
+        \begin{figure}
+            \begin{center}
+            \includegraphics[width=\textwidth]{../images/earth-image.jpg}
+            \end{center}
+        \end{figure}
+    \end{columns}
 \end{frame}
+}
 
 \begin{frame}
-    \frametitle{Gobi Desert}
+    \frametitle{Future directions: Gobi Desert}
     \vspace{-2mm}
     \begin{columns}
         % \column{\dimexpr\paperwidth-10pt}
@@ -1091,7 +1018,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Gobi Desert}
+    \frametitle{Future directions: Gobi Desert}
     \vspace{-2mm}
     \begin{columns}
         % \column{\dimexpr\paperwidth-10pt}
@@ -1101,12 +1028,20 @@
 \end{frame}
 
 \begin{frame}[t]
-    \frametitle{West-Central Africa}
+    \frametitle{Future directions: West-Central Africa}
     \begin{center}
         \includegraphics<1->[height={3cm}]{../../../../Dropbox/field-photos/africa/Figure2_WAmapForestDist.png}
         \hspace{0.3mm}
         \includegraphics<1->[height={3cm}]{../../../../Dropbox/field-photos/africa/Figure4_herps.jpeg}
     \end{center}
+
+    \only<1>{
+    \begin{center}
+        \includegraphics[height={3.5cm}]{../../../../Dropbox/field-photos/people/adam.png}
+        \hspace{0.3mm}
+        \includegraphics[height={3.5cm}]{../../../../Dropbox/field-photos/people/fujita.jpg}
+    \end{center}
+    }
 
     \uncover<2->{
     \begin{center}
@@ -1183,13 +1118,49 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Everything is on GitHub\ldots}
+    Software:\\
+    \begin{itemize}
+        \item \texttt{dpp-msbayes}:
+            \href{https://github.com/joaks1/dpp-msbayes}{\tt
+            https://github.com/joaks1/dpp-msbayes}
+
+        \item \texttt{PyMsBayes}:
+            \href{https://github.com/joaks1/PyMsBayes}{\tt
+            https://github.com/joaks1/PyMsBayes}
+
+        \item ABACUS: Approximate BAyesian C UtilitieS.
+            \href{https://github.com/joaks1/abacus}{\tt
+            https://github.com/joaks1/abacus}
+    \end{itemize}
+
+    \medskip
+    Open-Science Notebook:\\
+    \begin{itemize}
+        \item \texttt{msbayes-experiments}:
+            \href{https://github.com/joaks1/msbayes-experiments}{\tt
+            https://github.com/joaks1/msbayes-experiments}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
     \frametitle{Questions?}    
-    \begin{center}
-        {
-        \Large
-        \href{mailto:joaks1@gmail.com}{\tt joaks1@gmail.com}
-        }
-    \end{center}
+    \begin{columns}[c]
+        \column{.5\textwidth}
+        \begin{center}
+            {
+            \Large
+            \href{mailto:joaks1@gmail.com}{\tt joaks1@gmail.com}
+            }
+        \end{center}
+        \column{.5\textwidth}
+            \begin{figure}
+                \begin{center}
+                \includegraphics[width=\textwidth]{../images/darwin-tol-copyright-boris-kulikov-2007.jpg}
+                \caption{\tiny \copyright~2007 Boris Kulikov \href{http://boris-kulikov.blogspot.com/}{boris-kulikov.blogspot.com}}
+                \end{center}
+            \end{figure}
+    \end{columns}
 \end{frame}
 
 % Extra slides
