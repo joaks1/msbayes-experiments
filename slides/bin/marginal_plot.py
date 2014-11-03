@@ -227,6 +227,15 @@ def main_cli():
             include_constrained_density = False)
     fig.savefig('../images/marginal-plot-3d-prior.png', dpi=300)
 
+    ax, fig = get_marginal_plot_3d(maximum = maximum,
+            mean = (0.15, 0.247),
+            variance = (0.039, 0.026),
+            covariance=0.0,
+            npoints = 100,
+            include_prior = False,
+            include_constrained_density = True)
+    fig.savefig('../images/marginal-plot-3d-constrained.png', dpi=300)
+
     ax, fig = get_marginal_plot_2d(maximum = maximum,
         likelihood_shape = 50.0,
         likelihood_scale = 0.002,
