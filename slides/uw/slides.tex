@@ -1,0 +1,908 @@
+\input{../utils/preamble.tex}
+\input{../../manuscripts/utils/macros.tex}
+\newcommand{\allParameters}[1]{\ensuremath{\theta_{#1}}\xspace}
+\bibliography{../../manuscripts/bib/references}
+
+
+\title[Estimating shared history]{An Improved Approximate-Bayesian Method for Estimating Shared
+Evolutionary History}
+
+\author[J.\ Oaks]{
+    Jamie R.\ Oaks\inst{1}
+}
+\institute[University of Washington]{
+    \inst{1}%
+        Department of Biology, University of Washington
+}
+
+% \date{\today}
+\date{January 30, 2015}
+
+\begin{document}
+% \maketitle
+\begin{frame}
+    \begin{columns}[c]
+        \column{.5\textwidth}
+            \maketitle
+        \column{.5\textwidth}
+            \begin{figure}
+                \begin{center}
+                \includegraphics[width=\textwidth]{../images/darwin-tol-copyright-boris-kulikov-2007.jpg}
+                \caption{\tiny \copyright~2007 Boris Kulikov \href{http://boris-kulikov.blogspot.com/}{boris-kulikov.blogspot.com}}
+                \end{center}
+            \end{figure}
+    \end{columns}
+\end{frame}
+
+{
+\setbeamercolor{background canvas}{bg=black}
+\setbeamercolor{whitetext}{fg=white}
+\begin{frame}
+    % \frametitle{Processes of diversification}
+    \begin{columns}[c]
+        \column{.5\textwidth}
+        {\usebeamercolor[fg]{whitetext}
+        \begin{itemize}
+            \item<2-> Large-scale geological and climatic processes are
+                important in biodiversification and community assembly
+            \item<3-> Accounting for such processes will better our
+                understanding of biodiversity
+            \item<4-> We need methods for inferring evolutionary patterns
+                predicted by historical events from contemporary populations
+        \end{itemize}
+        }
+        \column{.5\textwidth}
+        \begin{figure}
+            \begin{center}
+            \includegraphics[width=\textwidth]{../images/earth-image.jpg}
+            \end{center}
+        \end{figure}
+    \end{columns}
+\end{frame}
+}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/maps/se-asia-present.png}}
+\begin{frame}
+    % \frametitle{Climate-driven diversification}    
+
+\end{frame}
+}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/maps/se-asia-120.png}}
+\begin{frame}
+    % \frametitle{Climate-driven diversification}    
+    \begin{columns}
+        \column{0.6\textwidth}
+
+        \vspace{6.5cm}
+
+        \ \\
+
+        \column{0.4\textwidth}
+
+        \vspace{-2cm}
+
+        \begin{uncoverenv}<2->
+        \colorbox{white}{
+            \begin{minipage}[t]{1.0\textwidth}
+                \raggedright
+                \textbf{Did repeated fragmentation of islands during
+                    inter-glacial rises in sea level promote diversification?}
+            \end{minipage}
+        }
+        \end{uncoverenv}
+    \end{columns}
+\end{frame}
+}
+
+\begin{frame}
+    \frametitle<1-4>{Community-scale processes: Predictions}
+    \frametitle<5->{Divergence model choice}
+    \begin{columns}[c]
+        \column{.5\textwidth}
+        \begin{onlyenv}<1-4>
+            \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+            \end{minipage}
+        \end{onlyenv}
+        \begin{onlyenv}<5>
+            \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+                \begin{displaybox}[0.95\linewidth]
+                    \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
+                        \[
+                            \divTimeVector = \{\divTime{1}\}
+                        \]\vspace{0mm}
+                        \[
+                            model = 111
+                        \]\vspace{0mm}
+                        \[
+                            \divTimeMapVector = (\divTimeMap{1},\divTimeMap{2},\divTimeMap{3})
+                        \]\vspace{0mm}
+                    \end{minipage}
+                \end{displaybox}
+            \end{minipage}
+        \end{onlyenv}
+        \begin{onlyenv}<6>
+            \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+                \begin{displaybox}[0.95\linewidth]
+                    \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
+                        \[
+                            \divTimeVector = \{130\}
+                        \]\vspace{0mm}
+                        \[
+                            model = 111
+                        \]\vspace{0mm}
+                        \[
+                            \divTimeMapVector = (130,130,130)
+                        \]\vspace{0mm}
+                    \end{minipage}
+                \end{displaybox}
+            \end{minipage}
+        \end{onlyenv}
+        \begin{onlyenv}<7>
+            \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+                \begin{displaybox}[0.95\linewidth]
+                    \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
+                        \[
+                            \divTimeVector = \{130,397\}
+                        \]\vspace{0mm}
+                        \[
+                            model = 211
+                        \]\vspace{0mm}
+                        \[
+                            \divTimeMapVector = (397,130,130)
+                        \]\vspace{0mm}
+                    \end{minipage}
+                \end{displaybox}
+            \end{minipage}
+        \end{onlyenv}
+        \begin{onlyenv}<8>
+            \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+                \begin{displaybox}[0.95\linewidth]
+                    \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
+                        \[
+                            \divTimeVector = \{130,397\}
+                        \]\vspace{0mm}
+                        \[
+                            model = 121
+                        \]\vspace{0mm}
+                        \[
+                            \divTimeMapVector = (130,397,130)
+                        \]\vspace{0mm}
+                    \end{minipage}
+                \end{displaybox}
+            \end{minipage}
+        \end{onlyenv}
+        \begin{onlyenv}<9>
+            \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+                \begin{displaybox}[0.95\linewidth]
+                    \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
+                        \[
+                            \divTimeVector = \{130,397\}
+                        \]\vspace{0mm}
+                        \[
+                            model = 112
+                        \]\vspace{0mm}
+                        \[
+                            \divTimeVector = \{130,397\}
+                        \]\vspace{0mm}
+                    \end{minipage}
+                \end{displaybox}
+            \end{minipage}
+        \end{onlyenv}
+        \begin{onlyenv}<10-12>
+            \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+                \begin{displaybox}[0.95\linewidth]
+                    \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
+                        \[
+                            \divTimeVector = \{130,397,260\}
+                        \]\vspace{0mm}
+                        \[
+                            model = 312
+                        \]\vspace{0mm}
+                        \[
+                            \divTimeMapVector = (260,130,397)
+                        \]\vspace{0mm}
+                    \end{minipage}
+                \end{displaybox}
+            \end{minipage}
+        \end{onlyenv}
+        % \begin{onlyenv}<11>
+        %     \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+        %         \begin{displaybox}[0.95\linewidth]
+        %             \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
+        %                 \[
+        %                     \divTimeVector = \{\divTime{1},\ldots,\divTime{\divTimeNum}\}
+        %                 \]\vspace{0mm}
+        %                 \[
+        %                     model = \divModel{i}
+        %                 \]\vspace{0mm}
+        %                 \[
+        %                     \divTimeMapVector = (\divTimeMap{1},\ldots,\divTimeMap{\npairs{}})
+        %                 \]\vspace{0mm}
+        %             \end{minipage}
+        %         \end{displaybox}
+        %     \end{minipage}
+        % \end{onlyenv}
+        \begin{onlyenv}<13>
+            \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+                \begin{mydescription}
+                    \item[\alignmentVector] Sequence alignments
+                    \item[\divTimeMapVector] Divergence times
+                    \item[\divModel{}] Divergence model
+                    \item[\allParameters{}] Gene trees
+                    \item[\ ] Substitution parameters
+                    \item[\ ] Demographic parameters
+                    % \item[\allParameters] $(\divTimeMapVector, \geneTreeVector,
+                    %     \hkyModelVector, \demographicParamVector)$
+                \end{mydescription}
+            \end{minipage}
+        \end{onlyenv}
+        \begin{uncoverenv}<11->
+            \begin{minipage}[c][0.18\textheight][c]{\linewidth}
+            \begin{flushleft}
+                \small We want to infer \textcolor{blue}{\divModel{}} and
+                \textcolor{blue}{\divTimeMapVector} given DNA sequence
+                alignments
+                \textcolor{blue}{\alignmentVector}
+            \end{flushleft}
+            \end{minipage}
+        \end{uncoverenv}
+        \column{.6\textwidth}
+        \begin{minipage}[t][0.8\textheight][c]{\linewidth}
+        \includegraphics<1>[height=6cm]{../images/dmc-cartoon-islands.pdf}
+        \includegraphics<2>[height=6cm]{../images/dmc-cartoon-taxa.pdf}
+        \includegraphics<3>[height=6cm]{../images/dmc-cartoon-sea-level.pdf}
+        \includegraphics<4>[height=6cm]{../images/dmc-cartoon-shared-no-labels.pdf}
+        \includegraphics<5-6>[height=6cm]{../images/dmc-cartoon-shared.pdf}
+        \includegraphics<7>[height=6cm]{../images/dmc-cartoon-2-1.pdf}
+        \includegraphics<8>[height=6cm]{../images/dmc-cartoon-2-2.pdf}
+        \includegraphics<9>[height=6cm]{../images/dmc-cartoon-2-3.pdf}
+        \includegraphics<10-11>[height=6cm]{../images/dmc-cartoon-general.pdf}
+        \includegraphics<12->[height=6cm]{../images/dmc-cartoon-pop-general.pdf}
+        \end{minipage}
+    \end{columns}
+\end{frame}
+
+%   c. Testing for predicted patterns via model choice.
+%       i. Bayesian model choice
+
+\begin{frame}[t]
+    \frametitle{Bayesian model choice}
+    \begin{block}{\it Full model:}
+        \begin{minipage}[c][3.8cm][c]{\linewidth}
+            \begin{uncoverenv}<1->
+            \[
+                p(
+                  \divTimeMapVector,
+                  \allParameters{}
+                  \given \alignmentVector, \divModel{i})
+                  =
+                \frac{
+                    p(\alignmentVector \given
+                      \divTimeMapVector,
+                      \allParameters{},
+                      \divModel{i}
+                      )
+                      p(
+                        \divTimeMapVector,
+                        \allParameters{}
+                        \given \divModel{i}
+                        )
+                    }{p(\alignmentVector \given \divModel{i})}
+            \]\vspace{-1mm}
+            \end{uncoverenv}
+            \begin{uncoverenv}<2->
+            \[
+                p(\alignmentVector \given \divModel{i}) =
+                \int_{\divTimeMapVector} \int_{\allParameters{}}
+                p(\alignmentVector \given \divTimeMapVector, \allParameters{}, \divModel{i})
+                p(\divTimeMapVector, \allParameters{} \given \divModel{i})
+                d\divTimeMapVector d\allParameters{}
+            \]\vspace{-1mm}
+            \end{uncoverenv}
+            \begin{uncoverenv}<3->
+            \[
+                p(\divModel{i} \given \alignmentVector) =
+                \frac{
+                    p(\alignmentVector \given \divModel{i})
+                    p(\divModel{i})
+                }{
+                    \sum_{i} p(\alignmentVector \given \divModel{i})
+                    p(\divModel{i})
+                }
+            \]\vspace{-1mm}
+            \end{uncoverenv}
+        \end{minipage}
+    \end{block}
+    \vspace{1mm}
+    \begin{uncoverenv}<4>
+        \begin{center}
+            \msb: Approximate Bayesian computation (ABC)
+
+            % \vspace{-5mm}
+            % \[ \alignmentVector \, \to \, \ssVectorObs \, \to \, \ssSpace\]
+        \end{center}
+    \end{uncoverenv}
+    \barefootnote{\tiny\shortfullcite{Huang2011}. \hspace{2mm}\shortfullcite{Oaks2012}.}
+\end{frame}
+
+%   d. Method exists---applied it to comparative dataset from Philippines
+%       i. Surprising results!
+%       ii. Rather than publish, did some detective work
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/maps/se-asia-120.png}}
+\begin{frame}
+    % \frametitle{Climate-driven diversification}    
+    \begin{columns}
+        \column{0.6\textwidth}
+
+        \vspace{6.5cm}
+
+        \begin{uncoverenv}<2->
+        \colorbox{white}{
+            \begin{minipage}[t]{0.7\textwidth}
+            \begin{adjustwidth}{-2.7em}{}
+            \begin{itemize}
+                \small
+                \item Strong support for simultaneous divergence of all 22 taxon pairs
+                
+                \item Posterior probability $>$ 0.96 \\
+            
+                \item $\sim$100,000--250,000 years ago
+            \end{itemize}
+            \end{adjustwidth}
+            \end{minipage}
+        }
+        \end{uncoverenv}
+
+        \column{0.4\textwidth}
+
+        \vspace{-2cm}
+
+        \colorbox{white}{
+            \begin{minipage}[t]{1.0\textwidth}
+                \raggedright
+                \textbf{Did repeated fragmentation of islands during
+                    inter-glacial rises in sea level promote diversification?}
+            \end{minipage}
+        }
+    \end{columns}
+\end{frame}
+}
+
+\section{Simulation-based assessment of method}
+
+\begin{frame}
+    \frametitle{Simulation-based power analyses}
+    % What is ``simultaneous''?
+    \begin{myitemize}
+        \item<1-> What if divergences were random?
+        \item<2-> Simulate datasets in which all 22 divergence times are random
+        \uncover<3->{
+            \smallskip
+            \begin{myitemize}
+                \item $\divTime{} \sim U(0, \,0.5 \,MGA)$
+                \smallskip
+                \item $\divTime{} \sim U(0, \,1.5 \,MGA)$
+                \smallskip
+                \item $\divTime{} \sim U(0, \,2.5 \,MGA)$
+                \smallskip
+                \item $\divTime{} \sim U(0, \,5.0 \,MGA)$
+                \smallskip
+            \end{myitemize}
+        \item<3-> $MGA$ = Millions of Generations Ago
+        }
+        \item<4-> Simulate 1000 datasets for each \divTime{} distribution
+        \item<4-> Analyze all 4000 datasets as we did the empirical data
+    \end{myitemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Simulation-based power analyses: Results}
+        \centerline{
+        \includegraphics[width=1.13\textwidth]{../images/old_old_power_psi_mode.pdf}}
+
+    \begin{uncoverenv}<2->
+        \begin{itemize}[<+->]
+            \item \msb will often infer clustered divergences when divergences
+                are random over millions of generations.
+
+            \item The empirical results are likely spurious
+        \end{itemize}
+    \end{uncoverenv}
+
+    \begin{uncoverenv}<3->
+        \begin{block}{Objective:}
+            Use principles of probability to extend \msb framework for improved
+            estimation of shared evolutionary history
+        \end{block}
+    \end{uncoverenv}
+    \barefootnote{\tiny\shortfullcite{Oaks2012}. \hspace{2mm}\shortfullcite{Oaks2014reply}}
+\end{frame}
+
+
+%   f. Rather than abandon approach---look for theoretical reasons for behavior
+%       i. Strongly weighted posterior (marginal likelihood)
+%       ii. Combinatorics
+%   g. Developed new method---dpp-msbayes
+%       i. Used DPP---common in Bayeisn nonparametrics
+%           1. Flexible and mathematically convenient way of assigning prior
+%           probability to all possible divergence models (partitions) directly
+%           (avoid combinatoric issue)
+%       ii. More flexible priors on parameters of model
+%       iii. Implemented method in much more efficient multi-processing
+%       framework.
+%   e. Results---improved!
+%   f. Empirical results...
+%       i. Reducing bias and increasing power provides more "honest" estimate
+%       of uncertainty
+%       ii. A lot of uncertainty (Good! and Bad!)
+%       iii. What next? More data and more power!
+
+\begin{frame}[label=improvements]
+    \frametitle{An improved method}
+    Potential improvements:
+    \begin{enumerate}
+        \item Alternative priors on parameters that do not strongly weight
+            the posterior toward simple models
+        \item Alternative approach to modeling the temporal distribution of
+            divergences
+    \end{enumerate}
+    \barefootnote{\tiny\shortfullcite{Oaks2012}. \hspace{2mm}\shortfullcite{Oaks2014reply}}
+\end{frame}
+
+\begin{frame}[t]
+    \vspace{-2mm}
+    \begin{displaybox}[5.5cm]
+        \small
+        \[
+            p(X) = \int_{\theta} p(X \given \theta) p(\theta) \mathrm{d}\theta
+        \]%\vspace{0mm}
+    \end{displaybox}
+
+    \vspace{-1mm}
+    \begin{center}
+        % \includegraphics<1>[height=7.8cm]{../images/marginal-plot-2d-uniform-prior.pdf}
+        \includegraphics<2>[height=7.8cm]{../images/marginal-plot-3d-bare.png}
+        \includegraphics<3>[height=7.8cm]{../images/marginal-plot-3d-constrained.png}
+        \includegraphics<4>[height=7.8cm]{../images/marginal-plot-3d.png}
+        \includegraphics<5>[height=7.8cm]{../images/marginal-plot-2d-uniform-prior.pdf}
+        \includegraphics<6>[height=7.8cm]{../images/marginal-plot-2d.pdf}
+    \end{center}
+\end{frame}
+
+\againframe{improvements}
+
+\begin{frame}[t]
+    \frametitle{Prior on divergence models}
+    \begin{itemize}
+        \item \msb uses a discrete uniform prior on the \emph{number} of
+            divergence events
+    \end{itemize}
+
+    \begin{uncoverenv}<2->
+    \begin{columns}
+        \column{0.5\textwidth}
+            \centerline{
+                \includegraphics<2->[width=1.0\textwidth]{../images/number-of-div-models-10.pdf}}
+        \column{0.5\textwidth}
+            \centerline{
+                \includegraphics<3->[width=1.0\textwidth]{../images/prob-of-div-models-10.pdf}}
+    \end{columns}
+    \end{uncoverenv}
+
+    \begin{uncoverenv}<4->
+    \begin{block}{\it Potential solution:}
+        Place flexible prior directly on the sample space of divergence models
+    \end{block}
+    \end{uncoverenv}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{New method: \dppmsbayes}
+    \begin{itemize}[<+->]
+        % \item<1-> Reparameterized the model implemented in \msb
+        \item<1-> Replaced uniform priors on continuous parameters with gamma and
+            beta distributions
+        \item<2-> Dirichlet process prior (DPP) over all possible divergence
+            models
+        \item<3-> Develop multi-processing interface to improve performance for
+            accommodating genomic datasets
+        % \item<4-> Uniform prior over divergence models
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\dppmsbayes: Simulation-based assessment}
+        \uncover<1->{
+        Validation:\\
+
+        \smallskip
+        \begin{itemize}
+            \item Simulate 50,000 datasets and analyze each under the same
+                model
+        \end{itemize}
+        }
+
+        \uncover<2->{
+        \bigskip
+        Robustness:\\
+        \begin{itemize}
+            \item Simulate datasets that violate model assumptions and analyze
+                each of them
+        \end{itemize}
+        }
+
+        \uncover<3->{
+        \bigskip
+        Done for \msb and \dppmsbayes
+        }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\dppmsbayes: Validation results}
+    \begin{columns}
+        \column{0.5\textwidth}
+            \includegraphics<1->[width=1.0\textwidth]{../images/validation-model-choice-old.pdf}
+        \column{0.5\textwidth}
+            \includegraphics<2->[width=1.0\textwidth]{../images/validation-model-choice-dpp.pdf}
+    \end{columns}
+    \barefootnote{\shortfullcite{Oaks2014dpp}}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\dppmsbayes: Robustness results}
+    \begin{columns}
+        \column{0.5\textwidth}
+            \centering{
+            \includegraphics<1->[width=0.9\textwidth]{../images/validation-model-choice-old-violations.pdf}
+            }
+        \column{0.5\textwidth}
+            \centering{
+            \includegraphics<1->[width=0.9\textwidth]{../images/validation-model-choice-dpp-violations.pdf}
+            }
+    \end{columns}
+
+    \begin{uncoverenv}<2->
+    \begin{itemize}
+        \item Improved model-choice accuracy and robustness
+    \end{itemize}
+    \end{uncoverenv}
+    \vspace{-0.5cm}
+    \barefootnote{\shortfullcite{Oaks2014dpp}}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\dppmsbayes: Simulation-based power analyses}
+    Does the new method have power to detect variation in divergence times?\\
+
+    \bigskip
+    \begin{myitemize}
+        \item<2-> Simulate datasets in which all 22 divergence times are random
+            \smallskip
+            \begin{myitemize}
+                \item $\divTime{} \sim U(0, \,0.5 \,MGA)$
+                \smallskip
+                \item $\divTime{} \sim U(0, \,1.5 \,MGA)$
+                \smallskip
+                \item $\divTime{} \sim U(0, \,2.5 \,MGA)$
+                \smallskip
+                \item $\divTime{} \sim U(0, \,5.0 \,MGA)$
+                \smallskip
+            \end{myitemize}
+        \item<2-> $MGA$ = Millions of Generations Ago
+
+        \item<3-> Simulate 1000 datasets for each \divTime{} distribution
+        \item<3-> Analyze all 4000 datasets with \msb and \dppmsbayes
+    \end{myitemize}
+\end{frame}
+
+\begin{frame}[t]
+    \frametitle{\dppmsbayes: Power results}
+        \begin{onlyenv}<1-2>
+        \centerline{
+        \includegraphics[width=1.13\textwidth]<1-2>{../images/power-psi-old-annotate-no-pp.pdf}}
+        \vspace{0mm}
+        \centerline{
+        \includegraphics[width=1.13\textwidth]<2>{../images/power-psi-dpp-annotate-no-pp.pdf}}
+        \end{onlyenv}
+
+        \begin{onlyenv}<3->
+        \centerline{
+        \includegraphics[width=1.13\textwidth]<3->{../images/power-psi-old-annotate-pp.pdf}}
+        \vspace{0mm}
+        \centerline{
+        \includegraphics[width=1.13\textwidth]<3->{../images/power-psi-dpp-annotate-pp.pdf}}
+        \end{onlyenv}
+
+    \begin{uncoverenv}<4->
+    \begin{itemize}
+        \item Improved power to detect temporal variation across divergences
+    \end{itemize}
+    \end{uncoverenv}
+    \barefootnote{\shortfullcite{Oaks2014dpp}}
+\end{frame}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/maps/se-asia-120.png}}
+\begin{frame}
+    % \frametitle{Climate-driven diversification}    
+    \begin{columns}
+        \column{0.6\textwidth}
+
+        \vspace{6.5cm}
+
+        \ \\
+
+        \column{0.4\textwidth}
+
+        \vspace{-2cm}
+
+        \colorbox{white}{
+            \begin{minipage}[t]{1.0\textwidth}
+                \raggedright
+                \textbf{Did repeated fragmentation of islands during
+                    inter-glacial rises in sea level promote diversification?}
+            \end{minipage}
+        }
+    \end{columns}
+\end{frame}
+}
+
+\begin{frame}
+    \frametitle{Empirical results}
+    \centerline{
+    \includegraphics[width=\textwidth]{../../empirical-analyses/plots/philippines-dpp-psi-posterior-old-vs-dpp.pdf}}
+
+    \begin{uncoverenv}<2->
+    \begin{itemize}
+        \item More ``honest'' estimate of posterior uncertainty
+    \end{itemize}
+    \end{uncoverenv}
+    \barefootnote{\shortfullcite{Oaks2014dpp}}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Empirical results}
+    \centerline{
+    \includegraphics[width=\textwidth]{../../empirical-analyses/plots/philippines-dpp-psi-posterior-prior.pdf}}
+    \smallskip
+    \centerline{
+    \includegraphics[height=2cm]{../images/sea-level-only.pdf}}
+\end{frame}
+
+\section{Conclusions}
+
+\begin{frame}
+    \frametitle{Conclusions}
+    \begin{itemize}
+        \item<1-> New method for estimating shared evolutionary history shows
+            improved
+        \begin{enumerate}
+            \item Estimation of posterior uncertainty
+            \item Model-choice accuracy
+            \item Power to detect temporal variation across divergences
+            \item Robustness to model violations
+        \end{enumerate}
+
+        % \item<2-> Improvement is due to
+        % \begin{enumerate}
+        %     \item Alternative priors on model parameters avoid prohibitively
+        %         small marginal likelihoods for models with more divergence
+        %         events
+        %     \item Nonparametric prior on the temporal distribution of
+        %         divergences avoids combinatorial ``interaction'' with
+        %         divergence-time priors
+        % \end{enumerate}
+    \end{itemize}
+
+    \begin{uncoverenv}<2->
+    \bigskip
+    Caveats:\\
+    \begin{itemize}
+            \item<1-> Estimating a very rich (600+ parameters for 22 taxa) model
+                using limited information from the data
+    
+            \begin{itemize}
+                \item Likely sensitive to prior assumptions
+                \item Be skeptical of strongly supported results
+            \end{itemize}
+    
+    %         \item<2-> ABC can be inaccurate for model choice
+    %             \footnote{\tiny\shortfullcite{Robert2011}}
+        \end{itemize}
+    \end{uncoverenv}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Recommendations}
+    For Bayesian model choice, choose priors carefully\\
+    \bigskip
+    ABC model choice estimates should be accompanied by:
+    \begin{enumerate}
+        \item Simulation-based power analyses
+        \item Assessment of prior sensitivity
+    \end{enumerate}
+\end{frame}
+
+\section{Future directions}
+
+\begin{frame}[t]
+    \frametitle{Future directions}
+    \begin{itemize}
+        \item<1-> Full-likelihood Bayesian approach \footnote{\tiny\shortfullcite{JeetDiss}}
+        \item<2-> Full-phylogenetic framework
+    \end{itemize}
+    
+    \begin{center}
+        \includegraphics<3>[height=6.5cm]{../images/dmc-cartoon-no-islands-pop-shared-middle-wide.pdf}
+        \includegraphics<4>[height=6.5cm]{../images/dmc-cartoon-no-islands-pop-phylogeny.pdf}
+    \end{center}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Everything is on GitHub\ldots}
+    Software:\\
+    \begin{itemize}
+        \item \texttt{dpp-msbayes}:
+            \href{https://github.com/joaks1/dpp-msbayes}{\tt
+            https://github.com/joaks1/dpp-msbayes}
+
+        \item \texttt{PyMsBayes}:
+            \href{https://github.com/joaks1/PyMsBayes}{\tt
+            https://github.com/joaks1/PyMsBayes}
+
+        \item ABACUS: Approximate BAyesian C UtilitieS.
+            \href{https://github.com/joaks1/abacus}{\tt
+            https://github.com/joaks1/abacus}
+    \end{itemize}
+
+    \medskip
+    Open-Science Notebook:\\
+    \begin{itemize}
+        \item \texttt{msbayes-experiments}:
+            \href{https://github.com/joaks1/msbayes-experiments}{\tt
+            https://github.com/joaks1/msbayes-experiments}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Acknowledgments}
+    \begin{columns}[t]
+        \column{.5\textwidth}
+            {\bf Ideas and feedback:}
+            \begin{myitemize}
+                \item Leach\'{e} Lab
+                \item Minin Lab
+                \item Holder Lab
+                \item Brown Lab/KU Herpetology
+                \item Melissa Callahan
+            \end{myitemize}
+            \smallskip
+            {\bf Computation:}\\
+            \includegraphics<1->[height={8mm}]{../images/iplant.jpg}
+            \hspace{0.5mm}
+            \includegraphics<1->[height={8mm}]{../images/kuittc.png}
+            \hspace{0.5mm}
+            \includegraphics<1->[height={8mm}]{../images/uw.png}\\
+
+        \column{.5\textwidth}
+            {\bf Funding:}\\
+            \includegraphics<1->[height={8mm}]{../images/nsf.jpg}
+            \hspace{0.5mm}
+            \includegraphics<1->[height={8mm}]{../images/ngs.jpg}
+            \hspace{0.5mm}
+            \includegraphics<1->[height={8mm}]{../images/ssb.png}\\
+
+            \smallskip
+            {\bf Photo credits:}
+            \begin{myitemize}
+                \item Rafe Brown, Cam Siler, Jesse Grismer, \& Jake Esselstyn
+                \item FMNH Philippine Mammal Website:
+                    \begin{myitemize}
+                        \item D.S.\ Balete, M.R.M.\ Duya, \& J.\ Holden
+                    \end{myitemize}
+                \item PhyloPic!
+            \end{myitemize}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Questions?}    
+    \begin{columns}[c]
+        \column{.5\textwidth}
+        \begin{center}
+            {
+            \Large
+            \href{mailto:joaks1@gmail.com}{\tt joaks1@gmail.com}
+            }
+        \end{center}
+        \column{.5\textwidth}
+            \begin{figure}
+                \begin{center}
+                \includegraphics[width=\textwidth]{../images/darwin-tol-copyright-boris-kulikov-2007.jpg}
+                \caption{\tiny \copyright~2007 Boris Kulikov \href{http://boris-kulikov.blogspot.com/}{boris-kulikov.blogspot.com}}
+                \end{center}
+            \end{figure}
+    \end{columns}
+\end{frame}
+
+% Extra slides
+
+\begin{frame}[noframenumbering]
+    \frametitle{Easy as ABC}
+    \centerline{
+    \includegraphics<1>[width=\textwidth]{../images/rejection-sampling-observed.pdf}
+    \includegraphics<2>[width=\textwidth]{../images/rejection-sampling-tolerance.pdf}
+    \includegraphics<3>[width=\textwidth]{../images/rejection-sampling-10.pdf}
+    \includegraphics<4>[width=\textwidth]{../images/rejection-sampling-100.pdf}
+    \includegraphics<5>[width=\textwidth]{../images/rejection-sampling-200.pdf}
+    \includegraphics<6>[width=\textwidth]{../images/rejection-sampling-500.pdf}
+    \includegraphics<7>[width=\textwidth]{../images/rejection-sampling-1000.pdf}
+    \includegraphics<8>[width=\textwidth]{../images/rejection-sampling-10000.pdf}
+    \includegraphics<9>[width=\textwidth]{../images/rejection-sampling-20000.pdf}
+    \includegraphics<10>[width=\textwidth]{../images/rejection-sampling-20000-post.pdf}
+    }
+\end{frame}
+
+\begin{frame}[noframenumbering]
+    \frametitle{Causes of bias: Insufficient sampling}
+    \begin{itemize}
+        \item Models with more parameter space are less densely sampled
+        \item Could explain bias toward small models in extreme cases
+        \item {\bf Predicts large variance in posterior estimates}
+        \begin{itemize}
+            \item We explored empirical and simulation-based analyses with
+                2, 5, and 10 million prior samples, and estimates were
+                very similar
+        \end{itemize}
+    \end{itemize}
+    \smallskip
+    \centerline{
+    \includegraphics[width=\textwidth]{../images/omega_over_sampling.pdf}}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+    \frametitle{\dppmsbayes: Simulation results}
+    % \vspace{1cm}
+        \centerline{
+        \includegraphics[width=\textwidth]{../images/old_old_power_psi_mode.pdf}}
+        \vspace{0mm}
+        \centerline{
+        \includegraphics[width=\textwidth]{../images/old_u-shaped_power_psi_mode_headless.pdf}}
+        \vspace{0mm}
+        \centerline{
+        \includegraphics[width=\textwidth]{../images/old_dpp_power_psi_mode_headless.pdf}}
+    % \barefootnote{\shortfullcite{Oaks2014dpp}}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+    \frametitle{\dppmsbayes: Simulation results}
+    % \vspace{1cm}
+        \centerline{
+        \includegraphics[width=\textwidth]{../images/old_old_power_omega_median.pdf}}
+        \vspace{0mm}
+        \centerline{
+        \includegraphics[width=\textwidth]{../images/old_u-shaped_power_omega_median_headless.pdf}}
+        \vspace{0mm}
+        \centerline{
+        \includegraphics[width=\textwidth]{../images/old_dpp_power_omega_median_headless.pdf}}
+    % \barefootnote{\shortfullcite{Oaks2014dpp}}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+    \frametitle{Empirical results: Philippine diversification}
+    \centerline{
+    \includegraphics[width=0.8\textwidth]{../../empirical-analyses/plots/philippines-dpp-psi-posterior-old-vs-dpp-with-prior.pdf}}
+    \barefootnote{\shortfullcite{Oaks2014dpp}}
+\end{frame}
+
+
+\end{document}
+
