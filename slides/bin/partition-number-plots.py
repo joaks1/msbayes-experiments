@@ -130,3 +130,10 @@ if __name__ == '__main__':
 
     num_plot.savefig(os.path.join(project_util.IMAGE_DIR, 'number-of-div-models-22-unordered.pdf'))
     prob_plot.savefig(os.path.join(project_util.IMAGE_DIR, 'prob-of-div-models-22-unordered.pdf'))
+
+
+    num_plot, prob_plot = create_plots(n = 10,
+            ordered = True)
+
+    num_plot.savefig(os.path.join(project_util.IMAGE_DIR, 'number-of-div-models-10.pdf'))
+    prob_plot.savefig(os.path.join(project_util.IMAGE_DIR, 'prob-of-div-models-10.pdf'))
