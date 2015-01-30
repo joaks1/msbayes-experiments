@@ -152,6 +152,7 @@ def get_marginal_plot_2d_normal(maximum = 1.0,
         include_uniform_prior = True,
         include_gamma_prior = True,
         linewidth = 2.0,
+        x_axis_label = r'$\theta$',
         prior_label_x = 0.5):
     x = numpy.linspace(0.0000001, maximum, npoints)
     likelihood = norm(mean, variance)
@@ -213,7 +214,7 @@ def get_marginal_plot_2d_normal(maximum = 1.0,
                 size = 18.0)
                 # verticalalignment = 'center',
                 # horizontalalignment = 'center')
-    ax.set_xlabel(r'$\theta$', size=18.0)
+    ax.set_xlabel(x_axis_label, size=18.0)
     ax.set_ylabel(r'Density', size=18.0)
     rect = [0, 0, 1, 1]
     fig.tight_layout(pad = 0.25, rect = rect)
@@ -331,6 +332,7 @@ def main_cli():
         npoints = 500,
         include_uniform_prior = True,
         include_gamma_prior = True,
+        x_axis_label = r'$T_1$',
         linewidth = 2.0)
     fig.savefig('../images/normal-marginal-plot-2d.pdf')
 
@@ -364,6 +366,7 @@ def main_cli():
         npoints = 500,
         include_uniform_prior = True,
         include_gamma_prior = False,
+        x_axis_label = r'$T_1$',
         linewidth = 2.0)
     fig.savefig('../images/normal-marginal-plot-2d-uniform-prior.pdf')
 

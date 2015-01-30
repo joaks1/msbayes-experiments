@@ -519,13 +519,11 @@ Evolutionary History}
 %       iii. What next? More data and more power!
 
 \begin{frame}[label=improvements]
-    \frametitle{An improved method}
-    Potential improvements:
+    \frametitle{Potential explanations}
     \begin{enumerate}
-        \item Alternative priors on parameters that do not strongly weight
-            the posterior toward simple models
-        \item Alternative approach to modeling the temporal distribution of
-            divergences
+        \item Uniform priors on divergence times strongly weighting the
+            posterior toward simple models
+        \item Combinatorial issue with the prior on divergence models
     \end{enumerate}
     \barefootnote{\tiny\shortfullcite{Oaks2012}. \hspace{2mm}\shortfullcite{Oaks2014reply}}
 \end{frame}
@@ -542,11 +540,13 @@ Evolutionary History}
     \vspace{-1mm}
     \begin{center}
         % \includegraphics<1>[height=7.8cm]{../images/marginal-plot-2d-uniform-prior.pdf}
-        \includegraphics<2>[height=7.8cm]{../images/marginal-plot-3d-bare.png}
-        \includegraphics<3>[height=7.8cm]{../images/marginal-plot-3d-constrained.png}
-        \includegraphics<4>[height=7.8cm]{../images/marginal-plot-3d.png}
-        \includegraphics<5>[height=7.8cm]{../images/marginal-plot-2d-uniform-prior.pdf}
-        \includegraphics<6>[height=7.8cm]{../images/marginal-plot-2d.pdf}
+        \includegraphics<2>[height=7.8cm]{../images/normal-marginal-plot-2d-uniform-prior.pdf}
+        \includegraphics<3>[height=7.8cm]{../images/marginal-plot-3d.png}
+        % \includegraphics<2>[height=7.8cm]{../images/marginal-plot-3d-bare.png}
+        % \includegraphics<3>[height=7.8cm]{../images/marginal-plot-3d-constrained.png}
+        % \includegraphics<4>[height=7.8cm]{../images/marginal-plot-3d.png}
+        \includegraphics<4>[height=7.8cm]{../images/normal-marginal-plot-2d-uniform-prior.pdf}
+        \includegraphics<5>[height=7.8cm]{../images/normal-marginal-plot-2d.pdf}
     \end{center}
 \end{frame}
 
@@ -555,8 +555,8 @@ Evolutionary History}
 \begin{frame}[t]
     \frametitle{Prior on divergence models}
     \begin{itemize}
-        \item \msb uses a discrete uniform prior on the \emph{number} of
-            divergence events
+        \item \msb uses a discrete uniform prior on the
+            \textit{\textbf{number}} of divergence events
     \end{itemize}
 
     \begin{uncoverenv}<2->
