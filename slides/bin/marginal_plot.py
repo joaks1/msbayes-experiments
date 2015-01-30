@@ -7,7 +7,7 @@ import matplotlib
 import numpy
 from matplotlib import pyplot as plt
 from matplotlib import cm
-from scipy.stats import gamma
+from scipy.stats import gamma, norm
 
 def get_bivariate_normal_and_uniform_densities(maximum = 1.0,
         mean = (0.15, 0.247),
@@ -79,6 +79,82 @@ def get_marginal_plot_2d(maximum = 1.0,
         prior_label_x = 0.5):
     x = numpy.linspace(0.0000001, maximum, npoints)
     likelihood = gamma(likelihood_shape, scale = likelihood_scale)
+    y = [likelihood.pdf(i) for i in x]
+    fig = plt.figure()
+    ax = fig.add_subplot(1,1,1)
+    likelihood_line = ax.plot(x, y)
+    plt.setp(likelihood_line,
+            color = '0.3',
+            linestyle = '-',
+            linewidth = linewidth,
+            marker = '',
+            zorder = 200)
+    max_idx = y.index(max(y)) + int(round(0.01 * npoints))
+    label_target = (x[max_idx], y[max_idx])
+    label_position = (label_target[0] + (0.08 * maximum), label_target[1])
+    plt.annotate(r'$p(X \mid \, \theta)$',
+            xy = label_target,
+            arrowprops = dict(arrowstyle = '->'),
+            xytext = label_position,
+            size = 18.0)
+    prior_x = prior_label_x * maximum
+    u_density = 1.0 / maximum
+    ymax = max(ax.get_ylim())
+    prior_label_position = (prior_x, u_density + (0.1 * ymax))
+    if include_uniform_prior:
+        u = [u_density for i in range(len(x))]
+        u_line = ax.plot(x, u)
+        plt.setp(u_line,
+                color = 'r',
+                linestyle = '-',
+                linewidth = linewidth,
+                marker = '',
+                zorder = 0)
+        u_label_target = (prior_x + (0.04 * maximum), u_density)
+        plt.annotate(r'$p(\theta)$',
+                xy = u_label_target,
+                arrowprops = dict(arrowstyle = '->'),
+                xytext = prior_label_position,
+                size = 18.0)
+                # verticalalignment = 'bottom',
+                # horizontalalignment = 'center')
+    if include_gamma_prior:
+        g_prior = gamma(prior_shape, scale = prior_scale)
+        g = [g_prior.pdf(i) for i in x]
+        g_line = ax.plot(x, g)
+        plt.setp(g_line,
+                color = 'b',
+                linestyle = '-',
+                linewidth = linewidth,
+                marker = '',
+                zorder = 100)
+        idx = g.index(max(g)) + int(round(0.1 * npoints))
+        g_label_target = (x[idx], g[idx])
+        plt.annotate('',
+                xy = g_label_target,
+                arrowprops = dict(arrowstyle = '->'),
+                xytext = prior_label_position,
+                size = 18.0)
+                # verticalalignment = 'center',
+                # horizontalalignment = 'center')
+    ax.set_xlabel(r'$\theta$', size=18.0)
+    ax.set_ylabel(r'Density', size=18.0)
+    rect = [0, 0, 1, 1]
+    fig.tight_layout(pad = 0.25, rect = rect)
+    return ax, fig
+
+def get_marginal_plot_2d_normal(maximum = 1.0,
+        mean = 0.15,
+        variance = 0.039,
+        prior_shape = 3.0,
+        prior_scale = 0.06,
+        npoints = 500,
+        include_uniform_prior = True,
+        include_gamma_prior = True,
+        linewidth = 2.0,
+        prior_label_x = 0.5):
+    x = numpy.linspace(0.0000001, maximum, npoints)
+    likelihood = norm(mean, variance)
     y = [likelihood.pdf(i) for i in x]
     fig = plt.figure()
     ax = fig.add_subplot(1,1,1)
@@ -247,6 +323,17 @@ def main_cli():
         linewidth = 2.0)
     fig.savefig('../images/marginal-plot-2d.pdf')
 
+    ax, fig = get_marginal_plot_2d_normal(maximum = maximum,
+        mean = 0.15,
+        variance = 0.039,
+        prior_shape = 3.0,
+        prior_scale = 0.06,
+        npoints = 500,
+        include_uniform_prior = True,
+        include_gamma_prior = True,
+        linewidth = 2.0)
+    fig.savefig('../images/normal-marginal-plot-2d.pdf')
+
     ax, fig = get_marginal_plot_2d(maximum = maximum,
         likelihood_shape = 50.0,
         likelihood_scale = 0.002,
@@ -268,6 +355,17 @@ def main_cli():
         include_gamma_prior = False,
         linewidth = 2.0)
     fig.savefig('../images/marginal-plot-2d-uniform-prior.pdf')
+
+    ax, fig = get_marginal_plot_2d_normal(maximum = maximum,
+        mean = 0.15,
+        variance = 0.039,
+        prior_shape = 3.0,
+        prior_scale = 0.06,
+        npoints = 500,
+        include_uniform_prior = True,
+        include_gamma_prior = False,
+        linewidth = 2.0)
+    fig.savefig('../images/normal-marginal-plot-2d-uniform-prior.pdf')
 
 
 if __name__ ==  '__main__':
