@@ -97,9 +97,11 @@ Evolutionary History}
 \end{frame}
 }
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle<1-4>{Community-scale processes: Predictions}
     \frametitle<5->{Divergence model choice}
+
+    \vspace{-0.5cm}
     \begin{columns}[c]
         \column{.5\textwidth}
         \begin{onlyenv}<1-4>
@@ -191,7 +193,7 @@ Evolutionary History}
                 \end{displaybox}
             \end{minipage}
         \end{onlyenv}
-        \begin{onlyenv}<10-12>
+        \begin{onlyenv}<10-11>
             \begin{minipage}[c][0.5\textheight][c]{\linewidth}
                 \begin{displaybox}[0.95\linewidth]
                     \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
@@ -225,7 +227,7 @@ Evolutionary History}
         %         \end{displaybox}
         %     \end{minipage}
         % \end{onlyenv}
-        \begin{onlyenv}<13>
+        \begin{onlyenv}<12->
             \begin{minipage}[c][0.5\textheight][c]{\linewidth}
                 \begin{mydescription}
                     \item[\alignmentVector] Sequence alignments
@@ -239,16 +241,16 @@ Evolutionary History}
                 \end{mydescription}
             \end{minipage}
         \end{onlyenv}
-        \begin{uncoverenv}<11->
-            \begin{minipage}[c][0.18\textheight][c]{\linewidth}
-            \begin{flushleft}
-                \small We want to infer \textcolor{blue}{\divModel{}} and
-                \textcolor{blue}{\divTimeMapVector} given DNA sequence
-                alignments
-                \textcolor{blue}{\alignmentVector}
-            \end{flushleft}
-            \end{minipage}
-        \end{uncoverenv}
+        % \begin{uncoverenv}<11->
+        %     \begin{minipage}[c][0.18\textheight][c]{\linewidth}
+        %     \begin{flushleft}
+        %         \small We want to infer \textcolor{blue}{\divModel{}} and
+        %         \textcolor{blue}{\divTimeMapVector} given DNA sequence
+        %         alignments
+        %         \textcolor{blue}{\alignmentVector}
+        %     \end{flushleft}
+        %     \end{minipage}
+        % \end{uncoverenv}
         \column{.6\textwidth}
         \begin{minipage}[t][0.8\textheight][c]{\linewidth}
         \includegraphics<1>[height=6cm]{../images/dmc-cartoon-islands.pdf}
@@ -263,70 +265,138 @@ Evolutionary History}
         \includegraphics<12->[height=6cm]{../images/dmc-cartoon-pop-general.pdf}
         \end{minipage}
     \end{columns}
+
+    \vspace{-3mm}
+
+    \begin{minipage}[c][0.1\textheight][c]{\linewidth}
+        \begin{onlyenv}<11-12>
+            We want to infer \textcolor{blue}{\divModel{}} and
+            \textcolor{blue}{\divTimeMapVector} given DNA sequence
+            alignments
+            \textcolor{blue}{\alignmentVector}
+        \end{onlyenv}
+        \begin{onlyenv}<13->
+            \begin{displaybox}[0.85\linewidth]
+                \begin{minipage}[c][0.1\textheight][c]{\linewidth}
+                    \begin{onlyenv}<13>
+
+                        \vspace{3.5mm}
+
+                        \[
+                            p(
+                              \divTimeMapVector,
+                              \allParameters{}
+                              \given \alignmentVector, \divModel{i})
+                              =
+                            \frac{
+                                p(\alignmentVector \given
+                                  \divTimeMapVector,
+                                  \allParameters{},
+                                  \divModel{i}
+                                  )
+                                  p(
+                                    \divTimeMapVector,
+                                    \allParameters{}
+                                    \given \divModel{i}
+                                    )
+                                }{p(\alignmentVector \given \divModel{i})}
+                        \]
+                    \end{onlyenv}
+                    \begin{onlyenv}<14>
+
+                        \vspace{3.5mm}
+
+                        \[
+                            p(\divModel{i} \given \alignmentVector) =
+                            \frac{
+                                p(\alignmentVector \given \divModel{i})
+                                p(\divModel{i})
+                            }{
+                                \sum_{i} p(\alignmentVector \given \divModel{i})
+                                p(\divModel{i})
+                            }
+                        \]
+                    \end{onlyenv}
+                    \begin{onlyenv}<15>
+
+                        \vspace{2mm}
+
+                        \[
+                            p(\alignmentVector \given \divModel{i}) =
+                            \int_{\divTimeMapVector} \int_{\allParameters{}}
+                            p(\alignmentVector \given \divTimeMapVector, \allParameters{}, \divModel{i})
+                            p(\divTimeMapVector, \allParameters{} \given \divModel{i})
+                            d\divTimeMapVector d\allParameters{}
+                        \]
+                    \end{onlyenv}
+                \end{minipage}
+            \end{displaybox}
+        \end{onlyenv}
+    \end{minipage}
 \end{frame}
 
 %   c. Testing for predicted patterns via model choice.
 %       i. Bayesian model choice
 
-\begin{frame}[t]
-    \frametitle{Bayesian model choice}
-    \begin{block}{\it Full model:}
-        \begin{minipage}[c][3.8cm][c]{\linewidth}
-            \begin{uncoverenv}<1->
-            \[
-                p(
-                  \divTimeMapVector,
-                  \allParameters{}
-                  \given \alignmentVector, \divModel{i})
-                  =
-                \frac{
-                    p(\alignmentVector \given
-                      \divTimeMapVector,
-                      \allParameters{},
-                      \divModel{i}
-                      )
-                      p(
-                        \divTimeMapVector,
-                        \allParameters{}
-                        \given \divModel{i}
-                        )
-                    }{p(\alignmentVector \given \divModel{i})}
-            \]\vspace{-1mm}
-            \end{uncoverenv}
-            \begin{uncoverenv}<2->
-            \[
-                p(\alignmentVector \given \divModel{i}) =
-                \int_{\divTimeMapVector} \int_{\allParameters{}}
-                p(\alignmentVector \given \divTimeMapVector, \allParameters{}, \divModel{i})
-                p(\divTimeMapVector, \allParameters{} \given \divModel{i})
-                d\divTimeMapVector d\allParameters{}
-            \]\vspace{-1mm}
-            \end{uncoverenv}
-            \begin{uncoverenv}<3->
-            \[
-                p(\divModel{i} \given \alignmentVector) =
-                \frac{
-                    p(\alignmentVector \given \divModel{i})
-                    p(\divModel{i})
-                }{
-                    \sum_{i} p(\alignmentVector \given \divModel{i})
-                    p(\divModel{i})
-                }
-            \]\vspace{-1mm}
-            \end{uncoverenv}
-        \end{minipage}
-    \end{block}
-    \vspace{1mm}
-    \begin{uncoverenv}<4>
-        \begin{center}
-            \msb: Approximate Bayesian computation (ABC)
+% \begin{frame}[t]
+%     \frametitle{Bayesian model choice}
+%     \begin{block}{\it Full model:}
+%         \begin{minipage}[c][3.8cm][c]{\linewidth}
+%             \begin{uncoverenv}<1->
+%             \[
+%                 p(
+%                   \divTimeMapVector,
+%                   \allParameters{}
+%                   \given \alignmentVector, \divModel{i})
+%                   =
+%                 \frac{
+%                     p(\alignmentVector \given
+%                       \divTimeMapVector,
+%                       \allParameters{},
+%                       \divModel{i}
+%                       )
+%                       p(
+%                         \divTimeMapVector,
+%                         \allParameters{}
+%                         \given \divModel{i}
+%                         )
+%                     }{p(\alignmentVector \given \divModel{i})}
+%             \]\vspace{-1mm}
+%             \end{uncoverenv}
+%             \begin{uncoverenv}<2->
+%             \[
+%                 p(\alignmentVector \given \divModel{i}) =
+%                 \int_{\divTimeMapVector} \int_{\allParameters{}}
+%                 p(\alignmentVector \given \divTimeMapVector, \allParameters{}, \divModel{i})
+%                 p(\divTimeMapVector, \allParameters{} \given \divModel{i})
+%                 d\divTimeMapVector d\allParameters{}
+%             \]\vspace{-1mm}
+%             \end{uncoverenv}
+%             \begin{uncoverenv}<3->
+%             \[
+%                 p(\divModel{i} \given \alignmentVector) =
+%                 \frac{
+%                     p(\alignmentVector \given \divModel{i})
+%                     p(\divModel{i})
+%                 }{
+%                     \sum_{i} p(\alignmentVector \given \divModel{i})
+%                     p(\divModel{i})
+%                 }
+%             \]\vspace{-1mm}
+%             \end{uncoverenv}
+%         \end{minipage}
+%     \end{block}
+%     \vspace{1mm}
+%     \begin{uncoverenv}<4>
+%         \begin{center}
+%             \msb: Approximate Bayesian computation (ABC)
 
-            % \vspace{-5mm}
-            % \[ \alignmentVector \, \to \, \ssVectorObs \, \to \, \ssSpace\]
-        \end{center}
-    \end{uncoverenv}
-    \barefootnote{\tiny\shortfullcite{Huang2011}. \hspace{2mm}\shortfullcite{Oaks2012}.}
-\end{frame}
+%             % \vspace{-5mm}
+%             % \[ \alignmentVector \, \to \, \ssVectorObs \, \to \, \ssSpace\]
+%         \end{center}
+%     \end{uncoverenv}
+%     \barefootnote{\tiny\shortfullcite{Huang2011}. \hspace{2mm}\shortfullcite{Oaks2012}.}
+% \end{frame}
 
 %   d. Method exists---applied it to comparative dataset from Philippines
 %       i. Surprising results!
