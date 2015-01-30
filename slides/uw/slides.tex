@@ -34,32 +34,32 @@ Evolutionary History}
     \end{columns}
 \end{frame}
 
-{
-\setbeamercolor{background canvas}{bg=black}
-\setbeamercolor{whitetext}{fg=white}
-\begin{frame}
-    % \frametitle{Processes of diversification}
-    \begin{columns}[c]
-        \column{.5\textwidth}
-        {\usebeamercolor[fg]{whitetext}
-        \begin{itemize}
-            \item<2-> Large-scale geological and climatic processes are
-                important in biodiversification and community assembly
-            \item<3-> Accounting for such processes will better our
-                understanding of biodiversity
-            \item<4-> We need methods for inferring evolutionary patterns
-                predicted by historical events from contemporary populations
-        \end{itemize}
-        }
-        \column{.5\textwidth}
-        \begin{figure}
-            \begin{center}
-            \includegraphics[width=\textwidth]{../images/earth-image.jpg}
-            \end{center}
-        \end{figure}
-    \end{columns}
-\end{frame}
-}
+% {
+% \setbeamercolor{background canvas}{bg=black}
+% \setbeamercolor{whitetext}{fg=white}
+% \begin{frame}
+%     % \frametitle{Processes of diversification}
+%     \begin{columns}[c]
+%         \column{.5\textwidth}
+%         {\usebeamercolor[fg]{whitetext}
+%         \begin{itemize}
+%             \item<2-> Large-scale geological and climatic processes are
+%                 important in biodiversification and community assembly
+%             \item<3-> Accounting for such processes will better our
+%                 understanding of biodiversity
+%             \item<4-> We need methods for inferring evolutionary patterns
+%                 predicted by historical events from contemporary populations
+%         \end{itemize}
+%         }
+%         \column{.5\textwidth}
+%         \begin{figure}
+%             \begin{center}
+%             \includegraphics[width=\textwidth]{../images/earth-image.jpg}
+%             \end{center}
+%         \end{figure}
+%     \end{columns}
+% \end{frame}
+% }
 
 {
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/maps/se-asia-present.png}}
@@ -98,7 +98,7 @@ Evolutionary History}
 }
 
 \begin{frame}[t]
-    \frametitle<1-4>{Community-scale processes: Predictions}
+    \frametitle<1-4>{Climate-driven diversification: Predictions}
     \frametitle<5->{Divergence model choice}
 
     \vspace{-0.5cm}
@@ -328,6 +328,12 @@ Evolutionary History}
                             p(\divTimeMapVector, \allParameters{} \given \divModel{i})
                             d\divTimeMapVector d\allParameters{}
                         \]
+                    \end{onlyenv}
+                    \begin{onlyenv}<16>
+                        \vspace{-2mm}
+                        \begin{center}
+                        \msb: Approximate Bayesian computation (ABC)
+                        \end{center}
                     \end{onlyenv}
                 \end{minipage}
             \end{displaybox}
@@ -736,14 +742,38 @@ Evolutionary History}
     \barefootnote{\shortfullcite{Oaks2014dpp}}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Empirical results}
-    \centerline{
-    \includegraphics[width=\textwidth]{../../empirical-analyses/plots/philippines-dpp-psi-posterior-prior.pdf}}
-    \smallskip
-    \centerline{
-    \includegraphics[height=2cm]{../images/sea-level-only.pdf}}
+% \begin{frame}
+%     \frametitle{Empirical results}
+%     \centerline{
+%     \includegraphics[width=\textwidth]{../../empirical-analyses/plots/philippines-dpp-psi-posterior-prior.pdf}}
+%     \smallskip
+%     \centerline{
+%     \includegraphics[height=2cm]{../images/sea-level-only.pdf}}
+% \end{frame}
+
+\section{Current work}
+
+\begin{frame}[t]
+    \frametitle{Current work}
+    
+    \vspace{-3mm}
+
+    \begin{minipage}[c][0.2\textheight][c]{\linewidth}
+    \begin{itemize}
+        % \item<1-> Full-likelihood Bayesian approach \footnote{\tiny\shortfullcite{JeetDiss}}
+        \item<1-> Full-likelihood Bayesian approach
+        \item<2-> Full-phylogenetic framework
+    \end{itemize}
+    \end{minipage}
+
+    \vspace{-5mm}
+    
+    \begin{center}
+        \includegraphics<3>[height=6.5cm]{../images/dmc-cartoon-no-islands-pop-shared-middle-wide.pdf}
+        \includegraphics<4>[height=6.5cm]{../images/dmc-cartoon-no-islands-pop-phylogeny.pdf}
+    \end{center}
 \end{frame}
+
 
 \section{Conclusions}
 
@@ -797,21 +827,6 @@ Evolutionary History}
         \item Simulation-based power analyses
         \item Assessment of prior sensitivity
     \end{enumerate}
-\end{frame}
-
-\section{Future directions}
-
-\begin{frame}[t]
-    \frametitle{Future directions}
-    \begin{itemize}
-        \item<1-> Full-likelihood Bayesian approach \footnote{\tiny\shortfullcite{JeetDiss}}
-        \item<2-> Full-phylogenetic framework
-    \end{itemize}
-    
-    \begin{center}
-        \includegraphics<3>[height=6.5cm]{../images/dmc-cartoon-no-islands-pop-shared-middle-wide.pdf}
-        \includegraphics<4>[height=6.5cm]{../images/dmc-cartoon-no-islands-pop-phylogeny.pdf}
-    \end{center}
 \end{frame}
 
 
