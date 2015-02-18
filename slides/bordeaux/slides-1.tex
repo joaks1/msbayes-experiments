@@ -21,14 +21,18 @@
 \date{February 18, 2015}
 
 \begin{document}
-\maketitle
+
+% \maketitle
+\begin{frame}[noframenumbering]
+    \titlepage
+\end{frame}
 
 
 {
 \setbeamercolor{background canvas}{bg=black}
 \setbeamercolor{whitetext}{fg=white}
 \begin{frame}
-    \frametitle{Processes of diversification}
+    % \frametitle{Processes of diversification}
     \begin{columns}[c]
         \column{.5\textwidth}
         {\usebeamercolor[fg]{whitetext}
@@ -38,8 +42,8 @@
             \item<3-> Accounting for such processes will better our
                 understanding of evolutionary history and
                 community structure
-            \item<4-> We need methods for inferring evolutionary patterns
-                predicted by historical events from contemporary populations
+            \item<4-> We need methods for inferring patterns predicted by
+                community-scale events from contemporary populations
         \end{itemize}
         }
         \column{.5\textwidth}
@@ -170,25 +174,27 @@
 
 
 \begin{frame}[t]
-    \frametitle<1-4>{Climate-driven diversification: Predictions}
-    \frametitle<5->{Divergence-model choice}
+    % \frametitle<1-4>{Climate-driven diversification: Predictions}
+    % \frametitle<5->{Divergence-model choice}
+    \frametitle{Inferring community history}
 
     \centering{
-    \includegraphics<1>[height=7.5cm]{../images/dmc-cartoon-islands.pdf}
-    \includegraphics<2>[height=7.5cm]{../images/dmc-cartoon-taxa.pdf}
-    \includegraphics<3>[height=7.5cm]{../images/dmc-cartoon-sea-level.pdf}
-    \includegraphics<4>[height=7.5cm]{../images/dmc-cartoon-shared-no-labels.pdf}
-    \includegraphics<5>[height=7.5cm]{../images/dmc-cartoon-shared.pdf}
-    \includegraphics<6>[height=7.5cm]{../images/dmc-cartoon-2-1.pdf}
-    \includegraphics<7>[height=7.5cm]{../images/dmc-cartoon-2-2.pdf}
-    \includegraphics<8>[height=7.5cm]{../images/dmc-cartoon-2-3.pdf}
-    \includegraphics<9>[height=7.5cm]{../images/dmc-cartoon-general.pdf}
+    % \includegraphics<1>[height=7.5cm]{../images/dmc-cartoon-islands.pdf}
+    % \includegraphics<2>[height=7.5cm]{../images/dmc-cartoon-taxa.pdf}
+    \includegraphics<1>[height=7.5cm]{../images/dmc-cartoon-sea-level.pdf}
+    % \includegraphics<4>[height=7.5cm]{../images/dmc-cartoon-shared-no-labels.pdf}
+    \includegraphics<2>[height=7.5cm]{../images/dmc-cartoon-shared.pdf}
+    \includegraphics<3>[height=7.5cm]{../images/dmc-cartoon-2-1.pdf}
+    \includegraphics<4>[height=7.5cm]{../images/dmc-cartoon-2-2.pdf}
+    \includegraphics<5>[height=7.5cm]{../images/dmc-cartoon-2-3.pdf}
+    \includegraphics<6>[height=7.5cm]{../images/dmc-cartoon-general.pdf}
     }
 \end{frame}
 
 
 \begin{frame}[t]
-    \frametitle{Divergence-model choice}
+    % \frametitle{Divergence-model choice}
+    \frametitle{Inferring community history}
 
     \vspace{-7mm}
 
@@ -266,8 +272,7 @@
             models
         \item<2-> Flexible priors on continuous parameters to avoid strongly
             weighted posteriors
-        \item<3-> Multi-processing interface to improve performance for
-            accommodating genomic datasets
+        \item<3-> Multi-processing interface to accommodate genomic datasets
         % \item<4-> Uniform prior over divergence models
     \end{itemize}
     \barefootnote{\shortfullcite{Oaks2014dpp}}
@@ -381,14 +386,32 @@
     \barefootnote{\shortfullcite{Oaks2014dpp}}
 \end{frame}
 
+\section{Conclusions}
+
 \begin{frame}
-    \frametitle{Current work: More data}
+    \frametitle{Results}
     \begin{itemize}
-        \item<1-> Collecting genomic data from taxa co-distributed across Southeast
-            Asia
+        \item<1-> Results consistent with prediction of clustered
+            divergences
+        \item<2-> Results suggest multiple interglacial periods were important
+            drivers of diversification and community assembly across Islands of
+            Southeast Asia
+        \item<3-> However, there is a lot of uncertainty!
+    \end{itemize}
+    \barefootnote{\shortfullcite{Oaks2014dpp}}
+\end{frame}
+
+
+\begin{frame}[t]
+    \frametitle{Current work: More data}
+    \begin{minipage}[t][0.15\textheight][c]{\linewidth}
+    \begin{itemize}
+        \item<1-> Collecting genomic data from taxa co-distributed across
+            Southeast Asian Islands and Mainland
         \item<2-> Preliminary results for 1000 loci from 5 pairs of \emph{Gekko
                 mindorensis} populations
     \end{itemize}
+    \end{minipage}
 
     \begin{center}
         \includegraphics<2->[height=5.5cm]{../images/number-of-divs-gekko-mindorensis.pdf}
@@ -406,92 +429,198 @@
     \hspace{0.6mm}
     \includegraphics<1->[height=2cm]{../images/revbayes.png}}
 
-    \begin{itemize}[<+->]
-        \item Full-likelihood Bayesian implementation
+    \begin{itemize}
+        \item<1-> Full-likelihood Bayesian implementation
             \begin{itemize}
-                \item Uses all the information in the data
-                \item Applicable to deeper timescales
+                \item<2-> Uses all the information in the data
+                \item<2-> Applicable to deeper timescales
             \end{itemize}
-        \item Analytically integrate over gene trees
+        \item<3-> Analytically integrate over gene trees
             \footnote{\tiny\shortfullcite{Bryant2012}}
             \begin{itemize}
-                \item Very efficient numerical approximation of posterior 
-                \item Applicable to NGS datasets
+                \item<4-> Very efficient numerical approximation of posterior 
+                \item<4-> Applicable to NGS datasets
             \end{itemize}
     \end{itemize}
 \end{frame}
 
-
-\section{Conclusions}
-
-\begin{frame}
-    \frametitle{Climate-driven diversification model?}
-    \begin{itemize}
-        \item<1-> Results consistent with prediction of clustered
-            divergences
-        \item<2-> Results suggest multiple co-divergences
-        \item<3-> However, there is a lot of uncertainty!
-    \end{itemize}
-    \barefootnote{\shortfullcite{Oaks2014dpp}}
-\end{frame}
 
 \section{Teaching}
 
-\begin{frame}
-    BIO 180 stuff
-\end{frame}
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/kane.jpg}}
+\begin{frame}[t]
+    \vspace{4.5cm}
 
-\begin{frame}
-    Software carpentry \\
+    \uncover<2->{
+    Working with the UW Biology Education Research Group (BERG) \\
+    }
 
-    Workshops
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Questions?}    
-    \begin{center}
-        {
-        \Large
-        \href{mailto:joaks1@gmail.com}{\tt joaks1@gmail.com}
-        }
-    \end{center}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Future directions---Computational}
     \begin{itemize}
-        \item<1-> Full-phylogenetic framework
+        \item<3-> Designing active-learning modules to teach fundamental concepts
+            in evolution and statistics
+        \item<4-> Taking an evidence-based approach to the classroom as a lecturer
+            for Introductory Biology
     \end{itemize}
-    
-    \begin{center}
-        \includegraphics<1>[height=6.5cm]{../images/dmc-cartoon-no-islands-pop-shared-middle-wide.pdf}
-        \includegraphics<2>[height=6.5cm]{../images/dmc-cartoon-no-islands-pop-phylogeny.pdf}
-    \end{center}
 \end{frame}
+}
 
 \begin{frame}
+    \frametitle{Collaborative teaching}
     \centerline{
-    \includegraphics<1>[height=8cm]{../images/bd-cartoon-no-lines.pdf}
-    \includegraphics<2>[height=8cm]{../images/bd-cartoon-shared.pdf}
+    \includegraphics[height=1.5cm]{../images/software-carpentry.pdf}
+    }
+    Software Carpentry Bootcamp\\
+
+    \begin{uncoverenv}<2->
+    \begin{itemize}
+        \item Two-day crash course in basic command line and software skills
+        \item Taught an international group of biologists how to increase their
+            research productivity.
+    \end{itemize}
+    \end{uncoverenv}
+    
+    Molecular Evolution Workshops\\
+
+    \begin{uncoverenv}<3->
+    \begin{itemize}
+        \item Introduce international groups of graduate students, postdocs,
+            and faculty to the fundamentals of molecular evolution and
+            state-of-the-art software
+    \end{itemize}
+    \end{uncoverenv}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Acknowledgments}
+    \begin{columns}[t]
+        \column{.5\textwidth}
+            {\bf Ideas and feedback:}
+            \begin{myitemize}
+                \item Leach\'{e} Lab
+                \item Minin Lab
+                \item Holder Lab
+                \item Brown Lab/KU Herpetology
+                \item Melissa Callahan
+            \end{myitemize}
+            \smallskip
+            {\bf Computation:}\\
+            \includegraphics<1->[height={8mm}]{../images/iplant.jpg}
+            \hspace{0.5mm}
+            \includegraphics<1->[height={8mm}]{../images/kuittc.png}
+            \hspace{0.5mm}
+            \includegraphics<1->[height={8mm}]{../images/uw.png}\\
+
+        \column{.5\textwidth}
+            {\bf Funding:}\\
+            \includegraphics<1->[height={8mm}]{../images/nsf.jpg}
+            \hspace{0.5mm}
+            \includegraphics<1->[height={8mm}]{../images/ngs.jpg}
+            \hspace{0.5mm}
+            \includegraphics<1->[height={8mm}]{../images/ssb.png}\\
+
+            \smallskip
+            {\bf Photo credits:}
+            \begin{myitemize}
+                \item Rafe Brown, Cam Siler, Jesse Grismer, \& Jake Esselstyn
+                \item FMNH Philippine Mammal Website:
+                    \begin{myitemize}
+                        \item D.S.\ Balete, M.R.M.\ Duya, \& J.\ Holden
+                    \end{myitemize}
+                \item PhyloPic!
+            \end{myitemize}
+    \end{columns}
+\end{frame}
+
+% \begin{frame}
+%     \frametitle{Questions?}    
+%     \begin{columns}[c]
+%         \column{.5\textwidth}
+%         \begin{center}
+%             {
+%             \Large
+%             \href{mailto:joaks1@gmail.com}{\tt joaks1@gmail.com}
+%             }
+%         \end{center}
+%         \column{.5\textwidth}
+%             \begin{figure}
+%                 \begin{center}
+%                 \includegraphics[width=\textwidth]{../images/darwin-tol-copyright-boris-kulikov-2007.jpg}
+%                 \caption{\tiny \copyright~2007 Boris Kulikov \href{http://boris-kulikov.blogspot.com/}{boris-kulikov.blogspot.com}}
+%                 \end{center}
+%             \end{figure}
+%     \end{columns}
+% \end{frame}
+
+% Extra slides
+
+\begin{frame}[noframenumbering]
+    \frametitle{Easy as ABC}
+    \centerline{
+    \includegraphics<1>[width=\textwidth]{../images/rejection-sampling-observed.pdf}
+    \includegraphics<2>[width=\textwidth]{../images/rejection-sampling-tolerance.pdf}
+    \includegraphics<3>[width=\textwidth]{../images/rejection-sampling-10.pdf}
+    \includegraphics<4>[width=\textwidth]{../images/rejection-sampling-100.pdf}
+    \includegraphics<5>[width=\textwidth]{../images/rejection-sampling-200.pdf}
+    \includegraphics<6>[width=\textwidth]{../images/rejection-sampling-500.pdf}
+    \includegraphics<7>[width=\textwidth]{../images/rejection-sampling-1000.pdf}
+    \includegraphics<8>[width=\textwidth]{../images/rejection-sampling-10000.pdf}
+    \includegraphics<9>[width=\textwidth]{../images/rejection-sampling-20000.pdf}
+    \includegraphics<10>[width=\textwidth]{../images/rejection-sampling-20000-post.pdf}
     }
 \end{frame}
 
-\begin{frame}
-\begin{columns}
-    \column{.5\textwidth}
-    \begin{minipage}[c]{\columnwidth}
+\begin{frame}[noframenumbering]
+    \frametitle{Causes of bias: Insufficient sampling}
     \begin{itemize}
-        \item Blah
+        \item Models with more parameter space are less densely sampled
+        \item Could explain bias toward small models in extreme cases
+        \item {\bf Predicts large variance in posterior estimates}
+        \begin{itemize}
+            \item We explored empirical and simulation-based analyses with
+                2, 5, and 10 million prior samples, and estimates were
+                very similar
+        \end{itemize}
     \end{itemize}
-    \end{minipage}
+    \smallskip
+    \centerline{
+    \includegraphics[width=\textwidth]{../images/omega_over_sampling.pdf}}
+\end{frame}
 
-    \column{.6\textwidth}
-    \begin{minipage}[t][\textheight][c]{\linewidth}
-    \includegraphics<1>[width=0.75\columnwidth]{../images/bd-cartoon-shared-space.pdf}
-    \includegraphics<2>[width=0.75\columnwidth]{../images/bd-cartoon-2-trees-shared.pdf}
-    \end{minipage}
-\end{columns}
+\begin{frame}[noframenumbering]
+    \frametitle{\dppmsbayes: Simulation results}
+    % \vspace{1cm}
+        \centerline{
+        \includegraphics[width=\textwidth]{../images/old_old_power_psi_mode.pdf}}
+        \vspace{0mm}
+        \centerline{
+        \includegraphics[width=\textwidth]{../images/old_u-shaped_power_psi_mode_headless.pdf}}
+        \vspace{0mm}
+        \centerline{
+        \includegraphics[width=\textwidth]{../images/old_dpp_power_psi_mode_headless.pdf}}
+    % \barefootnote{\shortfullcite{Oaks2014dpp}}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+    \frametitle{\dppmsbayes: Simulation results}
+    % \vspace{1cm}
+        \centerline{
+        \includegraphics[width=\textwidth]{../images/old_old_power_omega_median.pdf}}
+        \vspace{0mm}
+        \centerline{
+        \includegraphics[width=\textwidth]{../images/old_u-shaped_power_omega_median_headless.pdf}}
+        \vspace{0mm}
+        \centerline{
+        \includegraphics[width=\textwidth]{../images/old_dpp_power_omega_median_headless.pdf}}
+    % \barefootnote{\shortfullcite{Oaks2014dpp}}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+    \frametitle{Empirical results: Philippine diversification}
+    \centerline{
+    \includegraphics[width=0.8\textwidth]{../../empirical-analyses/plots/philippines-dpp-psi-posterior-old-vs-dpp-with-prior.pdf}}
+    \barefootnote{\shortfullcite{Oaks2014dpp}}
 \end{frame}
 
 

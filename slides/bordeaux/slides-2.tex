@@ -1,0 +1,118 @@
+\input{../utils/preamble.tex}
+\input{../../manuscripts/utils/macros.tex}
+\newcommand{\allParameters}[1]{\ensuremath{\theta_{#1}}\xspace}
+\bibliography{../../manuscripts/bib/references}
+
+% \title[Estimating shared history]{An Improved Approximate-Bayesian Method for Estimating Shared
+% Evolutionary History}
+
+\title[Future directions]{Future Directions}
+
+\author[J.\ Oaks]{
+    Jamie R.\ Oaks\inst{1}
+}
+\institute[University of Washington]{
+    \inst{1}%
+        Department of Biology, University of Washington
+}
+
+% \date{\today}
+\date{February 18, 2015}
+
+\begin{document}
+
+\begin{frame}[t]
+    \frametitle{New methods for inferring community history}
+    \vspace{-5mm}
+    \begin{minipage}[t][0.1\textheight][c]{1\linewidth}
+    \begin{itemize}
+        \item<2-> Incorporate comparative models of community-scale
+            co-diversification into a full-phylogenetic framework
+    \end{itemize}
+    \end{minipage}
+    
+    \vspace{-5mm}
+    \begin{minipage}[t][0.9\textheight][c]{1\linewidth}
+    \begin{center}
+        \includegraphics<3>[height=6.5cm]{../images/dmc-cartoon-no-islands-pop-shared-middle-wide.pdf}
+        \includegraphics<4>[height=6.5cm]{../images/dmc-cartoon-no-islands-pop-phylogeny.pdf}
+    \end{center}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}
+    \begin{columns}
+        \column{0.4\textwidth}
+        \begin{minipage}[c]{\columnwidth}
+        \begin{adjustwidth}{-2.3em}{}
+        \begin{onlyenv}<1-6>
+        \begin{itemize}
+            \item<2-> Current phylogenetic methods assume speciation and extinction
+                occur independently of one another
+            \item<3-> We know this assumption is frequently violated
+            \item<4-> I will generalize a birth-death model to accommodate
+                ``shared'' events
+            \item<6> Infer events jointly across multiple trees
+        \end{itemize}
+        \end{onlyenv}
+        \begin{onlyenv}<7->
+        \only<7->{\hspace{0.5cm}\textbf{\large Benefits:}\\}
+        \begin{itemize}
+            \item<8-> Improve phylogenetic inference and divergence-time estimation
+            \item<9-> Provide a general framework for inferring the evolutionary
+                history of whole communities
+            \item<10-> Possible epidemiological applications
+        \end{itemize}
+        \end{onlyenv}
+        \end{adjustwidth}
+        \end{minipage}
+
+        \column{0.6\textwidth}
+        \begin{minipage}[t][\textheight][c]{\linewidth}
+        \centerline{
+        \includegraphics<1-3>[width=\columnwidth]{../images/bd-cartoon-no-lines.pdf}
+        \includegraphics<4>[width=\columnwidth]{../images/bd-cartoon-shared.pdf}
+        \includegraphics<5>[width=0.75\columnwidth]{../images/bd-cartoon-shared-space.pdf}
+        \includegraphics<6->[width=0.75\columnwidth]{../images/bd-cartoon-2-trees-shared.pdf}
+        }
+        \end{minipage}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Inferring the evolutionary context of ecosystems}
+    \begin{itemize}[<+->]
+        \item Use comparative framework to estimate the history of floral and
+            faunal communities across Europe
+        \item A better understanding of the diversification and assembly
+            of communities will provide a framework for understanding
+            the affect of past climate change
+        \item This will provide context for predicting future change
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{itemize}[<+->]
+        \item Generalized birth-death process might better model
+            epidemiological dynamics
+        \item Could be relevant to the evolution of grapevine pathogens
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Strategies for integration}
+    \begin{itemize}[<+->]
+        \item In order to predict the response of ecosystems to environmental
+            change, we need a general model of ecosystem processes
+        \item Organize a series ``hackathons'' to stimulate synthesis among the
+            biologists, engineers, and theorists across LabEx 
+        \item Each hackathon would focus on integrating processes and existing
+            models between particular specialties and/or ecosystems
+    \end{itemize}
+\end{frame}
+
+
+
+\end{document}
+

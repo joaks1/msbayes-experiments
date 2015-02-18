@@ -11,3 +11,4 @@ else
 fi
 
 curl -o darwin-tol-copyright-boris-kulikov-2007.jpg http://www.boriskulikov.com/images/DarwinTreeOfLife-%20L.jpg
+curl -o kane.jpg http://uwberg.com/wp-content/uploads/2014/05/berg-hero.jpg
