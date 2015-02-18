@@ -234,7 +234,7 @@
         \end{center}
         \end{uncoverenv}
 
-        \vspace{4mm}
+        % \vspace{1mm}
 
         \begin{uncoverenv}<3->
             \begin{displaybox}[0.85\linewidth]
@@ -261,27 +261,28 @@
                 \end{minipage}
             \end{displaybox}
         \end{uncoverenv}
-    \end{minipage}
-\end{frame}
 
-\begin{frame}
-    \frametitle{New method: \dppmsbayes}
-    \begin{itemize}
-        % \item<1-> Reparameterized the model implemented in \msb
-        \item<1-> Dirichlet-process prior (DPP) over all possible divergence
-            models
-        \item<2-> Flexible priors on continuous parameters to avoid strongly
-            weighted posteriors
-        \item<3-> Multi-processing interface to accommodate genomic datasets
-        % \item<4-> Uniform prior over divergence models
-    \end{itemize}
-    \barefootnote{\shortfullcite{Oaks2014dpp}}
+        \vspace{-1mm}
+
+        \begin{uncoverenv}<4->
+            \begin{center}
+                \begin{itemize}
+                    \small
+                    \item Dirichlet-process prior (DPP) over all possible divergence
+                        models
+                    % \item<2-> Flexible priors on continuous parameters to avoid strongly
+                    %     weighted posteriors
+                    \item Multi-processing interface to accommodate genomic datasets
+                \end{itemize}
+            \end{center}
+        \end{uncoverenv}
+    \end{minipage}
 \end{frame}
 
 \begin{frame}
     \frametitle{\dppmsbayes: Performance}
     \begin{itemize}
-        \item<1-> Extensive computer simulations to compare performance to previous
+        \item<1-> Used computer simulations to compare performance to previous
             state-of-the-art methods (\msb).
         \item<2-> New method for estimating shared evolutionary history shows
             improved:
@@ -293,40 +294,40 @@
             \end{enumerate}
     \end{itemize}
 
-    \uncover<3->{
-    \textbf{\dppmsbayes allows biologists to leverage comparative genomic data
-        to assess the affects of community-scale processes on biodiversity}
-    }
+    % \uncover<3->{
+    % \textbf{\dppmsbayes allows biologists to leverage comparative genomic data
+    %     to assess the affects of community-scale processes on biodiversity}
+    % }
     \barefootnote{\shortfullcite{Oaks2014dpp}}
 \end{frame}
 
 {
-\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/maps/se-asia-120.png}}
-\begin{frame}
-    % \frametitle{Climate-driven diversification}    
-    \begin{columns}
-        \column{0.6\textwidth}
+% \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/maps/se-asia-120.png}}
+% \begin{frame}
+%     % \frametitle{Climate-driven diversification}    
+%     \begin{columns}
+%         \column{0.6\textwidth}
 
-        \vspace{6.5cm}
+%         \vspace{6.5cm}
 
-        \ \\
+%         \ \\
 
-        \column{0.4\textwidth}
+%         \column{0.4\textwidth}
 
-        \vspace{-2cm}
+%         \vspace{-2cm}
 
-        \begin{uncoverenv}<1->
-        \colorbox{white}{
-            \begin{minipage}[t]{1.0\textwidth}
-                \raggedright
-                \textbf{Did repeated fragmentation of islands during
-                    inter-glacial rises in sea level promote diversification?}
-            \end{minipage}
-        }
-        \end{uncoverenv}
-    \end{columns}
-\end{frame}
-}
+%         \begin{uncoverenv}<1->
+%         \colorbox{white}{
+%             \begin{minipage}[t]{1.0\textwidth}
+%                 \raggedright
+%                 \textbf{Did repeated fragmentation of islands during
+%                     inter-glacial rises in sea level promote diversification?}
+%             \end{minipage}
+%         }
+%         \end{uncoverenv}
+%     \end{columns}
+% \end{frame}
+% }
 
 \begin{frame}
     \frametitle{Climate-driven diversification}
@@ -379,7 +380,7 @@
 \begin{frame}
     \frametitle{Results}
     \centerline{
-    \includegraphics[width=\textwidth]{../../empirical-analyses/plots/philippines-dpp-psi-posterior-prior.pdf}}
+    \includegraphics[height=5cm]{../../empirical-analyses/plots/philippines-dpp-psi-posterior.pdf}}
     \smallskip
     \centerline{
     \includegraphics[height=2cm]{../images/sea-level-only.pdf}}
@@ -391,8 +392,11 @@
 \begin{frame}
     \frametitle{Results}
     \begin{itemize}
-        \item<1-> Results consistent with prediction of clustered
-            divergences
+        \item \textbf{dpp-msbayes allows biologists to leverage comparative
+                genomic data to assess the affects of community-scale processes
+                on biodiversity}
+        % \item<1-> Results consistent with prediction of clustered
+        %     divergences
         \item<2-> Results suggest multiple interglacial periods were important
             drivers of diversification and community assembly across Islands of
             Southeast Asia
