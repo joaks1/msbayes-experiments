@@ -1,0 +1,499 @@
+\input{../utils/preamble.tex}
+\input{../../manuscripts/utils/macros.tex}
+\newcommand{\allParameters}[1]{\ensuremath{\theta_{#1}}\xspace}
+\bibliography{../../manuscripts/bib/references}
+
+% \title[Estimating shared history]{An Improved Approximate-Bayesian Method for Estimating Shared
+% Evolutionary History}
+
+\title[Inferring community history]{Inferring Community-scale Diversification
+    from Genomic Data}
+
+\author[J.\ Oaks]{
+    Jamie R.\ Oaks\inst{1}
+}
+\institute[University of Washington]{
+    \inst{1}%
+        Department of Biology, University of Washington
+}
+
+% \date{\today}
+\date{February 18, 2015}
+
+\begin{document}
+\maketitle
+
+
+{
+\setbeamercolor{background canvas}{bg=black}
+\setbeamercolor{whitetext}{fg=white}
+\begin{frame}
+    \frametitle{Processes of diversification}
+    \begin{columns}[c]
+        \column{.5\textwidth}
+        {\usebeamercolor[fg]{whitetext}
+        \begin{itemize}
+            \item<2-> Community-scale processes are important in
+                biodiversification and community assembly
+            \item<3-> Accounting for such processes will better our
+                understanding of evolutionary history and
+                community structure
+            \item<4-> We need methods for inferring evolutionary patterns
+                predicted by historical events from contemporary populations
+        \end{itemize}
+        }
+        \column{.5\textwidth}
+        \begin{figure}
+            \begin{center}
+            \includegraphics[width=\textwidth]{../images/earth-image.jpg}
+            \end{center}
+        \end{figure}
+    \end{columns}
+\end{frame}
+}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/maps/se-asia-present.png}}
+\begin{frame}
+    % \frametitle{Climate-driven diversification}    
+
+\end{frame}
+}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/maps/se-asia-120.png}}
+\begin{frame}
+    % \frametitle{Climate-driven diversification}    
+    \begin{columns}
+        \column{0.6\textwidth}
+
+        \vspace{6.5cm}
+
+        \ \\
+
+        \column{0.4\textwidth}
+
+        \vspace{-2cm}
+
+        \begin{uncoverenv}<2->
+        \colorbox{white}{
+            \begin{minipage}[t]{1.0\textwidth}
+                \raggedright
+                \textbf{Did repeated fragmentation of islands during
+                    inter-glacial rises in sea level promote diversification?}
+            \end{minipage}
+        }
+        \end{uncoverenv}
+    \end{columns}
+\end{frame}
+}
+
+\begin{frame}
+    \frametitle{Climate-driven diversification}
+\begin{columns}[c]
+    \column{.5\textwidth}
+        \vspace{-1cm}
+        \begin{onlyenv}<1>
+        \begin{minipage}[t][1.0\textheight][c]{\linewidth}
+        \centerline{
+        \includegraphics<1>[height=2cm]{/home/jamie/Dropbox/field-photos/people/rafe.jpg}
+        \hspace{0.3mm}
+        \includegraphics<1>[height=2cm]{/home/jamie/Dropbox/field-photos/people/rob.jpg}}
+        \centerline{
+        \includegraphics<1>[height=2cm]{/home/jamie/Dropbox/field-photos/people/charles.jpg}
+        \hspace{0.3mm}
+        \includegraphics<1>[height=2cm]{/home/jamie/Dropbox/field-photos/people/cam.jpg}}
+        \centerline{
+        \includegraphics<1>[height=2cm]{/home/jamie/Dropbox/field-photos/people/jeet2.jpg}
+        \hspace{0.3mm}
+        \includegraphics<1>[height=2cm]{/home/jamie/Dropbox/field-photos/people/jake.jpg}}
+        \centerline{
+        \includegraphics<1>[height=2cm]{/home/jamie/Dropbox/field-photos/people/allie.jpg}
+        \hspace{0.3mm}
+        \includegraphics<1>[height=2cm]{/home/jamie/Dropbox/field-photos/people/Luke.jpg}
+        \hspace{0.3mm}
+        \includegraphics<1>[height=2cm]{/home/jamie/Dropbox/field-photos/people/anthony.png}}
+        \end{minipage}
+        \end{onlyenv}
+
+        \begin{onlyenv}<2->
+        \begin{minipage}[t][1.0\textheight][c]{\linewidth}
+        \centerline{
+        \includegraphics<2->[height=1.3cm]{../images/photos/crocidura-negrina-JAEsselstyn.jpg}
+        \hspace{0.3mm}
+        \includegraphics<2->[height=1.3cm]{../images/photos/crocidura-beatus-DSBalete.jpg}}
+        % \vspace{0.5mm}
+        \centerline{
+        \includegraphics<2->[height=1.3cm]{../images/photos/hipposideros-obscurus-MRMDuya.jpg}
+        \hspace{0.3mm}
+        \includegraphics<2->[height=1.3cm]{../images/photos/haplonycteris-fischeri-JHolden.jpg}}
+        % \vspace{0.5mm}
+        \centerline{
+        \includegraphics<2->[height=1.3cm]{../images/photos/sphenomorphus-abdictus-rmb.jpg}
+        \hspace{0.3mm}
+        \includegraphics<2->[height=1.3cm]{../images/photos/sphenomorphus-arborens-rmb.jpg}}
+        % \vspace{0.5mm}
+        \centerline{
+        \includegraphics<2->[height=1.3cm]{../images/photos/gekko-mindorensis.jpg}
+        \hspace{0.3mm}
+        \includegraphics<2->[height=1.3cm]{../images/photos/dendrelaphis-pictus-cds.jpg}}
+        % \vspace{0.5mm}
+        \centerline{
+        \includegraphics<2->[height=1.3cm]{../images/photos/cyrt-agusanensis.jpg}
+        \hspace{0.3mm}
+        \includegraphics<2->[height=1.3cm]{../images/photos/cyrt-annulatus-cds.jpg}}
+        % \vspace{0.5mm}
+        \centerline{
+        \includegraphics<2->[height=1.3cm]{../images/photos/limnonectes-magnus-cds.jpg}
+        \hspace{0.3mm}
+        \includegraphics<2->[height=1.3cm]{../images/photos/limnonectes-leytensis-rmb.jpg}}
+        \end{minipage}
+        \end{onlyenv}
+
+    \column{.5\textwidth}
+        \vspace{-1cm}
+        \begin{minipage}[t][1.0\textheight][c]{\linewidth}
+        \includegraphics<1-2>[width=\textwidth]{../images/maps/Philippines.png}
+        \includegraphics<3>[width=\textwidth]{../images/maps/Philippines-negros_panay.png}
+        % \begin{onlyenv}<4->
+        %     \begin{itemize}
+        %         \item Strong support for simultaneous divergence of all 22 taxon pairs
+                
+        %         \item Posterior probability $>$ 0.96 \\
+            
+        %         \item $\sim$100,000--250,000 years ago
+        %     \end{itemize}
+        % \end{onlyenv}
+        \end{minipage}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}[t]
+    \frametitle<1-4>{Climate-driven diversification: Predictions}
+    \frametitle<5->{Divergence-model choice}
+
+    \centering{
+    \includegraphics<1>[height=7.5cm]{../images/dmc-cartoon-islands.pdf}
+    \includegraphics<2>[height=7.5cm]{../images/dmc-cartoon-taxa.pdf}
+    \includegraphics<3>[height=7.5cm]{../images/dmc-cartoon-sea-level.pdf}
+    \includegraphics<4>[height=7.5cm]{../images/dmc-cartoon-shared-no-labels.pdf}
+    \includegraphics<5>[height=7.5cm]{../images/dmc-cartoon-shared.pdf}
+    \includegraphics<6>[height=7.5cm]{../images/dmc-cartoon-2-1.pdf}
+    \includegraphics<7>[height=7.5cm]{../images/dmc-cartoon-2-2.pdf}
+    \includegraphics<8>[height=7.5cm]{../images/dmc-cartoon-2-3.pdf}
+    \includegraphics<9>[height=7.5cm]{../images/dmc-cartoon-general.pdf}
+    }
+\end{frame}
+
+
+\begin{frame}[t]
+    \frametitle{Divergence-model choice}
+
+    \vspace{-7mm}
+
+    \begin{minipage}[t][0.1\textheight][c]{1.1\linewidth}
+        \begin{adjustwidth}{-0.5em}{}
+            \begin{tabular}{ p{2.1cm} p{2.1cm} p{2.1cm} p{2.1cm} p{2.1cm} }
+                $m_1$ & $m_2$ & $m_3$ & $m_4$ & $m_5$ \\
+            \end{tabular}
+        \end{adjustwidth}
+    \end{minipage}
+
+    \vspace{-2mm}
+
+    \begin{minipage}[t][0.35\textheight][c]{1.1\linewidth}
+        \begin{adjustwidth}{-2.3em}{}
+        \includegraphics[height=2.9cm]{../images/dmc-cartoon-no-islands-shared.pdf}
+        \hspace{0.2mm}
+        \includegraphics[height=2.9cm]{../images/dmc-cartoon-no-islands-2-1.pdf}
+        \hspace{0.2mm}
+        \includegraphics[height=2.9cm]{../images/dmc-cartoon-no-islands-2-2.pdf}
+        \hspace{0.2mm}
+        \includegraphics[height=2.9cm]{../images/dmc-cartoon-no-islands-2-3.pdf}
+        \hspace{0.2mm}
+        \includegraphics[height=2.9cm]{../images/dmc-cartoon-no-islands-general.pdf}
+        \end{adjustwidth}
+    \end{minipage}
+
+    \vspace{3.5mm}
+
+    \begin{minipage}[c][0.35\textheight][c]{\linewidth}
+        \begin{uncoverenv}<2->
+            \begin{center}
+            We want to infer \textcolor{blue}{\divModel{}} and
+            \textcolor{blue}{\divTimeMapVector} given DNA sequence
+            alignments
+            \textcolor{blue}{\alignmentVector}
+        \end{center}
+        \end{uncoverenv}
+
+        \vspace{4mm}
+
+        \begin{uncoverenv}<3->
+            \begin{displaybox}[0.85\linewidth]
+                \begin{minipage}[c][0.12\textheight][c]{\linewidth}
+
+                \[
+                    p(\divTimeMapVector,
+                      \divModel{i},
+                      \allParameters{}
+                      \given \alignmentVector)
+                      =
+                    \frac{
+                        p(\alignmentVector \given
+                          \divTimeMapVector,
+                          \allParameters{},
+                          \divModel{i})
+                        p(\divTimeMapVector,
+                          \allParameters{}
+                          \given \divModel{i})
+                        p(\divModel{i})
+                        }{p(\alignmentVector)}
+                \]
+                \vspace{-1mm}
+                \end{minipage}
+            \end{displaybox}
+        \end{uncoverenv}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}
+    \frametitle{New method: \dppmsbayes}
+    \begin{itemize}
+        % \item<1-> Reparameterized the model implemented in \msb
+        \item<1-> Dirichlet-process prior (DPP) over all possible divergence
+            models
+        \item<2-> Flexible priors on continuous parameters to avoid strongly
+            weighted posteriors
+        \item<3-> Multi-processing interface to improve performance for
+            accommodating genomic datasets
+        % \item<4-> Uniform prior over divergence models
+    \end{itemize}
+    \barefootnote{\shortfullcite{Oaks2014dpp}}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\dppmsbayes: Performance}
+    \begin{itemize}
+        \item<1-> Extensive computer simulations to compare performance to previous
+            state-of-the-art methods (\msb).
+        \item<2-> New method for estimating shared evolutionary history shows
+            improved:
+            \begin{enumerate}
+                \item<2-> Improved model-choice accuracy 
+                \item<2-> More robustness to model violations
+                \item<2-> Greater power to detect variation in divergence times
+                \item<2-> Faster!
+            \end{enumerate}
+    \end{itemize}
+
+    \uncover<3->{
+    \textbf{\dppmsbayes allows biologists to leverage comparative genomic data
+        to assess the affects of community-scale processes on biodiversity}
+    }
+    \barefootnote{\shortfullcite{Oaks2014dpp}}
+\end{frame}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/maps/se-asia-120.png}}
+\begin{frame}
+    % \frametitle{Climate-driven diversification}    
+    \begin{columns}
+        \column{0.6\textwidth}
+
+        \vspace{6.5cm}
+
+        \ \\
+
+        \column{0.4\textwidth}
+
+        \vspace{-2cm}
+
+        \begin{uncoverenv}<1->
+        \colorbox{white}{
+            \begin{minipage}[t]{1.0\textwidth}
+                \raggedright
+                \textbf{Did repeated fragmentation of islands during
+                    inter-glacial rises in sea level promote diversification?}
+            \end{minipage}
+        }
+        \end{uncoverenv}
+    \end{columns}
+\end{frame}
+}
+
+\begin{frame}
+    \frametitle{Climate-driven diversification}
+\begin{columns}[c]
+    \column{.5\textwidth}
+        \vspace{-1cm}
+        \begin{onlyenv}<1->
+        \begin{minipage}[t][1.0\textheight][c]{\linewidth}
+        \centerline{
+        \includegraphics<1->[height=1.3cm]{../images/photos/crocidura-negrina-JAEsselstyn.jpg}
+        \hspace{0.3mm}
+        \includegraphics<1->[height=1.3cm]{../images/photos/crocidura-beatus-DSBalete.jpg}}
+        % \vspace{0.5mm}
+        \centerline{
+        \includegraphics<1->[height=1.3cm]{../images/photos/hipposideros-obscurus-MRMDuya.jpg}
+        \hspace{0.3mm}
+        \includegraphics<1->[height=1.3cm]{../images/photos/haplonycteris-fischeri-JHolden.jpg}}
+        % \vspace{0.5mm}
+        \centerline{
+        \includegraphics<1->[height=1.3cm]{../images/photos/sphenomorphus-abdictus-rmb.jpg}
+        \hspace{0.3mm}
+        \includegraphics<1->[height=1.3cm]{../images/photos/sphenomorphus-arborens-rmb.jpg}}
+        % \vspace{0.5mm}
+        \centerline{
+        \includegraphics<1->[height=1.3cm]{../images/photos/gekko-mindorensis.jpg}
+        \hspace{0.3mm}
+        \includegraphics<1->[height=1.3cm]{../images/photos/dendrelaphis-pictus-cds.jpg}}
+        % \vspace{0.5mm}
+        \centerline{
+        \includegraphics<1->[height=1.3cm]{../images/photos/cyrt-agusanensis.jpg}
+        \hspace{0.3mm}
+        \includegraphics<1->[height=1.3cm]{../images/photos/cyrt-annulatus-cds.jpg}}
+        % \vspace{0.5mm}
+        \centerline{
+        \includegraphics<1->[height=1.3cm]{../images/photos/limnonectes-magnus-cds.jpg}
+        \hspace{0.3mm}
+        \includegraphics<1->[height=1.3cm]{../images/photos/limnonectes-leytensis-rmb.jpg}}
+        \end{minipage}
+        \end{onlyenv}
+
+    \column{.5\textwidth}
+        \vspace{-1cm}
+        \begin{minipage}[t][1.0\textheight][c]{\linewidth}
+        \includegraphics<1->[width=\textwidth]{../images/maps/Philippines.png}
+        \end{minipage}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Results}
+    \centerline{
+    \includegraphics[width=\textwidth]{../../empirical-analyses/plots/philippines-dpp-psi-posterior-prior.pdf}}
+    \smallskip
+    \centerline{
+    \includegraphics[height=2cm]{../images/sea-level-only.pdf}}
+    \barefootnote{\shortfullcite{Oaks2014dpp}}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Current work: More data}
+    \begin{itemize}
+        \item<1-> Collecting genomic data from taxa co-distributed across Southeast
+            Asia
+        \item<2-> Preliminary results for 1000 loci from 5 pairs of \emph{Gekko
+                mindorensis} populations
+    \end{itemize}
+
+    \begin{center}
+        \includegraphics<2->[height=5.5cm]{../images/number-of-divs-gekko-mindorensis.pdf}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Current work: More power}
+    \centerline{
+    \includegraphics<1->[height=2cm]{/home/jamie/Dropbox/field-photos/people/mtholder.jpg}
+    \hspace{0.6mm}
+    \includegraphics<1->[height=2cm]{/home/jamie/Dropbox/field-photos/people/jeet2.jpg}
+    \hspace{0.6mm}
+    \includegraphics<1->[height=2cm]{/home/jamie/Dropbox/field-photos/people/vladimir.jpg}
+    \hspace{0.6mm}
+    \includegraphics<1->[height=2cm]{../images/revbayes.png}}
+
+    \begin{itemize}[<+->]
+        \item Full-likelihood Bayesian implementation
+            \begin{itemize}
+                \item Uses all the information in the data
+                \item Applicable to deeper timescales
+            \end{itemize}
+        \item Analytically integrate over gene trees
+            \footnote{\tiny\shortfullcite{Bryant2012}}
+            \begin{itemize}
+                \item Very efficient numerical approximation of posterior 
+                \item Applicable to NGS datasets
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+
+\section{Conclusions}
+
+\begin{frame}
+    \frametitle{Climate-driven diversification model?}
+    \begin{itemize}
+        \item<1-> Results consistent with prediction of clustered
+            divergences
+        \item<2-> Results suggest multiple co-divergences
+        \item<3-> However, there is a lot of uncertainty!
+    \end{itemize}
+    \barefootnote{\shortfullcite{Oaks2014dpp}}
+\end{frame}
+
+\section{Teaching}
+
+\begin{frame}
+    BIO 180 stuff
+\end{frame}
+
+\begin{frame}
+    Software carpentry \\
+
+    Workshops
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Questions?}    
+    \begin{center}
+        {
+        \Large
+        \href{mailto:joaks1@gmail.com}{\tt joaks1@gmail.com}
+        }
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Future directions---Computational}
+    \begin{itemize}
+        \item<1-> Full-phylogenetic framework
+    \end{itemize}
+    
+    \begin{center}
+        \includegraphics<1>[height=6.5cm]{../images/dmc-cartoon-no-islands-pop-shared-middle-wide.pdf}
+        \includegraphics<2>[height=6.5cm]{../images/dmc-cartoon-no-islands-pop-phylogeny.pdf}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \centerline{
+    \includegraphics<1>[height=8cm]{../images/bd-cartoon-no-lines.pdf}
+    \includegraphics<2>[height=8cm]{../images/bd-cartoon-shared.pdf}
+    }
+\end{frame}
+
+\begin{frame}
+\begin{columns}
+    \column{.5\textwidth}
+    \begin{minipage}[c]{\columnwidth}
+    \begin{itemize}
+        \item Blah
+    \end{itemize}
+    \end{minipage}
+
+    \column{.6\textwidth}
+    \begin{minipage}[t][\textheight][c]{\linewidth}
+    \includegraphics<1>[width=0.75\columnwidth]{../images/bd-cartoon-shared-space.pdf}
+    \includegraphics<2>[width=0.75\columnwidth]{../images/bd-cartoon-2-trees-shared.pdf}
+    \end{minipage}
+\end{columns}
+\end{frame}
+
+
+\end{document}
+
