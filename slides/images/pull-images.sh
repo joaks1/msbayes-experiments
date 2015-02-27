@@ -20,7 +20,7 @@ curl -o mascot-florida-gator.png http://upload.wikimedia.org/wikipedia/en/thumb/
 curl -o mascot-sc-gamecock.png http://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/South_Carolina_Gamecocks_Block_C_logo.svg/182px-South_Carolina_Gamecocks_Block_C_logo.svg.png
 curl -o mascot-vanderbilt-commodore.png http://redanglespanish.files.wordpress.com/2011/12/commodore.png
 curl -o mascot-vanderbilt-commodore-cartoon.gif http://www.nashvillescene.com/binary/0511/vanderbilt_mascot.gif
-curl -o mascot-texas-am-reveille.png http://content.sportslogos.net/logos/34/866/full/4536_texas_a&m_aggies-mascot-2001.png
+curl -o mascot-texas-am-reveille.gif http://content.sportslogos.net/logos/34/866/thumbs/86645362001.gif
 curl -o mascot-tennessee-smokey.png http://content.sportslogos.net/logos/34/861/full/2892_tennessee_volunteers-mascot-2005.png
 curl -o mascot-arkansas-razorback.png http://upload.wikimedia.org/wikipedia/commons/e/ef/Arkansas-Razorback-Logo-2001.png
 curl -o mascot-ole-miss-rebel-black-bear.jpg http://uwire.com/wp-content/uploads/2010/10/news_bear_contrib.jpg
