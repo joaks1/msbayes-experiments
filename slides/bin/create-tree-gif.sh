@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# python plot-sec-tree.py
+python plot-sec-tree.py
 
 dimensions="$(identify sec-tree-bare.png | egrep -o ' [0-9]+x[0-9]+ ')"
 dimensions=${dimensions/ /}
 width=${dimensions/x*/}
 height=${dimensions/*x/}
 
-slice=$(expr $width / 50)
+slice=$(expr $width / 100)
 
 for i in $(seq -w 0 $slice $width)
 do
