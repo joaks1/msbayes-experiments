@@ -1,0 +1,448 @@
+\input{../utils/preamble.tex}
+\input{../../manuscripts/utils/macros.tex}
+\newcommand{\allParameters}[1]{\ensuremath{\theta_{#1}}\xspace}
+\bibliography{../../manuscripts/bib/references}
+
+\title[Improving inference of evolutionary history]{Improving inference of evolutionary history}
+\subtitle{Developing comparative methods for genomic data}
+
+\author[J.\ Oaks]{
+    Jamie R.\ Oaks\inst{1}
+}
+\institute[University of Washington]{
+    \inst{1}%
+        Department of Biology, University of Washington
+}
+
+% \date{\today}
+\date{March 9, 2015}
+
+\begin{document}
+
+\maketitle
+
+% \begin{frame}
+%     \begin{columns}[c]
+%         \column{.5\textwidth}
+%             \maketitle
+%         \column{.5\textwidth}
+%             \begin{figure}
+%                 \begin{center}
+%                 \includegraphics[width=\textwidth]{../images/darwin-tol-copyright-boris-kulikov-2007.jpg}
+%                 \caption{\tiny \copyright~2007 Boris Kulikov \href{http://boris-kulikov.blogspot.com/}{boris-kulikov.blogspot.com}}
+%                 \end{center}
+%             \end{figure}
+%     \end{columns}
+% \end{frame}
+
+\begin{frame}
+    \begin{columns}[c]
+        \column{.5\textwidth}
+        
+        General intro here
+        
+        \column{.5\textwidth}
+
+        \begin{figure}
+            \begin{center}
+            \includegraphics[width=\textwidth]{../images/darwin-tol-copyright-boris-kulikov-2007.jpg}
+            \caption{\tiny \copyright~2007 Boris Kulikov \href{http://boris-kulikov.blogspot.com/}{boris-kulikov.blogspot.com}}
+            \end{center}
+        \end{figure}
+    \end{columns}
+\end{frame}
+
+{
+\setbeamercolor{background canvas}{bg=black}
+\setbeamercolor{whitetext}{fg=white}
+\begin{frame}
+    \frametitle{Processes of diversification}
+    \begin{columns}[c]
+        \column{.5\textwidth}
+        {\usebeamercolor[fg]{whitetext}
+        \begin{itemize}
+            \item<2-> Large-scale geological and climatic processes are
+                important in biodiversification and community assembly
+            \item<3-> Accounting for such processes will better our
+                understanding of biodiversity
+            \item<4-> We need methods for inferring evolutionary patterns
+                predicted by historical events from contemporary populations
+        \end{itemize}
+        }
+        \column{.5\textwidth}
+        \begin{figure}
+            \begin{center}
+            \includegraphics[width=\textwidth]{../images/earth-image.jpg}
+            \end{center}
+        \end{figure}
+    \end{columns}
+\end{frame}
+}
+
+\begin{frame}
+    \begin{center}
+        % \transwipe<2>[direction=0, duration=3]
+        % \includegraphics<2>[width=\textwidth]{../images/mascot-tree.png}
+        \includegraphics[width=\textwidth]{../images/mascot-tree.png}
+
+    \end{center}
+\end{frame}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/maps/se-asia-present.png}}
+\begin{frame}
+    % \frametitle{Climate-driven diversification}    
+
+\end{frame}
+}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/maps/se-asia-120.png}}
+\begin{frame}
+    % \frametitle{Climate-driven diversification}    
+    \begin{columns}
+        \column{0.6\textwidth}
+
+        \vspace{6.5cm}
+
+        \ \\
+
+        \column{0.4\textwidth}
+
+        \vspace{-2cm}
+
+        \begin{uncoverenv}<2->
+        \colorbox{white}{
+            \begin{minipage}[t]{1.0\textwidth}
+                \raggedright
+                \textbf{Did repeated fragmentation of islands during
+                    inter-glacial rises in sea level promote diversification?}
+            \end{minipage}
+        }
+        \end{uncoverenv}
+    \end{columns}
+\end{frame}
+}
+
+\begin{frame}[t]
+    \frametitle<1-4>{Climate-driven diversification: Predictions}
+    \frametitle<5->{Divergence model choice}
+
+    \vspace{-0.5cm}
+    \begin{columns}[c]
+        \column{.5\textwidth}
+        \begin{onlyenv}<1-4>
+            \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+            \end{minipage}
+        \end{onlyenv}
+        \begin{onlyenv}<5>
+            \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+                \begin{displaybox}[0.95\linewidth]
+                    \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
+                        \[
+                            \divTimeVector = \{\divTime{1}\}
+                        \]\vspace{0mm}
+                        \[
+                            model = 111
+                        \]\vspace{0mm}
+                        \[
+                            \divTimeMapVector = (\divTimeMap{1},\divTimeMap{2},\divTimeMap{3})
+                        \]\vspace{0mm}
+                    \end{minipage}
+                \end{displaybox}
+            \end{minipage}
+        \end{onlyenv}
+        \begin{onlyenv}<6>
+            \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+                \begin{displaybox}[0.95\linewidth]
+                    \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
+                        \[
+                            \divTimeVector = \{130\}
+                        \]\vspace{0mm}
+                        \[
+                            model = 111
+                        \]\vspace{0mm}
+                        \[
+                            \divTimeMapVector = (130,130,130)
+                        \]\vspace{0mm}
+                    \end{minipage}
+                \end{displaybox}
+            \end{minipage}
+        \end{onlyenv}
+        \begin{onlyenv}<7>
+            \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+                \begin{displaybox}[0.95\linewidth]
+                    \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
+                        \[
+                            \divTimeVector = \{130,397\}
+                        \]\vspace{0mm}
+                        \[
+                            model = 211
+                        \]\vspace{0mm}
+                        \[
+                            \divTimeMapVector = (397,130,130)
+                        \]\vspace{0mm}
+                    \end{minipage}
+                \end{displaybox}
+            \end{minipage}
+        \end{onlyenv}
+        \begin{onlyenv}<8>
+            \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+                \begin{displaybox}[0.95\linewidth]
+                    \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
+                        \[
+                            \divTimeVector = \{130,397\}
+                        \]\vspace{0mm}
+                        \[
+                            model = 121
+                        \]\vspace{0mm}
+                        \[
+                            \divTimeMapVector = (130,397,130)
+                        \]\vspace{0mm}
+                    \end{minipage}
+                \end{displaybox}
+            \end{minipage}
+        \end{onlyenv}
+        \begin{onlyenv}<9>
+            \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+                \begin{displaybox}[0.95\linewidth]
+                    \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
+                        \[
+                            \divTimeVector = \{130,397\}
+                        \]\vspace{0mm}
+                        \[
+                            model = 112
+                        \]\vspace{0mm}
+                        \[
+                            \divTimeVector = \{130,397\}
+                        \]\vspace{0mm}
+                    \end{minipage}
+                \end{displaybox}
+            \end{minipage}
+        \end{onlyenv}
+        \begin{onlyenv}<10-11>
+            \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+                \begin{displaybox}[0.95\linewidth]
+                    \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
+                        \[
+                            \divTimeVector = \{130,397,260\}
+                        \]\vspace{0mm}
+                        \[
+                            model = 312
+                        \]\vspace{0mm}
+                        \[
+                            \divTimeMapVector = (260,130,397)
+                        \]\vspace{0mm}
+                    \end{minipage}
+                \end{displaybox}
+            \end{minipage}
+        \end{onlyenv}
+        % \begin{onlyenv}<11>
+        %     \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+        %         \begin{displaybox}[0.95\linewidth]
+        %             \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
+        %                 \[
+        %                     \divTimeVector = \{\divTime{1},\ldots,\divTime{\divTimeNum}\}
+        %                 \]\vspace{0mm}
+        %                 \[
+        %                     model = \divModel{i}
+        %                 \]\vspace{0mm}
+        %                 \[
+        %                     \divTimeMapVector = (\divTimeMap{1},\ldots,\divTimeMap{\npairs{}})
+        %                 \]\vspace{0mm}
+        %             \end{minipage}
+        %         \end{displaybox}
+        %     \end{minipage}
+        % \end{onlyenv}
+        \begin{onlyenv}<12->
+            \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+                \begin{mydescription}
+                    \item[\alignmentVector] Sequence alignments
+                    \item[\divTimeMapVector] Divergence times
+                    \item[\divModel{}] Divergence model
+                    \item[\allParameters{}] Gene trees
+                    \item[\ ] Substitution parameters
+                    \item[\ ] Demographic parameters
+                    % \item[\allParameters] $(\divTimeMapVector, \geneTreeVector,
+                    %     \hkyModelVector, \demographicParamVector)$
+                \end{mydescription}
+            \end{minipage}
+        \end{onlyenv}
+        % \begin{uncoverenv}<11->
+        %     \begin{minipage}[c][0.18\textheight][c]{\linewidth}
+        %     \begin{flushleft}
+        %         \small We want to infer \textcolor{blue}{\divModel{}} and
+        %         \textcolor{blue}{\divTimeMapVector} given DNA sequence
+        %         alignments
+        %         \textcolor{blue}{\alignmentVector}
+        %     \end{flushleft}
+        %     \end{minipage}
+        % \end{uncoverenv}
+        \column{.6\textwidth}
+        \begin{minipage}[t][0.8\textheight][c]{\linewidth}
+        \includegraphics<1>[height=6cm]{../images/dmc-cartoon-islands.pdf}
+        \includegraphics<2>[height=6cm]{../images/dmc-cartoon-taxa.pdf}
+        \includegraphics<3>[height=6cm]{../images/dmc-cartoon-sea-level.pdf}
+        \includegraphics<4>[height=6cm]{../images/dmc-cartoon-shared-no-labels.pdf}
+        \includegraphics<5-6>[height=6cm]{../images/dmc-cartoon-shared.pdf}
+        \includegraphics<7>[height=6cm]{../images/dmc-cartoon-2-1.pdf}
+        \includegraphics<8>[height=6cm]{../images/dmc-cartoon-2-2.pdf}
+        \includegraphics<9>[height=6cm]{../images/dmc-cartoon-2-3.pdf}
+        \includegraphics<10-11>[height=6cm]{../images/dmc-cartoon-general.pdf}
+        \includegraphics<12->[height=6cm]{../images/dmc-cartoon-pop-general.pdf}
+        \end{minipage}
+    \end{columns}
+
+    \vspace{-3mm}
+
+\end{frame}
+
+\begin{frame}[t]
+    % \frametitle{Divergence-model choice}
+    \frametitle{Inferring co-diversification}
+
+    \vspace{-9mm}
+
+    \begin{minipage}[t][0.1\textheight][c]{1.1\linewidth}
+        \begin{adjustwidth}{-0.5em}{}
+            \begin{tabular}{ p{2.1cm} p{2.1cm} p{2.1cm} p{2.1cm} p{2.1cm} }
+                $m_1$ & $m_2$ & $m_3$ & $m_4$ & $m_5$ \\
+            \end{tabular}
+        \end{adjustwidth}
+    \end{minipage}
+
+    \vspace{-2mm}
+
+    \begin{minipage}[t][0.35\textheight][c]{1.1\linewidth}
+        \begin{adjustwidth}{-2.3em}{}
+        \includegraphics[height=2.9cm]{../images/dmc-cartoon-no-islands-shared.pdf}
+        \hspace{0.2mm}
+        \includegraphics[height=2.9cm]{../images/dmc-cartoon-no-islands-2-1.pdf}
+        \hspace{0.2mm}
+        \includegraphics[height=2.9cm]{../images/dmc-cartoon-no-islands-2-2.pdf}
+        \hspace{0.2mm}
+        \includegraphics[height=2.9cm]{../images/dmc-cartoon-no-islands-2-3.pdf}
+        \hspace{0.2mm}
+        \includegraphics[height=2.9cm]{../images/dmc-cartoon-no-islands-general.pdf}
+        \end{adjustwidth}
+    \end{minipage}
+
+    \vspace{3.5mm}
+
+    \begin{minipage}[t][0.35\textheight][t]{\linewidth}
+        \begin{uncoverenv}<2->
+            \begin{center}
+                We want to infer \textcolor{blue}{\divModel{}} and
+                \textcolor{blue}{\divTimeMapVector} given DNA sequence
+                alignments
+                \textcolor{blue}{\alignmentVector}
+            \end{center}
+        \end{uncoverenv}
+
+        % \vspace{1mm}
+
+        \begin{uncoverenv}<3->
+            \begin{displaybox}[0.85\linewidth]
+                % \begin{minipage}[c][0.12\textheight][c]{\linewidth}
+
+                % \[
+                %     p(\divTimeMapVector,
+                %       \divModel{i},
+                %       \allParameters{}
+                %       \given \alignmentVector)
+                %       =
+                %     \frac{
+                %         p(\alignmentVector \given
+                %           \divTimeMapVector,
+                %           \allParameters{},
+                %           \divModel{i})
+                %         p(\divTimeMapVector,
+                %           \allParameters{}
+                %           \given \divModel{i})
+                %         p(\divModel{i})
+                %         }{p(\alignmentVector)}
+                % \]
+                % \vspace{-1mm}
+                % \end{minipage}
+                \begin{minipage}[c][0.1\textheight][c]{\linewidth}
+                    \begin{onlyenv}<3>
+
+                        \vspace{3.5mm}
+
+                        \[
+                            p(
+                              \divTimeMapVector,
+                              \allParameters{}
+                              \given \alignmentVector, \divModel{i})
+                              =
+                            \frac{
+                                p(\alignmentVector \given
+                                  \divTimeMapVector,
+                                  \allParameters{},
+                                  \divModel{i}
+                                  )
+                                  p(
+                                    \divTimeMapVector,
+                                    \allParameters{}
+                                    \given \divModel{i}
+                                    )
+                                }{p(\alignmentVector \given \divModel{i})}
+                        \]
+                    \end{onlyenv}
+                    \begin{onlyenv}<4>
+
+                        \vspace{3.5mm}
+
+                        \[
+                            p(\divModel{i} \given \alignmentVector) =
+                            \frac{
+                                p(\alignmentVector \given \divModel{i})
+                                p(\divModel{i})
+                            }{
+                                \sum_{i} p(\alignmentVector \given \divModel{i})
+                                p(\divModel{i})
+                            }
+                        \]
+                    \end{onlyenv}
+                    \begin{onlyenv}<5->
+
+                        \vspace{2mm}
+
+                        \[
+                            p(\alignmentVector \given \divModel{i}) =
+                            \int_{\divTimeMapVector} \int_{\allParameters{}}
+                            p(\alignmentVector \given \divTimeMapVector, \allParameters{}, \divModel{i})
+                            p(\divTimeMapVector, \allParameters{} \given \divModel{i})
+                            d\divTimeMapVector d\allParameters{}
+                        \]
+                    \end{onlyenv}
+                    % \begin{onlyenv}<16>
+                    %     \vspace{-2mm}
+                    %     \begin{center}
+                    %     \msb: Approximate Bayesian computation (ABC)
+                    %     \end{center}
+                    % \end{onlyenv}
+                \end{minipage}
+            \end{displaybox}
+        \end{uncoverenv}
+
+        \vspace{-1mm}
+
+        \begin{uncoverenv}<6->
+            \begin{center}
+                \begin{itemize}
+                    \small
+                    \item Dirichlet-process prior (DPP) over all possible divergence
+                        models
+                    % \item<2-> Flexible priors on continuous parameters to avoid strongly
+                    %     weighted posteriors
+                    \item Multi-processing interface to accommodate genomic datasets
+                \end{itemize}
+            \end{center}
+        \end{uncoverenv}
+    \end{minipage}
+\end{frame}
+
+
+\end{document}
+
