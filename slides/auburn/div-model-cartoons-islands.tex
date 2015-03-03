@@ -1,0 +1,173 @@
+\begin{frame}[t]
+    \frametitle<1-4>{Climate-driven diversification: Predictions}
+    \frametitle<5->{Divergence model choice}
+
+    \vspace{-0.5cm}
+    \begin{columns}[c]
+        \column{.5\textwidth}
+        \begin{onlyenv}<1-4>
+            \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+            \end{minipage}
+        \end{onlyenv}
+        \begin{onlyenv}<5>
+            \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+                \begin{displaybox}[0.95\linewidth]
+                    \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
+                        \[
+                            \divTimeVector = \{\divTime{1}\}
+                        \]\vspace{0mm}
+                        \[
+                            model = 111
+                        \]\vspace{0mm}
+                        \[
+                            \divTimeMapVector = (\divTimeMap{1},\divTimeMap{2},\divTimeMap{3})
+                        \]\vspace{0mm}
+                    \end{minipage}
+                \end{displaybox}
+            \end{minipage}
+        \end{onlyenv}
+        \begin{onlyenv}<6>
+            \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+                \begin{displaybox}[0.95\linewidth]
+                    \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
+                        \[
+                            \divTimeVector = \{130\}
+                        \]\vspace{0mm}
+                        \[
+                            model = 111
+                        \]\vspace{0mm}
+                        \[
+                            \divTimeMapVector = (130,130,130)
+                        \]\vspace{0mm}
+                    \end{minipage}
+                \end{displaybox}
+            \end{minipage}
+        \end{onlyenv}
+        \begin{onlyenv}<7>
+            \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+                \begin{displaybox}[0.95\linewidth]
+                    \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
+                        \[
+                            \divTimeVector = \{130,397\}
+                        \]\vspace{0mm}
+                        \[
+                            model = 211
+                        \]\vspace{0mm}
+                        \[
+                            \divTimeMapVector = (397,130,130)
+                        \]\vspace{0mm}
+                    \end{minipage}
+                \end{displaybox}
+            \end{minipage}
+        \end{onlyenv}
+        \begin{onlyenv}<8>
+            \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+                \begin{displaybox}[0.95\linewidth]
+                    \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
+                        \[
+                            \divTimeVector = \{130,397\}
+                        \]\vspace{0mm}
+                        \[
+                            model = 121
+                        \]\vspace{0mm}
+                        \[
+                            \divTimeMapVector = (130,397,130)
+                        \]\vspace{0mm}
+                    \end{minipage}
+                \end{displaybox}
+            \end{minipage}
+        \end{onlyenv}
+        \begin{onlyenv}<9>
+            \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+                \begin{displaybox}[0.95\linewidth]
+                    \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
+                        \[
+                            \divTimeVector = \{130,397\}
+                        \]\vspace{0mm}
+                        \[
+                            model = 112
+                        \]\vspace{0mm}
+                        \[
+                            \divTimeVector = \{130,397\}
+                        \]\vspace{0mm}
+                    \end{minipage}
+                \end{displaybox}
+            \end{minipage}
+        \end{onlyenv}
+        \begin{onlyenv}<10-11>
+            \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+                \begin{displaybox}[0.95\linewidth]
+                    \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
+                        \[
+                            \divTimeVector = \{130,397,260\}
+                        \]\vspace{0mm}
+                        \[
+                            model = 312
+                        \]\vspace{0mm}
+                        \[
+                            \divTimeMapVector = (260,130,397)
+                        \]\vspace{0mm}
+                    \end{minipage}
+                \end{displaybox}
+            \end{minipage}
+        \end{onlyenv}
+        % \begin{onlyenv}<11>
+        %     \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+        %         \begin{displaybox}[0.95\linewidth]
+        %             \begin{minipage}[c][0.45\textheight][c]{0.95\linewidth}
+        %                 \[
+        %                     \divTimeVector = \{\divTime{1},\ldots,\divTime{\divTimeNum}\}
+        %                 \]\vspace{0mm}
+        %                 \[
+        %                     model = \divModel{i}
+        %                 \]\vspace{0mm}
+        %                 \[
+        %                     \divTimeMapVector = (\divTimeMap{1},\ldots,\divTimeMap{\npairs{}})
+        %                 \]\vspace{0mm}
+        %             \end{minipage}
+        %         \end{displaybox}
+        %     \end{minipage}
+        % \end{onlyenv}
+        \begin{onlyenv}<12->
+            \begin{minipage}[c][0.5\textheight][c]{\linewidth}
+                \begin{mydescription}
+                    \item[\alignmentVector] Sequence alignments
+                    \item[\divTimeMapVector] Divergence times
+                    \item[\divModel{}] Divergence model
+                    \item[\allParameters{}] Gene trees
+                    \item[\ ] Substitution parameters
+                    \item[\ ] Demographic parameters
+                    % \item[\allParameters] $(\divTimeMapVector, \geneTreeVector,
+                    %     \hkyModelVector, \demographicParamVector)$
+                \end{mydescription}
+            \end{minipage}
+        \end{onlyenv}
+        % \begin{uncoverenv}<11->
+        %     \begin{minipage}[c][0.18\textheight][c]{\linewidth}
+        %     \begin{flushleft}
+        %         \small We want to infer \textcolor{blue}{\divModel{}} and
+        %         \textcolor{blue}{\divTimeMapVector} given DNA sequence
+        %         alignments
+        %         \textcolor{blue}{\alignmentVector}
+        %     \end{flushleft}
+        %     \end{minipage}
+        % \end{uncoverenv}
+        \column{.6\textwidth}
+        \begin{minipage}[t][0.8\textheight][c]{\linewidth}
+        \includegraphics<1>[height=6cm]{../images/dmc-cartoon-islands.pdf}
+        \includegraphics<2>[height=6cm]{../images/dmc-cartoon-taxa.pdf}
+        \includegraphics<3>[height=6cm]{../images/dmc-cartoon-sea-level.pdf}
+        \includegraphics<4>[height=6cm]{../images/dmc-cartoon-shared-no-labels.pdf}
+        \includegraphics<5-6>[height=6cm]{../images/dmc-cartoon-shared.pdf}
+        \includegraphics<7>[height=6cm]{../images/dmc-cartoon-2-1.pdf}
+        \includegraphics<8>[height=6cm]{../images/dmc-cartoon-2-2.pdf}
+        \includegraphics<9>[height=6cm]{../images/dmc-cartoon-2-3.pdf}
+        \includegraphics<10-11>[height=6cm]{../images/dmc-cartoon-general.pdf}
+        \includegraphics<12->[height=6cm]{../images/dmc-cartoon-pop-general.pdf}
+        \end{minipage}
+    \end{columns}
+
+    \vspace{-3mm}
+
+\end{frame}
+

@@ -7,30 +7,45 @@ from PIL import Image
 import ete2
 
 _extinct_lengths = {
-        "mascot-sewanee-tiger": 0.02,
-        "mascot-tulane-green-wave": 0.5,
-        "mascot-georgia-tech-yellow-jacket": 0.5,
+        "mascot-sewanee-tiger": 0.14,
+        "mascot-tulane-green-wave": 0.29,
+        "mascot-georgia-tech-yellow-jacket": 0.43,
+        }
+_extinct_lengths_shared = {
+        "mascot-sewanee-tiger": 0.15,
+        "mascot-tulane-green-wave": 0.26,
+        "mascot-georgia-tech-yellow-jacket": 0.43,
         }
 _sec_tree_ladder = """
-(((((((((((mascot-auburn-tiger.png:0.01,mascot-lsu-tiger.jpg:0.01):0.01,mascot-missouri-tiger.png:0.02):0.04,mascot-sewanee-tiger.jpg:{mascot-sewanee-tiger}):0.05,mascot-kentucky-wild-cat.jpg:0.11):0.11,
-((((mascot-georgia-bulldog.jpg:0.01,mascot-mississippi-state-bulldog.gif:0.01):0.03,mascot-texas-am-reveille.gif:0.04):0.06,mascot-tennessee-smokey.png:0.1):0.03,mascot-ole-miss-rebel-black-bear.jpg:0.13):0.09):0.005,
-mascot-arkansas-razorback.png:0.225):0.095,
-mascot-vanderbilt-commodore-cartoon.gif:0.32):0.025,
-mascot-alabama-big-al.gif:0.345):0.145,
-(mascot-sc-gamecock.png:0.12,mascot-florida-gator.png:0.12):0.37):0.08,
+(((((((((((mascot-auburn-tiger.png:0.03,mascot-lsu-tiger.jpg:0.03):0.04,mascot-missouri-tiger.png:0.07):0.12,mascot-sewanee-tiger.jpg:{mascot-sewanee-tiger}):0.13,mascot-kentucky-wild-cat.jpg:0.32):0.08,
+((((mascot-georgia-bulldog.jpg:0.01,mascot-mississippi-state-bulldog.gif:0.01):0.03,mascot-texas-am-reveille.gif:0.04):0.08,mascot-tennessee-smokey.png:0.12):0.22,mascot-ole-miss-rebel-black-bear.jpg:0.34):0.06):0.005,
+mascot-arkansas-razorback.png:0.405):0.045,
+mascot-vanderbilt-commodore-cartoon.gif:0.45):0.025,
+mascot-alabama-big-al.gif:0.475):0.015,
+(mascot-sc-gamecock.png:0.33,mascot-florida-gator.png:0.33):0.16):0.08,
 mascot-georgia-tech-yellow-jacket.png:{mascot-georgia-tech-yellow-jacket}):0.02,
 mascot-tulane-green-wave.png:{mascot-tulane-green-wave}):0.01;
 """.format(**_extinct_lengths)
 _sec_tree = """
-(mascot-tulane-green-wave.png:{mascot-tulane-green-wave},(mascot-georgia-tech-yellow-jacket.png:{mascot-georgia-tech-yellow-jacket},(((((((((mascot-auburn-tiger.png:0.01,mascot-lsu-tiger.jpg:0.01):0.01,mascot-missouri-tiger.png:0.02):0.04,mascot-sewanee-tiger.jpg:{mascot-sewanee-tiger}):0.05,mascot-kentucky-wild-cat.jpg:0.11):0.11,
-((((mascot-georgia-bulldog.jpg:0.01,mascot-mississippi-state-bulldog.gif:0.01):0.03,mascot-texas-am-reveille.gif:0.04):0.06,mascot-tennessee-smokey.png:0.1):0.03,mascot-ole-miss-rebel-black-bear.jpg:0.13):0.09):0.005,
-mascot-arkansas-razorback.png:0.225):0.095,
-mascot-vanderbilt-commodore-cartoon.gif:0.32):0.025,
-mascot-alabama-big-al.gif:0.345):0.145,
-(mascot-sc-gamecock.png:0.12,mascot-florida-gator.png:0.12):0.37):0.08
+(mascot-tulane-green-wave.png:{mascot-tulane-green-wave},(mascot-georgia-tech-yellow-jacket.png:{mascot-georgia-tech-yellow-jacket},(((((((((mascot-auburn-tiger.png:0.03,mascot-lsu-tiger.jpg:0.03):0.04,mascot-missouri-tiger.png:0.07):0.12,mascot-sewanee-tiger.jpg:{mascot-sewanee-tiger}):0.13,mascot-kentucky-wild-cat.jpg:0.32):0.08,
+((((mascot-georgia-bulldog.jpg:0.01,mascot-mississippi-state-bulldog.gif:0.01):0.03,mascot-texas-am-reveille.gif:0.04):0.08,mascot-tennessee-smokey.png:0.12):0.22,mascot-ole-miss-rebel-black-bear.jpg:0.34):0.06):0.005,
+mascot-arkansas-razorback.png:0.405):0.045,
+mascot-vanderbilt-commodore-cartoon.gif:0.45):0.025,
+mascot-alabama-big-al.gif:0.475):0.015,
+(mascot-sc-gamecock.png:0.33,mascot-florida-gator.png:0.33):0.16):0.08
 ):0.02
 ):0.01;
 """.format(**_extinct_lengths)
+_sec_tree_shared = """
+(mascot-tulane-green-wave.png:{mascot-tulane-green-wave},(mascot-georgia-tech-yellow-jacket.png:{mascot-georgia-tech-yellow-jacket},(((((((((mascot-auburn-tiger.png:0.04,mascot-lsu-tiger.jpg:0.04):0.03,mascot-missouri-tiger.png:0.07):0.12,mascot-sewanee-tiger.jpg:{mascot-sewanee-tiger}):0.14,mascot-kentucky-wild-cat.jpg:0.33):0.07,
+((((mascot-georgia-bulldog.jpg:0.01,mascot-mississippi-state-bulldog.gif:0.01):0.03,mascot-texas-am-reveille.gif:0.04):0.08,mascot-tennessee-smokey.png:0.12):0.21,mascot-ole-miss-rebel-black-bear.jpg:0.33):0.07):0.005,
+mascot-arkansas-razorback.png:0.405):0.045,
+mascot-vanderbilt-commodore-cartoon.gif:0.45):0.025,
+mascot-alabama-big-al.gif:0.475):0.015,
+(mascot-sc-gamecock.png:0.33,mascot-florida-gator.png:0.33):0.16):0.08
+):0.02
+):0.01;
+""".format(**_extinct_lengths_shared)
 
 def get_image_path(leaf_name):
     return os.path.join(os.path.pardir, 'images', leaf_name)
