@@ -1,0 +1,191 @@
+%% This is a tikz file
+\tikzset{node lower left/.style={font=\scriptsize,anchor=north east,text height=0.192cm,text depth=0.055cm,inner sep=0.03cm},
+leaf/.style={font=\small,anchor=west,text height=0.240cm,text depth=0.068cm},
+node upper left/.style={font=\scriptsize,anchor=south east,text height=0.192cm,text depth=0.055cm,inner sep=0.03cm},
+bracket label/.style={font=\small,anchor=west,text height=0.240cm,text depth=0.068cm,inner sep=0.1cm},
+node upper right/.style={font=\scriptsize,anchor=south west,text height=0.192cm,text depth=0.055cm,inner sep=0.03cm},
+node right/.style={font=\scriptsize,anchor=west,text height=0.192cm,text depth=0.055cm,inner sep=0.03cm},
+branch/.style={font=\tiny,text height=0.144cm,text depth=0.041cm,inner sep=0.025cm},
+root/.style={font=\small,anchor=east,text height=0.240cm,text depth=0.068cm},
+node lower right/.style={font=\scriptsize,anchor=north west,text height=0.192cm,text depth=0.055cm,inner sep=0.03cm}}
+\begin{tikzpicture}[very thick,inner sep=0.1cm]
+% 1:\hspace{11mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-tulane-green-wave.png}
+% |
+% |3:\hspace{11mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-georgia-tech-yellow-jacket.png}
+% |
+% | 13:\hspace{9mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-auburn-tiger.png}
+% |+12
+% |114:\hspace{9mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-lsu-tiger.jpg}
+% ||
+% 0105:\hspace{9mm}\includegraphics[width=8mm,resolution=150]{../images/mascot-missouri-tiger.png}
+% ||
+% |96:\hspace{11mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-sewanee-tiger.jpg}
+% ||
+% |17:\hspace{9mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-kentucky-wild-cat.jpg}
+% ||
+% ||22:\hspace{9mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-georgia-bulldog.jpg}
+% 2821
+% |203:\hspace{9mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-mississippi-state-bulldog.png}
+% ||
+% |194:\hspace{9mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-texas-am-reveille.png}
+% ||
+% |18:\hspace{9mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-tennessee-smokey.png}
+% ||
+% |26:\hspace{9mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-ole-miss-rebel-black-bear.jpg}
+% |6
+% |27:\hspace{9mm}\includegraphics[width=8mm,resolution=150]{../images/mascot-arkansas-razorback.png}
+% 5|
+% |28:\hspace{9mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-vanderbilt-commodore-cartoon.png}
+% |
+% 429:\hspace{9mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-alabama-big-al.png}
+% |
+% |31:\hspace{9mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-sc-gamecock.png}
+% +30
+%  32:\hspace{9mm}\includegraphics[width=8mm,resolution=150]{../images/mascot-florida-gator.png}
+
+% The scale is 24.347458, and the yScale is 0.650000
+
+%% Coordinates of nodes.
+\draw [black!40,line width=10.0pt] (6.340,-0.500) -- (6.340,11.000);
+\draw [black!40,line width=10.0pt] (13.400,-0.500) -- (13.400,11.000);
+\draw [draw=none] (10.97, 9.75) node[circle, minimum width=10pt, draw=none, inner sep=0pt, path picture={\draw[red] (path picture bounding box.south east) -- (path picture bounding box.north west) (path picture bounding box.south west) -- (path picture bounding box.north east);}] {};
+\draw [draw=none] (6.34, 10.4) node[circle, minimum width=10pt, draw=none, inner sep=0pt, path picture={\draw[red] (path picture bounding box.south east) -- (path picture bounding box.north west) (path picture bounding box.south west) -- (path picture bounding box.north east);}] {};
+\draw [draw=none] (13.4, 7.15) node[circle, minimum width=10pt, draw=none, inner sep=0pt, path picture={\draw[red] (path picture bounding box.south east) -- (path picture bounding box.north west) (path picture bounding box.south west) -- (path picture bounding box.north east);}] {};
+\coordinate (n0) at (0.000,7.947);
+\coordinate (n1) at (6.330,10.400);
+\coordinate (n1p) at (0.000,10.400);
+\coordinate (n2) at (0.487,5.493);
+\coordinate (n2p) at (0.000,5.493);
+\coordinate (n3) at (10.956,9.750);
+\coordinate (n3p) at (0.487,9.750);
+\coordinate (n4) at (2.435,1.237);
+\coordinate (n4p) at (0.487,1.237);
+\coordinate (n5) at (2.800,2.148);
+\coordinate (n5p) at (2.435,2.148);
+\coordinate (n6) at (3.409,2.996);
+\coordinate (n6p) at (2.800,2.996);
+\coordinate (n7) at (4.504,4.042);
+\coordinate (n7p) at (3.409,4.042);
+\coordinate (n8) at (4.626,5.484);
+\coordinate (n8p) at (4.504,5.484);
+\coordinate (n9) at (6.330,7.109);
+\coordinate (n9p) at (4.626,7.109);
+\coordinate (n10) at (9.739,7.719);
+\coordinate (n10p) at (6.330,7.719);
+\coordinate (n11) at (12.661,8.287);
+\coordinate (n11p) at (9.739,8.287);
+\coordinate (n12) at (13.391,8.775);
+\coordinate (n12p) at (12.661,8.775);
+\coordinate (n13) at (14.365,9.100);
+\coordinate (n13p) at (13.391,9.100);
+\coordinate (n14) at (14.365,8.450);
+\coordinate (n14p) at (13.391,8.450);
+\coordinate (n15) at (14.365,7.800);
+\coordinate (n15p) at (12.661,7.800);
+\coordinate (n16) at (13.391,7.150);
+\coordinate (n16p) at (9.739,7.150);
+\coordinate (n17) at (14.365,6.500);
+\coordinate (n17p) at (6.330,6.500);
+\coordinate (n18) at (6.330,3.859);
+\coordinate (n18p) at (4.626,3.859);
+\coordinate (n19) at (11.443,4.469);
+\coordinate (n19p) at (6.330,4.469);
+\coordinate (n20) at (13.391,5.038);
+\coordinate (n20p) at (11.443,5.038);
+\coordinate (n21) at (14.122,5.525);
+\coordinate (n21p) at (13.391,5.525);
+\coordinate (n22) at (14.365,5.850);
+\coordinate (n22p) at (14.122,5.850);
+\coordinate (n23) at (14.365,5.200);
+\coordinate (n23p) at (14.122,5.200);
+\coordinate (n24) at (14.365,4.550);
+\coordinate (n24p) at (13.391,4.550);
+\coordinate (n25) at (14.365,3.900);
+\coordinate (n25p) at (11.443,3.900);
+\coordinate (n26) at (14.365,3.250);
+\coordinate (n26p) at (6.330,3.250);
+\coordinate (n27) at (14.365,2.600);
+\coordinate (n27p) at (4.504,2.600);
+\coordinate (n28) at (14.365,1.950);
+\coordinate (n28p) at (3.409,1.950);
+\coordinate (n29) at (14.365,1.300);
+\coordinate (n29p) at (2.800,1.300);
+\coordinate (n30) at (6.330,0.325);
+\coordinate (n30p) at (2.435,0.325);
+\coordinate (n31) at (14.365,0.650);
+\coordinate (n31p) at (6.330,0.650);
+\coordinate (n32) at (14.365,0.000);
+\coordinate (n32p) at (6.330,0.000);
+
+%% horizontal lines
+\draw (n1p) -- (n1);
+\draw (n2p) -- (n2);
+\draw (n3p) -- (n3);
+\draw (n4p) -- (n4);
+\draw (n5p) -- (n5);
+\draw (n6p) -- (n6);
+\draw (n7p) -- (n7);
+\draw (n8p) -- (n8);
+\draw (n9p) -- (n9);
+\draw (n10p) -- (n10);
+\draw (n11p) -- (n11);
+\draw (n12p) -- (n12);
+\draw (n13p) -- (n13);
+\draw (n14p) -- (n14);
+\draw (n15p) -- (n15);
+\draw (n16p) -- (n16);
+\draw (n17p) -- (n17);
+\draw (n18p) -- (n18);
+\draw (n19p) -- (n19);
+\draw (n20p) -- (n20);
+\draw (n21p) -- (n21);
+\draw (n22p) -- (n22);
+\draw (n23p) -- (n23);
+\draw (n24p) -- (n24);
+\draw (n25p) -- (n25);
+\draw (n26p) -- (n26);
+\draw (n27p) -- (n27);
+\draw (n28p) -- (n28);
+\draw (n29p) -- (n29);
+\draw (n30p) -- (n30);
+\draw (n31p) -- (n31);
+\draw (n32p) -- (n32);
+
+%% vertical lines
+\draw [line cap=rect] (n1p) -- (n2p);
+\draw [line cap=rect] (n3p) -- (n4p);
+\draw [line cap=rect] (n5p) -- (n30p);
+\draw [line cap=rect] (n6p) -- (n29p);
+\draw [line cap=rect] (n7p) -- (n28p);
+\draw [line cap=rect] (n8p) -- (n27p);
+\draw [line cap=rect] (n9p) -- (n18p);
+\draw [line cap=rect] (n10p) -- (n17p);
+\draw [line cap=rect] (n11p) -- (n16p);
+\draw [line cap=rect] (n12p) -- (n15p);
+\draw [line cap=rect] (n13p) -- (n14p);
+\draw [line cap=rect] (n19p) -- (n26p);
+\draw [line cap=rect] (n20p) -- (n25p);
+\draw [line cap=rect] (n21p) -- (n24p);
+\draw [line cap=rect] (n22p) -- (n23p);
+\draw [line cap=rect] (n31p) -- (n32p);
+
+%% leaf labels
+\node at (n1) {\hspace{11mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-tulane-green-wave.png}};
+\node at (n3) {\hspace{11mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-georgia-tech-yellow-jacket.png}};
+\node at (n13) {\hspace{9mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-auburn-tiger.png}};
+\node at (n14) {\hspace{9mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-lsu-tiger.jpg}};
+\node at (n15) {\hspace{9mm}\includegraphics[width=8mm,resolution=150]{../images/mascot-missouri-tiger.png}};
+\node at (n16) {\hspace{11mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-sewanee-tiger.jpg}};
+\node at (n17) {\hspace{9mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-kentucky-wild-cat.jpg}};
+\node at (n22) {\hspace{9mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-georgia-bulldog.jpg}};
+\node at (n23) {\hspace{9mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-mississippi-state-bulldog.png}};
+\node at (n24) {\hspace{9mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-texas-am-reveille.png}};
+\node at (n25) {\hspace{9mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-tennessee-smokey.png}};
+\node at (n26) {\hspace{9mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-ole-miss-rebel-black-bear.jpg}};
+\node at (n27) {\hspace{9mm}\includegraphics[width=8mm,resolution=150]{../images/mascot-arkansas-razorback.png}};
+\node at (n28) {\hspace{9mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-vanderbilt-commodore-cartoon.png}};
+\node at (n29) {\hspace{9mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-alabama-big-al.png}};
+\node at (n31) {\hspace{9mm}\includegraphics[height=6.5mm,resolution=150]{../images/mascot-sc-gamecock.png}};
+\node at (n32) {\hspace{9mm}\includegraphics[width=8mm,resolution=150]{../images/mascot-florida-gator.png}};
+
+\end{tikzpicture}

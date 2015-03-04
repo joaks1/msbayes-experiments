@@ -12,9 +12,9 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.4 r9939"
-   width="818.73645"
-   height="757.29004"
+   inkscape:version="0.48.5 r10040"
+   width="613.29169"
+   height="582.21533"
    sodipodi:docname="dmc-cartoon.svg">
   <metadata
      id="metadata8">
@@ -44,12 +44,12 @@
      id="namedview4"
      showgrid="false"
      inkscape:zoom="0.50000001"
-     inkscape:cx="423.91131"
-     inkscape:cy="358.47513"
-     inkscape:window-x="1366"
+     inkscape:cx="-41.339751"
+     inkscape:cy="183.40043"
+     inkscape:window-x="1368"
      inkscape:window-y="24"
      inkscape:window-maximized="0"
-     inkscape:current-layer="layer13"
+     inkscape:current-layer="g3413"
      fit-margin-top="1"
      fit-margin-left="1"
      fit-margin-right="1"
@@ -64,15 +64,15 @@
        visible="true"
        enabled="true"
        snapvisiblegridlinesonly="true"
-       originx="-161.56153px"
-       originy="100.82888px" />
+       originx="-171.8126px"
+       originy="-74.245819px" />
   </sodipodi:namedview>
   <g
      inkscape:groupmode="layer"
      id="layer13"
      inkscape:label="islands"
-     style="display:inline"
-     transform="translate(0,-1.0424806e-6)">
+     style="display:none"
+     transform="translate(-10.25107,-2.0849611e-6)">
     <image
        style="display:inline"
        y="174.95329"
@@ -87,7 +87,7 @@
      id="layer4"
      inkscape:label="community"
      style="display:none"
-     transform="translate(-161.56153,123.03762)">
+     transform="translate(-171.8126,123.03762)">
     <g
        id="g6416"
        transform="translate(-89.710146,8)">
@@ -124,7 +124,7 @@
      inkscape:label="community-split"
      id="g6420"
      inkscape:groupmode="layer"
-     transform="translate(-161.56153,123.03762)">
+     transform="translate(-171.8126,123.03762)">
     <path
        sodipodi:open="true"
        sodipodi:end="3.1415927"
@@ -157,7 +157,7 @@
      id="layer6"
      inkscape:label="barrier"
      style="display:none"
-     transform="translate(-161.56153,123.03762)">
+     transform="translate(-171.8126,123.03762)">
     <rect
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.84077597;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect6344"
@@ -168,7 +168,7 @@
   </g>
   <g
      style="display:none"
-     transform="translate(3.0942057,136.63137)"
+     transform="translate(-7.1568643,136.63137)"
      inkscape:label="div-time-line-general"
      id="g4070"
      inkscape:groupmode="layer">
@@ -190,9 +190,31 @@
   </g>
   <g
      inkscape:groupmode="layer"
+     id="g3423"
+     inkscape:label="short-div-time-line-general"
+     transform="translate(-7.1568643,136.63137)"
+     style="display:none">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:12, 12;stroke-dashoffset:0;display:inline"
+       d="m 375.34425,443.58397 0,-551.71097"
+       id="path3425"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:12, 12;stroke-dashoffset:0;display:inline"
+       d="m 118.4058,443.58397 0,-551.71097"
+       id="path3427"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:12, 12;stroke-dashoffset:0;display:inline"
+       d="m 246.34774,443.58397 0,-551.71097"
+       id="path3429"
+       inkscape:connector-curvature="0" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
      id="g4663"
      inkscape:label="div-time-line-2"
-     transform="translate(3.0942057,136.63137)"
+     transform="translate(-7.1568643,136.63137)"
      style="display:none">
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:12, 12;stroke-dashoffset:0;display:inline"
@@ -206,10 +228,27 @@
        inkscape:connector-curvature="0" />
   </g>
   <g
+     style="display:none"
+     transform="translate(-7.1568643,136.63137)"
+     inkscape:label="short-div-time-line-2"
+     id="g3417"
+     inkscape:groupmode="layer">
+    <path
+       inkscape:connector-curvature="0"
+       id="path3419"
+       d="m 375.43039,443.5843 0,-551.7113"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:12, 12;stroke-dashoffset:0;display:inline" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path3421"
+       d="m 118.31966,443.5843 0,-551.7113"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:12, 12;stroke-dashoffset:0;display:inline" />
+  </g>
+  <g
      inkscape:groupmode="layer"
      id="g4655"
      inkscape:label="div-time-line-shared"
-     transform="translate(3.0942057,136.63137)"
+     transform="translate(-7.1568643,136.63137)"
      style="display:none">
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:12, 12;stroke-dashoffset:0;display:inline"
@@ -219,7 +258,19 @@
   </g>
   <g
      style="display:inline"
-     transform="translate(3.0942057,136.63137)"
+     transform="translate(-7.1568643,136.63137)"
+     inkscape:label="short-div-time-line-shared"
+     id="g3413"
+     inkscape:groupmode="layer">
+    <path
+       inkscape:connector-curvature="0"
+       id="path3415"
+       d="m 375.34425,443.58426 0,-551.711"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:12, 12;stroke-dashoffset:0;display:inline" />
+  </g>
+  <g
+     style="display:none"
+     transform="translate(-7.1568643,136.63137)"
      inkscape:label="div-time-line-middle"
      id="g3620"
      inkscape:groupmode="layer">
@@ -231,7 +282,7 @@
   </g>
   <g
      style="display:none"
-     transform="translate(3.0942057,136.63137)"
+     transform="translate(-7.1568643,136.63137)"
      inkscape:label="div-time-parameters-general"
      id="g4099"
      inkscape:groupmode="layer">
@@ -285,8 +336,8 @@
      inkscape:groupmode="layer"
      id="g4633"
      inkscape:label="div-time-parameters-shared"
-     transform="translate(3.0942057,136.63137)"
-     style="display:none">
+     transform="translate(-7.1568643,136.63137)"
+     style="display:inline">
     <text
        inkscape:transform-center-y="-12.75"
        inkscape:transform-center-x="14.75"
@@ -306,8 +357,8 @@
            id="tspan4653">1</tspan></tspan></text>
   </g>
   <g
-     style="display:inline"
-     transform="translate(3.0942057,136.63137)"
+     style="display:none"
+     transform="translate(-7.1568643,136.63137)"
      inkscape:label="div-time-parameters-middle"
      id="g3610"
      inkscape:groupmode="layer">
@@ -333,7 +384,7 @@
      inkscape:groupmode="layer"
      id="g4611"
      inkscape:label="div-time-parameters-2"
-     transform="translate(3.0942057,136.63137)"
+     transform="translate(-7.1568643,136.63137)"
      style="display:none">
     <text
        xml:space="preserve"
@@ -372,7 +423,7 @@
      id="layer18"
      inkscape:label="div-times-shared"
      style="display:none"
-     transform="translate(1.0947057,96.218561)">
+     transform="translate(-9.1563643,96.21856)">
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
@@ -427,7 +478,7 @@
      id="g5975"
      inkscape:label="div-times-general"
      style="display:none"
-     transform="translate(1.0947057,96.218561)">
+     transform="translate(-9.1563643,96.21856)">
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
@@ -478,7 +529,7 @@
            id="tspan5999">3</tspan></tspan></text>
   </g>
   <g
-     transform="translate(1.0947057,96.218561)"
+     transform="translate(-9.1563643,96.21856)"
      style="display:none"
      inkscape:label="div-times-2-3"
      id="g3168"
@@ -533,7 +584,7 @@
            style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans">3</tspan></tspan></text>
   </g>
   <g
-     transform="translate(1.0947057,96.218561)"
+     transform="translate(-9.1563643,96.21856)"
      style="display:none"
      inkscape:label="div-times-2-2"
      id="g3142"
@@ -588,7 +639,7 @@
            style="font-size:14px;font-style:normal;baseline-shift:sub;-inkscape-font-specification:Sans">3</tspan></tspan></text>
   </g>
   <g
-     transform="translate(1.0947057,96.218561)"
+     transform="translate(-9.1563643,96.21856)"
      style="display:none"
      inkscape:label="div-times-2-1"
      id="g3116"
@@ -647,7 +698,7 @@
      id="layer17"
      inkscape:label="trees-shared"
      style="display:none"
-     transform="translate(1.0947057,96.218561)">
+     transform="translate(-9.1563643,96.21856)">
     <path
        inkscape:connector-curvature="0"
        id="path4068-3"
@@ -665,7 +716,7 @@
        style="fill:none;stroke:#000000;stroke-width:3.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4.0999999;stroke-opacity:1;stroke-dasharray:none;display:inline" />
   </g>
   <g
-     transform="translate(1.0947057,96.218561)"
+     transform="translate(-9.1563643,96.21856)"
      style="display:none"
      inkscape:label="trees-2-3"
      id="g3153"
@@ -687,7 +738,7 @@
        style="fill:none;stroke:#000000;stroke-width:3.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4.0999999;stroke-opacity:1;stroke-dasharray:none;display:inline" />
   </g>
   <g
-     transform="translate(1.0947057,96.218561)"
+     transform="translate(-9.1563643,96.21856)"
      style="display:none"
      inkscape:label="trees-2-2"
      id="g3130"
@@ -709,7 +760,7 @@
        style="fill:none;stroke:#000000;stroke-width:3.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4.0999999;stroke-opacity:1;stroke-dasharray:none;display:inline" />
   </g>
   <g
-     transform="translate(1.0947057,96.218561)"
+     transform="translate(-9.1563643,96.21856)"
      style="display:none"
      inkscape:label="trees-2-1"
      id="g3104"
@@ -731,7 +782,7 @@
        style="fill:none;stroke:#000000;stroke-width:3.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4.0999999;stroke-opacity:1;stroke-dasharray:none;display:inline" />
   </g>
   <g
-     transform="translate(1.0947057,96.218561)"
+     transform="translate(-9.1563643,96.21856)"
      style="display:none"
      inkscape:label="trees-general"
      id="g4062"
@@ -756,7 +807,7 @@
      inkscape:groupmode="layer"
      id="layer5"
      inkscape:label="phylopics"
-     transform="translate(-3.6085243,431.58513)"
+     transform="translate(-13.859594,431.58513)"
      style="display:none">
     <g
        id="g5649"
@@ -869,7 +920,7 @@
   </g>
   <g
      style="display:inline"
-     transform="translate(-3.6085243,431.58513)"
+     transform="translate(-13.859594,431.58513)"
      inkscape:label="phylopics-species-tree"
      id="g6001"
      inkscape:groupmode="layer">
@@ -1207,7 +1258,7 @@
     </g>
   </g>
   <g
-     transform="translate(-161.56153,123.03762)"
+     transform="translate(-171.8126,123.03762)"
      inkscape:groupmode="layer"
      id="g3358"
      inkscape:label="species-embedded-gene-tree"
@@ -1247,7 +1298,7 @@
      id="layer1"
      inkscape:label="species-phylogeny"
      style="display:none"
-     transform="translate(0.5571003,-3.1274416e-6)">
+     transform="translate(-9.6939697,-4.1699221e-6)">
     <path
        id="path3380"
        style="fill:#000000;fill-opacity:0.23529412;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.39215686;display:inline"
@@ -1259,8 +1310,8 @@
      inkscape:groupmode="layer"
      id="layer11"
      inkscape:label="species-trees-shared-middle"
-     style="display:inline"
-     transform="translate(0,26.347397)">
+     style="display:none"
+     transform="translate(-10.25107,26.347396)">
     <g
        id="g4837"
        transform="translate(288.63275,246.22493)">
@@ -1315,11 +1366,11 @@
     </g>
   </g>
   <g
-     style="display:none"
+     style="display:inline"
      inkscape:label="species-trees-shared"
      id="g5581"
      inkscape:groupmode="layer"
-     transform="translate(-161.56153,123.03762)">
+     transform="translate(-171.8126,123.03762)">
     <g
        transform="translate(-0.48122,-185.93226)"
        style="display:inline"
@@ -1374,7 +1425,7 @@
      inkscape:label="species-trees-general"
      id="g5849"
      inkscape:groupmode="layer"
-     transform="translate(-161.56153,123.03762)">
+     transform="translate(-171.8126,123.03762)">
     <g
        id="g4671">
       <path
@@ -1425,7 +1476,7 @@
      id="g5733"
      inkscape:label="species-trees-2-3"
      style="display:none"
-     transform="translate(-161.56153,123.03762)">
+     transform="translate(-171.8126,123.03762)">
     <g
        transform="translate(0.48932,371.69553)"
        style="display:inline"
@@ -1480,7 +1531,7 @@
      id="g5666"
      inkscape:label="species-trees-2-2"
      style="display:none"
-     transform="translate(-161.56153,123.03762)">
+     transform="translate(-171.8126,123.03762)">
     <g
        transform="translate(0.48932,185.84777)"
        style="display:inline"
@@ -1535,7 +1586,7 @@
      id="g5644"
      inkscape:label="species-trees-2-1"
      style="display:none"
-     transform="translate(-161.56153,123.03762)">
+     transform="translate(-171.8126,123.03762)">
     <g
        id="g5705">
       <path
@@ -1584,8 +1635,8 @@
     </g>
   </g>
   <g
-     transform="translate(1.0947057,96.218561)"
-     style="display:none"
+     transform="translate(-9.1563643,96.21856)"
+     style="display:inline"
      inkscape:label="pop-div-times-shared"
      id="g5555"
      inkscape:groupmode="layer">
@@ -1642,8 +1693,8 @@
      inkscape:groupmode="layer"
      id="g3624"
      inkscape:label="pop-div-times-middle"
-     style="display:inline"
-     transform="translate(1.0947057,96.218561)">
+     style="display:none"
+     transform="translate(-9.1563643,96.21856)">
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
@@ -1694,7 +1745,7 @@
            id="tspan3648">3</tspan></tspan></text>
   </g>
   <g
-     transform="translate(1.0947057,96.218561)"
+     transform="translate(-9.1563643,96.21856)"
      style="display:none"
      inkscape:label="pop-div-times-general"
      id="g5949"
@@ -1753,7 +1804,7 @@
      id="g5923"
      inkscape:label="pop-div-times-2-3"
      style="display:none"
-     transform="translate(1.0947057,96.218561)">
+     transform="translate(-9.1563643,96.21856)">
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
@@ -1808,7 +1859,7 @@
      id="g5897"
      inkscape:label="pop-div-times-2-2"
      style="display:none"
-     transform="translate(1.0947057,96.218561)">
+     transform="translate(-9.1563643,96.21856)">
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
@@ -1863,7 +1914,7 @@
      id="g5871"
      inkscape:label="pop-div-times-2-1"
      style="display:none"
-     transform="translate(1.0947057,96.218561)">
+     transform="translate(-9.1563643,96.21856)">
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
@@ -1917,8 +1968,8 @@
      inkscape:groupmode="layer"
      id="layer9"
      inkscape:label="sealevel"
-     style="display:inline"
-     transform="translate(0.5571003,-3.1274416e-6)">
+     style="display:none"
+     transform="translate(-9.6939697,-4.1699221e-6)">
     <text
        xml:space="preserve"
        style="font-size:14px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"

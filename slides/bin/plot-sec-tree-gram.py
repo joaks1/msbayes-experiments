@@ -63,7 +63,7 @@ def get_image_path(leaf_name):
     return os.path.join(os.path.pardir, 'images', leaf_name)
 
 def plot_tree(tree, base_name = 'tree', dir_name = 'gram', show_events = False):
-    read(_sec_tree_shared)
+    read(tree)
     print var.trees
     t = var.trees[-1]
     for n in t.iterNodes():
@@ -87,7 +87,7 @@ def plot_tree(tree, base_name = 'tree', dir_name = 'gram', show_events = False):
             node_name = n.name
             if node_name in _extinct_images:
                 lmargin += 2
-            n.name = r"\hspace{{{0}mm}}\includegraphics[{1}={2}mm,resolution=150]{{../{3}}}".format(
+            n.name = r"\hspace{{{0}mm}}\includegraphics[{1}={2}mm,resolution=150]{{{3}}}".format(
                     lmargin,
                     dimension_name,
                     dimension,
@@ -97,25 +97,36 @@ def plot_tree(tree, base_name = 'tree', dir_name = 'gram', show_events = False):
     tg.tgDefaultLineThickness = 'very thick'
     tg.baseName = base_name
     tg.dirName = dir_name
-    s = tg.code(r"""\draw [draw=none] (6.34, 10.4) node[circle, minimum width=10pt, draw=none, inner sep=0pt, path picture={\draw[red] (path picture bounding box.south east) -- (path picture bounding box.north west) (path picture bounding box.south west) -- (path picture bounding box.north east);}] {};""")
-    s = tg.code(r"""\draw [draw=none] (13.4, 7.15) node[circle, minimum width=10pt, draw=none, inner sep=0pt, path picture={\draw[red] (path picture bounding box.south east) -- (path picture bounding box.north west) (path picture bounding box.south west) -- (path picture bounding box.north east);}] {};""")
+    l1 = tg.gramLine(6.34,-0.5,6.34,11)
+    # l1.lineStyle = 'loosely dashed'
+    # l1.lineThickness = 'ultra thick'
+    l1.lineThickness = 10.0
+    l2 = tg.gramLine(13.4,-0.5,13.4,11)
+    # l2.lineStyle = 'loosely dashed'
+    # l2.lineThickness = 'ultra thick'
+    l2.lineThickness = 10.0
+    l1.colour = 'black!40'
+    l2.colour = 'black!40'
+    if not show_events:
+        # print dir(l1)
+        l1.colour = 'black!00'
+        l2.colour = 'black!00'
     s = tg.code(r"""\draw [draw=none] (10.97, 9.75) node[circle, minimum width=10pt, draw=none, inner sep=0pt, path picture={\draw[red] (path picture bounding box.south east) -- (path picture bounding box.north west) (path picture bounding box.south west) -- (path picture bounding box.north east);}] {};""")
-    if show_events:
-        l = tg.gramLine(6.34,-0.5,6.34,11)
-        # l.lineStyle = 'loosely dashed'
-        # l.lineThickness = 'ultra thick'
-        l.lineThickness = 10.0
-        l.colour = 'black!40'
-        l = tg.gramLine(13.4,-0.5,13.4,11)
-        # l.lineStyle = 'loosely dashed'
-        # l.lineThickness = 'ultra thick'
-        l.lineThickness = 10.0
-        l.colour = 'black!40'
+    if tree == _sec_tree:
+        s = tg.code(r"""\draw [draw=none] (7.08, 10.4) node[circle, minimum width=10pt, draw=none, inner sep=0pt, path picture={\draw[red] (path picture bounding box.south east) -- (path picture bounding box.north west) (path picture bounding box.south west) -- (path picture bounding box.north east);}] {};""")
+        s = tg.code(r"""\draw [draw=none] (13.17, 7.15) node[circle, minimum width=10pt, draw=none, inner sep=0pt, path picture={\draw[red] (path picture bounding box.south east) -- (path picture bounding box.north west) (path picture bounding box.south west) -- (path picture bounding box.north east);}] {};""")
+    else:
+        s = tg.code(r"""\draw [draw=none] (6.34, 10.4) node[circle, minimum width=10pt, draw=none, inner sep=0pt, path picture={\draw[red] (path picture bounding box.south east) -- (path picture bounding box.north west) (path picture bounding box.south west) -- (path picture bounding box.north east);}] {};""")
+        s = tg.code(r"""\draw [draw=none] (13.4, 7.15) node[circle, minimum width=10pt, draw=none, inner sep=0pt, path picture={\draw[red] (path picture bounding box.south east) -- (path picture bounding box.north west) (path picture bounding box.south west) -- (path picture bounding box.north east);}] {};""")
     tg.epdf()
 
 
 def main_cli():
-    out_dir = os.path.join(os.path.pardir, 'auburn', 'mascot-tree')
+    out_dir = os.path.join(os.path.pardir, 'mascot-tree')
+    plot_tree(_sec_tree,
+            base_name = 'mascot-tree',
+            dir_name = out_dir,
+            show_events = False)
     plot_tree(_sec_tree_shared,
             base_name = 'mascot-tree-shared',
             dir_name = out_dir,
