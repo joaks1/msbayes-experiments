@@ -16,6 +16,7 @@ def get_rejection_plot_3d(maximum = 1.0,
         observed = (0.5, 0.5, 0.5),
         nsamples = 0,
         show_rejected = True,
+        axis_labels = ('$S_1$', '$S_2$', '$S_3$'),
         rng = None):
     if not rng:
         rng = random.Random()
@@ -69,6 +70,9 @@ def get_rejection_plot_3d(maximum = 1.0,
                 zorder = 500,
                 )
     
+    ax.set_xlabel(axis_labels[0])
+    ax.set_ylabel(axis_labels[1])
+    ax.set_zlabel(axis_labels[2])
     return ax, fig
 
 def main_cli():

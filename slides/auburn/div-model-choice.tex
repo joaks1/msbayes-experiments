@@ -12,25 +12,31 @@
         \end{adjustwidth}
     \end{minipage}
 
-    \vspace{-2mm}
+    \vspace{-6mm}
 
-    \begin{minipage}[t][0.35\textheight][c]{1.1\linewidth}
-        \begin{adjustwidth}{-2.3em}{}
-        \includegraphics[height=2.0cm]{../images/dmc-cartoon-no-islands-no-sea-levels-shared.pdf}
-        \hspace{0.1mm}
-        \includegraphics[height=2.0cm]{../images/dmc-cartoon-no-islands-no-sea-levels-2-1.pdf}
-        \hspace{0.1mm}
-        \includegraphics[height=2.0cm]{../images/dmc-cartoon-no-islands-no-sea-levels-2-2.pdf}
-        \hspace{0.1mm}
-        \includegraphics[height=2.0cm]{../images/dmc-cartoon-no-islands-no-sea-levels-2-3.pdf}
-        \hspace{0.1mm}
-        \includegraphics[height=2.0cm]{../images/dmc-cartoon-no-islands-no-sea-levels-general.pdf}
+    \begin{minipage}[t][0.35\textheight][c]{1.2\linewidth}
+        \begin{adjustwidth}{-2.5em}{-2.5em}
+        \hspace{-7mm}
+        \includegraphics<1->[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-shared.pdf}
+        % \includegraphics<4->[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-pop-shared.pdf}
+        \hspace{5mm}
+        \includegraphics<1->[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-2-1.pdf}
+        % \includegraphics<4->[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-pop-2-1.pdf}
+        \hspace{0.2mm}
+        \includegraphics<1->[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-2-2.pdf}
+        % \includegraphics<4->[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-pop-2-2.pdf}
+        \hspace{0.2mm}
+        \includegraphics<1->[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-2-3.pdf}
+        % \includegraphics<4->[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-pop-2-3.pdf}
+        \hspace{0.2mm}
+        \includegraphics<1->[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-2-3.pdf}
+        % \includegraphics<4->[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-pop-2-3.pdf}
         \end{adjustwidth}
     \end{minipage}
 
-    \vspace{3.5mm}
+    \vspace{-1mm}
 
-    \begin{minipage}[t][0.35\textheight][t]{\linewidth}
+    \begin{minipage}[t][0.45\textheight][t]{\linewidth}
         \begin{uncoverenv}<2->
             \begin{center}
                 We want to infer \textcolor{blue}{\divModel{}} and
@@ -40,107 +46,106 @@
             \end{center}
         \end{uncoverenv}
 
-        % \vspace{1mm}
+        % \vspace{-6.5mm}
 
-        \begin{uncoverenv}<3->
+        \begin{adjustwidth}{.11\textwidth}{0em}
+        \hspace{0.5\textwidth}
+            \begin{onlyenv}<3>
+                \begin{description}
+                    \item[\ ] Gene trees
+                    \item[\allParameters{}] Substitution parameters
+                    \item[\ ] Demographic parameters
+                    % \item[\allParameters] $(\divTimeMapVector, \geneTreeVector,
+                    %     \hkyModelVector, \demographicParamVector)$
+                \end{description}
+            \end{onlyenv}
+        \end{adjustwidth}
+        % \[
+        %     p(\divTimeMapVector,
+        %       \divModel{i},
+        %       \allParameters{}
+        %       \given \alignmentVector)
+        %       =
+        %     \frac{
+        %         p(\alignmentVector \given
+        %           \divTimeMapVector,
+        %           \allParameters{},
+        %           \divModel{i})
+        %         p(\divTimeMapVector,
+        %           \allParameters{}
+        %           \given \divModel{i})
+        %         p(\divModel{i})
+        %         }{p(\alignmentVector)}
+        % \]
+        
+        \vspace{-7mm}
+        \begin{uncoverenv}<4->
             \begin{displaybox}[0.85\linewidth]
-                % \begin{minipage}[c][0.12\textheight][c]{\linewidth}
-
-                % \[
-                %     p(\divTimeMapVector,
-                %       \divModel{i},
-                %       \allParameters{}
-                %       \given \alignmentVector)
-                %       =
-                %     \frac{
-                %         p(\alignmentVector \given
-                %           \divTimeMapVector,
-                %           \allParameters{},
-                %           \divModel{i})
-                %         p(\divTimeMapVector,
-                %           \allParameters{}
-                %           \given \divModel{i})
-                %         p(\divModel{i})
-                %         }{p(\alignmentVector)}
-                % \]
-                % \vspace{-1mm}
-                % \end{minipage}
-                \begin{minipage}[c][0.1\textheight][c]{\linewidth}
-                    \begin{onlyenv}<3>
-
-                        \vspace{3.5mm}
-
-                        \[
-                            p(
+                \uncover<4->{
+                    \[
+                        p(
+                          \divTimeMapVector,
+                          \allParameters{}
+                          \given \alignmentVector, \divModel{i})
+                          =
+                        \frac{
+                            p(\alignmentVector \given
                               \divTimeMapVector,
-                              \allParameters{}
-                              \given \alignmentVector, \divModel{i})
-                              =
-                            \frac{
-                                p(\alignmentVector \given
-                                  \divTimeMapVector,
-                                  \allParameters{},
-                                  \divModel{i}
-                                  )
-                                  p(
-                                    \divTimeMapVector,
-                                    \allParameters{}
-                                    \given \divModel{i}
-                                    )
-                                }{p(\alignmentVector \given \divModel{i})}
-                        \]
-                    \end{onlyenv}
-                    \begin{onlyenv}<4>
+                              \allParameters{},
+                              \divModel{i}
+                              )
+                              p(
+                                \divTimeMapVector,
+                                \allParameters{}
+                                \given \divModel{i}
+                                )
+                            }{p(\alignmentVector \given \divModel{i})}
+                    \]
+                }
 
-                        \vspace{3.5mm}
+                \vspace{-8mm}
+                \uncover<5->{
+                    \[
+                        p(\alignmentVector \given \divModel{i}) =
+                        \int_{\divTimeMapVector} \int_{\allParameters{}}
+                        p(\alignmentVector \given \divTimeMapVector, \allParameters{}, \divModel{i})
+                        p(\divTimeMapVector, \allParameters{} \given \divModel{i})
+                        d\divTimeMapVector d\allParameters{}
+                    \]
+                }
 
-                        \[
-                            p(\divModel{i} \given \alignmentVector) =
-                            \frac{
-                                p(\alignmentVector \given \divModel{i})
-                                p(\divModel{i})
-                            }{
-                                \sum_{i} p(\alignmentVector \given \divModel{i})
-                                p(\divModel{i})
-                            }
-                        \]
-                    \end{onlyenv}
-                    \begin{onlyenv}<5->
-
-                        \vspace{2mm}
-
-                        \[
-                            p(\alignmentVector \given \divModel{i}) =
-                            \int_{\divTimeMapVector} \int_{\allParameters{}}
-                            p(\alignmentVector \given \divTimeMapVector, \allParameters{}, \divModel{i})
-                            p(\divTimeMapVector, \allParameters{} \given \divModel{i})
-                            d\divTimeMapVector d\allParameters{}
-                        \]
-                    \end{onlyenv}
-                    % \begin{onlyenv}<16>
-                    %     \vspace{-2mm}
-                    %     \begin{center}
-                    %     \msb: Approximate Bayesian computation (ABC)
-                    %     \end{center}
-                    % \end{onlyenv}
-                \end{minipage}
+                \vspace{-6mm}
+                \uncover<6->{
+                    \[
+                        p(\divModel{i} \given \alignmentVector) =
+                        \frac{
+                            p(\alignmentVector \given \divModel{i})
+                            p(\divModel{i})
+                        }{
+                            \sum_{i} p(\alignmentVector \given \divModel{i})
+                            p(\divModel{i})
+                        }
+                    \]
+                }
+                \vspace{-3mm}
             \end{displaybox}
         \end{uncoverenv}
-
-        \vspace{-1mm}
-
-        \begin{uncoverenv}<6->
-            \begin{center}
-                \begin{itemize}
-                    \small
-                    \item Dirichlet-process prior (DPP) over all possible divergence
-                        models
-                    % \item<2-> Flexible priors on continuous parameters to avoid strongly
-                    %     weighted posteriors
-                    \item Multi-processing interface to accommodate genomic datasets
-                \end{itemize}
-            \end{center}
-        \end{uncoverenv}
     \end{minipage}
+
+        % \vspace{-1mm}
+
+        % \begin{uncoverenv}<6->
+        %     \begin{center}
+        %         \begin{itemize}
+        %             \small
+        %             \item Dirichlet-process prior (DPP) over all possible divergence
+        %                 models
+        %             % \item<2-> Flexible priors on continuous parameters to avoid strongly
+        %             %     weighted posteriors
+        %             \item Multi-processing interface to accommodate genomic datasets
+        %         \end{itemize}
+        %     \end{center}
+        % \end{uncoverenv}
+    % \end{minipage}
 \end{frame}
 
