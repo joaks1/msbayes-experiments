@@ -10,6 +10,7 @@ else
     base_dir="`pwd`"
 fi
 
+curl -o peter-dirichlet.jpg http://upload.wikimedia.org/wikipedia/commons/3/32/Peter_Gustav_Lejeune_Dirichlet.jpg
 curl -o darwin-tol-copyright-boris-kulikov-2007.jpg http://www.boriskulikov.com/images/DarwinTreeOfLife-%20L.jpg
 curl -o kane.jpg http://uwberg.com/wp-content/uploads/2014/05/berg-hero.jpg
 curl -o mascot-tulane-green-wave.png http://upload.wikimedia.org/wikipedia/en/9/9e/TulaneGreenWave.png

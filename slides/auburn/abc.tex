@@ -1,60 +1,288 @@
-\begin{frame}
-\newcommand{\matrixonebottom}{6.0}
-\newcommand{\matrixtwobottom}{3.0}
-\newcommand{\matrixthreebottom}{0.0}
-\newcommand{\matrixspace}{0.285}
-% \begin{picture}(300,200)(0,0)
-    % \put(0,-34){
-\begin{center}
-\begin{tikzpicture}[shorten >=1pt,node distance=2.2cm,on grid,auto]
-	\node [visible on=<1->] at (0,\matrixonebottom+\matrixspace*9) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-1a.pdf}}};
-	\node [visible on=<1->] at (0,\matrixonebottom+\matrixspace*8) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-1a.pdf}}};
-	\node [visible on=<1->] at (0,\matrixonebottom+\matrixspace*7) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-1a.pdf}}};
-	\node [visible on=<1->] at (0,\matrixonebottom+\matrixspace*6) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-1a.pdf}}};
-	\node [visible on=<1->] at (0,\matrixonebottom+\matrixspace*5) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-1a.pdf}}};
-	\node [visible on=<1->] at (0,\matrixonebottom+\matrixspace*4) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-1b.pdf}}};
-	\node [visible on=<1->] at (0,\matrixonebottom+\matrixspace*3) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-1b.pdf}}};
-	\node [visible on=<1->] at (0,\matrixonebottom+\matrixspace*2) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-1b.pdf}}};
-	\node [visible on=<1->] at (0,\matrixonebottom+\matrixspace*1) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-1b.pdf}}};
-	\node [visible on=<1->] at (0,\matrixonebottom+\matrixspace*0) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-1b.pdf}}};
+\tikzstyle{nAfill} = [fill=purple!25]
+\tikzstyle{nCfill} = [fill=green!25]
+\tikzstyle{nGfill} = [fill=orange!25]
+\tikzstyle{nTfill} = [fill=blue!25]
+\tikzstyle{nucA} = [draw=black, nAfill,
+    minimum width=2.3ex, minimum height=2.3ex, node distance=2.3ex]
+\tikzstyle{space} = [
+    minimum width=2.3ex, minimum height=2.3ex, node distance=2.3ex]
+\tikzstyle{lizard} = [
+    minimum width=0ex, minimum height=0ex, node distance=0ex]
+\tikzstyle{nucC} = [nucA, nCfill]
+\tikzstyle{nucG} = [nucA, nGfill]
+\tikzstyle{nucT} = [nucA, nTfill]
 
-	\node [visible on=<1->] at (0,\matrixtwobottom+\matrixspace*9) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-2a.pdf}}};
-	\node [visible on=<1->] at (0,\matrixtwobottom+\matrixspace*8) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-2a.pdf}}};
-	\node [visible on=<1->] at (0,\matrixtwobottom+\matrixspace*7) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-2a.pdf}}};
-	\node [visible on=<1->] at (0,\matrixtwobottom+\matrixspace*6) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-2a.pdf}}};
-	\node [visible on=<1->] at (0,\matrixtwobottom+\matrixspace*5) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-2a.pdf}}};
-	\node [visible on=<1->] at (0,\matrixtwobottom+\matrixspace*4) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-2b.pdf}}};
-	\node [visible on=<1->] at (0,\matrixtwobottom+\matrixspace*3) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-2b.pdf}}};
-	\node [visible on=<1->] at (0,\matrixtwobottom+\matrixspace*2) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-2b.pdf}}};
-	\node [visible on=<1->] at (0,\matrixtwobottom+\matrixspace*1) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-2b.pdf}}};
-	\node [visible on=<1->] at (0,\matrixtwobottom+\matrixspace*0) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-2b.pdf}}};
+\begin{frame}[t]
+    % \frametitle{Easy as ABC}
+    \begin{columns}
+        \column{0.2\textwidth}
+        \includegraphics<1->[width=1.0\columnwidth]{../images/dmc-cartoon-islands-crop.pdf}
+        \column{0.8\textwidth}
+    \begin{center}
+    \begin{tikzpicture}[font=\sffamily]
 
-	\node [visible on=<1->] at (0,\matrixthreebottom+\matrixspace*9) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-3a.pdf}}};
-	\node [visible on=<1->] at (0,\matrixthreebottom+\matrixspace*8) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-3a.pdf}}};
-	\node [visible on=<1->] at (0,\matrixthreebottom+\matrixspace*7) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-3a.pdf}}};
-	\node [visible on=<1->] at (0,\matrixthreebottom+\matrixspace*6) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-3a.pdf}}};
-	\node [visible on=<1->] at (0,\matrixthreebottom+\matrixspace*5) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-3a.pdf}}};
-	\node [visible on=<1->] at (0,\matrixthreebottom+\matrixspace*4) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-3b.pdf}}};
-	\node [visible on=<1->] at (0,\matrixthreebottom+\matrixspace*3) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-3b.pdf}}};
-	\node [visible on=<1->] at (0,\matrixthreebottom+\matrixspace*2) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-3b.pdf}}};
-	\node [visible on=<1->] at (0,\matrixthreebottom+\matrixspace*1) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-3b.pdf}}};
-	\node [visible on=<1->] at (0,\matrixthreebottom+\matrixspace*0) (l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-3b.pdf}}};
-	\node [visible on=<2->] at (2.6,1.3) (m3) {\pgftext{\includegraphics[height=28mm]{../images/colormat1.pdf}}};
-	\node [visible on=<2->] at (2.6,4.3) (m2) {\pgftext{\includegraphics[height=28mm]{../images/colormat2.pdf}}};
-	\node [visible on=<2->] at (2.6,7.3) (m1) {\pgftext{\includegraphics[height=28mm]{../images/colormat3.pdf}}};
+        \node[visible on=<2->, name=m1r01c01, nucA] {\nA};
+        \node[visible on=<2->, name=m1r02c01, nucA, below of=m1r01c01] {\nA};
+        \node[visible on=<2->, name=m1r03c01, nucA, below of=m1r02c01] {\nA};
+        \node[visible on=<2->, name=m1r04c01, nucG, below of=m1r03c01] {\nG};
+        \node[visible on=<2->, name=m1r05c01, nucG, below of=m1r04c01] {\nG};
+        \node[visible on=<2->, name=m1r06c01, nucG, below of=m1r05c01] {\nG};
 
-    \node[visible on=<3->] at (8, 7.3) (s1) {$S_1$};
-    \node[visible on=<3->] at (8, 4.3) (s2) {$S_2$};
-    \node[visible on=<3->] at (8, 1.3) (s3) {$S_3$};
+        \node[visible on=<2->, name=m1r01c02, nucC, right of=m1r01c01] {\nC};
+        \node[visible on=<2->, name=m1r02c02, nucC, below of=m1r01c02] {\nC};
+        \node[visible on=<2->, name=m1r03c02, nucC, below of=m1r02c02] {\nC};
+        \node[visible on=<2->, name=m1r04c02, nucC, below of=m1r03c02] {\nC};
+        \node[visible on=<2->, name=m1r05c02, nucC, below of=m1r04c02] {\nC};
+        \node[visible on=<2->, name=m1r06c02, nucC, below of=m1r05c02] {\nC};
 
-    \path[->] (5.2,7.3) edge [visible on=<3->,very thick, bend left] (s1);
-    \path[->] (5.2,4.3) edge [visible on=<3->,very thick, bend left] (s2);
-    \path[->] (5.2,1.3) edge [visible on=<3->,very thick, bend left] (s3);
+        \node[visible on=<2->, name=m1r01c03, nucG, right of=m1r01c02] {\nG};
+        \node[visible on=<2->, name=m1r02c03, nucG, below of=m1r01c03] {\nG};
+        \node[visible on=<2->, name=m1r03c03, nucG, below of=m1r02c03] {\nG};
+        \node[visible on=<2->, name=m1r04c03, nucG, below of=m1r03c03] {\nG};
+        \node[visible on=<2->, name=m1r05c03, nucG, below of=m1r04c03] {\nG};
+        \node[visible on=<2->, name=m1r06c03, nucG, below of=m1r05c03] {\nG};
 
-\end{tikzpicture}
-\end{center}
-    % }
-% \end{picture}
+        \node[visible on=<2->, name=m1r01c04, nucA, right of=m1r01c03] {\nA};
+        \node[visible on=<2->, name=m1r02c04, nucA, below of=m1r01c04] {\nA};
+        \node[visible on=<2->, name=m1r03c04, nucA, below of=m1r02c04] {\nA};
+        \node[visible on=<2->, name=m1r04c04, nucA, below of=m1r03c04] {\nA};
+        \node[visible on=<2->, name=m1r05c04, nucA, below of=m1r04c04] {\nA};
+        \node[visible on=<2->, name=m1r06c04, nucT, below of=m1r05c04] {\nT};
+
+        \node[visible on=<2->, name=m1r01c05, nucA, right of=m1r01c04] {\nA};
+        \node[visible on=<2->, name=m1r02c05, nucA, below of=m1r01c05] {\nA};
+        \node[visible on=<2->, name=m1r03c05, nucA, below of=m1r02c05] {\nA};
+        \node[visible on=<2->, name=m1r04c05, nucA, below of=m1r03c05] {\nA};
+        \node[visible on=<2->, name=m1r05c05, nucA, below of=m1r04c05] {\nA};
+        \node[visible on=<2->, name=m1r06c05, nucA, below of=m1r05c05] {\nA};
+
+        \node[visible on=<2->, name=m1r01c06, nucT, right of=m1r01c05] {\nT};
+        \node[visible on=<2->, name=m1r02c06, nucT, below of=m1r01c06] {\nT};
+        \node[visible on=<2->, name=m1r03c06, nucC, below of=m1r02c06] {\nC};
+        \node[visible on=<2->, name=m1r04c06, nucC, below of=m1r03c06] {\nC};
+        \node[visible on=<2->, name=m1r05c06, nucC, below of=m1r04c06] {\nC};
+        \node[visible on=<2->, name=m1r06c06, nucC, below of=m1r05c06] {\nC};
+
+        \node[visible on=<2->, name=m1r01c07, nucG, right of=m1r01c06] {\nG};
+        \node[visible on=<2->, name=m1r02c07, nucG, below of=m1r01c07] {\nG};
+        \node[visible on=<2->, name=m1r03c07, nucG, below of=m1r02c07] {\nG};
+        \node[visible on=<2->, name=m1r04c07, nucG, below of=m1r03c07] {\nG};
+        \node[visible on=<2->, name=m1r05c07, nucG, below of=m1r04c07] {\nG};
+        \node[visible on=<2->, name=m1r06c07, nucG, below of=m1r05c07] {\nG};
+
+        \node[visible on=<2->, name=m1r01c08, nucT, right of=m1r01c07] {\nT};
+        \node[visible on=<2->, name=m1r02c08, nucT, below of=m1r01c08] {\nT};
+        \node[visible on=<2->, name=m1r03c08, nucT, below of=m1r02c08] {\nT};
+        \node[visible on=<2->, name=m1r04c08, nucT, below of=m1r03c08] {\nT};
+        \node[visible on=<2->, name=m1r05c08, nucT, below of=m1r04c08] {\nT};
+        \node[visible on=<2->, name=m1r06c08, nucT, below of=m1r05c08] {\nT};
+
+        \node[visible on=<2->, name=m1r01c09, nucG, right of=m1r01c08] {\nG};
+        \node[visible on=<2->, name=m1r02c09, nucG, below of=m1r01c09] {\nG};
+        \node[visible on=<2->, name=m1r03c09, nucG, below of=m1r02c09] {\nG};
+        \node[visible on=<2->, name=m1r04c09, nucG, below of=m1r03c09] {\nG};
+        \node[visible on=<2->, name=m1r05c09, nucG, below of=m1r04c09] {\nG};
+        \node[visible on=<2->, name=m1r06c09, nucG, below of=m1r05c09] {\nG};
+
+        \node[visible on=<2->, name=m1r01c10, nucC, right of=m1r01c09] {\nC};
+        \node[visible on=<2->, name=m1r02c10, nucC, below of=m1r01c10] {\nC};
+        \node[visible on=<2->, name=m1r03c10, nucC, below of=m1r02c10] {\nC};
+        \node[visible on=<2->, name=m1r04c10, nucT, below of=m1r03c10] {\nT};
+        \node[visible on=<2->, name=m1r05c10, nucT, below of=m1r04c10] {\nT};
+        \node[visible on=<2->, name=m1r06c10, nucT, below of=m1r05c10] {\nT};
+
+        \node[visible on=<2->, name=vspace1, space, below of=m1r06c01] {};
+
+        \node[visible on=<2->, name=m2r01c01, nucT, below of=vspace1] {\nT};
+        \node[visible on=<2->, name=m2r02c01, nucT, below of=m2r01c01] {\nT};
+        \node[visible on=<2->, name=m2r03c01, nucT, below of=m2r02c01] {\nT};
+        \node[visible on=<2->, name=m2r04c01, nucC, below of=m2r03c01] {\nC};
+        \node[visible on=<2->, name=m2r05c01, nucC, below of=m2r04c01] {\nC};
+        \node[visible on=<2->, name=m2r06c01, nucC, below of=m2r05c01] {\nC};
+
+        \node[visible on=<2->, name=m2r01c02, nucC, right of=m2r01c01] {\nC};
+        \node[visible on=<2->, name=m2r02c02, nucC, below of=m2r01c02] {\nC};
+        \node[visible on=<2->, name=m2r03c02, nucC, below of=m2r02c02] {\nC};
+        \node[visible on=<2->, name=m2r04c02, nucC, below of=m2r03c02] {\nC};
+        \node[visible on=<2->, name=m2r05c02, nucC, below of=m2r04c02] {\nC};
+        \node[visible on=<2->, name=m2r06c02, nucC, below of=m2r05c02] {\nC};
+
+        \node[visible on=<2->, name=m2r01c03, nucG, right of=m2r01c02] {\nG};
+        \node[visible on=<2->, name=m2r02c03, nucG, below of=m2r01c03] {\nG};
+        \node[visible on=<2->, name=m2r03c03, nucG, below of=m2r02c03] {\nG};
+        \node[visible on=<2->, name=m2r04c03, nucG, below of=m2r03c03] {\nG};
+        \node[visible on=<2->, name=m2r05c03, nucG, below of=m2r04c03] {\nG};
+        \node[visible on=<2->, name=m2r06c03, nucG, below of=m2r05c03] {\nG};
+
+        \node[visible on=<2->, name=m2r01c04, nucC, right of=m2r01c03] {\nC};
+        \node[visible on=<2->, name=m2r02c04, nucC, below of=m2r01c04] {\nC};
+        \node[visible on=<2->, name=m2r03c04, nucT, below of=m2r02c04] {\nT};
+        \node[visible on=<2->, name=m2r04c04, nucT, below of=m2r03c04] {\nT};
+        \node[visible on=<2->, name=m2r05c04, nucT, below of=m2r04c04] {\nT};
+        \node[visible on=<2->, name=m2r06c04, nucT, below of=m2r05c04] {\nT};
+
+        \node[visible on=<2->, name=m2r01c05, nucA, right of=m2r01c04] {\nA};
+        \node[visible on=<2->, name=m2r02c05, nucA, below of=m2r01c05] {\nA};
+        \node[visible on=<2->, name=m2r03c05, nucA, below of=m2r02c05] {\nA};
+        \node[visible on=<2->, name=m2r04c05, nucA, below of=m2r03c05] {\nA};
+        \node[visible on=<2->, name=m2r05c05, nucA, below of=m2r04c05] {\nA};
+        \node[visible on=<2->, name=m2r06c05, nucA, below of=m2r05c05] {\nA};
+
+        \node[visible on=<2->, name=m2r01c06, nucC, right of=m2r01c05] {\nC};
+        \node[visible on=<2->, name=m2r02c06, nucC, below of=m2r01c06] {\nC};
+        \node[visible on=<2->, name=m2r03c06, nucC, below of=m2r02c06] {\nC};
+        \node[visible on=<2->, name=m2r04c06, nucC, below of=m2r03c06] {\nC};
+        \node[visible on=<2->, name=m2r05c06, nucC, below of=m2r04c06] {\nC};
+        \node[visible on=<2->, name=m2r06c06, nucC, below of=m2r05c06] {\nC};
+
+        \node[visible on=<2->, name=m2r01c07, nucG, right of=m2r01c06] {\nG};
+        \node[visible on=<2->, name=m2r02c07, nucG, below of=m2r01c07] {\nG};
+        \node[visible on=<2->, name=m2r03c07, nucG, below of=m2r02c07] {\nG};
+        \node[visible on=<2->, name=m2r04c07, nucG, below of=m2r03c07] {\nG};
+        \node[visible on=<2->, name=m2r05c07, nucG, below of=m2r04c07] {\nG};
+        \node[visible on=<2->, name=m2r06c07, nucG, below of=m2r05c07] {\nG};
+
+        \node[visible on=<2->, name=m2r01c08, nucT, right of=m2r01c07] {\nT};
+        \node[visible on=<2->, name=m2r02c08, nucT, below of=m2r01c08] {\nT};
+        \node[visible on=<2->, name=m2r03c08, nucT, below of=m2r02c08] {\nT};
+        \node[visible on=<2->, name=m2r04c08, nucT, below of=m2r03c08] {\nT};
+        \node[visible on=<2->, name=m2r05c08, nucT, below of=m2r04c08] {\nT};
+        \node[visible on=<2->, name=m2r06c08, nucT, below of=m2r05c08] {\nT};
+
+        \node[visible on=<2->, name=m2r01c09, nucA, right of=m2r01c08] {\nA};
+        \node[visible on=<2->, name=m2r02c09, nucA, below of=m2r01c09] {\nA};
+        \node[visible on=<2->, name=m2r03c09, nucA, below of=m2r02c09] {\nA};
+        \node[visible on=<2->, name=m2r04c09, nucG, below of=m2r03c09] {\nG};
+        \node[visible on=<2->, name=m2r05c09, nucG, below of=m2r04c09] {\nG};
+        \node[visible on=<2->, name=m2r06c09, nucG, below of=m2r05c09] {\nG};
+
+        \node[visible on=<2->, name=m2r01c10, nucC, right of=m2r01c09] {\nC};
+        \node[visible on=<2->, name=m2r02c10, nucC, below of=m2r01c10] {\nC};
+        \node[visible on=<2->, name=m2r03c10, nucC, below of=m2r02c10] {\nC};
+        \node[visible on=<2->, name=m2r04c10, nucC, below of=m2r03c10] {\nC};
+        \node[visible on=<2->, name=m2r05c10, nucC, below of=m2r04c10] {\nC};
+        \node[visible on=<2->, name=m2r06c10, nucC, below of=m2r05c10] {\nC};
+
+        \node[visible on=<2->, name=vspace2, space, below of=m2r06c01] {};
+
+        \node[visible on=<2->, name=m3r01c01, nucC, below of=vspace2] {\nC};
+        \node[visible on=<2->, name=m3r02c01, nucC, below of=m3r01c01] {\nC};
+        \node[visible on=<2->, name=m3r03c01, nucC, below of=m3r02c01] {\nC};
+        \node[visible on=<2->, name=m3r04c01, nucC, below of=m3r03c01] {\nC};
+        \node[visible on=<2->, name=m3r05c01, nucC, below of=m3r04c01] {\nC};
+        \node[visible on=<2->, name=m3r06c01, nucC, below of=m3r05c01] {\nC};
+
+        \node[visible on=<2->, name=m3r01c02, nucA, right of=m3r01c01] {\nA};
+        \node[visible on=<2->, name=m3r02c02, nucA, below of=m3r01c02] {\nA};
+        \node[visible on=<2->, name=m3r03c02, nucA, below of=m3r02c02] {\nA};
+        \node[visible on=<2->, name=m3r04c02, nucT, below of=m3r03c02] {\nT};
+        \node[visible on=<2->, name=m3r05c02, nucT, below of=m3r04c02] {\nT};
+        \node[visible on=<2->, name=m3r06c02, nucT, below of=m3r05c02] {\nT};
+
+        \node[visible on=<2->, name=m3r01c03, nucG, right of=m3r01c02] {\nG};
+        \node[visible on=<2->, name=m3r02c03, nucG, below of=m3r01c03] {\nG};
+        \node[visible on=<2->, name=m3r03c03, nucG, below of=m3r02c03] {\nG};
+        \node[visible on=<2->, name=m3r04c03, nucG, below of=m3r03c03] {\nG};
+        \node[visible on=<2->, name=m3r05c03, nucG, below of=m3r04c03] {\nG};
+        \node[visible on=<2->, name=m3r06c03, nucG, below of=m3r05c03] {\nG};
+
+        \node[visible on=<2->, name=m3r01c04, nucT, right of=m3r01c03] {\nT};
+        \node[visible on=<2->, name=m3r02c04, nucT, below of=m3r01c04] {\nT};
+        \node[visible on=<2->, name=m3r03c04, nucT, below of=m3r02c04] {\nT};
+        \node[visible on=<2->, name=m3r04c04, nucT, below of=m3r03c04] {\nT};
+        \node[visible on=<2->, name=m3r05c04, nucC, below of=m3r04c04] {\nC};
+        \node[visible on=<2->, name=m3r06c04, nucC, below of=m3r05c04] {\nC};
+
+        \node[visible on=<2->, name=m3r01c05, nucA, right of=m3r01c04] {\nA};
+        \node[visible on=<2->, name=m3r02c05, nucA, below of=m3r01c05] {\nA};
+        \node[visible on=<2->, name=m3r03c05, nucA, below of=m3r02c05] {\nA};
+        \node[visible on=<2->, name=m3r04c05, nucA, below of=m3r03c05] {\nA};
+        \node[visible on=<2->, name=m3r05c05, nucA, below of=m3r04c05] {\nA};
+        \node[visible on=<2->, name=m3r06c05, nucA, below of=m3r05c05] {\nA};
+
+        \node[visible on=<2->, name=m3r01c06, nucC, right of=m3r01c05] {\nC};
+        \node[visible on=<2->, name=m3r02c06, nucC, below of=m3r01c06] {\nC};
+        \node[visible on=<2->, name=m3r03c06, nucC, below of=m3r02c06] {\nC};
+        \node[visible on=<2->, name=m3r04c06, nucC, below of=m3r03c06] {\nC};
+        \node[visible on=<2->, name=m3r05c06, nucC, below of=m3r04c06] {\nC};
+        \node[visible on=<2->, name=m3r06c06, nucC, below of=m3r05c06] {\nC};
+
+        \node[visible on=<2->, name=m3r01c07, nucC, right of=m3r01c06] {\nC};
+        \node[visible on=<2->, name=m3r02c07, nucC, below of=m3r01c07] {\nC};
+        \node[visible on=<2->, name=m3r03c07, nucC, below of=m3r02c07] {\nC};
+        \node[visible on=<2->, name=m3r04c07, nucT, below of=m3r03c07] {\nT};
+        \node[visible on=<2->, name=m3r05c07, nucT, below of=m3r04c07] {\nT};
+        \node[visible on=<2->, name=m3r06c07, nucT, below of=m3r05c07] {\nT};
+
+        \node[visible on=<2->, name=m3r01c08, nucG, right of=m3r01c07] {\nG};
+        \node[visible on=<2->, name=m3r02c08, nucG, below of=m3r01c08] {\nG};
+        \node[visible on=<2->, name=m3r03c08, nucG, below of=m3r02c08] {\nG};
+        \node[visible on=<2->, name=m3r04c08, nucG, below of=m3r03c08] {\nG};
+        \node[visible on=<2->, name=m3r05c08, nucG, below of=m3r04c08] {\nG};
+        \node[visible on=<2->, name=m3r06c08, nucG, below of=m3r05c08] {\nG};
+
+        \node[visible on=<2->, name=m3r01c09, nucG, right of=m3r01c08] {\nG};
+        \node[visible on=<2->, name=m3r02c09, nucG, below of=m3r01c09] {\nG};
+        \node[visible on=<2->, name=m3r03c09, nucG, below of=m3r02c09] {\nG};
+        \node[visible on=<2->, name=m3r04c09, nucG, below of=m3r03c09] {\nG};
+        \node[visible on=<2->, name=m3r05c09, nucG, below of=m3r04c09] {\nG};
+        \node[visible on=<2->, name=m3r06c09, nucG, below of=m3r05c09] {\nG};
+
+        \node[visible on=<2->, name=m3r01c10, nucT, right of=m3r01c09] {\nT};
+        \node[visible on=<2->, name=m3r02c10, nucT, below of=m3r01c10] {\nT};
+        \node[visible on=<2->, name=m3r03c10, nucT, below of=m3r02c10] {\nT};
+        \node[visible on=<2->, name=m3r04c10, nucT, below of=m3r03c10] {\nT};
+        \node[visible on=<2->, name=m3r05c10, nucT, below of=m3r04c10] {\nT};
+        \node[visible on=<2->, name=m3r06c10, nucT, below of=m3r05c10] {\nT};
+
+	    \node [visible on=<1->, left of=m1r01c01] (s1l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-1a.pdf}}};
+	    \node [visible on=<1->, left of=m1r02c01] (s1l2a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-1a.pdf}}};
+	    \node [visible on=<1->, left of=m1r03c01] (s1l3a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-1a.pdf}}};
+	    \node [visible on=<1->, left of=m1r04c01] (s1l1b) {\pgftext{\includegraphics[height=3mm]{../images/lizard-1b.pdf}}};
+	    \node [visible on=<1->, left of=m1r05c01] (s1l2b) {\pgftext{\includegraphics[height=3mm]{../images/lizard-1b.pdf}}};
+	    \node [visible on=<1->, left of=m1r06c01] (s1l3b) {\pgftext{\includegraphics[height=3mm]{../images/lizard-1b.pdf}}};
+
+	    \node [visible on=<1->, left of=m2r01c01] (s2l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-2a.pdf}}};
+	    \node [visible on=<1->, left of=m2r02c01] (s2l2a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-2a.pdf}}};
+	    \node [visible on=<1->, left of=m2r03c01] (s2l3a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-2a.pdf}}};
+	    \node [visible on=<1->, left of=m2r04c01] (s2l1b) {\pgftext{\includegraphics[height=3mm]{../images/lizard-2b.pdf}}};
+	    \node [visible on=<1->, left of=m2r05c01] (s2l2b) {\pgftext{\includegraphics[height=3mm]{../images/lizard-2b.pdf}}};
+	    \node [visible on=<1->, left of=m2r06c01] (s2l3b) {\pgftext{\includegraphics[height=3mm]{../images/lizard-2b.pdf}}};
+
+	    \node [visible on=<1->, left of=m3r01c01] (s3l1a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-3a.pdf}}};
+	    \node [visible on=<1->, left of=m3r02c01] (s3l2a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-3a.pdf}}};
+	    \node [visible on=<1->, left of=m3r03c01] (s3l3a) {\pgftext{\includegraphics[height=3mm]{../images/lizard-3a.pdf}}};
+	    \node [visible on=<1->, left of=m3r04c01] (s3l1b) {\pgftext{\includegraphics[height=3mm]{../images/lizard-3b.pdf}}};
+	    \node [visible on=<1->, left of=m3r05c01] (s3l2b) {\pgftext{\includegraphics[height=3mm]{../images/lizard-3b.pdf}}};
+	    \node [visible on=<1->, left of=m3r06c01] (s3l3b) {\pgftext{\includegraphics[height=3mm]{../images/lizard-3b.pdf}}};
+
+        \node[visible on=<3->, name=m1hspace1, space, right of=m1r03c10] {};
+        \node[visible on=<3->, name=m1hspace2, space, right of=m1hspace1] {};
+        \node[visible on=<3->, name=m1hspace3, space, right of=m1hspace2] {};
+        \node[visible on=<3->, name=m1hspace4, space, right of=m1hspace3] {};
+        \node[visible on=<3->, name=m1hspace5, space, right of=m1hspace4] {};
+        \node[visible on=<3->, name=s1, right of=m1hspace5, visible on=<1->] {$S_1$};
+
+        \node[visible on=<3->, name=m2hspace1, space, right of=m2r03c10] {};
+        \node[visible on=<3->, name=m2hspace2, space, right of=m2hspace1] {};
+        \node[visible on=<3->, name=m2hspace3, space, right of=m2hspace2] {};
+        \node[visible on=<3->, name=m2hspace4, space, right of=m2hspace3] {};
+        \node[visible on=<3->, name=m2hspace5, space, right of=m2hspace4] {};
+        \node[visible on=<3->, name=s2, right of=m2hspace5, visible on=<1->] {$S_2$};
+
+        \node[visible on=<3->, name=m3hspace1, space, right of=m3r03c10] {};
+        \node[visible on=<3->, name=m3hspace2, space, right of=m3hspace1] {};
+        \node[visible on=<3->, name=m3hspace3, space, right of=m3hspace2] {};
+        \node[visible on=<3->, name=m3hspace4, space, right of=m3hspace3] {};
+        \node[visible on=<3->, name=m3hspace5, space, right of=m3hspace4] {};
+        \node[visible on=<3->, name=s3, right of=m3hspace5, visible on=<1->] {$S_3$};
+
+        \path[->] (m1hspace1) edge [visible on=<3->,very thick, bend left] (s1);
+        \path[->] (m2hspace1) edge [visible on=<3->,very thick, bend left] (s2);
+        \path[->] (m3hspace1) edge [visible on=<3->,very thick, bend left] (s3);
+    \end{tikzpicture}
+    \end{center}
+    \end{columns}
 \end{frame}
 
 
@@ -70,8 +298,8 @@
         \node[] at (0,0) {\includegraphics<6>[width=\textwidth]{../images/rejection-sampling-500.pdf}};
         \node[] at (0,0) {\includegraphics<7>[width=\textwidth]{../images/rejection-sampling-1000.pdf}};
         \node[] at (0,0) {\includegraphics<8>[width=\textwidth]{../images/rejection-sampling-10000.pdf}};
-        \node[] at (0,0) {\includegraphics<9>[width=\textwidth]{../images/rejection-sampling-20000.pdf}};
-        \node[] at (0,0) {\includegraphics<10>[width=\textwidth]{../images/rejection-sampling-20000-post.pdf}};
+        % \node[] at (0,0) {\includegraphics<9>[width=\textwidth]{../images/rejection-sampling-20000.pdf}};
+        \node[] at (0,0) {\includegraphics<9>[width=\textwidth]{../images/rejection-sampling-20000-post.pdf}};
         \node[visible on=<1->] at (-2.9, -3.7) (s1) {$S_1$};
         \node[visible on=<1->] at (3.4, -2.9) (s2) {$S_2$};
         \node[visible on=<1->] at (5.3, 0.7) (s3) {$S_3$};
@@ -90,3 +318,4 @@
     % \includegraphics<10>[width=\textwidth]{../images/rejection-sampling-20000-post.pdf}
     % }
 \end{frame}
+

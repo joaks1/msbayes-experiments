@@ -1,0 +1,28 @@
+\begin{frame}[t]
+    \frametitle{Sampling divergence models---previous approach}
+    \begin{itemize}
+        \item<2-> Place a discrete uniform prior on the
+            \textit{\textbf{number}} of events
+    \end{itemize}
+
+    \begin{uncoverenv}<2->
+    \begin{columns}
+        \column{0.5\textwidth}
+            \centerline{
+                \includegraphics<2->[width=1.0\textwidth]{../images/number-of-div-models-10.pdf}}
+        \column{0.5\textwidth}
+            \centerline{
+                \includegraphics<3->[width=1.0\textwidth]{../images/prob-of-div-models-10.pdf}}
+    \end{columns}
+    \end{uncoverenv}
+
+    \begin{itemize}
+        \item<4-> This can create a strong bias toward models of co-divergence
+    \end{itemize}
+
+    \begin{uncoverenv}<5->
+    \begin{block}{\it Potential solution:}
+        Place flexible prior directly on the sample space of divergence models
+    \end{block}
+    \end{uncoverenv}
+\end{frame}

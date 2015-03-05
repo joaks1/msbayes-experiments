@@ -1,43 +1,69 @@
-\begin{frame}[t]
+\begin{frame}[t,label=fullmodel]
     % \frametitle{Divergence-model choice}
     \frametitle{Inferring co-diversification}
 
+    % \vspace{-9mm}
+
+    % \begin{uncoverenv}<1-6>
+    % \begin{minipage}[t][0.1\textheight][c]{1.1\linewidth}
+    %     \begin{adjustwidth}{-0.5em}{}
+    %         \begin{tabular}{ p{2.1cm} p{2.1cm} p{2.1cm} p{2.1cm} p{2.1cm} }
+    %             $m_1$ & $m_2$ & $m_3$ & $m_4$ & $m_5$ \\
+    %         \end{tabular}
+    %     \end{adjustwidth}
+    % \end{minipage}
+    % \end{uncoverenv}
+
     \vspace{-9mm}
 
-    \begin{minipage}[t][0.1\textheight][c]{1.1\linewidth}
+    \begin{minipage}[t][0.35\textheight][c]{1.2\linewidth}
         \begin{adjustwidth}{-0.5em}{}
+            \only<1-6>{
             \begin{tabular}{ p{2.1cm} p{2.1cm} p{2.1cm} p{2.1cm} p{2.1cm} }
                 $m_1$ & $m_2$ & $m_3$ & $m_4$ & $m_5$ \\
             \end{tabular}
+            }
         \end{adjustwidth}
-    \end{minipage}
-
-    \vspace{-6mm}
-
-    \begin{minipage}[t][0.35\textheight][c]{1.2\linewidth}
         \begin{adjustwidth}{-2.5em}{-2.5em}
         \hspace{-7mm}
-        \includegraphics<1->[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-shared.pdf}
-        % \includegraphics<4->[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-pop-shared.pdf}
+        \includegraphics<1-6>[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-shared.pdf}
+        % \includegraphics<1-6>[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-pop-shared.pdf}
         \hspace{5mm}
-        \includegraphics<1->[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-2-1.pdf}
-        % \includegraphics<4->[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-pop-2-1.pdf}
+        \includegraphics<1-6>[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-2-1.pdf}
+        % \includegraphics<1-6>[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-pop-2-1.pdf}
         \hspace{0.2mm}
-        \includegraphics<1->[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-2-2.pdf}
-        % \includegraphics<4->[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-pop-2-2.pdf}
+        \includegraphics<1-6>[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-2-2.pdf}
+        % \includegraphics<1-6>[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-pop-2-2.pdf}
         \hspace{0.2mm}
-        \includegraphics<1->[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-2-3.pdf}
-        % \includegraphics<4->[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-pop-2-3.pdf}
+        \includegraphics<1-6>[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-2-3.pdf}
+        % \includegraphics<1-6>[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-pop-2-3.pdf}
         \hspace{0.2mm}
-        \includegraphics<1->[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-2-3.pdf}
-        % \includegraphics<4->[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-pop-2-3.pdf}
+        \includegraphics<1-6>[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-general.pdf}
+        % \includegraphics<1-6>[width=2.4cm]{../images/dmc-cartoon-no-islands-no-sea-levels-general.pdf}
         \end{adjustwidth}
+        \begin{onlyenv}<7->
+            \textbf{Challenges:} \\
+            \vspace{-6mm}
+            \begin{enumerate}
+                \item<8-> Cannot solve all the integrals analytically
+                \begin{itemize}
+                    \item<9-> Numerical approximation
+                    \item<10-> Approximate likelihood
+                \end{itemize}
+                \item<11-> Sampling over all possible models
+                \begin{itemize}
+                    \item<12-> 5 taxa = 52 models
+                    \item<13-> 10 taxa = 115,975 models
+                    \item<14-> 20 taxa = 51,724,158,235,372 models!!
+                \end{itemize}
+            \end{enumerate}
+        \end{onlyenv}
     \end{minipage}
 
-    \vspace{-1mm}
+    \vspace{1mm}
 
     \begin{minipage}[t][0.45\textheight][t]{\linewidth}
-        \begin{uncoverenv}<2->
+        \begin{uncoverenv}<2-6>
             \begin{center}
                 We want to infer \textcolor{blue}{\divModel{}} and
                 \textcolor{blue}{\divTimeMapVector} given DNA sequence

@@ -1,0 +1,129 @@
+\begin{frame}
+    \frametitle{\dppmsbayes: Simulation-based assessment}
+        \uncover<1->{
+        Validation:\\
+
+        \smallskip
+        \begin{itemize}
+            \item Simulate 50,000 datasets and analyze each under the same
+                model
+        \end{itemize}
+        }
+
+        \uncover<2->{
+        \bigskip
+        Robustness:\\
+        \begin{itemize}
+            \item Simulate datasets that violate model assumptions and analyze
+                each of them
+        \end{itemize}
+        }
+
+        \uncover<3->{
+        \bigskip
+        Compared performance with previous method
+        }
+\end{frame}
+
+\begin{frame}
+    \frametitle{\dppmsbayes: Validation results}
+    \begin{columns}
+        \column{0.5\textwidth}
+            \includegraphics<1->[width=1.0\textwidth]{../images/validation-model-choice-old.pdf}
+        \column{0.5\textwidth}
+            \includegraphics<2->[width=1.0\textwidth]{../images/validation-model-choice-dpp.pdf}
+    \end{columns}
+    \barefootnote{\shortfullcite{Oaks2014dpp}}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\dppmsbayes: Robustness results}
+    \begin{columns}
+        \column{0.5\textwidth}
+            \centering{
+            \includegraphics<1->[width=0.9\textwidth]{../images/validation-model-choice-old-violations.pdf}
+            }
+        \column{0.5\textwidth}
+            \centering{
+            \includegraphics<1->[width=0.9\textwidth]{../images/validation-model-choice-dpp-violations.pdf}
+            }
+    \end{columns}
+
+    \begin{uncoverenv}<2->
+    \begin{itemize}
+        \item Improved model-choice accuracy and robustness
+    \end{itemize}
+    \end{uncoverenv}
+    \vspace{-0.5cm}
+    \barefootnote{\shortfullcite{Oaks2014dpp}}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\dppmsbayes: Simulation-based power analyses}
+    Does the new method have power to detect variation in divergence times?\\
+
+    \bigskip
+    \begin{myitemize}
+        \item<2-> Simulate datasets in which all 22 divergence times are random
+            \smallskip
+            \begin{myitemize}
+                \item $\divTime{} \sim U(0, \,0.5 \,MGA)$
+                \smallskip
+                \item $\divTime{} \sim U(0, \,1.5 \,MGA)$
+                \smallskip
+                \item $\divTime{} \sim U(0, \,2.5 \,MGA)$
+                \smallskip
+                \item $\divTime{} \sim U(0, \,5.0 \,MGA)$
+                \smallskip
+            \end{myitemize}
+        \item<2-> $MGA$ = Millions of Generations Ago
+
+        \item<3-> Simulate 1000 datasets for each \divTime{} distribution
+        \item<3-> Analyze all 4000 datasets with \msb and \dppmsbayes
+    \end{myitemize}
+\end{frame}
+
+\begin{frame}[t]
+    \frametitle{\dppmsbayes: Power results}
+        \begin{onlyenv}<1-2>
+        \centerline{
+        \includegraphics[width=1.13\textwidth]<1-2>{../images/power-psi-old-annotate-no-pp.pdf}}
+        \vspace{0mm}
+        \centerline{
+        \includegraphics[width=1.13\textwidth]<2>{../images/power-psi-dpp-annotate-no-pp.pdf}}
+        \end{onlyenv}
+
+        \begin{onlyenv}<3->
+        \centerline{
+        \includegraphics[width=1.13\textwidth]<3->{../images/power-psi-old-annotate-pp.pdf}}
+        \vspace{0mm}
+        \centerline{
+        \includegraphics[width=1.13\textwidth]<3->{../images/power-psi-dpp-annotate-pp.pdf}}
+        \end{onlyenv}
+
+    \begin{uncoverenv}<4->
+    \begin{itemize}
+        \item Improved power to detect temporal variation across divergences
+    \end{itemize}
+    \end{uncoverenv}
+    \barefootnote{\shortfullcite{Oaks2014dpp}}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\dppmsbayes: Performance}
+    \begin{itemize}
+        \item<1-> New method for estimating shared evolutionary history shows
+            improved:
+            \begin{enumerate}
+                \item<1-> Improved model-choice accuracy 
+                \item<1-> More robustness to model violations
+                \item<1-> Greater power to detect variation in divergence times
+                \item<1-> Faster!
+            \end{enumerate}
+        \item<2-> \textbf{dpp-msbayes allows biologists to leverage comparative
+                genomic data to infer the affects of community-scale processes
+                on biodiversity}
+    \end{itemize}
+
+    \barefootnote{\shortfullcite{Oaks2014dpp}}
+\end{frame}

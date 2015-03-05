@@ -21,6 +21,19 @@
         {}%
         {\fcolorbox{gray!90}{gray!15}{\catformat{#3}}}%
 }
+\newcommand{\lclass}[3]{%
+    {\setlength{\fboxsep}{0.2mm}
+    \ifthenelse{\equal{#1}{}}%
+        {}%
+        {\fcolorbox{blue!90}{blue!15}{#1}}%
+    \ifthenelse{\equal{#2}{}}%
+        {}%
+        {\fcolorbox{red!90}{red!15}{#2}}%
+    \ifthenelse{\equal{#3}{}}%
+        {}%
+        {\fcolorbox{gray!90}{gray!15}{#3}}%
+    }
+}
 \newcommand{\catformat}[1]{\textsf{\textbf{#1}}}
 \newcommand{\pcat}[3]{%
     \textcolor{blue}{\catformat{#1}}%
