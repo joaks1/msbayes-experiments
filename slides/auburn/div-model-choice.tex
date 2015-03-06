@@ -14,13 +14,28 @@
     % \end{minipage}
     % \end{uncoverenv}
 
-    \vspace{-9mm}
+    \vspace{-7mm}
 
     \begin{minipage}[t][0.35\textheight][c]{1.2\linewidth}
         \begin{adjustwidth}{-0.5em}{}
-            \only<1-6>{
+            \only<1-3>{
             \begin{tabular}{ p{2.1cm} p{2.1cm} p{2.1cm} p{2.1cm} p{2.1cm} }
-                $m_1$ & $m_2$ & $m_3$ & $m_4$ & $m_5$ \\
+                % $m_1$ & $m_2$ & $m_3$ & $m_4$ & $m_5$ \\
+                $\divModel{1}$ & 
+                $\divModel{2}$ & 
+                $\divModel{3}$ & 
+                $\divModel{4}$ & 
+                $\divModel{5}$ \\
+            \end{tabular}
+            }
+            \only<4-6>{
+                \hspace{-6mm}
+            \begin{tabular}{ p{2.1cm} p{2.1cm} p{2.1cm} p{2.1cm} p{2.1cm} }
+                $p(\divModel{1} \given \alignmentVector)$ & 
+                $p(\divModel{2} \given \alignmentVector)$ & 
+                $p(\divModel{3} \given \alignmentVector)$ & 
+                $p(\divModel{4} \given \alignmentVector)$ & 
+                $p(\divModel{5} \given \alignmentVector)$ \\
             \end{tabular}
             }
         \end{adjustwidth}
@@ -43,7 +58,7 @@
         \end{adjustwidth}
         \begin{onlyenv}<7->
             \textbf{Challenges:} \\
-            \vspace{-6mm}
+            \vspace{-4mm}
             \begin{enumerate}
                 \item<8-> Cannot solve all the integrals analytically
                 \begin{itemize}
@@ -60,7 +75,7 @@
         \end{onlyenv}
     \end{minipage}
 
-    \vspace{1mm}
+    \vspace{4mm}
 
     \begin{minipage}[t][0.45\textheight][t]{\linewidth}
         \begin{uncoverenv}<2-6>
@@ -76,7 +91,7 @@
 
         \begin{adjustwidth}{.11\textwidth}{0em}
         \hspace{0.5\textwidth}
-            \begin{onlyenv}<3>
+            \begin{onlyenv}<3-4>
                 \begin{description}
                     \item[\ ] Gene trees
                     \item[\allParameters{}] Substitution parameters
@@ -104,44 +119,10 @@
         %         }{p(\alignmentVector)}
         % \]
         
-        \vspace{-7mm}
-        \begin{uncoverenv}<4->
+        \vspace{-5mm}
+        \begin{uncoverenv}<5->
             \begin{displaybox}[0.85\linewidth]
-                \uncover<4->{
-                    \[
-                        p(
-                          \divTimeMapVector,
-                          \allParameters{}
-                          \given \alignmentVector, \divModel{i})
-                          =
-                        \frac{
-                            p(\alignmentVector \given
-                              \divTimeMapVector,
-                              \allParameters{},
-                              \divModel{i}
-                              )
-                              p(
-                                \divTimeMapVector,
-                                \allParameters{}
-                                \given \divModel{i}
-                                )
-                            }{p(\alignmentVector \given \divModel{i})}
-                    \]
-                }
-
-                \vspace{-8mm}
                 \uncover<5->{
-                    \[
-                        p(\alignmentVector \given \divModel{i}) =
-                        \int_{\divTimeMapVector} \int_{\allParameters{}}
-                        p(\alignmentVector \given \divTimeMapVector, \allParameters{}, \divModel{i})
-                        p(\divTimeMapVector, \allParameters{} \given \divModel{i})
-                        d\divTimeMapVector d\allParameters{}
-                    \]
-                }
-
-                \vspace{-6mm}
-                \uncover<6->{
                     \[
                         p(\divModel{i} \given \alignmentVector) =
                         \frac{
@@ -153,7 +134,42 @@
                         }
                     \]
                 }
-                \vspace{-3mm}
+
+                \vspace{-7mm}
+                \uncover<6->{
+                    \[
+                        p(\alignmentVector \given \divModel{i}) =
+                        \int_{\divTimeMapVector} \int_{\allParameters{}}
+                        p(\alignmentVector \given \divTimeMapVector, \allParameters{}, \divModel{i})
+                        p(\divTimeMapVector, \allParameters{} \given \divModel{i})
+                        d\divTimeMapVector d\allParameters{}
+                    \]
+                }
+
+                % \vspace{-6mm}
+                % \uncover<5->{
+                %     \[
+                %         p(
+                %           \divTimeMapVector,
+                %           \allParameters{}
+                %           \given \alignmentVector, \divModel{i})
+                %           =
+                %         \frac{
+                %             p(\alignmentVector \given
+                %               \divTimeMapVector,
+                %               \allParameters{},
+                %               \divModel{i}
+                %               )
+                %               p(
+                %                 \divTimeMapVector,
+                %                 \allParameters{}
+                %                 \given \divModel{i}
+                %                 )
+                %             }{p(\alignmentVector \given \divModel{i})}
+                %     \]
+                % }
+                \vspace{-4mm}
+
             \end{displaybox}
         \end{uncoverenv}
     \end{minipage}
@@ -173,5 +189,6 @@
         %     \end{center}
         % \end{uncoverenv}
     % \end{minipage}
+    \barefootnote{\tiny \shortfullcite{Oaks2012}, \shortfullcite{Oaks2014dpp}}
 \end{frame}
 

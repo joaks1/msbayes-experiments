@@ -18,21 +18,12 @@
 % \hypersetup{pdfborder={0 0 0}, colorlinks=true, urlcolor=black, linkcolor=black, citecolor=black}
 \hypersetup{pdfborder={0 0 0}, colorlinks=true, urlcolor=blue, linkcolor=blue, citecolor=blue}
 
-\usepackage[sorting=ydnt,bibstyle=authoryear-comp,defernumbers=true,maxnames=1,firstinits=true,uniquename=init,dashed=false,doi=false,isbn=false,backend=biber]{biblatex}
+\usepackage[bibstyle=joaks-slides,maxnames=1,firstinits=true,uniquename=init,backend=biber]{biblatex}
 
-\DeclareFieldFormat*{pages}{#1}
-\DeclareFieldFormat*{volume}{\mkbibbold{#1:}}
-\DeclareFieldFormat*{number}{}
-\DeclareFieldFormat*{extrayear}{}
-\DeclareFieldFormat*{month}{}
-\DeclareFieldFormat*{doi}{}
-\DeclareFieldFormat*{url}{}
-% No dot before number of articles
-\usepackage{xpatch}
-\xpatchbibmacro{volume+number+eid}{\setunit*{\adddot}}{}{}{}
+\newrobustcmd*{\shortfullcite}{\AtNextCite{\renewbibmacro{title}{}\renewbibmacro{in:}{}\renewbibmacro{number}{}}\fullcite}
 
 \newrobustcmd*{\footlessfullcite}{\AtNextCite{\renewbibmacro{title}{}\renewbibmacro{in:}{}}\footfullcite}
-\newrobustcmd*{\shortfullcite}{\AtNextCite{\renewbibmacro{title}{}\renewbibmacro{in:}{}\renewbibmacro{number}{}}\fullcite}
+
 
 % Make all footnotes smaller
 \renewcommand{\footnotesize}{\scriptsize}
