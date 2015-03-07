@@ -1,5 +1,5 @@
 \begin{frame}[t]
-    \frametitle{New methods for inferring community history}
+    \frametitle{Next step: A general framework}
     \vspace{-5mm}
     \begin{minipage}[t][0.1\textheight][c]{1\linewidth}
     \begin{itemize}
@@ -18,27 +18,29 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Next step: A general framework}
+
+    \vspace{-5mm}
     \begin{columns}
         \column{0.4\textwidth}
         \begin{minipage}[c]{\columnwidth}
         \begin{adjustwidth}{-2.3em}{}
-        \begin{onlyenv}<1-6>
+        \begin{onlyenv}<1-4>
         \begin{itemize}
-            \item<2-> Current phylogenetic methods assume speciation and extinction
-                occur independently of one another
-            \item<3-> We know this assumption is frequently violated
-            \item<4-> I will generalize a birth-death model to accommodate
-                ``shared'' events
-            \item<6> Infer events jointly across multiple trees
+            \item<1-> Relax the assumption of independence of events across the
+                tree
+            \item<2-> I will generalize a birth-death model to accommodate
+                shared events
+            \item<4-> Jointly infer co-diversification across multiple trees
         \end{itemize}
         \end{onlyenv}
-        \begin{onlyenv}<7->
-        \only<7->{\hspace{0.5cm}\textbf{\large Benefits:}\\}
+        \begin{onlyenv}<5->
+        \only<5->{\hspace{0.5cm}\textbf{\large Benefits:}\\}
         \begin{itemize}
-            \item<8-> Improve phylogenetic inference and divergence-time estimation
-            \item<9-> Provide a general framework for inferring the evolutionary
-                history of whole communities
-            \item<10-> Possible epidemiological applications
+            \item<6-> Improve phylogenetic inference and divergence-time estimation
+            \item<7-> Provide a general framework for inferring shared
+                evolutionary history across communities of species
+            \item<8-> Epidemiological applications
         \end{itemize}
         \end{onlyenv}
         \end{adjustwidth}
@@ -47,10 +49,10 @@
         \column{0.6\textwidth}
         \begin{minipage}[t][\textheight][c]{\linewidth}
         \centerline{
-        \includegraphics<1-3>[width=\columnwidth]{../images/bd-cartoon-no-lines.pdf}
-        \includegraphics<4>[width=\columnwidth]{../images/bd-cartoon-shared.pdf}
-        \includegraphics<5>[width=0.75\columnwidth]{../images/bd-cartoon-shared-space.pdf}
-        \includegraphics<6->[width=0.75\columnwidth]{../images/bd-cartoon-2-trees-shared.pdf}
+        \includegraphics<1>[width=\columnwidth]{../images/bd-cartoon-no-lines.pdf}
+        \includegraphics<2>[width=\columnwidth]{../images/bd-cartoon-shared.pdf}
+        \includegraphics<3>[width=0.7\columnwidth]{../images/bd-cartoon-shared-space.pdf}
+        \includegraphics<4->[width=0.7\columnwidth]{../images/bd-cartoon-2-trees-shared.pdf}
         }
         \end{minipage}
     \end{columns}

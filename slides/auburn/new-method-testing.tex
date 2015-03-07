@@ -21,7 +21,7 @@
 
         \uncover<3->{
         \bigskip
-        Compared performance with previous method
+        Compared performance with previous method, \msb
         }
 \end{frame}
 
@@ -29,9 +29,9 @@
     \frametitle{\dppmsbayes: Validation results}
     \begin{columns}
         \column{0.5\textwidth}
-            \includegraphics<1->[width=1.0\textwidth]{../images/validation-model-choice-old.pdf}
+            \includegraphics<1->[width=1.0\textwidth]{../images/validation-model-choice-dpp.pdf}
         \column{0.5\textwidth}
-            \includegraphics<2->[width=1.0\textwidth]{../images/validation-model-choice-dpp.pdf}
+            \includegraphics<2->[width=1.0\textwidth]{../images/validation-model-choice-old.pdf}
     \end{columns}
     \barefootnote{\shortfullcite{Oaks2014dpp}}
 \end{frame}
@@ -41,11 +41,11 @@
     \begin{columns}
         \column{0.5\textwidth}
             \centering{
-            \includegraphics<1->[width=0.9\textwidth]{../images/validation-model-choice-old-violations.pdf}
+            \includegraphics<1->[width=0.9\textwidth]{../images/validation-model-choice-dpp-violations.pdf}
             }
         \column{0.5\textwidth}
             \centering{
-            \includegraphics<1->[width=0.9\textwidth]{../images/validation-model-choice-dpp-violations.pdf}
+            \includegraphics<1->[width=0.9\textwidth]{../images/validation-model-choice-old-violations.pdf}
             }
     \end{columns}
 
@@ -79,7 +79,7 @@
         \item<2-> $MGA$ = Millions of Generations Ago
 
         \item<3-> Simulate 1000 datasets for each \divTime{} distribution
-        \item<3-> Analyze all 4000 datasets with \msb and \dppmsbayes
+        \item<3-> Analyze all 4000 datasets with \dppmsbayes and \msb
     \end{myitemize}
     \barefootnote{\tiny \shortfullcite{Oaks2012}, \shortfullcite{Oaks2014dpp}}
 \end{frame}
