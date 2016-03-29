@@ -318,6 +318,32 @@ def main_cli():
 
     pg.savefig('../images/validation-model-choice-dpp-violations-horizontal.pdf')
 
+    pg = plotting.PlotGrid(subplots = dpp_violations[-1:],
+            num_columns = 1,
+            share_x = True,
+            share_y = True,
+            title = 'Posterior probability of one divergence',
+            title_size = 14.0,
+            title_top = False,
+            y_title = 'True probability of one divergence',
+            y_title_position = 0.001,
+            y_title_size = 14.0,
+            # column_labels = [r'dpp-msbayes'],
+            column_label_size = 22.0,
+            column_label_offset = 0.04,
+            width = 4.8,
+            height = 3.6,
+            auto_height = False)
+    pg.label_schema = None
+    pg.auto_adjust_margins = False
+    pg.margin_bottom = 0.06
+    pg.margin_left = 0.06
+    pg.margin_top = 0.99
+    pg.margin_right = 0.94
+    pg.reset_figure()
+
+    pg.savefig('../images/validation-model-choice-dpp-uniform-no-label.pdf')
+
 if __name__ == '__main__':
     main_cli()
 
